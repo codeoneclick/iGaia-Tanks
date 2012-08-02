@@ -82,12 +82,17 @@ void CModel::OnTouchEvent(ITouchDelegate* _pDelegateOwner)
 
 void CModel::Update()
 {
+    if(CSceneMgr::Instance()->Get_Camera()->Get_Frustum()->IsPointInFrustum(m_vPosition) == CFrustum::E_FRUSTUM_RESULT_OUTSIDE)
+    {
+        return;
+    }
+    
     INode::Update();
 }
 
 void CModel::Render(CShader::E_RENDER_MODE _eMode)
 {
-    if(CSceneMgr::Instance()->Get_Frustum()->IsPointInFrustum(m_vPosition) == CFrustum::E_FRUSTUM_RESULT_OUTSIDE)
+    if(CSceneMgr::Instance()->Get_Camera()->Get_Frustum()->IsPointInFrustum(m_vPosition) == CFrustum::E_FRUSTUM_RESULT_OUTSIDE)
     {
         return;
     }
@@ -97,7 +102,7 @@ void CModel::Render(CShader::E_RENDER_MODE _eMode)
     m_pMaterial->Commit(_eMode);
     
     ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();
-    ILight* pLight = CSceneMgr::Instance()->Get_GlobalLight();
+    ILight* pLight = CSceneMgr::Instance()->Get_Light();
     CShader* pShader = m_pMaterial->Get_Shader(_eMode);
     
     switch (_eMode)

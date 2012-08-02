@@ -19,7 +19,7 @@ CCameraTarget::~CCameraTarget(void)
     m_pTarget = NULL;
 }
 
-void CCameraTarget::Update()
+void CCameraTarget::Update(void)
 {
     if(m_pTarget != NULL)
     {
@@ -29,7 +29,8 @@ void CCameraTarget::Update()
     m_vPosition.y = m_fHeightFromLookAt;
     m_vPosition.x = m_vLookAt.x + cos(-m_vRotation.y) * -m_fDistanceToLookAt;
     m_vPosition.z = m_vLookAt.z + sin(-m_vRotation.y) * -m_fDistanceToLookAt;
-	m_mView = glm::lookAt(m_vPosition, m_vLookAt, m_vUp); 
+	m_mView = glm::lookAt(m_vPosition, m_vLookAt, m_vUp);
+    ICamera::Update();
 }
 
 void CCameraTarget::OnScreenMove(glm::vec2 _vMoveDirection)

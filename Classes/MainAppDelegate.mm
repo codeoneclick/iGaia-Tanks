@@ -15,6 +15,7 @@
     m_pWindow.backgroundColor = [UIColor blackColor];
     [m_pWindow addSubview:m_pNavigationViewController.view];
     [m_pWindow makeKeyAndVisible];
+    
 }  
 
 

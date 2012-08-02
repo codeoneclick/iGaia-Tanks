@@ -11,6 +11,7 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp> 
+#include "CFrustum.h"
 
 class ICamera
 {
@@ -31,12 +32,14 @@ protected:
     float m_fDistanceToLookAt;
     float m_fHeightFromLookAt;
     
+    CFrustum* m_pFrustum;
+    
 public:
     ICamera(void);
     virtual ~ICamera(void);
     
     void Init(int _iScreenWidth, int _iScreenHeight, float _fFovY, float _fFarPlane, float _fNearPlane);
-    virtual void Update(void) = 0;
+    virtual void Update(void);
     
     virtual void OnScreenMove(glm::vec2 _vMoveDirection) = 0;
     
@@ -47,6 +50,8 @@ public:
     
     glm::mat4x4 Get_BillboardSphericalMatrix(glm::vec3 _vPosition);
     glm::mat4x4 Get_BillboardCylindricalMatrix(glm::vec3 _vPosition);
+    
+    CFrustum* Get_Frustum(void) { return m_pFrustum; }
     
     void Set_FovY(float _fFovY);
     float Get_FovY(void) { return m_fFovY; }

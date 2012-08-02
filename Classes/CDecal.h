@@ -12,6 +12,9 @@
 #include <iostream>
 #include "INode.h"
 
+#define k_HEIGHTMAP_DECAL_SIZE 7
+#define k_HEIGHTMAP_DECAL_OFFSET 3
+
 class CDecal : public INode
 {
 protected:

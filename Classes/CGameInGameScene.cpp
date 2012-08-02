@@ -51,11 +51,11 @@ void CGameInGameScene::Load(void)
     m_pGameAIMgr->Add_AICharacterController(pEnemy);
     pEnemy->Set_Target(m_pMainCharacterController);*/
     
-    m_pLight = CSceneMgr::Instance()->Get_Light(ILight::E_LIGHT_MODE_POINT, 0);
+    m_pLight = new CLightPoint();
     m_pLight->Set_Position(glm::vec3(32.0f, 16.0f, 32.0f));
     m_pLight->Set_LightAt(glm::vec3(32.0f, 0.0f, 32.0f));
     static_cast<CLightPoint*>(m_pLight)->Set_Visible(true);
-    CSceneMgr::Instance()->Set_GlobalLight(m_pLight);
+    CSceneMgr::Instance()->Set_Light(m_pLight);
     
     m_pCamera = CSceneMgr::Instance()->CreateTargetCamera(45.0f, 0.25f, 128.0f, m_pMainCharacterController);
     CSceneMgr::Instance()->Set_Camera(m_pCamera);

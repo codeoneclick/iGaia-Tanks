@@ -23,8 +23,7 @@
 #include "CTimer.h"
 #include "CSettings.h"
 
-CSceneMgr* CSceneMgr::m_pInsatnce = NULL;
-const unsigned int CSceneMgr::k_MAX_LIGHTS = 8;
+CSceneMgr* CSceneMgr::m_pInstance = NULL;
 
 CSceneMgr::CSceneMgr(void)
 {
@@ -33,7 +32,6 @@ CSceneMgr::CSceneMgr(void)
     m_pSkyBox = NULL;
     m_pLandscape = NULL;
     m_pOcean = NULL;
-    m_pFrustum = NULL;
     
     m_pRenderMgr = new CRenderMgr();
     m_pCollisionMgr = new CCollisionMgr();
@@ -41,15 +39,6 @@ CSceneMgr::CSceneMgr(void)
     m_pDecalMgr = new CDecalMgr();
     m_pSpriteMgr = new CSpriteMgr();
     m_pBatchMgr = new CBatchMgr();
-    
-    m_lLights[ILight::E_LIGHT_MODE_DIRECTION] = new CLightPoint();
-    static_cast<CLightPoint*>(m_lLights[ILight::E_LIGHT_MODE_DIRECTION])->Set_Visible(false);
-    
-    for(unsigned int i = 0; i < k_MAX_LIGHTS; i++)
-    {
-        m_lLights[ILight::E_LIGHT_MODE_POINT + i] = new CLightPoint();
-        static_cast<CLightPoint*>(m_lLights[ILight::E_LIGHT_MODE_POINT + i])->Set_Visible(false);
-    }
 }
 
 CSceneMgr::~CSceneMgr(void)
@@ -59,11 +48,11 @@ CSceneMgr::~CSceneMgr(void)
 
 CSceneMgr* CSceneMgr::Instance()
 {
-    if( m_pInsatnce == NULL)
+    if(m_pInstance == NULL)
     {
-        m_pInsatnce = new CSceneMgr();
+        m_pInstance = new CSceneMgr();
     }    
-    return m_pInsatnce;
+    return m_pInstance;
 }
 
 
@@ -150,9 +139,6 @@ void CSceneMgr::RemoveEventListener(INode *_pNode, CEventMgr::E_EVENT _eEvent)
 void CSceneMgr::Set_Camera(ICamera* _pCamera)
 {
     m_pCamera = _pCamera;
-    m_pFrustum = new CFrustum();
-    m_pFrustum->Set_InternalParams(60.0f, m_pCamera->Get_AspectRatio(), m_pCamera->Get_NearPlane(), m_pCamera->Get_FarPlane());
-    m_pFrustum->Set_CameraRef(m_pCamera);
 }
 
 ICamera* CSceneMgr::CreateFreeCamera(float _fFov, float _fNearPlane, float _fFarPlane)
@@ -196,19 +182,6 @@ void CSceneMgr::Remove_Model(INode *_pNode)
     }
 }
 
-ILight* CSceneMgr::Get_Light(ILight::E_LIGHT_MODE _eMode, unsigned int _iIndex)
-{
-    if(_eMode == ILight::E_LIGHT_MODE_DIRECTION)
-    {
-        return m_lLights[_eMode];
-    }
-    else if(_iIndex < k_MAX_LIGHTS)
-    {
-        return m_lLights[_eMode + _iIndex];
-    }
-    return NULL;
-}
-
 unsigned char CSceneMgr::Get_UniqueColorId(INode *_pNode)
 {
     std::vector<INode*>::iterator pNodeIteratorBegin = m_lContainer.begin();
@@ -242,20 +215,6 @@ void CSceneMgr::Update()
     if(m_pCamera != NULL)
     {
         m_pCamera->Update();
-    }
-    
-    if(m_pFrustum != NULL && m_pCamera != NULL)
-    {
-        m_pFrustum->Update();
-    }
-    
-    std::map<unsigned int, ILight*>::iterator pMapBIterator = m_lLights.begin();
-    std::map<unsigned int, ILight*>::iterator pMapEIterator = m_lLights.end();
-    
-    while (pMapBIterator != pMapEIterator)
-    {
-        (*pMapBIterator).second->Update();
-        ++pMapBIterator;
     }
     
     std::vector<INode*>::iterator pBIterator = m_lContainer.begin();

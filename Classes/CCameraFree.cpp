@@ -27,6 +27,7 @@ void CCameraFree::Update(void)
     m_vPosition.z = m_vLookAt.z + sin(-m_vRotation.y) * -m_fDistanceToLookAt;
     m_vLookAt.y = 0.0f;
 	m_mView = glm::lookAt(m_vPosition, m_vLookAt, m_vUp);
+    ICamera::Update();
 }
 
 void CCameraFree::OnScreenMove(glm::vec2 _vMoveDirection)

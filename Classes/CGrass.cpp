@@ -325,7 +325,7 @@ void CGrass::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 
 void CGrass::_CheckVisibleQuadTreeNode(CGrass::SQuadTreeNode *_pNode)
 {
-    CFrustum* pFrustum = CSceneMgr::Instance()->Get_Frustum();
+    CFrustum* pFrustum = CSceneMgr::Instance()->Get_Camera()->Get_Frustum();
     if(_pNode->m_pChilds == NULL)
     {
         return;

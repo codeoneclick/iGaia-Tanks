@@ -18,6 +18,7 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+    
     if (self)
     {
         UIButton* pUnloadButton = [[UIButton alloc] initWithFrame:CGRectMake(8, 56, 128, 32)];

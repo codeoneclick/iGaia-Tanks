@@ -174,7 +174,7 @@ void CSpriteCross::Update(void)
 
 void CSpriteCross::Render(CShader::E_RENDER_MODE _eMode)
 {
-    if(CSceneMgr::Instance()->Get_Frustum()->IsPointInFrustum(m_vPosition) == CFrustum::E_FRUSTUM_RESULT_OUTSIDE)
+    if(CSceneMgr::Instance()->Get_Camera()->Get_Frustum()->IsPointInFrustum(m_vPosition) == CFrustum::E_FRUSTUM_RESULT_OUTSIDE)
     {
         return;
     }

@@ -16,11 +16,13 @@ ICamera::ICamera()
 	m_vPosition = glm::vec3(0.0f, 0.0f, 0.0f); 
     m_vRotation = glm::vec3(0.0f, 0.0f, 0.0f);
     m_vUp = glm::vec3(0.0f, 1.0f, 0.0f);
+    
+    m_pFrustum = NULL;
 }
 
 ICamera::~ICamera()
 {
-
+    
 }
 
 void ICamera::Init(int _iScreenWidth, int _iScreenHeight, float _fFovY, float _fFarPlane, float _fNearPlane)
@@ -30,6 +32,12 @@ void ICamera::Init(int _iScreenWidth, int _iScreenHeight, float _fFovY, float _f
     m_fFarPlane = _fFarPlane;
     m_fNearPlane = _fNearPlane;
     m_mProjection = glm::perspective(m_fFovY, m_fAspectRatio, m_fNearPlane, m_fFarPlane);
+    m_pFrustum = new CFrustum(this);
+}
+
+void ICamera::Update(void)
+{
+    m_pFrustum->Update();
 }
 
 void ICamera::Set_FovY(float _fFovY)

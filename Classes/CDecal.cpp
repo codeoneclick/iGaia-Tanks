@@ -30,8 +30,8 @@ CDecal::~CDecal(void)
 
 void CDecal::Load(const std::string& _sName, IResource::E_THREAD _eThread)
 {
-    unsigned int iWidth = 7;
-    unsigned int iHeight = 7;
+    unsigned int iWidth = k_HEIGHTMAP_DECAL_SIZE;
+    unsigned int iHeight = k_HEIGHTMAP_DECAL_SIZE;
     CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
     pSourceData->m_iNumVertexes = iWidth * iHeight;
     pSourceData->m_iNumIndexes  = (iWidth - 1) * (iHeight - 1) * 6;
@@ -40,18 +40,12 @@ void CDecal::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     
     CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
     
-    //glm::vec3* pPositionData = pSourceData->m_pVertexBuffer->GetOrCreate_PositionSourceData();
-    //glm::vec2* pTexCoordData = pSourceData->m_pVertexBuffer->GetOrCreate_TexcoordSourceData();
-    
-    //memset(pPositionData, 0x0, pSourceData->m_iNumVertexes * sizeof(glm::vec3));
-    
     unsigned int index = 0;
-    float fScale = 0.25f;
     for(unsigned int i = 0; i < iWidth; ++i)
     {
         for(unsigned int j = 0; j < iHeight; ++j)
         {
-            pVertexBufferData[index].m_vPosition = glm::vec3(static_cast<float>(i) * fScale - 2.0f, 0.0f, static_cast<float>(j) * fScale - 2.0f);
+            pVertexBufferData[index].m_vPosition = glm::vec3(static_cast<float>(i), 0.0f, static_cast<float>(j));
             pVertexBufferData[index].m_vTexcoord = glm::vec2(static_cast<float>(i) / static_cast<float>(iWidth), static_cast<float>(j) / static_cast<float>(iHeight));
             ++index;
         }
@@ -116,19 +110,10 @@ void CDecal::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 
 void CDecal::Update()
 {
-    //INode::Update();
-    /*unsigned int iWidth = 8;
-    unsigned int iHeight = 8;
-    glm::vec3* pPositionData = m_pMesh->Get_VertexBufferRef()->CreateOrReUse_PositionData();
-    unsigned int index = 0;
-    for(unsigned int i = 0; i < iWidth; ++i)
+    if(CSceneMgr::Instance()->Get_Camera()->Get_Frustum()->IsPointInFrustum(m_vPosition) == CFrustum::E_FRUSTUM_RESULT_OUTSIDE)
     {
-        for(unsigned int j = 0; j < iHeight; ++j)
-        {
-            pPositionData[index].y = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(m_vPosition.x + pPositionData[index].x, m_vPosition.z + pPositionData[index].z) + 0.05f;
-            ++index;
-        }
-    }*/
+        return;
+    }
     
     int iRoundPositionX = m_vPosition.x;
     int iRoundPositionZ = m_vPosition.z;
@@ -145,12 +130,11 @@ void CDecal::Update()
     
     unsigned int index = 0;
     CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(m_pMesh->Get_VertexBufferRef()->Lock());
-    //glm::vec3* pPositionData = m_pMesh->Get_VertexBufferRef()->GetOrCreate_PositionSourceData();
     int iHeightmapWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
     int iHeightmapHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height();
-    for(int i = -3; i <= 3; ++i)
+    for(int i = -k_HEIGHTMAP_DECAL_OFFSET; i <= k_HEIGHTMAP_DECAL_OFFSET; ++i)
     {
-        for(int j = -3; j <= 3; ++j)
+        for(int j = -k_HEIGHTMAP_DECAL_OFFSET; j <= k_HEIGHTMAP_DECAL_OFFSET; ++j)
         {
             if((iRoundPositionX + i) < 0 || (iRoundPositionZ + j) < 0 || (iRoundPositionX + i) >= iHeightmapWidth || (iRoundPositionZ +j) > iHeightmapHeight)
             {
@@ -179,6 +163,11 @@ void CDecal::Update()
 
 void CDecal::Render(CShader::E_RENDER_MODE _eMode)
 {
+    if(CSceneMgr::Instance()->Get_Camera()->Get_Frustum()->IsPointInFrustum(m_vPosition) == CFrustum::E_FRUSTUM_RESULT_OUTSIDE)
+    {
+        return;
+    }
+    
     INode::Render(_eMode);
     
     ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();

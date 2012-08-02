@@ -26,17 +26,15 @@ class ICharacterController;
 class CSceneMgr
 {
 private:
-    static CSceneMgr* m_pInsatnce;
-    static const unsigned int k_MAX_LIGHTS; 
+    static CSceneMgr* m_pInstance;
     
     std::vector<INode*> m_lContainer;
-    std::map<unsigned int, ILight*> m_lLights;
-    ILight* m_pGlobalLight;
+    ILight* m_pLight;
     INode* m_pSkyBox;
     INode* m_pLandscape;
     INode* m_pOcean;
+    INode* m_pGrass;
     ICamera* m_pCamera;
-    CFrustum* m_pFrustum;
     
     CRenderMgr* m_pRenderMgr;
     CCollisionMgr* m_pCollisionMgr;
@@ -57,13 +55,11 @@ public:
     
     static CSceneMgr* Instance(void);
     
-    ILight* Get_Light(ILight::E_LIGHT_MODE _eMode, unsigned int _iIndex = 0);
     ICamera* Get_Camera(void) { return m_pCamera; }
     void Set_Camera(ICamera* _pCamera);
-    CFrustum* Get_Frustum(void) { return m_pFrustum; }
     
-    void Set_GlobalLight(ILight* _pLight) { m_pGlobalLight = _pLight; }
-    ILight* Get_GlobalLight(void) { return m_pGlobalLight; }
+    ILight* Get_Light(void) { return m_pLight; }
+    void Set_Light(ILight* _pLight) { m_pLight = _pLight; }
     
     INode* Add_CustomModel(const std::string& _sName, IResource::E_THREAD _eThread = IResource::E_THREAD_MAIN);
     INode* Add_LandscapeModel(const std::string& _sName, IResource::E_THREAD _eThread = IResource::E_THREAD_MAIN);

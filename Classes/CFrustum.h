@@ -10,36 +10,49 @@
 #define __iGaia__CFrustum__
 
 #include <iostream>
-#include "ICamera.h"
-#include "CBoundingBox.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
+#define k_MAX_FRUSTUM_PLANES 6
+
+class ICamera;
 class CFrustum
 {
 public:
-    class CFrustumPlane
-    {
-    public:
-        glm::vec3 m_vNormal, m_vPoint;
-        float d;
-        CFrustumPlane(void);
-        ~CFrustumPlane(void);
-        void Set_Points(const glm::vec3& _vPoint_01, const glm::vec3& _vPoint_02, const glm::vec3& _vPoint_03);
-        float Get_Distance(const glm::vec3& _vPoint);
-    };
-    enum E_FRUSTUM_RESULT { E_FRUSTUM_RESULT_OUTSIDE = 0, E_FRUSTUM_RESULT_INTERSECT, E_FRUSTUM_RESULT_INSIDE };
+    enum E_FRUSTUM_RESULT {
+        E_FRUSTUM_RESULT_OUTSIDE = 0,
+        E_FRUSTUM_RESULT_INTERSECT,
+        E_FRUSTUM_RESULT_INSIDE };
 protected:
+    class CPlane
+    {
+    protected:
+        glm::vec3 m_vNormal;
+        float m_fOffset;
+    public:
+        CPlane(void);
+        ~CPlane(void);
+        void Update(const glm::vec3& _vPoint_01, const glm::vec3& _vPoint_02, const glm::vec3& _vPoint_03);
+        float Get_Distance(const glm::vec3& _vPoint);
+        inline glm::vec3 Get_Normal(void) { return m_vNormal; }
+        inline float Get_Offset(void) { return m_fOffset; }
+    };
+    enum E_FRUSTUM_PLANE {
+        E_FRUSTUM_PLANE_TOP = 0,
+        E_FRUSTUM_PLANE_BOTTOM,
+        E_FRUSTUM_PLANE_LEFT,
+        E_FRUSTUM_PLANE_RIGHT,
+        E_FRUSTUM_PLANE_NEAR,
+        E_FRUSTUM_PLANE_FAR };
+    CPlane m_pPlanes[k_MAX_FRUSTUM_PLANES];
+    glm::vec3 m_vNearTopLeftPoint,m_vNearTopRightPoint, m_vNearBottomLeftPoint, m_vNearBottomRightPoint, m_vFarTopLeftPoint,m_vFarTopRightPoint, m_vFarBottomLeftPoint, m_vFarBottomRightPoint;
+    float m_fNearOffset, m_fFarOffset;
+	float m_fNearWidth, m_fNearHeight, m_fFarWidth, m_fFarHeight;
     ICamera* m_pCameraRef;
-    enum { TOP = 0, BOTTOM, LEFT, RIGHT, NEAR, FAR };
-    CFrustumPlane m_pPlanes[6];
-    glm::vec3 ntl,ntr,nbl,nbr,ftl,ftr,fbl,fbr;
-    float m_fAngle, m_fAspectRation, m_fNearD, m_fFarD, m_fTan;
-	float nw,nh,fw,fh;
 public:
-    CFrustum(void);
+    CFrustum(ICamera* _pCameraRef);
     ~CFrustum(void);
     void Update(void);
-    void Set_CameraRef(ICamera* _pCameraRef);
-    void Set_InternalParams(float _fAngle, float _fAspectRation, float _fNearD, float _fFarD);
     int IsPointInFrustum(const glm::vec3& _vPoint);
     int IsSphereInFrustum(const glm::vec3& _vPoint, float _fRadius);
     int IsBoxInFrustum(const glm::vec3& _vMaxBound, const glm::vec3& _vMinBound);

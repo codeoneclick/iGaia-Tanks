@@ -241,7 +241,7 @@ void CLandscape::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 
 void CLandscape::_CheckVisibleQuadTreeNode(CLandscape::SQuadTreeNode *_pNode)
 {
-    CFrustum* pFrustum = CSceneMgr::Instance()->Get_Frustum();
+    CFrustum* pFrustum = CSceneMgr::Instance()->Get_Camera()->Get_Frustum();
     if(_pNode->m_pChilds == NULL)
     {
         return;
@@ -294,7 +294,7 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
     INode::Render(_eMode);
 
     ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();
-    ILight* pLight = CSceneMgr::Instance()->Get_GlobalLight();
+    ILight* pLight = CSceneMgr::Instance()->Get_Light();
     CShader* pShader = m_pMaterial->Get_Shader(_eMode);
     
     m_pMaterial->Commit(_eMode);

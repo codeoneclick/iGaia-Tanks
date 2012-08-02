@@ -43,11 +43,11 @@ void CGameMainMenuScene::Load(void)
     pEnemy->Set_Position(glm::vec3(8.0f, 0.0f, CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height() - 8.0f));
     m_pGameAIMgr->Add_AICharacterController(pEnemy);
     
-    m_pLight = CSceneMgr::Instance()->Get_Light(ILight::E_LIGHT_MODE_POINT, 0);
+    m_pLight = new CLightPoint();
     m_pLight->Set_Position(glm::vec3(32.0f, 16.0f, 32.0f));
     m_pLight->Set_LightAt(glm::vec3(32.0f, 0.0f, 32.0f));
     static_cast<CLightPoint*>(m_pLight)->Set_Visible(true);
-    CSceneMgr::Instance()->Set_GlobalLight(m_pLight);
+    CSceneMgr::Instance()->Set_Light(m_pLight);
     
     m_pMainCharacterController = pEnemy;
     
