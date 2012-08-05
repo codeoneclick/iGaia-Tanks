@@ -1,13 +1,13 @@
 //
-//  CDecal.h
+//  CLandscapeDecal.h
 //  iGaia
 //
 //  Created by sergey sergeev on 5/20/12.
 //
 //
 
-#ifndef __iGaia__CDecal__
-#define __iGaia__CDecal__
+#ifndef __iGaia__CLandscapeDecal__
+#define __iGaia__CLandscapeDecal__
 
 #include <iostream>
 #include "INode.h"
@@ -15,7 +15,7 @@
 #define k_HEIGHTMAP_DECAL_SIZE 7
 #define k_HEIGHTMAP_DECAL_OFFSET 3
 
-class CDecal : public INode
+class CLandscapeDecal : public INode
 {
 protected:
     glm::vec4 m_vColor;
@@ -24,8 +24,8 @@ protected:
     glm::mat3x3 m_mTextureRotation;
     glm::mat3x3 m_mTexture;
 public:
-    CDecal(void);
-    ~CDecal(void);
+    CLandscapeDecal(void);
+    ~CLandscapeDecal(void);
     
     void Load(const std::string& _sName, IResource::E_THREAD _eThread);
     void Update(void);
@@ -38,4 +38,4 @@ public:
     void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource);
 };
 
-#endif /* defined(__iGaia__CDecal__) */
+#endif /* defined(__iGaia__CLandscapeDecal__) */

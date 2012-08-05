@@ -54,7 +54,7 @@ void CFrustum::Update(void)
     m_fNearOffset = m_pCameraRef->Get_NearPlane();
 	m_fFarOffset = m_pCameraRef->Get_FarPlane();
     
-	float fTan = tanf(glm::radians(m_pCameraRef->Get_FovY()) * 0.5f);
+	float fTan = tanf(glm::radians(m_pCameraRef->Get_FovY() + 15.0f) * 0.5f);
 	m_fNearHeight = m_fNearOffset * fTan;
 	m_fNearWidth = m_fNearHeight * m_pCameraRef->Get_AspectRatio();
 	m_fFarHeight = m_fFarOffset  * fTan;

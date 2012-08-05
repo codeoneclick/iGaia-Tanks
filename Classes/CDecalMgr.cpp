@@ -19,25 +19,25 @@ CDecalMgr::~CDecalMgr(void)
     
 }
 
-CDecal* CDecalMgr::Add_Decal(void)
+INode* CDecalMgr::Add_LandscapeDecal(void)
 {
-    CDecal* pDecal = new CDecal();
-    m_lDecalContainer.push_back(pDecal);
+    CLandscapeDecal* pDecal = new CLandscapeDecal();
+    m_lContainer.push_back(pDecal);
     pDecal->Load("decal", IResource::E_THREAD_MAIN);
     return pDecal;
 }
 
-void CDecalMgr::Remove_Decal(CDecal* _pDecal)
+void CDecalMgr::Remove_Decal(INode* _pDecal)
 {
-    std::vector<CDecal*>::iterator pBeginIterator = m_lDecalContainer.begin();
-    std::vector<CDecal*>::iterator pEndIterator = m_lDecalContainer.end();
+    std::vector<INode*>::iterator pBeginIterator = m_lContainer.begin();
+    std::vector<INode*>::iterator pEndIterator = m_lContainer.end();
     
     while(pBeginIterator != pEndIterator)
     {
-        CDecal* pDecal = (*pBeginIterator);
+        INode* pDecal = (*pBeginIterator);
         if(pDecal == _pDecal)
         {
-            m_lDecalContainer.erase(pBeginIterator);
+            m_lContainer.erase(pBeginIterator);
             SAFE_DELETE(pDecal);
             return;
         }
@@ -47,8 +47,8 @@ void CDecalMgr::Remove_Decal(CDecal* _pDecal)
 
 void CDecalMgr::Update(void)
 {
-    std::vector<CDecal*>::iterator pBeginIterator = m_lDecalContainer.begin();
-    std::vector<CDecal*>::iterator pEndIterator = m_lDecalContainer.end();
+    std::vector<INode*>::iterator pBeginIterator = m_lContainer.begin();
+    std::vector<INode*>::iterator pEndIterator = m_lContainer.end();
     
     while(pBeginIterator != pEndIterator)
     {
@@ -59,8 +59,8 @@ void CDecalMgr::Update(void)
 
 void CDecalMgr::Render(CShader::E_RENDER_MODE _eMode)
 {
-    std::vector<CDecal*>::iterator pBeginIterator = m_lDecalContainer.begin();
-    std::vector<CDecal*>::iterator pEndIterator = m_lDecalContainer.end();
+    std::vector<INode*>::iterator pBeginIterator = m_lContainer.begin();
+    std::vector<INode*>::iterator pEndIterator = m_lContainer.end();
         
     while(pBeginIterator != pEndIterator)
     {

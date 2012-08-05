@@ -62,6 +62,9 @@
 #include "../Shaders/ShaderPostLandscapeDetail.frag"
 #include "../Shaders/ShaderPostLandscapeDetail.vert"
 
+#include "../Shaders/ShaderLandscapeEdges.frag"
+#include "../Shaders/ShaderLandscapeEdges.vert"
+
 CShaderComposite* CShaderComposite::m_pInstance = NULL;
 
 CShaderComposite::CShaderComposite()
@@ -136,6 +139,10 @@ CShaderComposite::CShaderComposite()
     pData = pParser->Load(ShaderPostLandscapeDetailV, ShaderPostLandscapeDetailF);
     pShader = new CShader(pData.s_pHandle);
     m_lContainer[IResource::E_SHADER_SCREEN_PLANE_LANDSCAPE_DETAIL] = pShader;
+    
+    pData = pParser->Load(ShaderLandscapeEdgesV, ShaderLandscapeEdgesF);
+    pShader = new CShader(pData.s_pHandle);
+    m_lContainer[IResource::E_SHADER_LANDSCAPE_EDGES] = pShader;
 }
 
 CShaderComposite::~CShaderComposite()

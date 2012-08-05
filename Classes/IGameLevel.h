@@ -14,6 +14,7 @@
 #include "CWater.h"
 #include "CSkyBox.h"
 #include "ITouchDelegate.h"
+#include "CLandscapeEdges.h"
 
 class IGameLevel : public ITouchDelegate
 {
@@ -22,6 +23,7 @@ protected:
     CGrass* m_pGrass;
     CWater* m_pOcean;
     CSkyBox* m_pSkyBox;
+    CLandscapeEdges* m_pLandscapeEdges;
 public:
     IGameLevel(void);
     virtual ~IGameLevel(void);

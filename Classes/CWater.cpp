@@ -16,8 +16,8 @@ const int CWater::k_ELEMENT_NUM_VERTEXES = 4;
 
 CWater::CWater(void)
 {
-    m_iWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
-    m_iHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height();
+    m_iWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width() - 1;
+    m_iHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height() - 1;
     m_fWaterHeight = -0.1f;
 }
 
@@ -35,10 +35,10 @@ void CWater::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoord(pSourceData->m_iNumVertexes, GL_STATIC_DRAW);
     CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
     
-    pVertexBufferData[0].m_vPosition = glm::vec3( 0.0f,     m_fWaterHeight,  0.0f );
-    pVertexBufferData[1].m_vPosition = glm::vec3( m_iWidth, m_fWaterHeight,  0.0f );
-    pVertexBufferData[2].m_vPosition = glm::vec3( m_iWidth, m_fWaterHeight,  m_iHeight );
-    pVertexBufferData[3].m_vPosition = glm::vec3( 0.0f,     m_fWaterHeight,  m_iHeight );
+    pVertexBufferData[0].m_vPosition = glm::vec3( 0.0f + 0.1f,     m_fWaterHeight,  0.0f + 0.1f );
+    pVertexBufferData[1].m_vPosition = glm::vec3( m_iWidth - 0.1f, m_fWaterHeight,  0.0f + 0.1f );
+    pVertexBufferData[2].m_vPosition = glm::vec3( m_iWidth - 0.1f, m_fWaterHeight,  m_iHeight - 0.1f );
+    pVertexBufferData[3].m_vPosition = glm::vec3( 0.0f + 0.1f,     m_fWaterHeight,  m_iHeight - 0.1f);
     
     pVertexBufferData[0].m_vTexcoord = glm::vec2( 0.0f,  0.0f );
     pVertexBufferData[1].m_vTexcoord = glm::vec2( 1.0f,  0.0f );

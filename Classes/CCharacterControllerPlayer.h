@@ -12,7 +12,7 @@
 #include "ICharacterController.h"
 #include "CParticleEmitter.h"
 #include "CSpriteCross.h"
-#include "CDecal.h"
+#include "CLandscapeDecal.h"
 
 #define k_CAMERA_FOV_Y_STATE_NONE 45.0f
 #define k_CAMERA_FOV_Y_STATE_FORWARD 50.0f

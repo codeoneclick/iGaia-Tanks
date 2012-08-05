@@ -12,7 +12,7 @@
 #include "CVertexBufferPositionTexcoord.h"
 
 const float CGrass::k_ELEMENT_SIZE = 1.0f;
-const float CGrass::k_ELEMENT_HEIGHT = 1.75f;
+const float CGrass::k_ELEMENT_HEIGHT = 1.0f;
 const int CGrass::k_ELEMENT_NUM_INDEXES = 6;
 const int CGrass::k_ELEMENT_NUM_VERTEXES = 4;
 

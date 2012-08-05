@@ -10,6 +10,7 @@
 #include "CSceneMgr.h"
 #include "CModel.h"
 #include "CLandscape.h"
+#include "CLandscapeEdges.h"
 #include "CGrass.h"
 #include "CWater.h"
 #include "CSkyBox.h"
@@ -31,6 +32,7 @@ CSceneMgr::CSceneMgr(void)
     m_pHeightMapSetterRef = NULL;
     m_pSkyBox = NULL;
     m_pLandscape = NULL;
+    m_pLandscapeEdges = NULL;
     m_pOcean = NULL;
     
     m_pRenderMgr = new CRenderMgr();
@@ -73,11 +75,21 @@ INode* CSceneMgr::Add_LandscapeModel(const std::string& _sName, IResource::E_THR
     return pNode;
 }
 
+INode* CSceneMgr::Add_LandscapeEdgesModel(const std::string &_sName, IResource::E_THREAD _eThread)
+{
+    INode* pNode = new CLandscapeEdges();
+    m_lContainer.push_back(pNode);
+    pNode->Load(_sName, _eThread);
+    m_pLandscapeEdges = pNode;
+    return pNode;
+}
+
 INode* CSceneMgr::Add_LandscapeGrassModel(const std::string& _sName, IResource::E_THREAD _eThread)
 {
     INode* pNode = new CGrass();
     m_lContainer.push_back(pNode);
     pNode->Load(_sName, _eThread);
+    m_pGrass = pNode;
     return pNode;
 }
 
@@ -112,12 +124,19 @@ void CSceneMgr::Remove_LandscapeModel(INode *_pNode)
 void CSceneMgr::Remove_LandscapeGrassModel(INode *_pNode)
 {
     Remove_Model(_pNode);
+    m_pGrass = NULL;
 }
 
 void CSceneMgr::Remove_OceanModel(INode *_pNode)
 {
     Remove_Model(_pNode);
     m_pOcean = NULL;
+}
+
+void CSceneMgr::Remove_LandscapeEdgesModel(INode *_pNode)
+{
+    Remove_Model(_pNode);
+    m_pLandscapeEdges = NULL;
 }
 
 void CSceneMgr::Remove_SkyBoxModel(INode *_pNode)
@@ -271,7 +290,7 @@ void CSceneMgr::_DrawSimpleStep(void)
     
     while (pBeginNodeIterator != pEndNodeIterator)
     {
-        if((*pBeginNodeIterator) == m_pOcean)
+        if((*pBeginNodeIterator) == m_pOcean || (*pBeginNodeIterator) == m_pLandscapeEdges || (*pBeginNodeIterator) == m_pGrass)
         {
             ++pBeginNodeIterator;
             continue;
@@ -294,9 +313,19 @@ void CSceneMgr::_DrawSimpleStep(void)
         m_pDecalMgr->Render(CShader::E_RENDER_MODE_SIMPLE);
     }
     
+    if(m_pLandscapeEdges != NULL)
+    {
+        m_pLandscapeEdges->Render(CShader::E_RENDER_MODE_SIMPLE);
+    }
+    
     if(m_pOcean != NULL)
     {
         m_pOcean->Render(CShader::E_RENDER_MODE_SIMPLE);
+    }
+    
+    if(m_pGrass != NULL)
+    {
+        m_pGrass->Render(CShader::E_RENDER_MODE_SIMPLE);
     }
     
     if(m_pParticleMgr != NULL)
@@ -308,6 +337,8 @@ void CSceneMgr::_DrawSimpleStep(void)
     {
         m_pSpriteMgr->Render(CShader::E_RENDER_MODE_SIMPLE);
     }
+    
+    
     
     /*if(m_pBatchMgr != NULL)
     {

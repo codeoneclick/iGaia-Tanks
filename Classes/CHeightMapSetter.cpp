@@ -13,6 +13,8 @@
 #include "CVertexBufferPositionTexcoord.h"
 #include <algorithm>
 
+#define RGB(r,g,b) (unsigned short)(((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3))
+
 CHeightMapSetter::CHeightMapSetter(void)
 {
     m_pDataSource = NULL;
@@ -116,15 +118,141 @@ CMesh* CHeightMapSetter::Load_DataSource(const std::string _sName, int _iWidth, 
     _Create_TextureSplatting();
     _Create_TextureHeightmap();
     _Create_TextureDetail();
+    _Create_LandscapeEdges();
+    _Create_TextureEgdesMask();
     
     return pMesh;
 }
 
+void CHeightMapSetter::_Create_TextureEgdesMask(void)
+{
+    glGenTextures(1, &m_hTextureEdgesMask);
+    glBindTexture(GL_TEXTURE_2D, m_hTextureEdgesMask);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    int iTextureEdgesMaskWidth = 128;
+    int iTextureEdgesMaskHeight = 512;
+    
+    unsigned short* pTextureEdgesMask = new unsigned short[iTextureEdgesMaskWidth * iTextureEdgesMaskHeight];
+    for(int i = 0; i < iTextureEdgesMaskWidth; i++)
+    {
+        unsigned int iTextureBlockSize = 0;
+        for(int j = 0; j < iTextureEdgesMaskHeight / 4; j++)
+        { 
+            float fCurrentEdgeHeight = (static_cast<float>(j) - (static_cast<float>(iTextureEdgesMaskWidth) / 2.0f)) / 8.0f;
+            float fWidthIndex = static_cast<float>(i) / static_cast<float>(iTextureEdgesMaskWidth);
+            int iWidthIndex = fWidthIndex * m_iWidth;
+            float fCurrentMapHeight = Get_HeightValue(iWidthIndex, 0);
+            
+            if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > 3.0f)
+            {
+                pTextureEdgesMask[(iTextureEdgesMaskWidth - 1) - i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(255, 0, 0);
+            }
+            else if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) >= 2.0f && (fCurrentEdgeHeight - fCurrentMapHeight) <= 3.0f)
+            {
+                glm::vec3 vMixColor = glm::mix(glm::vec3(255.0f, 0.0f, 0.0f), glm::vec3(0.0f, 255.0f, 0.0f), 3.0f - (fCurrentEdgeHeight - fCurrentMapHeight));
+                pTextureEdgesMask[(iTextureEdgesMaskWidth - 1) - i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(static_cast<unsigned char>(vMixColor.x), static_cast<unsigned char>(vMixColor.y), static_cast<unsigned char>(vMixColor.z));
+            }
+            else if( fCurrentEdgeHeight >= fCurrentMapHeight)
+            {
+                pTextureEdgesMask[(iTextureEdgesMaskWidth - 1) - i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(0, 255, 0);
+            }
+            else
+            {
+                pTextureEdgesMask[(iTextureEdgesMaskWidth - 1) - i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(0, 0, 255);
+            }
+        }
+        iTextureBlockSize = iTextureEdgesMaskWidth * (iTextureEdgesMaskHeight / 4);
+        for(int j = 0; j < iTextureEdgesMaskHeight / 4; j++)
+        {
+            float fCurrentEdgeHeight = (static_cast<float>(j) - (static_cast<float>(iTextureEdgesMaskWidth) / 2.0f)) / 8.0f;
+            float fWidthIndex = static_cast<float>(i) / static_cast<float>(iTextureEdgesMaskWidth);
+            int iWidthIndex = fWidthIndex * m_iWidth;
+            float fCurrentMapHeight = Get_HeightValue(iWidthIndex, (m_iWidth - 1));
+            
+            if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > 3.0f)
+            {
+                pTextureEdgesMask[i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(255, 0, 0);
+            }
+            else if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) >= 2.0f && (fCurrentEdgeHeight - fCurrentMapHeight) <= 3.0f)
+            {
+                glm::vec3 vMixColor = glm::mix(glm::vec3(255.0f, 0.0f, 0.0f), glm::vec3(0.0f, 255.0f, 0.0f), 3.0f - (fCurrentEdgeHeight - fCurrentMapHeight));
+                pTextureEdgesMask[i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(static_cast<unsigned char>(vMixColor.x), static_cast<unsigned char>(vMixColor.y), static_cast<unsigned char>(vMixColor.z));
+            }
+            else if( fCurrentEdgeHeight >= fCurrentMapHeight)
+            {
+                pTextureEdgesMask[i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(0, 255, 0);
+            }
+            else
+            {
+                pTextureEdgesMask[i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(0, 0, 255);
+            }
+        }
+        iTextureBlockSize = iTextureEdgesMaskWidth * (iTextureEdgesMaskHeight / 4) * 2;
+        for(int j = 0; j < iTextureEdgesMaskHeight / 4; j++)
+        {
+            float fCurrentEdgeHeight = (static_cast<float>(j) - (static_cast<float>(iTextureEdgesMaskWidth) / 2.0f)) / 8.0f;
+            float fWidthIndex = static_cast<float>(i) / static_cast<float>(iTextureEdgesMaskWidth);
+            int iWidthIndex = fWidthIndex * m_iWidth;
+            float fCurrentMapHeight = Get_HeightValue(0, iWidthIndex);
+            
+            if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > 3.0f)
+            {
+                pTextureEdgesMask[i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(255, 0, 0);
+            }
+            else if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) >= 2.0f && (fCurrentEdgeHeight - fCurrentMapHeight) <= 3.0f)
+            {
+                glm::vec3 vMixColor = glm::mix(glm::vec3(255.0f, 0.0f, 0.0f), glm::vec3(0.0f, 255.0f, 0.0f), 3.0f - (fCurrentEdgeHeight - fCurrentMapHeight));
+                pTextureEdgesMask[i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(static_cast<unsigned char>(vMixColor.x), static_cast<unsigned char>(vMixColor.y), static_cast<unsigned char>(vMixColor.z));
+            }
+            else if( fCurrentEdgeHeight >= fCurrentMapHeight)
+            {
+                pTextureEdgesMask[i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(0, 255, 0);
+            }
+            else
+            {
+                pTextureEdgesMask[i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(0, 0, 255);
+            }
+        }
+        iTextureBlockSize = iTextureEdgesMaskWidth * (iTextureEdgesMaskHeight / 4) * 3;
+        for(int j = 0; j < iTextureEdgesMaskHeight / 4; j++)
+        {
+            float fCurrentEdgeHeight = (static_cast<float>(j) - (static_cast<float>(iTextureEdgesMaskWidth) / 2.0f)) / 8.0f;
+            float fWidthIndex = static_cast<float>(i) / static_cast<float>(iTextureEdgesMaskWidth);
+            int iWidthIndex = fWidthIndex * m_iWidth;
+            float fCurrentMapHeight = Get_HeightValue((m_iWidth - 1), iWidthIndex);
+            
+            if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > 3.0f)
+            {
+                pTextureEdgesMask[(iTextureEdgesMaskWidth - 1) - i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(255, 0, 0);
+            }
+            else if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) >= 2.0f && (fCurrentEdgeHeight - fCurrentMapHeight) <= 3.0f)
+            {
+                glm::vec3 vMixColor = glm::mix(glm::vec3(255.0f, 0.0f, 0.0f), glm::vec3(0.0f, 255.0f, 0.0f), 3.0f - (fCurrentEdgeHeight - fCurrentMapHeight));
+                pTextureEdgesMask[(iTextureEdgesMaskWidth - 1) - i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(static_cast<unsigned char>(vMixColor.x), static_cast<unsigned char>(vMixColor.y), static_cast<unsigned char>(vMixColor.z));
+            }
+            else if( fCurrentEdgeHeight >= fCurrentMapHeight)
+            {
+                pTextureEdgesMask[(iTextureEdgesMaskWidth - 1) - i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(0, 255, 0);
+            }
+            else
+            {
+                pTextureEdgesMask[(iTextureEdgesMaskWidth - 1) - i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(0, 0, 255);
+            }
+        }
+    }
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, iTextureEdgesMaskWidth, iTextureEdgesMaskHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pTextureEdgesMask);
+
+}
+
 void CHeightMapSetter::_Create_LandscapeEdges(void)
 {
-    CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
-    pSourceData->m_iNumVertexes = m_iWidth * 8;
-    pSourceData->m_iNumIndexes  = (m_iWidth - 1) * (8 - 1) * 6;
+    /*CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
+    pSourceData->m_iNumVertexes = m_iWidth * 2;
+    pSourceData->m_iNumIndexes  = (m_iWidth - 1) * (2 - 1) * 6;
     
     pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoordNormalTangent(pSourceData->m_iNumVertexes, GL_STATIC_DRAW);
     
@@ -138,11 +266,11 @@ void CHeightMapSetter::_Create_LandscapeEdges(void)
             pVertexBufferData[index].m_vPosition.x = i;
             if(j == 1)
             {
-                pVertexBufferData[index].m_vPosition.y = -16.0f;
+                pVertexBufferData[index].m_vPosition.y = -1.0f;
             }
             else
             {
-                pVertexBufferData[index].m_vPosition.y = m_pDataSource[i + 0];
+                pVertexBufferData[index].m_vPosition.y = 0.0f;
             }
             pVertexBufferData[index].m_vPosition.z = 0.0f;
             
@@ -152,18 +280,18 @@ void CHeightMapSetter::_Create_LandscapeEdges(void)
         }
     }
     
-    for(unsigned int i = 0; i < m_iWidth;++i)
+    /*for(unsigned int i = 0; i < m_iWidth;++i)
     {
         for(unsigned int j = 0; j < 2;++j)
         {
             pVertexBufferData[index].m_vPosition.x = i;
             if(j == 1)
             {
-                pVertexBufferData[index].m_vPosition.y = -16.0f;
+                pVertexBufferData[index].m_vPosition.y = -1.0f;
             }
             else
             {
-                pVertexBufferData[index].m_vPosition.y = m_pDataSource[i + (m_iHeight - 1) * m_iWidth];
+                pVertexBufferData[index].m_vPosition.y = 0.0f;
             }
             pVertexBufferData[index].m_vPosition.z = m_iHeight;
             
@@ -171,15 +299,15 @@ void CHeightMapSetter::_Create_LandscapeEdges(void)
             pVertexBufferData[index].m_vTexcoord.y = j;
             ++index;
         }
-    }
-    
+    }*/
+    /*
     pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes, GL_STREAM_DRAW);
     unsigned short* pIndexBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
     memset(pIndexBufferData,0x0, sizeof(unsigned short) * pSourceData->m_iNumIndexes);
     index = 0;
     for(unsigned int i = 0; i < (m_iWidth - 1); ++i)
     {
-        for(unsigned int j = 0; j < (2 - 1); ++j)
+        for(unsigned int j = 0; j < 2; ++j)
         {
             pIndexBufferData[index] = i + j * m_iWidth;
             index++;
@@ -196,6 +324,138 @@ void CHeightMapSetter::_Create_LandscapeEdges(void)
             index++;
         }
     }
+    
+    
+    m_pLandscapeEdgesMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
+    m_pLandscapeEdgesMesh->Set_SourceData(pSourceData);*/
+    
+    CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
+    pSourceData->m_iNumVertexes = 16;
+    pSourceData->m_iNumIndexes  = 24;
+    
+    pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoord(pSourceData->m_iNumVertexes, GL_STATIC_DRAW);
+    
+    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
+    
+    //glm::vec3* pPositionData = pSourceData->m_pVertexBuffer->GetOrCreate_PositionSourceData();
+    //glm::vec2* pTexCoordData = pSourceData->m_pVertexBuffer->GetOrCreate_TexcoordSourceData();
+    
+    glm::vec3 m_vMin = glm::vec3(0.0f, -8.0f, 0.0f);
+    glm::vec3 m_vMax = glm::vec3((m_iWidth - 1), 8.0f, (m_iHeight - 1));
+    
+    // Front
+    pVertexBufferData[0].m_vPosition = glm::vec3(m_vMin.x,  m_vMin.y, m_vMax.z);
+    pVertexBufferData[1].m_vPosition = glm::vec3(m_vMax.x,  m_vMin.y, m_vMax.z);
+    pVertexBufferData[2].m_vPosition = glm::vec3(m_vMax.x,  m_vMax.y, m_vMax.z);
+    pVertexBufferData[3].m_vPosition = glm::vec3(m_vMin.x,  m_vMax.y, m_vMax.z);
+    // Back
+    pVertexBufferData[4].m_vPosition = glm::vec3(m_vMin.x,  m_vMin.y,  m_vMin.z);
+    pVertexBufferData[5].m_vPosition = glm::vec3(m_vMin.x,  m_vMax.y,  m_vMin.z);
+    pVertexBufferData[6].m_vPosition = glm::vec3(m_vMax.x,  m_vMax.y,  m_vMin.z);
+    pVertexBufferData[7].m_vPosition = glm::vec3(m_vMax.x,  m_vMin.y,  m_vMin.z);
+    // Left
+    /*pVertexBufferData[8].m_vPosition = glm::vec3( m_vMin.x,  m_vMax.y,  m_vMin.z);
+    pVertexBufferData[9].m_vPosition = glm::vec3( m_vMin.x,  m_vMax.y,  m_vMax.z);
+    pVertexBufferData[10].m_vPosition = glm::vec3( m_vMax.x,  m_vMax.y,  m_vMax.z);
+    pVertexBufferData[11].m_vPosition = glm::vec3( m_vMax.x,  m_vMax.y,  m_vMin.z);
+    // Right
+    pVertexBufferData[12].m_vPosition = glm::vec3( m_vMin.x,  m_vMax.y,  m_vMin.z);
+    pVertexBufferData[13].m_vPosition = glm::vec3( m_vMax.x,  m_vMax.y,  m_vMin.z);
+    pVertexBufferData[14].m_vPosition = glm::vec3( m_vMax.x,  m_vMax.y,  m_vMax.z);
+    pVertexBufferData[15].m_vPosition = glm::vec3( m_vMin.x,  m_vMax.y,  m_vMax.z);*/
+    // Top
+    pVertexBufferData[8].m_vPosition = glm::vec3(m_vMax.x,  m_vMin.y,   m_vMax.z);
+    pVertexBufferData[9].m_vPosition = glm::vec3(m_vMax.x,  m_vMin.y,   m_vMin.z);
+    pVertexBufferData[10].m_vPosition = glm::vec3(m_vMax.x,  m_vMax.y,  m_vMin.z);
+    pVertexBufferData[11].m_vPosition = glm::vec3(m_vMax.x,  m_vMax.y,  m_vMax.z);
+    // Bottom
+    pVertexBufferData[12].m_vPosition = glm::vec3(m_vMin.x,  m_vMin.y,  m_vMin.z);
+    pVertexBufferData[13].m_vPosition = glm::vec3(m_vMin.x,  m_vMin.y,  m_vMax.z);
+    pVertexBufferData[14].m_vPosition = glm::vec3(m_vMin.x,  m_vMax.y,  m_vMax.z);
+    pVertexBufferData[15].m_vPosition = glm::vec3(m_vMin.x,  m_vMax.y,  m_vMin.z);
+    
+    // Front
+    pVertexBufferData[0].m_vTexcoord = glm::vec2(0.0f, 1.0f / 4.0f);
+    pVertexBufferData[1].m_vTexcoord = glm::vec2(1.0f, 1.0f / 4.0f);
+    pVertexBufferData[2].m_vTexcoord = glm::vec2(1.0f, (1.0f / 4.0f) * 2.0f - 0.001f);
+    pVertexBufferData[3].m_vTexcoord = glm::vec2(0.0f, (1.0f / 4.0f) * 2.0f - 0.001f);
+    // Back
+    pVertexBufferData[4].m_vTexcoord = glm::vec2(1.0f, 0.0f);
+    pVertexBufferData[5].m_vTexcoord = glm::vec2(1.0f, 1.0f / 4.0f - 0.001f);
+    pVertexBufferData[6].m_vTexcoord = glm::vec2(0.0f, 1.0f / 4.0f - 0.001f);
+    pVertexBufferData[7].m_vTexcoord = glm::vec2(0.0f, 0.0f);
+    // Left
+    /*pVertexBufferData[8].m_vTexcoord = glm::vec2(1.0f, 0.0f);
+    pVertexBufferData[9].m_vTexcoord = glm::vec2(1.0f, 1.0f);
+    pVertexBufferData[10].m_vTexcoord = glm::vec2(0.0f, 1.0f);
+    pVertexBufferData[11].m_vTexcoord = glm::vec2(0.0f, 0.0f);
+    // Right
+    pVertexBufferData[12].m_vTexcoord = glm::vec2(0.0f, 0.0f);
+    pVertexBufferData[13].m_vTexcoord = glm::vec2(1.0f, 0.0f);
+    pVertexBufferData[14].m_vTexcoord = glm::vec2(1.0f, 1.0f);
+    pVertexBufferData[15].m_vTexcoord = glm::vec2(0.0f, 1.0f);*/
+    // Top
+    pVertexBufferData[8].m_vTexcoord =  glm::vec2(0.0f, (1.0f / 4.0f) * 3.0f);
+    pVertexBufferData[9].m_vTexcoord =  glm::vec2(1.0f, (1.0f / 4.0f) * 3.0f);
+    pVertexBufferData[10].m_vTexcoord = glm::vec2(1.0f, 1.0f - 0.001f);
+    pVertexBufferData[11].m_vTexcoord = glm::vec2(0.0f, 1.0f - 0.001f);
+    // Bottom
+    pVertexBufferData[12].m_vTexcoord = glm::vec2(0.0f, (1.0f / 4.0f) * 2.0f);
+    pVertexBufferData[13].m_vTexcoord = glm::vec2(1.0f, (1.0f / 4.0f) * 2.0f);
+    pVertexBufferData[14].m_vTexcoord = glm::vec2(1.0f, (1.0f / 4.0f) * 3.0f - 0.001f);
+    pVertexBufferData[15].m_vTexcoord = glm::vec2(0.0f, (1.0f / 4.0f) * 3.0f - 0.001f);
+    
+    pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes, GL_STATIC_DRAW);
+    unsigned short* pIndexBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
+    
+    // Front
+    pIndexBufferData[0] = 0;
+    pIndexBufferData[1] = 1;
+    pIndexBufferData[2] = 2;
+    pIndexBufferData[3] = 0;
+    pIndexBufferData[4] = 2;
+    pIndexBufferData[5] = 3;
+    // Back
+    pIndexBufferData[6] = 4;
+    pIndexBufferData[7] = 5;
+    pIndexBufferData[8] = 6;
+    pIndexBufferData[9] = 4;
+    pIndexBufferData[10] = 6;
+    pIndexBufferData[11] = 7;
+    // Left
+    /*pIndexBufferData[12] = 8;
+    pIndexBufferData[13] = 9;
+    pIndexBufferData[14] = 10;
+    pIndexBufferData[15] = 8;
+    pIndexBufferData[16] = 10;
+    pIndexBufferData[17] = 11;
+    // Right
+    pIndexBufferData[18] = 12;
+    pIndexBufferData[19] = 13;
+    pIndexBufferData[20] = 14;
+    pIndexBufferData[21] = 12;
+    pIndexBufferData[22] = 14;
+    pIndexBufferData[23] = 15;*/
+    // Top
+    pIndexBufferData[12] = 8;
+    pIndexBufferData[13] = 9;
+    pIndexBufferData[14] = 10;
+    pIndexBufferData[15] = 8;
+    pIndexBufferData[16] = 10;
+    pIndexBufferData[17] = 11;
+    // Bottom
+    pIndexBufferData[18] = 12;
+    pIndexBufferData[19] = 13;
+    pIndexBufferData[20] = 14;
+    pIndexBufferData[21] = 12;
+    pIndexBufferData[22] = 14;
+    pIndexBufferData[23] = 15;
+    
+    pSourceData->m_pVertexBuffer->Commit();
+    pSourceData->m_pIndexBuffer->Commit();
+    
+    m_pLandscapeEdgesMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
+    m_pLandscapeEdgesMesh->Set_SourceData(pSourceData);
 }
 
 float CHeightMapSetter::Get_HeightValue(float _x, float _z)
@@ -207,20 +467,35 @@ float CHeightMapSetter::Get_HeightValue(float _x, float _z)
     float dx = _x - x;
     float dy = _z - z;
     
-    if((x <= 0) || (z <= 0) || (x >= (m_iWidth - 1)) || (z >= (m_iHeight - 1)))
+    if((x < 0) || (z < 0) || (x > (m_iWidth - 1)) || (z > (m_iHeight - 1)))
         return -16.0f;
     
     float fHeight_00 = m_pDataSource[x + z * m_iWidth];
-    float fHeight_01 = m_pDataSource[x + (z + 1) * m_iWidth];
-    float fHeight_10 = m_pDataSource[x + 1 + z * m_iWidth];
-    float fHeight_11 = m_pDataSource[x + 1 + (z + 1) * m_iWidth];
     
-    float fHeight_0 = fHeight_00 * (1 - dy) + fHeight_01 * dy;
-    float fHeight_1 = fHeight_10 * (1 - dy) + fHeight_11 * dy;
+    float fHeight_01 = m_pDataSource[x + z * m_iWidth];
+    if(z < (m_iHeight - 1) && z >= 0)
+    {
+        fHeight_01 = m_pDataSource[x + (z + 1) * m_iWidth];
+    }
     
-    return fHeight_0 * (1 - dx) + fHeight_1 * dx;
+    float fHeight_10 = m_pDataSource[x + z * m_iWidth];
+    if(x < (m_iWidth - 1) && x >= 0)
+    {
+        fHeight_10 = m_pDataSource[x + 1 + z * m_iWidth];
+    }
+    
+    float fHeight_11 = m_pDataSource[x + z * m_iWidth];
+    if(z < (m_iHeight - 1) && z >= 0 && x < (m_iWidth - 1) && x >= 0)
+    {
+        fHeight_11 = m_pDataSource[x + 1 + (z + 1) * m_iWidth];
+    }
+    
+    float fHeight_0 = fHeight_00 * (1.0f - dy) + fHeight_01 * dy;
+    float fHeight_1 = fHeight_10 * (1.0f - dy) + fHeight_11 * dy;
+    
+    return fHeight_0 * (1.0f - dx) + fHeight_1 * dx;
 }
-#define RGB(r,g,b) (unsigned short)(((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3))
+
 void CHeightMapSetter::_Create_TextureSplatting(void)
 {
     glGenTextures(1, &m_hTextureSplatting);

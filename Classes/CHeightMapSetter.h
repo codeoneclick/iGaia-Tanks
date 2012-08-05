@@ -26,6 +26,7 @@ protected:
     float m_fZThreshold;
     
     GLuint m_hTextureSplatting;
+    GLuint m_hTextureEdgesMask;
     GLuint m_hTextureHeightmap;
     
     GLuint m_hTextureDetailColor;
@@ -36,12 +37,16 @@ protected:
     CMesh* m_pPostRenderScreenPlaneMesh;
     CShader* m_pPostRenderScreenPlaneShader;
     
+    CMesh* m_pLandscapeEdgesMesh;
+    CMesh* m_pLandscapeHeightMapMesh;
+    
     bool m_bIsTextureDetailCreated;
     
     unsigned short* m_pTextureSplattingDataSource;
     
     void _Create_LandscapeEdges(void);
     void _Create_TextureSplatting(void);
+    void _Create_TextureEgdesMask(void);
     void _Create_TextureHeightmap(void);
     void _Create_TextureDetail(void);
     void _CalculateNormals(IVertexBuffer* _pVertexBuffer, CIndexBuffer* _pIndexBuffer);
@@ -68,12 +73,15 @@ public:
     
     GLuint Get_TextureSplatting(void) { return m_hTextureSplatting; }
     GLuint Get_TextureHeightmap(void) { return m_hTextureHeightmap; }
+    GLuint Get_TextureEdgesMask(void) { return m_hTextureEdgesMask; }
     
     GLuint Get_TextureDetailColor(void)   { return m_hTextureDetailColor; }
     GLuint Get_TextureDetailNormal(void)  { return m_hTextureDetailNormal; }
     void Set_TextureDetailLayers(CTexture** _pTextures) { m_pTexturesDetailLayers = _pTextures;}
     void Draw_TextureDetail(void);
     bool Get_IsTextureDetailCreated(void) { return m_bIsTextureDetailCreated; }
+    
+    inline CMesh* Get_LandscapeEdgesMesh(void) { return m_pLandscapeEdgesMesh; }
     
     void Update(void);
 };

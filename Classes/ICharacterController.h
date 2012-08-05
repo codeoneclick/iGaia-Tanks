@@ -62,8 +62,8 @@ protected:
     ITankTower* m_pTower;
     ITankTrack* m_pTrack;
 
-    CDecal* m_pShadowDecal;
-    CDecal* m_pHealthDecal;
+    CLandscapeDecal* m_pShadowDecal;
+    CLandscapeDecal* m_pHealthDecal;
     
     glm::vec3 m_vMaxBound;
     glm::vec3 m_vMinBound;

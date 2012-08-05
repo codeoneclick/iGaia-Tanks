@@ -1,34 +1,34 @@
 //
-//  CDecal.cpp
+//  CLandscapeDecal.cpp
 //  iGaia
 //
 //  Created by sergey sergeev on 5/20/12.
 //
 //
 
-#include "CDecal.h"
+#include "CLandscapeDecal.h"
 #include "CSceneMgr.h"
 #include "CVertexBufferPositionTexcoord.h"
 
-glm::mat3x3 CDecal::m_mTextureTranslation = glm::mat3x3(1.0f, 0.0f, 0.5f,
+glm::mat3x3 CLandscapeDecal::m_mTextureTranslation = glm::mat3x3(1.0f, 0.0f, 0.5f,
                                                         0.0f, 1.0f, 0.5f,
                                                         0.0f, 0.0f, 1.0f);
 
-glm::mat3x3 CDecal::m_mTextureScale = glm::mat3x3(0.5f, 0.0f, 0.0f,
+glm::mat3x3 CLandscapeDecal::m_mTextureScale = glm::mat3x3(0.5f, 0.0f, 0.0f,
                                                   0.0f, 0.5f, 0.0f,
                                                   0.0f, 0.0f, 1.0f);
 
-CDecal::CDecal(void)
+CLandscapeDecal::CLandscapeDecal(void)
 {
     m_vColor = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
-CDecal::~CDecal(void)
+CLandscapeDecal::~CLandscapeDecal(void)
 {
     
 }
 
-void CDecal::Load(const std::string& _sName, IResource::E_THREAD _eThread)
+void CLandscapeDecal::Load(const std::string& _sName, IResource::E_THREAD _eThread)
 {
     unsigned int iWidth = k_HEIGHTMAP_DECAL_SIZE;
     unsigned int iHeight = k_HEIGHTMAP_DECAL_SIZE;
@@ -88,7 +88,7 @@ void CDecal::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void CDecal::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
+void CLandscapeDecal::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
 {
     switch (_eType)
     {
@@ -103,12 +103,12 @@ void CDecal::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResourc
     }
 }
 
-void CDecal::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
+void CLandscapeDecal::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 {
     
 }
 
-void CDecal::Update()
+void CLandscapeDecal::Update()
 {
     if(CSceneMgr::Instance()->Get_Camera()->Get_Frustum()->IsPointInFrustum(m_vPosition) == CFrustum::E_FRUSTUM_RESULT_OUTSIDE)
     {
@@ -161,7 +161,7 @@ void CDecal::Update()
     m_pMesh->Get_VertexBufferRef()->Commit();
 }
 
-void CDecal::Render(CShader::E_RENDER_MODE _eMode)
+void CLandscapeDecal::Render(CShader::E_RENDER_MODE _eMode)
 {
     if(CSceneMgr::Instance()->Get_Camera()->Get_Frustum()->IsPointInFrustum(m_vPosition) == CFrustum::E_FRUSTUM_RESULT_OUTSIDE)
     {

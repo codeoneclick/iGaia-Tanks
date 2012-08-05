@@ -33,11 +33,11 @@ ICharacterController::~ICharacterController(void)
 
 void ICharacterController::Load(void)
 {
-    m_pShadowDecal = CSceneMgr::Instance()->Get_DecalMgr()->Add_Decal();
+    m_pShadowDecal = static_cast<CLandscapeDecal*>(CSceneMgr::Instance()->Get_DecalMgr()->Add_LandscapeDecal());
     m_pShadowDecal->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_DECAL);
     m_pShadowDecal->Set_Texture("shadow.pvr", 0, CTexture::E_WRAP_MODE_CLAMP);
     
-    m_pHealthDecal = CSceneMgr::Instance()->Get_DecalMgr()->Add_Decal();
+    m_pHealthDecal = static_cast<CLandscapeDecal*>(CSceneMgr::Instance()->Get_DecalMgr()->Add_LandscapeDecal());
     m_pHealthDecal->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_DECAL);
     m_pHealthDecal->Set_Texture("ring.pvr", 0, CTexture::E_WRAP_MODE_CLAMP);
     m_pHealthDecal->Set_Color(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
@@ -48,10 +48,15 @@ void ICharacterController::Load(void)
 bool ICharacterController::MoveForward(void)
 {
     float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(m_vPosition.x + sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed, m_vPosition.z + cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed);
-    if(fHeight < k_MIN_HEIGHTMAP_VALUE)
+    float fLandscapeWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
+    float fLandscapeHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height();
+    float fPrePositionX = m_vPosition.x + sinf(glm::radians(m_vRotation.y)) * (m_fMoveSpeed * 10.0f);
+    float fPrePositionZ = m_vPosition.z + cosf(glm::radians(m_vRotation.y)) * (m_fMoveSpeed * 10.0f);
+    if(fHeight < k_MIN_HEIGHTMAP_VALUE || fPrePositionX > (fLandscapeWidth - 1.5f) || fPrePositionZ > (fLandscapeHeight - 1.5f) || fPrePositionX < 0.5f || fPrePositionZ < 0.5f )
     {
         return false;
     }
+    
     m_vPosition.x += sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
     m_vPosition.z += cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
     m_vPosition.y = fHeight;
@@ -61,10 +66,15 @@ bool ICharacterController::MoveForward(void)
 bool ICharacterController::MoveBackward(void)
 {
     float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(m_vPosition.x - sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed, m_vPosition.z - cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed);
-    if(fHeight < k_MIN_HEIGHTMAP_VALUE)
+    float fLandscapeWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
+    float fLandscapeHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height();
+    float fPrePositionX = m_vPosition.x - sinf(glm::radians(m_vRotation.y)) * (m_fMoveSpeed * 10.0f);
+    float fPrePositionZ = m_vPosition.z - cosf(glm::radians(m_vRotation.y)) * (m_fMoveSpeed * 10.0f);
+    if(fHeight < k_MIN_HEIGHTMAP_VALUE || fPrePositionX > (fLandscapeWidth - 1.5f) || fPrePositionZ > (fLandscapeHeight - 1.5f) || fPrePositionX < 0.5f || fPrePositionZ < 0.5f )
     {
         return false;
     }
+
     m_vPosition.x -= sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
     m_vPosition.z -= cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
     m_vPosition.y = fHeight;

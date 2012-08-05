@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1520865415A82C05001F0F8F /* ShaderPostLandscapeDetail.frag in Sources */ = {isa = PBXBuildFile; fileRef = 1520865215A82C05001F0F8F /* ShaderPostLandscapeDetail.frag */; };
 		1520865515A82C05001F0F8F /* ShaderPostLandscapeDetail.vert in Sources */ = {isa = PBXBuildFile; fileRef = 1520865315A82C05001F0F8F /* ShaderPostLandscapeDetail.vert */; };
+		1578F8A515CD80F60056B51E /* ShaderLandscapeEdges.frag in Sources */ = {isa = PBXBuildFile; fileRef = 1578F8A315CD80F60056B51E /* ShaderLandscapeEdges.frag */; };
+		1578F8A615CD80F60056B51E /* ShaderLandscapeEdges.vert in Sources */ = {isa = PBXBuildFile; fileRef = 1578F8A415CD80F60056B51E /* ShaderLandscapeEdges.vert */; };
 		1D3623260D0F684500981E51 /* MainAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MainAppDelegate.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -191,7 +193,7 @@
 		A1207C6D153C02C60021A0C7 /* model_01.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1207C6C153C02C60021A0C7 /* model_01.pvr */; };
 		A12156B2152EDE9C002E1942 /* IResourceLoaderDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A12156B1152EDE9C002E1942 /* IResourceLoaderDelegate.cpp */; };
 		A12D2F2A1541582800955C6B /* CCharacterControllerEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A12D2F281541582800955C6B /* CCharacterControllerEnemy.cpp */; };
-		A13F9EB91568D743009DCBB4 /* CDecal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A13F9EB71568D743009DCBB4 /* CDecal.cpp */; };
+		A13F9EB91568D743009DCBB4 /* CLandscapeDecal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A13F9EB71568D743009DCBB4 /* CLandscapeDecal.cpp */; };
 		A13F9EC11568DC64009DCBB4 /* ITouchDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A13F9EBF1568DC64009DCBB4 /* ITouchDelegate.cpp */; };
 		A13F9EC91568ECB3009DCBB4 /* default.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A13F9EC81568ECB3009DCBB4 /* default.pvr */; };
 		A13F9ED1156932FE009DCBB4 /* CDecalMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A13F9ECF156932FC009DCBB4 /* CDecalMgr.cpp */; };
@@ -287,6 +289,8 @@
 /* Begin PBXFileReference section */
 		1520865215A82C05001F0F8F /* ShaderPostLandscapeDetail.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostLandscapeDetail.frag; path = Shaders/ShaderPostLandscapeDetail.frag; sourceTree = "<group>"; };
 		1520865315A82C05001F0F8F /* ShaderPostLandscapeDetail.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostLandscapeDetail.vert; path = Shaders/ShaderPostLandscapeDetail.vert; sourceTree = "<group>"; };
+		1578F8A315CD80F60056B51E /* ShaderLandscapeEdges.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscapeEdges.frag; path = Shaders/ShaderLandscapeEdges.frag; sourceTree = "<group>"; };
+		1578F8A415CD80F60056B51E /* ShaderLandscapeEdges.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscapeEdges.vert; path = Shaders/ShaderLandscapeEdges.vert; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* MainAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* MainAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainAppDelegate.mm; sourceTree = "<group>"; };
@@ -668,8 +672,8 @@
 		A12D2F291541582800955C6B /* CCharacterControllerEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCharacterControllerEnemy.h; sourceTree = "<group>"; };
 		A13D5A0E15378A56004C4363 /* ShaderModelND.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderModelND.frag; path = Shaders/ShaderModelND.frag; sourceTree = "<group>"; };
 		A13D5A0F15378A56004C4363 /* ShaderModelND.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderModelND.vert; path = Shaders/ShaderModelND.vert; sourceTree = "<group>"; };
-		A13F9EB71568D743009DCBB4 /* CDecal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDecal.cpp; sourceTree = "<group>"; };
-		A13F9EB81568D743009DCBB4 /* CDecal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDecal.h; sourceTree = "<group>"; };
+		A13F9EB71568D743009DCBB4 /* CLandscapeDecal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLandscapeDecal.cpp; sourceTree = "<group>"; };
+		A13F9EB81568D743009DCBB4 /* CLandscapeDecal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLandscapeDecal.h; sourceTree = "<group>"; };
 		A13F9EBF1568DC64009DCBB4 /* ITouchDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ITouchDelegate.cpp; sourceTree = "<group>"; };
 		A13F9EC01568DC64009DCBB4 /* ITouchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITouchDelegate.h; sourceTree = "<group>"; };
 		A13F9EC81568ECB3009DCBB4 /* default.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.pvr; path = Resources/Textures/default.pvr; sourceTree = "<group>"; };
@@ -1113,6 +1117,8 @@
 		935D65061504AE0B00FBE552 /* CustomEffect */ = {
 			isa = PBXGroup;
 			children = (
+				1578F8A315CD80F60056B51E /* ShaderLandscapeEdges.frag */,
+				1578F8A415CD80F60056B51E /* ShaderLandscapeEdges.vert */,
 				A1E5CAE51598914C0038393C /* ShaderSkybox.frag */,
 				A1E5CAE61598914C0038393C /* ShaderSkybox.vert */,
 				A10DC48715863C4D007EB83B /* ShaderParticle.vert */,
@@ -1197,8 +1203,8 @@
 				932D540A151B662F00C77E95 /* CWater.cpp */,
 				A1AF6F761549383200703E2E /* CSkyBox.h */,
 				A1AF6F751549383200703E2E /* CSkyBox.cpp */,
-				A13F9EB81568D743009DCBB4 /* CDecal.h */,
-				A13F9EB71568D743009DCBB4 /* CDecal.cpp */,
+				A13F9EB81568D743009DCBB4 /* CLandscapeDecal.h */,
+				A13F9EB71568D743009DCBB4 /* CLandscapeDecal.cpp */,
 				A179C21A15ADD50000FA872B /* CLandscapeEdges.h */,
 				A179C21915ADD50000FA872B /* CLandscapeEdges.cpp */,
 			);
@@ -2084,7 +2090,7 @@
 				A166A1641546D1F800E659D5 /* CParticleMgr.cpp in Sources */,
 				A1AF6F771549383200703E2E /* CSkyBox.cpp in Sources */,
 				A1F690471557CCAC00A2920A /* CJoystick.mm in Sources */,
-				A13F9EB91568D743009DCBB4 /* CDecal.cpp in Sources */,
+				A13F9EB91568D743009DCBB4 /* CLandscapeDecal.cpp in Sources */,
 				A13F9EC11568DC64009DCBB4 /* ITouchDelegate.cpp in Sources */,
 				A13F9ED1156932FE009DCBB4 /* CDecalMgr.cpp in Sources */,
 				A1FFAA8B156CBAE500B01ECB /* CFrustum.cpp in Sources */,
@@ -2137,6 +2143,8 @@
 				A179C20215ADA83700FA872B /* GameBaseViewController.mm in Sources */,
 				A179C21615ADC08900FA872B /* GameLoadingViewController.mm in Sources */,
 				A179C21B15ADD50000FA872B /* CLandscapeEdges.cpp in Sources */,
+				1578F8A515CD80F60056B51E /* ShaderLandscapeEdges.frag in Sources */,
+				1578F8A615CD80F60056B51E /* ShaderLandscapeEdges.vert in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
