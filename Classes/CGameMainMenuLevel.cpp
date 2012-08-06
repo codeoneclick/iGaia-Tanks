@@ -40,11 +40,11 @@ void CGameMainMenuLevel::Load(void)
     m_pLandscape->Set_RenderMode(CShader::E_RENDER_MODE_REFRACTION, true);
     m_pLandscape->Set_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, true);
     
-    m_pLandscapeEdges = (CLandscapeEdges*)CSceneMgr::Instance()->Add_LandscapeEdgesModel("edges");
-    m_pLandscapeEdges->Set_Texture("layer_02_diffuse.pvr",  0, CTexture::E_WRAP_MODE_REPEAT, IResource::E_THREAD_MAIN);
-    m_pLandscapeEdges->Set_Texture("ocean_riple.pvr",  1, CTexture::E_WRAP_MODE_REPEAT, IResource::E_THREAD_MAIN);
-    m_pLandscapeEdges->Set_Shader(CShader::E_RENDER_MODE_SIMPLE,IResource::E_SHADER_LANDSCAPE_EDGES);
-    m_pLandscapeEdges->Set_Position(glm::vec3(0.0f, 0.0f, 0.0f));
+    INode* pLandscapeEdges = m_pLandscape->Get_LandscapeEdges();
+    pLandscapeEdges->Set_Texture("layer_02_diffuse.pvr",  0, CTexture::E_WRAP_MODE_REPEAT, IResource::E_THREAD_MAIN);
+    pLandscapeEdges->Set_Texture("layer_03_normal.pvr",  1, CTexture::E_WRAP_MODE_REPEAT, IResource::E_THREAD_MAIN);
+    pLandscapeEdges->Set_Shader(CShader::E_RENDER_MODE_SIMPLE,IResource::E_SHADER_LANDSCAPE_EDGES);
+    pLandscapeEdges->Set_Position(glm::vec3(0.0f, 0.0f, 0.0f));
     
     m_pOcean = (CWater*)CSceneMgr::Instance()->Add_OceanModel("water");
     m_pOcean->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_OCEAN);

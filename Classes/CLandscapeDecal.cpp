@@ -170,7 +170,6 @@ void CLandscapeDecal::Render(CShader::E_RENDER_MODE _eMode)
     
     INode::Render(_eMode);
     
-    ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();
     CShader* pShader = m_pMaterial->Get_Shader(_eMode);
     
     m_pMaterial->Commit(_eMode);
@@ -185,9 +184,7 @@ void CLandscapeDecal::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
 
-            pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
+            pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             pShader->Set_CustomVector3(m_vPosition, "EXT_Center");
             pShader->Set_CustomMatrix3x3(m_mTexture, "EXT_MATRIX_TEXTURE");
             pShader->Set_CustomVector4(m_vColor, "EXT_Color");

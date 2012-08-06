@@ -419,7 +419,6 @@ void CGrass::Render(CShader::E_RENDER_MODE _eMode)
 {
     INode::Render(_eMode);
     
-    ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();
     CShader* pShader = m_pMaterial->Get_Shader(_eMode);
     
     m_pMaterial->Commit(_eMode);
@@ -434,9 +433,6 @@ void CGrass::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            //pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            //pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            //pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
@@ -468,9 +464,6 @@ void CGrass::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            //pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            //pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            //pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)

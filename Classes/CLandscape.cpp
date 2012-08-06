@@ -25,6 +25,7 @@ CLandscape::~CLandscape(void)
     SAFE_DELETE(m_pQuadTree);
     SAFE_DELETE(m_pHeightMapSetter);
     CSceneMgr::Instance()->Set_HeightMapSetterRef(NULL);
+    m_pLandscapeEdges = NULL;
 }
 
 void CLandscape::Load(const std::string& _sName, IResource::E_THREAD _eThread)
@@ -36,6 +37,8 @@ void CLandscape::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     
     m_pMesh->Get_VertexBufferRef()->Commit();
     m_pMesh->Get_IndexBufferRef()->Commit();
+    
+    m_pLandscapeEdges = new CLandscapeEdges();
     
     unsigned short* pIndexBufferData = m_pMesh->Get_IndexBufferRef()->Get_SourceData();
     unsigned int iNumIndexes = m_pMesh->Get_IndexBufferRef()->Get_NumIndexes();
@@ -60,6 +63,11 @@ void CLandscape::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_BLEND_MODE, false);
     m_pMaterial->Set_CullFace(GL_FRONT);
     m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+}
+
+void CLandscape::_CreateLandscapeEdges(void)
+{
+    
 }
 
 void CLandscape::_CreateQuadTreeNode(int _iSize, CLandscape::SQuadTreeNode *_pParentNode)

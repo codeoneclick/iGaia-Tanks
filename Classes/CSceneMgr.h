@@ -64,7 +64,6 @@ public:
     
     INode* Add_CustomModel(const std::string& _sName, IResource::E_THREAD _eThread = IResource::E_THREAD_MAIN);
     INode* Add_LandscapeModel(const std::string& _sName, IResource::E_THREAD _eThread = IResource::E_THREAD_MAIN);
-    INode* Add_LandscapeEdgesModel(const std::string& _sName, IResource::E_THREAD _eThread = IResource::E_THREAD_MAIN);
     INode* Add_LandscapeGrassModel(const std::string& _sName, IResource::E_THREAD _eThread = IResource::E_THREAD_MAIN);
     INode* Add_OceanModel(const std::string& _sName, IResource::E_THREAD _eThread = IResource::E_THREAD_MAIN);
     INode* Add_SkyBoxModel(const std::string& _sName, IResource::E_THREAD _eThread = IResource::E_THREAD_MAIN);
@@ -74,7 +73,6 @@ public:
     void Remove_LandscapeGrassModel(INode* _pNode);
     void Remove_OceanModel(INode* _pNode);
     void Remove_SkyBoxModel(INode* _pNode);
-    void Remove_LandscapeEdgesModel(INode* _pNode);
     
     void AddEventListener(INode* _pNode, CEventMgr::E_EVENT _eEvent);
     void RemoveEventListener(INode* _pNode, CEventMgr::E_EVENT _eEvent);

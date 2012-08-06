@@ -72,15 +72,9 @@ INode* CSceneMgr::Add_LandscapeModel(const std::string& _sName, IResource::E_THR
     m_lContainer.push_back(pNode);
     pNode->Load(_sName, _eThread);
     m_pLandscape = pNode;
-    return pNode;
-}
-
-INode* CSceneMgr::Add_LandscapeEdgesModel(const std::string &_sName, IResource::E_THREAD _eThread)
-{
-    INode* pNode = new CLandscapeEdges();
-    m_lContainer.push_back(pNode);
-    pNode->Load(_sName, _eThread);
-    m_pLandscapeEdges = pNode;
+    m_pLandscapeEdges = static_cast<CLandscape*>(pNode)->Get_LandscapeEdges();
+    m_lContainer.push_back(m_pLandscapeEdges);
+    m_pLandscapeEdges->Load(_sName, _eThread);
     return pNode;
 }
 
@@ -117,6 +111,8 @@ void CSceneMgr::Remove_CustomModel(INode *_pNode)
 
 void CSceneMgr::Remove_LandscapeModel(INode *_pNode)
 {
+    Remove_Model( static_cast<CLandscape*>(_pNode)->Get_LandscapeEdges());
+    m_pLandscapeEdges = NULL;
     Remove_Model(_pNode);
     m_pLandscape = NULL;
 }
@@ -131,12 +127,6 @@ void CSceneMgr::Remove_OceanModel(INode *_pNode)
 {
     Remove_Model(_pNode);
     m_pOcean = NULL;
-}
-
-void CSceneMgr::Remove_LandscapeEdgesModel(INode *_pNode)
-{
-    Remove_Model(_pNode);
-    m_pLandscapeEdges = NULL;
 }
 
 void CSceneMgr::Remove_SkyBoxModel(INode *_pNode)

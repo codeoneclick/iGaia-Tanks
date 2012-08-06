@@ -15,6 +15,9 @@
 class CLandscapeEdges : public INode
 {
 protected:
+    int m_iWidth;
+    int m_iHeight;
+    glm::vec2 m_vHeight;
 public:
     CLandscapeEdges(void);
     ~CLandscapeEdges(void);

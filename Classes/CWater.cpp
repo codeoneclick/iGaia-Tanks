@@ -117,9 +117,7 @@ void CWater::Render(CShader::E_RENDER_MODE _eMode)
             }
 
             pShader->Set_Vector3(pCamera->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_CAMERA_POSITION);
-            pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
+            pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             pShader->Set_CustomFloat(fTimer, "EXT_Timer");
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)

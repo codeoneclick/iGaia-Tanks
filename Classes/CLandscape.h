@@ -13,6 +13,7 @@
 #include <map>
 #include <vector>
 #include "CHeightMapSetter.h"
+#include "CLandscapeEdges.h"
 
 #define k_MAX_QUADTREE_CHILDREN 4
 
@@ -54,6 +55,7 @@ protected:
     unsigned int m_iWidth;
     unsigned int m_iHeight;
     CHeightMapSetter* m_pHeightMapSetter;
+    CLandscapeEdges* m_pLandscapeEdges;
     unsigned short* m_pWorkingIndexesSourceDataRef;
     unsigned int m_iWorkingNumIndexes;
     SQuadTreeNode* m_pQuadTree;
@@ -61,6 +63,7 @@ protected:
     void _CreateIndexBufferRefForQuadTreeNode(SQuadTreeNode* _pNode);
     bool _IsPointInBoundBox(glm::vec3 _vPoint, glm::vec3 _vMinBound, glm::vec3 _vMaxBound);
     void _CheckVisibleQuadTreeNode(SQuadTreeNode* _pNode);
+    void _CreateLandscapeEdges(void);
 public:
     CLandscape(void);
     ~CLandscape(void);
@@ -68,6 +71,7 @@ public:
     void Update(void);
     void Render(CShader::E_RENDER_MODE _eMode);
     CHeightMapSetter* Get_HeightMapSetter(void) { return m_pHeightMapSetter; }
+    CLandscapeEdges* Get_LandscapeEdges(void) { return m_pLandscapeEdges; }
     unsigned int Get_Width(void) { return m_iWidth; }
     unsigned int Get_Height(void) { return m_iHeight; }
     

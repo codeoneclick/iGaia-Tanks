@@ -44,7 +44,6 @@ protected:
     
     unsigned short* m_pTextureSplattingDataSource;
     
-    void _Create_LandscapeEdges(void);
     void _Create_TextureSplatting(void);
     void _Create_TextureEgdesMask(void);
     void _Create_TextureHeightmap(void);
@@ -80,8 +79,6 @@ public:
     void Set_TextureDetailLayers(CTexture** _pTextures) { m_pTexturesDetailLayers = _pTextures;}
     void Draw_TextureDetail(void);
     bool Get_IsTextureDetailCreated(void) { return m_bIsTextureDetailCreated; }
-    
-    inline CMesh* Get_LandscapeEdgesMesh(void) { return m_pLandscapeEdgesMesh; }
     
     void Update(void);
 };
