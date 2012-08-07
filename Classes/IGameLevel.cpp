@@ -36,6 +36,12 @@ void IGameLevel::Unload(void)
     CSceneMgr::Instance()->Remove_LandscapeGrassModel(m_pGrass);
     CSceneMgr::Instance()->Remove_OceanModel(m_pOcean);
     CSceneMgr::Instance()->Remove_SkyBoxModel(m_pSkyBox);
+    
+    for(unsigned int index = 0; index < m_lBuildings.size(); ++index)
+    {
+        delete m_lBuildings[index];
+    }
+    m_lBuildings.clear();
 }
 
 void IGameLevel::OnTouchEvent(ITouchDelegate* _pDelegateOwner)

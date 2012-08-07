@@ -13,6 +13,7 @@
 #include "CGrass.h"
 #include "CWater.h"
 #include "CSkyBox.h"
+#include "CBuilding.h"
 #include "ITouchDelegate.h"
 
 class IGameLevel : public ITouchDelegate
@@ -22,6 +23,7 @@ protected:
     CGrass* m_pGrass;
     CWater* m_pOcean;
     CSkyBox* m_pSkyBox;
+    std::vector<CBuilding*> m_lBuildings;
 public:
     IGameLevel(void);
     virtual ~IGameLevel(void);

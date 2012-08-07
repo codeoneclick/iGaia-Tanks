@@ -69,10 +69,10 @@ void CParticleEmitterFire::Update(void)
         
         int iCurrentTimeStamp = CTimer::Instance()->Get_TickCount();
         int iTimeStampDelta = iCurrentTimeStamp - m_pParticles[i].m_iTimeStamp;
-        float iLifeDelta = static_cast<float>(iTimeStampDelta) / static_cast<float>(m_pParticles[i].m_iLifeTime);
-        if(iLifeDelta <= 1)
+        float fLifeDelta = static_cast<float>(iTimeStampDelta) / static_cast<float>(m_pParticles[i].m_iLifeTime);
+        if(fLifeDelta <= 1)
         {
-            m_pParticles[i].m_vColor.a = (1 - iLifeDelta) * 255;
+            m_pParticles[i].m_vColor.a = (1 - fLifeDelta) * 255;
         }
         else if(!m_bIsRepeat || m_bIsStop)
         {

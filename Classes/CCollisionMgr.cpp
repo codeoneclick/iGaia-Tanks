@@ -100,6 +100,26 @@ bool CCollisionMgr::Get_CollisionPoint(IVertexBuffer *_pVertexBuffer, CIndexBuff
     return false;
 }
 
+void CCollisionMgr::Add_CollisionListener(ICollisionDelegate *_pOwner)
+{
+    m_lCollisionObject.push_back(_pOwner);
+}
+
+void CCollisionMgr::Remove_CollisionListener(ICollisionDelegate *_pOwner)
+{
+    std::vector<ICollisionDelegate*>::iterator pBeginIterator = m_lCollisionObject.begin();
+    std::vector<ICollisionDelegate*>::iterator pEndIterator = m_lCollisionObject.end();
+    while (pBeginIterator != pEndIterator) 
+    {
+        if(_pOwner == (*pBeginIterator))
+        {
+            m_lCollisionObject.erase(pBeginIterator);
+            return;
+        }
+        ++pBeginIterator;
+    }
+}
+
 void CCollisionMgr::Update()
 {
     

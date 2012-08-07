@@ -15,6 +15,7 @@
 #include <map>
 #include "IVertexBuffer.h"
 #include "CIndexBuffer.h"
+#include "ICollisionDelegate.h"
 
 class CCollisionMgr
 {
@@ -25,11 +26,13 @@ public:
         glm::vec3 m_vDirection;
         glm::vec3 m_vOrigin;
     };
-private:
+protected:
     glm::vec2 m_vTouch2DPoint;
     glm::vec3 m_vTouch3DPoint;
     bool m_bIsTouch;
     SRay3d m_vTouchRay;
+
+    std::vector<ICollisionDelegate*> m_lCollisionObject;
 public:
     CCollisionMgr(void);
     ~CCollisionMgr(void);
@@ -63,6 +66,9 @@ public:
     bool RayTriangleIntersection(glm::vec3& _vTrianglePoint_01, glm::vec3& _vTrianglePoint_02, glm::vec3& _vTrianglePoint_03, SRay3d& _tRay, glm::vec3* _vIntersectPoint);
     bool Get_CollisionPoint(IVertexBuffer *_pVB, CIndexBuffer *_pIB, SRay3d& _tRay3d, glm::vec3* _vCollisionPoint);
     void Update(void);
+
+    void Add_CollisionListener(ICollisionDelegate* _pOwner);
+    void Remove_CollisionListener(ICollisionDelegate* _pOwner);
 };
 
 #endif

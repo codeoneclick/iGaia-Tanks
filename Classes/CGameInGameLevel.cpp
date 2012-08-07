@@ -57,6 +57,22 @@ void CGameInGameLevel::Load(void)
     m_pGrass->Set_Texture("mod_02.pvr", 0, CTexture::E_WRAP_MODE_REPEAT, IResource::E_THREAD_BACKGROUND);
     m_pGrass->Set_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, true);
     
+    
+    CBuilding* pBuilding = new CBuilding();
+    pBuilding->Load("building_06.mdl", "building.pvr");
+    pBuilding->Set_Position(glm::vec3(12.0f, 0.0f, 12.0f));
+    m_lBuildings.push_back(pBuilding);
+    
+    pBuilding = new CBuilding();
+    pBuilding->Load("building_04.mdl", "building.pvr");
+    pBuilding->Set_Position(glm::vec3(28.0f, 0.0f, 12.0f));
+    m_lBuildings.push_back(pBuilding);
+    
+    pBuilding = new CBuilding();
+    pBuilding->Load("building_05.mdl", "building.pvr");
+    pBuilding->Set_Position(glm::vec3(12.0f, 0.0f, 28.0f));
+    m_lBuildings.push_back(pBuilding);
+    
     m_pSkyBox = (CSkyBox*)CSceneMgr::Instance()->Add_SkyBoxModel("skybox");
     m_pSkyBox->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_SKYBOX);
     m_pSkyBox->Set_Texture("clouds.pvr", 0, CTexture::E_WRAP_MODE_REPEAT);

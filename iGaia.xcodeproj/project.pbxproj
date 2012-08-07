@@ -192,6 +192,15 @@
 		A11AA3CA1547218800113AA3 /* smoke.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A11AA3C91547218800113AA3 /* smoke.pvr */; };
 		A1207C6D153C02C60021A0C7 /* model_01.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1207C6C153C02C60021A0C7 /* model_01.pvr */; };
 		A12156B2152EDE9C002E1942 /* IResourceLoaderDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A12156B1152EDE9C002E1942 /* IResourceLoaderDelegate.cpp */; };
+		A123835715D0F876007769E7 /* building.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A123835615D0F876007769E7 /* building.pvr */; };
+		A123835915D0F886007769E7 /* building_01.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A123835815D0F886007769E7 /* building_01.mdl */; };
+		A123835F15D0FAA1007769E7 /* building_02.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A123835A15D0FAA1007769E7 /* building_02.mdl */; };
+		A123836015D0FAA1007769E7 /* building_03.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A123835B15D0FAA1007769E7 /* building_03.mdl */; };
+		A123836115D0FAA1007769E7 /* building_04.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A123835C15D0FAA1007769E7 /* building_04.mdl */; };
+		A123836215D0FAA1007769E7 /* building_05.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A123835D15D0FAA1007769E7 /* building_05.mdl */; };
+		A123836315D0FAA1007769E7 /* building_06.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A123835E15D0FAA1007769E7 /* building_06.mdl */; };
+		A123836715D12811007769E7 /* CBuilding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A123836515D12811007769E7 /* CBuilding.cpp */; };
+		A123836A15D12D2E007769E7 /* ICollisionDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A123836815D12D2D007769E7 /* ICollisionDelegate.cpp */; };
 		A12D2F2A1541582800955C6B /* CCharacterControllerEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A12D2F281541582800955C6B /* CCharacterControllerEnemy.cpp */; };
 		A13F9EB91568D743009DCBB4 /* CLandscapeDecal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A13F9EB71568D743009DCBB4 /* CLandscapeDecal.cpp */; };
 		A13F9EC11568DC64009DCBB4 /* ITouchDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A13F9EBF1568DC64009DCBB4 /* ITouchDelegate.cpp */; };
@@ -668,6 +677,17 @@
 		A1207C6C153C02C60021A0C7 /* model_01.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = model_01.pvr; path = Resources/Textures/model_01.pvr; sourceTree = "<group>"; };
 		A12156AF152EDE83002E1942 /* IResourceLoaderDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IResourceLoaderDelegate.h; sourceTree = "<group>"; };
 		A12156B1152EDE9C002E1942 /* IResourceLoaderDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IResourceLoaderDelegate.cpp; sourceTree = "<group>"; };
+		A123835615D0F876007769E7 /* building.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = building.pvr; path = Resources/Textures/building.pvr; sourceTree = "<group>"; };
+		A123835815D0F886007769E7 /* building_01.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_01.mdl; sourceTree = "<group>"; };
+		A123835A15D0FAA1007769E7 /* building_02.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_02.mdl; sourceTree = "<group>"; };
+		A123835B15D0FAA1007769E7 /* building_03.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_03.mdl; sourceTree = "<group>"; };
+		A123835C15D0FAA1007769E7 /* building_04.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_04.mdl; sourceTree = "<group>"; };
+		A123835D15D0FAA1007769E7 /* building_05.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_05.mdl; sourceTree = "<group>"; };
+		A123835E15D0FAA1007769E7 /* building_06.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = building_06.mdl; sourceTree = "<group>"; };
+		A123836515D12811007769E7 /* CBuilding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBuilding.cpp; sourceTree = "<group>"; };
+		A123836615D12811007769E7 /* CBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBuilding.h; sourceTree = "<group>"; };
+		A123836815D12D2D007769E7 /* ICollisionDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ICollisionDelegate.cpp; sourceTree = "<group>"; };
+		A123836915D12D2D007769E7 /* ICollisionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICollisionDelegate.h; sourceTree = "<group>"; };
 		A12D2F281541582800955C6B /* CCharacterControllerEnemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCharacterControllerEnemy.cpp; sourceTree = "<group>"; };
 		A12D2F291541582800955C6B /* CCharacterControllerEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCharacterControllerEnemy.h; sourceTree = "<group>"; };
 		A13D5A0E15378A56004C4363 /* ShaderModelND.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderModelND.frag; path = Shaders/ShaderModelND.frag; sourceTree = "<group>"; };
@@ -1148,6 +1168,7 @@
 		936FEC8F14F579CB00A33A33 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A123835415D0F861007769E7 /* buildings */,
 				A1D635CF15AC0E5000F5D42B /* tank_heavy */,
 				A1D635CE15AC0E4500F5D42B /* tank_medium */,
 				A1D635CD15AC0E3B00F5D42B /* tank_light */,
@@ -1490,6 +1511,28 @@
 			path = virtrev;
 			sourceTree = "<group>";
 		};
+		A123835415D0F861007769E7 /* buildings */ = {
+			isa = PBXGroup;
+			children = (
+				A123835A15D0FAA1007769E7 /* building_02.mdl */,
+				A123835B15D0FAA1007769E7 /* building_03.mdl */,
+				A123835C15D0FAA1007769E7 /* building_04.mdl */,
+				A123835D15D0FAA1007769E7 /* building_05.mdl */,
+				A123835E15D0FAA1007769E7 /* building_06.mdl */,
+				A123835815D0F886007769E7 /* building_01.mdl */,
+			);
+			name = buildings;
+			sourceTree = "<group>";
+		};
+		A123836415D12244007769E7 /* GameBuildings */ = {
+			isa = PBXGroup;
+			children = (
+				A123836615D12811007769E7 /* CBuilding.h */,
+				A123836515D12811007769E7 /* CBuilding.cpp */,
+			);
+			name = GameBuildings;
+			sourceTree = "<group>";
+		};
 		A13F9EC31568DC82009DCBB4 /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
@@ -1499,6 +1542,8 @@
 				A13F9EBF1568DC64009DCBB4 /* ITouchDelegate.cpp */,
 				A12156AF152EDE83002E1942 /* IResourceLoaderDelegate.h */,
 				A12156B1152EDE9C002E1942 /* IResourceLoaderDelegate.cpp */,
+				A123836915D12D2D007769E7 /* ICollisionDelegate.h */,
+				A123836815D12D2D007769E7 /* ICollisionDelegate.cpp */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -1632,7 +1677,10 @@
 		A1FCBE7415A4495A004FC37B /* GameScenes */ = {
 			isa = PBXGroup;
 			children = (
-				A1FCBE7A15A449EF004FC37B /* GameUniversalScene */,
+				A1FCBE8615A44D27004FC37B /* IGameLevel.h */,
+				A1FCBE8515A44D27004FC37B /* IGameLevel.cpp */,
+				A1FCBE7C15A44B17004FC37B /* IGameScene.h */,
+				A1FCBE7B15A44B17004FC37B /* IGameScene.cpp */,
 				A1FCBE7915A449D6004FC37B /* GameInGameScene */,
 				A1FCBE7815A449C0004FC37B /* GameSettingsScene */,
 				A1FCBE7715A4499A004FC37B /* GameCustomizationScene */,
@@ -1675,17 +1723,6 @@
 				9307CBB014EBB8AB00ADFE2B /* CGameInGameScene.cpp */,
 			);
 			name = GameInGameScene;
-			sourceTree = "<group>";
-		};
-		A1FCBE7A15A449EF004FC37B /* GameUniversalScene */ = {
-			isa = PBXGroup;
-			children = (
-				A1FCBE7C15A44B17004FC37B /* IGameScene.h */,
-				A1FCBE7B15A44B17004FC37B /* IGameScene.cpp */,
-				A1FCBE8615A44D27004FC37B /* IGameLevel.h */,
-				A1FCBE8515A44D27004FC37B /* IGameLevel.cpp */,
-			);
-			name = GameUniversalScene;
 			sourceTree = "<group>";
 		};
 		A1FCBF0415A49C56004FC37B /* GameCustomControls */ = {
@@ -1734,6 +1771,7 @@
 		CE8DFA8E14587A8200AE7288 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				A123836415D12244007769E7 /* GameBuildings */,
 				A153D5BE153DA3A400FBFFD5 /* GameUI */,
 				A1FCBE7415A4495A004FC37B /* GameScenes */,
 				A1EA43C415A1862800B3EF0A /* GameTankParts */,
@@ -1775,6 +1813,7 @@
 		CE91921914573F630021A0DC /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				A123835615D0F876007769E7 /* building.pvr */,
 				A1895C6315AD76CA0009FD73 /* ocean_riple.pvr */,
 				A1D635E815AC0FBA00F5D42B /* tank_heavy.pvr */,
 				A1D635E915AC0FBA00F5D42B /* tank_light.pvr */,
@@ -2023,6 +2062,13 @@
 				A1895C6415AD76CA0009FD73 /* ocean_riple.pvr in Resources */,
 				A179C1FE15ADA78200FA872B /* GameInGameViewController.xib in Resources */,
 				A179C21715ADC08900FA872B /* GameLoadingViewController.xib in Resources */,
+				A123835715D0F876007769E7 /* building.pvr in Resources */,
+				A123835915D0F886007769E7 /* building_01.mdl in Resources */,
+				A123835F15D0FAA1007769E7 /* building_02.mdl in Resources */,
+				A123836015D0FAA1007769E7 /* building_03.mdl in Resources */,
+				A123836115D0FAA1007769E7 /* building_04.mdl in Resources */,
+				A123836215D0FAA1007769E7 /* building_05.mdl in Resources */,
+				A123836315D0FAA1007769E7 /* building_06.mdl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2145,6 +2191,8 @@
 				A179C21B15ADD50000FA872B /* CLandscapeEdges.cpp in Sources */,
 				1578F8A515CD80F60056B51E /* ShaderLandscapeEdges.frag in Sources */,
 				1578F8A615CD80F60056B51E /* ShaderLandscapeEdges.vert in Sources */,
+				A123836715D12811007769E7 /* CBuilding.cpp in Sources */,
+				A123836A15D12D2E007769E7 /* ICollisionDelegate.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

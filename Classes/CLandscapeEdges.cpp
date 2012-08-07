@@ -13,8 +13,8 @@
 
 CLandscapeEdges::CLandscapeEdges(void)
 {
-    m_iWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width() - 1;
-    m_iHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height() - 1;
+    m_iWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
+    m_iHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height();
     m_vHeight = glm::vec2(-8.0f, 8.0f);
 }
 
