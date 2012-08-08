@@ -21,6 +21,9 @@ public:
     static bool g_bEdgeDetect;
     static bool g_bOceanReflection;
     static bool g_bOceanRefraction;
+    static float g_fAccellerometer_X;
+    static float g_fAccellerometer_Y;
+    static float g_fAccellerometer_Z;
 };
 
 #endif /* defined(__iGaia__CSettings__) */

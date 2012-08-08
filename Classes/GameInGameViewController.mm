@@ -83,6 +83,10 @@
     CGameSceneMgr::Instance()->Set_Scene(pScene);
     pScene->Load();
     
+    UIAccelerometer*  accelerometer = [UIAccelerometer sharedAccelerometer];
+    accelerometer.updateInterval = 0.33f;
+    accelerometer.delegate = self;
+    
     NSMethodSignature *pMethodSignature = [self methodSignatureForSelector:@selector(onTick:)];
     NSInvocation *pInvocation = [NSInvocation invocationWithMethodSignature:pMethodSignature];
     [pInvocation setTarget:self];
@@ -115,6 +119,13 @@
 -(void)onTick:(NSTimer *)timer
 {
     [m_pInfoLabel setText:[NSString stringWithFormat:@"FPS : %i, Triangles : %i", CSettings::g_iTotalFramesPerSecond, CSettings::g_iTotalTriagnlesPerFrame]];
+}
+
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
+{
+    CSettings::g_fAccellerometer_X = acceleration.x;
+    CSettings::g_fAccellerometer_Y = acceleration.y;
+    CSettings::g_fAccellerometer_Z = acceleration.z;
 }
 
 @end

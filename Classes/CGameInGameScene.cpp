@@ -126,7 +126,7 @@ void CGameInGameScene::Update(void)
     m_pCamera->Set_HeightFromLookAt(m_fCurrentCameraHeight);
     
     glm::vec3 vCurrentCameraRotation = m_pCamera->Get_Rotation();
-    vCurrentCameraRotation.y = glm::radians(m_pMainCharacterController->Get_Rotation().y) - CMathHelper::k_HALF_PI;
+    vCurrentCameraRotation.y = glm::radians(m_pMainCharacterController->Get_Rotation().y + m_pMainCharacterController->Get_TowerAngleY()) - CMathHelper::k_HALF_PI;
     glm::vec3 vOldCameraRotation = m_pCamera->Get_Rotation();
     glm::vec3 vCameraRotation = glm::mix(vOldCameraRotation, vCurrentCameraRotation, k_CAMERA_ROTATION_LERP);
     m_pCamera->Set_Rotation(vCameraRotation);

@@ -40,6 +40,7 @@ void CGameInGameLevel::Load(void)
     m_pLandscape->Set_RenderMode(CShader::E_RENDER_MODE_REFLECTION, true);
     m_pLandscape->Set_RenderMode(CShader::E_RENDER_MODE_REFRACTION, true);
     m_pLandscape->Set_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, true);
+    //m_pLandscape->Set_Scale(glm::vec3(2.0f, 2.0f, 2.0f));
     
     INode* pLandscapeEdges = m_pLandscape->Get_LandscapeEdges();
     pLandscapeEdges->Set_Texture("layer_02_diffuse.pvr",  0, CTexture::E_WRAP_MODE_REPEAT, IResource::E_THREAD_MAIN);
@@ -56,7 +57,6 @@ void CGameInGameLevel::Load(void)
     m_pGrass->Set_Shader(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, IResource::E_SHADER_GRASS_ND);
     m_pGrass->Set_Texture("mod_02.pvr", 0, CTexture::E_WRAP_MODE_REPEAT, IResource::E_THREAD_BACKGROUND);
     m_pGrass->Set_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, true);
-    
     
     CBuilding* pBuilding = new CBuilding();
     pBuilding->Load("building_06.mdl", "building.pvr");

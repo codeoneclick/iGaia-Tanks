@@ -8,6 +8,6 @@
 
 #import "GameBaseViewController.h"
 
-@interface GameInGameViewController : GameBaseViewController
+@interface GameInGameViewController : GameBaseViewController<UIAccelerometerDelegate>
 
 @end

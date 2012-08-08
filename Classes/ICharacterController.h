@@ -100,6 +100,7 @@ public:
     inline glm::vec3 Get_TowerCenterBound(void)     { return m_vTowerCenterBound; }
     inline glm::vec3 Get_LeftTrackCenterBound(void) { return m_vLeftTrackCenterBound; }
     inline glm::vec3 Get_RightTrackCenterBound(void){ return m_vRightTrackCenterBound; }
+    inline float Get_TowerAngleY(void) { return m_fTowerRotationY; }
     
     virtual bool MoveForward(void);
     virtual bool MoveBackward(void);

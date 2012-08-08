@@ -25,7 +25,7 @@
 class CCharacterControllerPlayer : public ICharacterController
 {
 protected:
-
+    CLandscapeDecal* m_pTargetDecal;
 public:
     CCharacterControllerPlayer(void);
     ~CCharacterControllerPlayer(void);

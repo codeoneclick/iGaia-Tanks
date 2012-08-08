@@ -140,7 +140,7 @@ void ICharacterController::Set_Rotation(const glm::vec3 &_vRotation)
     
     if(m_pTower != NULL)
     {
-        m_pTower->Set_Rotation(glm::vec3(_vRotation.x, m_fTowerRotationY, _vRotation.z));
+        m_pTower->Set_Rotation(glm::vec3(_vRotation.x, m_fTowerRotationY + m_vRotation.y, _vRotation.z));
     }
     
     if(m_pBody != NULL)
@@ -166,7 +166,8 @@ void ICharacterController::Shoot(void)
     if(m_pTower != NULL)
     {
         glm::vec3 vTowerGunOffset = m_pTower->Get_TowerGunOffset();
-        CGameSceneMgr::Instance()->Get_Scene()->Get_GameShooterMgr()->CreateBullet(glm::vec3(m_vPosition.x + sinf(glm::radians(m_fTowerRotationY)) * vTowerGunOffset.x, m_vPosition.y + vTowerGunOffset.y, m_vPosition.z + cosf(glm::radians(m_fTowerRotationY)) * vTowerGunOffset.z), glm::vec3(m_vRotation.x, m_fTowerRotationY, m_vRotation.z));
+        float fTowerFullRotationY = m_vRotation.y + m_fTowerRotationY;
+        CGameSceneMgr::Instance()->Get_Scene()->Get_GameShooterMgr()->CreateBullet(glm::vec3(m_vPosition.x + sinf(glm::radians(fTowerFullRotationY)) * vTowerGunOffset.x, m_vPosition.y + vTowerGunOffset.y, m_vPosition.z + cosf(glm::radians(fTowerFullRotationY)) * vTowerGunOffset.z), glm::vec3(m_vRotation.x, fTowerFullRotationY, m_vRotation.z));
     }
 }
 

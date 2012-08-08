@@ -25,18 +25,24 @@ CCharacterControllerPlayer::CCharacterControllerPlayer(void)
     m_fLeftTrackMoveSpeed = 0.0f;
     m_fRightTrackMoveSpeed = 0.0f;
     m_fSteerSpeed = 2.0f;
-    m_fTowerSteerSpeed = 4.0f;
+    m_fTowerSteerSpeed = -5.0f;
     m_fTowerRotationY = 0.0f;
 }
 
 CCharacterControllerPlayer::~CCharacterControllerPlayer(void)
 {
     CSceneMgr::Instance()->RemoveEventListener(m_pBody->Get_BasisNode(), CEventMgr::E_EVENT_TOUCH);
+    CSceneMgr::Instance()->Get_DecalMgr()->Remove_Decal(m_pTargetDecal);
 }
 
 void CCharacterControllerPlayer::Load(void)
 {
     ICharacterController::Load();
+    
+    m_pTargetDecal = static_cast<CLandscapeDecal*>(CSceneMgr::Instance()->Get_DecalMgr()->Add_LandscapeDecal());
+    m_pTargetDecal->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_DECAL);
+    m_pTargetDecal->Set_Texture("ring.pvr", 0, CTexture::E_WRAP_MODE_CLAMP);
+    m_pTargetDecal->Set_Color(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
     
     m_pTrack = new CTankLightTrack();
     m_pTrack->Load();
@@ -138,7 +144,29 @@ void CCharacterControllerPlayer::Update(void)
             break;
     }
     
-    switch (m_eSteerTowerState)
+    if(fabsf(CSettings::g_fAccellerometer_Y) > 0.1f /*&& fabsf(m_fTowerRotationY + CSettings::g_fAccellerometer_Y * m_fTowerSteerSpeed) < 60.0f*/)
+    {
+        m_fTowerRotationY += CSettings::g_fAccellerometer_Y * m_fTowerSteerSpeed;
+    }
+    
+    std::cout<<"[ BODY ANGLE ] :"<<_Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f)<<std::endl;
+    std::cout<<"[ TOWER ANGLE ] :"<<_Get_WrapAngle(m_fTowerRotationY + m_vRotation.y, 0.0f, 360.0f)<<std::endl;
+   
+    if(fabsf(_Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f) - _Get_WrapAngle(m_fTowerRotationY + m_vRotation.y, 0.0f, 360.0f)) > 60.0f)
+    {
+        if(_Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f) < _Get_WrapAngle((m_fTowerRotationY + m_vRotation.y), 0.0f, 360.0f))
+        {
+            m_fTowerRotationY -= m_fSteerSpeed;
+            SteerLeft();
+        }
+        else
+        {
+            m_fTowerRotationY += m_fSteerSpeed;
+            SteerRight();
+        }
+    }
+    
+    /*switch (m_eSteerTowerState)
     {
         case ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_TOWER_NONE:
             
@@ -156,7 +184,12 @@ void CCharacterControllerPlayer::Update(void)
             
         default:
             break;
-    }
+    }*/
+    
+    glm::vec3 vTargetDecalPosition = m_pTargetDecal->Get_Position();
+    vTargetDecalPosition.x = m_vPosition.x + sin(glm::radians(m_fTowerRotationY + m_vRotation.y)) * 6.0f;
+    vTargetDecalPosition.z = m_vPosition.z + cos(-glm::radians(m_fTowerRotationY + m_vRotation.y)) * 6.0f;
+    m_pTargetDecal->Set_Position(vTargetDecalPosition);
     
     m_pTrack->Update();
     m_pTower->Update();
