@@ -8,9 +8,14 @@
 
 #import "MainMenuViewController.h"
 #import "GameLoadingViewController.h"
+#import "WebCommunicationMgr.h"
 #import "GLView.h"
+
 #include "CGameSceneMgr.h"
 #include "CGameMainMenuScene.h"
+
+typedef void (^SuccessBlock)(id object);
+typedef void (^FailureBlock)(id object);
 
 @interface MainMenuViewController ()
 {
@@ -23,6 +28,8 @@
     IBOutlet UIButton* m_pLoadSceneButton;
     IBOutlet UIButton* m_pUnLoadSceneButton;
 }
+@property(nonatomic, copy) SuccessBlock successGoogleBlock;
+@property(nonatomic, copy) FailureBlock failureGoogleBlock;
 @end
 
 //0.501961 0.501961 0 1
@@ -100,7 +107,22 @@
     [unloadScene setMomentary:YES];
     [unloadScene addTarget:self action:@selector(onUnLoadScenePress:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:unloadScene];
+    
+    [self setSuccessGoogleBlock:^(id object)
+     {
+         NSLog(@"[SuccessGoogleBlock] %@", object);
+     }];
 
+    [self setFailureGoogleBlock:^(id object)
+     {
+         NSLog(@"[FailureGoogleBlock] %@", object);         
+     }];
+    
+    NSDictionary* params = [NSDictionary dictionaryWithObjectsAndKeys:
+                           @"Kharkov",  @"q",
+                           nil];
+    
+    [[WebCommunicationMgr instance] googleRequestWithParams:params withSuccess:self.successGoogleBlock withFailure:self.failureGoogleBlock];
 }
 
 - (void)viewDidUnload

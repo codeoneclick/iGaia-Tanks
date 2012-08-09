@@ -25,7 +25,7 @@ CCharacterControllerPlayer::CCharacterControllerPlayer(void)
     m_fLeftTrackMoveSpeed = 0.0f;
     m_fRightTrackMoveSpeed = 0.0f;
     m_fSteerSpeed = 2.0f;
-    m_fTowerSteerSpeed = -5.0f;
+    m_fTowerSteerSpeed = 2.0f;
     m_fTowerRotationY = 0.0f;
 }
 
@@ -144,7 +144,7 @@ void CCharacterControllerPlayer::Update(void)
             break;
     }
     
-    if(fabsf(CSettings::g_fAccellerometer_Y) > 0.1f /*&& fabsf(m_fTowerRotationY + CSettings::g_fAccellerometer_Y * m_fTowerSteerSpeed) < 60.0f*/)
+    /*if(fabsf(CSettings::g_fAccellerometer_Y) > 0.1f && fabsf(m_fTowerRotationY + CSettings::g_fAccellerometer_Y * m_fTowerSteerSpeed) < 60.0f)
     {
         m_fTowerRotationY += CSettings::g_fAccellerometer_Y * m_fTowerSteerSpeed;
     }
@@ -164,27 +164,41 @@ void CCharacterControllerPlayer::Update(void)
             m_fTowerRotationY += m_fSteerSpeed;
             SteerRight();
         }
-    }
+    }*/
     
-    /*switch (m_eSteerTowerState)
+    switch (m_eSteerTowerState)
     {
         case ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_TOWER_NONE:
             
             break;
         case ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_TOWER_RIGHT:
         {
-            m_fTowerRotationY += m_fTowerSteerSpeed;
+            if((m_fTowerRotationY + m_fTowerSteerSpeed) > 60.0f)
+            {
+                SteerLeft();
+            }
+            else
+            {
+                m_fTowerRotationY += m_fTowerSteerSpeed;
+            }
         }
             break;
         case ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_TOWER_LEFT:
         {
-            m_fTowerRotationY -= m_fTowerSteerSpeed;
+            if((m_fTowerRotationY - m_fTowerSteerSpeed) < -60.0f)
+            {
+                SteerRight();
+            }
+            else
+            {
+                m_fTowerRotationY -= m_fTowerSteerSpeed;
+            }
         }
             break;
             
         default:
             break;
-    }*/
+    }
     
     glm::vec3 vTargetDecalPosition = m_pTargetDecal->Get_Position();
     vTargetDecalPosition.x = m_vPosition.x + sin(glm::radians(m_fTowerRotationY + m_vRotation.y)) * 6.0f;

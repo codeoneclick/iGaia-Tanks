@@ -209,6 +209,10 @@
 		A153D5C2153DA3D000FBFFD5 /* CGameInGameUI.mm in Sources */ = {isa = PBXBuildFile; fileRef = A153D5C1153DA3D000FBFFD5 /* CGameInGameUI.mm */; };
 		A153D5C8153DA75000FBFFD5 /* btn.png in Resources */ = {isa = PBXBuildFile; fileRef = A153D5C7153DA75000FBFFD5 /* btn.png */; };
 		A166A1641546D1F800E659D5 /* CParticleMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A166A1621546D1F800E659D5 /* CParticleMgr.cpp */; };
+		A176DD6215D3AC2000B8FD7D /* BaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A176DD6115D3AC2000B8FD7D /* BaseOperation.m */; };
+		A176DD6515D3AC8000B8FD7D /* BaseWebRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A176DD6415D3AC8000B8FD7D /* BaseWebRequestOperation.m */; };
+		A176DD6815D3AD2200B8FD7D /* WebCommunicationMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A176DD6715D3AD2200B8FD7D /* WebCommunicationMgr.m */; };
+		A176DD7115D3C12B00B8FD7D /* GoogleGetCityLocationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A176DD7015D3C12B00B8FD7D /* GoogleGetCityLocationRequest.m */; };
 		A179C1FD15ADA78200FA872B /* GameInGameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A179C1FB15ADA78200FA872B /* GameInGameViewController.mm */; };
 		A179C1FE15ADA78200FA872B /* GameInGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A179C1FC15ADA78200FA872B /* GameInGameViewController.xib */; };
 		A179C20215ADA83700FA872B /* GameBaseViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A179C20115ADA83700FA872B /* GameBaseViewController.mm */; };
@@ -287,6 +291,7 @@
 		A1FCBF1015A49E4E004FC37B /* CSlider.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBF0F15A49E4E004FC37B /* CSlider.mm */; };
 		A1FCBF1815A58692004FC37B /* CGameUIMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBF1615A58692004FC37B /* CGameUIMgr.cpp */; };
 		A1FCBF8015A5D511004FC37B /* CGameMenuUI.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBF7F15A5D511004FC37B /* CGameMenuUI.mm */; };
+		A1FE32DE15D3E17600D82CF6 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32DD15D3E17600D82CF6 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A1FFAA8B156CBAE500B01ECB /* CFrustum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FFAA89156CBAE500B01ECB /* CFrustum.cpp */; };
 		CE8DFA9314587B0C00AE7288 /* CGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8DFA9214587B0C00AE7288 /* CGame.cpp */; };
 		CE914ED41455DA3200AA2000 /* CShaderComposite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE914ED31455DA3200AA2000 /* CShaderComposite.cpp */; };
@@ -704,6 +709,14 @@
 		A153D5C7153DA75000FBFFD5 /* btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn.png; path = Resources/Textures/btn.png; sourceTree = "<group>"; };
 		A166A1621546D1F800E659D5 /* CParticleMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CParticleMgr.cpp; sourceTree = "<group>"; };
 		A166A1631546D1F800E659D5 /* CParticleMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CParticleMgr.h; sourceTree = "<group>"; };
+		A176DD6015D3AC2000B8FD7D /* BaseOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseOperation.h; sourceTree = "<group>"; };
+		A176DD6115D3AC2000B8FD7D /* BaseOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseOperation.m; sourceTree = "<group>"; };
+		A176DD6315D3AC8000B8FD7D /* BaseWebRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWebRequestOperation.h; sourceTree = "<group>"; };
+		A176DD6415D3AC8000B8FD7D /* BaseWebRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWebRequestOperation.m; sourceTree = "<group>"; };
+		A176DD6615D3AD2200B8FD7D /* WebCommunicationMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebCommunicationMgr.h; sourceTree = "<group>"; };
+		A176DD6715D3AD2200B8FD7D /* WebCommunicationMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebCommunicationMgr.m; sourceTree = "<group>"; };
+		A176DD6F15D3C12B00B8FD7D /* GoogleGetCityLocationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleGetCityLocationRequest.h; sourceTree = "<group>"; };
+		A176DD7015D3C12B00B8FD7D /* GoogleGetCityLocationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleGetCityLocationRequest.m; sourceTree = "<group>"; };
 		A179C1FA15ADA78200FA872B /* GameInGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameInGameViewController.h; sourceTree = "<group>"; };
 		A179C1FB15ADA78200FA872B /* GameInGameViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameInGameViewController.mm; sourceTree = "<group>"; };
 		A179C1FC15ADA78200FA872B /* GameInGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameInGameViewController.xib; sourceTree = "<group>"; };
@@ -836,6 +849,8 @@
 		A1FCBF1715A58692004FC37B /* CGameUIMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameUIMgr.h; sourceTree = "<group>"; };
 		A1FCBF7E15A5D511004FC37B /* CGameMenuUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameMenuUI.h; sourceTree = "<group>"; };
 		A1FCBF7F15A5D511004FC37B /* CGameMenuUI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CGameMenuUI.mm; sourceTree = "<group>"; };
+		A1FE32DC15D3E17600D82CF6 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		A1FE32DD15D3E17600D82CF6 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		A1FFAA89156CBAE500B01ECB /* CFrustum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFrustum.cpp; sourceTree = "<group>"; };
 		A1FFAA8A156CBAE500B01ECB /* CFrustum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFrustum.h; sourceTree = "<group>"; };
 		CE8DFA9114587AFD00AE7288 /* CGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGame.h; sourceTree = "<group>"; };
@@ -869,6 +884,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A176DD5A15D3A8DE00B8FD7D /* Network */,
 				CE8DFA9014587A9400AE7288 /* iPhone */,
 				CE8DFA8E14587A8200AE7288 /* Game */,
 				937367C5144ECDC20051ED8D /* Core */,
@@ -1235,6 +1251,7 @@
 		93FB580715174DA500E096A9 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				A1FE32DB15D3E17600D82CF6 /* json */,
 				93FB59691517CF9700E096A9 /* glm */,
 				93FB595915174DDF00E096A9 /* pvr */,
 			);
@@ -1575,6 +1592,61 @@
 			name = ParticleEmitters;
 			sourceTree = "<group>";
 		};
+		A176DD5A15D3A8DE00B8FD7D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A176DD5D15D3A90300B8FD7D /* NativeCommunication */,
+				A176DD5C15D3A8E800B8FD7D /* WebCommunication */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		A176DD5C15D3A8E800B8FD7D /* WebCommunication */ = {
+			isa = PBXGroup;
+			children = (
+				A176DD6D15D3C0CC00B8FD7D /* Requests */,
+				A176DD5F15D3AAEB00B8FD7D /* Mgr */,
+				A176DD5E15D3AADB00B8FD7D /* Operation */,
+			);
+			name = WebCommunication;
+			sourceTree = "<group>";
+		};
+		A176DD5D15D3A90300B8FD7D /* NativeCommunication */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = NativeCommunication;
+			sourceTree = "<group>";
+		};
+		A176DD5E15D3AADB00B8FD7D /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				A176DD6015D3AC2000B8FD7D /* BaseOperation.h */,
+				A176DD6115D3AC2000B8FD7D /* BaseOperation.m */,
+				A176DD6315D3AC8000B8FD7D /* BaseWebRequestOperation.h */,
+				A176DD6415D3AC8000B8FD7D /* BaseWebRequestOperation.m */,
+			);
+			name = Operation;
+			sourceTree = "<group>";
+		};
+		A176DD5F15D3AAEB00B8FD7D /* Mgr */ = {
+			isa = PBXGroup;
+			children = (
+				A176DD6615D3AD2200B8FD7D /* WebCommunicationMgr.h */,
+				A176DD6715D3AD2200B8FD7D /* WebCommunicationMgr.m */,
+			);
+			name = Mgr;
+			sourceTree = "<group>";
+		};
+		A176DD6D15D3C0CC00B8FD7D /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				A176DD6F15D3C12B00B8FD7D /* GoogleGetCityLocationRequest.h */,
+				A176DD7015D3C12B00B8FD7D /* GoogleGetCityLocationRequest.m */,
+			);
+			name = Requests;
+			sourceTree = "<group>";
+		};
 		A1AC4D98156F7DEB0031FE05 /* GameHelpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1766,6 +1838,15 @@
 			children = (
 			);
 			name = GameSettingsUI;
+			sourceTree = "<group>";
+		};
+		A1FE32DB15D3E17600D82CF6 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				A1FE32DC15D3E17600D82CF6 /* JSONKit.h */,
+				A1FE32DD15D3E17600D82CF6 /* JSONKit.m */,
+			);
+			path = json;
 			sourceTree = "<group>";
 		};
 		CE8DFA8E14587A8200AE7288 /* Game */ = {
@@ -2193,6 +2274,11 @@
 				1578F8A615CD80F60056B51E /* ShaderLandscapeEdges.vert in Sources */,
 				A123836715D12811007769E7 /* CBuilding.cpp in Sources */,
 				A123836A15D12D2E007769E7 /* ICollisionDelegate.cpp in Sources */,
+				A176DD6215D3AC2000B8FD7D /* BaseOperation.m in Sources */,
+				A176DD6515D3AC8000B8FD7D /* BaseWebRequestOperation.m in Sources */,
+				A176DD6815D3AD2200B8FD7D /* WebCommunicationMgr.m in Sources */,
+				A176DD7115D3C12B00B8FD7D /* GoogleGetCityLocationRequest.m in Sources */,
+				A1FE32DE15D3E17600D82CF6 /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2220,7 +2306,7 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}\"/**";
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = iGaia;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -2249,7 +2335,7 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}\"/**";
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = iGaia;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
