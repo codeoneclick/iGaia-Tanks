@@ -18,6 +18,7 @@ CCollisionMgr::CCollisionMgr()
 {
     m_vTouch3DPoint = glm::vec3(0.0f, 0.0f, 0.0f);
     m_bIsTouch = false;
+    m_pBox2dWorld = NULL;
 }
 
 CCollisionMgr::~CCollisionMgr()
@@ -25,7 +26,43 @@ CCollisionMgr::~CCollisionMgr()
     
 }
 
-void CCollisionMgr::OnScreenTouch(glm::vec2 _vTouchPoint) 
+void CCollisionMgr::Create_Box2dWorld(void)
+{
+    float fWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
+    float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height();
+	b2Vec2 vGravity = b2Vec2(0.0f, 0.0f);
+    
+	m_pBox2dWorld = new b2World(vGravity);
+	m_pBox2dWorld->SetContinuousPhysics(true);
+    
+	b2BodyDef boundBodyDef;
+	boundBodyDef.position.Set(0, 0);
+	b2Body* boundBody = m_pBox2dWorld->CreateBody(&boundBodyDef);
+    
+	b2EdgeShape boundBox;
+    
+	boundBox.Set(b2Vec2(0.0f, 0.0f), b2Vec2(fWidth, 0.0f));
+	boundBody->CreateFixture(&boundBox, 0);
+    
+    
+	boundBox.Set(b2Vec2(0.0f, fHeight), b2Vec2(fWidth, fHeight));
+	boundBody->CreateFixture(&boundBox, 0);
+    
+    
+	boundBox.Set(b2Vec2(0.0f, fHeight), b2Vec2(0.0f, 0.0f));
+	boundBody->CreateFixture(&boundBox, 0);
+    
+    
+	boundBox.Set(b2Vec2(fWidth, fHeight), b2Vec2(fWidth, 0.0f));
+	boundBody->CreateFixture(&boundBox, 0);
+}
+
+void CCollisionMgr::Destroy_Box2dWorld(void)
+{
+    SAFE_DELETE(m_pBox2dWorld);
+}
+
+void CCollisionMgr::OnScreenTouch(glm::vec2 _vTouchPoint)
 { 
     m_bIsTouch = true; 
     m_vTouch2DPoint = _vTouchPoint;
@@ -102,7 +139,29 @@ bool CCollisionMgr::Get_CollisionPoint(IVertexBuffer *_pVertexBuffer, CIndexBuff
 
 void CCollisionMgr::Add_CollisionListener(ICollisionDelegate *_pOwner)
 {
+    if(m_pBox2dWorld == NULL)
+    {
+        return;
+    }
+    
     m_lCollisionObject.push_back(_pOwner);
+
+    _pOwner->m_pBox2dBodyDef.type = b2_dynamicBody;
+    
+	_pOwner->m_pBox2dBodyDef.position.Set(_pOwner->Get_OriginPosition().x, _pOwner->Get_OriginPosition().z);
+	_pOwner->m_pBox2dBodyDef.userData = _pOwner;
+    
+    _pOwner->m_pBox2dBody = m_pBox2dWorld->CreateBody(&_pOwner->m_pBox2dBodyDef);
+	b2PolygonShape dynamicBox;
+    
+	dynamicBox.SetAsBox(_pOwner->Get_OriginMaxBound().x - _pOwner->Get_OriginMinBound().x,_pOwner->Get_OriginMaxBound().z - _pOwner->Get_OriginMinBound().z);
+	/*b2FixtureDef fixtureDef;
+	fixtureDef.shape = &dynamicBox;
+	fixtureDef.density = 2.0f;
+	fixtureDef.friction = 2.0f;
+	fixtureDef.restitution = 0.7f;*/ 
+	_pOwner->m_pBox2dBody->CreateFixture(&dynamicBox, 1);
+	//_pOwner->m_pBox2dBody->SetType(b2_dynamicBody);
 }
 
 void CCollisionMgr::Remove_CollisionListener(ICollisionDelegate *_pOwner)
@@ -120,9 +179,32 @@ void CCollisionMgr::Remove_CollisionListener(ICollisionDelegate *_pOwner)
     }
 }
 
-void CCollisionMgr::Update()
+void CCollisionMgr::_Update_Box2d(void)
 {
+    if(m_pBox2dWorld == NULL)
+    {
+        return;
+    }
     
+    int32 velocityIterations = 8;
+	int32 positionIterations = 1;
+    
+	m_pBox2dWorld->Step(1.0f / 60.0f, velocityIterations, positionIterations);
+    
+	for(b2Body* pBox2dBody = m_pBox2dWorld->GetBodyList(); pBox2dBody; pBox2dBody = pBox2dBody->GetNext())
+	{
+		if (pBox2dBody->GetUserData() != NULL)
+		{
+			ICollisionDelegate* pOwner = static_cast<ICollisionDelegate*>(pBox2dBody->GetUserData());
+            pOwner->OnOriginPositionChanged(glm::vec3(pBox2dBody->GetPosition().x, 0.0f, pBox2dBody->GetPosition().y));
+            pOwner->OnOriginRotationChanged(pBox2dBody->GetAngle());
+		}
+	}
+}
+
+void CCollisionMgr::Update(void)
+{
+    _Update_Box2d();
 }
 
 

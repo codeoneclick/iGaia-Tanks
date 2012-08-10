@@ -33,7 +33,7 @@
 
 #define k_MIN_HEIGHTMAP_VALUE -8.0f
 
-class ICharacterController : public ITouchDelegate
+class ICharacterController : public ITouchDelegate, public ICollisionDelegate
 {
 public:
     enum E_CHARACTER_PART_TYPE { E_CHARACTER_PART_TYPE_LIGHT = 0, E_CHARACTER_PART_TYPE_MEDIUM, E_CHARACTER_PART_TYPE_HEAVY };
@@ -124,6 +124,13 @@ public:
     ITankBody* Get_Body(void)   { return m_pBody; }
     ITankTower* Get_Tower(void) { return m_pTower; }
     ITankTrack* Get_Track(void) { return m_pTrack; }
+    
+    void OnCollision(ICollisionDelegate* _pCollider);
+    void OnOriginPositionChanged(const glm::vec3& _vPosition);
+    void OnOriginRotationChanged(float _fAngleY);
+    glm::vec3 Get_OriginPosition(void) { return m_vPosition; }
+    glm::vec3 Get_OriginMaxBound(void) { return m_vMaxBound; }
+    glm::vec3 Get_OriginMinBound(void) { return m_vMinBound; }
     
 };
 

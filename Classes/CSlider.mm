@@ -17,19 +17,19 @@
     if (self)
     {
         [self setBackgroundColor:[UIColor clearColor]];
-        m_iMaxOffsetX = 80;
-        m_iMinOffsetX = 48;
+        m_iMaxOffsetX = self.frame.size.width - 32;
+        m_iMinOffsetX = 32;
         
         m_pBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         [m_pBackground setImage:[UIImage imageNamed:@"joystick.png"]];
         [m_pBackground setBackgroundColor:[UIColor clearColor]];
-        [m_pBackground setAlpha:0.5f];
+        [m_pBackground setAlpha:0.25f];
         [self addSubview:m_pBackground];
         
         m_pControl = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width / 2 - (self.frame.size.width / 3) / 2, self.frame.size.height / 2 - (self.frame.size.height / 3) / 2, self.frame.size.width / 3, self.frame.size.height / 3)];
         [m_pControl setImage:[UIImage imageNamed:@"joystick.png"]];
         [m_pControl setBackgroundColor:[UIColor clearColor]];
-        [m_pControl setAlpha:0.75];
+        [m_pControl setAlpha:0.5];
         [self addSubview:m_pControl];
     }
     return self;

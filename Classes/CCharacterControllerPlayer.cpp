@@ -31,6 +31,7 @@ CCharacterControllerPlayer::CCharacterControllerPlayer(void)
 
 CCharacterControllerPlayer::~CCharacterControllerPlayer(void)
 {
+    CSceneMgr::Instance()->Get_CollisionMgr()->Remove_CollisionListener(this);
     CSceneMgr::Instance()->RemoveEventListener(m_pBody->Get_BasisNode(), CEventMgr::E_EVENT_TOUCH);
     CSceneMgr::Instance()->Get_DecalMgr()->Remove_Decal(m_pTargetDecal);
 }
@@ -61,6 +62,7 @@ void CCharacterControllerPlayer::Load(void)
     m_vLeftTrackCenterBound = m_pTrack->Get_LeftTrackTowerCenterBound();
 
     
+    CSceneMgr::Instance()->Get_CollisionMgr()->Add_CollisionListener(this);
     /*CSceneMgr::Instance()->AddEventListener(m_pBody->Get_BasisNode(), CEventMgr::E_EVENT_TOUCH);
     m_pBody->Get_BasisNode()->Add_DelegateOwner(this);
     CGameSceneMgr::Instance()->Get_Scene()->Get_Level()->Get_Landscape()->Add_DelegateOwner(this);*/
@@ -90,7 +92,6 @@ void CCharacterControllerPlayer::Update(void)
         case ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_FORWARD:
             
             MoveForward();
-           
             m_pTrack->Move_LeftTrack(-fTrackTexCoordOffsetMoveFactor);
             m_pTrack->Move_RightTrack(-fTrackTexCoordOffsetMoveFactor);
             
@@ -103,7 +104,6 @@ void CCharacterControllerPlayer::Update(void)
         case ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_BACKWARD:
             
             MoveBackward();
-            
             m_pTrack->Move_LeftTrack(fTrackTexCoordOffsetMoveFactor);
             m_pTrack->Move_RightTrack(fTrackTexCoordOffsetMoveFactor);
             
@@ -199,6 +199,18 @@ void CCharacterControllerPlayer::Update(void)
         default:
             break;
     }
+    
+    /*if(m_pBox2dBody != NULL)
+    {
+        m_pBox2dBody->SetTransform(b2Vec2(m_vPosition.x, m_vPosition.z), glm::radians(m_vRotation.y));
+    }*/
+    
+    /*if(m_pBox2dBody != NULL)
+    {
+        _UpdateFriction();
+        _UpdateDrive(static_cast<int>(m_eMoveState));
+        _UpdateTurn(static_cast<int>(m_eSteerState));
+    }*/
     
     glm::vec3 vTargetDecalPosition = m_pTargetDecal->Get_Position();
     vTargetDecalPosition.x = m_vPosition.x + sin(glm::radians(m_fTowerRotationY + m_vRotation.y)) * 6.0f;

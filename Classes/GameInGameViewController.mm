@@ -33,25 +33,26 @@
         [m_pInfoLabel setTextColor:[UIColor whiteColor]];
         [self.view addSubview:m_pInfoLabel];
         
-        CJoystick* pJoystick = [[CJoystick alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 128, 128, 128)];
+        CJoystick* pJoystick = [[CJoystick alloc] initWithFrame:CGRectMake(16, self.view.frame.size.height - (96 + 16), 96, 96)];
         [self.view addSubview:pJoystick];
         
-        CSlider* pSlider = [[CSlider alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 128, self.view.frame.size.height - 128, 128, 128)];
+        CSlider* pSlider = [[CSlider alloc] initWithFrame:CGRectMake(self.view.frame.size.width - (96 + 16), self.view.frame.size.height - (96 + 16), 96, 96)];
         [self.view addSubview:pSlider];
         
-        UIButton* pCameraButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 69, 5, 64, 64)];
-        [pCameraButton setBackgroundColor:[UIColor clearColor]];
+        UIButton* pCameraButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 66, 2, 64, 28)];
+        [pCameraButton setBackgroundColor:[UIColor whiteColor]];
         [pCameraButton setImage:[UIImage imageNamed:@"camera_button.png"] forState:UIControlStateNormal];
+        [pCameraButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
         [pCameraButton addTarget:self action:@selector(onCameraButtonPress:) forControlEvents:UIControlEventTouchUpInside];
         pCameraButton.layer.cornerRadius = 8;
         pCameraButton.clipsToBounds = YES;
         [self.view addSubview:pCameraButton];
         
-        UIButton* pShootButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 96, self.view.frame.size.height - 192, 64, 64)];
-        [pShootButton setBackgroundColor:[UIColor clearColor]];
+        UIButton* pShootButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - (96 - 8), self.view.frame.size.height - 170, 48, 48)];
         [pShootButton setBackgroundColor:[UIColor redColor]];
         [pShootButton addTarget:self action:@selector(OnShootButtonPress:) forControlEvents:UIControlEventTouchUpInside];
         pShootButton.layer.cornerRadius = 24;
+        [pShootButton setAlpha:0.5];
         pShootButton.clipsToBounds = YES;
         [self.view addSubview:pShootButton];
     }

@@ -39,6 +39,7 @@ CCharacterControllerEnemy::CCharacterControllerEnemy(void)
 
 CCharacterControllerEnemy::~CCharacterControllerEnemy(void)
 {
+    CSceneMgr::Instance()->Get_CollisionMgr()->Remove_CollisionListener(this);
     CSceneMgr::Instance()->RemoveEventListener(m_pBody->Get_BasisNode(), CEventMgr::E_EVENT_TOUCH);
 }
 
@@ -77,6 +78,7 @@ void CCharacterControllerEnemy::Load(void)
     m_vRightTrackCenterBound = m_pTrack->Get_RightTrackTowerCenterBound();
     m_vLeftTrackCenterBound = m_pTrack->Get_LeftTrackTowerCenterBound();
     
+    CSceneMgr::Instance()->Get_CollisionMgr()->Add_CollisionListener(this);
     /*CSceneMgr::Instance()->AddEventListener(m_pBody->Get_BasisNode(), CEventMgr::E_EVENT_TOUCH);
     m_pBody->Get_BasisNode()->Add_DelegateOwner(this);
     CGameSceneMgr::Instance()->Get_Scene()->Get_Level()->Get_Landscape()->Add_DelegateOwner(this);*/
@@ -135,13 +137,6 @@ void CCharacterControllerEnemy::Update(void)
 {
     float fTrackTexCoordOffsetMoveFactor  = 0.2f;
     float fTrackTexCoordOffsetSteerFactor = 0.1f;
-    
-    float a = 3.0f;
-    float b = 3.0f;
-    float c = 3.0f;
-    
-    float angle = 0.5f * a * b;
-    angle = acosf(angle);
     
     m_vRotation.y = _Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f);
     

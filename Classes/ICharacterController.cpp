@@ -119,6 +119,7 @@ void ICharacterController::Set_Position(const glm::vec3 &_vPosition)
         m_pHealthDecal->Set_Position(glm::vec3(_vPosition.x, 0.0f, _vPosition.z));
     }
     
+    Set_OriginPosition(_vPosition);
     m_vPosition = _vPosition;
 }
 
@@ -261,7 +262,24 @@ void ICharacterController::Set_Track(ICharacterController::E_CHARACTER_PART_TYPE
     }
 }
 
+void ICharacterController::OnCollision(ICollisionDelegate *_pCollider)
+{
+    
+}
 
+void ICharacterController::OnOriginPositionChanged(const glm::vec3& _vPosition)
+{
+    //std::cout<<"[ICharacterController::OnOriginPositionChanged] Position :"<<vPosition.x<<","<<vPosition.z<<std::endl;
+    Set_Position(glm::vec3(_vPosition.x, m_vPosition.y, _vPosition.z));
+}
+
+void ICharacterController::OnOriginRotationChanged(float _fAngleY)
+{
+    //std::cout<<"[ICharacterController::OnOriginRotationChanged] Rotation :"<<glm::degrees(_fAngleY)<<std::endl;
+    m_vRotation.y = glm::degrees(_fAngleY);
+    _SmoothRotation();
+    Set_Rotation(m_vRotation);
+}
 
 
 

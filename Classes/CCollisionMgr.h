@@ -13,6 +13,7 @@
 #include <vector>
 #include <iostream.h>
 #include <map>
+#include "box2d.h"
 #include "IVertexBuffer.h"
 #include "CIndexBuffer.h"
 #include "ICollisionDelegate.h"
@@ -33,6 +34,10 @@ protected:
     SRay3d m_vTouchRay;
 
     std::vector<ICollisionDelegate*> m_lCollisionObject;
+
+    b2World* m_pBox2dWorld;
+
+    void _Update_Box2d(void);
 public:
     CCollisionMgr(void);
     ~CCollisionMgr(void);
@@ -69,6 +74,9 @@ public:
 
     void Add_CollisionListener(ICollisionDelegate* _pOwner);
     void Remove_CollisionListener(ICollisionDelegate* _pOwner);
+
+    void Create_Box2dWorld(void);
+    void Destroy_Box2dWorld(void);
 };
 
 #endif

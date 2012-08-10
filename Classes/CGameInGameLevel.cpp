@@ -76,6 +76,8 @@ void CGameInGameLevel::Load(void)
     m_pSkyBox = (CSkyBox*)CSceneMgr::Instance()->Add_SkyBoxModel("skybox");
     m_pSkyBox->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_SKYBOX);
     m_pSkyBox->Set_Texture("clouds.pvr", 0, CTexture::E_WRAP_MODE_REPEAT);
+    
+    //CSceneMgr::Instance()->Get_CollisionMgr()->Create_Box2dWorld();
 }
 
 void CGameInGameLevel::Unload(void)
