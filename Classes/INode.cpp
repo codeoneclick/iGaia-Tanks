@@ -26,6 +26,8 @@ INode::INode(void)
     m_pBoundingBox = NULL;
     
     m_pMesh = NULL;
+    
+    m_bIsVisible = true;
 }
 
 INode::~INode(void)

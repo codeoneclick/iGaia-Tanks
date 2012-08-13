@@ -12,6 +12,8 @@
 CBuilding::CBuilding(void)
 {
     m_pModel = NULL;
+    
+    m_sColliderIdStr = "building_collider";
 }
 
 CBuilding::~CBuilding(void)
@@ -36,7 +38,7 @@ void CBuilding::Load(const std::string& _sModelName, const std::string& _sTextur
     m_vMaxBound = m_pModel->Get_BoundingBox()->Get_MaxBound();
     m_vMinBound = m_pModel->Get_BoundingBox()->Get_MinBound();
     
-    CSceneMgr::Instance()->Get_CollisionMgr()->Add_CollisionListener(this);
+    CSceneMgr::Instance()->Get_CollisionMgr()->Add_CollisionListener(this, true);
 }
 
 void CBuilding::Set_Position(const glm::vec3& _vPosition)

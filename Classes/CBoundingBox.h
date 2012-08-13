@@ -12,6 +12,7 @@
 #include <OpenGLES/ES2/glext.h>
 #include "CMesh.h"
 #include "CShader.h"
+#include "CMaterial.h"
 
 class CBoundingBox
 {
@@ -21,9 +22,8 @@ protected:
     glm::vec3   m_vCenter;
     glm::vec3   m_vScale;
     glm::mat4x4 m_mWorld;
-    CShader* m_pShader;
+    static CMaterial* m_pMaterial;
     static CMesh* m_pMesh;
-    bool m_bIsBatching;
 public:
     static const float k_MAX_VALUE;
     static const float k_MIN_VALUE;
@@ -37,8 +37,6 @@ public:
     glm::mat4x4 Get_WorldMatrix(void) { return m_mWorld; }
     CMesh* Get_Mesh(void) { return m_pMesh; }
     void Set_MaxMinPoints(const glm::vec3 &_vMax, const glm::vec3 &_vMin);
-    void Set_Batching(bool _bValue) { m_bIsBatching = _bValue; }
-    
     
     inline glm::vec3 Get_Center(void)   { return m_vCenter; }
     inline glm::vec3 Get_MaxBound(void) { return m_vMax; }

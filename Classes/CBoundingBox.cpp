@@ -16,6 +16,7 @@ const float CBoundingBox::k_MAX_VALUE = -4096.0f;
 const float CBoundingBox::k_MIN_VALUE = 4096.0f;
 
 CMesh* CBoundingBox::m_pMesh = NULL;
+CMaterial* CBoundingBox::m_pMaterial = NULL;
 
 CMesh* CBoundingBox::Get_BoundingBoxMesh(void)
 {
@@ -81,6 +82,13 @@ CMesh* CBoundingBox::Get_BoundingBoxMesh(void)
         m_pMesh->Set_SourceData(pSourceData);
         m_pMesh->Get_VertexBufferRef()->Commit();
         m_pMesh->Get_IndexBufferRef()->Commit();
+        
+        /*m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_CULL_MODE,  true);
+        m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_DEPTH_MASK, true);
+        m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_DEPTH_TEST, false);
+        m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_BLEND_MODE, false);
+        m_pMaterial->Set_CullFace(GL_FRONT);
+        m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);*/
     }
     return m_pMesh;
 }
@@ -93,10 +101,8 @@ CBoundingBox::CBoundingBox(const glm::vec3 &_vMax, const glm::vec3 &_vMin)
     m_vScale = m_vMin - m_vMax;
     m_vCenter = (m_vMax - m_vMin) / 2.0f + m_vMin;
     m_mWorld = glm::mat4x4(1.0f);
-    //m_pShader = CShaderComposite::Instance()->Get_Shader(IResource::E_SHADER_COLOR);
     Get_BoundingBoxMesh();
-    
-    m_pMesh->Get_VertexBufferRef()->Add_ShaderRef(CShader::E_RENDER_MODE_SIMPLE, m_pShader);
+
 }
 
 CBoundingBox::~CBoundingBox(void)
@@ -120,8 +126,7 @@ void CBoundingBox::Set_MaxMinPoints(const glm::vec3 &_vMax, const glm::vec3 &_vM
 
 void CBoundingBox::Render(void)
 {
-    /*return;
-    ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();
+    /*ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();
     m_pShader->Enable();
     m_pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
     m_pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);

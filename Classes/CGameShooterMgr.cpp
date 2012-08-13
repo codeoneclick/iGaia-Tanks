@@ -42,7 +42,7 @@ CGameShooterMgr::~CGameShooterMgr(void)
     m_lUsedBulletsContainer.clear();
 }
 
-void CGameShooterMgr::CreateBullet(const glm::vec3& _vPosition, const glm::vec3& _vDirection)
+void CGameShooterMgr::CreateBullet(const glm::vec3& _vPosition, const glm::vec3& _vDirection, ICollisionDelegate* _pOwner)
 {
     if(m_lUnUsedBulletsContainer.size() > 0)
     {
@@ -50,7 +50,8 @@ void CGameShooterMgr::CreateBullet(const glm::vec3& _vPosition, const glm::vec3&
         m_lUnUsedBulletsContainer.pop_back();
         pBullet->Set_Position(_vPosition);
         pBullet->Set_Rotation(_vDirection);
-        pBullet->Set_IsDead(false);
+        pBullet->Set_Owner(_pOwner);
+        pBullet->Create();
         m_lUsedBulletsContainer.push_back(pBullet);
     }
     else

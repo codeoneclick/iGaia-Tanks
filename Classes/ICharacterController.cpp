@@ -166,7 +166,7 @@ void ICharacterController::Shoot(void)
     {
         glm::vec3 vTowerGunOffset = m_pTower->Get_TowerGunOffset();
         float fTowerFullRotationY = m_vRotation.y + m_fTowerRotationY;
-        CGameSceneMgr::Instance()->Get_Scene()->Get_GameShooterMgr()->CreateBullet(glm::vec3(m_vPosition.x + sinf(glm::radians(fTowerFullRotationY)) * vTowerGunOffset.x, m_vPosition.y + vTowerGunOffset.y, m_vPosition.z + cosf(glm::radians(fTowerFullRotationY)) * vTowerGunOffset.z), glm::vec3(m_vRotation.x, fTowerFullRotationY, m_vRotation.z));
+        CGameSceneMgr::Instance()->Get_Scene()->Get_GameShooterMgr()->CreateBullet(glm::vec3(m_vPosition.x + sinf(glm::radians(fTowerFullRotationY)) * vTowerGunOffset.x, m_vPosition.y + vTowerGunOffset.y, m_vPosition.z + cosf(glm::radians(fTowerFullRotationY)) * vTowerGunOffset.z), glm::vec3(m_vRotation.x, fTowerFullRotationY, m_vRotation.z), this);
     }
 }
 
@@ -267,15 +267,15 @@ void ICharacterController::OnCollision(ICollisionDelegate *_pCollider)
 
 void ICharacterController::OnOriginPositionChanged(const glm::vec3& _vPosition)
 {
-    float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(m_vPosition.x, m_vPosition.z);
+    float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(_vPosition.x, _vPosition.z);
     m_vPosition.y = fHeight;
-    Set_Position(glm::vec3(_vPosition.x, m_vPosition.y, _vPosition.z));
+    m_vPosition.x = _vPosition.x;
+    m_vPosition.z = _vPosition.z;
 }
 
 void ICharacterController::OnOriginRotationChanged(float _fAngleY)
 {
-    _SmoothRotation();
-    Set_Rotation(m_vRotation);
+    m_vRotation.y = _fAngleY;
 }
 
 

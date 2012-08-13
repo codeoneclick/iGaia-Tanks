@@ -18,7 +18,7 @@
 #include "CIndexBuffer.h"
 #include "ICollisionDelegate.h"
 
-class CCollisionMgr
+class CCollisionMgr : public b2ContactListener
 {
 public:
     class SRay3d
@@ -41,6 +41,9 @@ protected:
 public:
     CCollisionMgr(void);
     ~CCollisionMgr(void);
+
+    void BeginContact(b2Contact* contact);
+    void EndContact(b2Contact* contact);
 
     void OnScreenTouch(glm::vec2 _vTouchPoint);
     
@@ -72,7 +75,7 @@ public:
     bool Get_CollisionPoint(IVertexBuffer *_pVB, CIndexBuffer *_pIB, SRay3d& _tRay3d, glm::vec3* _vCollisionPoint);
     void Update(void);
 
-    void Add_CollisionListener(ICollisionDelegate* _pOwner);
+    void Add_CollisionListener(ICollisionDelegate* _pOwner, bool _bIsStatic);
     void Remove_CollisionListener(ICollisionDelegate* _pOwner);
 
     void Create_Box2dWorld(void);

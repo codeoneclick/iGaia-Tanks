@@ -24,7 +24,7 @@ public:
     ~CGameShooterMgr(void);
     
     void Update(void);
-    void CreateBullet(const glm::vec3& _vPosition, const glm::vec3& _vDirection);
+    void CreateBullet(const glm::vec3& _vPosition, const glm::vec3& _vDirection, ICollisionDelegate* _pOwner);
 };
 
 #endif /* defined(__iGaia__CShootMgr__) */

@@ -27,6 +27,7 @@ CCharacterControllerPlayer::CCharacterControllerPlayer(void)
     m_fSteerSpeed = 2.0f;
     m_fTowerSteerSpeed = 2.0f;
     m_fTowerRotationY = 0.0f;
+    m_sColliderIdStr = "player_collider";
 }
 
 CCharacterControllerPlayer::~CCharacterControllerPlayer(void)
@@ -62,7 +63,7 @@ void CCharacterControllerPlayer::Load(void)
     m_vLeftTrackCenterBound = m_pTrack->Get_LeftTrackTowerCenterBound();
 
     
-    CSceneMgr::Instance()->Get_CollisionMgr()->Add_CollisionListener(this);
+    CSceneMgr::Instance()->Get_CollisionMgr()->Add_CollisionListener(this, false);
     /*CSceneMgr::Instance()->AddEventListener(m_pBody->Get_BasisNode(), CEventMgr::E_EVENT_TOUCH);
     m_pBody->Get_BasisNode()->Add_DelegateOwner(this);
     CGameSceneMgr::Instance()->Get_Scene()->Get_Level()->Get_Landscape()->Add_DelegateOwner(this);*/
@@ -209,14 +210,12 @@ void CCharacterControllerPlayer::Update(void)
         {
             case 1:
             {
-                //vForce += b2Vec2(0.0f, m_fMoveSpeed);
                 vForce.x += sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
                 vForce.y += cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
             }
                 break;
             case 2:
             {
-                //vForce += b2Vec2(0.0f, -m_fMoveSpeed);
                 vForce.x -= sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
                 vForce.y -= cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
             }
@@ -225,21 +224,6 @@ void CCharacterControllerPlayer::Update(void)
                 break;
         }
         
-        /*switch (m_eSteerState)
-        {
-            case 1:
-            {
-                vForce += b2Vec2(-m_fMoveSpeed, 0.0f);
-            }
-                break;
-            case 2:
-            {
-                vForce += b2Vec2(m_fMoveSpeed, 0.0f);
-            }
-                break;
-            default:
-                break;
-        }*/
         m_pBox2dBody->SetAwake(true);
         m_pBox2dBody->SetLinearVelocity(vForce);
     }
@@ -265,9 +249,9 @@ void CCharacterControllerPlayer::Update(void)
     m_pTower->Update();
     m_pChassis->Update();
 
-    //Set_Position(m_vPosition);
-    //_SmoothRotation();
-    //Set_Rotation(m_vRotation);
+    Set_Position(m_vPosition);
+    _SmoothRotation();
+    Set_Rotation(m_vRotation);
 }
 
 

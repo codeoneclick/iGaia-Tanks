@@ -78,7 +78,7 @@ void CCharacterControllerEnemy::Load(void)
     m_vRightTrackCenterBound = m_pTrack->Get_RightTrackTowerCenterBound();
     m_vLeftTrackCenterBound = m_pTrack->Get_LeftTrackTowerCenterBound();
     
-    CSceneMgr::Instance()->Get_CollisionMgr()->Add_CollisionListener(this);
+    CSceneMgr::Instance()->Get_CollisionMgr()->Add_CollisionListener(this, false);
     /*CSceneMgr::Instance()->AddEventListener(m_pBody->Get_BasisNode(), CEventMgr::E_EVENT_TOUCH);
     m_pBody->Get_BasisNode()->Add_DelegateOwner(this);
     CGameSceneMgr::Instance()->Get_Scene()->Get_Level()->Get_Landscape()->Add_DelegateOwner(this);*/
@@ -128,7 +128,7 @@ void CCharacterControllerEnemy::Shoot(void)
     if((iAICurrentShootTimeStamp - m_iAIShootTimeStamp > k_AI_SHOOT_INTERVAL) && fDistanceToTargetPoint < k_AI_SHOOT_DISTANCE && m_pTower != NULL)
     {
         glm::vec3 vTowerGunOffset = m_pTower->Get_TowerGunOffset();
-        CGameSceneMgr::Instance()->Get_Scene()->Get_GameShooterMgr()->CreateBullet(glm::vec3(m_vPosition.x + sinf(glm::radians(m_fTowerRotationY)) * vTowerGunOffset.x, m_vPosition.y + vTowerGunOffset.y, m_vPosition.z + cosf(glm::radians(m_fTowerRotationY)) * vTowerGunOffset.z), glm::vec3(m_vRotation.x, m_fTowerRotationY, m_vRotation.z));
+        CGameSceneMgr::Instance()->Get_Scene()->Get_GameShooterMgr()->CreateBullet(glm::vec3(m_vPosition.x + sinf(glm::radians(m_fTowerRotationY)) * vTowerGunOffset.x, m_vPosition.y + vTowerGunOffset.y, m_vPosition.z + cosf(glm::radians(m_fTowerRotationY)) * vTowerGunOffset.z), glm::vec3(m_vRotation.x, m_fTowerRotationY, m_vRotation.z), this);
         m_iAIShootTimeStamp = iAICurrentShootTimeStamp;
     }
 }

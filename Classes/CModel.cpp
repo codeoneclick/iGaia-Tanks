@@ -87,7 +87,7 @@ void CModel::Update()
 
 void CModel::Render(CShader::E_RENDER_MODE _eMode)
 {
-    if(CSceneMgr::Instance()->Get_Camera()->Get_Frustum()->IsBoxInFrustum(m_pBoundingBox->Get_MaxBound() + m_vPosition, m_pBoundingBox->Get_MinBound() + m_vPosition) == CFrustum::E_FRUSTUM_RESULT_OUTSIDE)
+    if(CSceneMgr::Instance()->Get_Camera()->Get_Frustum()->IsBoxInFrustum(m_pBoundingBox->Get_MaxBound() + m_vPosition, m_pBoundingBox->Get_MinBound() + m_vPosition) == CFrustum::E_FRUSTUM_RESULT_OUTSIDE || !m_bIsVisible)
     {
         return;
     }
@@ -218,7 +218,7 @@ void CModel::Render(CShader::E_RENDER_MODE _eMode)
     
     if(m_pBoundingBox != NULL && CShader::E_RENDER_MODE_SIMPLE == _eMode)
     {
-        //m_pBoundingBox->Render();
+        m_pBoundingBox->Render();
     }
 
 }

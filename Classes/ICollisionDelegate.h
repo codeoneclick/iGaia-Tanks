@@ -20,12 +20,6 @@ public:
     b2Body*        m_pBox2dBody;
 protected:
     std::string m_sColliderIdStr;
-    
-    b2Vec2 _Get_LateralVelocity(void);
-    b2Vec2 _Get_ForwardVelocity(void);
-    void _UpdateFriction(void);
-    void _UpdateDrive(int _iControlState);    
-    void _UpdateTurn(int _iControlState);
 public:
     ICollisionDelegate(void);
     virtual ~ICollisionDelegate(void);

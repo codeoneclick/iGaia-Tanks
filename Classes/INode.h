@@ -51,6 +51,8 @@ protected:
     bool m_bIsBatching;
     std::string m_sBatchingName;
     
+    bool m_bIsVisible;
+    
     std::vector<IDelegate*> m_lDelegateOwners;
     
     float _Get_WrapAngle(float _fValue, float _fMin, float _fMax)
@@ -112,6 +114,9 @@ public:
     
     void Set_RenderMode(CShader::E_RENDER_MODE _eMode, bool _value);
     bool Get_RenderMode(CShader::E_RENDER_MODE _eMode);
+    
+    inline bool Get_Visible(void) { return m_bIsVisible; }
+    inline void Set_Visible(bool _bIsVisible) { m_bIsVisible = _bIsVisible; }
 };
 
 #endif

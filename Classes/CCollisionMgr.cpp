@@ -34,6 +34,7 @@ void CCollisionMgr::Create_Box2dWorld(void)
     
 	m_pBox2dWorld = new b2World(vGravity);
 	m_pBox2dWorld->SetContinuousPhysics(true);
+    m_pBox2dWorld->SetContactListener(this);
     
 	b2BodyDef boundBodyDef;
 	boundBodyDef.position.Set(0, 0);
@@ -137,7 +138,7 @@ bool CCollisionMgr::Get_CollisionPoint(IVertexBuffer *_pVertexBuffer, CIndexBuff
     return false;
 }
 
-void CCollisionMgr::Add_CollisionListener(ICollisionDelegate *_pOwner)
+void CCollisionMgr::Add_CollisionListener(ICollisionDelegate* _pOwner, bool _bIsStatic)
 {
     if(m_pBox2dWorld == NULL)
     {
@@ -146,7 +147,14 @@ void CCollisionMgr::Add_CollisionListener(ICollisionDelegate *_pOwner)
     
     m_lCollisionObject.push_back(_pOwner);
 
-    _pOwner->m_pBox2dBodyDef.type = b2_dynamicBody;
+    if(_bIsStatic)
+    {
+        _pOwner->m_pBox2dBodyDef.type = b2_staticBody;
+    }
+    else
+    {
+        _pOwner->m_pBox2dBodyDef.type = b2_dynamicBody;
+    }
     
 	_pOwner->m_pBox2dBodyDef.position.Set(_pOwner->Get_OriginPosition().x, _pOwner->Get_OriginPosition().z);
 	_pOwner->m_pBox2dBodyDef.userData = _pOwner;
@@ -154,7 +162,7 @@ void CCollisionMgr::Add_CollisionListener(ICollisionDelegate *_pOwner)
     _pOwner->m_pBox2dBody = m_pBox2dWorld->CreateBody(&_pOwner->m_pBox2dBodyDef);
 	b2PolygonShape dynamicBox;
     
-	dynamicBox.SetAsBox(_pOwner->Get_OriginMaxBound().x - _pOwner->Get_OriginMinBound().x,_pOwner->Get_OriginMaxBound().z - _pOwner->Get_OriginMinBound().z);
+	dynamicBox.SetAsBox((_pOwner->Get_OriginMaxBound().x - _pOwner->Get_OriginMinBound().x) / 2.0f, (_pOwner->Get_OriginMaxBound().z - _pOwner->Get_OriginMinBound().z) / 2.0f);
 	/*b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
 	fixtureDef.density = 2.0f;
@@ -196,19 +204,42 @@ void CCollisionMgr::_Update_Box2d(void)
     for(unsigned int index = 0; index < m_lCollisionObject.size(); ++index)
     {
         ICollisionDelegate* pOwner = m_lCollisionObject[index];
-        pOwner->OnOriginRotationChanged(pOwner->m_pBox2dBody->GetAngle());
+        //pOwner->OnOriginRotationChanged(pOwner->m_pBox2dBody->GetAngle());
         pOwner->OnOriginPositionChanged(glm::vec3(pOwner->m_pBox2dBody->GetPosition().x, 0.0f, pOwner->m_pBox2dBody->GetPosition().y));
     }
+}
+
+void CCollisionMgr::BeginContact(b2Contact* contact)
+{
+    std::cout<<"[CCollisionMgr::BeginContact] Contact begin"<<std::endl;
+    ICollisionDelegate* pBodyUserData_01 = static_cast<ICollisionDelegate*>(contact->GetFixtureA()->GetBody()->GetUserData());
+    ICollisionDelegate* pBodyUserData_02 = static_cast<ICollisionDelegate*>(contact->GetFixtureB()->GetBody()->GetUserData());
+       
+    if(pBodyUserData_02 != NULL)
+    {
+        pBodyUserData_02->OnCollision(pBodyUserData_01);
+    }
     
-	/*for(b2Body* pBox2dBody = m_pBox2dWorld->GetBodyList(); pBox2dBody; pBox2dBody = pBox2dBody->GetNext())
-	{
-		if (pBox2dBody->GetUserData() != NULL)
-		{
-			ICollisionDelegate* pOwner = static_cast<ICollisionDelegate*>(pBox2dBody->GetUserData());    
-            pOwner->OnOriginRotationChanged(pBox2dBody->GetAngle());
-            pOwner->OnOriginPositionChanged(glm::vec3(pBox2dBody->GetPosition().x, 0.0f, pBox2dBody->GetPosition().y));
-		}
-	}*/
+    if(pBodyUserData_01 != NULL)
+    {
+        pBodyUserData_01->OnCollision(pBodyUserData_02);
+    }
+}
+
+void CCollisionMgr::EndContact(b2Contact* contact)
+{
+    std::cout<<"[CCollisionMgr::BeginContact] Contact end"<<std::endl;
+    ICollisionDelegate* pBodyUserData = static_cast<ICollisionDelegate*>(contact->GetFixtureA()->GetBody()->GetUserData());
+    if (pBodyUserData != NULL)
+    {
+        
+    }
+    
+    pBodyUserData = static_cast<ICollisionDelegate*>(contact->GetFixtureB()->GetBody()->GetUserData());
+    if (pBodyUserData != NULL)
+    {
+        
+    }
 }
 
 void CCollisionMgr::Update(void)
