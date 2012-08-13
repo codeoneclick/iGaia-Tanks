@@ -42,6 +42,8 @@ void CGameInGameLevel::Load(void)
     m_pLandscape->Set_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, true);
     //m_pLandscape->Set_Scale(glm::vec3(2.0f, 2.0f, 2.0f));
     
+    CSceneMgr::Instance()->Get_CollisionMgr()->Create_Box2dWorld();
+    
     INode* pLandscapeEdges = m_pLandscape->Get_LandscapeEdges();
     pLandscapeEdges->Set_Texture("layer_02_diffuse.pvr",  0, CTexture::E_WRAP_MODE_REPEAT, IResource::E_THREAD_MAIN);
     pLandscapeEdges->Set_Texture("layer_03_normal.pvr",  1, CTexture::E_WRAP_MODE_REPEAT, IResource::E_THREAD_MAIN);
@@ -77,7 +79,7 @@ void CGameInGameLevel::Load(void)
     m_pSkyBox->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_SKYBOX);
     m_pSkyBox->Set_Texture("clouds.pvr", 0, CTexture::E_WRAP_MODE_REPEAT);
     
-    //CSceneMgr::Instance()->Get_CollisionMgr()->Create_Box2dWorld();
+    
 }
 
 void CGameInGameLevel::Unload(void)

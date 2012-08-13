@@ -58,7 +58,7 @@ protected:
     E_CHARACTER_CONTROLLER_STEER_STATE m_eSteerState;
     E_CHARACTER_CONTROLLER_STEER_TOWER_STATE m_eSteerTowerState;
     
-    ITankBody* m_pBody; 
+    ITankBody* m_pChassis;
     ITankTower* m_pTower;
     ITankTrack* m_pTrack;
 
@@ -117,11 +117,11 @@ public:
     void Set_Target(ICharacterController* _pTarget) { m_pTarget = _pTarget; }
     ICharacterController* Get_Target(void) { return m_pTarget; }
     
-    void Set_Body(E_CHARACTER_PART_TYPE _eType);
+    void Set_Chassis(E_CHARACTER_PART_TYPE _eType);
     void Set_Tower(E_CHARACTER_PART_TYPE _eType);
     void Set_Track(E_CHARACTER_PART_TYPE _eType);
     
-    ITankBody* Get_Body(void)   { return m_pBody; }
+    ITankBody* Get_Chassis(void)   { return m_pChassis; }
     ITankTower* Get_Tower(void) { return m_pTower; }
     ITankTrack* Get_Track(void) { return m_pTrack; }
     

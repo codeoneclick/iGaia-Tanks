@@ -14,7 +14,7 @@
 
 CCharacterControllerPlayer::CCharacterControllerPlayer(void)
 {
-    m_pBody = NULL;
+    m_pChassis = NULL;
     m_pTrack = NULL;
     m_pTower = NULL;
     
@@ -32,7 +32,7 @@ CCharacterControllerPlayer::CCharacterControllerPlayer(void)
 CCharacterControllerPlayer::~CCharacterControllerPlayer(void)
 {
     CSceneMgr::Instance()->Get_CollisionMgr()->Remove_CollisionListener(this);
-    CSceneMgr::Instance()->RemoveEventListener(m_pBody->Get_BasisNode(), CEventMgr::E_EVENT_TOUCH);
+    CSceneMgr::Instance()->RemoveEventListener(m_pChassis->Get_BasisNode(), CEventMgr::E_EVENT_TOUCH);
     CSceneMgr::Instance()->Get_DecalMgr()->Remove_Decal(m_pTargetDecal);
 }
 
@@ -51,11 +51,11 @@ void CCharacterControllerPlayer::Load(void)
     m_pTower = new CTankLightTower();
     m_pTower->Load();
     
-    m_pBody = new CTankLightBody();
-    m_pBody->Load();
+    m_pChassis = new CTankLightBody();
+    m_pChassis->Load();
     
-    m_vMaxBound = m_pBody->Get_BodyMaxBound();
-    m_vMinBound = m_pBody->Get_BodyMinBound();
+    m_vMaxBound = m_pChassis->Get_BodyMaxBound();
+    m_vMinBound = m_pChassis->Get_BodyMinBound();
     
     m_vTowerCenterBound = m_pTower->Get_TowerCenterBound();
     m_vRightTrackCenterBound = m_pTrack->Get_RightTrackTowerCenterBound();
@@ -87,11 +87,11 @@ void CCharacterControllerPlayer::Update(void)
             {
                 pCamera->Set_FovY(pCamera->Get_FovY() - k_CAMERA_FOV_Y_DELTA_STATE_NONE);
             }
-            m_pBody->StartExhaust(false);
+            m_pChassis->StartExhaust(false);
             break;
         case ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_FORWARD:
             
-            MoveForward();
+            //MoveForward();
             m_pTrack->Move_LeftTrack(-fTrackTexCoordOffsetMoveFactor);
             m_pTrack->Move_RightTrack(-fTrackTexCoordOffsetMoveFactor);
             
@@ -99,11 +99,11 @@ void CCharacterControllerPlayer::Update(void)
             {
                 pCamera->Set_FovY(pCamera->Get_FovY() + k_CAMERA_FOV_Y_DELTA_STATE_FORWARD);
             }
-            m_pBody->StartExhaust(true);
+            m_pChassis->StartExhaust(true);
             break;
         case ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_BACKWARD:
             
-            MoveBackward();
+            //MoveBackward();
             m_pTrack->Move_LeftTrack(fTrackTexCoordOffsetMoveFactor);
             m_pTrack->Move_RightTrack(fTrackTexCoordOffsetMoveFactor);
             
@@ -111,7 +111,7 @@ void CCharacterControllerPlayer::Update(void)
             {
                 pCamera->Set_FovY(pCamera->Get_FovY() - k_CAMERA_FOV_Y_DELTA_STATE_BACKWARD);
             }
-            m_pBody->StartExhaust(true);
+            m_pChassis->StartExhaust(true);
             break;
         default:
             break;
@@ -128,7 +128,7 @@ void CCharacterControllerPlayer::Update(void)
             
             m_pTrack->Move_LeftTrack(-fTrackTexCoordOffsetMoveFactor);
             m_pTrack->Move_RightTrack(fTrackTexCoordOffsetSteerFactor);
-            m_pBody->StartExhaust(true);
+            m_pChassis->StartExhaust(true);
             
             break;
         case ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_RIGHT:
@@ -137,7 +137,7 @@ void CCharacterControllerPlayer::Update(void)
             
             m_pTrack->Move_LeftTrack(fTrackTexCoordOffsetSteerFactor);
             m_pTrack->Move_RightTrack(-fTrackTexCoordOffsetMoveFactor);
-            m_pBody->StartExhaust(true);
+            m_pChassis->StartExhaust(true);
             
             break;
         default:
@@ -200,10 +200,54 @@ void CCharacterControllerPlayer::Update(void)
             break;
     }
     
-    /*if(m_pBox2dBody != NULL)
+    m_fMoveSpeed = 10.0f;
+
+    if(m_pBox2dBody != NULL)
     {
-        m_pBox2dBody->SetTransform(b2Vec2(m_vPosition.x, m_vPosition.z), glm::radians(m_vRotation.y));
-    }*/
+        b2Vec2 vForce = b2Vec2(0.0f, 0.0f);
+        switch (m_eMoveState)
+        {
+            case 1:
+            {
+                //vForce += b2Vec2(0.0f, m_fMoveSpeed);
+                vForce.x += sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
+                vForce.y += cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
+            }
+                break;
+            case 2:
+            {
+                //vForce += b2Vec2(0.0f, -m_fMoveSpeed);
+                vForce.x -= sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
+                vForce.y -= cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
+            }
+                break;
+            default:
+                break;
+        }
+        
+        /*switch (m_eSteerState)
+        {
+            case 1:
+            {
+                vForce += b2Vec2(-m_fMoveSpeed, 0.0f);
+            }
+                break;
+            case 2:
+            {
+                vForce += b2Vec2(m_fMoveSpeed, 0.0f);
+            }
+                break;
+            default:
+                break;
+        }*/
+        m_pBox2dBody->SetAwake(true);
+        m_pBox2dBody->SetLinearVelocity(vForce);
+    }
+    
+    if(m_pBox2dBody != NULL)
+    {
+        m_pBox2dBody->SetTransform(m_pBox2dBody->GetPosition(), glm::radians(m_vRotation.y));
+    }
     
     /*if(m_pBox2dBody != NULL)
     {
@@ -219,11 +263,11 @@ void CCharacterControllerPlayer::Update(void)
     
     m_pTrack->Update();
     m_pTower->Update();
-    m_pBody->Update();
+    m_pChassis->Update();
 
-    Set_Position(m_vPosition);
-    _SmoothRotation();
-    Set_Rotation(m_vRotation);
+    //Set_Position(m_vPosition);
+    //_SmoothRotation();
+    //Set_Rotation(m_vRotation);
 }
 
 

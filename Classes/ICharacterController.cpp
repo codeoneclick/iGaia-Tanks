@@ -21,7 +21,7 @@ ICharacterController::ICharacterController(void)
 
 ICharacterController::~ICharacterController(void)
 {
-    SAFE_DELETE(m_pBody);
+    SAFE_DELETE(m_pChassis);
     SAFE_DELETE(m_pTower);
     SAFE_DELETE(m_pTrack);
     
@@ -41,8 +41,6 @@ void ICharacterController::Load(void)
     m_pHealthDecal->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_DECAL);
     m_pHealthDecal->Set_Texture("ring.pvr", 0, CTexture::E_WRAP_MODE_CLAMP);
     m_pHealthDecal->Set_Color(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
-    
-    
 }
 
 bool ICharacterController::MoveForward(void)
@@ -94,6 +92,11 @@ void ICharacterController::SteerLeft(void)
 
 void ICharacterController::Set_Position(const glm::vec3 &_vPosition)
 {
+    if(m_pChassis != NULL)
+    {
+        m_pChassis->Set_Position(_vPosition);
+    }
+    
     if(m_pTrack != NULL)
     {
         m_pTrack->Set_Position(_vPosition);
@@ -102,11 +105,6 @@ void ICharacterController::Set_Position(const glm::vec3 &_vPosition)
     if(m_pTower != NULL)
     {
         m_pTower->Set_Position(_vPosition);
-    }
-    
-    if(m_pBody != NULL)
-    {
-        m_pBody->Set_Position(_vPosition);
     }
     
     if(m_pShadowDecal != NULL)
@@ -141,22 +139,22 @@ void ICharacterController::Set_Rotation(const glm::vec3 &_vRotation)
     
     if(m_pTower != NULL)
     {
-        m_pTower->Set_Rotation(glm::vec3(_vRotation.x, m_fTowerRotationY + m_vRotation.y, _vRotation.z));
+        m_pTower->Set_Rotation(glm::vec3(_vRotation.x, m_fTowerRotationY + _vRotation.y, _vRotation.z));
     }
     
-    if(m_pBody != NULL)
+    if(m_pChassis != NULL)
     {
-        m_pBody->Set_Rotation(_vRotation);
+        m_pChassis->Set_Rotation(_vRotation);
     }
     
     if(m_pShadowDecal != NULL)
     {
-        m_pShadowDecal->Set_Rotation(m_vRotation);
+        m_pShadowDecal->Set_Rotation(_vRotation);
     }
     
     if(m_pHealthDecal != NULL)
     {
-        m_pHealthDecal->Set_Rotation(m_vRotation);
+        m_pHealthDecal->Set_Rotation(_vRotation);
     }
 
     m_vRotation = _vRotation;
@@ -172,29 +170,29 @@ void ICharacterController::Shoot(void)
     }
 }
 
-void ICharacterController::Set_Body(ICharacterController::E_CHARACTER_PART_TYPE _eType)
+void ICharacterController::Set_Chassis(ICharacterController::E_CHARACTER_PART_TYPE _eType)
 {
     switch (_eType)
     {
         case ICharacterController::E_CHARACTER_PART_TYPE_LIGHT :
         {
-            SAFE_DELETE(m_pBody);
-            m_pBody = new CTankLightBody();
-            m_pBody->Load();
+            SAFE_DELETE(m_pChassis);
+            m_pChassis = new CTankLightBody();
+            m_pChassis->Load();
         }
             break;
         case ICharacterController::E_CHARACTER_PART_TYPE_MEDIUM :
         {
-            SAFE_DELETE(m_pBody);
-            m_pBody = new CTankMediumBody();
-            m_pBody->Load();
+            SAFE_DELETE(m_pChassis);
+            m_pChassis = new CTankMediumBody();
+            m_pChassis->Load();
         }
             break;
         case ICharacterController::E_CHARACTER_PART_TYPE_HEAVY :
         {
-            SAFE_DELETE(m_pBody);
-            m_pBody = new CTankHeavyBody();
-            m_pBody->Load();
+            SAFE_DELETE(m_pChassis);
+            m_pChassis = new CTankHeavyBody();
+            m_pChassis->Load();
         }
             break;
         default:
@@ -269,14 +267,13 @@ void ICharacterController::OnCollision(ICollisionDelegate *_pCollider)
 
 void ICharacterController::OnOriginPositionChanged(const glm::vec3& _vPosition)
 {
-    //std::cout<<"[ICharacterController::OnOriginPositionChanged] Position :"<<vPosition.x<<","<<vPosition.z<<std::endl;
+    float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(m_vPosition.x, m_vPosition.z);
+    m_vPosition.y = fHeight;
     Set_Position(glm::vec3(_vPosition.x, m_vPosition.y, _vPosition.z));
 }
 
 void ICharacterController::OnOriginRotationChanged(float _fAngleY)
 {
-    //std::cout<<"[ICharacterController::OnOriginRotationChanged] Rotation :"<<glm::degrees(_fAngleY)<<std::endl;
-    m_vRotation.y = glm::degrees(_fAngleY);
     _SmoothRotation();
     Set_Rotation(m_vRotation);
 }

@@ -86,6 +86,7 @@ void ITankTrack::Set_Position(const glm::vec3 &_vPosition)
         m_pRightTrackFireEmitter->Set_Position(glm::vec3(_vPosition.x + m_vTransformHelper.x, _vPosition.y + m_vTransformHelper.y, _vPosition.z + m_vTransformHelper.z));
     }
     m_vPosition = _vPosition;
+    //std::cout<<"[ITankTrack::Set_Position] Position : "<<m_vPosition.x<<","<<m_vPosition.z<<std::endl;
 }
 
 void ITankTrack::Set_Rotation(const glm::vec3 &_vRotation)

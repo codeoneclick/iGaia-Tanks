@@ -17,7 +17,7 @@ CCharacterControllerEnemy::CCharacterControllerEnemy(void)
 {
     m_pTrack = NULL;
     m_pTower = NULL;
-    m_pBody  = NULL;
+    m_pChassis  = NULL;
     
     m_fMaxMoveSpeed = 0.05f;
     m_fMoveAcceleration = 0.01f;
@@ -40,7 +40,7 @@ CCharacterControllerEnemy::CCharacterControllerEnemy(void)
 CCharacterControllerEnemy::~CCharacterControllerEnemy(void)
 {
     CSceneMgr::Instance()->Get_CollisionMgr()->Remove_CollisionListener(this);
-    CSceneMgr::Instance()->RemoveEventListener(m_pBody->Get_BasisNode(), CEventMgr::E_EVENT_TOUCH);
+    CSceneMgr::Instance()->RemoveEventListener(m_pChassis->Get_BasisNode(), CEventMgr::E_EVENT_TOUCH);
 }
 
 long CCharacterControllerEnemy::_Get_TimeStamp(void)
@@ -68,11 +68,11 @@ void CCharacterControllerEnemy::Load(void)
     m_pTower = new CTankLightTower();
     m_pTower->Load();
     
-    m_pBody = new CTankLightBody();
-    m_pBody->Load();
+    m_pChassis = new CTankHeavyBody();
+    m_pChassis->Load();
     
-    m_vMaxBound = m_pBody->Get_BodyMaxBound();
-    m_vMinBound = m_pBody->Get_BodyMinBound();
+    m_vMaxBound = m_pChassis->Get_BodyMaxBound();
+    m_vMinBound = m_pChassis->Get_BodyMinBound();
     
     m_vTowerCenterBound = m_pTower->Get_TowerCenterBound();
     m_vRightTrackCenterBound = m_pTrack->Get_RightTrackTowerCenterBound();
@@ -144,11 +144,11 @@ void CCharacterControllerEnemy::Update(void)
     {
         case E_AI_STATE_NONE:
             std::cout<<"[CCharacterControllerEnemy::Update]"<<"state -> AI_STATE_NONE"<<std::endl;
-            m_pBody->StartExhaust(false);
+            m_pChassis->StartExhaust(false);
             break;
         case E_AI_STATE_STAND:
         {
-            m_pBody->StartExhaust(false);
+            m_pChassis->StartExhaust(false);
             std::cout<<"[CCharacterControllerEnemy::Update]"<<"state -> E_AI_STATE_STAND"<<std::endl;
         }
             break;
@@ -223,7 +223,7 @@ void CCharacterControllerEnemy::Update(void)
             }*/
             
             //m_vRotation.y = CMathHelper::Instance()->Get_RotationBetweenPoints(m_vMovePoint, m_vPosition) + 180.0f;
-            m_pBody->StartExhaust(true);
+            m_pChassis->StartExhaust(true);
         }
             break;
         default:
@@ -232,7 +232,7 @@ void CCharacterControllerEnemy::Update(void)
     
     m_pTrack->Update();
     m_pTower->Update();
-    m_pBody->Update();
+    m_pChassis->Update();
     
     //Shoot();
     

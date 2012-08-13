@@ -56,6 +56,7 @@ void ITankBody::Set_Position(const glm::vec3 &_vPosition)
     }
     
     m_vPosition = _vPosition;
+    //std::cout<<"[ITankBody::Set_Position] Position : "<<m_vPosition.x<<","<<m_vPosition.z<<std::endl;
 }
 
 void ITankBody::Set_Rotation(const glm::vec3 &_vRotation)

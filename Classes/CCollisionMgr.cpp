@@ -172,6 +172,8 @@ void CCollisionMgr::Remove_CollisionListener(ICollisionDelegate *_pOwner)
     {
         if(_pOwner == (*pBeginIterator))
         {
+            m_pBox2dWorld->DestroyBody(_pOwner->m_pBox2dBody);
+            _pOwner->m_pBox2dBody = NULL;
             m_lCollisionObject.erase(pBeginIterator);
             return;
         }
@@ -186,20 +188,27 @@ void CCollisionMgr::_Update_Box2d(void)
         return;
     }
     
-    int32 velocityIterations = 8;
+    int32 velocityIterations = 1;
 	int32 positionIterations = 1;
     
-	m_pBox2dWorld->Step(1.0f / 60.0f, velocityIterations, positionIterations);
+	m_pBox2dWorld->Step(1.0f / 30.0f, velocityIterations, positionIterations);
+
+    for(unsigned int index = 0; index < m_lCollisionObject.size(); ++index)
+    {
+        ICollisionDelegate* pOwner = m_lCollisionObject[index];
+        pOwner->OnOriginRotationChanged(pOwner->m_pBox2dBody->GetAngle());
+        pOwner->OnOriginPositionChanged(glm::vec3(pOwner->m_pBox2dBody->GetPosition().x, 0.0f, pOwner->m_pBox2dBody->GetPosition().y));
+    }
     
-	for(b2Body* pBox2dBody = m_pBox2dWorld->GetBodyList(); pBox2dBody; pBox2dBody = pBox2dBody->GetNext())
+	/*for(b2Body* pBox2dBody = m_pBox2dWorld->GetBodyList(); pBox2dBody; pBox2dBody = pBox2dBody->GetNext())
 	{
 		if (pBox2dBody->GetUserData() != NULL)
 		{
-			ICollisionDelegate* pOwner = static_cast<ICollisionDelegate*>(pBox2dBody->GetUserData());
-            pOwner->OnOriginPositionChanged(glm::vec3(pBox2dBody->GetPosition().x, 0.0f, pBox2dBody->GetPosition().y));
+			ICollisionDelegate* pOwner = static_cast<ICollisionDelegate*>(pBox2dBody->GetUserData());    
             pOwner->OnOriginRotationChanged(pBox2dBody->GetAngle());
+            pOwner->OnOriginPositionChanged(glm::vec3(pBox2dBody->GetPosition().x, 0.0f, pBox2dBody->GetPosition().y));
 		}
-	}
+	}*/
 }
 
 void CCollisionMgr::Update(void)
