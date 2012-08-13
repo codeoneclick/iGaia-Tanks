@@ -343,6 +343,10 @@
 		A1FE338F15D911B900D82CF6 /* GameHeavyTankSDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE338D15D911B900D82CF6 /* GameHeavyTankSDB.cpp */; };
 		A1FE339615D9155800D82CF6 /* GameTankSDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE339415D9155700D82CF6 /* GameTankSDB.cpp */; };
 		A1FE339E15D9169500D82CF6 /* GameSDBStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE339C15D9169500D82CF6 /* GameSDBStorage.cpp */; };
+		A1FE33B615D93CA100D82CF6 /* GameNativeCommunicationMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE33B415D93CA100D82CF6 /* GameNativeCommunicationMgr.cpp */; };
+		A1FE33BA15D93CD400D82CF6 /* GameClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE33B815D93CD400D82CF6 /* GameClient.cpp */; };
+		A1FE33BD15D93CE000D82CF6 /* GameServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE33BB15D93CDF00D82CF6 /* GameServer.cpp */; };
+		A1FE33C415D9596D00D82CF6 /* GameClientHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE33C215D9596D00D82CF6 /* GameClientHandler.cpp */; };
 		A1FFAA8B156CBAE500B01ECB /* CFrustum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FFAA89156CBAE500B01ECB /* CFrustum.cpp */; };
 		CE8DFA9314587B0C00AE7288 /* CGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8DFA9214587B0C00AE7288 /* CGame.cpp */; };
 		CE914ED41455DA3200AA2000 /* CShaderComposite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE914ED31455DA3200AA2000 /* CShaderComposite.cpp */; };
@@ -1005,6 +1009,14 @@
 		A1FE339515D9155700D82CF6 /* GameTankSDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTankSDB.h; sourceTree = "<group>"; };
 		A1FE339C15D9169500D82CF6 /* GameSDBStorage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSDBStorage.cpp; sourceTree = "<group>"; };
 		A1FE339D15D9169500D82CF6 /* GameSDBStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSDBStorage.h; sourceTree = "<group>"; };
+		A1FE33B415D93CA100D82CF6 /* GameNativeCommunicationMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameNativeCommunicationMgr.cpp; sourceTree = "<group>"; };
+		A1FE33B515D93CA100D82CF6 /* GameNativeCommunicationMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameNativeCommunicationMgr.h; sourceTree = "<group>"; };
+		A1FE33B815D93CD400D82CF6 /* GameClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameClient.cpp; sourceTree = "<group>"; };
+		A1FE33B915D93CD400D82CF6 /* GameClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameClient.h; sourceTree = "<group>"; };
+		A1FE33BB15D93CDF00D82CF6 /* GameServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameServer.cpp; sourceTree = "<group>"; };
+		A1FE33BC15D93CDF00D82CF6 /* GameServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameServer.h; sourceTree = "<group>"; };
+		A1FE33C215D9596D00D82CF6 /* GameClientHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameClientHandler.cpp; sourceTree = "<group>"; };
+		A1FE33C315D9596D00D82CF6 /* GameClientHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameClientHandler.h; sourceTree = "<group>"; };
 		A1FFAA89156CBAE500B01ECB /* CFrustum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFrustum.cpp; sourceTree = "<group>"; };
 		A1FFAA8A156CBAE500B01ECB /* CFrustum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFrustum.h; sourceTree = "<group>"; };
 		CE8DFA9114587AFD00AE7288 /* CGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGame.h; sourceTree = "<group>"; };
@@ -1770,6 +1782,14 @@
 		A176DD5D15D3A90300B8FD7D /* NativeCommunication */ = {
 			isa = PBXGroup;
 			children = (
+				A1FE33B515D93CA100D82CF6 /* GameNativeCommunicationMgr.h */,
+				A1FE33B415D93CA100D82CF6 /* GameNativeCommunicationMgr.cpp */,
+				A1FE33B915D93CD400D82CF6 /* GameClient.h */,
+				A1FE33B815D93CD400D82CF6 /* GameClient.cpp */,
+				A1FE33BC15D93CDF00D82CF6 /* GameServer.h */,
+				A1FE33BB15D93CDF00D82CF6 /* GameServer.cpp */,
+				A1FE33C315D9596D00D82CF6 /* GameClientHandler.h */,
+				A1FE33C215D9596D00D82CF6 /* GameClientHandler.cpp */,
 			);
 			name = NativeCommunication;
 			sourceTree = "<group>";
@@ -2675,6 +2695,10 @@
 				A1FE338F15D911B900D82CF6 /* GameHeavyTankSDB.cpp in Sources */,
 				A1FE339615D9155800D82CF6 /* GameTankSDB.cpp in Sources */,
 				A1FE339E15D9169500D82CF6 /* GameSDBStorage.cpp in Sources */,
+				A1FE33B615D93CA100D82CF6 /* GameNativeCommunicationMgr.cpp in Sources */,
+				A1FE33BA15D93CD400D82CF6 /* GameClient.cpp in Sources */,
+				A1FE33BD15D93CE000D82CF6 /* GameServer.cpp in Sources */,
+				A1FE33C415D9596D00D82CF6 /* GameClientHandler.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

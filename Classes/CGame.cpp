@@ -14,6 +14,7 @@
 #include "CGameUIMgr.h"
 #include "CGameInGameScene.h"
 #include "CGameMainMenuScene.h"
+#include "GameNativeCommunicationMgr.h"
 
 CGame* CGame::m_game = NULL;
 
@@ -43,10 +44,13 @@ void CGame::Load(void)
     CGameSceneMgr::Instance()->Set_Scene(pScene);
     pScene->Load();
     CGameUIMgr::Instance()->Set_GameUI("main_menu_ui");
+    GameNativeCommunicationMgr::Instance()->CreateGameServer();
+    GameNativeCommunicationMgr::Instance()->ConnectToGameServer();
 }
 
 void CGame::Update(void)
 {
+    GameNativeCommunicationMgr::Instance()->Update();
     CGameSceneMgr::Instance()->Update();
     CResourceMgr::Instance()->Update();
     IGameScene* pScene = CGameSceneMgr::Instance()->Get_Scene();
