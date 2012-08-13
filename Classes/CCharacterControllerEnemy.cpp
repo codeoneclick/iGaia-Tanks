@@ -19,14 +19,6 @@ CCharacterControllerEnemy::CCharacterControllerEnemy(void)
     m_pTower = NULL;
     m_pChassis  = NULL;
     
-    m_fMaxMoveSpeed = 0.05f;
-    m_fMoveAcceleration = 0.01f;
-    
-    m_fMoveSpeed = 0.1f;
-    m_fLeftTrackMoveSpeed = 0.0f;
-    m_fRightTrackMoveSpeed = 0.0f;
-    m_fSteerSpeed = 1.0f;
-    
     m_eState = E_AI_STATE_NONE;
     m_iAIStateDuration = 0;
     

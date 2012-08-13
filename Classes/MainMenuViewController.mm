@@ -194,21 +194,21 @@ typedef void (^FailureBlock)(id object);
     UISegmentedControl *pSegmentedControl = (UISegmentedControl *)sender;
     if(pSegmentedControl.selectedSegmentIndex == 0)
     {
-        pController->Set_Chassis(ICharacterController::E_CHARACTER_PART_TYPE_LIGHT);
-        pController->Set_Tower(ICharacterController::E_CHARACTER_PART_TYPE_LIGHT);
-        pController->Set_Track(ICharacterController::E_CHARACTER_PART_TYPE_LIGHT);
+        pController->Set_Chassis(GameTankSDB::E_CHARACTER_PART_TYPE_LIGHT);
+        pController->Set_Tower(GameTankSDB::E_CHARACTER_PART_TYPE_LIGHT);
+        pController->Set_Track(GameTankSDB::E_CHARACTER_PART_TYPE_LIGHT);
     }
     else if(pSegmentedControl.selectedSegmentIndex == 1)
     {
-        pController->Set_Chassis(ICharacterController::E_CHARACTER_PART_TYPE_MEDIUM);
-        pController->Set_Tower(ICharacterController::E_CHARACTER_PART_TYPE_MEDIUM);
-        pController->Set_Track(ICharacterController::E_CHARACTER_PART_TYPE_MEDIUM);
+        pController->Set_Chassis(GameTankSDB::E_CHARACTER_PART_TYPE_MEDIUM);
+        pController->Set_Tower(GameTankSDB::E_CHARACTER_PART_TYPE_MEDIUM);
+        pController->Set_Track(GameTankSDB::E_CHARACTER_PART_TYPE_MEDIUM);
     }
     else if(pSegmentedControl.selectedSegmentIndex == 2)
     {
-        pController->Set_Chassis(ICharacterController::E_CHARACTER_PART_TYPE_HEAVY);
-        pController->Set_Tower(ICharacterController::E_CHARACTER_PART_TYPE_HEAVY);
-        pController->Set_Track(ICharacterController::E_CHARACTER_PART_TYPE_HEAVY);
+        pController->Set_Chassis(GameTankSDB::E_CHARACTER_PART_TYPE_HEAVY);
+        pController->Set_Tower(GameTankSDB::E_CHARACTER_PART_TYPE_HEAVY);
+        pController->Set_Track(GameTankSDB::E_CHARACTER_PART_TYPE_HEAVY);
     }
 }
 

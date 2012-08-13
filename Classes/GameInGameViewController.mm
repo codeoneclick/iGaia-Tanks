@@ -129,4 +129,28 @@
     CSettings::g_fAccellerometer_Z = acceleration.z;
 }
 
+- (IBAction)OnTankTypeChanged:(id)sender
+{
+    IGameScene* pScene = CGameSceneMgr::Instance()->Get_Scene();
+    if(pScene == NULL || pScene->Get_MainCharacterController() == NULL)
+    {
+        return;
+    }
+    ICharacterController* pController = pScene->Get_MainCharacterController();
+    
+    UISegmentedControl *pSegmentedControl = (UISegmentedControl *)sender;
+    if(pSegmentedControl.selectedSegmentIndex == 0)
+    {
+        pController->Set_FullSet(GameTankSDB::E_CHARACTER_FULLSET_TYPE_LIGHT);
+    }
+    else if(pSegmentedControl.selectedSegmentIndex == 1)
+    {
+        pController->Set_FullSet(GameTankSDB::E_CHARACTER_FULLSET_TYPE_MEDIUM);
+    }
+    else if(pSegmentedControl.selectedSegmentIndex == 2)
+    {
+        pController->Set_FullSet(GameTankSDB::E_CHARACTER_FULLSET_TYPE_HEAVY);
+    }
+}
+
 @end

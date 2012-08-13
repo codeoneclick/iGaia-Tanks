@@ -17,6 +17,7 @@ ICharacterController::ICharacterController(void)
     m_eMoveState = E_CHARACTER_CONTROLLER_MOVE_STATE_NONE;
     m_eSteerState = E_CHARACTER_CONTROLLER_STEER_STATE_NONE;
     m_pTarget = NULL;
+    m_eFullSetType = GameTankSDB::E_CHARACTER_FULLSET_TYPE_LIGHT;
 }
 
 ICharacterController::~ICharacterController(void)
@@ -45,48 +46,52 @@ void ICharacterController::Load(void)
 
 bool ICharacterController::MoveForward(void)
 {
-    float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(m_vPosition.x + sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed, m_vPosition.z + cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed);
+    float fMoveSpeed = GameSDBStorage::Instance()->Get_UserMoveSpeed(m_eFullSetType);
+    float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(m_vPosition.x + sinf(glm::radians(m_vRotation.y)) * fMoveSpeed, m_vPosition.z + cosf(glm::radians(m_vRotation.y)) * fMoveSpeed);
     float fLandscapeWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
     float fLandscapeHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height();
-    float fPrePositionX = m_vPosition.x + sinf(glm::radians(m_vRotation.y)) * (m_fMoveSpeed * 10.0f);
-    float fPrePositionZ = m_vPosition.z + cosf(glm::radians(m_vRotation.y)) * (m_fMoveSpeed * 10.0f);
+    float fPrePositionX = m_vPosition.x + sinf(glm::radians(m_vRotation.y)) * (fMoveSpeed * 10.0f);
+    float fPrePositionZ = m_vPosition.z + cosf(glm::radians(m_vRotation.y)) * (fMoveSpeed * 10.0f);
     if(fHeight < k_MIN_HEIGHTMAP_VALUE || fPrePositionX > (fLandscapeWidth - 1.5f) || fPrePositionZ > (fLandscapeHeight - 1.5f) || fPrePositionX < 0.5f || fPrePositionZ < 0.5f )
     {
         return false;
     }
     
-    m_vPosition.x += sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
-    m_vPosition.z += cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
+    m_vPosition.x += sinf(glm::radians(m_vRotation.y)) * fMoveSpeed;
+    m_vPosition.z += cosf(glm::radians(m_vRotation.y)) * fMoveSpeed;
     m_vPosition.y = fHeight;
     return true;
 }
 
 bool ICharacterController::MoveBackward(void)
 {
-    float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(m_vPosition.x - sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed, m_vPosition.z - cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed);
+    float fMoveSpeed = GameSDBStorage::Instance()->Get_UserMoveSpeed(m_eFullSetType);
+    float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(m_vPosition.x - sinf(glm::radians(m_vRotation.y)) * fMoveSpeed, m_vPosition.z - cosf(glm::radians(m_vRotation.y)) * fMoveSpeed);
     float fLandscapeWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
     float fLandscapeHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height();
-    float fPrePositionX = m_vPosition.x - sinf(glm::radians(m_vRotation.y)) * (m_fMoveSpeed * 10.0f);
-    float fPrePositionZ = m_vPosition.z - cosf(glm::radians(m_vRotation.y)) * (m_fMoveSpeed * 10.0f);
+    float fPrePositionX = m_vPosition.x - sinf(glm::radians(m_vRotation.y)) * (fMoveSpeed * 10.0f);
+    float fPrePositionZ = m_vPosition.z - cosf(glm::radians(m_vRotation.y)) * (fMoveSpeed * 10.0f);
     if(fHeight < k_MIN_HEIGHTMAP_VALUE || fPrePositionX > (fLandscapeWidth - 1.5f) || fPrePositionZ > (fLandscapeHeight - 1.5f) || fPrePositionX < 0.5f || fPrePositionZ < 0.5f )
     {
         return false;
     }
 
-    m_vPosition.x -= sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
-    m_vPosition.z -= cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
+    m_vPosition.x -= sinf(glm::radians(m_vRotation.y)) * fMoveSpeed;
+    m_vPosition.z -= cosf(glm::radians(m_vRotation.y)) * fMoveSpeed;
     m_vPosition.y = fHeight;
     return true;
 }
 
 void ICharacterController::SteerRight(void)
 {
-    m_vRotation.y -= m_fSteerSpeed;
+    float fSteerSpeed = GameSDBStorage::Instance()->Get_UserSteerSpeed(m_eFullSetType);
+    m_vRotation.y -= fSteerSpeed;
 }
 
 void ICharacterController::SteerLeft(void)
 {
-    m_vRotation.y += m_fSteerSpeed;
+    float fSteerSpeed = GameSDBStorage::Instance()->Get_UserSteerSpeed(m_eFullSetType);
+    m_vRotation.y += fSteerSpeed;
 }
 
 
@@ -170,25 +175,25 @@ void ICharacterController::Shoot(void)
     }
 }
 
-void ICharacterController::Set_Chassis(ICharacterController::E_CHARACTER_PART_TYPE _eType)
+void ICharacterController::Set_Chassis(GameTankSDB::E_CHARACTER_PART_TYPE _eType)
 {
     switch (_eType)
     {
-        case ICharacterController::E_CHARACTER_PART_TYPE_LIGHT :
+        case GameTankSDB::E_CHARACTER_PART_TYPE_LIGHT :
         {
             SAFE_DELETE(m_pChassis);
             m_pChassis = new CTankLightBody();
             m_pChassis->Load();
         }
             break;
-        case ICharacterController::E_CHARACTER_PART_TYPE_MEDIUM :
+        case GameTankSDB::E_CHARACTER_PART_TYPE_MEDIUM :
         {
             SAFE_DELETE(m_pChassis);
             m_pChassis = new CTankMediumBody();
             m_pChassis->Load();
         }
             break;
-        case ICharacterController::E_CHARACTER_PART_TYPE_HEAVY :
+        case GameTankSDB::E_CHARACTER_PART_TYPE_HEAVY :
         {
             SAFE_DELETE(m_pChassis);
             m_pChassis = new CTankHeavyBody();
@@ -200,25 +205,25 @@ void ICharacterController::Set_Chassis(ICharacterController::E_CHARACTER_PART_TY
     }
 }
 
-void ICharacterController::Set_Tower(ICharacterController::E_CHARACTER_PART_TYPE _eType)
+void ICharacterController::Set_Tower(GameTankSDB::E_CHARACTER_PART_TYPE _eType)
 {
     switch (_eType)
     {
-        case ICharacterController::E_CHARACTER_PART_TYPE_LIGHT :
+        case GameTankSDB::E_CHARACTER_PART_TYPE_LIGHT :
         {
             SAFE_DELETE(m_pTower);
             m_pTower = new CTankLightTower();
             m_pTower->Load();
         }
             break;
-        case ICharacterController::E_CHARACTER_PART_TYPE_MEDIUM :
+        case GameTankSDB::E_CHARACTER_PART_TYPE_MEDIUM :
         {
             SAFE_DELETE(m_pTower);
             m_pTower = new CTankMediumTower();
             m_pTower->Load();
         }
             break;
-        case ICharacterController::E_CHARACTER_PART_TYPE_HEAVY :
+        case GameTankSDB::E_CHARACTER_PART_TYPE_HEAVY :
         {
             SAFE_DELETE(m_pTower);
             m_pTower = new CTankHeavyTower();
@@ -230,25 +235,25 @@ void ICharacterController::Set_Tower(ICharacterController::E_CHARACTER_PART_TYPE
     }
 }
 
-void ICharacterController::Set_Track(ICharacterController::E_CHARACTER_PART_TYPE _eType)
+void ICharacterController::Set_Track(GameTankSDB::E_CHARACTER_PART_TYPE _eType)
 {
     switch (_eType)
     {
-        case ICharacterController::E_CHARACTER_PART_TYPE_LIGHT :
+        case GameTankSDB::E_CHARACTER_PART_TYPE_LIGHT :
         {
             SAFE_DELETE(m_pTrack);
             m_pTrack = new CTankLightTrack();
             m_pTrack->Load();
         }
             break;
-        case ICharacterController::E_CHARACTER_PART_TYPE_MEDIUM :
+        case GameTankSDB::E_CHARACTER_PART_TYPE_MEDIUM :
         {
             SAFE_DELETE(m_pTrack);
             m_pTrack = new CTankMediumTrack();
             m_pTrack->Load();
         }
             break;
-        case ICharacterController::E_CHARACTER_PART_TYPE_HEAVY :
+        case GameTankSDB::E_CHARACTER_PART_TYPE_HEAVY :
         {
             SAFE_DELETE(m_pTrack);
             m_pTrack = new CTankHeavyTrack();
@@ -258,6 +263,63 @@ void ICharacterController::Set_Track(ICharacterController::E_CHARACTER_PART_TYPE
         default:
             break;
     }
+}
+
+void ICharacterController::Set_FullSet(GameTankSDB::E_CHARACTER_FULLSET_TYPE _eType)
+{
+    switch (_eType)
+    {
+        case GameTankSDB::E_CHARACTER_FULLSET_TYPE_LIGHT:
+        {
+            SAFE_DELETE(m_pTrack);
+            m_pTrack = new CTankLightTrack();
+            m_pTrack->Load();
+            
+            SAFE_DELETE(m_pTower);
+            m_pTower = new CTankLightTower();
+            m_pTower->Load();
+            
+            SAFE_DELETE(m_pChassis);
+            m_pChassis = new CTankLightBody();
+            m_pChassis->Load();
+        }
+            break;
+        case GameTankSDB::E_CHARACTER_FULLSET_TYPE_MEDIUM:
+        {
+            SAFE_DELETE(m_pTrack);
+            m_pTrack = new CTankMediumTrack();
+            m_pTrack->Load();
+            
+            SAFE_DELETE(m_pTower);
+            m_pTower = new CTankMediumTower();
+            m_pTower->Load();
+            
+            SAFE_DELETE(m_pChassis);
+            m_pChassis = new CTankMediumBody();
+            m_pChassis->Load();
+        }
+            break;
+        case GameTankSDB::E_CHARACTER_FULLSET_TYPE_HEAVY:
+        {
+            SAFE_DELETE(m_pTrack);
+            m_pTrack = new CTankHeavyTrack();
+            m_pTrack->Load();
+            
+            SAFE_DELETE(m_pTower);
+            m_pTower = new CTankHeavyTower();
+            m_pTower->Load();
+            
+            SAFE_DELETE(m_pChassis);
+            m_pChassis = new CTankHeavyBody();
+            m_pChassis->Load();
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    m_eFullSetType = _eType;
 }
 
 void ICharacterController::OnCollision(ICollisionDelegate *_pCollider)

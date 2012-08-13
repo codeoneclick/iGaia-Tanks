@@ -31,12 +31,13 @@
 #include "CTankHeavyTower.h"
 #include "CTankHeavyBody.h"
 
+#include "GameSDBStorage.h"
+
 #define k_MIN_HEIGHTMAP_VALUE -8.0f
 
 class ICharacterController : public ITouchDelegate, public ICollisionDelegate
 {
 public:
-    enum E_CHARACTER_PART_TYPE { E_CHARACTER_PART_TYPE_LIGHT = 0, E_CHARACTER_PART_TYPE_MEDIUM, E_CHARACTER_PART_TYPE_HEAVY };
     enum E_CHARACTER_CONTROLLER_STATE { E_CHARACTER_CONTROLLER_STATE_NONE = 0, E_CHARACTER_CONTROLLER_STATE_INC_MOVE, E_CHARACTER_CONTROLLER_STATE_DEC_MOVE };
     enum E_CHARACTER_CONTROLLER_MOVE_STATE { E_CHARACTER_CONTROLLER_MOVE_STATE_NONE = 0, E_CHARACTER_CONTROLLER_MOVE_STATE_FORWARD, E_CHARACTER_CONTROLLER_MOVE_STATE_BACKWARD };
     enum E_CHARACTER_CONTROLLER_STEER_STATE { E_CHARACTER_CONTROLLER_STEER_STATE_NONE = 0, E_CHARACTER_CONTROLLER_STEER_STATE_LEFT, E_CHARACTER_CONTROLLER_STEER_STATE_RIGHT };
@@ -45,13 +46,6 @@ protected:
     glm::vec3 m_vPosition;
     glm::vec3 m_vRotation;
     
-    float m_fMaxMoveSpeed;
-    float m_fMoveAcceleration;
-    float m_fLeftTrackMoveSpeed;
-    float m_fRightTrackMoveSpeed;
-    float m_fMoveSpeed;
-    float m_fSteerSpeed;
-    float m_fTowerSteerSpeed;
     float m_fTowerRotationY;
     
     E_CHARACTER_CONTROLLER_MOVE_STATE m_eMoveState;
@@ -73,6 +67,8 @@ protected:
     glm::vec3 m_vRightTrackCenterBound;
     
     ICharacterController* m_pTarget;
+    
+    GameTankSDB::E_CHARACTER_FULLSET_TYPE m_eFullSetType;
     
     inline float _Get_WrapAngle(float _fValue, float _fMin, float _fMax)
     {
@@ -117,9 +113,10 @@ public:
     void Set_Target(ICharacterController* _pTarget) { m_pTarget = _pTarget; }
     ICharacterController* Get_Target(void) { return m_pTarget; }
     
-    void Set_Chassis(E_CHARACTER_PART_TYPE _eType);
-    void Set_Tower(E_CHARACTER_PART_TYPE _eType);
-    void Set_Track(E_CHARACTER_PART_TYPE _eType);
+    void Set_Chassis(GameTankSDB::E_CHARACTER_PART_TYPE _eType);
+    void Set_Tower(GameTankSDB::E_CHARACTER_PART_TYPE _eType);
+    void Set_Track(GameTankSDB::E_CHARACTER_PART_TYPE _eType);
+    void Set_FullSet(GameTankSDB::E_CHARACTER_FULLSET_TYPE _eType);
     
     ITankBody* Get_Chassis(void)   { return m_pChassis; }
     ITankTower* Get_Tower(void) { return m_pTower; }

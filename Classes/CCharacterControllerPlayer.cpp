@@ -18,14 +18,6 @@ CCharacterControllerPlayer::CCharacterControllerPlayer(void)
     m_pTrack = NULL;
     m_pTower = NULL;
     
-    m_fMaxMoveSpeed = 0.2f;
-    m_fMoveAcceleration = 0.01f;
-    
-    m_fMoveSpeed = 0.0f;
-    m_fLeftTrackMoveSpeed = 0.0f;
-    m_fRightTrackMoveSpeed = 0.0f;
-    m_fSteerSpeed = 2.0f;
-    m_fTowerSteerSpeed = 2.0f;
     m_fTowerRotationY = 0.0f;
     m_sColliderIdStr = "player_collider";
 }
@@ -76,7 +68,6 @@ void CCharacterControllerPlayer::OnTouchEvent(ITouchDelegate* _pDelegateOwner)
 
 void CCharacterControllerPlayer::Update(void)
 {   
-    m_fMoveSpeed = m_fMaxMoveSpeed;
     float fTrackTexCoordOffsetMoveFactor  = 0.2f;
     float fTrackTexCoordOffsetSteerFactor = 0.1f;
     
@@ -167,6 +158,7 @@ void CCharacterControllerPlayer::Update(void)
         }
     }*/
     
+    float fTowerSteerSpeed = GameSDBStorage::Instance()->Get_UserSteerSpeed(m_eFullSetType);
     switch (m_eSteerTowerState)
     {
         case ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_TOWER_NONE:
@@ -174,25 +166,25 @@ void CCharacterControllerPlayer::Update(void)
             break;
         case ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_TOWER_RIGHT:
         {
-            if((m_fTowerRotationY + m_fTowerSteerSpeed) > 60.0f)
+            if((m_fTowerRotationY + fTowerSteerSpeed) > 60.0f)
             {
                 SteerLeft();
             }
             else
             {
-                m_fTowerRotationY += m_fTowerSteerSpeed;
+                m_fTowerRotationY += fTowerSteerSpeed;
             }
         }
             break;
         case ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_TOWER_LEFT:
         {
-            if((m_fTowerRotationY - m_fTowerSteerSpeed) < -60.0f)
+            if((m_fTowerRotationY - fTowerSteerSpeed) < -60.0f)
             {
                 SteerRight();
             }
             else
             {
-                m_fTowerRotationY -= m_fTowerSteerSpeed;
+                m_fTowerRotationY -= fTowerSteerSpeed;
             }
         }
             break;
@@ -201,7 +193,7 @@ void CCharacterControllerPlayer::Update(void)
             break;
     }
     
-    m_fMoveSpeed = 10.0f;
+    float fMoveSpeed = GameSDBStorage::Instance()->Get_UserMoveSpeed(m_eFullSetType);
 
     if(m_pBox2dBody != NULL)
     {
@@ -210,14 +202,14 @@ void CCharacterControllerPlayer::Update(void)
         {
             case 1:
             {
-                vForce.x += sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
-                vForce.y += cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
+                vForce.x += sinf(glm::radians(m_vRotation.y)) * fMoveSpeed;
+                vForce.y += cosf(glm::radians(m_vRotation.y)) * fMoveSpeed;
             }
                 break;
             case 2:
             {
-                vForce.x -= sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
-                vForce.y -= cosf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;
+                vForce.x -= sinf(glm::radians(m_vRotation.y)) * fMoveSpeed;
+                vForce.y -= cosf(glm::radians(m_vRotation.y)) * fMoveSpeed;
             }
                 break;
             default:

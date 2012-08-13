@@ -337,6 +337,12 @@
 		A1FE337215D4FE8F00D82CF6 /* b2WeldJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE334115D4FE8F00D82CF6 /* b2WeldJoint.cpp */; };
 		A1FE337315D4FE8F00D82CF6 /* b2WheelJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE334315D4FE8F00D82CF6 /* b2WheelJoint.cpp */; };
 		A1FE337415D4FE8F00D82CF6 /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE334615D4FE8F00D82CF6 /* b2Rope.cpp */; };
+		A1FE338615D9117000D82CF6 /* GameUserSDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE338415D9117000D82CF6 /* GameUserSDB.cpp */; };
+		A1FE338915D9117F00D82CF6 /* GameLightTankSDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE338715D9117F00D82CF6 /* GameLightTankSDB.cpp */; };
+		A1FE338C15D9119500D82CF6 /* GameMediumTankSDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE338A15D9119500D82CF6 /* GameMediumTankSDB.cpp */; };
+		A1FE338F15D911B900D82CF6 /* GameHeavyTankSDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE338D15D911B900D82CF6 /* GameHeavyTankSDB.cpp */; };
+		A1FE339615D9155800D82CF6 /* GameTankSDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE339415D9155700D82CF6 /* GameTankSDB.cpp */; };
+		A1FE339E15D9169500D82CF6 /* GameSDBStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE339C15D9169500D82CF6 /* GameSDBStorage.cpp */; };
 		A1FFAA8B156CBAE500B01ECB /* CFrustum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FFAA89156CBAE500B01ECB /* CFrustum.cpp */; };
 		CE8DFA9314587B0C00AE7288 /* CGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8DFA9214587B0C00AE7288 /* CGame.cpp */; };
 		CE914ED41455DA3200AA2000 /* CShaderComposite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE914ED31455DA3200AA2000 /* CShaderComposite.cpp */; };
@@ -987,6 +993,18 @@
 		A1FE334415D4FE8F00D82CF6 /* b2WheelJoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2WheelJoint.h; sourceTree = "<group>"; };
 		A1FE334615D4FE8F00D82CF6 /* b2Rope.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2Rope.cpp; sourceTree = "<group>"; };
 		A1FE334715D4FE8F00D82CF6 /* b2Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2Rope.h; sourceTree = "<group>"; };
+		A1FE338415D9117000D82CF6 /* GameUserSDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameUserSDB.cpp; sourceTree = "<group>"; };
+		A1FE338515D9117000D82CF6 /* GameUserSDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameUserSDB.h; sourceTree = "<group>"; };
+		A1FE338715D9117F00D82CF6 /* GameLightTankSDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameLightTankSDB.cpp; sourceTree = "<group>"; };
+		A1FE338815D9117F00D82CF6 /* GameLightTankSDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLightTankSDB.h; sourceTree = "<group>"; };
+		A1FE338A15D9119500D82CF6 /* GameMediumTankSDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameMediumTankSDB.cpp; sourceTree = "<group>"; };
+		A1FE338B15D9119500D82CF6 /* GameMediumTankSDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameMediumTankSDB.h; sourceTree = "<group>"; };
+		A1FE338D15D911B900D82CF6 /* GameHeavyTankSDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameHeavyTankSDB.cpp; sourceTree = "<group>"; };
+		A1FE338E15D911B900D82CF6 /* GameHeavyTankSDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHeavyTankSDB.h; sourceTree = "<group>"; };
+		A1FE339415D9155700D82CF6 /* GameTankSDB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameTankSDB.cpp; sourceTree = "<group>"; };
+		A1FE339515D9155700D82CF6 /* GameTankSDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTankSDB.h; sourceTree = "<group>"; };
+		A1FE339C15D9169500D82CF6 /* GameSDBStorage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSDBStorage.cpp; sourceTree = "<group>"; };
+		A1FE339D15D9169500D82CF6 /* GameSDBStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSDBStorage.h; sourceTree = "<group>"; };
 		A1FFAA89156CBAE500B01ECB /* CFrustum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFrustum.cpp; sourceTree = "<group>"; };
 		A1FFAA8A156CBAE500B01ECB /* CFrustum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFrustum.h; sourceTree = "<group>"; };
 		CE8DFA9114587AFD00AE7288 /* CGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGame.h; sourceTree = "<group>"; };
@@ -1732,6 +1750,7 @@
 		A176DD5A15D3A8DE00B8FD7D /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				A1FE338215D9114C00D82CF6 /* Model */,
 				A176DD5D15D3A90300B8FD7D /* NativeCommunication */,
 				A176DD5C15D3A8E800B8FD7D /* WebCommunication */,
 			);
@@ -2138,6 +2157,41 @@
 				A1FE334715D4FE8F00D82CF6 /* b2Rope.h */,
 			);
 			path = Rope;
+			sourceTree = "<group>";
+		};
+		A1FE338215D9114C00D82CF6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A1FE33A615D9190C00D82CF6 /* Tank */,
+				A1FE33A515D9190700D82CF6 /* User */,
+				A1FE339D15D9169500D82CF6 /* GameSDBStorage.h */,
+				A1FE339C15D9169500D82CF6 /* GameSDBStorage.cpp */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A1FE33A515D9190700D82CF6 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				A1FE338515D9117000D82CF6 /* GameUserSDB.h */,
+				A1FE338415D9117000D82CF6 /* GameUserSDB.cpp */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		A1FE33A615D9190C00D82CF6 /* Tank */ = {
+			isa = PBXGroup;
+			children = (
+				A1FE339515D9155700D82CF6 /* GameTankSDB.h */,
+				A1FE339415D9155700D82CF6 /* GameTankSDB.cpp */,
+				A1FE338815D9117F00D82CF6 /* GameLightTankSDB.h */,
+				A1FE338715D9117F00D82CF6 /* GameLightTankSDB.cpp */,
+				A1FE338B15D9119500D82CF6 /* GameMediumTankSDB.h */,
+				A1FE338A15D9119500D82CF6 /* GameMediumTankSDB.cpp */,
+				A1FE338E15D911B900D82CF6 /* GameHeavyTankSDB.h */,
+				A1FE338D15D911B900D82CF6 /* GameHeavyTankSDB.cpp */,
+			);
+			name = Tank;
 			sourceTree = "<group>";
 		};
 		CE8DFA8E14587A8200AE7288 /* Game */ = {
@@ -2615,6 +2669,12 @@
 				A1FE337215D4FE8F00D82CF6 /* b2WeldJoint.cpp in Sources */,
 				A1FE337315D4FE8F00D82CF6 /* b2WheelJoint.cpp in Sources */,
 				A1FE337415D4FE8F00D82CF6 /* b2Rope.cpp in Sources */,
+				A1FE338615D9117000D82CF6 /* GameUserSDB.cpp in Sources */,
+				A1FE338915D9117F00D82CF6 /* GameLightTankSDB.cpp in Sources */,
+				A1FE338C15D9119500D82CF6 /* GameMediumTankSDB.cpp in Sources */,
+				A1FE338F15D911B900D82CF6 /* GameHeavyTankSDB.cpp in Sources */,
+				A1FE339615D9155800D82CF6 /* GameTankSDB.cpp in Sources */,
+				A1FE339E15D9169500D82CF6 /* GameSDBStorage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

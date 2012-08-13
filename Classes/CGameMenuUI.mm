@@ -105,9 +105,9 @@
     if(pScene != NULL && pScene->Get_MainCharacterController() != NULL)
     {
         ICharacterController* pController = pScene->Get_MainCharacterController();
-        pController->Set_Chassis(ICharacterController::E_CHARACTER_PART_TYPE_LIGHT);
-        pController->Set_Tower(ICharacterController::E_CHARACTER_PART_TYPE_LIGHT);
-        pController->Set_Track(ICharacterController::E_CHARACTER_PART_TYPE_LIGHT);
+        pController->Set_Chassis(GameTankSDB::E_CHARACTER_PART_TYPE_LIGHT);
+        pController->Set_Tower(GameTankSDB::E_CHARACTER_PART_TYPE_LIGHT);
+        pController->Set_Track(GameTankSDB::E_CHARACTER_PART_TYPE_LIGHT);
     }
 }
 
@@ -116,9 +116,9 @@
     IGameScene* pScene = CGameSceneMgr::Instance()->Get_Scene();
     if(pScene != NULL && pScene->Get_MainCharacterController() != NULL)
     {
-        pScene->Get_MainCharacterController()->Set_Chassis(ICharacterController::E_CHARACTER_PART_TYPE_MEDIUM);
-        pScene->Get_MainCharacterController()->Set_Tower(ICharacterController::E_CHARACTER_PART_TYPE_MEDIUM);
-        pScene->Get_MainCharacterController()->Set_Track(ICharacterController::E_CHARACTER_PART_TYPE_MEDIUM);
+        pScene->Get_MainCharacterController()->Set_Chassis(GameTankSDB::E_CHARACTER_PART_TYPE_MEDIUM);
+        pScene->Get_MainCharacterController()->Set_Tower(GameTankSDB::E_CHARACTER_PART_TYPE_MEDIUM);
+        pScene->Get_MainCharacterController()->Set_Track(GameTankSDB::E_CHARACTER_PART_TYPE_MEDIUM);
     }
 }
 
@@ -127,9 +127,9 @@
     IGameScene* pScene = CGameSceneMgr::Instance()->Get_Scene();
     if(pScene != NULL && pScene->Get_MainCharacterController() != NULL)
     {
-        pScene->Get_MainCharacterController()->Set_Chassis(ICharacterController::E_CHARACTER_PART_TYPE_HEAVY);
-        pScene->Get_MainCharacterController()->Set_Tower(ICharacterController::E_CHARACTER_PART_TYPE_HEAVY);
-        pScene->Get_MainCharacterController()->Set_Track(ICharacterController::E_CHARACTER_PART_TYPE_HEAVY);
+        pScene->Get_MainCharacterController()->Set_Chassis(GameTankSDB::E_CHARACTER_PART_TYPE_HEAVY);
+        pScene->Get_MainCharacterController()->Set_Tower(GameTankSDB::E_CHARACTER_PART_TYPE_HEAVY);
+        pScene->Get_MainCharacterController()->Set_Track(GameTankSDB::E_CHARACTER_PART_TYPE_HEAVY);
     }
 }
 
