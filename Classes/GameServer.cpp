@@ -76,6 +76,7 @@ void GameServer::Update(void)
         m_lGameClientHandlers.push_back(pClientHandler);
         pClientHandler->Create(iSokectId);
     }
+    usleep(1000);
 }
 
 

@@ -732,6 +732,7 @@
 		A10E64AB157F3373007B576A /* CTimer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTimer.cpp; sourceTree = "<group>"; };
 		A10E64AC157F3373007B576A /* CTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTimer.h; sourceTree = "<group>"; };
 		A11AA3C91547218800113AA3 /* smoke.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = smoke.pvr; path = Resources/Textures/smoke.pvr; sourceTree = "<group>"; };
+		A11F5F7015DA365E007B0D13 /* GameNetworkProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameNetworkProtocol.h; sourceTree = "<group>"; };
 		A1201A8B156B75710099EE9D /* ShaderGrass.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderGrass.frag; path = Shaders/ShaderGrass.frag; sourceTree = "<group>"; };
 		A1201A8C156B75710099EE9D /* ShaderGrass.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderGrass.vert; path = Shaders/ShaderGrass.vert; sourceTree = "<group>"; };
 		A1207C6C153C02C60021A0C7 /* model_01.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = model_01.pvr; path = Resources/Textures/model_01.pvr; sourceTree = "<group>"; };
@@ -1790,6 +1791,7 @@
 				A1FE33BB15D93CDF00D82CF6 /* GameServer.cpp */,
 				A1FE33C315D9596D00D82CF6 /* GameClientHandler.h */,
 				A1FE33C215D9596D00D82CF6 /* GameClientHandler.cpp */,
+				A11F5F7015DA365E007B0D13 /* GameNetworkProtocol.h */,
 			);
 			name = NativeCommunication;
 			sourceTree = "<group>";

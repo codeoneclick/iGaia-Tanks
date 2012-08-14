@@ -21,6 +21,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <pthread.h>
+#include "GameNetworkProtocol.h"
 
 class GameClientHandler
 {

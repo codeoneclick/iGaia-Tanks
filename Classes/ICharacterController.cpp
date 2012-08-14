@@ -11,6 +11,7 @@
 #include "CGameSceneMgr.h"
 #include "CSceneMgr.h"
 #include "CMathHelper.h"
+#include "GameNativeCommunicationMgr.h"
 
 ICharacterController::ICharacterController(void)
 {
@@ -124,6 +125,11 @@ void ICharacterController::Set_Position(const glm::vec3 &_vPosition)
     
     Set_OriginPosition(_vPosition);
     m_vPosition = _vPosition;
+    
+    if(GameNativeCommunicationMgr::Instance()->Get_GameClient() != NULL)
+    {
+        GameNativeCommunicationMgr::Instance()->Get_GameClient()->Send_Position(m_vPosition);
+    }
 }
 
 void ICharacterController::_SmoothRotation(void)

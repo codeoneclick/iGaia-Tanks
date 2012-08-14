@@ -27,6 +27,7 @@ public:
     void ConnectToGameServer(void);
     void ConnectToSDBServer(void);
     void ConnectToLobbyServer(void);
+    GameClient* Get_GameClient(void) { return m_pGameClient; }
 };
 
 #endif /* defined(__iGaia__GameNativeCommunicationMgr__) */

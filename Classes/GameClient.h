@@ -18,12 +18,15 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include "GameNetworkProtocol.h"
+#include <vector.h>
 
 class GameClient
 {
 protected:
     int m_iSocketId;
     pthread_t m_iThread;
+    std::vector<CPacket*> m_lPacketContainer;
     friend void* GameClientThread(void *_pParam);
 public:
     GameClient(void);
@@ -31,6 +34,8 @@ public:
     void Start(void);
     void Stop(void);
     void Update(void);
+    
+    void Send_Position(const glm::vec3& _vPosition);
 };
 
 #endif /* defined(__iGaia__GameClient__) */
