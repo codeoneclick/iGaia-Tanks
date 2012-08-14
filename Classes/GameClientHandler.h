@@ -26,6 +26,9 @@
 class GameClientHandler
 {
 protected:
+    CPacketMessageIdDeserializer* m_pPacketMessageIdDeserializer;
+    CPacketPositionDeserializer* m_pPacketPositionDeserializer;
+    
     int m_iSocketId;
     pthread_t m_iThread;
     friend void* GameServerClientHandlerThread(void *_pParam);

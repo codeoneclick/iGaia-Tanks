@@ -24,48 +24,58 @@ public:
     CPacket(void){};
     virtual ~CPacket(void){};
     virtual unsigned int Get_MessageSize(void) = 0;
+    virtual void* Get_DeserializePtr(void) = 0;
+    virtual void* Get_SerealizePtr(void) = 0;
 };
 
-class CPacketMessageIdDeserializer
+class CPacketMessageIdDeserializer : public CPacket
 {
 public:
     int m_iMessageId;
     CPacketMessageIdDeserializer(void){};
     ~CPacketMessageIdDeserializer(void){};
+    unsigned int Get_MessageSize(void) { return sizeof(CPacketMessageIdDeserializer) - sizeof(int); };
+    void* Get_DeserializePtr(void) { return &m_iMessageId; }
+    void* Get_SerealizePtr(void) { return NULL; }
 };
 
 class CPacketPingSerializer : public CPacket
 {
 public:
-    const int m_iMessageId;
+    mutable int m_iMessageId;
     int m_iTime;
     CPacketPingSerializer(void):m_iMessageId(k_NETWORK_PROTOCOL_PING){};
     ~CPacketPingSerializer(void) {};
-    unsigned int Get_MessageSize(void) { return sizeof(CPacketPingSerializer); };
+    unsigned int Get_MessageSize(void) { return sizeof(CPacketPingSerializer) - sizeof(int); };
+    void* Get_DeserializePtr(void) { return NULL; }
+    void* Get_SerealizePtr(void) { return static_cast<void*>(&m_iMessageId); }
 };
 
-class CPacketPingDeserializer
+class CPacketPingDeserializer : public CPacket
 {
 public:
     int m_iTime;
     CPacketPingDeserializer(void){};
     ~CPacketPingDeserializer(void){};
+    unsigned int Get_MessageSize(void) { return sizeof(CPacketPingDeserializer) - sizeof(int); };
+    void* Get_DeserializePtr(void) { return &m_iTime; }
+    void* Get_SerealizePtr(void) { return NULL; }
 };
 
 class CPacketUserSerializer : public CPacket
 {
 public:
-    const int m_iMessageId;
+    mutable int m_iMessageId;
     std::string m_sName;
     int m_iSkillLight;
     int m_iSkillMedium;
     int m_iSkillHeavy;
     CPacketUserSerializer(void):m_iMessageId(k_NETWORK_PROTOCOL_USER){};
     ~CPacketUserSerializer(void){};
-    unsigned int Get_MessageSize(void) { return sizeof(CPacketUserSerializer); };
+    unsigned int Get_MessageSize(void) { return sizeof(CPacketUserSerializer) - sizeof(int); };
 };
 
-class CPacketUserDeserializer
+class CPacketUserDeserializer : public CPacket
 {
 public:
     std::string m_sName;
@@ -74,24 +84,32 @@ public:
     int m_iSkillHeavy;
     CPacketUserDeserializer(void){};
     ~CPacketUserDeserializer(void){};
+    unsigned int Get_MessageSize(void) { return sizeof(CPacketUserDeserializer) - sizeof(int); };
 };
 
 class CPacketPositionSerializer : public CPacket
 {
 public:
-    const int m_iMessageId;
+    mutable int m_iMessageId;
     glm::vec3 m_vPosition;
+    glm::vec3 m_vRotation;
     CPacketPositionSerializer(void):m_iMessageId(k_NETWORK_PROTOCOL_POSITION){};
     ~CPacketPositionSerializer(void){};
-    unsigned int Get_MessageSize(void) { return sizeof(CPacketPositionSerializer); };
+    unsigned int Get_MessageSize(void) { return sizeof(CPacketPositionSerializer) - sizeof(int); };
+    void* Get_DeserializePtr(void) { return NULL; }
+    void* Get_SerealizePtr(void) { return static_cast<void*>(&m_iMessageId); }
 };
 
-class CPacketPositionDeserializer
+class CPacketPositionDeserializer : CPacket
 {
 public:
     glm::vec3 m_vPosition;
+    glm::vec3 m_vRotation;
     CPacketPositionDeserializer(void){};
     ~CPacketPositionDeserializer(void){};
+    unsigned int Get_MessageSize(void){ return sizeof(CPacketPositionDeserializer) - sizeof(int); };
+    void* Get_DeserializePtr(void) { return &m_vPosition; }
+    void* Get_SerealizePtr(void) { return NULL; }
 };
 
 

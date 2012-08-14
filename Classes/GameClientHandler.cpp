@@ -35,31 +35,33 @@ void GameClientHandler::Create(int _iSocketId)
 
 void GameClientHandler::Update(void)
 {
-    CPacketMessageIdDeserializer* pPacketMessageId = new CPacketMessageIdDeserializer();
-    int iLength = read(m_iSocketId, pPacketMessageId, 4);
-    if (iLength < 0)
+    CPacketMessageIdDeserializer pPacketMessageId;
+    int iPreMessageSize = pPacketMessageId.Get_MessageSize();
+    int iRecvMessageSize = read(m_iSocketId, pPacketMessageId.Get_DeserializePtr(), iPreMessageSize);
+    if (iRecvMessageSize < 0)
     {
         std::cout<<"[GameServer::Update] Socket Read Error"<<std::endl;
     }
     else
     {
-        std::cout<<"[GameServer::Update] Socket Message with Message Id: "<<pPacketMessageId->m_iMessageId<<std::endl;
+        std::cout<<"[GameServer::Update] Socket Message with Message Id: "<<pPacketMessageId.m_iMessageId<<std::endl;
         
-        switch (pPacketMessageId->m_iMessageId)
+        switch (pPacketMessageId.m_iMessageId)
         {
             case k_NETWORK_PROTOCOL_POSITION:
             {
-                CPacketPositionDeserializer* pPacketPosition = new CPacketPositionDeserializer();
-                int iLengthPosition = read(m_iSocketId, pPacketPosition, sizeof(CPacketPositionDeserializer));
+                CPacketPositionDeserializer pPacketPosition;
+                int iMessageSize = pPacketPosition.Get_MessageSize();
+                int iLengthPosition = read(m_iSocketId, pPacketPosition.Get_DeserializePtr(), iMessageSize);
                 if (iLengthPosition < 0)
                 {
                     std::cout<<"[GameServer::Update] Socket Read Error Position Message"<<std::endl;
                 }
                 else
                 {
-                     std::cout<<"[GameServer::Update] Socket Message with Position Message: "<<pPacketPosition->m_vPosition.x<<","<<pPacketPosition->m_vPosition.z<<std::endl;
+                     std::cout<<"[GameServer::Update] Socket Message with Position Message: "<<pPacketPosition.m_vPosition.x<<","<<pPacketPosition.m_vPosition.z<<std::endl;
+                     std::cout<<"[GameServer::Update] Socket Message with Rotation Message: "<<pPacketPosition.m_vRotation.x<<","<<pPacketPosition.m_vRotation.y<<","<<pPacketPosition.m_vRotation.z<<std::endl;
                 }
-                delete pPacketPosition;
             }
                 break;
                 
@@ -67,21 +69,5 @@ void GameClientHandler::Update(void)
                 break;
         }
     }
-    delete pPacketMessageId;
-    
-    
-    /*char pBuffer[sizeof(SPacket)];
-    bzero(pBuffer,sizeof(SPacket));
-    
-    int iLength = read(m_iSocketId, pBuffer, 255);
-    SPacket* packet = static_cast<SPacket*>((void*)pBuffer);
-    if (iLength < 0)
-    {
-        std::cout<<"[GameServer::Update] Socket Read Error"<<std::endl;
-    }
-    else
-    {
-        std::cout<<"[GameServer::Update] Socket Message : "<<packet->vPosition.x<<std::endl;
-    }*/
-    usleep(15);
+    usleep(1000);
 }

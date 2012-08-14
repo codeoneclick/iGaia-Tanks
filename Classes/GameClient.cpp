@@ -50,6 +50,7 @@ void GameClient::Start(void)
     {
         std::cout<<"[GameClient::Start] Socket Connect Error"<<std::endl;
     }
+    pthread_mutex_init(&m_iMutex, NULL);
     pthread_create(&m_iThread, NULL, GameClientThread, (void*)this);
 }
 
@@ -62,33 +63,29 @@ void GameClient::Send_Position(const glm::vec3 &_vPosition)
 {
     CPacketPositionSerializer* pPacket = new CPacketPositionSerializer();
     pPacket->m_vPosition = _vPosition;
+    pPacket->m_vRotation = glm::vec3(30.0f, 90.0f, 180.0f);
+    pthread_mutex_lock(&m_iMutex);
     m_lPacketContainer.push_back(pPacket);
+    pthread_mutex_unlock(&m_iMutex);
 }
 
 void GameClient::Update(void)
 {
+    pthread_mutex_lock(&m_iMutex);
     for(unsigned int index = 0; index < m_lPacketContainer.size(); ++index)
     {
         CPacket* pPacket = m_lPacketContainer[index];
-        int iLength = write(m_iSocketId,pPacket, pPacket->Get_MessageSize());
-        if(iLength < 0)
+        int iPreMessageSize = pPacket->Get_MessageSize();
+        int iSendMessageSize = write(m_iSocketId,pPacket->Get_SerealizePtr(), iPreMessageSize);
+        if(iSendMessageSize < 0)
         {
             std::cout<<"[GameClient::Update] Socket Write Error"<<std::endl;
         }
         delete pPacket;
     }
     m_lPacketContainer.clear();
-    /*char pBuffer[256];
-    bzero(pBuffer,256);
-    pBuffer[0] = 'c'; pBuffer[1] = 'o'; pBuffer[2] = 'd'; pBuffer[3] = 'e';
-    SPacket packet;
-    packet.vPosition = glm::vec3(128.0f, 128.0f, 128.0);
-    int iLength = write(m_iSocketId,&packet, sizeof(SPacket));
-    if(iLength < 0)
-    {
-        std::cout<<"[GameClient::Update] Socket Write Error"<<std::endl;
-    }*/
-    usleep(15);
+    pthread_mutex_unlock(&m_iMutex);
+    usleep(1000);
 }
 
 

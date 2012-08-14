@@ -26,6 +26,7 @@ class GameClient
 protected:
     int m_iSocketId;
     pthread_t m_iThread;
+    pthread_mutex_t m_iMutex;
     std::vector<CPacket*> m_lPacketContainer;
     friend void* GameClientThread(void *_pParam);
 public:
