@@ -163,6 +163,8 @@ void CGrass::Load(const std::string &_sName, IResource::E_THREAD _eThread)
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_BLEND_MODE, true);
     m_pMaterial->Set_CullFace(GL_FRONT);
     m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
+    m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
 }
 
 void CGrass::_CreateQuadTreeNode(int _iSize, CGrass::SQuadTreeNode *_pParentNode)

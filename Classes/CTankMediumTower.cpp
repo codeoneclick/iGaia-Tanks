@@ -26,7 +26,6 @@ void CTankMediumTower::Load(void)
     m_pTower->Set_Texture("tank_medium.pvr", 0, CTexture::E_WRAP_MODE_REPEAT);
     m_pTower->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_MODEL);
     m_pTower->Set_Shader(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, IResource::E_SHADER_MODEL_ND);
-    m_pTower->Create_BoundingBox();
     m_pTower->Set_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, true);
     
     m_vMaxBound = m_pTower->Get_BoundingBox()->Get_MaxBound();

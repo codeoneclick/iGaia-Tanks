@@ -40,13 +40,15 @@ void CGameMainMenuLevel::Load(void)
     m_pLandscape->Set_RenderMode(CShader::E_RENDER_MODE_REFRACTION, true);
     m_pLandscape->Set_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, true);
     
+    CSceneMgr::Instance()->Get_CollisionMgr()->Create_Box2dWorld();
+    
     INode* pLandscapeEdges = m_pLandscape->Get_LandscapeEdges();
     pLandscapeEdges->Set_Texture("layer_02_diffuse.pvr",  0, CTexture::E_WRAP_MODE_REPEAT, IResource::E_THREAD_MAIN);
     pLandscapeEdges->Set_Texture("layer_03_normal.pvr",  1, CTexture::E_WRAP_MODE_REPEAT, IResource::E_THREAD_MAIN);
     pLandscapeEdges->Set_Shader(CShader::E_RENDER_MODE_SIMPLE,IResource::E_SHADER_LANDSCAPE_EDGES);
     pLandscapeEdges->Set_Position(glm::vec3(0.0f, 0.0f, 0.0f));
     
-    m_pOcean = (CWater*)CSceneMgr::Instance()->Add_OceanModel("water");
+    m_pOcean = static_cast<COcean*>(CSceneMgr::Instance()->Add_OceanModel("ocean"));
     m_pOcean->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_OCEAN);
     m_pOcean->Set_Texture("ocean_riple.pvr", 3, CTexture::E_WRAP_MODE_REPEAT, IResource::E_THREAD_BACKGROUND);
     

@@ -13,18 +13,18 @@
 #include <glm/gtc/matrix_transform.hpp> 
 
 #include "CMaterial.h"
-#include "CVertexBuffer.h"
 #include "CMesh.h"
+#include "CBoundingBox.h"
+#include "ILight.h"
 
 #include "CResourceMgr.h"
 #include "CShaderComposite.h"
 #include "CMeshComposite.h"
 
-#include "CBoundingBox.h"
-#include "ILight.h"
-
 #include "IResourceLoaderDelegate.h"
 #include "ITouchDelegate.h"
+
+#include "CMathHelper.h"
 
 #define SAFE_DELETE(a) { delete (a); (a) = NULL; }
 #define SAFE_DELETE_ARRAY(a) { delete[] (a); (a) = NULL; }
@@ -32,91 +32,115 @@
 class INode : public ITouchDelegate, public IResourceLoaderDelegate
 {
 protected:
+// -- Block for transform matrix -- //
     glm::mat4x4 m_mScale;
     glm::mat4x4 m_mRotation;
     glm::mat4x4 m_mTranslation;
     glm::mat4x4 m_mWorld;
     glm::mat4x4 m_mWVP;
+// -- -- //
     
+// -- Block for transform vectors -- //
     glm::vec3 m_vPosition;
     glm::vec3 m_vRotation;
     glm::vec3 m_vScale;
+// -- -- //
+    
+// -- Transform mesh texture coord -- //
     glm::vec2 m_vTexCoordOffset;
-    
+// --  -- //
+
+// -- Render material states -- //
     CMaterial* m_pMaterial;
+// -- -- //
+
+// -- Mesh which contain index and vertex buffers -- //
     CMesh* m_pMesh;
-    
+// -- -- //
+
+// -- Bound box for current mesh -- //
     CBoundingBox* m_pBoundingBox;
+// -- -- //
     
-    bool m_bIsBatching;
-    std::string m_sBatchingName;
-    
-    bool m_bIsVisible;
-    
+// -- List of delegates which contain owners for callback -- //
     std::vector<IDelegate*> m_lDelegateOwners;
-    
-    float _Get_WrapAngle(float _fValue, float _fMin, float _fMax)
-    {
-        float fDistance = _fMax - _fMin;
-        float fTimes = floorf((_fValue - _fMin) / fDistance);
-        return _fValue - (fTimes * fDistance);
-    }
-    
+// -- -- //
+
+// -- Varible for enable/disable render -- //
+    bool m_bIsVisible;
+// -- -- //
 public:
     INode(void);
     virtual ~INode(void);
-    virtual void Load(const std::string& _sName, IResource::E_THREAD _eThread) = 0;
-    virtual void Update(void);
-    virtual void Render(CShader::E_RENDER_MODE _eMode);
     
+// -- Load resource function for the mesh loading. Can use background thread for preloading. Overwrite for all nodes -- //
+    virtual void Load(const std::string& _sName, IResource::E_THREAD _eThread) = 0;
+// -- -- //
+    
+// --  Update for main loop. Overwrite for all nodes -- //
+    virtual void Update(void);
+// -- -- //
+    
+// -- Render mesh which can use material by enum value. Overwrite for all nodes -- //
+    virtual void Render(CShader::E_RENDER_MODE _eMode);
+// -- -- //
+    
+// -- Getters block for recieve main varibles for current node -- //
     CShader*  Get_Shader(CShader::E_RENDER_MODE _eRenderMode);
     CTexture* Get_Texture(unsigned int index);
-    CMesh*    Get_Mesh(void) { return m_pMesh; }
+    inline CMesh*    Get_Mesh(void) { return m_pMesh; }
+// -- -- //
     
-    void Set_Batching(bool _bValue,  const std::string& _sBatchingName) { m_bIsBatching = _bValue; m_sBatchingName = _sBatchingName; }
-    std::string Get_BatchingName(void) { return m_sBatchingName; }
-    
+// -- Setters for texture by index. For preload/load texture. Can use background thread for preloading  -- //
     void Set_Texture(CTexture* _pTexture, int index, CTexture::E_WRAP_MODE _eWrap);
     void Set_Texture(const std::string &_sName, int _index, CTexture::E_WRAP_MODE _eWrap, IResource::E_THREAD _eThread = IResource::E_THREAD_MAIN);
+// -- -- //
+
+// -- Setter for shader. Use render mode to set shader to the current material and render state -- //
     void Set_Shader(CShader::E_RENDER_MODE _eRenderMode, IResource::E_SHADER _eShader);
+// -- -- //
     
-    CBoundingBox* Get_BoundingBox(void) { return m_pBoundingBox; }
+// -- Getter to receive bound box for current mesh -- //
+    inline CBoundingBox* Get_BoundingBox(void) { return m_pBoundingBox; }
+// -- -- //
     
+// -- Block with getters/setters to receive main transform vectors -- //
     void Set_Position(const glm::vec3& _vPosition) { m_vPosition = _vPosition; }
     glm::vec3 Get_Position(void) { return m_vPosition; }
-    
-    void Set_Rotation(const glm::vec3& _vRotation)
-    {
-        m_vRotation = _vRotation;
-        m_vRotation.x = _Get_WrapAngle(m_vRotation.x, 0.0f, 360.0f);
-        m_vRotation.y = _Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f);
-        m_vRotation.z = _Get_WrapAngle(m_vRotation.z, 0.0f, 360.0f);
-    }
-    
+    void Set_Rotation(const glm::vec3& _vRotation);
     glm::vec3 Get_Rotation(void) { return m_vRotation; }
-    
     void Set_Scale(const glm::vec3& _vScale) { m_vScale = _vScale; }
     glm::vec3 Get_Scale(void) { return m_vScale; }
+// -- -- //
     
+// -- Getter to receive current world matrix scale*rotation*position -- //
     glm::mat4x4 Get_WorldMatrix(void) { return m_mWorld; }
+// -- -- //
     
+// -- Setters/Getters for manipulation texture coord -- //
     void Set_TexCoordOffset(glm::vec2 _vOffset) { m_vTexCoordOffset = _vOffset; }
     glm::vec2 Get_TexCoordOffset(void) { return m_vTexCoordOffset; }
+// -- -- //
     
+// -- Block for manipulation delegate owners, to add/remove current node to the listeners -- //
     void Add_DelegateOwner(IDelegate* _pDelegateOwner);
     void Remove_DelegateOwner(IDelegate* _pDelegateOwner);
+// -- -- //
     
-    virtual void Create_BoundingBox(void);
-    void Remove_BoundingBox(void);
-    
+// -- Block for the delegate listener methods -- //
     virtual void OnTouchEvent(ITouchDelegate* _pDelegateOwner) = 0;
     virtual void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource) = 0;
+// -- -- //
     
+// -- Block for enable/disable and get current render mode. Use for the different materials -- //
     void Set_RenderMode(CShader::E_RENDER_MODE _eMode, bool _value);
     bool Get_RenderMode(CShader::E_RENDER_MODE _eMode);
+// -- -- //
     
+// -- Block for the set/check visibility of object -- //
     inline bool Get_Visible(void) { return m_bIsVisible; }
     inline void Set_Visible(bool _bIsVisible) { m_bIsVisible = _bIsVisible; }
+// -- -- //
 };
 
 #endif

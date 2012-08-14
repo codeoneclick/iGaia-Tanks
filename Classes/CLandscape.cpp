@@ -63,6 +63,8 @@ void CLandscape::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_BLEND_MODE, false);
     m_pMaterial->Set_CullFace(GL_FRONT);
     m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
+    m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
 }
 
 void CLandscape::_CreateLandscapeEdges(void)
@@ -317,9 +319,6 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            //pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            //pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            //pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             pShader->Set_Vector3(pCamera->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_CAMERA_POSITION);
             pShader->Set_Vector3(pLight->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_LIGHT_POSITION);

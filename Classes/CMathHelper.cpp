@@ -71,17 +71,6 @@ glm::vec2 CMathHelper::Get_RotationOnHeightmap(const glm::vec3& _vPosition)
 
 float CMathHelper::Get_RotationBetweenPoints(const glm::vec3& _vPoint_01,const glm::vec3& _vPoint_02)
 {
-    /*float fVectorLength = glm::length(glm::vec2(_vPoint_02.x, _vPoint_02.z) - glm::vec2(_vPoint_01.x, _vPoint_01.z));
-    //sqrtf(powf(_vPoint_02.x - _vPoint_01.x, 2.0f) + powf(_vPoint_02.z - _vPoint_01.z, 2.0f));
-    float fAngle_01 = k_PI * (_vPoint_02.x - _vPoint_01.x) / fVectorLength;
-    float fAngle_02 = k_PI * (_vPoint_02.z - _vPoint_01.z) / fVectorLength;
-    float fAngle_03 = 0.0f;
-    if (fAngle_01 >= 0.0f)
-        fAngle_03 =  fAngle_02 / 2.0f;
-    if (fAngle_01 < 0.0f)
-        fAngle_03 = -fAngle_02 / 2.0f - k_PI;
-    return -fAngle_03;*/
-    
     float fAngle = 0.0f;
     glm::vec3 vFromSeekerToTarget = _vPoint_02 - _vPoint_01;
     
@@ -92,19 +81,7 @@ float CMathHelper::Get_RotationBetweenPoints(const glm::vec3& _vPoint_01,const g
     if (fAngle >= 360.0f)
         fAngle -= 360.0f;
     
-    
     return fAngle;
-    
-    /*const f64 z1 = core::squareroot(X*X + Z*Z);
-    
-    angle.X = (T)(atan2((f64)z1, (f64)Y) * RADTODEG64 - 90.0);
-    
-    if (angle.X < 0)
-        angle.X += 360;
-    if (angle.X >= 360)
-        angle.X -= 360;
-    
-    return angle;*/
 }
 
 float CMathHelper::Get_RotationBetweenPointsDot(const glm::vec2& _vPoint_01, const glm::vec2& _vPoint_02)
@@ -117,5 +94,12 @@ float CMathHelper::Get_RotationBetweenPointsDot(const glm::vec3& _vPoint_01, con
 {
     float fDot = glm::dot(glm::vec2(_vPoint_01.x, _vPoint_01.z), glm::vec2(_vPoint_02.x, _vPoint_02.z));
     return acosf(fDot);
+}
+
+float CMathHelper::Get_WrapAngle(float _fValue, float _fMin, float _fMax)
+{
+    float fDistance = _fMax - _fMin;
+    float fTimes = floorf((_fValue - _fMin) / fDistance);
+    return _fValue - (fTimes * fDistance);
 }
 

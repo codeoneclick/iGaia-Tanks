@@ -11,7 +11,7 @@
 
 #include "INode.h"
 
-class CWater: public INode
+class COcean: public INode
 {
 protected:
     static const int k_ELEMENT_NUM_INDEXES;
@@ -22,8 +22,8 @@ protected:
     float m_fWaterHeight;
     
 public:
-    CWater(void);
-    ~CWater(void);
+    COcean(void);
+    ~COcean(void);
     void Load(const std::string& _sName, IResource::E_THREAD _eThread);
     void Update(void);
     void Render(CShader::E_RENDER_MODE _eMode);

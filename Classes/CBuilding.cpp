@@ -30,7 +30,6 @@ void CBuilding::Load(const std::string& _sModelName, const std::string& _sTextur
     m_pModel->Set_Shader(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, IResource::E_SHADER_MODEL_ND);
     m_pModel->Set_Shader(CShader::E_RENDER_MODE_REFLECTION, IResource::E_SHADER_MODEL);
     m_pModel->Set_Shader(CShader::E_RENDER_MODE_REFRACTION, IResource::E_SHADER_MODEL);
-    m_pModel->Create_BoundingBox();
     m_pModel->Set_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, true);
     m_pModel->Set_RenderMode(CShader::E_RENDER_MODE_REFLECTION, true);
     m_pModel->Set_RenderMode(CShader::E_RENDER_MODE_REFRACTION, true);

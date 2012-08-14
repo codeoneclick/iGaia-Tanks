@@ -54,7 +54,6 @@ void CCharacterControllerPlayer::Load(void)
     m_vRightTrackCenterBound = m_pTrack->Get_RightTrackTowerCenterBound();
     m_vLeftTrackCenterBound = m_pTrack->Get_LeftTrackTowerCenterBound();
 
-    
     CSceneMgr::Instance()->Get_CollisionMgr()->Add_CollisionListener(this, false);
     /*CSceneMgr::Instance()->AddEventListener(m_pBody->Get_BasisNode(), CEventMgr::E_EVENT_TOUCH);
     m_pBody->Get_BasisNode()->Add_DelegateOwner(this);

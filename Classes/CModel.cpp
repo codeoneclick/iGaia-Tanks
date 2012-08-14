@@ -30,6 +30,7 @@ void CModel::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_BLEND_MODE, true);
     m_pMaterial->Set_CullFace(GL_FRONT);
     m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
 }
 
 void CModel::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
@@ -97,7 +98,6 @@ void CModel::Render(CShader::E_RENDER_MODE _eMode)
     m_pMaterial->Commit(_eMode);
     
     ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();
-    ILight* pLight = CSceneMgr::Instance()->Get_Light();
     CShader* pShader = m_pMaterial->Get_Shader(_eMode);
     
     switch (_eMode)

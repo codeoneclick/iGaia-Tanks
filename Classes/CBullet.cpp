@@ -36,7 +36,6 @@ void CBullet::Load(void)
     m_pModel = (CModel*)CSceneMgr::Instance()->Add_CustomModel("tank_medium_tower.mdl", IResource::E_THREAD_BACKGROUND);
     m_pModel->Set_Texture("tank_medium.pvr", 0, CTexture::E_WRAP_MODE_REPEAT);
     m_pModel->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_MODEL);
-    m_pModel->Create_BoundingBox();
     m_pModel->Set_Visible(false);
     
     m_vMaxBound = m_pModel->Get_BoundingBox()->Get_MaxBound();

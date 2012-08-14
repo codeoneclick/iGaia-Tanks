@@ -60,7 +60,7 @@ void CCharacterControllerEnemy::Load(void)
     m_pTower = new CTankLightTower();
     m_pTower->Load();
     
-    m_pChassis = new CTankHeavyBody();
+    m_pChassis = new CTankLightBody();
     m_pChassis->Load();
     
     m_vMaxBound = m_pChassis->Get_BodyMaxBound();
@@ -128,7 +128,6 @@ void CCharacterControllerEnemy::Shoot(void)
 void CCharacterControllerEnemy::Update(void)
 {
     float fTrackTexCoordOffsetMoveFactor  = 0.2f;
-    float fTrackTexCoordOffsetSteerFactor = 0.1f;
     
     m_vRotation.y = _Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f);
     
@@ -146,6 +145,7 @@ void CCharacterControllerEnemy::Update(void)
             break;
         case E_AI_STATE_MOVE:
         {
+            float fMoveSpeed = GameSDBStorage::Instance()->Get_UserMoveSpeed(m_eFullSetType);
             glm::vec2 vPoint_01 = glm::vec2(m_vPosition.x, m_vPosition.z);
             glm::vec2 vPoint_02 = glm::vec2(m_vMovePoint.x, m_vMovePoint.z);
             
@@ -172,7 +172,15 @@ void CCharacterControllerEnemy::Update(void)
                     {
                         SteerLeft();
                     }
-                    MoveForward();
+                    //MoveForward();
+                    if(m_pBox2dBody != NULL)
+                    {
+                        b2Vec2 vForce = b2Vec2(0.0f, 0.0f);
+                        vForce.x += sinf(glm::radians(m_vRotation.y)) * fMoveSpeed;
+                        vForce.y += cosf(glm::radians(m_vRotation.y)) * fMoveSpeed;
+                        m_pBox2dBody->SetAwake(true);
+                        m_pBox2dBody->SetLinearVelocity(vForce);
+                    }
                     m_pTrack->Move_LeftTrack(-fTrackTexCoordOffsetMoveFactor);
                     m_pTrack->Move_RightTrack(-fTrackTexCoordOffsetMoveFactor);
                 }
@@ -191,35 +199,29 @@ void CCharacterControllerEnemy::Update(void)
                     {
                         SteerRight();
                     }
-                    MoveForward();
+                    //MoveForward();
+                    if(m_pBox2dBody != NULL)
+                    {
+                        b2Vec2 vForce = b2Vec2(0.0f, 0.0f);
+                        vForce.x += sinf(glm::radians(m_vRotation.y)) * fMoveSpeed;
+                        vForce.y += cosf(glm::radians(m_vRotation.y)) * fMoveSpeed;
+                        m_pBox2dBody->SetAwake(true);
+                        m_pBox2dBody->SetLinearVelocity(vForce);
+                    }
                     m_pTrack->Move_LeftTrack(-fTrackTexCoordOffsetMoveFactor);
                     m_pTrack->Move_RightTrack(-fTrackTexCoordOffsetMoveFactor);
                 }
             }
-            /*
-            if(fabsf(fAngleToMovePoint - m_vRotation.y) > 45.0f)
-            {
-                SteerLeft();
-                m_pTrack->Move_LeftTrack(-fTrackTexCoordOffsetMoveFactor);
-                m_pTrack->Move_RightTrack(fTrackTexCoordOffsetMoveFactor);
-            }
-            else
-            {
-                if(fabs(fAngleToMovePoint - m_vRotation.y) > 5.0f)
-                {
-                    SteerLeft();
-                }
-                MoveForward();
-                m_pTrack->Move_LeftTrack(-fTrackTexCoordOffsetMoveFactor);
-                m_pTrack->Move_RightTrack(-fTrackTexCoordOffsetMoveFactor);
-            }*/
-            
-            //m_vRotation.y = CMathHelper::Instance()->Get_RotationBetweenPoints(m_vMovePoint, m_vPosition) + 180.0f;
             m_pChassis->StartExhaust(true);
         }
             break;
         default:
             break;
+    }
+    
+    if(m_pBox2dBody != NULL)
+    {
+        m_pBox2dBody->SetTransform(m_pBox2dBody->GetPosition(), glm::radians(m_vRotation.y));
     }
     
     m_pTrack->Update();
@@ -238,7 +240,8 @@ void CCharacterControllerEnemy::Update(void)
         vTargetPoint = m_vMovePoint;
     }
     
-    m_fTowerRotationY = CMathHelper::Instance()->Get_RotationBetweenPoints(m_vPosition, vTargetPoint);
+    //m_fTowerRotationY = CMathHelper::Instance()->Get_RotationBetweenPoints(m_vPosition, vTargetPoint);
+    m_vRotation.y = CMathHelper::Instance()->Get_RotationBetweenPoints(m_vPosition, vTargetPoint);
     
     /*glm::vec3 vStepPosition = m_vPosition;
     vStepPosition.x += sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;

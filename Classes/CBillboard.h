@@ -41,7 +41,6 @@ public:
     ~CBillboard(void);
     
     void Load(const std::string& _sName, IResource::E_THREAD _eThread);
-    void Create_BoundingBox(void) { }
     void Update(void);
     void Render(CShader::E_RENDER_MODE _eMode);
     

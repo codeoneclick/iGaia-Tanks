@@ -11,7 +11,7 @@
 
 #include "CLandscape.h"
 #include "CGrass.h"
-#include "CWater.h"
+#include "COcean.h"
 #include "CSkyBox.h"
 #include "CBuilding.h"
 #include "ITouchDelegate.h"
@@ -21,7 +21,7 @@ class IGameLevel : public ITouchDelegate
 protected:
     CLandscape* m_pLandscape;
     CGrass* m_pGrass;
-    CWater* m_pOcean;
+    COcean* m_pOcean;
     CSkyBox* m_pSkyBox;
     std::vector<CBuilding*> m_lBuildings;
 public:
@@ -29,7 +29,7 @@ public:
     virtual ~IGameLevel(void);
     CLandscape* Get_Landscape(void) { return m_pLandscape; }
     CGrass* Get_Grass(void) { return m_pGrass; }
-    CWater* Get_Ocean(void) { return m_pOcean; }
+    COcean* Get_Ocean(void) { return m_pOcean; }
     CSkyBox* Get_SkyBox(void) { return m_pSkyBox; }
     
     virtual void Load(void);

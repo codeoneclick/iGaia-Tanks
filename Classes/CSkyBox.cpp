@@ -156,6 +156,8 @@ void CSkyBox::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_BLEND_MODE, false);
     m_pMaterial->Set_CullFace(GL_FRONT);
     m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
+    m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
 }
 
 void CSkyBox::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)

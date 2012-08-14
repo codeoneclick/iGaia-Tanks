@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1520865415A82C05001F0F8F /* ShaderPostLandscapeDetail.frag in Sources */ = {isa = PBXBuildFile; fileRef = 1520865215A82C05001F0F8F /* ShaderPostLandscapeDetail.frag */; };
-		1520865515A82C05001F0F8F /* ShaderPostLandscapeDetail.vert in Sources */ = {isa = PBXBuildFile; fileRef = 1520865315A82C05001F0F8F /* ShaderPostLandscapeDetail.vert */; };
-		1578F8A515CD80F60056B51E /* ShaderLandscapeEdges.frag in Sources */ = {isa = PBXBuildFile; fileRef = 1578F8A315CD80F60056B51E /* ShaderLandscapeEdges.frag */; };
-		1578F8A615CD80F60056B51E /* ShaderLandscapeEdges.vert in Sources */ = {isa = PBXBuildFile; fileRef = 1578F8A415CD80F60056B51E /* ShaderLandscapeEdges.vert */; };
 		1D3623260D0F684500981E51 /* MainAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MainAppDelegate.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -29,7 +25,7 @@
 		9320598F145E964E00DEBCCB /* CParser_GLSL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9320598E145E964E00DEBCCB /* CParser_GLSL.cpp */; };
 		93205996145EA7D900DEBCCB /* CParser_PVR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93205995145EA7D800DEBCCB /* CParser_PVR.cpp */; };
 		93243D5A147553B500ED7443 /* CModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93243D59147553B500ED7443 /* CModel.cpp */; };
-		932D540B151B663100C77E95 /* CWater.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 932D540A151B662F00C77E95 /* CWater.cpp */; };
+		932D540B151B663100C77E95 /* COcean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 932D540A151B662F00C77E95 /* COcean.cpp */; };
 		932D54AA151F8A9700C77E95 /* mod_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 932D54A9151F8A9700C77E95 /* mod_02.png */; };
 		932D54AC151F8B0300C77E95 /* mod_02.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 932D54AB151F8B0300C77E95 /* mod_02.pvr */; };
 		932D54AE151FBEE700C77E95 /* mod_03.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 932D54AD151FBEE600C77E95 /* mod_03.pvr */; };
@@ -41,7 +37,6 @@
 		936FEC9214F579CB00A33A33 /* landscape.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 936FEC9014F579CB00A33A33 /* landscape.mdl */; };
 		936FEC9314F579CB00A33A33 /* player.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 936FEC9114F579CB00A33A33 /* player.mdl */; };
 		937367C9144ECE150051ED8D /* CShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 937367C8144ECE140051ED8D /* CShader.cpp */; };
-		937367CC144EE2B40051ED8D /* CVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 937367CB144EE2B30051ED8D /* CVertexBuffer.cpp */; };
 		9373680614559D540051ED8D /* ICamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9373680514559D4F0051ED8D /* ICamera.cpp */; };
 		937B276814FF677D00B346E0 /* layer_01.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 937B276714FF677D00B346E0 /* layer_01.pvr */; };
 		937B276C14FF738C00B346E0 /* CScreenSpacePostMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 937B276B14FF738C00B346E0 /* CScreenSpacePostMgr.cpp */; };
@@ -74,7 +69,6 @@
 		93CFC0931463E61800720766 /* IParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0921463E61800720766 /* IParser.cpp */; };
 		93CFC0961463EC0D00720766 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
 		93CFC0991463FA2C00720766 /* IResourceMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0981463FA2800720766 /* IResourceMgr.cpp */; };
-		93DFB88314C9AF1200B6910C /* CTileSetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93DFB88014C9AF0F00B6910C /* CTileSetter.cpp */; };
 		93E52C1A14C6E04900697561 /* CIndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93E52C1914C6E04900697561 /* CIndexBuffer.cpp */; };
 		93F814F814D01E09005D6699 /* CLightPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93F814F714D01E08005D6699 /* CLightPoint.cpp */; };
 		93FB5A4C1517CF9800E096A9 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93FB596A1517CF9700E096A9 /* CMakeLists.txt */; };
@@ -234,8 +228,6 @@
 		A1AC4DA3156FC74F0031FE05 /* CGameShooterMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1AC4DA1156FC74F0031FE05 /* CGameShooterMgr.cpp */; };
 		A1AF6F741549380400703E2E /* Skybox.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1AF6F731549380400703E2E /* Skybox.pvr */; };
 		A1AF6F771549383200703E2E /* CSkyBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1AF6F751549383200703E2E /* CSkyBox.cpp */; };
-		A1B6C9A415934A7C00F380CC /* CBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1B6C9A215934A7B00F380CC /* CBatch.cpp */; };
-		A1B6C9AC1593639F00F380CC /* CBatchMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1B6C9AA1593639F00F380CC /* CBatchMgr.cpp */; };
 		A1BAD24815418C4A00B4149D /* CGameAIMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1BAD24615418C4A00B4149D /* CGameAIMgr.cpp */; };
 		A1BE19A5156A29D4004C3610 /* shadow.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1BE19A4156A29D4004C3610 /* shadow.pvr */; };
 		A1C7ADE91547E5010047264E /* fire.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1C7ADE81547E5010047264E /* fire.pvr */; };
@@ -396,8 +388,8 @@
 		93205995145EA7D800DEBCCB /* CParser_PVR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CParser_PVR.cpp; sourceTree = "<group>"; };
 		93243D57147553AB00ED7443 /* CModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CModel.h; sourceTree = "<group>"; };
 		93243D59147553B500ED7443 /* CModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CModel.cpp; sourceTree = "<group>"; };
-		932D5409151B662200C77E95 /* CWater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWater.h; sourceTree = "<group>"; };
-		932D540A151B662F00C77E95 /* CWater.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CWater.cpp; sourceTree = "<group>"; };
+		932D5409151B662200C77E95 /* COcean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COcean.h; sourceTree = "<group>"; };
+		932D540A151B662F00C77E95 /* COcean.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = COcean.cpp; sourceTree = "<group>"; };
 		932D54A9151F8A9700C77E95 /* mod_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mod_02.png; path = Resources/Textures/mod_02.png; sourceTree = "<group>"; };
 		932D54AB151F8B0300C77E95 /* mod_02.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = mod_02.pvr; path = Resources/Textures/mod_02.pvr; sourceTree = "<group>"; };
 		932D54AD151FBEE600C77E95 /* mod_03.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = mod_03.pvr; path = Resources/Textures/mod_03.pvr; sourceTree = "<group>"; };
@@ -423,8 +415,6 @@
 		936FEC9114F579CB00A33A33 /* player.mdl */ = {isa = PBXFileReference; lastKnownFileType = file; path = player.mdl; sourceTree = "<group>"; };
 		937367C7144ECE030051ED8D /* CShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CShader.h; sourceTree = "<group>"; };
 		937367C8144ECE140051ED8D /* CShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CShader.cpp; sourceTree = "<group>"; };
-		937367CA144EE2A70051ED8D /* CVertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVertexBuffer.h; sourceTree = "<group>"; };
-		937367CB144EE2B30051ED8D /* CVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBuffer.cpp; sourceTree = "<group>"; };
 		9373680414559D3D0051ED8D /* ICamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICamera.h; sourceTree = "<group>"; };
 		9373680514559D4F0051ED8D /* ICamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ICamera.cpp; sourceTree = "<group>"; };
 		937371571521F5650043B697 /* ShaderLandscapeND.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscapeND.frag; path = Shaders/ShaderLandscapeND.frag; sourceTree = "<group>"; };
@@ -484,8 +474,6 @@
 		93CFC0941463EBF500720766 /* IResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IResource.h; sourceTree = "<group>"; };
 		93CFC0951463EC0700720766 /* IResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IResource.cpp; sourceTree = "<group>"; };
 		93CFC0981463FA2800720766 /* IResourceMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IResourceMgr.cpp; sourceTree = "<group>"; };
-		93DFB88014C9AF0F00B6910C /* CTileSetter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTileSetter.cpp; sourceTree = "<group>"; };
-		93DFB88114C9AF1000B6910C /* CTileSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTileSetter.h; sourceTree = "<group>"; };
 		93E52C1714C6E01E00697561 /* CIndexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndexBuffer.h; sourceTree = "<group>"; };
 		93E52C1914C6E04900697561 /* CIndexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndexBuffer.cpp; sourceTree = "<group>"; };
 		93F814F514D01DF8005D6699 /* CLightPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLightPoint.h; sourceTree = "<group>"; };
@@ -807,10 +795,6 @@
 		A1AF6F731549380400703E2E /* Skybox.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = Skybox.pvr; path = Resources/Textures/Skybox.pvr; sourceTree = "<group>"; };
 		A1AF6F751549383200703E2E /* CSkyBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSkyBox.cpp; sourceTree = "<group>"; };
 		A1AF6F761549383200703E2E /* CSkyBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSkyBox.h; sourceTree = "<group>"; };
-		A1B6C9A215934A7B00F380CC /* CBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBatch.cpp; sourceTree = "<group>"; };
-		A1B6C9A315934A7C00F380CC /* CBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBatch.h; sourceTree = "<group>"; };
-		A1B6C9AA1593639F00F380CC /* CBatchMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBatchMgr.cpp; sourceTree = "<group>"; };
-		A1B6C9AB1593639F00F380CC /* CBatchMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBatchMgr.h; sourceTree = "<group>"; };
 		A1BAD24615418C4A00B4149D /* CGameAIMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameAIMgr.cpp; sourceTree = "<group>"; };
 		A1BAD24715418C4A00B4149D /* CGameAIMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameAIMgr.h; sourceTree = "<group>"; };
 		A1BE199F156A2053004C3610 /* ShaderDecal.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderDecal.frag; path = Shaders/ShaderDecal.frag; sourceTree = "<group>"; };
@@ -1059,6 +1043,89 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		15AE126C15DAF1B500262A59 /* 2dNodes */ = {
+			isa = PBXGroup;
+			children = (
+				A1F68E5F157E39C00048A717 /* CSprite.h */,
+				A1F68E5E157E39C00048A717 /* CSprite.cpp */,
+				A100AB8715777FD8003BB7BA /* CSpriteCross.h */,
+				A100AB8615777FD8003BB7BA /* CSpriteCross.cpp */,
+				A100AB8315777FC3003BB7BA /* CBillboard.h */,
+				A100AB8215777FC3003BB7BA /* CBillboard.cpp */,
+				A13F9EB81568D743009DCBB4 /* CLandscapeDecal.h */,
+				A13F9EB71568D743009DCBB4 /* CLandscapeDecal.cpp */,
+			);
+			name = 2dNodes;
+			sourceTree = "<group>";
+		};
+		15AE126E15DAF1BE00262A59 /* 3dNodes */ = {
+			isa = PBXGroup;
+			children = (
+				93243D57147553AB00ED7443 /* CModel.h */,
+				93243D59147553B500ED7443 /* CModel.cpp */,
+				93AE336314C4446D00F1A516 /* CLandscape.h */,
+				93AE336514C4447C00F1A516 /* CLandscape.cpp */,
+				A179C21A15ADD50000FA872B /* CLandscapeEdges.h */,
+				A179C21915ADD50000FA872B /* CLandscapeEdges.cpp */,
+				93CBB21D150E13FD00CB1EFF /* CGrass.h */,
+				93CBB21F150E141800CB1EFF /* CGrass.cpp */,
+				932D5409151B662200C77E95 /* COcean.h */,
+				932D540A151B662F00C77E95 /* COcean.cpp */,
+				A1AF6F761549383200703E2E /* CSkyBox.h */,
+				A1AF6F751549383200703E2E /* CSkyBox.cpp */,
+			);
+			name = 3dNodes;
+			sourceTree = "<group>";
+		};
+		15AE126F15DAF1CD00262A59 /* AbstractNodes */ = {
+			isa = PBXGroup;
+			children = (
+				9373680414559D3D0051ED8D /* ICamera.h */,
+				9373680514559D4F0051ED8D /* ICamera.cpp */,
+				9303B33A14AC901D005ED3BF /* CCameraFree.h */,
+				9303B33B14AC902A005ED3BF /* CCameraFree.cpp */,
+				9303B33D14AC9042005ED3BF /* CCameraTarget.h */,
+				9303B33E14AC9053005ED3BF /* CCameraTarget.cpp */,
+				93B6BB6F14840FC700E34B78 /* INode.h */,
+				93B6BB7114840FD500E34B78 /* INode.cpp */,
+				93CE485E14B458D500C5F031 /* CBoundingBox.h */,
+				93CE485F14B458E000C5F031 /* CBoundingBox.cpp */,
+				93AA2A7814882E0B0073F016 /* ILight.h */,
+				93AA2A79148831D00073F016 /* ILight.cpp */,
+				93F814F514D01DF8005D6699 /* CLightPoint.h */,
+				93F814F714D01E08005D6699 /* CLightPoint.cpp */,
+			);
+			name = AbstractNodes;
+			sourceTree = "<group>";
+		};
+		15AE127015DAFB0100262A59 /* VertexBuffers */ = {
+			isa = PBXGroup;
+			children = (
+				A1D8068315735D2500EF81D0 /* IVertexBuffer.h */,
+				A1D8068215735D2500EF81D0 /* IVertexBuffer.cpp */,
+				A1D8067615735D1400EF81D0 /* CVertexBufferPositionColor.h */,
+				A1D8067515735D1400EF81D0 /* CVertexBufferPositionColor.cpp */,
+				A1D8067815735D1400EF81D0 /* CVertexBufferPositionTexcoord.h */,
+				A1D8067715735D1400EF81D0 /* CVertexBufferPositionTexcoord.cpp */,
+				A100AB7315775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.h */,
+				A100AB7215775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.cpp */,
+				A1D8067A15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.h */,
+				A1D8067915735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.cpp */,
+				A1D8067C15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.h */,
+				A1D8067B15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.cpp */,
+			);
+			name = VertexBuffers;
+			sourceTree = "<group>";
+		};
+		15AE127115DAFB1C00262A59 /* IndexBuffers */ = {
+			isa = PBXGroup;
+			children = (
+				93E52C1714C6E01E00697561 /* CIndexBuffer.h */,
+				93E52C1914C6E04900697561 /* CIndexBuffer.cpp */,
+			);
+			name = IndexBuffers;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,19 +1191,6 @@
 				935D65031504ADED00FBE552 /* ScreenSpaceEffect */,
 			);
 			name = Shaders;
-			sourceTree = "<group>";
-		};
-		9303B33914AC9001005ED3BF /* Cameras */ = {
-			isa = PBXGroup;
-			children = (
-				9373680414559D3D0051ED8D /* ICamera.h */,
-				9373680514559D4F0051ED8D /* ICamera.cpp */,
-				9303B33A14AC901D005ED3BF /* CCameraFree.h */,
-				9303B33B14AC902A005ED3BF /* CCameraFree.cpp */,
-				9303B33D14AC9042005ED3BF /* CCameraTarget.h */,
-				9303B33E14AC9053005ED3BF /* CCameraTarget.cpp */,
-			);
-			name = Cameras;
 			sourceTree = "<group>";
 		};
 		9307CBBE14EBB9E700ADFE2B /* GameMgrs */ = {
@@ -1223,18 +1277,8 @@
 		933EF3DA14EA4D3D00B7EBCE /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A1D8068315735D2500EF81D0 /* IVertexBuffer.h */,
-				A1D8068215735D2500EF81D0 /* IVertexBuffer.cpp */,
-				A1D8067615735D1400EF81D0 /* CVertexBufferPositionColor.h */,
-				A1D8067515735D1400EF81D0 /* CVertexBufferPositionColor.cpp */,
-				A1D8067815735D1400EF81D0 /* CVertexBufferPositionTexcoord.h */,
-				A1D8067715735D1400EF81D0 /* CVertexBufferPositionTexcoord.cpp */,
-				A100AB7315775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.h */,
-				A100AB7215775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.cpp */,
-				A1D8067A15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.h */,
-				A1D8067915735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.cpp */,
-				A1D8067C15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.h */,
-				A1D8067B15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.cpp */,
+				15AE127115DAFB1C00262A59 /* IndexBuffers */,
+				15AE127015DAFB0100262A59 /* VertexBuffers */,
 				A13F9EC31568DC82009DCBB4 /* Delegates */,
 				931A76E214DA8905007EDB2F /* CHeightMapSetter.h */,
 				931A76E414DA8914007EDB2F /* CHeightMapSetter.cpp */,
@@ -1242,20 +1286,12 @@
 				93A26E07148D19E300D14A0B /* CCommon_IOS.h */,
 				93AA2A8D148A7A250073F016 /* CWindow.h */,
 				93A26E04148D087600D14A0B /* CWindow.cpp */,
-				93DFB88114C9AF1000B6910C /* CTileSetter.h */,
-				93DFB88014C9AF0F00B6910C /* CTileSetter.cpp */,
-				93E52C1714C6E01E00697561 /* CIndexBuffer.h */,
-				93E52C1914C6E04900697561 /* CIndexBuffer.cpp */,
-				937367CA144EE2A70051ED8D /* CVertexBuffer.h */,
-				937367CB144EE2B30051ED8D /* CVertexBuffer.cpp */,
 				A1FFAA8A156CBAE500B01ECB /* CFrustum.h */,
 				A1FFAA89156CBAE500B01ECB /* CFrustum.cpp */,
 				A10E64A8157F3360007B576A /* CMathHelper.h */,
 				A10E64A7157F3360007B576A /* CMathHelper.cpp */,
 				A10E64AC157F3373007B576A /* CTimer.h */,
 				A10E64AB157F3373007B576A /* CTimer.cpp */,
-				A1B6C9A315934A7C00F380CC /* CBatch.h */,
-				A1B6C9A215934A7B00F380CC /* CBatch.cpp */,
 				A18D576E1598418000FCD8C9 /* CMaterial.h */,
 				A18D576D1598418000FCD8C9 /* CMaterial.cpp */,
 				A1E37D61159DE9AD000314C3 /* CSettings.h */,
@@ -1285,8 +1321,6 @@
 				937B276B14FF738C00B346E0 /* CScreenSpacePostMgr.cpp */,
 				A13F9ED0156932FD009DCBB4 /* CDecalMgr.h */,
 				A13F9ECF156932FC009DCBB4 /* CDecalMgr.cpp */,
-				A1B6C9AB1593639F00F380CC /* CBatchMgr.h */,
-				A1B6C9AA1593639F00F380CC /* CBatchMgr.cpp */,
 			);
 			name = Mgrs;
 			sourceTree = "<group>";
@@ -1381,36 +1415,10 @@
 		93B6BB761484149300E34B78 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				A1F68E5F157E39C00048A717 /* CSprite.h */,
-				A1F68E5E157E39C00048A717 /* CSprite.cpp */,
-				A100AB8315777FC3003BB7BA /* CBillboard.h */,
-				A100AB8215777FC3003BB7BA /* CBillboard.cpp */,
-				A100AB8715777FD8003BB7BA /* CSpriteCross.h */,
-				A100AB8615777FD8003BB7BA /* CSpriteCross.cpp */,
-				A166A16A1546DF2000E659D5 /* ParticleEmitters */,
-				93F814F514D01DF8005D6699 /* CLightPoint.h */,
-				93F814F714D01E08005D6699 /* CLightPoint.cpp */,
-				93AA2A7814882E0B0073F016 /* ILight.h */,
-				93AA2A79148831D00073F016 /* ILight.cpp */,
-				93CE485E14B458D500C5F031 /* CBoundingBox.h */,
-				93CE485F14B458E000C5F031 /* CBoundingBox.cpp */,
-				9303B33914AC9001005ED3BF /* Cameras */,
-				93B6BB6F14840FC700E34B78 /* INode.h */,
-				93B6BB7114840FD500E34B78 /* INode.cpp */,
-				93243D57147553AB00ED7443 /* CModel.h */,
-				93243D59147553B500ED7443 /* CModel.cpp */,
-				93AE336314C4446D00F1A516 /* CLandscape.h */,
-				93AE336514C4447C00F1A516 /* CLandscape.cpp */,
-				93CBB21D150E13FD00CB1EFF /* CGrass.h */,
-				93CBB21F150E141800CB1EFF /* CGrass.cpp */,
-				932D5409151B662200C77E95 /* CWater.h */,
-				932D540A151B662F00C77E95 /* CWater.cpp */,
-				A1AF6F761549383200703E2E /* CSkyBox.h */,
-				A1AF6F751549383200703E2E /* CSkyBox.cpp */,
-				A13F9EB81568D743009DCBB4 /* CLandscapeDecal.h */,
-				A13F9EB71568D743009DCBB4 /* CLandscapeDecal.cpp */,
-				A179C21A15ADD50000FA872B /* CLandscapeEdges.h */,
-				A179C21915ADD50000FA872B /* CLandscapeEdges.cpp */,
+				15AE126F15DAF1CD00262A59 /* AbstractNodes */,
+				15AE126E15DAF1BE00262A59 /* 3dNodes */,
+				15AE126C15DAF1B500262A59 /* 2dNodes */,
+				A166A16A1546DF2000E659D5 /* ParticlesNodes */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -1745,7 +1753,7 @@
 			name = GameUI;
 			sourceTree = "<group>";
 		};
-		A166A16A1546DF2000E659D5 /* ParticleEmitters */ = {
+		A166A16A1546DF2000E659D5 /* ParticlesNodes */ = {
 			isa = PBXGroup;
 			children = (
 				A1AB4E3D1546B71D00434639 /* CParticleEmitter.h */,
@@ -1757,7 +1765,7 @@
 				A1F05DA915877EF200812D02 /* CParticleEmitterFireTrail.h */,
 				A1F05DA815877EF200812D02 /* CParticleEmitterFireTrail.cpp */,
 			);
-			name = ParticleEmitters;
+			name = ParticlesNodes;
 			sourceTree = "<group>";
 		};
 		A176DD5A15D3A8DE00B8FD7D /* Network */ = {
@@ -2531,7 +2539,6 @@
 				4D3135ED0F9A6649001FFC34 /* GLView.mm in Sources */,
 				4D8FB3730F9EC1010055EDDB /* main.m in Sources */,
 				937367C9144ECE150051ED8D /* CShader.cpp in Sources */,
-				937367CC144EE2B40051ED8D /* CVertexBuffer.cpp in Sources */,
 				9373680614559D540051ED8D /* ICamera.cpp in Sources */,
 				CE914ED41455DA3200AA2000 /* CShaderComposite.cpp in Sources */,
 				CE914ED71455DA5700AA2000 /* CTextureMgr.cpp in Sources */,
@@ -2562,7 +2569,6 @@
 				933AFE2A14BC341D0090B5EC /* CCollisionMgr.cpp in Sources */,
 				93AE336614C4447C00F1A516 /* CLandscape.cpp in Sources */,
 				93E52C1A14C6E04900697561 /* CIndexBuffer.cpp in Sources */,
-				93DFB88314C9AF1200B6910C /* CTileSetter.cpp in Sources */,
 				93F814F814D01E09005D6699 /* CLightPoint.cpp in Sources */,
 				93C06CF914D2951100B7502A /* CEventMgr.cpp in Sources */,
 				931A76E514DA8914007EDB2F /* CHeightMapSetter.cpp in Sources */,
@@ -2575,7 +2581,7 @@
 				93060C8D14EE8BB100306309 /* CGameState.cpp in Sources */,
 				937B276C14FF738C00B346E0 /* CScreenSpacePostMgr.cpp in Sources */,
 				93CBB220150E141900CB1EFF /* CGrass.cpp in Sources */,
-				932D540B151B663100C77E95 /* CWater.cpp in Sources */,
+				932D540B151B663100C77E95 /* COcean.cpp in Sources */,
 				A12156B2152EDE9C002E1942 /* IResourceLoaderDelegate.cpp in Sources */,
 				A153D5C2153DA3D000FBFFD5 /* CGameInGameUI.mm in Sources */,
 				A12D2F2A1541582800955C6B /* CCharacterControllerEnemy.cpp in Sources */,
@@ -2605,8 +2611,6 @@
 				A10E64A9157F3360007B576A /* CMathHelper.cpp in Sources */,
 				A10E64AD157F3373007B576A /* CTimer.cpp in Sources */,
 				A1F05DAA15877EF200812D02 /* CParticleEmitterFireTrail.cpp in Sources */,
-				A1B6C9A415934A7C00F380CC /* CBatch.cpp in Sources */,
-				A1B6C9AC1593639F00F380CC /* CBatchMgr.cpp in Sources */,
 				A18D576F1598418000FCD8C9 /* CMaterial.cpp in Sources */,
 				A1E37D62159DE9AD000314C3 /* CSettings.cpp in Sources */,
 				A1F39F6215A1D0EF00E39591 /* ITankPart.cpp in Sources */,
@@ -2630,15 +2634,11 @@
 				A1FCBF1015A49E4E004FC37B /* CSlider.mm in Sources */,
 				A1FCBF1815A58692004FC37B /* CGameUIMgr.cpp in Sources */,
 				A1FCBF8015A5D511004FC37B /* CGameMenuUI.mm in Sources */,
-				1520865415A82C05001F0F8F /* ShaderPostLandscapeDetail.frag in Sources */,
-				1520865515A82C05001F0F8F /* ShaderPostLandscapeDetail.vert in Sources */,
 				A1D635BA15AAEB2A00F5D42B /* MainMenuViewController.mm in Sources */,
 				A179C1FD15ADA78200FA872B /* GameInGameViewController.mm in Sources */,
 				A179C20215ADA83700FA872B /* GameBaseViewController.mm in Sources */,
 				A179C21615ADC08900FA872B /* GameLoadingViewController.mm in Sources */,
 				A179C21B15ADD50000FA872B /* CLandscapeEdges.cpp in Sources */,
-				1578F8A515CD80F60056B51E /* ShaderLandscapeEdges.frag in Sources */,
-				1578F8A615CD80F60056B51E /* ShaderLandscapeEdges.vert in Sources */,
 				A123836715D12811007769E7 /* CBuilding.cpp in Sources */,
 				A123836A15D12D2E007769E7 /* ICollisionDelegate.cpp in Sources */,
 				A176DD6215D3AC2000B8FD7D /* BaseOperation.m in Sources */,

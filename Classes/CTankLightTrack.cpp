@@ -32,14 +32,12 @@ void CTankLightTrack::Load(void)
     m_pLeftTrack->Set_Texture("tank_track.pvr", 0, CTexture::E_WRAP_MODE_REPEAT);
     m_pLeftTrack->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_MODEL);
     m_pLeftTrack->Set_Shader(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, IResource::E_SHADER_MODEL_ND);
-    m_pLeftTrack->Create_BoundingBox();
     m_pLeftTrack->Set_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, true);
     
     m_pRightTrack = (CModel*)CSceneMgr::Instance()->Add_CustomModel("tank_light_right_track.mdl", IResource::E_THREAD_BACKGROUND);
     m_pRightTrack->Set_Texture("tank_track.pvr", 0, CTexture::E_WRAP_MODE_REPEAT);
     m_pRightTrack->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_MODEL);
     m_pRightTrack->Set_Shader(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, IResource::E_SHADER_MODEL_ND);
-    m_pRightTrack->Create_BoundingBox();
     m_pRightTrack->Set_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, true);
     
     m_vLeftTrackMaxBound = m_pLeftTrack->Get_BoundingBox()->Get_MaxBound();

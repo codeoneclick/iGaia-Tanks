@@ -12,7 +12,7 @@
 #include "CLandscape.h"
 #include "CLandscapeEdges.h"
 #include "CGrass.h"
-#include "CWater.h"
+#include "COcean.h"
 #include "CSkyBox.h"
 #include "CRenderMgr.h"
 #include "CCollisionMgr.h"
@@ -40,7 +40,6 @@ CSceneMgr::CSceneMgr(void)
     m_pParticleMgr = new CParticleMgr();
     m_pDecalMgr = new CDecalMgr();
     m_pSpriteMgr = new CSpriteMgr();
-    m_pBatchMgr = new CBatchMgr();
 }
 
 CSceneMgr::~CSceneMgr(void)
@@ -89,7 +88,7 @@ INode* CSceneMgr::Add_LandscapeGrassModel(const std::string& _sName, IResource::
 
 INode* CSceneMgr::Add_OceanModel(const std::string& _sName, IResource::E_THREAD _eThread)
 {
-    INode* pNode = new CWater();
+    INode* pNode = new COcean();
     m_lContainer.push_back(pNode);
     pNode->Load(_sName, _eThread);
     m_pOcean = pNode;
@@ -253,11 +252,6 @@ void CSceneMgr::Update()
     if(m_pSpriteMgr != NULL)
     {
         m_pSpriteMgr->Update();
-    }
-    
-    if(m_pBatchMgr != NULL)
-    {
-        m_pBatchMgr->Update();
     }
     
     if(m_pSkyBox != NULL)

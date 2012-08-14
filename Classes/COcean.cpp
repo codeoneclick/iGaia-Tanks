@@ -7,26 +7,26 @@
 //
 
 #include <iostream>
-#include "CWater.h"
+#include "COcean.h"
 #include "CSceneMgr.h"
 #include "CVertexBufferPositionTexcoord.h"
 
-const int CWater::k_ELEMENT_NUM_INDEXES = 6;
-const int CWater::k_ELEMENT_NUM_VERTEXES = 4;
+const int COcean::k_ELEMENT_NUM_INDEXES = 6;
+const int COcean::k_ELEMENT_NUM_VERTEXES = 4;
 
-CWater::CWater(void)
+COcean::COcean(void)
 {
     m_iWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width() - 1;
     m_iHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height() - 1;
     m_fWaterHeight = -0.1f;
 }
 
-CWater::~CWater(void)
+COcean::~COcean(void)
 {
     
 }
 
-void CWater::Load(const std::string& _sName, IResource::E_THREAD _eThread)
+void COcean::Load(const std::string& _sName, IResource::E_THREAD _eThread)
 {     
     CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
     pSourceData->m_iNumVertexes = 4;
@@ -67,9 +67,11 @@ void CWater::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_BLEND_MODE, true);
     m_pMaterial->Set_CullFace(GL_FRONT);
     m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
+    m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
 }
 
-void CWater::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
+void COcean::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
 {
     switch (_eType)
     {
@@ -84,17 +86,17 @@ void CWater::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResourc
     }
 }
 
-void CWater::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
+void COcean::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 {
     
 }
 
-void CWater::Update()
+void COcean::Update()
 {
     INode::Update();
 }
 
-void CWater::Render(CShader::E_RENDER_MODE _eMode)
+void COcean::Render(CShader::E_RENDER_MODE _eMode)
 {
     INode::Render(_eMode);
     

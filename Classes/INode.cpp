@@ -24,28 +24,29 @@ INode::INode(void)
     
     m_pMaterial = new CMaterial();
     m_pBoundingBox = NULL;
-    
     m_pMesh = NULL;
-    
     m_bIsVisible = true;
 }
 
 INode::~INode(void)
 {
     std::cout<<"[INode::~INode] delete"<<std::endl;
-    
     CResourceMgr::Instance()->Cancel_Load(this);
-    
     m_lDelegateOwners.clear();
-    
     SAFE_DELETE(m_pBoundingBox);
-    
     if(m_pMesh->Get_CreationMode() == IResource::E_CREATION_MODE_CUSTOM)
     {
         SAFE_DELETE(m_pMesh);
     }
-    
     SAFE_DELETE(m_pMaterial);
+}
+
+void INode::Set_Rotation(const glm::vec3 &_vRotation)
+{
+    m_vRotation = _vRotation;
+    m_vRotation.x = CMathHelper::Instance()->Get_WrapAngle(m_vRotation.x, 0.0f, 360.0f);
+    m_vRotation.y = CMathHelper::Instance()->Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f);
+    m_vRotation.z = CMathHelper::Instance()->Get_WrapAngle(m_vRotation.z, 0.0f, 360.0f);
 }
 
 void INode::Set_Texture(CTexture *_pTexture, int _index, CTexture::E_WRAP_MODE _eWrap)
@@ -83,29 +84,13 @@ bool INode::Get_RenderMode(CShader::E_RENDER_MODE _eMode)
     return m_pMaterial->Get_RenderMode(_eMode);
 }
 
-void INode::Create_BoundingBox()
-{
-    if(m_pBoundingBox != NULL)
-    {
-        delete m_pBoundingBox;
-        m_pBoundingBox = NULL;
-    }
-
-    m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
-}
-
-void INode::Remove_BoundingBox()
-{
-    delete m_pBoundingBox;
-    m_pBoundingBox = NULL;
-}
-
 void INode::Add_DelegateOwner(IDelegate *_pDelegateOwner)
 {
     for(size_t index = 0; index< m_lDelegateOwners.size(); index++)
     {
         if(m_lDelegateOwners[index] == _pDelegateOwner)
         {
+            std::cout<<"[INode::Add_DelegateOwner] Error - can not add same delegate owner"<<std::endl;
             return;
         }
     }

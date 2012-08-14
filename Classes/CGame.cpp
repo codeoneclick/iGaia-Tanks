@@ -44,8 +44,8 @@ void CGame::Load(void)
     CGameSceneMgr::Instance()->Set_Scene(pScene);
     pScene->Load();
     CGameUIMgr::Instance()->Set_GameUI("main_menu_ui");
-    GameNativeCommunicationMgr::Instance()->CreateGameServer();
-    GameNativeCommunicationMgr::Instance()->ConnectToGameServer();
+    //GameNativeCommunicationMgr::Instance()->CreateGameServer();
+    //GameNativeCommunicationMgr::Instance()->ConnectToGameServer();
 }
 
 void CGame::Update(void)
@@ -53,20 +53,12 @@ void CGame::Update(void)
     GameNativeCommunicationMgr::Instance()->Update();
     CGameSceneMgr::Instance()->Update();
     CResourceMgr::Instance()->Update();
-    IGameScene* pScene = CGameSceneMgr::Instance()->Get_Scene();
-    //if(pScene != NULL)
-    //{
-        CSceneMgr::Instance()->Update();
-    //}
+    CSceneMgr::Instance()->Update();
 }
 
 void CGame::Render(void)
 {
-    IGameScene* pScene = CGameSceneMgr::Instance()->Get_Scene();
-    //if(pScene != NULL)
-    //{
-       CSceneMgr::Instance()->Render();
-    //}
+    CSceneMgr::Instance()->Render();
 }
 
 

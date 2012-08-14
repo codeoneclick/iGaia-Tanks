@@ -49,7 +49,6 @@ public:
     virtual ~CParticleEmitter(void);
     
     virtual void Load(const std::string& _sName, IResource::E_THREAD _eThread);
-    void Create_BoundingBox(void) { }
     
     virtual void Update(void);
     void Render(CShader::E_RENDER_MODE _eMode);

@@ -31,6 +31,7 @@ public:
     float Get_RotationBetweenPoints(const glm::vec3& _vPoint_01,const glm::vec3& _vPoint_02);
     float Get_RotationBetweenPointsDot(const glm::vec2& _vPoint_01, const glm::vec2& _vPoint_02);
     float Get_RotationBetweenPointsDot(const glm::vec3& _vPoint_01, const glm::vec3& _vPoint_02);
+    float Get_WrapAngle(float _fValue, float _fMin, float _fMax);
 };
 
 #endif /* defined(__iGaia__CMathHelper__) */

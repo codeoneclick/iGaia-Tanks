@@ -9,8 +9,6 @@
 #ifndef iGaia_CHeightMapSetter_h
 #define iGaia_CHeightMapSetter_h
 
-
-#include "CTileSetter.h"
 #include "CMesh.h"
 #include "CTexture.h"
 
