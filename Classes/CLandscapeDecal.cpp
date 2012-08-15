@@ -117,11 +117,11 @@ void CLandscapeDecal::Update()
     
     int iRoundPositionX = m_vPosition.x;
     int iRoundPositionZ = m_vPosition.z;
-    CHeightMapSetter* pMapSetter = CSceneMgr::Instance()->Get_HeightMapSetterRef();
+    CHeightMapSetter* pHeightMapSetterRef = CSceneMgr::Instance()->Get_HeightMapSetterRef();
     float* pHeightmapData = NULL;
-    if(pMapSetter != NULL)
+    if(pHeightMapSetterRef != NULL)
     {
-        pHeightmapData = pMapSetter->Get_SourceData();
+        pHeightmapData = pHeightMapSetterRef->Get_SourceData();
     }
     else
     {
@@ -130,23 +130,22 @@ void CLandscapeDecal::Update()
     
     unsigned int index = 0;
     CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(m_pMesh->Get_VertexBufferRef()->Lock());
-    CHeightMapSetter* pHeightMapSetterRef = CSceneMgr::Instance()->Get_HeightMapSetterRef();
-    int iHeightmapWidth = pHeightMapSetterRef->Get_Width() * pHeightMapSetterRef->Get_ScaleFactor().x;
-    int iHeightmapHeight = pHeightMapSetterRef->Get_Height() * pHeightMapSetterRef->Get_ScaleFactor().y;
+    int iHeightmapWidth = pHeightMapSetterRef->Get_Width();
+    int iHeightmapHeight = pHeightMapSetterRef->Get_Height();
     for(int i = -k_HEIGHTMAP_DECAL_OFFSET; i <= k_HEIGHTMAP_DECAL_OFFSET; ++i)
     {
         for(int j = -k_HEIGHTMAP_DECAL_OFFSET; j <= k_HEIGHTMAP_DECAL_OFFSET; ++j)
         {
-            if((iRoundPositionX + i) < 0 || (iRoundPositionZ + j) < 0 || (iRoundPositionX + i) >= iHeightmapWidth || (iRoundPositionZ +j) > iHeightmapHeight)
+            if((iRoundPositionX + i) < 0 || (iRoundPositionZ + j) < 0 || (iRoundPositionX + i) >= iHeightmapWidth * pHeightMapSetterRef->Get_ScaleFactor().x || (iRoundPositionZ +j) > iHeightmapHeight * pHeightMapSetterRef->Get_ScaleFactor().y)
             {
                 pVertexBufferData[index].m_vPosition.x = iRoundPositionX;
-                pVertexBufferData[index].m_vPosition.y = pHeightMapSetterRef->Get_HeightValue(iRoundPositionX, iRoundPositionZ) + 0.33f;//pHeightmapData[iRoundPositionX + iRoundPositionZ * iHeightmapWidth] + 0.1f;
+                pVertexBufferData[index].m_vPosition.y = pHeightmapData[iRoundPositionX / static_cast<int>(pHeightMapSetterRef->Get_ScaleFactor().x) + iRoundPositionZ / static_cast<int>(pHeightMapSetterRef->Get_ScaleFactor().y) * iHeightmapWidth] + 0.2f;
                 pVertexBufferData[index].m_vPosition.z = iRoundPositionZ;
             }
             else
             {
                 pVertexBufferData[index].m_vPosition.x = iRoundPositionX + i;
-                pVertexBufferData[index].m_vPosition.y = pHeightMapSetterRef->Get_HeightValue(iRoundPositionX, iRoundPositionZ) + 0.33f;//pHeightmapData[iRoundPositionX + i + (iRoundPositionZ + j) * iHeightmapWidth] + 0.1f;
+                pVertexBufferData[index].m_vPosition.y = pHeightmapData[(iRoundPositionX + i) / static_cast<int>(pHeightMapSetterRef->Get_ScaleFactor().x) + ((iRoundPositionZ + j) / static_cast<int>(pHeightMapSetterRef->Get_ScaleFactor().y)) * iHeightmapWidth] + 0.2f;
                 pVertexBufferData[index].m_vPosition.z = iRoundPositionZ + j;
             }
             index++;

@@ -80,7 +80,7 @@ void CLandscape::_CreateQuadTreeNode(int _iSize, CLandscape::SQuadTreeNode *_pPa
     static int iRecurseCount = 0;
     iRecurseCount++;
     std::cout<<"[CLandscape::_CreateQuadTreeNode] Recurse Count : "<<iRecurseCount<<std::endl;
-    if(_iSize <= 2)
+    if(_iSize <= 8)
     {
         return;
     }
