@@ -79,19 +79,19 @@ void CGrass::Load(const std::string &_sName, IResource::E_THREAD _eThread)
     
     srand(time(NULL));
     
-    for(unsigned int i = 1; i < (m_iWidth - 1); i += 2)
+    for(unsigned int i = 1; i < (m_iWidth - 1) * m_pHeightMapSetter->Get_ScaleFactor().x; i += 2)
     {
-        for(unsigned int j = 1; j < (m_iHeight - 1); j += 2)
+        for(unsigned int j = 1; j < (m_iHeight - 1) * m_pHeightMapSetter->Get_ScaleFactor().y; j += 2)
         {
            
             float fRange = 0.9f - 0.1f;
             float fOffetX = 0.1f + float(fRange * rand() / (RAND_MAX + 1.0f));
             float fOffetY = 0.1f + float(fRange * rand() / (RAND_MAX + 1.0f));
             
-            float fHeight = m_pHeightMapSetter->Get_HeightValue(i + fOffetX, j + fOffetY);
+            float fHeight = m_pHeightMapSetter->Get_HeightValue(i * m_pHeightMapSetter->Get_ScaleFactor().x + fOffetX, j * m_pHeightMapSetter->Get_ScaleFactor().y + fOffetY);
             if(fHeight < 1.25f && fHeight > 0.05f)
             {
-                m_lGrassElementsPosition.push_back(glm::vec3(i + fOffetX, fHeight + 0.025f, j + fOffetY));
+                m_lGrassElementsPosition.push_back(glm::vec3(i * m_pHeightMapSetter->Get_ScaleFactor().x + fOffetX, fHeight + 0.025f, j *m_pHeightMapSetter->Get_ScaleFactor().y + fOffetY));
             }
         }
     }
@@ -148,7 +148,7 @@ void CGrass::Load(const std::string &_sName, IResource::E_THREAD _eThread)
     
     m_pQuadTree = new SQuadTreeNode();
     m_pQuadTree->m_pParent = NULL;
-    m_pQuadTree->m_vMaxBound = glm::vec3(m_iWidth, 64.0f, m_iHeight);
+    m_pQuadTree->m_vMaxBound = glm::vec3(m_iWidth * m_pHeightMapSetter->Get_ScaleFactor().x, 64.0f, m_iHeight * m_pHeightMapSetter->Get_ScaleFactor().y);
     m_pQuadTree->m_vMinBound = glm::vec3(0.0f, -64.0f, 0.0f);
     m_pQuadTree->m_iNumIndexes = iNumIndexes;
     m_pQuadTree->m_pIndexes = static_cast<unsigned short*>(malloc(m_pQuadTree->m_iNumIndexes * sizeof(unsigned short)));
@@ -212,7 +212,6 @@ void CGrass::_CreateQuadTreeNode(int _iSize, CGrass::SQuadTreeNode *_pParentNode
 void CGrass::_CreateIndexBufferRefForQuadTreeNode(CGrass::SQuadTreeNode *_pNode)
 {
     CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(m_pMesh->Get_VertexBufferRef()->Lock());
-    //glm::vec3* pPositionData = m_pMesh->Get_VertexBufferRef()->GetOrCreate_PositionSourceData();
     unsigned int iParentNumIndexes = _pNode->m_pParent->m_iNumIndexes;
     _pNode->m_pIndexes = static_cast<unsigned short*>(malloc(sizeof(unsigned short)));
     float fMaxY = -4096.0f;
@@ -228,9 +227,9 @@ void CGrass::_CreateIndexBufferRefForQuadTreeNode(CGrass::SQuadTreeNode *_pNode)
     
     for(unsigned int i = 0; i < iParentNumIndexes; i += 3)
     {
-        if(_IsPointInBoundBox(pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 0]].m_vPosition, _pNode->m_vMinBound, _pNode->m_vMaxBound) ||
-           _IsPointInBoundBox(pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 1]].m_vPosition, _pNode->m_vMinBound, _pNode->m_vMaxBound) ||
-           _IsPointInBoundBox(pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 2]].m_vPosition, _pNode->m_vMinBound, _pNode->m_vMaxBound))
+        if(_IsPointInBoundBox(glm::vec3(pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 0]].m_vPosition.x, pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 0]].m_vPosition.y, pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 0]].m_vPosition.z) , _pNode->m_vMinBound, _pNode->m_vMaxBound) ||
+           _IsPointInBoundBox(glm::vec3(pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 1]].m_vPosition.x, pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 1]].m_vPosition.y, pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 1]].m_vPosition.z), _pNode->m_vMinBound, _pNode->m_vMaxBound) ||
+           _IsPointInBoundBox(glm::vec3(pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 2]].m_vPosition.x, pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 2]].m_vPosition.y, pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 2]].m_vPosition.z), _pNode->m_vMinBound, _pNode->m_vMaxBound))
         {
             if(_pNode->m_pParent->m_pIndexesId[i + 0] == iQuadTreeNodeId ||
                _pNode->m_pParent->m_pIndexesId[i + 1] == iQuadTreeNodeId ||

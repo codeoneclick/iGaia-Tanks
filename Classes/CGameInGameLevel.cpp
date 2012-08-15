@@ -33,14 +33,13 @@ void CGameInGameLevel::Load(void)
     m_pLandscape->Set_Shader(CShader::E_RENDER_MODE_SIMPLE,IResource::E_SHADER_LANDSCAPE);
     m_pLandscape->Set_Shader(CShader::E_RENDER_MODE_REFLECTION,IResource::E_SHADER_LANDSCAPE);
     m_pLandscape->Set_Shader(CShader::E_RENDER_MODE_REFRACTION,IResource::E_SHADER_LANDSCAPE);
-    m_pLandscape->Set_Shader(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP,IResource::E_SHADER_LANDSCAPE_ND);
+    //m_pLandscape->Set_Shader(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP,IResource::E_SHADER_LANDSCAPE_ND);
     CSceneMgr::Instance()->AddEventListener(m_pLandscape, CEventMgr::E_EVENT_TOUCH);
     m_pLandscape->Set_Position(glm::vec3(0.0f, 0.0f, 0.0f));
     m_pLandscape->Add_DelegateOwner(this);
     m_pLandscape->Set_RenderMode(CShader::E_RENDER_MODE_REFLECTION, true);
     m_pLandscape->Set_RenderMode(CShader::E_RENDER_MODE_REFRACTION, true);
-    m_pLandscape->Set_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, true);
-    //m_pLandscape->Set_Scale(glm::vec3(2.0f, 2.0f, 2.0f));
+    //m_pLandscape->Set_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, true);
     
     CSceneMgr::Instance()->Get_CollisionMgr()->Create_Box2dWorld();
     
@@ -78,8 +77,6 @@ void CGameInGameLevel::Load(void)
     m_pSkyBox = (CSkyBox*)CSceneMgr::Instance()->Add_SkyBoxModel("skybox");
     m_pSkyBox->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_SKYBOX);
     m_pSkyBox->Set_Texture("clouds.pvr", 0, CTexture::E_WRAP_MODE_REPEAT);
-    
-    
 }
 
 void CGameInGameLevel::Unload(void)

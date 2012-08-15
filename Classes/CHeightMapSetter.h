@@ -20,6 +20,8 @@ protected:
     int m_iWidth;
     int m_iHeight;
     
+    glm::vec2 m_vScaleFactor;
+    
     float m_fXThreshold;
     float m_fZThreshold;
     
@@ -58,11 +60,12 @@ public:
     CHeightMapSetter(void);
     ~CHeightMapSetter(void);
     
-    CMesh* Load_DataSource(const std::string _sName, int _iWidth, int _iHeight);
+    CMesh* Load_DataSource(const std::string _sName, int _iWidth, int _iHeight, const glm::vec2& _vScaleFactor);
     float* Get_SourceData(void) { return m_pDataSource; }
     
-    int Get_Width(void) { return m_iWidth; }
-    int Get_Height(void) { return m_iHeight; }
+    inline int Get_Width(void) { return m_iWidth; }
+    inline int Get_Height(void) { return m_iHeight; }
+    inline glm::vec2 Get_ScaleFactor(void) { return m_vScaleFactor; }
     
     float Get_HeightValue(float _x, float _z);
     float Get_HeightValue(glm::vec2 _vPosition);

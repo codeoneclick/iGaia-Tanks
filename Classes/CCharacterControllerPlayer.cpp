@@ -115,7 +115,7 @@ void CCharacterControllerPlayer::Update(void)
             break;
         case ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_LEFT:
             
-            SteerLeft();
+            m_pNavigationHelper->SteerRight();
             
             m_pTrack->Move_LeftTrack(-fTrackTexCoordOffsetMoveFactor);
             m_pTrack->Move_RightTrack(fTrackTexCoordOffsetSteerFactor);
@@ -124,7 +124,7 @@ void CCharacterControllerPlayer::Update(void)
             break;
         case ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_RIGHT:
             
-            SteerRight();
+            m_pNavigationHelper->SteerLeft();
             
             m_pTrack->Move_LeftTrack(fTrackTexCoordOffsetSteerFactor);
             m_pTrack->Move_RightTrack(-fTrackTexCoordOffsetMoveFactor);
@@ -167,7 +167,7 @@ void CCharacterControllerPlayer::Update(void)
         {
             if((m_fTowerRotationY + fTowerSteerSpeed) > 60.0f)
             {
-                SteerLeft();
+                m_pNavigationHelper->MoveLeft();
             }
             else
             {
@@ -179,7 +179,7 @@ void CCharacterControllerPlayer::Update(void)
         {
             if((m_fTowerRotationY - fTowerSteerSpeed) < -60.0f)
             {
-                SteerRight();
+                m_pNavigationHelper->MoveRight();
             }
             else
             {

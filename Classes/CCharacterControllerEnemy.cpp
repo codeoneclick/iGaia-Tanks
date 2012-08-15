@@ -92,7 +92,7 @@ void CCharacterControllerEnemy::Set_AIState(E_AI_STATE _eState, long _iAIStateDu
     }
     
     float fAngleFromSeekerToTarget = CMathHelper::Instance()->Get_RotationBetweenPoints(m_vMovePoint, m_vPosition) + 180.0f;
-    fAngleFromSeekerToTarget = _Get_WrapAngle(fAngleFromSeekerToTarget, 0.0f, 360.0f);
+    fAngleFromSeekerToTarget = CMathHelper::Instance()->Get_WrapAngle(fAngleFromSeekerToTarget, 0.0f, 360.0f);
     if(fAngleFromSeekerToTarget > m_vRotation.y)
     {
         m_eStreerMode = E_AI_STEER_MODE_LEFT;
@@ -129,7 +129,7 @@ void CCharacterControllerEnemy::Update(void)
 {
     float fTrackTexCoordOffsetMoveFactor  = 0.2f;
     
-    m_vRotation.y = _Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f);
+    m_vRotation.y = CMathHelper::Instance()->Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f);
     
     switch (m_eState)
     {
@@ -157,12 +157,12 @@ void CCharacterControllerEnemy::Update(void)
             
             float fAngleFromSeekerToTarget = CMathHelper::Instance()->Get_RotationBetweenPoints(m_vMovePoint, m_vPosition) + 180.0f;
             //glm::degrees(CMathHelper::Instance()->Get_RotationBetweenPointsDot(vPoint_01, vPoint_02));
-            fAngleFromSeekerToTarget = _Get_WrapAngle(fAngleFromSeekerToTarget, 0.0f, 360.0f);
+            fAngleFromSeekerToTarget = CMathHelper::Instance()->Get_WrapAngle(fAngleFromSeekerToTarget, 0.0f, 360.0f);
             if(m_eStreerMode == E_AI_STEER_MODE_LEFT)
             {
                 if(fabsf(fAngleFromSeekerToTarget - m_vRotation.y) > 45.0f)
                 {
-                    SteerLeft();
+                    m_pNavigationHelper->MoveLeft();
                     m_pTrack->Move_LeftTrack(-fTrackTexCoordOffsetMoveFactor);
                     m_pTrack->Move_RightTrack(fTrackTexCoordOffsetMoveFactor);
                 }
@@ -170,7 +170,7 @@ void CCharacterControllerEnemy::Update(void)
                 {
                     if(fabs(fAngleFromSeekerToTarget - m_vRotation.y) > 1.0f)
                     {
-                        SteerLeft();
+                        m_pNavigationHelper->MoveLeft();
                     }
                     //MoveForward();
                     if(m_pBox2dBody != NULL)
@@ -189,7 +189,7 @@ void CCharacterControllerEnemy::Update(void)
             {
                 if(fabsf(fAngleFromSeekerToTarget - m_vRotation.y) > 45.0f)
                 {
-                    SteerRight();
+                    m_pNavigationHelper->MoveRight();
                     m_pTrack->Move_LeftTrack(-fTrackTexCoordOffsetMoveFactor);
                     m_pTrack->Move_RightTrack(fTrackTexCoordOffsetMoveFactor);
                 }
@@ -197,7 +197,7 @@ void CCharacterControllerEnemy::Update(void)
                 {
                     if(fabs(fAngleFromSeekerToTarget - m_vRotation.y) > 1.0f)
                     {
-                        SteerRight();
+                        m_pNavigationHelper->MoveRight();
                     }
                     //MoveForward();
                     if(m_pBox2dBody != NULL)

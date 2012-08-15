@@ -16,7 +16,6 @@ ICamera::ICamera()
 	m_vPosition = glm::vec3(0.0f, 0.0f, 0.0f); 
     m_vRotation = glm::vec3(0.0f, 0.0f, 0.0f);
     m_vUp = glm::vec3(0.0f, 1.0f, 0.0f);
-    
     m_pFrustum = NULL;
 }
 
@@ -25,7 +24,7 @@ ICamera::~ICamera()
     
 }
 
-void ICamera::Init(int _iScreenWidth, int _iScreenHeight, float _fFovY, float _fFarPlane, float _fNearPlane)
+void ICamera::Create(int _iScreenWidth, int _iScreenHeight, float _fFovY, float _fFarPlane, float _fNearPlane)
 {
     m_fAspectRatio = static_cast<float>(CWindow::Get_OffScreenWidth()) / static_cast<float>(CWindow::Get_OffScreenHeight());
     m_fFovY = _fFovY;
@@ -46,7 +45,25 @@ void ICamera::Set_FovY(float _fFovY)
     m_mProjection = glm::perspective(m_fFovY, m_fAspectRatio, m_fNearPlane, m_fFarPlane);
 }
 
-glm::mat4x4 ICamera::Get_BillboardSphericalMatrix(glm::vec3 _vPosition)
+void ICamera::Set_NearPlane(float _fNearPlane)
+{
+    m_fNearPlane = _fNearPlane;
+    m_mProjection = glm::perspective(m_fFovY, m_fAspectRatio, m_fNearPlane, m_fFarPlane);
+}
+
+void ICamera::Set_FarPlane(float _fFarPlane)
+{
+    m_fFarPlane = _fFarPlane;
+    m_mProjection = glm::perspective(m_fFovY, m_fAspectRatio, m_fNearPlane, m_fFarPlane);
+}
+
+void ICamera::Set_AspectRatio(float _fAspectRatio)
+{
+    m_fAspectRatio = _fAspectRatio;
+    m_mProjection = glm::perspective(m_fFovY, m_fAspectRatio, m_fNearPlane, m_fFarPlane);
+}
+
+glm::mat4x4 ICamera::Get_BillboardSphericalMatrix(const glm::vec3& _vPosition)
 {
     glm::vec3 vLook = m_vPosition - _vPosition;
     vLook = glm::normalize(vLook);
@@ -77,7 +94,7 @@ glm::mat4x4 ICamera::Get_BillboardSphericalMatrix(glm::vec3 _vPosition)
     return mBillboardMatrix;
 }
 
-glm::mat4x4 ICamera::Get_BillboardCylindricalMatrix(glm::vec3 _vPosition)
+glm::mat4x4 ICamera::Get_BillboardCylindricalMatrix(const glm::vec3& _vPosition)
 {
     glm::vec3 vLook = m_vPosition - _vPosition;
     vLook = glm::normalize(vLook);

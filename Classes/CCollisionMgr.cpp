@@ -28,8 +28,8 @@ CCollisionMgr::~CCollisionMgr()
 
 void CCollisionMgr::Create_Box2dWorld(void)
 {
-    float fWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
-    float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height();
+    float fWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width() * CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor().x;
+    float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height() * CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor().y;
 	b2Vec2 vGravity = b2Vec2(0.0f, 0.0f);
     
 	m_pBox2dWorld = new b2World(vGravity);

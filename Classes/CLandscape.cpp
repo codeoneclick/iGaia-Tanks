@@ -17,6 +17,7 @@ CLandscape::CLandscape(void)
 {
     m_iWidth = 64;
     m_iHeight = 64;
+    m_vScaleFactor = glm::vec2(2.0f, 2.0f);
     m_pHeightMapSetter = NULL;
 }
 
@@ -31,7 +32,7 @@ CLandscape::~CLandscape(void)
 void CLandscape::Load(const std::string& _sName, IResource::E_THREAD _eThread)
 {
     m_pHeightMapSetter = new CHeightMapSetter();
-    m_pMesh = m_pHeightMapSetter->Load_DataSource(_sName, m_iWidth, m_iHeight);
+    m_pMesh = m_pHeightMapSetter->Load_DataSource(_sName, m_iWidth, m_iHeight, m_vScaleFactor);
     
     CSceneMgr::Instance()->Set_HeightMapSetterRef(m_pHeightMapSetter);
     
@@ -48,7 +49,7 @@ void CLandscape::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     
     m_pQuadTree = new SQuadTreeNode();
     m_pQuadTree->m_pParent = NULL;
-    m_pQuadTree->m_vMaxBound = glm::vec3(m_iWidth, 64.0f, m_iHeight);
+    m_pQuadTree->m_vMaxBound = glm::vec3(m_iWidth * m_vScaleFactor.x, 64.0f, m_iHeight * m_vScaleFactor.y);
     m_pQuadTree->m_vMinBound = glm::vec3(0.0f, -64.0f, 0.0f);
     m_pQuadTree->m_iNumIndexes = iNumIndexes;
     m_pQuadTree->m_pIndexes = static_cast<unsigned short*>(malloc(m_pQuadTree->m_iNumIndexes * sizeof(unsigned short)));
@@ -65,6 +66,8 @@ void CLandscape::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
+    
+    Set_Scale(glm::vec3(m_vScaleFactor.x, 1.0f, m_vScaleFactor.y));
 }
 
 void CLandscape::_CreateLandscapeEdges(void)
@@ -132,9 +135,9 @@ void CLandscape::_CreateIndexBufferRefForQuadTreeNode(CLandscape::SQuadTreeNode 
     
     for(unsigned int i = 0; i < iParentNumIndexes; i += 3)
     {
-        if(_IsPointInBoundBox(pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 0]].m_vPosition, _pNode->m_vMinBound, _pNode->m_vMaxBound) ||
-           _IsPointInBoundBox(pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 1]].m_vPosition, _pNode->m_vMinBound, _pNode->m_vMaxBound) ||
-           _IsPointInBoundBox(pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 2]].m_vPosition, _pNode->m_vMinBound, _pNode->m_vMaxBound))
+        if(_IsPointInBoundBox(glm::vec3(pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 0]].m_vPosition.x * m_vScaleFactor.x,pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 0]].m_vPosition.y, pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 0]].m_vPosition.z * m_vScaleFactor.y) , _pNode->m_vMinBound, _pNode->m_vMaxBound) ||
+           _IsPointInBoundBox(glm::vec3(pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 1]].m_vPosition.x * m_vScaleFactor.x, pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 1]].m_vPosition.y, pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 1]].m_vPosition.z * m_vScaleFactor.y), _pNode->m_vMinBound, _pNode->m_vMaxBound) ||
+           _IsPointInBoundBox(glm::vec3(pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 2]].m_vPosition.x * m_vScaleFactor.x, pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 2]].m_vPosition.y, pVertexBufferData[_pNode->m_pParent->m_pIndexes[i + 2]].m_vPosition.z * m_vScaleFactor.y), _pNode->m_vMinBound, _pNode->m_vMaxBound))
         {
             
             if(_pNode->m_pParent->m_pIndexesId[i + 0] == iQuadTreeNodeId ||
@@ -405,9 +408,9 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            //pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            //pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            //pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
+            pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
+            pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
+            pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             pShader->Set_Vector4(glm::vec4(0.0f, 1.0, 0.0, 0.1), CShader::E_ATTRIBUTE_VECTOR_CLIP_PLANE);
         }

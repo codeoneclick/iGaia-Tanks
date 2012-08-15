@@ -275,6 +275,8 @@
 		A1F68E5C157E399E0048A717 /* CSpriteMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F68E5A157E399E0048A717 /* CSpriteMgr.cpp */; };
 		A1F68E60157E39C00048A717 /* CSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F68E5E157E39C00048A717 /* CSprite.cpp */; };
 		A1F690471557CCAC00A2920A /* CJoystick.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1F690461557CCAC00A2920A /* CJoystick.mm */; };
+		A1F98AE915DB8A6100B38C6E /* CNavigationHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F98AE715DB8A6100B38C6E /* CNavigationHelper.cpp */; };
+		A1F98AF115DBA84600B38C6E /* INavigationDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F98AEF15DBA84600B38C6E /* INavigationDelegate.cpp */; };
 		A1FCBE7D15A44B17004FC37B /* IGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBE7B15A44B17004FC37B /* IGameScene.cpp */; };
 		A1FCBE8015A44B4B004FC37B /* CGameSceneMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBE7E15A44B4B004FC37B /* CGameSceneMgr.cpp */; };
 		A1FCBE8715A44D27004FC37B /* IGameLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBE8515A44D27004FC37B /* IGameLevel.cpp */; };
@@ -873,6 +875,10 @@
 		A1F68E5F157E39C00048A717 /* CSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSprite.h; sourceTree = "<group>"; };
 		A1F690451557CCAC00A2920A /* CJoystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJoystick.h; sourceTree = "<group>"; };
 		A1F690461557CCAC00A2920A /* CJoystick.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CJoystick.mm; sourceTree = "<group>"; };
+		A1F98AE715DB8A6100B38C6E /* CNavigationHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CNavigationHelper.cpp; sourceTree = "<group>"; };
+		A1F98AE815DB8A6100B38C6E /* CNavigationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNavigationHelper.h; sourceTree = "<group>"; };
+		A1F98AEF15DBA84600B38C6E /* INavigationDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = INavigationDelegate.cpp; sourceTree = "<group>"; };
+		A1F98AF015DBA84600B38C6E /* INavigationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INavigationDelegate.h; sourceTree = "<group>"; };
 		A1FCBE7B15A44B17004FC37B /* IGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IGameScene.cpp; sourceTree = "<group>"; };
 		A1FCBE7C15A44B17004FC37B /* IGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGameScene.h; sourceTree = "<group>"; };
 		A1FCBE7E15A44B4B004FC37B /* CGameSceneMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameSceneMgr.cpp; sourceTree = "<group>"; };
@@ -1296,6 +1302,8 @@
 				A18D576D1598418000FCD8C9 /* CMaterial.cpp */,
 				A1E37D61159DE9AD000314C3 /* CSettings.h */,
 				A1E37D60159DE9AD000314C3 /* CSettings.cpp */,
+				A1F98AE815DB8A6100B38C6E /* CNavigationHelper.h */,
+				A1F98AE715DB8A6100B38C6E /* CNavigationHelper.cpp */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1737,6 +1745,8 @@
 				A12156B1152EDE9C002E1942 /* IResourceLoaderDelegate.cpp */,
 				A123836915D12D2D007769E7 /* ICollisionDelegate.h */,
 				A123836815D12D2D007769E7 /* ICollisionDelegate.cpp */,
+				A1F98AF015DBA84600B38C6E /* INavigationDelegate.h */,
+				A1F98AEF15DBA84600B38C6E /* INavigationDelegate.cpp */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -2701,6 +2711,8 @@
 				A1FE33BA15D93CD400D82CF6 /* GameClient.cpp in Sources */,
 				A1FE33BD15D93CE000D82CF6 /* GameServer.cpp in Sources */,
 				A1FE33C415D9596D00D82CF6 /* GameClientHandler.cpp in Sources */,
+				A1F98AE915DB8A6100B38C6E /* CNavigationHelper.cpp in Sources */,
+				A1F98AF115DBA84600B38C6E /* INavigationDelegate.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

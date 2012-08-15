@@ -69,6 +69,9 @@ void COcean::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
+    
+    glm::vec2 vScaleFactor = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor();
+    Set_Scale(glm::vec3(vScaleFactor.x, 1.0f, vScaleFactor.y));
 }
 
 void COcean::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)

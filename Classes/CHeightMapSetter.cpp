@@ -25,6 +25,8 @@ CHeightMapSetter::CHeightMapSetter(void)
     m_pPostRenderScreenPlaneShader = NULL;
     
     m_bIsTextureDetailCreated = false;
+    
+    m_vScaleFactor = glm::vec2(1.0f, 1.0f);
 }
 
 CHeightMapSetter::~CHeightMapSetter(void)
@@ -34,10 +36,11 @@ CHeightMapSetter::~CHeightMapSetter(void)
     glDeleteTextures(1, &m_hTextureSplatting);
 }
 
-CMesh* CHeightMapSetter::Load_DataSource(const std::string _sName, int _iWidth, int _iHeight)
+CMesh* CHeightMapSetter::Load_DataSource(const std::string _sName, int _iWidth, int _iHeight, const glm::vec2& _vScaleFactor)
 {
     m_iWidth = _iWidth;
     m_iHeight = _iHeight;
+    m_vScaleFactor = _vScaleFactor;
     
     CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
     pSourceData->m_iNumVertexes = m_iWidth * m_iHeight;
@@ -143,7 +146,7 @@ void CHeightMapSetter::_Create_TextureEgdesMask(void)
             float fCurrentEdgeHeight = (static_cast<float>(j) - (static_cast<float>(iTextureEdgesMaskWidth) / 2.0f)) / 8.0f;
             float fWidthIndex = static_cast<float>(i) / static_cast<float>(iTextureEdgesMaskWidth);
             int iWidthIndex = fWidthIndex * m_iWidth;
-            float fCurrentMapHeight = Get_HeightValue(iWidthIndex, 0);
+            float fCurrentMapHeight = Get_HeightValue(iWidthIndex * m_vScaleFactor.x, 0);
             
             if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > 3.0f)
             {
@@ -169,7 +172,7 @@ void CHeightMapSetter::_Create_TextureEgdesMask(void)
             float fCurrentEdgeHeight = (static_cast<float>(j) - (static_cast<float>(iTextureEdgesMaskWidth) / 2.0f)) / 8.0f;
             float fWidthIndex = static_cast<float>(i) / static_cast<float>(iTextureEdgesMaskWidth);
             int iWidthIndex = fWidthIndex * m_iWidth;
-            float fCurrentMapHeight = Get_HeightValue(iWidthIndex, (m_iWidth - 1));
+            float fCurrentMapHeight = Get_HeightValue(iWidthIndex * m_vScaleFactor.x, (m_iWidth - 1) * m_vScaleFactor.y);
             
             if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > 3.0f)
             {
@@ -195,7 +198,7 @@ void CHeightMapSetter::_Create_TextureEgdesMask(void)
             float fCurrentEdgeHeight = (static_cast<float>(j) - (static_cast<float>(iTextureEdgesMaskWidth) / 2.0f)) / 8.0f;
             float fWidthIndex = static_cast<float>(i) / static_cast<float>(iTextureEdgesMaskWidth);
             int iWidthIndex = fWidthIndex * m_iWidth;
-            float fCurrentMapHeight = Get_HeightValue(0, iWidthIndex);
+            float fCurrentMapHeight = Get_HeightValue(0, iWidthIndex * m_vScaleFactor.y);
             
             if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > 3.0f)
             {
@@ -221,7 +224,7 @@ void CHeightMapSetter::_Create_TextureEgdesMask(void)
             float fCurrentEdgeHeight = (static_cast<float>(j) - (static_cast<float>(iTextureEdgesMaskWidth) / 2.0f)) / 8.0f;
             float fWidthIndex = static_cast<float>(i) / static_cast<float>(iTextureEdgesMaskWidth);
             int iWidthIndex = fWidthIndex * m_iWidth;
-            float fCurrentMapHeight = Get_HeightValue((m_iWidth - 1), iWidthIndex);
+            float fCurrentMapHeight = Get_HeightValue((m_iWidth - 1) * m_vScaleFactor.x, iWidthIndex * m_vScaleFactor.y);
             
             if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > 3.0f)
             {
@@ -242,13 +245,13 @@ void CHeightMapSetter::_Create_TextureEgdesMask(void)
             }
         }
     }
-    
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, iTextureEdgesMaskWidth, iTextureEdgesMaskHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pTextureEdgesMask);
-
 }
 
 float CHeightMapSetter::Get_HeightValue(float _x, float _z)
 {
+    _x /= m_vScaleFactor.x;
+    _z /= m_vScaleFactor.y;
     _x -= m_fXThreshold;
     _z -= m_fZThreshold;
     int x = static_cast<int>(floor(_x));
@@ -300,16 +303,16 @@ void CHeightMapSetter::_Create_TextureSplatting(void)
         {
             m_pTextureSplattingDataSource[i + j * m_iHeight] = RGB(255, 0, 0);
             
-            if(Get_HeightValue(i, j) > 1.0f)
+            if(Get_HeightValue(i * m_vScaleFactor.x, j * m_vScaleFactor.y) > 1.0f)
             {
                 m_pTextureSplattingDataSource[i + j * m_iHeight] = RGB(0, 255, 0);
             }
-            if(Get_HeightValue(i, j) < 0.1f)
+            if(Get_HeightValue(i * m_vScaleFactor.x, j * m_vScaleFactor.y) < 0.1f)
             {
                 m_pTextureSplattingDataSource[i + j * m_iHeight] = RGB(0, 0, 255);
             }
             
-            if( i == 0 || j == 0 || i == (m_iWidth - 1) || j == (m_iHeight - 1))
+            if( i == 0 || j == 0 || i == (m_iWidth - 1) * m_vScaleFactor.x || j == (m_iHeight - 1) * m_vScaleFactor.y)
             {
                  m_pTextureSplattingDataSource[i + j * m_iHeight] = RGB(255, 0, 0);
             }
@@ -332,17 +335,14 @@ void CHeightMapSetter::_Create_TextureHeightmap(void)
     {
         for(int j = 0; j < m_iHeight; j++)
         {
-            if(Get_HeightValue(i, j) > 0.0f || Get_HeightValue(i, j) < -1.0f)
+            if(Get_HeightValue(i * m_vScaleFactor.x, j * m_vScaleFactor.y) > 0.0f || Get_HeightValue(i * m_vScaleFactor.x, j * m_vScaleFactor.y) < -1.0f)
             {
                 m_pTextureData[i + j * m_iHeight] = RGB(0, static_cast<unsigned char>(255), 0);
             }
             else
             {
-                m_pTextureData[i + j * m_iHeight] = RGB(static_cast<unsigned char>(fabsf(Get_HeightValue(i, j)) * 255), 0, 0);
+                m_pTextureData[i + j * m_iHeight] = RGB(static_cast<unsigned char>(fabsf(Get_HeightValue(i * m_vScaleFactor.x, j * m_vScaleFactor.y)) * 255), 0, 0);
             }
-            //unsigned char iColor = static_cast<unsigned char>((Get_HeightValue(i, j)  + 1.0f) * 0.5f * 255.0f);
-            //std::cout<<"[_Create_TextureHeightmap] iColor = "<<static_cast<int>(iColor)<<std::endl;
-            //m_pTextureData[i + j * m_iHeight] = RGB(iColor, 0, 0);
         }
     }
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_iWidth, m_iHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, m_pTextureData);

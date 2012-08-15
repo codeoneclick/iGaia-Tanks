@@ -19,6 +19,13 @@ ICharacterController::ICharacterController(void)
     m_eSteerState = E_CHARACTER_CONTROLLER_STEER_STATE_NONE;
     m_pTarget = NULL;
     m_eFullSetType = GameTankSDB::E_CHARACTER_FULLSET_TYPE_LIGHT;
+    
+    m_pNavigationHelper = new CNavigationHelper();
+    m_pNavigationHelper->Set_MoveForwardSpeed(GameSDBStorage::Instance()->Get_UserMoveSpeed(m_eFullSetType));
+    m_pNavigationHelper->Set_MoveBackwardSpeed(GameSDBStorage::Instance()->Get_UserMoveSpeed(m_eFullSetType));
+    m_pNavigationHelper->Set_SteerSpeed(GameSDBStorage::Instance()->Get_UserSteerSpeed(m_eFullSetType));
+    m_pNavigationHelper->Set_UseHeightMap(true);
+    m_pNavigationHelper->Set_Owner(this);
 }
 
 ICharacterController::~ICharacterController(void)
@@ -26,6 +33,8 @@ ICharacterController::~ICharacterController(void)
     SAFE_DELETE(m_pChassis);
     SAFE_DELETE(m_pTower);
     SAFE_DELETE(m_pTrack);
+    
+    SAFE_DELETE(m_pNavigationHelper);
     
     CSceneMgr::Instance()->Get_DecalMgr()->Remove_Decal(m_pShadowDecal);
     CSceneMgr::Instance()->Get_DecalMgr()->Remove_Decal(m_pHealthDecal);
@@ -44,57 +53,6 @@ void ICharacterController::Load(void)
     m_pHealthDecal->Set_Texture("ring.pvr", 0, CTexture::E_WRAP_MODE_CLAMP);
     m_pHealthDecal->Set_Color(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 }
-
-bool ICharacterController::MoveForward(void)
-{
-    float fMoveSpeed = GameSDBStorage::Instance()->Get_UserMoveSpeed(m_eFullSetType);
-    float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(m_vPosition.x + sinf(glm::radians(m_vRotation.y)) * fMoveSpeed, m_vPosition.z + cosf(glm::radians(m_vRotation.y)) * fMoveSpeed);
-    float fLandscapeWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
-    float fLandscapeHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height();
-    float fPrePositionX = m_vPosition.x + sinf(glm::radians(m_vRotation.y)) * (fMoveSpeed * 10.0f);
-    float fPrePositionZ = m_vPosition.z + cosf(glm::radians(m_vRotation.y)) * (fMoveSpeed * 10.0f);
-    if(fHeight < k_MIN_HEIGHTMAP_VALUE || fPrePositionX > (fLandscapeWidth - 1.5f) || fPrePositionZ > (fLandscapeHeight - 1.5f) || fPrePositionX < 0.5f || fPrePositionZ < 0.5f )
-    {
-        return false;
-    }
-    
-    m_vPosition.x += sinf(glm::radians(m_vRotation.y)) * fMoveSpeed;
-    m_vPosition.z += cosf(glm::radians(m_vRotation.y)) * fMoveSpeed;
-    m_vPosition.y = fHeight;
-    return true;
-}
-
-bool ICharacterController::MoveBackward(void)
-{
-    float fMoveSpeed = GameSDBStorage::Instance()->Get_UserMoveSpeed(m_eFullSetType);
-    float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(m_vPosition.x - sinf(glm::radians(m_vRotation.y)) * fMoveSpeed, m_vPosition.z - cosf(glm::radians(m_vRotation.y)) * fMoveSpeed);
-    float fLandscapeWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
-    float fLandscapeHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height();
-    float fPrePositionX = m_vPosition.x - sinf(glm::radians(m_vRotation.y)) * (fMoveSpeed * 10.0f);
-    float fPrePositionZ = m_vPosition.z - cosf(glm::radians(m_vRotation.y)) * (fMoveSpeed * 10.0f);
-    if(fHeight < k_MIN_HEIGHTMAP_VALUE || fPrePositionX > (fLandscapeWidth - 1.5f) || fPrePositionZ > (fLandscapeHeight - 1.5f) || fPrePositionX < 0.5f || fPrePositionZ < 0.5f )
-    {
-        return false;
-    }
-
-    m_vPosition.x -= sinf(glm::radians(m_vRotation.y)) * fMoveSpeed;
-    m_vPosition.z -= cosf(glm::radians(m_vRotation.y)) * fMoveSpeed;
-    m_vPosition.y = fHeight;
-    return true;
-}
-
-void ICharacterController::SteerRight(void)
-{
-    float fSteerSpeed = GameSDBStorage::Instance()->Get_UserSteerSpeed(m_eFullSetType);
-    m_vRotation.y -= fSteerSpeed;
-}
-
-void ICharacterController::SteerLeft(void)
-{
-    float fSteerSpeed = GameSDBStorage::Instance()->Get_UserSteerSpeed(m_eFullSetType);
-    m_vRotation.y += fSteerSpeed;
-}
-
 
 void ICharacterController::Set_Position(const glm::vec3 &_vPosition)
 {
@@ -123,8 +81,11 @@ void ICharacterController::Set_Position(const glm::vec3 &_vPosition)
         m_pHealthDecal->Set_Position(glm::vec3(_vPosition.x, 0.0f, _vPosition.z));
     }
     
-    Set_OriginPosition(_vPosition);
     m_vPosition = _vPosition;
+    
+    Set_OriginPosition(m_vPosition);
+    
+    m_pNavigationHelper->Set_CurrentPosition(m_vPosition);
     
     if(GameNativeCommunicationMgr::Instance()->Get_GameClient() != NULL)
     {
@@ -169,6 +130,8 @@ void ICharacterController::Set_Rotation(const glm::vec3 &_vRotation)
     }
 
     m_vRotation = _vRotation;
+    
+    m_pNavigationHelper->Set_CurrentRotation(m_vRotation);
 }
 
 void ICharacterController::Shoot(void)

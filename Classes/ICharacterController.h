@@ -11,9 +11,12 @@
 
 #include "CModel.h"
 #include "CSceneMgr.h"
-#include "ITouchDelegate.h"
 #include "CLandscape.h"
 #include "CMathHelper.h"
+#include "CNavigationHelper.h"
+
+#include "ITouchDelegate.h"
+#include "INavigationDelegate.h"
 
 #include "ITankTrack.h"
 #include "ITankTower.h"
@@ -35,7 +38,7 @@
 
 #define k_MIN_HEIGHTMAP_VALUE -8.0f
 
-class ICharacterController : public ITouchDelegate, public ICollisionDelegate
+class ICharacterController : public ITouchDelegate, public ICollisionDelegate, public INavigationDelegate
 {
 public:
     enum E_CHARACTER_CONTROLLER_STATE { E_CHARACTER_CONTROLLER_STATE_NONE = 0, E_CHARACTER_CONTROLLER_STATE_INC_MOVE, E_CHARACTER_CONTROLLER_STATE_DEC_MOVE };
@@ -68,14 +71,10 @@ protected:
     
     ICharacterController* m_pTarget;
     
+    CNavigationHelper* m_pNavigationHelper;
+    
     GameTankSDB::E_CHARACTER_FULLSET_TYPE m_eFullSetType;
     
-    inline float _Get_WrapAngle(float _fValue, float _fMin, float _fMax)
-    {
-        float fDistance = _fMax - _fMin;
-        float fTimes = static_cast<float>(floorf((_fValue - _fMin) / fDistance));
-        return _fValue - (fTimes * fDistance);
-    }
     void _SmoothRotation(void);
 public:
     ICharacterController(void);
@@ -97,11 +96,6 @@ public:
     inline glm::vec3 Get_LeftTrackCenterBound(void) { return m_vLeftTrackCenterBound; }
     inline glm::vec3 Get_RightTrackCenterBound(void){ return m_vRightTrackCenterBound; }
     inline float Get_TowerAngleY(void) { return m_fTowerRotationY; }
-    
-    virtual bool MoveForward(void);
-    virtual bool MoveBackward(void);
-    virtual void SteerRight(void);
-    virtual void SteerLeft(void);
     
     virtual void Shoot(void);
     
@@ -128,6 +122,9 @@ public:
     glm::vec3 Get_OriginPosition(void) { return m_vPosition; }
     glm::vec3 Get_OriginMaxBound(void) { return m_vMaxBound; }
     glm::vec3 Get_OriginMinBound(void) { return m_vMinBound; }
+    
+    void OnNavigationPositionChanged(const glm::vec3& _vPosition) { m_vPosition = _vPosition; }
+    void OnNavigationRotationChanged(const glm::vec3& _vRotation) { m_vRotation = _vRotation; }
     
 };
 

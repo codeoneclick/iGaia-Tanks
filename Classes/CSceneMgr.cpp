@@ -152,14 +152,14 @@ void CSceneMgr::Set_Camera(ICamera* _pCamera)
 ICamera* CSceneMgr::CreateFreeCamera(float _fFov, float _fNearPlane, float _fFarPlane)
 {
     CCameraFree* pCamera = new CCameraFree();
-    pCamera->Init(CWindow::Get_OffScreenWidth(), CWindow::Get_OffScreenHeight(), _fFov, _fFarPlane, _fNearPlane);
+    pCamera->Create(CWindow::Get_OffScreenWidth(), CWindow::Get_OffScreenHeight(), _fFov, _fFarPlane, _fNearPlane);
     return pCamera;
 }
 
 ICamera* CSceneMgr::CreateTargetCamera(float _fFov, float _fNearPlane, float _fFarPlane, ICharacterController *_pTarget)
 {
     CCameraTarget* pCamera = new CCameraTarget();
-    pCamera->Init(CWindow::Get_OffScreenWidth(), CWindow::Get_OffScreenHeight(), _fFov, _fFarPlane, _fNearPlane);
+    pCamera->Create(CWindow::Get_OffScreenWidth(), CWindow::Get_OffScreenHeight(), _fFov, _fFarPlane, _fNearPlane);
     pCamera->Set_Target(_pTarget);
     return pCamera;
 }
@@ -283,15 +283,6 @@ void CSceneMgr::_DrawSimpleStep(void)
         ++pBeginNodeIterator;
     }
     
-    /*std::map<unsigned int, ILight*>::iterator pMapBIterator = m_lLights.begin();
-    std::map<unsigned int, ILight*>::iterator pMapEIterator = m_lLights.end();
-    
-    while (pMapBIterator != pMapEIterator)
-    {
-        (*pMapBIterator).second->Render();
-        ++pMapBIterator;
-    }*/
-    
     if(m_pDecalMgr != NULL)
     {
         m_pDecalMgr->Render(CShader::E_RENDER_MODE_SIMPLE);
@@ -321,13 +312,6 @@ void CSceneMgr::_DrawSimpleStep(void)
     {
         m_pSpriteMgr->Render(CShader::E_RENDER_MODE_SIMPLE);
     }
-    
-    
-    
-    /*if(m_pBatchMgr != NULL)
-    {
-        m_pBatchMgr->Render(CShader::E_RENDER_MODE_SIMPLE);
-    }*/
     
     m_pRenderMgr->EndDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_SIMPLE);
 }
@@ -424,11 +408,6 @@ void CSceneMgr::_DrawScreenNormalMapStep(void)
         m_pParticleMgr->Render(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP);
     }
     
-    /*if(m_pBatchMgr != NULL)
-    {
-        m_pBatchMgr->Render(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP);
-    }*/
-    
     m_pRenderMgr->EndDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_SCREEN_NORMAL_MAP);
 }
 
@@ -451,17 +430,16 @@ void CSceneMgr::Render(void)
         _DrawRefractionStep();
     }
     
-    _DrawSimpleStep();
-    
     if(CSettings::g_bEdgeDetect)
     {
         _DrawScreenNormalMapStep();
     }
+    
+    _DrawSimpleStep();
+    
     m_pRenderMgr->DrawResult();
     
     CSettings::g_iTotalTriagnlesPerFrame = CSettings::g_iCurrentTrianglesPerFrame;
-    
-    //std::cout<<"[CSceneMgr::Render] Triangles Per Frame : "<<CSettings::g_iTrianglesPerFrame<<std::endl;
     
     static int iLastTime = 0;
     int iCurrentTime = CTimer::Instance()->Get_TickCount();
@@ -470,8 +448,6 @@ void CSceneMgr::Render(void)
     if(iCurrentTime - iLastTime > 1000 )
     {
         iLastTime = iCurrentTime;
-        
-        //std::cout<<"[CSceneMgr::Render] Frames Per Second : "<<CSettings::g_iFramesPerSecond<<std::endl;
         CSettings::g_iTotalFramesPerSecond = CSettings::g_iCurrentFramesPerSecond;
         CSettings::g_iCurrentFramesPerSecond = 0;
     }

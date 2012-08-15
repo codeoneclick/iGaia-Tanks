@@ -64,6 +64,8 @@ protected:
     bool _IsPointInBoundBox(glm::vec3 _vPoint, glm::vec3 _vMinBound, glm::vec3 _vMaxBound);
     void _CheckVisibleQuadTreeNode(SQuadTreeNode* _pNode);
     void _CreateLandscapeEdges(void);
+
+    glm::vec2 m_vScaleFactor;
 public:
     CLandscape(void);
     ~CLandscape(void);

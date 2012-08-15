@@ -121,6 +121,9 @@ void CLandscapeEdges::Load(const std::string &_sName, IResource::E_THREAD _eThre
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_BLEND_MODE, true);
     m_pMaterial->Set_CullFace(GL_BACK);
     m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
+    glm::vec2 vScaleFactor = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor();
+    Set_Scale(glm::vec3(vScaleFactor.x, 1.0f, vScaleFactor.y));
 }
 
 void CLandscapeEdges::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
