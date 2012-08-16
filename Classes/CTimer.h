@@ -10,12 +10,11 @@
 #define __iGaia__CTimer__
 
 #include <iostream>
+#include <chrono>
 #ifdef OS_IPHONE
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 #endif
-#include <chrono>
-
 
 class CTimer
 {
@@ -27,6 +26,5 @@ public:
     static unsigned long long Get_TickCount(void);
     static unsigned long long Get_TimeInterval(const CTime& _cTime_01, const CTime& _cTime_02);
 };
-
 
 #endif /* defined(__iGaia__CTimer__) */
