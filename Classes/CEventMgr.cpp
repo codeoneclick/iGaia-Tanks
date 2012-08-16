@@ -37,30 +37,23 @@ void CEventMgr::AddEventListener(INode *_pNode, CEventMgr::E_EVENT _eEvent)
 
 void CEventMgr::RemoveEventListener(INode *_pNode, CEventMgr::E_EVENT _eEvent)
 {
-    std::vector<INode*>::iterator pBIterator = m_lContainer[_eEvent].begin();
-    std::vector<INode*>::iterator pEIterator = m_lContainer[_eEvent].end();
-    while (pBIterator != pEIterator) 
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
     {
-        if(_pNode == (*pBIterator))
+        if(_pNode == m_lContainer[_eEvent][index])
         {
-            m_lContainer[_eEvent].erase(pBIterator);
-            return;
+            m_lContainer[_eEvent].erase(m_lContainer[_eEvent].begin() + index);
         }
-        ++pBIterator;
     }
 }
 
 void CEventMgr::OnEvent(CEventMgr::E_EVENT _eEvent)
 {
-    std::vector<INode*>::iterator pBIterator = m_lContainer[_eEvent].begin();
-    std::vector<INode*>::iterator pEIterator = m_lContainer[_eEvent].end();
-    while (pBIterator != pEIterator) 
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
     {
-        INode* pNode = (*pBIterator);
         switch (_eEvent)
         {
             case E_EVENT_TOUCH:
-                pNode->OnTouchEvent(NULL);
+                m_lContainer[_eEvent][index]->OnTouchEvent(NULL);
                 break;
             case E_EVENT_UNTOUCH:
                 
@@ -68,7 +61,6 @@ void CEventMgr::OnEvent(CEventMgr::E_EVENT _eEvent)
             default:
                 break;
         }
-        ++pBIterator;
     }
 }
 

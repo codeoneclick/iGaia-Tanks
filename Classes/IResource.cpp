@@ -43,31 +43,24 @@ void IResource::Add_DelegateOwner(IDelegate *_pDelegateOwner)
 
 void IResource::Remove_DelegateOnwer(IDelegate *_pDelegateOwner)
 {
-    std::vector<IDelegate*>::iterator pBeginIterator = m_lDelegateOwners.begin();
-    std::vector<IDelegate*>::iterator pEndIterator = m_lDelegateOwners.end();
-    while (pBeginIterator != pEndIterator)
+    for(size_t index = 0; index < m_lDelegateOwners.size(); ++index)
     {
-        if((*pBeginIterator) == _pDelegateOwner)
+        if(m_lDelegateOwners[index] == _pDelegateOwner)
         {
-            m_lDelegateOwners.erase(pBeginIterator);
-            return;
+            m_lDelegateOwners.erase(m_lDelegateOwners.begin() + index);
         }
-        ++pBeginIterator;
     }
 }
 
 void IResource::Push_SignalToDelegateOwners(void)
 {
-    std::vector<IDelegate*>::iterator pBeginIterator = m_lDelegateOwners.begin();
-    std::vector<IDelegate*>::iterator pEndIterator = m_lDelegateOwners.end();
-    while (pBeginIterator != pEndIterator)
+    for(size_t index = 0; index < m_lDelegateOwners.size(); ++index)
     {
-        IDelegate* pDelegateOwner = (*pBeginIterator);
+        IDelegate* pDelegateOwner = m_lDelegateOwners[index];
         if(pDelegateOwner->Get_DelegateType() == IDelegate::E_DELEGATE_TYPE_RESOURCE_LOAD)
         {
             dynamic_cast<IResourceLoaderDelegate*>(pDelegateOwner)->OnResourceLoadDoneEvent(m_eResourceType, this);
         }
-        ++pBeginIterator;
     }
     m_lDelegateOwners.clear();
 }

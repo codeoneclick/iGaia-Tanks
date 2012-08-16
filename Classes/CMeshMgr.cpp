@@ -73,16 +73,14 @@ IResource* CMeshMgr::Load(const std::string& _sName, IResource::E_THREAD _eThrea
 
 void CMeshMgr::Unload(const std::string& _sName)
 {
-    CMesh* pMesh = NULL;
-    if( m_lContainer.find(_sName) != m_lContainer.end())
+    std::map<std::string, IResource*>::iterator pMesh = m_lContainer.find(_sName);
+    if(pMesh != m_lContainer.end())
     {
-        pMesh = static_cast<CMesh*>(m_lContainer[_sName]);
-        pMesh->DecRefCount();
-        if(pMesh->Get_RefCount() == 0)
+        static_cast<CMesh*>((*pMesh).second)->DecRefCount();
+        if(static_cast<CMesh*>((*pMesh).second)->Get_RefCount() == 0)
         {
-            delete pMesh;
-            std::map<std::string, IResource*>::iterator pIterator = m_lContainer.find(_sName);
-            m_lContainer.erase(pIterator);
+            SAFE_DELETE(((*pMesh).second));
+            m_lContainer.erase(pMesh);
         }
     }
 }

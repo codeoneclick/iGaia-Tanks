@@ -47,19 +47,13 @@ CParticleEmitterFireTrail* CParticleMgr::Add_ParticleEmitterFireTrail(unsigned i
 
 void CParticleMgr::Remove_ParticleEmitter(CParticleEmitter *_pParticleEmitter)
 {
-    std::vector<CParticleEmitter*>::iterator pBeginEmitterIterator = m_lEmitterContainer.begin();
-    std::vector<CParticleEmitter*>::iterator pEndEmitterIterator = m_lEmitterContainer.end();
-    
-    while(pBeginEmitterIterator != pEndEmitterIterator)
+    for(size_t index = 0; index < m_lEmitterContainer.size(); ++index)
     {
-        if((*pBeginEmitterIterator) == _pParticleEmitter)
+        if(m_lEmitterContainer[index] == _pParticleEmitter)
         {
-            m_lEmitterContainer.erase(pBeginEmitterIterator);
-            delete _pParticleEmitter;
-            _pParticleEmitter = NULL;
-            break;
+            SAFE_DELETE(m_lEmitterContainer[index]);
+            m_lEmitterContainer.erase(m_lEmitterContainer.begin() + index);
         }
-        ++pBeginEmitterIterator;
     }
 }
 
@@ -70,25 +64,22 @@ void CParticleMgr::Remove_Effect(INode *_pEffect)
 
 void CParticleMgr::Update(void)
 {
-    std::vector<CParticleEmitter*>::iterator pBeginEmitterIterator = m_lEmitterContainer.begin();
-    std::vector<CParticleEmitter*>::iterator pEndEmitterIterator = m_lEmitterContainer.end();
-    
-    while(pBeginEmitterIterator != pEndEmitterIterator)
+    for(size_t index = 0; index < m_lEmitterContainer.size(); ++index)
     {
-        (*pBeginEmitterIterator)->Update();
-        ++pBeginEmitterIterator;
+        m_lEmitterContainer[index]->Update();
     }
 }
 
 void CParticleMgr::Render(CShader::E_RENDER_MODE _eMode)
 {
-    std::vector<CParticleEmitter*>::iterator pBeginEmitterIterator = m_lEmitterContainer.begin();
-    std::vector<CParticleEmitter*>::iterator pEndEmitterIterator = m_lEmitterContainer.end();
-    
-    while(pBeginEmitterIterator != pEndEmitterIterator)
+    for(size_t index = 0; index < m_lEmitterContainer.size(); ++index)
     {
-        (*pBeginEmitterIterator)->Render(_eMode);
-        ++pBeginEmitterIterator;
+        m_lEmitterContainer[index]->Render(_eMode);
     }
 }
+
+
+
+
+
 

@@ -11,7 +11,7 @@
 
 #include "stdlib.h"
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include "INode.h"
 
 class CEventMgr
@@ -19,7 +19,7 @@ class CEventMgr
 public:
     enum E_EVENT { E_EVENT_TOUCH = 0, E_EVENT_UNTOUCH };
 protected:
-    std::map<E_EVENT, std::vector<INode*> > m_lContainer;
+    std::unordered_map<E_EVENT, std::vector<INode*> > m_lContainer;
     static CEventMgr* m_pInstance;
 public:
     CEventMgr(void);

@@ -20,22 +20,14 @@ CGameShooterMgr::CGameShooterMgr(void)
 
 CGameShooterMgr::~CGameShooterMgr(void)
 {
-    std::vector<CBullet*>::iterator pBeginBulletIterator = m_lUnUsedBulletsContainer.begin();
-    std::vector<CBullet*>::iterator pEndBulletIterator = m_lUnUsedBulletsContainer.end();
-    while (pBeginBulletIterator != pEndBulletIterator)
+    for(size_t index = 0; index < m_lUnUsedBulletsContainer.size(); ++index)
     {
-        CBullet* pBullet = *pBeginBulletIterator;
-        SAFE_DELETE(pBullet)
-        ++pBeginBulletIterator;
+        SAFE_DELETE(m_lUnUsedBulletsContainer[index]);
     }
     
-    pBeginBulletIterator = m_lUsedBulletsContainer.begin();
-    pEndBulletIterator = m_lUsedBulletsContainer.end();
-    while (pBeginBulletIterator != pEndBulletIterator)
+    for(size_t index = 0; index < m_lUsedBulletsContainer.size(); ++index)
     {
-        CBullet* pBullet = *pBeginBulletIterator;
-        SAFE_DELETE(pBullet)
-        ++pBeginBulletIterator;
+        SAFE_DELETE(m_lUsedBulletsContainer[index]);
     }
 
     m_lUnUsedBulletsContainer.clear();
@@ -62,26 +54,14 @@ void CGameShooterMgr::CreateBullet(const glm::vec3& _vPosition, const glm::vec3&
 
 void CGameShooterMgr::Update(void)
 {
-    std::vector<CBullet*>::iterator pBeginBulletIterator = m_lUsedBulletsContainer.begin();
-    std::vector<CBullet*>::iterator pEndBulletIterator = m_lUsedBulletsContainer.end();
-    while (pBeginBulletIterator != pEndBulletIterator)
+    for(size_t index = 0; index < m_lUsedBulletsContainer.size(); ++index)
     {
-        (*pBeginBulletIterator)->Update();
-        ++pBeginBulletIterator;
-    }
-    
-    pBeginBulletIterator = m_lUsedBulletsContainer.begin();
-    pEndBulletIterator = m_lUsedBulletsContainer.end();
-    while (pBeginBulletIterator != pEndBulletIterator)
-    {
-        if((*pBeginBulletIterator)->Get_IsDead())
+        m_lUsedBulletsContainer[index]->Update();
+        if(m_lUsedBulletsContainer[index]->Get_IsDead())
         {
-            CBullet* pBullet = (*pBeginBulletIterator);
-            m_lUsedBulletsContainer.erase(pBeginBulletIterator);
-            m_lUnUsedBulletsContainer.push_back(pBullet);
-            break;
+            m_lUnUsedBulletsContainer.push_back(m_lUsedBulletsContainer[index]);
+            m_lUsedBulletsContainer.erase(m_lUsedBulletsContainer.begin() + index);
         }
-        ++pBeginBulletIterator;
     }
 }
 

@@ -145,7 +145,7 @@ void CCollisionMgr::Add_CollisionListener(ICollisionDelegate* _pOwner, bool _bIs
         return;
     }
     
-    m_lCollisionObject.push_back(_pOwner);
+    m_lCollisionObjects.push_back(_pOwner);
 
     if(_bIsStatic)
     {
@@ -174,18 +174,14 @@ void CCollisionMgr::Add_CollisionListener(ICollisionDelegate* _pOwner, bool _bIs
 
 void CCollisionMgr::Remove_CollisionListener(ICollisionDelegate *_pOwner)
 {
-    std::vector<ICollisionDelegate*>::iterator pBeginIterator = m_lCollisionObject.begin();
-    std::vector<ICollisionDelegate*>::iterator pEndIterator = m_lCollisionObject.end();
-    while (pBeginIterator != pEndIterator) 
+    for(size_t index = 0; index < m_lCollisionObjects.size(); ++index)
     {
-        if(_pOwner == (*pBeginIterator))
+        if(_pOwner == m_lCollisionObjects[index])
         {
             m_pBox2dWorld->DestroyBody(_pOwner->m_pBox2dBody);
             _pOwner->m_pBox2dBody = NULL;
-            m_lCollisionObject.erase(pBeginIterator);
-            return;
+            m_lCollisionObjects.erase(m_lCollisionObjects.begin() + index);
         }
-        ++pBeginIterator;
     }
 }
 
@@ -200,12 +196,10 @@ void CCollisionMgr::_Update_Box2d(void)
 	int32 positionIterations = 1;
     
 	m_pBox2dWorld->Step(1.0f / 30.0f, velocityIterations, positionIterations);
-
-    for(unsigned int index = 0; index < m_lCollisionObject.size(); ++index)
+    
+    for(size_t index = 0; index < m_lCollisionObjects.size(); ++index)
     {
-        ICollisionDelegate* pOwner = m_lCollisionObject[index];
-        //pOwner->OnOriginRotationChanged(pOwner->m_pBox2dBody->GetAngle());
-        pOwner->OnBox2dPositionChanged(glm::vec3(pOwner->m_pBox2dBody->GetPosition().x, 0.0f, pOwner->m_pBox2dBody->GetPosition().y));
+        m_lCollisionObjects[index]->OnBox2dPositionChanged(glm::vec3(m_lCollisionObjects[index]->m_pBox2dBody->GetPosition().x, 0.0f, m_lCollisionObjects[index]->m_pBox2dBody->GetPosition().y));
     }
 }
 

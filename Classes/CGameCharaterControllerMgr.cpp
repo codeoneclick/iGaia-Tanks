@@ -18,13 +18,9 @@ CGameCharaterControllerMgr::CGameCharaterControllerMgr(void)
 
 CGameCharaterControllerMgr::~CGameCharaterControllerMgr(void)
 {
-    std::vector<ICharacterController*>::iterator pBeginIterator = m_lContainer.begin();
-    std::vector<ICharacterController*>::iterator pEndIterator = m_lContainer.end();
-    while (pBeginIterator != pEndIterator)
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
     {
-        ICharacterController* pCharacterController = (*pBeginIterator);
-        SAFE_DELETE(pCharacterController);
-        ++pBeginIterator;
+        SAFE_DELETE(m_lContainer[index]);
     }
     m_lContainer.clear();
     m_pCharacterControllerPlayer = NULL;
@@ -53,18 +49,13 @@ void CGameCharaterControllerMgr::Remove_MainCharacterController(void)
 
 void CGameCharaterControllerMgr::Remove_EnemyCharacterController(ICharacterController* _pCharacterController)
 {
-    std::vector<ICharacterController*>::iterator pBeginIterator = m_lContainer.begin();
-    std::vector<ICharacterController*>::iterator pEndIterator = m_lContainer.end();
-    while (pBeginIterator != pEndIterator)
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
     {
-        ICharacterController* pCharacterController = (*pBeginIterator);
-        if(pCharacterController == _pCharacterController)
+        if(m_lContainer[index] == _pCharacterController)
         {
-            m_lContainer.erase(pBeginIterator);
-            SAFE_DELETE(pCharacterController);
-            return;
+            SAFE_DELETE(m_lContainer[index]);
+            m_lContainer.erase(m_lContainer.begin() + index);
         }
-        ++pBeginIterator;
     }
 }
 
@@ -75,12 +66,9 @@ void CGameCharaterControllerMgr::Reset_MainCharacterController(void)
 
 void CGameCharaterControllerMgr::Update(void)
 {
-    std::vector<ICharacterController*>::iterator pBeginIterator = m_lContainer.begin();
-    std::vector<ICharacterController*>::iterator pEndIterator = m_lContainer.end();
-    while (pBeginIterator != pEndIterator)
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
     {
-        (*pBeginIterator)->Update();
-        ++pBeginIterator;
+        m_lContainer[index]->Update();
     }
 }
 
