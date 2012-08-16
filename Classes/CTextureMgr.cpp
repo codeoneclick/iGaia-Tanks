@@ -77,7 +77,7 @@ IResource* CTextureMgr::Load(const std::string& _sName, IResource::E_THREAD _eTh
 
 void CTextureMgr::Unload(const std::string& _sName)
 {
-    std::map<std::string, IResource*>::iterator pTexture = m_lContainer.find(_sName);
+    std::unordered_map<std::string, IResource*>::iterator pTexture = m_lContainer.find(_sName);
     if(pTexture != m_lContainer.end())
     {
         static_cast<CTexture*>(pTexture->second)->DecRefCount();

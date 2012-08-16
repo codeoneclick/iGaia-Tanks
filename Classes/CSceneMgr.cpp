@@ -435,13 +435,12 @@ void CSceneMgr::Render(void)
     
     CSettings::g_iTotalTriagnlesPerFrame = CSettings::g_iCurrentTrianglesPerFrame;
     
-    static int iLastTime = 0;
-    int iCurrentTime = CTimer::Instance()->Get_TickCount();
+    static CTimer::CTime cLastTime;
+    CTimer::CTime cCurrentTime = CTimer::CClock::now();
     ++CSettings::g_iCurrentFramesPerSecond;
-    
-    if(iCurrentTime - iLastTime > 1000 )
+    if(CTimer::Get_TimeInterval(cCurrentTime, cLastTime) > 1000 )
     {
-        iLastTime = iCurrentTime;
+        cLastTime = CTimer::CClock::now();
         CSettings::g_iTotalFramesPerSecond = CSettings::g_iCurrentFramesPerSecond;
         CSettings::g_iCurrentFramesPerSecond = 0;
     }

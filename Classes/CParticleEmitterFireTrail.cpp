@@ -37,10 +37,10 @@ void CParticleEmitterFireTrail::Load(const std::string &_sName, IResource::E_THR
 void CParticleEmitterFireTrail::Start(void)
 {
     CParticleEmitter::Start();
-    int iCurrentTimeStamp = CTimer::Instance()->Get_TickCount();
+    CTimer::CTime cCurrentTimeStamp = CTimer::CClock::now();
     for(unsigned short i = 0; i < m_iNumParticles; i++)
     {
-        m_pParticles[i].m_iTimeStamp = iCurrentTimeStamp;
+        m_pParticles[i].m_cTimeStamp = cCurrentTimeStamp;
     }
 }
 
@@ -111,8 +111,8 @@ void CParticleEmitterFireTrail::Update(void)
                 m_pParticles[j].m_vSize += m_vMinSize;
             }
             
-            int iCurrentTimeStamp = CTimer::Instance()->Get_TickCount();
-            int iTimeStampDelta = iCurrentTimeStamp - m_pParticles[j].m_iTimeStamp;
+            CTimer::CTime cCurrentTimeStamp = CTimer::CClock::now();
+            int iTimeStampDelta = CTimer::Get_TimeInterval(cCurrentTimeStamp, m_pParticles[j].m_cTimeStamp); 
             float iLifeDelta = static_cast<float>(iTimeStampDelta) / static_cast<float>(m_pParticles[j].m_iLifeTime);
             if(iLifeDelta <= 1)
             {
@@ -132,7 +132,7 @@ void CParticleEmitterFireTrail::Update(void)
                 m_pParticles[j].m_vSize = m_vMinSize;
                 m_pParticles[j].m_vColor.a = 255;
                 m_pParticles[j].m_bIsDead = false;
-                m_pParticles[j].m_iTimeStamp = iCurrentTimeStamp;
+                m_pParticles[j].m_cTimeStamp = CTimer::CClock::now();
             }
         }
     }

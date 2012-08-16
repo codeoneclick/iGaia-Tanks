@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include "CSceneMgr.h"
+#include "CTimer.h"
 
 #define k_BULLET_HEIGHT_OFFSET 1.45f
 
@@ -30,7 +31,7 @@ protected:
     glm::vec3 m_vMaxBound;
     glm::vec3 m_vMinBound;
     E_BULLET_STATE m_eBulletState;
-    unsigned int m_iExplosionTimeStamp;
+    CTimer::CTime m_cExplosionTimeStamp;
 public:
     CBullet(void);
     ~CBullet(void);

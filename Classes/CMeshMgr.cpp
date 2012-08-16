@@ -73,7 +73,7 @@ IResource* CMeshMgr::Load(const std::string& _sName, IResource::E_THREAD _eThrea
 
 void CMeshMgr::Unload(const std::string& _sName)
 {
-    std::map<std::string, IResource*>::iterator pMesh = m_lContainer.find(_sName);
+    std::unordered_map<std::string, IResource*>::iterator pMesh = m_lContainer.find(_sName);
     if(pMesh != m_lContainer.end())
     {
         static_cast<CMesh*>((*pMesh).second)->DecRefCount();

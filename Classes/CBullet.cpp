@@ -18,7 +18,7 @@ CBullet::CBullet(void)
     m_pOwner = NULL;
     m_bIsDead = false;
     m_fMoveSpeed = 20.0f;
-    m_iExplosionTimeStamp = 0;
+    m_cExplosionTimeStamp = CTimer::CTime();
     m_sColliderIdStr = "bullet_collider";
     m_eBulletState = E_BULLET_STATE_NONE;
 }
@@ -101,7 +101,7 @@ void CBullet::Create(void)
 void CBullet::WillDestroy(void)
 {
     CSceneMgr::Instance()->Get_CollisionMgr()->Remove_CollisionListener(this);
-    m_iExplosionTimeStamp = CTimer::Instance()->Get_TickCount() + 1000;
+    m_cExplosionTimeStamp = CTimer::CClock::now();
     m_pExplosionEmitter->Reset();
     m_pExplosionEmitter->Start();
     if(m_pModel != NULL)
@@ -115,7 +115,7 @@ void CBullet::Destroy(void)
 {
     Set_IsDead(true);
     m_eBulletState = E_BULLET_STATE_NONE;
-    m_iExplosionTimeStamp = 0;
+    m_cExplosionTimeStamp = CTimer::CTime();
 }
 
 void CBullet::_MoveForward(void)
@@ -207,7 +207,7 @@ void CBullet::Update(void)
         WillDestroy();
     }
     
-    if(m_eBulletState == E_BULLET_STATE_02 && CTimer::Instance()->Get_TickCount() > m_iExplosionTimeStamp)
+    if(m_eBulletState == E_BULLET_STATE_02 && CTimer::Get_TimeInterval(CTimer::CClock::now(), m_cExplosionTimeStamp) > 1000)
     {
         Destroy();
     }

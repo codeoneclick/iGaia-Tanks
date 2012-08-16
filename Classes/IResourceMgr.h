@@ -12,13 +12,13 @@
 #include "IParser.h"
 #include <pthread.h>
 #include "stdlib.h"
-#include <map>
+#include <unordered_map>
 
 class IResourceMgr
 {
 protected:
-    std::map<std::string, IParser*> m_lTaskPool;
-    std::map<std::string, IResource*> m_lContainer;
+    std::unordered_map<std::string, IParser*> m_lTaskPool;
+    std::unordered_map<std::string, IResource*> m_lContainer;
 public:
     IResourceMgr(void);
     virtual ~IResourceMgr(void);
