@@ -9,7 +9,7 @@
 #ifndef __iGaia__GameLightTankSDB__
 #define __iGaia__GameLightTankSDB__
 
-#include <GameTankSDB.h>
+#include "GameTankSDB.h"
 
 class GameLightTankSDB : public GameTankSDB
 {

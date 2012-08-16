@@ -24,11 +24,12 @@ GameServer::GameServer(void)
 
 GameServer::~GameServer(void)
 {
-    close(m_iSocketId);
+    closesocket(m_iSocketId);
 }
 
 void GameServer::Start(void)
 {
+#ifdef OS_IPHONE
     if ((m_iSocketId = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
     {
         std::cout<<"[GameServer::Start] Creating Socket Error"<<std::endl;
@@ -51,17 +52,19 @@ void GameServer::Start(void)
         std::cout<<"[GameServer::Start] Socket Bind Error"<<std::endl;
     }
     listen(m_iSocketId, 4);
+#endif
     
     pthread_create(&m_iThread, NULL, GameServerThread, (void*)this);
 }
 
 void GameServer::Stop(void)
 {
-    close(m_iSocketId);
+    closesocket(m_iSocketId);
 }
 
 void GameServer::Update(void)
 {
+#ifdef OS_IPHONE
     struct sockaddr_in client_addr;
     socklen_t clint_length;
     clint_length = sizeof(client_addr);
@@ -77,6 +80,7 @@ void GameServer::Update(void)
         pClientHandler->Create(iSokectId);
     }
     usleep(1000);
+#endif
 }
 
 

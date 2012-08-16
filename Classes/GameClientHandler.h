@@ -10,16 +10,21 @@
 #define __iGaia__GameClientHandler__
 
 #include <iostream>
-#include "stdlib.h"
 #include <vector>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string>
+#ifdef OS_IPHONE
+#include "stdlib.h"
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#else
+#pragma comment(lib, "ws2_32.lib")
+#include <winsock2.h>	
+#endif
 #include <pthread.h>
 #include "GameNetworkProtocol.h"
 

@@ -29,10 +29,14 @@ CGameUIMgr::~CGameUIMgr(void)
     
 }
 
+#ifdef OS_IPHONE
 extern void Global_Set_GameUI(const std::string& _sName);
+#endif
 
 void CGameUIMgr::Set_GameUI(const std::string& _sName)
 {
     m_sGameUIName = _sName;
-    Global_Set_GameUI(m_sGameUIName);
+#ifdef OS_IPHONE
+	Global_Set_GameUI(m_sGameUIName);
+#endif
 }

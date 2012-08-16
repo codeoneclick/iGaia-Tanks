@@ -7,6 +7,9 @@
 //
 
 #include "CTimer.h"
+#ifdef WIN32
+#include <Windows.h>
+#endif
 
 
 CTimer* CTimer::m_pInstance = NULL;
@@ -30,8 +33,9 @@ CTimer* CTimer::Instance(void)
     return m_pInstance;
 }
 
-uint64_t CTimer::Get_TickCount(void)
+unsigned long long CTimer::Get_TickCount(void)
 {
+#ifdef OS_IPHONE
     static mach_timebase_info_data_t sTimebaseInfo;
     uint64_t machTime = mach_absolute_time();
     
@@ -42,4 +46,7 @@ uint64_t CTimer::Get_TickCount(void)
     
     uint64_t millis = ((machTime / 1000000) * sTimebaseInfo.numer) / sTimebaseInfo.denom;
     return millis;
+#else
+	return GetTickCount();
+#endif
 }

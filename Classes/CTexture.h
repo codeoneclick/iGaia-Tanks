@@ -9,9 +9,14 @@
 #ifndef iGaia_CTexture_h
 #define iGaia_CTexture_h
 
+#ifdef OS_IPHONE
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
-#include "PVRTTexture.h"
+#else
+#include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
+#endif
+#include <PVRTTexture.h>
 #include "IResource.h"
 
 class CTexture : public IResource
