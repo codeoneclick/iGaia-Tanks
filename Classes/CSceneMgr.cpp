@@ -24,6 +24,10 @@
 #include "CTimer.h"
 #include "CSettings.h"
 
+#ifdef OS_IPHONE
+#include "CCommon_IOS.h"
+#endif
+
 CSceneMgr* CSceneMgr::m_pInstance = NULL;
 
 CSceneMgr::CSceneMgr(void)
