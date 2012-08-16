@@ -11,7 +11,7 @@
 
 #include "stdlib.h"
 #include <vector>
-#include <iostream.h>
+#include <iostream>
 #include <map>
 #include "box2d.h"
 #include "IVertexBuffer.h"

@@ -11,6 +11,14 @@
 
 #include <iostream>
 
+#ifdef OS_IPHONE
+static const std::string k_RES_MODELES_PATH = "";
+static const std::string k_RES_TEXTURES_PATH = "";
+#else
+static const std::string k_RES_MODELES_PATH = "../Resources/Models/";
+static const std::string k_RES_TEXTURES_PATH = "../Resources/Textures/";
+#endif
+
 class CSettings
 {
 public:

@@ -12,14 +12,20 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
+#ifdef OS_IPHONE
 #include <unistd.h>
-#include <string.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#else
+#pragma comment(lib, "ws2_32.lib")
+#include <winsock2.h>	
+#include <pthread.h>
+#endif
 #include "GameNetworkProtocol.h"
-#include <vector.h>
+#include <vector>
 
 class GameClient
 {

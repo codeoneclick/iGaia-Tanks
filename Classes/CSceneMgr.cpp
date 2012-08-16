@@ -69,11 +69,17 @@ INode* CSceneMgr::Add_LandscapeModel(const std::string& _sName, IResource::E_THR
 {
     INode* pNode = new CLandscape();
     m_lContainer.push_back(pNode);
-    pNode->Load(_sName, _eThread);
+
+	std::string filePath = k_RES_MODELES_PATH + _sName;
+#ifdef OS_IPHONE
+	filePath = Get_ResourceFileName(_sName); 
+#endif
+
+    pNode->Load(filePath, _eThread);
     m_pLandscape = pNode;
     m_pLandscapeEdges = static_cast<CLandscape*>(pNode)->Get_LandscapeEdges();
     m_lContainer.push_back(m_pLandscapeEdges);
-    m_pLandscapeEdges->Load(_sName, _eThread);
+    m_pLandscapeEdges->Load(filePath, _eThread);
     return pNode;
 }
 

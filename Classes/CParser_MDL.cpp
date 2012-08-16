@@ -12,6 +12,7 @@
 #include <strstream>
 #include "CCommon_IOS.h"
 #include "CVertexBufferPositionTexcoordNormalTangent.h"
+#include "CSettings.h"
 
 CParser_MDL::CParser_MDL(void)
 {
@@ -27,7 +28,10 @@ void CParser_MDL::Load(const std::string& _sName)
 {
     m_eStatus = E_START_STATUS;
 
-    std::string sPath = Get_ResourceFileName(_sName); 
+    std::string sPath = k_RES_MODELES_PATH + _sName;
+#ifdef OS_IPHONE
+	sPath = Get_ResourceFileName(_sName); 
+#endif
     
     FILE *pFile = fopen(sPath.c_str(), "r");
     if (!pFile)

@@ -24,11 +24,12 @@ GameClient::GameClient(void)
 
 GameClient::~GameClient(void)
 {
-    close(m_iSocketId);
+    closesocket(m_iSocketId);
 }
 
 void GameClient::Start(void)
 {
+#ifdef OS_IPHONE
     if ((m_iSocketId = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
     {
         std::cout<<"[GameClient::Start] Creating Socket Error"<<std::endl;
@@ -42,7 +43,7 @@ void GameClient::Start(void)
     }
 
     bzero((char *)&server_addr, sizeof(server_addr));
-    server_addr.sin_family = AF_INET;
+	server_addr.sin_family = AF_INET;
     bcopy((char *)server->h_addr, (char *)&server_addr.sin_addr.s_addr, server->h_length);
     server_addr.sin_port = htons(56756);
     
@@ -50,13 +51,14 @@ void GameClient::Start(void)
     {
         std::cout<<"[GameClient::Start] Socket Connect Error"<<std::endl;
     }
+#endif
     pthread_mutex_init(&m_iMutex, NULL);
     pthread_create(&m_iThread, NULL, GameClientThread, (void*)this);
 }
 
 void GameClient::Stop(void)
 {
-    close(m_iSocketId);
+    closesocket(m_iSocketId);
 }
 
 void GameClient::Send_Position(const glm::vec3 &_vPosition)
@@ -72,6 +74,7 @@ void GameClient::Send_Position(const glm::vec3 &_vPosition)
 void GameClient::Update(void)
 {
     pthread_mutex_lock(&m_iMutex);
+#ifdef OS_IPHONE
     for(unsigned int index = 0; index < m_lPacketContainer.size(); ++index)
     {
         CPacket* pPacket = m_lPacketContainer[index];
@@ -84,8 +87,11 @@ void GameClient::Update(void)
         delete pPacket;
     }
     m_lPacketContainer.clear();
+#endif
     pthread_mutex_unlock(&m_iMutex);
+#ifdef OS_IPHONE
     usleep(1000);
+#endif
 }
 
 

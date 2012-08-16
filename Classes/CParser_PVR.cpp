@@ -11,6 +11,7 @@
 #include <fstream>
 #include <strstream>
 #include "CCommon_IOS.h"
+#include "CSettings.h"
 
 CParser_PVR::CParser_PVR(void)
 {
@@ -31,7 +32,10 @@ void CParser_PVR::Load(const std::string& _sName)
 {
     m_eStatus = E_START_STATUS;
     
-    std::string sFileName = Get_ResourceFileName(_sName); 
+	std::string sFileName = k_RES_TEXTURES_PATH + _sName;
+#ifdef OS_IPHONE
+	sFileName = Get_ResourceFileName(_sName); 
+#endif
     std::ifstream pStream;
     pStream.open(sFileName.c_str(), std::ios::binary);
     pStream.seekg( 0, std::ios::end );

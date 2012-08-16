@@ -8,8 +8,13 @@
 
 #ifndef iGaia_CWindow_h
 #define iGaia_CWindow_h
+#ifdef OS_IPHONE
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
+#else
+#include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
+#endif
 
 class CWindow
 {
