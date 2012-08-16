@@ -37,8 +37,6 @@
 // Index to bind the attributes to vertex shaders
 #define VERTEX_ARRAY	0
 
-static bool isExit = false;
-
 /*!****************************************************************************
  @Function		WndProc
  @Input			hWnd		Handle to the window
@@ -68,7 +66,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		// Handles the close message when a user clicks the quit icon of the window
 		case WM_CLOSE:
-			isExit = true;
 			PostQuitMessage(0);
 			return 1;
 
@@ -104,6 +101,32 @@ bool TestEGLError(HWND hWnd, char* pszLocation)
 	}
 
 	return true;
+}
+
+void ProcessInput ( )
+{
+	unsigned char keys[256];
+	GetKeyboardState( keys );
+
+	if( keys[VK_LEFT] & 0x80 )
+	{
+
+	}
+	if( keys[VK_RIGHT] & 0x80 )
+	{
+	}
+	if( keys[VK_UP] & 0x80 )
+	{
+	}
+	if( keys[VK_DOWN] & 0x80 )
+	{
+	}
+	if( keys['Z'] & 0x80 )
+	{
+	}
+	if( keys['X'] & 0x80 )
+	{
+	}
 }
 
 /*!****************************************************************************
@@ -440,31 +463,38 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, TCHAR *lpCmdLin
 	
 	//CWindow::Set_ScreenFBO(ui32Vbo);
 
-	while(!isExit)
+	MSG msg;
+	memset(&msg, 0, sizeof(msg));
+	while(WM_QUIT != msg.message)
 	{
-		glClear(GL_COLOR_BUFFER_BIT);
-		if (!TestEGLError(hWnd, "glClear"))
-		{
-			goto cleanup;
+		if( PeekMessage( &msg, NULL, 0, 0, PM_REMOVE ) )
+		{ 
+			TranslateMessage( &msg );
+			DispatchMessage( &msg );
 		}
-
-		CGame::Instance()->Update();
-		CGame::Instance()->Render();
-
-		/*
-			Swap Buffers.
-			Brings to the native display the current render surface.
-		*/
-		eglSwapBuffers(eglDisplay, eglSurface);
-		if (!TestEGLError(hWnd, "eglSwapBuffers"))
+        else
 		{
-			goto cleanup;
+			glClear(GL_COLOR_BUFFER_BIT);
+			if (!TestEGLError(hWnd, "glClear"))
+			{
+				goto cleanup;
+			}
+
+			CGame::Instance()->Update();
+			CGame::Instance()->Render();
+
+			/*
+				Swap Buffers.
+				Brings to the native display the current render surface.
+			*/
+			eglSwapBuffers(eglDisplay, eglSurface);
+			if (!TestEGLError(hWnd, "eglSwapBuffers"))
+			{
+				goto cleanup;
+			}
+
+			ProcessInput();
 		}
-		// Managing the window messages
-		MSG msg;
-		PeekMessage(&msg, hWnd, NULL, NULL, PM_REMOVE);
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
 	}
 
 	// Frees the OpenGL handles for the program and the 2 shaders

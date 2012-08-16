@@ -22,10 +22,10 @@
 #else
 #pragma comment(lib, "ws2_32.lib")
 #include <winsock2.h>	
-#include <pthread.h>
 #endif
 #include "GameNetworkProtocol.h"
 #include <vector>
+#include <pthread.h>
 
 class GameClient
 {
