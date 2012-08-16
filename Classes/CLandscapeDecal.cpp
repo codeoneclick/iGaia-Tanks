@@ -155,9 +155,7 @@ void CLandscapeDecal::Update()
     m_mTextureRotation = glm::mat3x3(cosf(glm::radians(m_vRotation.y)), -sinf(glm::radians(m_vRotation.y)), 0.0,
                                      sinf(glm::radians(m_vRotation.y)),  cosf(glm::radians(m_vRotation.y)), 0.0,
                                       0.0           ,  0.0           , 1.0);
-    
     m_mTexture = m_mTextureScale * m_mTextureRotation * m_mTextureTranslation;
-    
     m_pMesh->Get_VertexBufferRef()->Commit();
 }
 

@@ -20,7 +20,7 @@ ICollisionDelegate::~ICollisionDelegate(void)
     
 }
 
-void ICollisionDelegate::Set_OriginPosition(const glm::vec3 &vPosition)
+void ICollisionDelegate::Set_Box2dPosition(const glm::vec3 &vPosition)
 {
     if(m_pBox2dBody != NULL)
     {

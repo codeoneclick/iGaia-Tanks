@@ -26,7 +26,7 @@ IResource* CMeshMgr::Load(const std::string& _sName, IResource::E_THREAD _eThrea
 {
     CMesh* pMesh = NULL;
     
-    if(_eThread == IResource::E_THREAD_MAIN)
+    if(_eThread == IResource::E_THREAD_SYNC)
     {
         if( m_lContainer.find(_sName) != m_lContainer.end())
         {
@@ -48,7 +48,7 @@ IResource* CMeshMgr::Load(const std::string& _sName, IResource::E_THREAD _eThrea
             delete pParser;
         }
     }
-    else if(_eThread == IResource::E_THREAD_BACKGROUND)
+    else if(_eThread == IResource::E_THREAD_ASYNC)
     {
         if( m_lContainer.find(_sName) != m_lContainer.end())
         {

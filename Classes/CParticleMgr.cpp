@@ -28,7 +28,7 @@ CParticleEmitterFire* CParticleMgr::Add_ParticleEmitterFire(unsigned int _iNumPa
     pParticleEmitter->Set_LifeTime(_iLifeTime);
     pParticleEmitter->Set_IsRepeat(_bIsRepeat);
     m_lEmitterContainer.push_back(pParticleEmitter);
-    pParticleEmitter->Load("emitter", IResource::E_THREAD_MAIN);
+    pParticleEmitter->Load("emitter", IResource::E_THREAD_ASYNC);
     return pParticleEmitter;
 }
 
@@ -41,7 +41,7 @@ CParticleEmitterFireTrail* CParticleMgr::Add_ParticleEmitterFireTrail(unsigned i
     pParticleEmitter->Set_LifeTime(_iLifeTime);
     pParticleEmitter->Set_IsRepeat(_bIsRepeat);
     m_lEmitterContainer.push_back(pParticleEmitter);
-    pParticleEmitter->Load("emitter", IResource::E_THREAD_MAIN);
+    pParticleEmitter->Load("emitter", IResource::E_THREAD_ASYNC);
     return pParticleEmitter;
 }
 

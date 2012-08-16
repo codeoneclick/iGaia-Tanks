@@ -3,6 +3,6 @@ const char* ShaderGrassF = STRINGIFY(
                                                     uniform sampler2D EXT_TEXTURE_01; 
 void main(void)
 {
-    gl_FragColor = texture2D(EXT_TEXTURE_01, OUT_TexCoord);
+    gl_FragColor = texture2D(EXT_TEXTURE_01, OUT_TexCoord) * 4.0;
 }
 );

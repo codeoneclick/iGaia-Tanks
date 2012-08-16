@@ -35,11 +35,11 @@ public:
     glm::vec3 Get_Rotation(void) { return m_vRotation; }
     
     void OnCollision(ICollisionDelegate* _pCollider);
-    void OnOriginPositionChanged(const glm::vec3& _vPosition);
-    void OnOriginRotationChanged(float _fAngleY);
-    glm::vec3 Get_OriginPosition(void) { return m_vPosition; }
-    glm::vec3 Get_OriginMaxBound(void) { return m_vMaxBound; }
-    glm::vec3 Get_OriginMinBound(void) { return m_vMinBound; }
+    void OnBox2dPositionChanged(const glm::vec3& _vPosition);
+    void OnBox2dRotationChanged(float _fAngleY);
+    glm::vec3 Get_Box2dPosition(void) { return m_vPosition; }
+    glm::vec3 Get_Box2dMaxBound(void) { return m_vMaxBound; }
+    glm::vec3 Get_Box2dMinBound(void) { return m_vMinBound; }
 };
 
 #endif /* defined(__iGaia__CBuilding__) */

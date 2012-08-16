@@ -11,7 +11,7 @@
 
 IResourceMgr::IResourceMgr(void)
 {
-    pthread_mutex_init(&m_mutex, NULL);
+
 }
 
 IResourceMgr::~IResourceMgr(void)
@@ -19,51 +19,50 @@ IResourceMgr::~IResourceMgr(void)
     
 }
 
-
 void IResourceMgr::Thread(void)
 {
-    std::map<std::string, IParser*>::iterator pBTask = m_lTaskPool.begin();
-    std::map<std::string, IParser*>::iterator pETask = m_lTaskPool.end();
-    while( pBTask != pETask)
+    std::map<std::string, IParser*>::iterator pBeginIteratorTask = m_lTaskPool.begin();
+    std::map<std::string, IParser*>::iterator pEndIteratorTask = m_lTaskPool.end();
+    while(pBeginIteratorTask != pEndIteratorTask)
     {
-        IParser* pParser = pBTask->second;
+        IParser* pParser = pBeginIteratorTask->second;
         if(pParser->Get_Status() == IParser::E_NONE_STATUS)
         {
-            pParser->Load(pBTask->first.c_str());
+            pParser->Load(pBeginIteratorTask->first.c_str());
         }
-        ++pBTask;
+        ++pBeginIteratorTask;
     }
 }
 
 void IResourceMgr::Cancel_Load(IDelegate *_pDelegate)
 {
-    std::map<std::string, IResource*>::iterator pBeginResource = m_lContainer.begin();
-    std::map<std::string, IResource*>::iterator pEndResource = m_lContainer.end();
-    while( pBeginResource != pEndResource)
+    std::map<std::string, IResource*>::iterator pBeginIteratorResource = m_lContainer.begin();
+    std::map<std::string, IResource*>::iterator pEndIteratorResource = m_lContainer.end();
+    while(pBeginIteratorResource != pEndIteratorResource)
     {
-        IResource* pResource = pBeginResource->second;
+        IResource* pResource = pBeginIteratorResource->second;
         pResource->Remove_DelegateOnwer(_pDelegate);
-        ++pBeginResource;
+        ++pBeginIteratorResource;
     }
 }
 
 void IResourceMgr::Update(void)
 {
-    std::map<std::string, IParser*>::iterator pBTask = m_lTaskPool.begin();
-    std::map<std::string, IParser*>::iterator pETask = m_lTaskPool.end();
-    while( pBTask != pETask)
+    std::map<std::string, IParser*>::iterator pBeginIteratorTask = m_lTaskPool.begin();
+    std::map<std::string, IParser*>::iterator pEndIteratorTask = m_lTaskPool.end();
+    while(pBeginIteratorTask != pEndIteratorTask)
     {
-        IParser* pParser = (IParser*)pBTask->second;
+        IParser* pParser = (IParser*)pBeginIteratorTask->second;
         if(pParser->Get_Status() == IParser::E_DONE_STATUS)
         {
             pParser->Commit();
-            std::string sRequestName = pBTask->first;
-            if(m_lContainer.find(pBTask->first) != m_lContainer.end())
+            std::string sRequestName = pBeginIteratorTask->first;
+            if(m_lContainer.find(pBeginIteratorTask->first) != m_lContainer.end())
             {
-                IResource* pResource = m_lContainer[pBTask->first];
+                IResource* pResource = m_lContainer[pBeginIteratorTask->first];
                 pResource->Set_SourceData(pParser->Get_SourceData());
-                m_lTaskPool.erase(pBTask);
-                delete pParser;
+                m_lTaskPool.erase(pBeginIteratorTask);
+                SAFE_DELETE(pParser);
                 pResource->Push_SignalToDelegateOwners();
                 return;
             }
@@ -72,12 +71,12 @@ void IResourceMgr::Update(void)
         {
             if(pParser->Get_Status() == IParser::E_ERROR_STATUS)
             {
-                m_lTaskPool.erase(pBTask);
-                delete pParser;
+                m_lTaskPool.erase(pBeginIteratorTask);
+                SAFE_DELETE(pParser);
                 return;
             }
         }
-        ++pBTask;
+        ++pBeginIteratorTask;
     }
 }
 

@@ -33,7 +33,7 @@ CBullet::~CBullet(void)
 
 void CBullet::Load(void)
 {
-    m_pModel = (CModel*)CSceneMgr::Instance()->Add_CustomModel("tank_medium_tower.mdl", IResource::E_THREAD_BACKGROUND);
+    m_pModel = (CModel*)CSceneMgr::Instance()->Add_CustomModel("tank_medium_tower.mdl", IResource::E_THREAD_ASYNC);
     m_pModel->Set_Texture("tank_medium.pvr", 0, CTexture::E_WRAP_MODE_REPEAT);
     m_pModel->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_MODEL);
     m_pModel->Set_Visible(false);
@@ -221,7 +221,7 @@ void CBullet::OnCollision(ICollisionDelegate *_pCollider)
     }
 }
 
-void CBullet::OnOriginPositionChanged(const glm::vec3& _vPosition)
+void CBullet::OnBox2dPositionChanged(const glm::vec3& _vPosition)
 {
     float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(_vPosition.x, _vPosition.z) + k_BULLET_HEIGHT_OFFSET;
     m_vPosition.y = fHeight;
@@ -229,7 +229,7 @@ void CBullet::OnOriginPositionChanged(const glm::vec3& _vPosition)
     m_vPosition.z = _vPosition.z;
 }
 
-void CBullet::OnOriginRotationChanged(float _fAngleY)
+void CBullet::OnBox2dRotationChanged(float _fAngleY)
 {
     m_vRotation.y = _fAngleY;
 }

@@ -29,7 +29,7 @@ IResource* CTextureMgr::Load(const std::string& _sName, IResource::E_THREAD _eTh
 {
     CTexture* pTexture = NULL;
     
-    if(_eThread == IResource::E_THREAD_MAIN)
+    if(_eThread == IResource::E_THREAD_SYNC)
     {
         if( m_lContainer.find(_sName) != m_lContainer.end())
         {
@@ -52,7 +52,7 @@ IResource* CTextureMgr::Load(const std::string& _sName, IResource::E_THREAD _eTh
             m_lContainer[_sName] = pTexture;
         }
     }
-    else if(_eThread == IResource::E_THREAD_BACKGROUND)
+    else if(_eThread == IResource::E_THREAD_ASYNC)
     {
         if( m_lContainer.find(_sName) != m_lContainer.end())
         {

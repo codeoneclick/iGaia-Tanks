@@ -23,7 +23,7 @@ INode* CDecalMgr::Add_LandscapeDecal(void)
 {
     CLandscapeDecal* pDecal = new CLandscapeDecal();
     m_lContainer.push_back(pDecal);
-    pDecal->Load("decal", IResource::E_THREAD_MAIN);
+    pDecal->Load("decal", IResource::E_THREAD_ASYNC);
     return pDecal;
 }
 

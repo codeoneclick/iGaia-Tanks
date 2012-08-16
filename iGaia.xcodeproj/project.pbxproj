@@ -61,7 +61,6 @@
 		93B6BB7214840FD600E34B78 /* INode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B6BB7114840FD500E34B78 /* INode.cpp */; };
 		93B6BB8C14841F0C00E34B78 /* CMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B6BB8B14841F0B00E34B78 /* CMesh.cpp */; };
 		93B6BB8F1484210000E34B78 /* CMeshMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B6BB8E148420FE00E34B78 /* CMeshMgr.cpp */; };
-		93B6BB961484D21900E34B78 /* CMeshComposite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B6BB951484D21300E34B78 /* CMeshComposite.cpp */; };
 		93C06CF914D2951100B7502A /* CEventMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93C06CF814D2951100B7502A /* CEventMgr.cpp */; };
 		93CBB220150E141900CB1EFF /* CGrass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CBB21F150E141800CB1EFF /* CGrass.cpp */; };
 		93CE486014B458E000C5F031 /* CBoundingBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CE485F14B458E000C5F031 /* CBoundingBox.cpp */; };
@@ -461,8 +460,6 @@
 		93B6BB8B14841F0B00E34B78 /* CMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMesh.cpp; sourceTree = "<group>"; };
 		93B6BB8D148420ED00E34B78 /* CMeshMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMeshMgr.h; sourceTree = "<group>"; };
 		93B6BB8E148420FE00E34B78 /* CMeshMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMeshMgr.cpp; sourceTree = "<group>"; };
-		93B6BB941484D1F200E34B78 /* CMeshComposite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMeshComposite.h; sourceTree = "<group>"; };
-		93B6BB951484D21300E34B78 /* CMeshComposite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMeshComposite.cpp; sourceTree = "<group>"; };
 		93C06CF614D2950600B7502A /* CEventMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEventMgr.h; sourceTree = "<group>"; };
 		93C06CF814D2951100B7502A /* CEventMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEventMgr.cpp; sourceTree = "<group>"; };
 		93CBB21D150E13FD00CB1EFF /* CGrass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGrass.h; sourceTree = "<group>"; };
@@ -1244,8 +1241,6 @@
 				CE914ED31455DA3200AA2000 /* CShaderComposite.cpp */,
 				93B6BB8D148420ED00E34B78 /* CMeshMgr.h */,
 				93B6BB8E148420FE00E34B78 /* CMeshMgr.cpp */,
-				93B6BB941484D1F200E34B78 /* CMeshComposite.h */,
-				93B6BB951484D21300E34B78 /* CMeshComposite.cpp */,
 			);
 			name = ResourceMgr;
 			sourceTree = "<group>";
@@ -2565,7 +2560,6 @@
 				93B6BB7214840FD600E34B78 /* INode.cpp in Sources */,
 				93B6BB8C14841F0C00E34B78 /* CMesh.cpp in Sources */,
 				93B6BB8F1484210000E34B78 /* CMeshMgr.cpp in Sources */,
-				93B6BB961484D21900E34B78 /* CMeshComposite.cpp in Sources */,
 				93AA2A661487A7D10073F016 /* CRenderMgr.cpp in Sources */,
 				93AA2A691487B3A30073F016 /* CSceneMgr.cpp in Sources */,
 				93AA2A7A148831D50073F016 /* ILight.cpp in Sources */,

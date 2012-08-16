@@ -25,7 +25,6 @@ CHeightMapSetter::CHeightMapSetter(void)
     m_pPostRenderScreenPlaneShader = NULL;
     
     m_bIsTextureDetailCreated = false;
-    
     m_vScaleFactor = glm::vec2(1.0f, 1.0f);
 }
 
@@ -137,6 +136,9 @@ void CHeightMapSetter::_Create_TextureEgdesMask(void)
     int iTextureEdgesMaskWidth = 128;
     int iTextureEdgesMaskHeight = 512;
     
+    float fUpperEdgeMin = 3.0f;
+    float fUpperEdgeMax = 4.0f;
+    
     unsigned short* pTextureEdgesMask = new unsigned short[iTextureEdgesMaskWidth * iTextureEdgesMaskHeight];
     for(int i = 0; i < iTextureEdgesMaskWidth; i++)
     {
@@ -148,13 +150,13 @@ void CHeightMapSetter::_Create_TextureEgdesMask(void)
             int iWidthIndex = fWidthIndex * m_iWidth;
             float fCurrentMapHeight = Get_HeightValue(iWidthIndex * m_vScaleFactor.x, 0);
             
-            if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > 3.0f)
+            if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > fUpperEdgeMax)
             {
                 pTextureEdgesMask[(iTextureEdgesMaskWidth - 1) - i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(255, 0, 0);
             }
-            else if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) >= 2.0f && (fCurrentEdgeHeight - fCurrentMapHeight) <= 3.0f)
+            else if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) >= fUpperEdgeMin && (fCurrentEdgeHeight - fCurrentMapHeight) <= fUpperEdgeMax)
             {
-                glm::vec3 vMixColor = glm::mix(glm::vec3(255.0f, 0.0f, 0.0f), glm::vec3(0.0f, 255.0f, 0.0f), 3.0f - (fCurrentEdgeHeight - fCurrentMapHeight));
+                glm::vec3 vMixColor = glm::mix(glm::vec3(255.0f, 0.0f, 0.0f), glm::vec3(0.0f, 255.0f, 0.0f), fUpperEdgeMax - (fCurrentEdgeHeight - fCurrentMapHeight));
                 pTextureEdgesMask[(iTextureEdgesMaskWidth - 1) - i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(static_cast<unsigned char>(vMixColor.x), static_cast<unsigned char>(vMixColor.y), static_cast<unsigned char>(vMixColor.z));
             }
             else if( fCurrentEdgeHeight >= fCurrentMapHeight)
@@ -174,13 +176,13 @@ void CHeightMapSetter::_Create_TextureEgdesMask(void)
             int iWidthIndex = fWidthIndex * m_iWidth;
             float fCurrentMapHeight = Get_HeightValue(iWidthIndex * m_vScaleFactor.x, (m_iWidth - 1) * m_vScaleFactor.y);
             
-            if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > 3.0f)
+            if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > fUpperEdgeMax)
             {
                 pTextureEdgesMask[i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(255, 0, 0);
             }
-            else if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) >= 2.0f && (fCurrentEdgeHeight - fCurrentMapHeight) <= 3.0f)
+            else if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) >= fUpperEdgeMin && (fCurrentEdgeHeight - fCurrentMapHeight) <= fUpperEdgeMax)
             {
-                glm::vec3 vMixColor = glm::mix(glm::vec3(255.0f, 0.0f, 0.0f), glm::vec3(0.0f, 255.0f, 0.0f), 3.0f - (fCurrentEdgeHeight - fCurrentMapHeight));
+                glm::vec3 vMixColor = glm::mix(glm::vec3(255.0f, 0.0f, 0.0f), glm::vec3(0.0f, 255.0f, 0.0f), fUpperEdgeMax - (fCurrentEdgeHeight - fCurrentMapHeight));
                 pTextureEdgesMask[i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(static_cast<unsigned char>(vMixColor.x), static_cast<unsigned char>(vMixColor.y), static_cast<unsigned char>(vMixColor.z));
             }
             else if( fCurrentEdgeHeight >= fCurrentMapHeight)
@@ -200,13 +202,13 @@ void CHeightMapSetter::_Create_TextureEgdesMask(void)
             int iWidthIndex = fWidthIndex * m_iWidth;
             float fCurrentMapHeight = Get_HeightValue(0, iWidthIndex * m_vScaleFactor.y);
             
-            if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > 3.0f)
+            if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > fUpperEdgeMax)
             {
                 pTextureEdgesMask[i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(255, 0, 0);
             }
-            else if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) >= 2.0f && (fCurrentEdgeHeight - fCurrentMapHeight) <= 3.0f)
+            else if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) >= fUpperEdgeMin && (fCurrentEdgeHeight - fCurrentMapHeight) <= fUpperEdgeMax)
             {
-                glm::vec3 vMixColor = glm::mix(glm::vec3(255.0f, 0.0f, 0.0f), glm::vec3(0.0f, 255.0f, 0.0f), 3.0f - (fCurrentEdgeHeight - fCurrentMapHeight));
+                glm::vec3 vMixColor = glm::mix(glm::vec3(255.0f, 0.0f, 0.0f), glm::vec3(0.0f, 255.0f, 0.0f), fUpperEdgeMax - (fCurrentEdgeHeight - fCurrentMapHeight));
                 pTextureEdgesMask[i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(static_cast<unsigned char>(vMixColor.x), static_cast<unsigned char>(vMixColor.y), static_cast<unsigned char>(vMixColor.z));
             }
             else if( fCurrentEdgeHeight >= fCurrentMapHeight)
@@ -226,13 +228,13 @@ void CHeightMapSetter::_Create_TextureEgdesMask(void)
             int iWidthIndex = fWidthIndex * m_iWidth;
             float fCurrentMapHeight = Get_HeightValue((m_iWidth - 1) * m_vScaleFactor.x, iWidthIndex * m_vScaleFactor.y);
             
-            if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > 3.0f)
+            if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) > fUpperEdgeMax)
             {
                 pTextureEdgesMask[(iTextureEdgesMaskWidth - 1) - i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(255, 0, 0);
             }
-            else if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) >= 2.0f && (fCurrentEdgeHeight - fCurrentMapHeight) <= 3.0f)
+            else if( fCurrentEdgeHeight >= fCurrentMapHeight && (fCurrentEdgeHeight - fCurrentMapHeight) >= fUpperEdgeMin && (fCurrentEdgeHeight - fCurrentMapHeight) <= fUpperEdgeMax)
             {
-                glm::vec3 vMixColor = glm::mix(glm::vec3(255.0f, 0.0f, 0.0f), glm::vec3(0.0f, 255.0f, 0.0f), 3.0f - (fCurrentEdgeHeight - fCurrentMapHeight));
+                glm::vec3 vMixColor = glm::mix(glm::vec3(255.0f, 0.0f, 0.0f), glm::vec3(0.0f, 255.0f, 0.0f), fUpperEdgeMax - (fCurrentEdgeHeight - fCurrentMapHeight));
                 pTextureEdgesMask[(iTextureEdgesMaskWidth - 1) - i + j * iTextureEdgesMaskWidth + iTextureBlockSize] = RGB(static_cast<unsigned char>(vMixColor.x), static_cast<unsigned char>(vMixColor.y), static_cast<unsigned char>(vMixColor.z));
             }
             else if( fCurrentEdgeHeight >= fCurrentMapHeight)

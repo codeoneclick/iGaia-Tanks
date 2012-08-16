@@ -17,7 +17,6 @@
 class IResourceMgr
 {
 protected:
-    pthread_mutex_t m_mutex;
     std::map<std::string, IParser*> m_lTaskPool;
     std::map<std::string, IResource*> m_lContainer;
 public:

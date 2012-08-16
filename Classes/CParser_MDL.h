@@ -21,11 +21,10 @@ private:
     char* m_pData;
 public:
     CParser_MDL(void);
-    virtual ~CParser_MDL(void);
-    
-    virtual void  Load(const std::string& _sName);
-    virtual void* Get_SourceData() { return m_pSourceData; }
-    virtual void  Commit(void);
+    ~CParser_MDL(void);
+    void  Load(const std::string& _sName);
+    void* Get_SourceData() { return m_pSourceData; }
+    void  Commit(void);
 };
 
 

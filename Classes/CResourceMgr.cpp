@@ -9,7 +9,7 @@
 #include <iostream>
 #include "CResourceMgr.h"
 
-void* Thread(void *_pParam)
+void* UpdateThread(void *_pParam)
 {
     CResourceMgr* pInstance = (CResourceMgr*)_pParam;
     while (true)
@@ -39,7 +39,6 @@ CResourceMgr::CResourceMgr()
 {
     m_lMgr[IResource::E_MGR_TEXTURE] = new CTextureMgr();
     m_lMgr[IResource::E_MGR_MESH] = new CMeshMgr();
-    //pthread_create(&m_thread, NULL, Thread, (void*)this);
 }
 
 CResourceMgr::~CResourceMgr()
@@ -49,24 +48,24 @@ CResourceMgr::~CResourceMgr()
 
 void CResourceMgr::Update()
 {
-    std::map<IResource::E_MGR,IResourceMgr*>::iterator pBeginMgr = m_lMgr.begin();
-    std::map<IResource::E_MGR,IResourceMgr*>::iterator pEndMgr = m_lMgr.end();
-    while( pBeginMgr != pEndMgr)
+    std::map<IResource::E_MGR,IResourceMgr*>::iterator pBeginIteratorMgr = m_lMgr.begin();
+    std::map<IResource::E_MGR,IResourceMgr*>::iterator pEndIteratorMgr = m_lMgr.end();
+    while(pBeginIteratorMgr != pEndIteratorMgr)
     {
-        pBeginMgr->second->Thread();
-        pBeginMgr->second->Update();
-        ++pBeginMgr;
+        pBeginIteratorMgr->second->Thread();
+        pBeginIteratorMgr->second->Update();
+        ++pBeginIteratorMgr;
     }
 }
 
 void CResourceMgr::Cancel_Load(IDelegate *_pDeleagte)
 {
-    std::map<IResource::E_MGR,IResourceMgr*>::iterator pBeginMgr = m_lMgr.begin();
-    std::map<IResource::E_MGR,IResourceMgr*>::iterator pEndMgr = m_lMgr.end();
-    while( pBeginMgr != pEndMgr)
+    std::map<IResource::E_MGR,IResourceMgr*>::iterator pBeginIteratorMgr = m_lMgr.begin();
+    std::map<IResource::E_MGR,IResourceMgr*>::iterator pEndIteratorMgr = m_lMgr.end();
+    while(pBeginIteratorMgr != pEndIteratorMgr)
     {
-        pBeginMgr->second->Cancel_Load(_pDeleagte);
-        ++pBeginMgr;
+        pBeginIteratorMgr->second->Cancel_Load(_pDeleagte);
+        ++pBeginIteratorMgr;
     }
 }
 

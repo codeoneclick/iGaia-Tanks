@@ -22,7 +22,7 @@ CTankMediumTower::~CTankMediumTower(void)
 
 void CTankMediumTower::Load(void)
 {
-    m_pTower = (CModel*)CSceneMgr::Instance()->Add_CustomModel("tank_medium_tower.mdl", IResource::E_THREAD_BACKGROUND);
+    m_pTower = (CModel*)CSceneMgr::Instance()->Add_CustomModel("tank_medium_tower.mdl", IResource::E_THREAD_ASYNC);
     m_pTower->Set_Texture("tank_medium.pvr", 0, CTexture::E_WRAP_MODE_REPEAT);
     m_pTower->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_MODEL);
     m_pTower->Set_Shader(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, IResource::E_SHADER_MODEL_ND);

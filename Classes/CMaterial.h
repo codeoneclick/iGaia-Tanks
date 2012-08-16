@@ -45,7 +45,7 @@ public:
     CTexture** Get_Textures(void) { return m_pTextures; }
     
     void Set_Texture(CTexture* _pTexture, int _index, CTexture::E_WRAP_MODE _eWrap);
-    void Set_Texture(INode* _pNodeRef, const std::string &_sName, int _index, CTexture::E_WRAP_MODE _eWrap, IResource::E_THREAD _eThread = IResource::E_THREAD_MAIN);
+    void Set_Texture(INode* _pNodeRef, const std::string &_sName, int _index, CTexture::E_WRAP_MODE _eWrap, IResource::E_THREAD _eThread = IResource::E_THREAD_SYNC);
     
     void Set_Shader(INode* _pNodeRef, CShader::E_RENDER_MODE _eMode, IResource::E_SHADER _eShader);
     

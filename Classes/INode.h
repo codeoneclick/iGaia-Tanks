@@ -19,7 +19,6 @@
 
 #include "CResourceMgr.h"
 #include "CShaderComposite.h"
-#include "CMeshComposite.h"
 
 #include "IResourceLoaderDelegate.h"
 #include "ITouchDelegate.h"
@@ -93,7 +92,7 @@ public:
     
 // -- Setters for texture by index. For preload/load texture. Can use background thread for preloading  -- //
     void Set_Texture(CTexture* _pTexture, int index, CTexture::E_WRAP_MODE _eWrap);
-    void Set_Texture(const std::string &_sName, int _index, CTexture::E_WRAP_MODE _eWrap, IResource::E_THREAD _eThread = IResource::E_THREAD_MAIN);
+    void Set_Texture(const std::string &_sName, int _index, CTexture::E_WRAP_MODE _eWrap, IResource::E_THREAD _eThread = IResource::E_THREAD_SYNC);
 // -- -- //
 
 // -- Setter for shader. Use render mode to set shader to the current material and render state -- //

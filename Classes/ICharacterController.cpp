@@ -83,7 +83,7 @@ void ICharacterController::Set_Position(const glm::vec3 &_vPosition)
     
     m_vPosition = _vPosition;
     
-    Set_OriginPosition(m_vPosition);
+    Set_Box2dPosition(m_vPosition);
     
     m_pNavigationHelper->Set_CurrentPosition(m_vPosition);
     
@@ -296,7 +296,7 @@ void ICharacterController::OnCollision(ICollisionDelegate *_pCollider)
     
 }
 
-void ICharacterController::OnOriginPositionChanged(const glm::vec3& _vPosition)
+void ICharacterController::OnBox2dPositionChanged(const glm::vec3& _vPosition)
 {
     float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(_vPosition.x, _vPosition.z);
     m_vPosition.y = fHeight;
@@ -304,7 +304,7 @@ void ICharacterController::OnOriginPositionChanged(const glm::vec3& _vPosition)
     m_vPosition.z = _vPosition.z;
 }
 
-void ICharacterController::OnOriginRotationChanged(float _fAngleY)
+void ICharacterController::OnBox2dRotationChanged(float _fAngleY)
 {
     m_vRotation.y = _fAngleY;
 }

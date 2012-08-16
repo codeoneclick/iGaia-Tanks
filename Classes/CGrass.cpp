@@ -79,9 +79,9 @@ void CGrass::Load(const std::string &_sName, IResource::E_THREAD _eThread)
     
     srand(time(NULL));
     
-    for(unsigned int i = 1; i < (m_iWidth - 1) * m_pHeightMapSetter->Get_ScaleFactor().x; i += 2)
+    for(unsigned int i = 1; i < (m_iWidth - 1); i += 2)
     {
-        for(unsigned int j = 1; j < (m_iHeight - 1) * m_pHeightMapSetter->Get_ScaleFactor().y; j += 2)
+        for(unsigned int j = 1; j < (m_iHeight - 1); j += 2)
         {
            
             float fRange = 0.9f - 0.1f;
@@ -105,13 +105,8 @@ void CGrass::Load(const std::string &_sName, IResource::E_THREAD _eThread)
     
     CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
     CVertexBufferPositionTexcoord::SVertex* pSingleElementVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(m_pSingleElementVertexBuffer->Lock());
-    //glm::vec3* pPositionData = pSourceData->m_pVertexBuffer->GetOrCreate_PositionSourceData();
-    //glm::vec2* pTextCoordData = pSourceData->m_pVertexBuffer->GetOrCreate_TexcoordSourceData();
     
     unsigned short* pIndexesBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
-    
-    //glm::vec3* pSingleElementPositionData = m_pSingleElementVertexBuffer->GetOrCreate_PositionSourceData();
-    //glm::vec2* pSingleElementTextCoordData = m_pSingleElementVertexBuffer->GetOrCreate_TexcoordSourceData();
     
     std::vector<glm::vec3>::iterator pElementsSourceDataBegin = m_lGrassElementsPosition.begin();
     std::vector<glm::vec3>::iterator pElementsSourceDataEnd   = m_lGrassElementsPosition.end();

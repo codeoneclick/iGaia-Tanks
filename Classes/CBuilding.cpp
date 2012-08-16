@@ -24,7 +24,7 @@ CBuilding::~CBuilding(void)
 
 void CBuilding::Load(const std::string& _sModelName, const std::string& _sTextureName)
 {
-    m_pModel = (CModel*)CSceneMgr::Instance()->Add_CustomModel(_sModelName, IResource::E_THREAD_BACKGROUND);
+    m_pModel = (CModel*)CSceneMgr::Instance()->Add_CustomModel(_sModelName, IResource::E_THREAD_ASYNC);
     m_pModel->Set_Texture(_sTextureName, 0, CTexture::E_WRAP_MODE_REPEAT);
     m_pModel->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_MODEL);
     m_pModel->Set_Shader(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, IResource::E_SHADER_MODEL_ND);
@@ -46,7 +46,7 @@ void CBuilding::Set_Position(const glm::vec3& _vPosition)
     {
         m_pModel->Set_Position(_vPosition);
     }
-    Set_OriginPosition(_vPosition);
+    Set_Box2dPosition(_vPosition);
     m_vPosition = _vPosition;
 }
 
@@ -70,12 +70,12 @@ void CBuilding::OnCollision(ICollisionDelegate *_pCollider)
     
 }
 
-void CBuilding::OnOriginPositionChanged(const glm::vec3& _vPosition)
+void CBuilding::OnBox2dPositionChanged(const glm::vec3& _vPosition)
 {
     Set_Position(glm::vec3(_vPosition.x, m_vPosition.y, _vPosition.z));
 }
 
-void CBuilding::OnOriginRotationChanged(float _fAngleY)
+void CBuilding::OnBox2dRotationChanged(float _fAngleY)
 {
     Set_Rotation(m_vRotation);
 }

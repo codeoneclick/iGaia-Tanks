@@ -22,7 +22,7 @@ CTankLightBody::~CTankLightBody(void)
 
 void CTankLightBody::Load(void)
 {
-    m_pBody = (CModel*)CSceneMgr::Instance()->Add_CustomModel("tank_light_body.mdl", IResource::E_THREAD_BACKGROUND);
+    m_pBody = (CModel*)CSceneMgr::Instance()->Add_CustomModel("tank_light_body.mdl", IResource::E_THREAD_ASYNC);
     m_pBody->Set_Texture("tank_light.pvr", 0, CTexture::E_WRAP_MODE_REPEAT);
     m_pBody->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_MODEL);
     m_pBody->Set_Shader(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, IResource::E_SHADER_MODEL_ND);

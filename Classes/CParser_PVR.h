@@ -38,10 +38,10 @@ private:
     SDescription* m_pDescription;
 public:
     CParser_PVR(void);
-    virtual ~CParser_PVR(void);
-    virtual void* Get_SourceData(void) { return m_pSourceData; }
-    virtual void Load(const std::string& _sName);
-    virtual void Commit(void);
+    ~CParser_PVR(void);
+    void* Get_SourceData(void) { return m_pSourceData; }
+    void Load(const std::string& _sName);
+    void Commit(void);
 };
 
 #endif

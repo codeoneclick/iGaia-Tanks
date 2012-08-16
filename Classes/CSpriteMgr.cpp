@@ -27,7 +27,7 @@ CSprite* CSpriteMgr::Add_Sprite(unsigned int _iNumFrames,const glm::vec2& _vSize
     pSprite->Set_SizeFrame(_vSizeFrame);
     pSprite->Set_SizeAtlas(_vSizeAtlas);
     m_lSpriteContainer.push_back(pSprite);
-    pSprite->Load("sprite", IResource::E_THREAD_MAIN);
+    pSprite->Load("sprite", IResource::E_THREAD_ASYNC);
     return pSprite;
 }
 
@@ -38,7 +38,7 @@ CSpriteCross* CSpriteMgr::Add_SpriteCross(unsigned int _iNumFrames,const glm::ve
     pSprite->Set_SizeFrame(_vSizeFrame);
     pSprite->Set_SizeAtlas(_vSizeAtlas);
     m_lSpriteContainer.push_back(pSprite);
-    pSprite->Load("sprite-cross", IResource::E_THREAD_MAIN);
+    pSprite->Load("sprite-cross", IResource::E_THREAD_ASYNC);
     return pSprite;
 }
 
@@ -49,7 +49,7 @@ CBillboard* CSpriteMgr::Add_Billboard(unsigned int _iNumFrames,const glm::vec2& 
     pSprite->Set_SizeFrame(_vSizeFrame);
     pSprite->Set_SizeAtlas(_vSizeAtlas);
     m_lSpriteContainer.push_back(pSprite);
-    pSprite->Load("billboard", IResource::E_THREAD_MAIN);
+    pSprite->Load("billboard", IResource::E_THREAD_ASYNC);
     return pSprite;
 }
 

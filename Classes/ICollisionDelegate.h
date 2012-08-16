@@ -24,12 +24,12 @@ public:
     ICollisionDelegate(void);
     virtual ~ICollisionDelegate(void);
     virtual void OnCollision(ICollisionDelegate* _pCollider) = 0;
-    virtual void OnOriginPositionChanged(const glm::vec3& _vPosition) = 0;
-    virtual void OnOriginRotationChanged(float _fAngleY) = 0;
-    virtual glm::vec3 Get_OriginPosition(void) { return glm::vec3(0.0f, 0.0f, 0.0f); }
-    virtual glm::vec3 Get_OriginMaxBound(void) { return glm::vec3(0.0f, 0.0f, 0.0f); }
-    virtual glm::vec3 Get_OriginMinBound(void) { return glm::vec3(0.0f, 0.0f, 0.0f); }
-    void Set_OriginPosition(const glm::vec3& vPosition);
+    virtual void OnBox2dPositionChanged(const glm::vec3& _vPosition) = 0;
+    virtual void OnBox2dRotationChanged(float _fAngleY) = 0;
+    virtual glm::vec3 Get_Box2dPosition(void) { return glm::vec3(0.0f, 0.0f, 0.0f); }
+    virtual glm::vec3 Get_Box2dMaxBound(void) { return glm::vec3(0.0f, 0.0f, 0.0f); }
+    virtual glm::vec3 Get_Box2dMinBound(void) { return glm::vec3(0.0f, 0.0f, 0.0f); }
+    void Set_Box2dPosition(const glm::vec3& vPosition);
     std::string Get_ColliderIdStr(void) { return m_sColliderIdStr; }
     b2Body* Get_Box2dBody(void) { return m_pBox2dBody; }
     b2BodyDef Get_Box2dBodyDef(void) { return m_pBox2dBodyDef; }

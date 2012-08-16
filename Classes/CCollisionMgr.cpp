@@ -28,8 +28,8 @@ CCollisionMgr::~CCollisionMgr()
 
 void CCollisionMgr::Create_Box2dWorld(void)
 {
-    float fWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width() * CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor().x;
-    float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height() * CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor().y;
+    float fWidth = (CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width() - 1) * CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor().x;
+    float fHeight = (CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height() - 1) * CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor().y;
 	b2Vec2 vGravity = b2Vec2(0.0f, 0.0f);
     
 	m_pBox2dWorld = new b2World(vGravity);
@@ -156,13 +156,13 @@ void CCollisionMgr::Add_CollisionListener(ICollisionDelegate* _pOwner, bool _bIs
         _pOwner->m_pBox2dBodyDef.type = b2_dynamicBody;
     }
     
-	_pOwner->m_pBox2dBodyDef.position.Set(_pOwner->Get_OriginPosition().x, _pOwner->Get_OriginPosition().z);
+	_pOwner->m_pBox2dBodyDef.position.Set(_pOwner->Get_Box2dPosition().x, _pOwner->Get_Box2dPosition().z);
 	_pOwner->m_pBox2dBodyDef.userData = _pOwner;
     
     _pOwner->m_pBox2dBody = m_pBox2dWorld->CreateBody(&_pOwner->m_pBox2dBodyDef);
 	b2PolygonShape dynamicBox;
     
-	dynamicBox.SetAsBox((_pOwner->Get_OriginMaxBound().x - _pOwner->Get_OriginMinBound().x) / 2.0f, (_pOwner->Get_OriginMaxBound().z - _pOwner->Get_OriginMinBound().z) / 2.0f);
+	dynamicBox.SetAsBox((_pOwner->Get_Box2dMaxBound().x - _pOwner->Get_Box2dMinBound().x) / 2.0f, (_pOwner->Get_Box2dMaxBound().z - _pOwner->Get_Box2dMinBound().z) / 2.0f);
 	/*b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
 	fixtureDef.density = 2.0f;
@@ -205,7 +205,7 @@ void CCollisionMgr::_Update_Box2d(void)
     {
         ICollisionDelegate* pOwner = m_lCollisionObject[index];
         //pOwner->OnOriginRotationChanged(pOwner->m_pBox2dBody->GetAngle());
-        pOwner->OnOriginPositionChanged(glm::vec3(pOwner->m_pBox2dBody->GetPosition().x, 0.0f, pOwner->m_pBox2dBody->GetPosition().y));
+        pOwner->OnBox2dPositionChanged(glm::vec3(pOwner->m_pBox2dBody->GetPosition().x, 0.0f, pOwner->m_pBox2dBody->GetPosition().y));
     }
 }
 
