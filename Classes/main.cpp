@@ -23,6 +23,7 @@
 
 #include "CWindow.h"
 #include "CGame.h"
+#include "CGameSceneMgr.h"
 
 /******************************************************************************
  Defines
@@ -37,6 +38,7 @@
 // Index to bind the attributes to vertex shaders
 #define VERTEX_ARRAY	0
 
+static unsigned char keys[256];
 /*!****************************************************************************
  @Function		WndProc
  @Input			hWnd		Handle to the window
@@ -64,6 +66,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			}
 			break;
 		}
+		case WM_KEYDOWN:
+			keys[wParam] = true;
+			break;
+
+		case WM_KEYUP:
+			keys[wParam] = false;
+			break;
 		// Handles the close message when a user clicks the quit icon of the window
 		case WM_CLOSE:
 			PostQuitMessage(0);
@@ -105,27 +114,30 @@ bool TestEGLError(HWND hWnd, char* pszLocation)
 
 void ProcessInput ( )
 {
-	unsigned char keys[256];
-	GetKeyboardState( keys );
+	if( keys[VK_LEFT] )
+	{
+		CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_LEFT);
+	}
+	else if( keys[VK_RIGHT] )
+	{
+		CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_RIGHT);
+	}
+	else
+	{
+		CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_NONE);
+	}
 
-	if( keys[VK_LEFT] & 0x80 )
+	if( keys[VK_UP] )
 	{
-
+		CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_FORWARD);
 	}
-	if( keys[VK_RIGHT] & 0x80 )
+	else if( keys[VK_DOWN] )
 	{
+		CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_BACKWARD);
 	}
-	if( keys[VK_UP] & 0x80 )
+	else
 	{
-	}
-	if( keys[VK_DOWN] & 0x80 )
-	{
-	}
-	if( keys['Z'] & 0x80 )
-	{
-	}
-	if( keys['X'] & 0x80 )
-	{
+		CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_NONE);
 	}
 }
 
@@ -474,6 +486,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, TCHAR *lpCmdLin
 		}
         else
 		{
+			ProcessInput();
+
 			glClear(GL_COLOR_BUFFER_BIT);
 			if (!TestEGLError(hWnd, "glClear"))
 			{
@@ -492,8 +506,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, TCHAR *lpCmdLin
 			{
 				goto cleanup;
 			}
-
-			ProcessInput();
 		}
 	}
 
