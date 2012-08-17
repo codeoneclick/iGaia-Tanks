@@ -13,16 +13,15 @@
 #include "CSceneMgr.h"
 #include "CTimer.h"
 
-#define k_BULLET_HEIGHT_OFFSET 1.45f
-
 class CBullet : public ICollisionDelegate
 {
 protected:
+    constexpr static float k_BULLET_HEIGHT_OFFSET = 1.45f;
     enum E_BULLET_STATE { E_BULLET_STATE_NONE = 0, E_BULLET_STATE_01, E_BULLET_STATE_02 };
     glm::vec3 m_vPosition;
     glm::vec3 m_vRotation;
-    CParticleEmitterFireTrail* m_pFireEmmiter;
-    CParticleEmitterFireTrail* m_pExplosionEmitter;
+    CParticleEmitterTrail* m_pTrailEmitter;
+    CParticleEmitterExplosion* m_pExplosionEmitter;
     INode* m_pModel;
     float m_fMoveSpeed;
     void _MoveForward(void);
@@ -45,7 +44,7 @@ public:
     glm::vec3 Get_Rotation(void) { return m_vRotation; }
     
     bool Get_IsDead(void) { return m_bIsDead; }
-    void Set_IsDead(bool _bValue) { m_bIsDead = _bValue; if(!m_bIsDead) { m_pFireEmmiter->Reset(); m_pFireEmmiter->Start(); } }
+    void Set_IsDead(bool _bValue) { m_bIsDead = _bValue; if(!m_bIsDead) { m_pTrailEmitter->Reset(); m_pTrailEmitter->Start(); } }
     
     void Create(void);
     void WillDestroy(void);

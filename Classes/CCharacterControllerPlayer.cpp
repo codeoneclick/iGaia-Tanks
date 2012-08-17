@@ -78,7 +78,8 @@ void CCharacterControllerPlayer::Update(void)
             {
                 pCamera->Set_FovY(pCamera->Get_FovY() - k_CAMERA_FOV_Y_DELTA_STATE_NONE);
             }
-            m_pChassis->StartExhaust(false);
+            m_pChassis->StartExhaustEmitt(false);
+            m_pChassis->StartDirtEmitt(false);
             break;
         case ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_FORWARD:
             
@@ -90,7 +91,8 @@ void CCharacterControllerPlayer::Update(void)
             {
                 pCamera->Set_FovY(pCamera->Get_FovY() + k_CAMERA_FOV_Y_DELTA_STATE_FORWARD);
             }
-            m_pChassis->StartExhaust(true);
+            m_pChassis->StartExhaustEmitt(true);
+            m_pChassis->StartDirtEmitt(true);
             break;
         case ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_BACKWARD:
             
@@ -102,7 +104,8 @@ void CCharacterControllerPlayer::Update(void)
             {
                 pCamera->Set_FovY(pCamera->Get_FovY() - k_CAMERA_FOV_Y_DELTA_STATE_BACKWARD);
             }
-            m_pChassis->StartExhaust(true);
+            m_pChassis->StartExhaustEmitt(true);
+            m_pChassis->StartDirtEmitt(true);
             break;
         default:
             break;
@@ -114,22 +117,18 @@ void CCharacterControllerPlayer::Update(void)
             
             break;
         case ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_LEFT:
-            
             m_pNavigationHelper->SteerRight();
-            
             m_pTrack->Move_LeftTrack(-fTrackTexCoordOffsetMoveFactor);
             m_pTrack->Move_RightTrack(fTrackTexCoordOffsetSteerFactor);
-            m_pChassis->StartExhaust(true);
-            
+            m_pChassis->StartExhaustEmitt(true);
+            m_pChassis->StartDirtEmitt(true);
             break;
         case ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_RIGHT:
-            
             m_pNavigationHelper->SteerLeft();
-            
             m_pTrack->Move_LeftTrack(fTrackTexCoordOffsetSteerFactor);
             m_pTrack->Move_RightTrack(-fTrackTexCoordOffsetMoveFactor);
-            m_pChassis->StartExhaust(true);
-            
+            m_pChassis->StartExhaustEmitt(true);
+            m_pChassis->StartDirtEmitt(true);
             break;
         default:
             break;

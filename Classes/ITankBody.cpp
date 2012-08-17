@@ -11,9 +11,9 @@
 
 ITankBody::ITankBody(void)
 {
-    m_pBody = NULL;
-    m_pLeftExhaustSmokeEmitter = NULL;
-    m_pRightExhaustSmokeEmitter = NULL;
+    m_pBody = nullptr;
+    m_pLeftExhaustSmokeEmitter = nullptr;
+    m_pRightExhaustSmokeEmitter = nullptr;
 }
 
 ITankBody::~ITankBody(void)
@@ -22,6 +22,8 @@ ITankBody::~ITankBody(void)
     CSceneMgr::Instance()->Remove_Model(m_pBody);
     CSceneMgr::Instance()->Get_ParticleMgr()->Remove_ParticleEmitter(m_pLeftExhaustSmokeEmitter);
     CSceneMgr::Instance()->Get_ParticleMgr()->Remove_ParticleEmitter(m_pRightExhaustSmokeEmitter);
+    CSceneMgr::Instance()->Get_ParticleMgr()->Remove_ParticleEmitter(m_pLeftDirtEmitter);
+    CSceneMgr::Instance()->Get_ParticleMgr()->Remove_ParticleEmitter(m_pRightDirtEmitter);
 }
 
 void ITankBody::Set_Position(const glm::vec3 &_vPosition)
@@ -55,8 +57,23 @@ void ITankBody::Set_Position(const glm::vec3 &_vPosition)
         m_pRightExhaustSmokeEmitter->Set_Position(glm::vec3(_vPosition.x + m_vTransformHelper.x, _vPosition.y + m_vTransformHelper.y, _vPosition.z + m_vTransformHelper.z));
     }
     
+    if(m_pLeftDirtEmitter != NULL)
+    {
+        m_vBoundPositionHelper = m_pBody->Get_BoundingBox()->Get_Center();
+        m_vTransformHelper = glm::vec4(m_vBoundPositionHelper.x + m_vLeftDirtEmitterOffset.x, m_vBoundPositionHelper.y + m_vLeftDirtEmitterOffset.y, m_vBoundPositionHelper.z + m_vLeftDirtEmitterOffset.z, 1.0f);
+        m_vTransformHelper = m_mTransformHelper * m_vTransformHelper;
+        m_pLeftDirtEmitter->Set_Position(glm::vec3(_vPosition.x + m_vTransformHelper.x, _vPosition.y + m_vTransformHelper.y, _vPosition.z + m_vTransformHelper.z));
+    }
+    
+    if(m_pRightDirtEmitter != NULL)
+    {
+        m_vBoundPositionHelper = m_pBody->Get_BoundingBox()->Get_Center();
+        m_vTransformHelper = glm::vec4(m_vBoundPositionHelper.x + m_vRightDirtEmitterOffset.x, m_vBoundPositionHelper.y + m_vRightDirtEmitterOffset.y, m_vBoundPositionHelper.z + m_vRightDirtEmitterOffset.z, 1.0f);
+        m_vTransformHelper = m_mTransformHelper * m_vTransformHelper;
+        m_pRightDirtEmitter->Set_Position(glm::vec3(_vPosition.x + m_vTransformHelper.x, _vPosition.y + m_vTransformHelper.y, _vPosition.z + m_vTransformHelper.z));
+    }
+    
     m_vPosition = _vPosition;
-    //std::cout<<"[ITankBody::Set_Position] Position : "<<m_vPosition.x<<","<<m_vPosition.z<<std::endl;
 }
 
 void ITankBody::Set_Rotation(const glm::vec3 &_vRotation)
@@ -68,7 +85,7 @@ void ITankBody::Set_Rotation(const glm::vec3 &_vRotation)
     m_vRotation = _vRotation;
 }
 
-void ITankBody::StartExhaust(bool _bValue)
+void ITankBody::StartExhaustEmitt(bool _bValue)
 {
     if(_bValue)
     {
@@ -90,6 +107,32 @@ void ITankBody::StartExhaust(bool _bValue)
         if(m_pRightExhaustSmokeEmitter != NULL)
         {
             m_pRightExhaustSmokeEmitter->Stop();
+        }
+    }
+}
+
+void ITankBody::StartDirtEmitt(bool _bValue)
+{
+    if(_bValue)
+    {
+        if(m_pRightDirtEmitter != NULL)
+        {
+            m_pRightDirtEmitter->Start();
+        }
+        if(m_pLeftDirtEmitter != NULL)
+        {
+            m_pLeftDirtEmitter->Start();
+        }
+    }
+    else
+    {
+        if(m_pRightDirtEmitter != NULL)
+        {
+            m_pRightDirtEmitter->Stop();
+        }
+        if(m_pLeftDirtEmitter != NULL)
+        {
+            m_pLeftDirtEmitter->Stop();
         }
     }
 }
