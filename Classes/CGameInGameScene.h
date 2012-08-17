@@ -13,9 +13,9 @@
 #include "IGameLevel.h"
 
 #define k_CAMERA_DISTANCE_MODE_1 7.0f
-#define k_CAMERA_DISTANCE_MODE_2 7.0f
+#define k_CAMERA_DISTANCE_MODE_2 18.0f
 #define k_CAMERA_HEIGHT_MODE_1 4.0f
-#define k_CAMERA_HEIGHT_MODE_2 14.0f
+#define k_CAMERA_HEIGHT_MODE_2 12.0f
 #define k_CAMERA_DISPLACE_INC 0.33f
 #define k_CAMERA_HEIGHT_LERP_VALUE 0.01f
 #define k_CAMERA_HEIGHT_OUT_MAP 5.0f
@@ -29,6 +29,8 @@ private:
     E_CAMERA_MODE m_eCameraMode;
     float m_fCurrentCameraHeight;
     float m_fNeedCameraHeight;
+    float m_fCurrentCameraDistance;
+    float m_fNeedCameraDistance;
 public:
     CGameInGameScene(void);
     ~CGameInGameScene(void);
