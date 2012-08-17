@@ -49,7 +49,6 @@ CGrass::CGrass(void)
     pPositionData[5] = glm::vec3(0.0f, k_ELEMENT_HEIGHT, -k_ELEMENT_SIZE / 2);
     pPositionData[6] = glm::vec3(0.0f, 0.0f,  k_ELEMENT_SIZE / 2);
     pPositionData[7] = glm::vec3(0.0f, k_ELEMENT_HEIGHT,  k_ELEMENT_SIZE / 2);*/
-    
     //glm::vec2* pTexCoordData = m_pSingleElementVertexBuffer->GetOrCreate_TexcoordSourceData();
     
     pVertexBufferData[0].m_vTexcoord = glm::vec2(0.0f,1.0f);
@@ -108,15 +107,13 @@ void CGrass::Load(const std::string &_sName, IResource::E_THREAD _eThread)
     
     unsigned short* pIndexesBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
     
-    std::vector<glm::vec3>::iterator pElementsSourceDataBegin = m_lGrassElementsPosition.begin();
-    std::vector<glm::vec3>::iterator pElementsSourceDataEnd   = m_lGrassElementsPosition.end();
     unsigned int iVertexesDataOffset = 0;
     unsigned int iIndexesDataOffset = 0;
-    while (pElementsSourceDataBegin != pElementsSourceDataEnd)
+    for(size_t index = 0; index < m_lGrassElementsPosition.size(); ++index)
     {
         for(unsigned int i = 0; i < k_ELEMENT_NUM_VERTEXES; ++i)
         {
-            pVertexBufferData[i + iVertexesDataOffset].m_vPosition = pSingleElementVertexBufferData[i].m_vPosition + (*pElementsSourceDataBegin);
+            pVertexBufferData[i + iVertexesDataOffset].m_vPosition = pSingleElementVertexBufferData[i].m_vPosition + m_lGrassElementsPosition[index];
             pVertexBufferData[i +iVertexesDataOffset].m_vTexcoord = pSingleElementVertexBufferData[i].m_vTexcoord;
         }
         
@@ -127,7 +124,6 @@ void CGrass::Load(const std::string &_sName, IResource::E_THREAD _eThread)
         
         iIndexesDataOffset += k_ELEMENT_NUM_INDEXES;
         iVertexesDataOffset += k_ELEMENT_NUM_VERTEXES;
-        ++pElementsSourceDataBegin;
     }
     
     m_pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);

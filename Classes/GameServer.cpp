@@ -24,7 +24,11 @@ GameServer::GameServer(void)
 
 GameServer::~GameServer(void)
 {
+#ifdef OS_IPHONE
+    close(m_iSocketId);
+#else
     closesocket(m_iSocketId);
+#endif
 }
 
 void GameServer::Start(void)
@@ -59,7 +63,11 @@ void GameServer::Start(void)
 
 void GameServer::Stop(void)
 {
+#ifdef OS_IPHONE
+    close(m_iSocketId);
+#else
     closesocket(m_iSocketId);
+#endif
 }
 
 void GameServer::Update(void)

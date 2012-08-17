@@ -49,8 +49,8 @@ void CGame::Load(void)
     pScene->Load();
 #ifdef OS_IPHONE
     CGameUIMgr::Instance()->Set_GameUI("main_menu_ui");
-    GameNativeCommunicationMgr::Instance()->CreateGameServer();
-    GameNativeCommunicationMgr::Instance()->ConnectToGameServer();
+    //GameNativeCommunicationMgr::Instance()->CreateGameServer();
+    //GameNativeCommunicationMgr::Instance()->ConnectToGameServer();
 #endif
 }
 

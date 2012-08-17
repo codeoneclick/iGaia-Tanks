@@ -150,7 +150,7 @@ void CShader::Set_CustomFloat(float _fValue, const std::string &_sAttribute)
 
 void CShader::Enable(void)
 {
-    glValidateProgram(m_hHandle);
+    /*glValidateProgram(m_hHandle);
     GLint success;
     glGetProgramiv(m_hHandle, GL_VALIDATE_STATUS, &success);
     if (success == GL_FALSE)
@@ -159,7 +159,7 @@ void CShader::Enable(void)
         glGetProgramInfoLog(m_hHandle, sizeof(messages), 0, &messages[0]);
         std::cout<<messages<<std::endl;
         return;
-    }
+    }*/
     glUseProgram(m_hHandle);
 }
 

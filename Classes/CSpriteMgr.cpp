@@ -55,42 +55,28 @@ CBillboard* CSpriteMgr::Add_Billboard(unsigned int _iNumFrames,const glm::vec2& 
 
 void CSpriteMgr::Remove_Sprite(INode *pSprite)
 {
-    std::vector<INode*>::iterator pBeginSpriteIterator = m_lSpriteContainer.begin();
-    std::vector<INode*>::iterator pEndSpriteIterator = m_lSpriteContainer.end();
-    
-    while(pBeginSpriteIterator != pEndSpriteIterator)
+    for(size_t index = 0; index < m_lSpriteContainer.size(); ++index)
     {
-        if((*pBeginSpriteIterator) == pSprite)
+        if(m_lSpriteContainer[index] == pSprite)
         {
-            m_lSpriteContainer.erase(pBeginSpriteIterator);
-            delete pSprite;
-            pSprite = NULL;
-            break;
+            SAFE_DELETE(m_lSpriteContainer[index]);
+            m_lSpriteContainer.erase(m_lSpriteContainer.begin() + index);
         }
-        ++pBeginSpriteIterator;
     }
 }
 
 void CSpriteMgr::Update(void)
 {
-    std::vector<INode*>::iterator pBeginSpriteIterator = m_lSpriteContainer.begin();
-    std::vector<INode*>::iterator pEndSpriteIterator = m_lSpriteContainer.end();
-    
-    while(pBeginSpriteIterator != pEndSpriteIterator)
+    for(size_t index = 0; index < m_lSpriteContainer.size(); ++index)
     {
-        (*pBeginSpriteIterator)->Update();
-        ++pBeginSpriteIterator;
+        m_lSpriteContainer[index]->Update();
     }
 }
 
 void CSpriteMgr::Render(CShader::E_RENDER_MODE _eMode)
 {
-    std::vector<INode*>::iterator pBeginSpriteIterator = m_lSpriteContainer.begin();
-    std::vector<INode*>::iterator pEndSpriteIterator = m_lSpriteContainer.end();
-    
-    while(pBeginSpriteIterator != pEndSpriteIterator)
+    for(size_t index = 0; index < m_lSpriteContainer.size(); ++index)
     {
-        (*pBeginSpriteIterator)->Render(_eMode);
-        ++pBeginSpriteIterator;
+        m_lSpriteContainer[index]->Render(_eMode);
     }
 }

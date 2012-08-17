@@ -29,42 +29,28 @@ INode* CDecalMgr::Add_LandscapeDecal(void)
 
 void CDecalMgr::Remove_Decal(INode* _pDecal)
 {
-    std::vector<INode*>::iterator pBeginIterator = m_lContainer.begin();
-    std::vector<INode*>::iterator pEndIterator = m_lContainer.end();
-    
-    while(pBeginIterator != pEndIterator)
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
     {
-        INode* pDecal = (*pBeginIterator);
-        if(pDecal == _pDecal)
+        if(m_lContainer[index] == _pDecal)
         {
-            m_lContainer.erase(pBeginIterator);
-            SAFE_DELETE(pDecal);
-            return;
+            SAFE_DELETE(m_lContainer[index]);
+            m_lContainer.erase(m_lContainer.begin() + index);
         }
-        ++pBeginIterator;
     }
 }
 
 void CDecalMgr::Update(void)
 {
-    std::vector<INode*>::iterator pBeginIterator = m_lContainer.begin();
-    std::vector<INode*>::iterator pEndIterator = m_lContainer.end();
-    
-    while(pBeginIterator != pEndIterator)
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
     {
-        (*pBeginIterator)->Update();
-        ++pBeginIterator;
+        m_lContainer[index]->Update();
     }
 }
 
 void CDecalMgr::Render(CShader::E_RENDER_MODE _eMode)
 {
-    std::vector<INode*>::iterator pBeginIterator = m_lContainer.begin();
-    std::vector<INode*>::iterator pEndIterator = m_lContainer.end();
-        
-    while(pBeginIterator != pEndIterator)
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
     {
-        (*pBeginIterator)->Render(_eMode);
-        ++pBeginIterator;
+        m_lContainer[index]->Render(_eMode);
     }
 }

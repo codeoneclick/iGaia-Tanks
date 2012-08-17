@@ -11,28 +11,6 @@
 #include <Windows.h>
 #endif
 
-
-CTimer* CTimer::m_pInstance = NULL;
-
-CTimer::CTimer(void)
-{
-    
-}
-
-CTimer::~CTimer(void)
-{
-    
-}
-
-CTimer* CTimer::Instance(void)
-{
-    if(m_pInstance == NULL)
-    {
-        m_pInstance = new CTimer();
-    }
-    return m_pInstance;
-}
-
 unsigned long long CTimer::Get_TickCount(void)
 {
 #ifdef OS_IPHONE
@@ -50,3 +28,10 @@ unsigned long long CTimer::Get_TickCount(void)
 	return GetTickCount();
 #endif
 }
+
+unsigned long long CTimer::Get_TimeInterval(const CTime &_cTime_01, const CTime &_cTime_02)
+{
+    return std::chrono::duration_cast<CMilliseconds>(_cTime_01 - _cTime_02).count();
+}
+
+

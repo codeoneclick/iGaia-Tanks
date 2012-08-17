@@ -24,7 +24,11 @@ GameClient::GameClient(void)
 
 GameClient::~GameClient(void)
 {
+#ifdef OS_IPHONE
+    close(m_iSocketId);
+#else
     closesocket(m_iSocketId);
+#endif
 }
 
 void GameClient::Start(void)
@@ -58,7 +62,11 @@ void GameClient::Start(void)
 
 void GameClient::Stop(void)
 {
+#ifdef OS_IPHONE
+    close(m_iSocketId);
+#else
     closesocket(m_iSocketId);
+#endif
 }
 
 void GameClient::Send_Position(const glm::vec3 &_vPosition)

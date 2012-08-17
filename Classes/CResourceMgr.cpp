@@ -14,12 +14,9 @@ void* UpdateThread(void *_pParam)
     CResourceMgr* pInstance = (CResourceMgr*)_pParam;
     while (true)
     {
-        std::map<IResource::E_MGR,IResourceMgr*>::iterator pBMgr = pInstance->m_lMgr.begin();
-        std::map<IResource::E_MGR,IResourceMgr*>::iterator pEMgr = pInstance->m_lMgr.end();
-        while( pBMgr != pEMgr)
+        for(auto& pMgr : pInstance->m_lMgr)
         {
-            pBMgr->second->Thread();
-            ++pBMgr;
+            pMgr.second->Thread();
         }
     }
 }
@@ -48,24 +45,18 @@ CResourceMgr::~CResourceMgr()
 
 void CResourceMgr::Update()
 {
-    std::map<IResource::E_MGR,IResourceMgr*>::iterator pBeginIteratorMgr = m_lMgr.begin();
-    std::map<IResource::E_MGR,IResourceMgr*>::iterator pEndIteratorMgr = m_lMgr.end();
-    while(pBeginIteratorMgr != pEndIteratorMgr)
+    for(auto& pMgr : m_lMgr)
     {
-        pBeginIteratorMgr->second->Thread();
-        pBeginIteratorMgr->second->Update();
-        ++pBeginIteratorMgr;
+        pMgr.second->Thread();
+        pMgr.second->Update();
     }
 }
 
 void CResourceMgr::Cancel_Load(IDelegate *_pDeleagte)
 {
-    std::map<IResource::E_MGR,IResourceMgr*>::iterator pBeginIteratorMgr = m_lMgr.begin();
-    std::map<IResource::E_MGR,IResourceMgr*>::iterator pEndIteratorMgr = m_lMgr.end();
-    while(pBeginIteratorMgr != pEndIteratorMgr)
+    for(auto& pMgr : m_lMgr)
     {
-        pBeginIteratorMgr->second->Cancel_Load(_pDeleagte);
-        ++pBeginIteratorMgr;
+        pMgr.second->Cancel_Load(_pDeleagte);
     }
 }
 

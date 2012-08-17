@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include "ICharacterController.h"
+#include "CTimer.h"
 
 #define k_AI_SHOOT_INTERVAL 2000
 #define k_AI_SHOOT_DISTANCE 10.0f
@@ -25,8 +26,8 @@ protected:
     E_AI_STEER_MODE m_eStreerMode;
     
     int m_iAIStateDuration;
-    int m_iAIStateTimeStamp;
-    int m_iAIShootTimeStamp;
+    CTimer::CTime m_cAIStateTimeStamp;
+    CTimer::CTime m_cAIShootTimeStamp;
     
     glm::vec3 m_vMovePoint;
     glm::vec3 m_vMoveDirection;

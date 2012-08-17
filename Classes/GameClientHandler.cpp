@@ -24,7 +24,11 @@ GameClientHandler::GameClientHandler(void)
 
 GameClientHandler::~GameClientHandler(void)
 {
+#ifdef OS_IPHONE
+    close(m_iSocketId);
+#else
     closesocket(m_iSocketId);
+#endif
 }
 
 void GameClientHandler::Create(int _iSocketId)

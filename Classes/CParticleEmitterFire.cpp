@@ -67,8 +67,8 @@ void CParticleEmitterFire::Update(void)
             m_pParticles[i].m_vSize += m_vMinSize;
         }
         
-        int iCurrentTimeStamp = CTimer::Instance()->Get_TickCount();
-        int iTimeStampDelta = iCurrentTimeStamp - m_pParticles[i].m_iTimeStamp;
+        CTimer::CTime cCurrentTimeStamp = CTimer::CClock::now();
+        int iTimeStampDelta = CTimer::Get_TimeInterval(cCurrentTimeStamp, m_pParticles[i].m_cTimeStamp);
         float fLifeDelta = static_cast<float>(iTimeStampDelta) / static_cast<float>(m_pParticles[i].m_iLifeTime);
         if(fLifeDelta <= 1)
         {
@@ -88,7 +88,7 @@ void CParticleEmitterFire::Update(void)
             m_pParticles[i].m_vSize = m_vMinSize;
             m_pParticles[i].m_vColor.a = 255;
             m_pParticles[i].m_bIsDead = false;
-            m_pParticles[i].m_iTimeStamp = iCurrentTimeStamp;
+            m_pParticles[i].m_cTimeStamp = CTimer::CClock::now();
         }
     }
     CParticleEmitter::Update();

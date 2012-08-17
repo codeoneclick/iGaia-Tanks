@@ -28,7 +28,6 @@ CTextureMgr::~CTextureMgr(void)
 IResource* CTextureMgr::Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams)
 {
     CTexture* pTexture = NULL;
-    
     if(_eThread == IResource::E_THREAD_SYNC)
     {
         if( m_lContainer.find(_sName) != m_lContainer.end())
@@ -73,23 +72,19 @@ IResource* CTextureMgr::Load(const std::string& _sName, IResource::E_THREAD _eTh
             m_lContainer[_sName] = pTexture;
         }
     }
-
     return pTexture;
 }
 
 void CTextureMgr::Unload(const std::string& _sName)
 {
-    CTexture* pTexture = NULL;
-    if( m_lContainer.find(_sName) != m_lContainer.end())
+    std::unordered_map<std::string, IResource*>::iterator pTexture = m_lContainer.find(_sName);
+    if(pTexture != m_lContainer.end())
     {
-        pTexture = static_cast<CTexture*>(m_lContainer[_sName]);
-        pTexture->DecRefCount();
-        
-        if(pTexture->Get_RefCount() == 0 && pTexture->Get_Handle() != m_pDefaultTextureSourceData->m_hTextureHanlde)
+        static_cast<CTexture*>(pTexture->second)->DecRefCount();
+        if(static_cast<CTexture*>(pTexture->second)->Get_RefCount() == 0 && static_cast<CTexture*>(pTexture->second)->Get_Handle() != m_pDefaultTextureSourceData->m_hTextureHanlde)
         {
-            delete pTexture;
-            std::map<std::string, IResource*>::iterator pIterator = m_lContainer.find(_sName);
-            m_lContainer.erase(pIterator);
+            SAFE_DELETE(pTexture->second);
+            m_lContainer.erase(pTexture);
         }
     }
 }

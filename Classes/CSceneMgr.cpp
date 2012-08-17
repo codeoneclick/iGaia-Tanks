@@ -24,6 +24,10 @@
 #include "CTimer.h"
 #include "CSettings.h"
 
+#ifdef OS_IPHONE
+#include "CCommon_IOS.h"
+#endif
+
 CSceneMgr* CSceneMgr::m_pInstance = NULL;
 
 CSceneMgr::CSceneMgr(void)
@@ -178,66 +182,68 @@ void CSceneMgr::Remove_Camera(ICamera *_pCamera)
 
 void CSceneMgr::Remove_Model(INode *_pNode)
 {
-    std::vector<INode*>::iterator pBIterator = m_lContainer.begin();
-    std::vector<INode*>::iterator pEIterator = m_lContainer.end();
-    INode* pNode = NULL;
-    
-    while (pBIterator != pEIterator)
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
     {
-        pNode = (*pBIterator);
-        if(pNode == _pNode)
+        if(m_lContainer[index] == _pNode)
         {
-            m_lContainer.erase(pBIterator);
-            delete pNode;
-            _pNode = NULL;
-            break;
+            SAFE_DELETE(m_lContainer[index]);
+            m_lContainer.erase(m_lContainer.begin() + index);
         }
-        ++pBIterator;
     }
 }
 
-unsigned char CSceneMgr::Get_UniqueColorId(INode *_pNode)
-{
-    std::vector<INode*>::iterator pNodeIteratorBegin = m_lContainer.begin();
-    std::vector<INode*>::iterator pNodeIteratorEnd   = m_lContainer.end();
-    
-    unsigned int iUniqueIndex = 0;
-    while (pNodeIteratorBegin != pNodeIteratorEnd)
-    {
-        iUniqueIndex++;
-        if((*pNodeIteratorBegin) == _pNode)
-        {
-            if(iUniqueIndex <= 255)
-            {
-                return static_cast<unsigned char>(iUniqueIndex);
-            }
-            else
-            {
-                std::cout<<"[CSceneMgr::Get_UniqueColorId] Unique index out of range \n";
-                return 0;
-            }
-        }
-        ++pNodeIteratorBegin;
-    }
-    
-    std::cout<<"[CSceneMgr::Get_UniqueColorId] Unique index is not found \n";
-    return 0;
-}
-
-void CSceneMgr::Update()
+void CSceneMgr::Update(void)
 {
     if(m_pCamera != NULL)
     {
         m_pCamera->Update();
     }
     
-    std::vector<INode*>::iterator pBIterator = m_lContainer.begin();
-    std::vector<INode*>::iterator pEIterator = m_lContainer.end();
-    
-    while (pBIterator != pEIterator)
+    /*std::map<int,int> cTempMap;
+    for(int i = 0; i < 1000000; ++i)
     {
-        (*pBIterator)->Update();
-        ++pBIterator;
+        cTempMap[i] = i;
+    }
+    
+    uint64_t iFirstTime = CTimer::Instance()->Get_TickCount();
+    for (auto& i : cTempMap)
+    {
+        i.second = 1;
+    }
+    uint64_t iSecondTime = CTimer::Instance()->Get_TickCount();
+    std::cout<<"[CSceneMgr::Update] C++11 Time "<<iSecondTime - iFirstTime<<std::endl;
+    
+    iFirstTime = CTimer::Instance()->Get_TickCount();
+    std::map<int,int>::iterator iterator_01 = cTempMap.begin();
+    std::map<int,int>::iterator iretator_02 = cTempMap.end();
+    while (iterator_01 != iretator_02)
+    {
+        (*iterator_01).second = 1;
+        ++iterator_01;
+    }
+    iSecondTime = CTimer::Instance()->Get_TickCount();
+    std::cout<<"[CSceneMgr::Update] C++98 Time "<<iSecondTime - iFirstTime<<std::endl;*/
+    
+    /*iFirstTime = CTimer::Instance()->Get_TickCount();
+    for(unsigned int i =0; i < cTempVector.size(); ++i)
+    {
+        cTempVector[i] = 1;
+    }
+    iSecondTime = CTimer::Instance()->Get_TickCount();
+    std::cout<<"[CSceneMgr::Update] Indexes C++98 Time "<<iSecondTime - iFirstTime<<std::endl;*/
+
+    
+    /*for(INode* &pNode : m_lContainer)
+    {
+        pNode->Update();
+    }*/
+    
+    //std::vector<INode*>::iterator pBIterator = m_lContainer.begin();
+    //std::vector<INode*>::iterator pEIterator = m_lContainer.end();
+    
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
+    {
+        m_lContainer[index]->Update();
     }
 
     if(m_pCollisionMgr != NULL)
@@ -269,8 +275,6 @@ void CSceneMgr::Update()
 
 void CSceneMgr::_DrawSimpleStep(void)
 {
-    std::vector<INode*>::iterator pBeginNodeIterator = m_lContainer.begin();
-    std::vector<INode*>::iterator pEndNodeIterator = m_lContainer.end();
     m_pRenderMgr->BeginDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_SIMPLE);
     
     if(m_pSkyBox != NULL)
@@ -278,15 +282,13 @@ void CSceneMgr::_DrawSimpleStep(void)
         m_pSkyBox->Render(CShader::E_RENDER_MODE_SIMPLE);
     }
     
-    while (pBeginNodeIterator != pEndNodeIterator)
+    for(INode* &pNode : m_lContainer)
     {
-        if((*pBeginNodeIterator) == m_pOcean || (*pBeginNodeIterator) == m_pLandscapeEdges || (*pBeginNodeIterator) == m_pGrass)
+        if(pNode == m_pOcean || pNode == m_pLandscapeEdges || pNode == m_pGrass)
         {
-            ++pBeginNodeIterator;
             continue;
         }
-        (*pBeginNodeIterator)->Render(CShader::E_RENDER_MODE_SIMPLE);
-        ++pBeginNodeIterator;
+        pNode->Render(CShader::E_RENDER_MODE_SIMPLE);
     }
     
     if(m_pDecalMgr != NULL)
@@ -324,8 +326,6 @@ void CSceneMgr::_DrawSimpleStep(void)
 
 void CSceneMgr::_DrawReflectionStep(void)
 {
-    std::vector<INode*>::iterator pBeginNodeIterator = m_lContainer.begin();
-    std::vector<INode*>::iterator pEndNodeIterator = m_lContainer.end();
     float fWaterLevel = -0.1f;
     m_pRenderMgr->BeginDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_REFLECTION);
     
@@ -356,14 +356,13 @@ void CSceneMgr::_DrawReflectionStep(void)
         m_pSkyBox->Render(CShader::E_RENDER_MODE_SIMPLE);
     }
     
-    while (pBeginNodeIterator != pEndNodeIterator)
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
     {
-        if((*pBeginNodeIterator)->Get_RenderMode(CShader::E_RENDER_MODE_REFLECTION))
+        if(m_lContainer[index]->Get_RenderMode(CShader::E_RENDER_MODE_REFLECTION))
         {
-            (*pBeginNodeIterator)->Update();
-            (*pBeginNodeIterator)->Render(CShader::E_RENDER_MODE_REFLECTION);
+            m_lContainer[index]->Update();
+            m_lContainer[index]->Render(CShader::E_RENDER_MODE_REFLECTION);
         }
-        ++pBeginNodeIterator;
     }
     if(m_pCamera != NULL)
     {
@@ -375,38 +374,27 @@ void CSceneMgr::_DrawReflectionStep(void)
 
 void CSceneMgr::_DrawRefractionStep(void)
 {
-    std::vector<INode*>::iterator pBeginNodeIterator = m_lContainer.begin();
-    std::vector<INode*>::iterator pEndNodeIterator = m_lContainer.end();
     m_pRenderMgr->BeginDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_REFRACTION);
-    
-    while (pBeginNodeIterator != pEndNodeIterator)
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
     {
-        if((*pBeginNodeIterator)->Get_RenderMode(CShader::E_RENDER_MODE_REFRACTION))
+        if(m_lContainer[index]->Get_RenderMode(CShader::E_RENDER_MODE_REFRACTION))
         {
-            (*pBeginNodeIterator)->Update();
-            (*pBeginNodeIterator)->Render(CShader::E_RENDER_MODE_REFRACTION);
+            m_lContainer[index]->Update();
+            m_lContainer[index]->Render(CShader::E_RENDER_MODE_REFRACTION);
         }
-        ++pBeginNodeIterator;
     }
-    
     m_pRenderMgr->EndDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_REFRACTION);
 }
 
 void CSceneMgr::_DrawScreenNormalMapStep(void)
 {
-    std::vector<INode*>::iterator pBeginNodeIterator = m_lContainer.begin();
-    std::vector<INode*>::iterator pEndNodeIterator = m_lContainer.end();
-    pBeginNodeIterator = m_lContainer.begin();
-    pEndNodeIterator = m_lContainer.end();
     m_pRenderMgr->BeginDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_SCREEN_NORMAL_MAP);
-    
-    while (pBeginNodeIterator != pEndNodeIterator)
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
     {
-        if((*pBeginNodeIterator)->Get_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP))
+        if(m_lContainer[index]->Get_RenderMode(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP))
         {
-            (*pBeginNodeIterator)->Render(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP);
+            m_lContainer[index]->Render(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP);
         }
-        ++pBeginNodeIterator;
     }
     
     if(m_pParticleMgr != NULL)
@@ -447,13 +435,12 @@ void CSceneMgr::Render(void)
     
     CSettings::g_iTotalTriagnlesPerFrame = CSettings::g_iCurrentTrianglesPerFrame;
     
-    static int iLastTime = 0;
-    int iCurrentTime = CTimer::Instance()->Get_TickCount();
+    static CTimer::CTime cLastTime;
+    CTimer::CTime cCurrentTime = CTimer::CClock::now();
     ++CSettings::g_iCurrentFramesPerSecond;
-    
-    if(iCurrentTime - iLastTime > 1000 )
+    if(CTimer::Get_TimeInterval(cCurrentTime, cLastTime) > 1000 )
     {
-        iLastTime = iCurrentTime;
+        cLastTime = CTimer::CClock::now();
         CSettings::g_iTotalFramesPerSecond = CSettings::g_iCurrentFramesPerSecond;
         CSettings::g_iCurrentFramesPerSecond = 0;
     }

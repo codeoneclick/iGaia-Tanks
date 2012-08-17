@@ -25,18 +25,12 @@ void CGameAIMgr::Add_AICharacterController(ICharacterController *_pCharacterCont
 
 void CGameAIMgr::Remove_AICharacterController(ICharacterController *_pCharacterController)
 {
-    std::vector<CCharacterControllerEnemy*>::iterator pBeginIterator = m_lContainer.begin();
-    std::vector<CCharacterControllerEnemy*>::iterator pEndIterator = m_lContainer.end();
-    
-    while (pBeginIterator != pEndIterator)
+    for(size_t index = 0; index > m_lContainer.size(); ++index)
     {
-        CCharacterControllerEnemy* pCharacterController = (*pBeginIterator);
-        if(pCharacterController == _pCharacterController)
+        if(m_lContainer[index] == _pCharacterController)
         {
-            m_lContainer.erase(pBeginIterator);
-            return;
+            m_lContainer.erase(m_lContainer.begin() + index);
         }
-        ++pBeginIterator;
     }
 }
 
@@ -57,19 +51,15 @@ glm::vec2 CGameAIMgr::_GenerateMovePoint(void)
 
 void CGameAIMgr::Update(void)
 {
-    std::vector<CCharacterControllerEnemy*>::iterator pBeginIterator = m_lContainer.begin();
-    std::vector<CCharacterControllerEnemy*>::iterator pEndIterator = m_lContainer.end();
-    
-    while (pBeginIterator != pEndIterator)
+    for(size_t index = 0; index < m_lContainer.size(); ++index)
     {
-        CCharacterControllerEnemy::E_AI_STATE eState = (*pBeginIterator)->Get_AIState();
+        CCharacterControllerEnemy::E_AI_STATE eState = m_lContainer[index]->Get_AIState();
         if(eState == CCharacterControllerEnemy::E_AI_STATE_NONE)
         {
             glm::vec2 vGeneratedPoint = _GenerateMovePoint();
-            (*pBeginIterator)->Set_AIMovePoint(glm::vec3(vGeneratedPoint.x, 0.0f, vGeneratedPoint.y));
-            (*pBeginIterator)->Set_AIState(CCharacterControllerEnemy::E_AI_STATE_MOVE, 0);
+            m_lContainer[index]->Set_AIMovePoint(glm::vec3(vGeneratedPoint.x, 0.0f, vGeneratedPoint.y));
+            m_lContainer[index]->Set_AIState(CCharacterControllerEnemy::E_AI_STATE_MOVE, 0);
         }
-        ++pBeginIterator;
     }
 }
 

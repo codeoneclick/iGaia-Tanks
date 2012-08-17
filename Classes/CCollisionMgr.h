@@ -33,7 +33,7 @@ protected:
     bool m_bIsTouch;
     SRay3d m_vTouchRay;
 
-    std::vector<ICollisionDelegate*> m_lCollisionObject;
+    std::vector<ICollisionDelegate*> m_lCollisionObjects;
 
     b2World* m_pBox2dWorld;
 

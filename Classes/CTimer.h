@@ -10,6 +10,7 @@
 #define __iGaia__CTimer__
 
 #include <iostream>
+#include <chrono>
 #ifdef OS_IPHONE
 #include <mach/mach.h>
 #include <mach/mach_time.h>
@@ -17,14 +18,13 @@
 
 class CTimer
 {
-protected:
-    static CTimer* m_pInstance;
 public:
-    CTimer(void);
-    ~CTimer(void);
-    static CTimer* Instance(void);
-    unsigned long long Get_TickCount(void);
+    typedef std::chrono::high_resolution_clock CClock;
+    typedef std::chrono::milliseconds CMilliseconds;
+    typedef CClock::time_point CTime;
+    
+    static unsigned long long Get_TickCount(void);
+    static unsigned long long Get_TimeInterval(const CTime& _cTime_01, const CTime& _cTime_02);
 };
-
 
 #endif /* defined(__iGaia__CTimer__) */
