@@ -14,6 +14,7 @@ CGameShooterMgr::CGameShooterMgr(void)
     {
         CBullet* pBullet = new CBullet();
         pBullet->Load();
+
         m_lUnUsedBulletsContainer.push_back(pBullet);
     }
 }

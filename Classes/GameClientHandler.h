@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
-#ifdef OS_IPHONE
+#ifndef WIN32
 #include "stdlib.h"
 #include <unistd.h>
 #include <sys/types.h>

@@ -13,7 +13,7 @@
 #include <vector>
 #include <iostream>
 #include <map>
-#include "box2d.h"
+#include <Box2D/Box2D.h>
 #include "IVertexBuffer.h"
 #include "CIndexBuffer.h"
 #include "ICollisionDelegate.h"

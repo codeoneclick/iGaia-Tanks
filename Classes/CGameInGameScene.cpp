@@ -28,7 +28,9 @@ CGameInGameScene::~CGameInGameScene(void)
 void CGameInGameScene::Load(void)
 {
     IGameScene::Load();
-      
+   
+    GLenum e = glGetError();
+
     m_pLevel = new CGameInGameLevel();
     m_pLevel->Load();
     

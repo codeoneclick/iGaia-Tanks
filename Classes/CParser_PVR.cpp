@@ -9,9 +9,16 @@
 #include <iostream>
 #include "CParser_PVR.h"
 #include <fstream>
-#include <strstream>
+//#include <strstream>
 #include "CCommon_IOS.h"
 #include "CSettings.h"
+
+#ifdef EMULATION_GL
+#define GL_COMPRESSED_RGB_PVRTC_4BPPV1_IMG                      0x8C00
+#define GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG                      0x8C01
+#define GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG                     0x8C02
+#define GL_COMPRESSED_RGBA_PVRTC_2BPPV1_IMG                     0x8C03
+#endif
 
 CParser_PVR::CParser_PVR(void)
 {
@@ -30,6 +37,8 @@ CParser_PVR::~CParser_PVR(void)
 
 void CParser_PVR::Load(const std::string& _sName)
 {
+    GLenum e = glGetError();
+
     m_eStatus = E_START_STATUS;
     
 	std::string sFileName = k_RES_TEXTURES_PATH + _sName;
@@ -142,6 +151,8 @@ void CParser_PVR::Load(const std::string& _sName)
 
 void CParser_PVR::Commit(void)
 {
+    GLenum e = glGetError();
+
     int iWidth  = m_pDescription->m_vSize.x;
     int iHeight = m_pDescription->m_vSize.y;
     char* pData = m_pDescription->m_pTextureData;
@@ -152,6 +163,8 @@ void CParser_PVR::Commit(void)
     
     glGenTextures( 1, &m_pSourceData->m_hTextureHanlde );
     
+    e = glGetError();
+
     GLenum iTextureTarget = GL_TEXTURE_2D;
     
     if(m_pDescription->m_iNumFaces > 1)
@@ -160,6 +173,9 @@ void CParser_PVR::Commit(void)
     }
     
     glBindTexture(iTextureTarget, m_pSourceData->m_hTextureHanlde );
+
+    e = glGetError();
+
     if(iTextureTarget == GL_TEXTURE_2D)
     {
         GLint iWrap = GL_REPEAT;
@@ -187,7 +203,7 @@ void CParser_PVR::Commit(void)
         glTexParameteri(iTextureTarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         m_pDescription->m_bCompressed = false;
     }
-    
+     e = glGetError();
     if(iTextureTarget == GL_TEXTURE_CUBE_MAP)
     {
         iTextureTarget = GL_TEXTURE_CUBE_MAP_POSITIVE_X;
@@ -201,6 +217,7 @@ void CParser_PVR::Commit(void)
             {
                 GLsizei iSize = std::max(32, iWidth * iHeight * m_pDescription->m_uiBPP / 8);
                 glCompressedTexImage2D(iTextureTarget + iFaces, level, m_pDescription->m_glFormat, iWidth, iHeight, 0, iSize, pData);
+                e = glGetError();
                 pData += iSize;
                 iWidth >>= 1; iHeight >>= 1;
             }
@@ -208,10 +225,17 @@ void CParser_PVR::Commit(void)
         else
         {       
             glTexImage2D(iTextureTarget + iFaces, 0, m_pDescription->m_glFormat, iWidth, iHeight, 0, m_pDescription->m_glFormat, m_pDescription->m_glType, pData);
+            e = glGetError();
             glHint(GL_GENERATE_MIPMAP_HINT, GL_FASTEST);
+            e = glGetError();
             glGenerateMipmap(iTextureTarget + iFaces);
+            e = glGetError();
         }
     }
+
+      e = glGetError();
+
+      int a = 1;
 }
 
 

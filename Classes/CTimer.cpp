@@ -11,6 +11,8 @@
 #include <Windows.h>
 #endif
 
+#include "Common.h"
+
 unsigned long long CTimer::Get_TickCount(void)
 {
 #ifdef OS_IPHONE
@@ -24,6 +26,8 @@ unsigned long long CTimer::Get_TickCount(void)
     
     uint64_t millis = ((machTime / 1000000) * sTimebaseInfo.numer) / sTimebaseInfo.denom;
     return millis;
+#elif __linux__
+    return APP_API_GET_TIME();
 #else
 	return GetTickCount();
 #endif

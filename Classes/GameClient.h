@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
-#ifdef OS_IPHONE
+#ifndef WIN32
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -22,8 +22,8 @@
 #else
 #pragma comment(lib, "ws2_32.lib")
 #include <winsock2.h>	
-#include <pthread.h>
 #endif
+#include <pthread.h>
 #include "GameNetworkProtocol.h"
 #include <vector>
 

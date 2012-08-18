@@ -12,6 +12,13 @@
 #ifdef OS_IPHONE
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
+#elif EMULATION_GL
+#include <GL/glew.h>
+#ifndef GL_GLEXT_PROTOTYPES
+#       define GL_GLEXT_PROTOTYPES 1
+#endif
+#include <GL/gl.h>
+#include <GL/glext.h>
 #else
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>

@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include "IDelegate.h"
-#include "box2d.h"
+#include <Box2D/Box2D.h>
 
 class ICollisionDelegate : public virtual IDelegate
 {
