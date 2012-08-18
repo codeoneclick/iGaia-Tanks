@@ -324,8 +324,6 @@
       <itemPath>../Classes/main_lnx.cpp</itemPath>
       <itemPath>../Classes/main_lnx_gl.cpp</itemPath>
     </logicalFolder>
-    <logicalFolder name="f3" displayName="Libpng" projectFiles="true" kind="ROOT">
-    </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
@@ -402,15 +400,26 @@
             <pElem>../libs/platform/OGLES2/Include</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>BUILD_OGLES2</Elem>
+            <Elem>DEBUG</Elem>
           </preprocessorList>
         </ccTool>
         <linkerTool>
           <linkerLibItems>
             <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
-            <linkerLibFileItem>../libs/external/_lib/Debug/GNU_SNAP-Linux-x86/libcommon.a</linkerLibFileItem>
             <linkerLibLibItem>EGL -lGLESv2</linkerLibLibItem>
             <linkerLibLibItem>X11 -lXau</linkerLibLibItem>
+            <linkerLibProjectItem>
+              <makeArtifact PL="../libs/external/Common"
+                            CT="3"
+                            CN="Debug"
+                            AC="true"
+                            BL="true"
+                            WD="../libs/external/Common"
+                            BC="${MAKE} -j6 -f Makefile CONF=Debug"
+                            CC="${MAKE} -j6 -f Makefile CONF=Debug clean"
+                            OP="${CND_DISTDIR}/../../_lib/${CND_CONF}/${CND_PLATFORM}/libcommon.a">
+              </makeArtifact>
+            </linkerLibProjectItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

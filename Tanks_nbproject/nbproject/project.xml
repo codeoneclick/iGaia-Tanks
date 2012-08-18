@@ -8,7 +8,9 @@
             <cpp-extensions>cpp</cpp-extensions>
             <header-extensions>h</header-extensions>
             <sourceEncoding>UTF-8</sourceEncoding>
-            <make-dep-projects/>
+            <make-dep-projects>
+                <make-dep-project>../libs/external/Common</make-dep-project>
+            </make-dep-projects>
             <sourceRootList>
                 <sourceRootElem>../Classes</sourceRootElem>
                 <sourceRootElem>../libs/ios/Box2D</sourceRootElem>

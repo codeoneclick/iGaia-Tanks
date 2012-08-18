@@ -46,7 +46,7 @@ public:
 }
 
 #else
-#   define LogDebug(msg)
+#   define LogDebug(msg) (void)0
 #endif
 
 #    define LogMessage(prio, msg) {\

@@ -9,6 +9,10 @@
 
 #include "CWindow.h"
 #include "CGame.h"
+#include "CGameSceneMgr.h"
+
+#include <Common.h>
+#include <memory>
 
 // Width and height of the window
 #define WINDOW_WIDTH	960
@@ -41,15 +45,57 @@ bool TestEGLError(const char* pszLocation)
 	return true;
 }
 
-   	const EGLint pi32ConfigAttribs2[] =
+const EGLint pi32ConfigAttribs2[] =
+{
+	EGL_LEVEL,				0,
+	EGL_SURFACE_TYPE,		EGL_WINDOW_BIT,
+	EGL_RENDERABLE_TYPE,	EGL_OPENGL_ES2_BIT,
+	EGL_NATIVE_RENDERABLE,	EGL_FALSE,
+	EGL_DEPTH_SIZE,			EGL_DONT_CARE,
+	EGL_NONE
+};
+
+enum EKeys
+{
+    VK_LEFT = 113,
+    VK_RIGHT = 114,
+    VK_UP = 111,
+    VK_DOWN = 116,
+
+    MAX_KEYS = 256
+};
+
+static bool keys[MAX_KEYS];
+
+void ProcessInput ( )
+{
+	if( keys[VK_LEFT] )
 	{
-		EGL_LEVEL,				0,
-		EGL_SURFACE_TYPE,		EGL_WINDOW_BIT,
-		EGL_RENDERABLE_TYPE,	EGL_OPENGL_ES2_BIT,
-		EGL_NATIVE_RENDERABLE,	EGL_FALSE,
-		EGL_DEPTH_SIZE,			EGL_DONT_CARE,
-		EGL_NONE
-	};
+		CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_LEFT);
+	}
+	else if( keys[VK_RIGHT] )
+	{
+		CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_RIGHT);
+	}
+	else
+	{
+		CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_SteerState(ICharacterController::E_CHARACTER_CONTROLLER_STEER_STATE_NONE);
+	}
+
+	if( keys[VK_UP] )
+	{
+		CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_FORWARD);
+	}
+	else if( keys[VK_DOWN] )
+	{
+		CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_BACKWARD);
+	}
+	else
+	{
+		CGameSceneMgr::Instance()->Get_Scene()->Get_MainCharacterController()->Set_MoveState(ICharacterController::E_CHARACTER_CONTROLLER_MOVE_STATE_NONE);
+	}
+}
+
 
 /*!****************************************************************************
  @Function		main
@@ -77,6 +123,9 @@ int main(int argc, char **argv)
 	EGLContext			eglContext	= 0;
 	GLuint	ui32Vbo = 0; // Vertex buffer object handle
 
+    Common::Logger* loggersingleton = new Common::Logger();
+    LOGGER->Initialize("tanki", "tanki-debug");
+
 	/*
 		EGL has to create a context for OpenGL ES. Our OpenGL ES resources
 		like textures will only be valid inside this context
@@ -85,32 +134,7 @@ int main(int argc, char **argv)
 	*/
 	EGLint ai32ContextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
 
-	// Matrix used for projection model view (PMVMatrix)
-	float pfIdentity[] =
-	{
-		1.0f,0.0f,0.0f,0.0f,
-		0.0f,1.0f,0.0f,0.0f,
-		0.0f,0.0f,1.0f,0.0f,
-		0.0f,0.0f,0.0f,1.0f
-	};
-
-	// Fragment and vertex shaders code
-	const char* pszFragShader = "\
-		void main (void)\
-		{\
-			gl_FragColor = vec4(1.0, 1.0, 0.66 ,1.0);\
-		}";
-
-	const char* pszVertShader = "\
-		attribute lowp vec4	myVertex;\
-		uniform  mat4	myPMVMatrix;\
-		void main(void)\
-		{\
-			gl_Position = myPMVMatrix * myVertex;\
-		}";
-	/*
-		Step 0 - Create a NativeWindowType that we can use it for OpenGL ES output
-	*/
+	
 	Window					sRootWindow;
     XSetWindowAttributes	sWA;
 	unsigned int			ui32Mask;
@@ -191,30 +215,8 @@ int main(int argc, char **argv)
 		goto cleanup;
 	}
 
-	/*
-		Step 4 - Specify the required configuration attributes.
-		An EGL "configuration" describes the pixel format and type of
-		surfaces that can be used for drawing.
-		For now we just want to use a 16 bit RGB surface that is a
-		Window surface, i.e. it will be visible on screen. The list
-		has to contain key/value pairs, terminated with EGL_NONE.
-	 */
-        EGLint pi32ConfigAttribs[5];
-        pi32ConfigAttribs[0] = EGL_SURFACE_TYPE;
-        pi32ConfigAttribs[1] = EGL_WINDOW_BIT;
-        pi32ConfigAttribs[2] = EGL_RENDERABLE_TYPE;
-        pi32ConfigAttribs[3] = EGL_OPENGL_ES2_BIT;
-        pi32ConfigAttribs[4] = EGL_NONE;
-
-	/*
-		Step 5 - Find a config that matches all requirements.
-		eglChooseConfig provides a list of all available configurations
-		that meet or exceed the requirements given as the second
-		argument. In most cases we just want the first config that meets
-		all criteria, so we can limit the number of configs returned to 1.
-	*/
 	EGLint iConfigs;
-	if (!eglChooseConfig(eglDisplay, pi32ConfigAttribs, &eglConfig, 1, &iConfigs) || (iConfigs != 1))
+	if (!eglChooseConfig(eglDisplay, pi32ConfigAttribs2, &eglConfig, 1, &iConfigs) || (iConfigs != 1))
 	{
 		printf("Error: eglChooseConfig() failed.\n");
 		goto cleanup;
@@ -261,166 +263,25 @@ int main(int argc, char **argv)
 		goto cleanup;
 	}
 
-	/*
-		Step 9 - Draw something with OpenGL ES.
-		At this point everything is initialized and we're ready to use
-		OpenGL ES to draw something on the screen.
-	*/
-#if 0
-	GLuint uiFragShader, uiVertShader;		// Used to hold the fragment and vertex shader handles
-	GLuint uiProgramObject;					// Used to hold the program handle (made out of the two previous shaders
-
-	// Create the fragment shader object
-	uiFragShader = glCreateShader(GL_FRAGMENT_SHADER);
-
-	// Load the source code into it
-	glShaderSource(uiFragShader, 1, (const char**)&pszFragShader, NULL);
-
-	// Compile the source code
-	glCompileShader(uiFragShader);
-
-	// Check if compilation succeeded
-	GLint bShaderCompiled;
-    glGetShaderiv(uiFragShader, GL_COMPILE_STATUS, &bShaderCompiled);
-
-	if (!bShaderCompiled)
-	{
-		// An error happened, first retrieve the length of the log message
-		int i32InfoLogLength, i32CharsWritten;
-		glGetShaderiv(uiFragShader, GL_INFO_LOG_LENGTH, &i32InfoLogLength);
-
-		// Allocate enough space for the message and retrieve it
-		char* pszInfoLog = new char[i32InfoLogLength];
-        glGetShaderInfoLog(uiFragShader, i32InfoLogLength, &i32CharsWritten, pszInfoLog);
-
-		// Displays the error
-		printf("Failed to compile fragment shader: %s\n", pszInfoLog);
-		delete [] pszInfoLog;
-		goto cleanup;
-	}
-
-	// Loads the vertex shader in the same way
-	uiVertShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(uiVertShader, 1, (const char**)&pszVertShader, NULL);
-	glCompileShader(uiVertShader);
-    glGetShaderiv(uiVertShader, GL_COMPILE_STATUS, &bShaderCompiled);
-
-	if (!bShaderCompiled)
-	{
-		int i32InfoLogLength, i32CharsWritten;
-		glGetShaderiv(uiVertShader, GL_INFO_LOG_LENGTH, &i32InfoLogLength);
-		char* pszInfoLog = new char[i32InfoLogLength];
-        glGetShaderInfoLog(uiVertShader, i32InfoLogLength, &i32CharsWritten, pszInfoLog);
-		printf("Failed to compile vertex shader: %s\n", pszInfoLog);
-		delete [] pszInfoLog;
-		goto cleanup;
-	}
-
-	// Create the shader program
-    uiProgramObject = glCreateProgram();
-
-	// Attach the fragment and vertex shaders to it
-    glAttachShader(uiProgramObject, uiFragShader);
-    glAttachShader(uiProgramObject, uiVertShader);
-
-	// Bind the custom vertex attribute "myVertex" to location VERTEX_ARRAY
-    glBindAttribLocation(uiProgramObject, VERTEX_ARRAY, "myVertex");
-
-	// Link the program
-    glLinkProgram(uiProgramObject);
-
-	// Check if linking succeeded in the same way we checked for compilation success
-    GLint bLinked;
-    glGetProgramiv(uiProgramObject, GL_LINK_STATUS, &bLinked);
-
-	if (!bLinked)
-	{
-		int ui32InfoLogLength, ui32CharsWritten;
-		glGetProgramiv(uiProgramObject, GL_INFO_LOG_LENGTH, &ui32InfoLogLength);
-		char* pszInfoLog = new char[ui32InfoLogLength];
-		glGetProgramInfoLog(uiProgramObject, ui32InfoLogLength, &ui32CharsWritten, pszInfoLog);
-		printf("Failed to link program: %s\n", pszInfoLog);
-		delete [] pszInfoLog;
-		goto cleanup;
-	}
-
-	// Actually use the created program
-    glUseProgram(uiProgramObject);
-
-	// Sets the clear color.
-	// The colours are passed per channel (red,green,blue,alpha) as float values from 0.0 to 1.0
-	glClearColor(0.6f, 0.8f, 1.0f, 1.0f); // clear blue
-
-	// We're going to draw a triangle to the screen so create a vertex buffer object for our triangle
-	{
-		// Interleaved vertex data
-		GLfloat afVertices[] = {	-0.4f,-0.4f,0.0f, // Position
-								0.4f ,-0.4f,0.0f,
-								0.0f ,0.4f ,0.0f};
-
-		// Generate the vertex buffer object (VBO)
-		glGenBuffers(1, &ui32Vbo);
-
-		// Bind the VBO so we can fill it with data
-		glBindBuffer(GL_ARRAY_BUFFER, ui32Vbo);
-
-		// Set the buffer's data
-		unsigned int uiSize = 3 * (sizeof(GLfloat) * 3); // Calc afVertices size (3 vertices * stride (3 GLfloats per vertex))
-		glBufferData(GL_ARRAY_BUFFER, uiSize, afVertices, GL_STATIC_DRAW);
-	}
-#else
+	
     CWindow::Set_ScreenWidth(WINDOW_WIDTH);
     CWindow::Set_ScreenHeight(WINDOW_HEIGHT);
 
     CGame::Instance()->Load();
-#endif
+
 	// Draws a triangle for 800 frames
 	for(;;)
 	{
-		// Check if the message handler finished the demo
-		//if (bDemoDone) break;
-
-		/*
-			Clears the color buffer.
-			glClear() can also be used to clear the depth or stencil buffer
-			(GL_DEPTH_BUFFER_BIT or GL_STENCIL_BUFFER_BIT)
-		*/
+	
 		glClear(GL_COLOR_BUFFER_BIT);
 		if (!TestEGLError("glClear"))
 		{
 			goto cleanup;
 		}
-#if 1
+
         CGame::Instance()->Update();
 		CGame::Instance()->Render();
-#else
-		/*
-			Bind the projection model view matrix (PMVMatrix) to
-			the associated uniform variable in the shader
-		*/
 
-		// First gets the location of that variable in the shader using its name
-		int i32Location = glGetUniformLocation(uiProgramObject, "myPMVMatrix");
-
-		// Then passes the matrix to that variable
-		glUniformMatrix4fv( i32Location, 1, GL_FALSE, pfIdentity);
-
-		/*
-			Enable the custom vertex attribute at index VERTEX_ARRAY.
-			We previously binded that index to the variable in our shader "vec4 MyVertex;"
-		*/
-		glEnableVertexAttribArray(VERTEX_ARRAY);
-
-		// Sets the vertex data to this attribute index
-		glVertexAttribPointer(VERTEX_ARRAY, 3, GL_FLOAT, GL_FALSE, 0, 0);
-
-		/*
-			Draws a non-indexed triangle array from the pointers previously given.
-			This function allows the use of other primitive types : triangle strips, lines, ...
-			For indexed geometry, use the function glDrawElements() with an index list.
-		*/
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-#endif
 		if (!TestEGLError("glDrawArrays"))
 		{
 			goto cleanup;
@@ -438,38 +299,40 @@ int main(int argc, char **argv)
 		}
 
 		// Managing the X11 messages
-//		int i32NumMessages = XPending( x11Display );
-//		for( int i = 0; i < i32NumMessages; i++ )
-//		{
-//			XEvent	event;
-//			XNextEvent( x11Display, &event );
-//
-//			switch( event.type )
-//			{
-//			// Exit on mouse click
-//			case ButtonPress:
-//        		bDemoDone = true;
-//        		break;
-//			default:
-//				break;
-//			}
-//		}
+		int i32NumMessages = XPending( x11Display );
+		for( int i = 0; i < i32NumMessages; i++ )
+		{
+			XEvent	event;
+			XNextEvent( x11Display, &event );
+
+			switch( event.type )
+			{
+			// Exit on mouse click
+			case ButtonPress:
+        		
+        		break;
+
+            case KeyPress:
+                //LogDebug(event.xkey.keycode);
+                keys[event.xkey.keycode] = true;
+                break;
+
+            case KeyRelease:
+                //LogDebug(event.xkey.keycode);
+                keys[event.xkey.keycode] = false;
+                break;
+
+			default:
+                //LogDebug(event.type);
+				break;
+			}
+		}
+
+        ProcessInput();
+
+        //usleep(1000);
 	}
 
-	// Frees the OpenGL handles for the program and the 2 shaders
-//	glDeleteProgram(uiProgramObject);
-//	glDeleteShader(uiFragShader);
-//	glDeleteShader(uiVertShader);
-//
-//	// Delete the VBO as it is no longer needed
-//	glDeleteBuffers(1, &ui32Vbo);
-
-	/*
-		Step 10 - Terminate OpenGL ES and destroy the window (if present).
-		eglTerminate takes care of destroying any context or surface created
-		with this display, so we don't need to call eglDestroySurface or
-		eglDestroyContext here.
-	*/
 cleanup:
 	eglMakeCurrent(eglDisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT) ;
 	eglTerminate(eglDisplay);
