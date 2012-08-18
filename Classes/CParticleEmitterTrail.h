@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include "CParticleEmitter.h"
-
+/*tag1*/
 class CParticleEmitterTrail : public CParticleEmitter
 {
 protected:
@@ -28,5 +28,6 @@ public:
     
     void Reset(void);
 };
+
 
 #endif /* defined(__iGaia__CParticleEmitterTrail__) */

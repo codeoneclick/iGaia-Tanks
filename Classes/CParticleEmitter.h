@@ -13,7 +13,7 @@
 #include "INode.h"
 #include "CTimer.h"
 #include "CVertexBufferPositionTexcoordColor.h"
-
+/*tag1*/
 class CParticleEmitter : public INode
 {
 protected:

@@ -9,7 +9,7 @@
 #include "CParticleEmitter.h"
 #include "CSceneMgr.h"
 #include "CTimer.h"
-
+/*tag1*/
 CParticleEmitter::CParticleEmitter(void)
 {
     m_iNumParticles = k_DEFAULT_NUM_PARTICLES;
