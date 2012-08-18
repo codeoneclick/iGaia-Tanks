@@ -65,6 +65,8 @@ void CGameInGameScene::Load(void)
     m_pCamera->Set_HeightFromLookAt(k_CAMERA_HEIGHT_MODE_1);
     m_fNeedCameraHeight = k_CAMERA_HEIGHT_MODE_1;
     m_fCurrentCameraHeight = k_CAMERA_HEIGHT_MODE_1;
+    m_fNeedCameraDistance = k_CAMERA_DISTANCE_MODE_1;
+    m_fCurrentCameraDistance = k_CAMERA_DISTANCE_MODE_1;
 }
 
 void CGameInGameScene::Unload(void)
@@ -109,10 +111,12 @@ void CGameInGameScene::Update(void)
     if(m_eCameraMode == E_CAMERA_MODE_1)
     {
         m_fNeedCameraHeight = k_CAMERA_HEIGHT_MODE_1 + fCameraHeight;
+        m_fNeedCameraDistance = k_CAMERA_DISTANCE_MODE_1;
     }
     else if(m_eCameraMode == E_CAMERA_MODE_2)
     {
         m_fNeedCameraHeight = k_CAMERA_HEIGHT_MODE_2 + fCameraHeight;
+        m_fNeedCameraDistance = k_CAMERA_DISTANCE_MODE_2;
     }
     
     m_fCurrentCameraHeight = vCameraPosition.y;
@@ -126,7 +130,17 @@ void CGameInGameScene::Update(void)
          m_fCurrentCameraHeight += std::fabs(m_fCurrentCameraHeight - m_fNeedCameraHeight) * 0.1f;
     }
     
+    if(!CMathHelper::Instance()->IsFloatEqualWithDelta(m_fCurrentCameraDistance, m_fNeedCameraDistance, k_CAMERA_DISPLACE_INC * 1.33f) && m_fCurrentCameraDistance > m_fNeedCameraDistance)
+    {
+        m_fCurrentCameraDistance -= std::fabs(m_fCurrentCameraDistance - m_fNeedCameraDistance) * 0.1f;
+    }
+    else if(!CMathHelper::Instance()->IsFloatEqualWithDelta(m_fCurrentCameraDistance, m_fNeedCameraDistance, k_CAMERA_DISPLACE_INC * 1.33f) && m_fCurrentCameraDistance < m_fNeedCameraDistance)
+    {
+        m_fCurrentCameraDistance += std::fabs(m_fCurrentCameraDistance - m_fNeedCameraDistance) * 0.1f;
+    }
+    
     m_pCamera->Set_HeightFromLookAt(m_fCurrentCameraHeight);
+    m_pCamera->Set_DistanceToLookAt(m_fCurrentCameraDistance);
     
     glm::vec3 vCurrentCameraRotation = m_pCamera->Get_Rotation();
     vCurrentCameraRotation.y = glm::radians(m_pMainCharacterController->Get_Rotation().y + m_pMainCharacterController->Get_TowerAngleY()) - CMathHelper::k_HALF_PI;

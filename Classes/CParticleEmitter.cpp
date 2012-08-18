@@ -8,7 +8,6 @@
 
 #include "CParticleEmitter.h"
 #include "CSceneMgr.h"
-#include "CVertexBufferPositionTexcoordColor.h"
 #include "CTimer.h"
 
 CParticleEmitter::CParticleEmitter(void)
@@ -204,12 +203,6 @@ void CParticleEmitter::Render(CShader::E_RENDER_MODE _eMode)
     }
     
     INode::Render(_eMode);
-    
-    /*if(m_bIsBatching)
-    {
-        CSceneMgr::Instance()->Get_BatchMgr()->Push(this, CBatch::E_BATCH_MODE_PARTICLE_EMITTER);
-        return;
-    }*/
     
     ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();
     CShader* pShader = m_pMaterial->Get_Shader(_eMode);

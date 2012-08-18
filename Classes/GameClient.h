@@ -26,6 +26,7 @@
 #include <pthread.h>
 #include "GameNetworkProtocol.h"
 #include <vector>
+#include <pthread.h>
 
 class GameClient
 {

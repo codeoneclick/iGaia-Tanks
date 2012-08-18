@@ -13,6 +13,9 @@ CTankLightBody::CTankLightBody(void)
 {
     m_vLeftExhaustEmitterOffset = glm::vec3(0.15f, 0.75f, -1.25f);
     m_vRightExhaustEmitterOffset = glm::vec3(-0.15f, 0.75f, -1.25f);
+    
+    m_vLeftDirtEmitterOffset = glm::vec3(0.75f, -0.25f, -1.5f);
+    m_vRightDirtEmitterOffset = glm::vec3(-0.75f, -0.25f, -1.5f);
 }
 
 CTankLightBody::~CTankLightBody(void)
@@ -45,6 +48,16 @@ void CTankLightBody::Load(void)
     m_pRightExhaustSmokeEmitter->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_PARTICLE);
     m_pRightExhaustSmokeEmitter->Set_Shader(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, IResource::E_SHADER_PARTICLE_ND);
     m_pRightExhaustSmokeEmitter->Set_Texture("smoke.pvr", 0, CTexture::E_WRAP_MODE_CLAMP);
+    
+    m_pLeftDirtEmitter = CSceneMgr::Instance()->Get_ParticleMgr()->Add_ParticleEmitterTrail(64, glm::vec2(0.1f), glm::vec2(0.33f), 250, true);
+    m_pLeftDirtEmitter->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_PARTICLE);
+    m_pLeftDirtEmitter->Set_Shader(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, IResource::E_SHADER_PARTICLE_ND);
+    m_pLeftDirtEmitter->Set_Texture("smoke.pvr", 0, CTexture::E_WRAP_MODE_CLAMP);
+    
+    m_pRightDirtEmitter = CSceneMgr::Instance()->Get_ParticleMgr()->Add_ParticleEmitterTrail(64, glm::vec2(0.1f), glm::vec2(0.33f), 250, true);
+    m_pRightDirtEmitter->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_PARTICLE);
+    m_pRightDirtEmitter->Set_Shader(CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP, IResource::E_SHADER_PARTICLE_ND);
+    m_pRightDirtEmitter->Set_Texture("smoke.pvr", 0, CTexture::E_WRAP_MODE_CLAMP);
 }
 
 void CTankLightBody::Update(void)

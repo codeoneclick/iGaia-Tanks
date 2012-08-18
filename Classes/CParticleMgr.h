@@ -12,7 +12,8 @@
 #include <iostream>
 #include "CParticleEmitter.h"
 #include "CParticleEmitterFire.h"
-#include "CParticleEmitterFireTrail.h"
+#include "CParticleEmitterExplosion.h"
+#include "CParticleEmitterTrail.h"
 
 class CParticleMgr
 {
@@ -22,7 +23,8 @@ public:
     CParticleMgr(void);
     ~CParticleMgr(void);
     CParticleEmitterFire* Add_ParticleEmitterFire(unsigned int _iNumParticles, const glm::vec2& _vMinSize, const glm::vec2& _vMaxSize, int _iLifeTime, bool _bIsRepeat);
-    CParticleEmitterFireTrail* Add_ParticleEmitterFireTrail(unsigned int _iNumParticles, const glm::vec2& _vMinSize, const glm::vec2& _vMaxSize, int _iLifeTime, bool _bIsRepeat);
+    CParticleEmitterExplosion* Add_ParticleEmitterExplosion(unsigned int _iNumParticles, const glm::vec2& _vMinSize, const glm::vec2& _vMaxSize, int _iLifeTime, bool _bIsRepeat);
+    CParticleEmitterTrail*  Add_ParticleEmitterTrail(unsigned int _iNumParticles, const glm::vec2& _vMinSize, const glm::vec2& _vMaxSize, int _iLifeTime, bool _bIsRepeat);
     void Remove_ParticleEmitter(CParticleEmitter* _pParticleEmitter);
     void Remove_Effect(INode* _pEffect);
     void Update(void);

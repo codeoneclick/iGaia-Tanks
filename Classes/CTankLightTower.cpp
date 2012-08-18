@@ -12,7 +12,7 @@
 CTankLightTower::CTankLightTower(void)
 {
     m_vTowerEmitterOffset = glm::vec3(0.0f, 0.66f, 0.0f);
-    m_vTowerGunOffset = glm::vec3(1.11f, 1.66f, 1.11f);
+    m_vTowerGunOffset = glm::vec3(1.11f, 1.8f, 1.11f);
     m_fTowerTotalHealth = 100;
     m_fTowerCurrentHealth = 100;
 }
