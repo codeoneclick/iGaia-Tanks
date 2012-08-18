@@ -199,8 +199,8 @@
       <itemPath>../Classes/CParticleEmitterExplosion.h</itemPath>
       <itemPath>../Classes/CParticleEmitterFire.cpp</itemPath>
       <itemPath>../Classes/CParticleEmitterFire.h</itemPath>
-      <itemPath>../Classes/CParticleEmitterFireTrail.cpp</itemPath>
-      <itemPath>../Classes/CParticleEmitterFireTrail.h</itemPath>
+      <itemPath>../Classes/CParticleEmitterTrail.cpp</itemPath>
+      <itemPath>../Classes/CParticleEmitterTrail.h</itemPath>
       <itemPath>../Classes/CParticleMgr.cpp</itemPath>
       <itemPath>../Classes/CParticleMgr.h</itemPath>
       <itemPath>../Classes/CRenderMgr.cpp</itemPath>

@@ -95,11 +95,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/1180546860/b2CollideCircle.o \
 	${OBJECTDIR}/_ext/21410767/b2StackAllocator.o \
 	${OBJECTDIR}/_ext/837767863/CShader.o \
-	${OBJECTDIR}/_ext/837767863/CParticleEmitterFireTrail.o \
 	${OBJECTDIR}/_ext/1180546860/b2Distance.o \
 	${OBJECTDIR}/_ext/837767863/CSkyBox.o \
 	${OBJECTDIR}/_ext/837767863/CGameInGameLevel.o \
 	${OBJECTDIR}/_ext/1176185352/b2EdgeAndPolygonContact.o \
+	${OBJECTDIR}/_ext/837767863/CParticleEmitterTrail.o \
 	${OBJECTDIR}/_ext/1350479654/b2ContactManager.o \
 	${OBJECTDIR}/_ext/837767863/CGameCharaterControllerMgr.o \
 	${OBJECTDIR}/_ext/837767863/CResourceMgr.o \
@@ -513,11 +513,6 @@ ${OBJECTDIR}/_ext/837767863/CShader.o: ../Classes/CShader.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/837767863/CShader.o ../Classes/CShader.cpp
 
-${OBJECTDIR}/_ext/837767863/CParticleEmitterFireTrail.o: ../Classes/CParticleEmitterFireTrail.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/837767863
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/837767863/CParticleEmitterFireTrail.o ../Classes/CParticleEmitterFireTrail.cpp
-
 ${OBJECTDIR}/_ext/1180546860/b2Distance.o: ../libs/ios/Box2D/Collision/b2Distance.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1180546860
 	${RM} $@.d
@@ -537,6 +532,11 @@ ${OBJECTDIR}/_ext/1176185352/b2EdgeAndPolygonContact.o: ../libs/ios/Box2D/Dynami
 	${MKDIR} -p ${OBJECTDIR}/_ext/1176185352
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/1176185352/b2EdgeAndPolygonContact.o ../libs/ios/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.cpp
+
+${OBJECTDIR}/_ext/837767863/CParticleEmitterTrail.o: ../Classes/CParticleEmitterTrail.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/837767863
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/837767863/CParticleEmitterTrail.o ../Classes/CParticleEmitterTrail.cpp
 
 ${OBJECTDIR}/_ext/1350479654/b2ContactManager.o: ../libs/ios/Box2D/Dynamics/b2ContactManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1350479654

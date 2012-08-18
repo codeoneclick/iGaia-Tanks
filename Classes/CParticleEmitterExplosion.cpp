@@ -9,6 +9,12 @@
 #include "CParticleEmitterExplosion.h"
 #include "CTimer.h"
 
+static float k_RANDOM_MODIFICATOR = 256.0f;
+static float k_PARTICLE_START_OFFSET_X = 0.15f;
+static float k_PARTICLE_START_OFFSET_Z = 0.15f;
+static float k_PARTICLE_MIN_MOVE_SPEED = 0.0f;
+static float k_PARTICLE_MAX_MOVE_SPEED = 0.25f;
+
 CParticleEmitterExplosion::CParticleEmitterExplosion(void)
 {
     m_fMoveSpeed = 0.0f;
