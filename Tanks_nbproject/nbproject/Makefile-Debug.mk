@@ -66,8 +66,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/837767863/GameLightTankSDB.o \
 	${OBJECTDIR}/_ext/1176185352/b2ChainAndCircleContact.o \
 	${OBJECTDIR}/_ext/837767863/CMaterial.o \
-	${OBJECTDIR}/_ext/837767863/CVertexBufferPositionColor.o \
 	${OBJECTDIR}/_ext/1438679880/b2Rope.o \
+	${OBJECTDIR}/_ext/837767863/CVertexBufferPositionColor.o \
 	${OBJECTDIR}/_ext/1180546860/b2Collision.o \
 	${OBJECTDIR}/_ext/837767863/IGameLevel.o \
 	${OBJECTDIR}/_ext/469629982/b2PulleyJoint.o \
@@ -368,15 +368,15 @@ ${OBJECTDIR}/_ext/837767863/CMaterial.o: ../Classes/CMaterial.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -DDEBUG -I../libs/ios -I../Classes -I../libs/ios/pvr -I../libs/external/Common/Include -I../libs/external -I../libs/platform/OGLES2/Include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/837767863/CMaterial.o ../Classes/CMaterial.cpp
 
-${OBJECTDIR}/_ext/837767863/CVertexBufferPositionColor.o: ../Classes/CVertexBufferPositionColor.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/837767863
-	${RM} $@.d
-	$(COMPILE.cc) -g -DDEBUG -I../libs/ios -I../Classes -I../libs/ios/pvr -I../libs/external/Common/Include -I../libs/external -I../libs/platform/OGLES2/Include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/837767863/CVertexBufferPositionColor.o ../Classes/CVertexBufferPositionColor.cpp
-
 ${OBJECTDIR}/_ext/1438679880/b2Rope.o: ../libs/ios/Box2D/Rope/b2Rope.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1438679880
 	${RM} $@.d
 	$(COMPILE.cc) -g -DDEBUG -I../libs/ios -I../Classes -I../libs/ios/pvr -I../libs/external/Common/Include -I../libs/external -I../libs/platform/OGLES2/Include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/1438679880/b2Rope.o ../libs/ios/Box2D/Rope/b2Rope.cpp
+
+${OBJECTDIR}/_ext/837767863/CVertexBufferPositionColor.o: ../Classes/CVertexBufferPositionColor.cpp 
+	${MKDIR} -p ${OBJECTDIR}/_ext/837767863
+	${RM} $@.d
+	$(COMPILE.cc) -g -DDEBUG -I../libs/ios -I../Classes -I../libs/ios/pvr -I../libs/external/Common/Include -I../libs/external -I../libs/platform/OGLES2/Include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/837767863/CVertexBufferPositionColor.o ../Classes/CVertexBufferPositionColor.cpp
 
 ${OBJECTDIR}/_ext/1180546860/b2Collision.o: ../libs/ios/Box2D/Collision/b2Collision.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/1180546860
