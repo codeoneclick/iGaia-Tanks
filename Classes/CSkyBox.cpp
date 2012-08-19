@@ -30,9 +30,6 @@ void CSkyBox::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     
     CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
     
-    //glm::vec3* pPositionData = pSourceData->m_pVertexBuffer->GetOrCreate_PositionSourceData();
-    //glm::vec2* pTexCoordData = pSourceData->m_pVertexBuffer->GetOrCreate_TexcoordSourceData();
-    
     glm::vec3 m_vMin = glm::vec3( -1.0f, -1.0f, -1.0f);
     glm::vec3 m_vMax = glm::vec3(  1.0f,  1.0f,  1.0f);
     

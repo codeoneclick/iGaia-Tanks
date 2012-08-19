@@ -11,10 +11,15 @@
 
 #include <iostream>
 #include "CParticleEmitter.h"
-/*tag1*/
+
 class CParticleEmitterTrail : public CParticleEmitter
 {
 protected:
+    constexpr static float k_RANDOM_MODIFICATOR = 256.0f;
+    constexpr static float k_PARTICLE_START_OFFSET_X = 0.15f;
+    constexpr static float k_PARTICLE_START_OFFSET_Z = 0.15f;
+    constexpr static float k_PARTICLE_MIN_MOVE_SPEED = 0.0f;
+    constexpr static float k_PARTICLE_MAX_MOVE_SPEED = 0.25f;
     float m_fMoveSpeed;
 public:
     CParticleEmitterTrail(void);
@@ -28,6 +33,5 @@ public:
     
     void Reset(void);
 };
-
 
 #endif /* defined(__iGaia__CParticleEmitterTrail__) */

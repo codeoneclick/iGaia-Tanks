@@ -32,7 +32,7 @@ glm::vec3 IVertexBuffer::UnCompressU8VEC4(const glm::u8vec4& _vCompressed)
 IVertexBuffer::IVertexBuffer(void)
 {
     m_pData = NULL;
-    m_eMode = GL_STATIC_DRAW;
+    m_eRenderMode = GL_STATIC_DRAW;
     m_iNumVertexes = 0;
     m_bIsCommited = false;
     glGenBuffers(1, &m_hHandle);
@@ -64,12 +64,12 @@ void IVertexBuffer::Unlock(void)
     glBindBuffer(GL_ARRAY_BUFFER, m_hHandle);
     if(!m_bIsCommited)
     {
-        glBufferData(GL_ARRAY_BUFFER, k_STRIDE_SIZE * m_iNumVertexes, m_pData, m_eMode);
+        glBufferData(GL_ARRAY_BUFFER, k_STRIDE_SIZE * m_iNumVertexes, m_pData, m_eRenderMode);
         m_bIsCommited = true;
     }
     else
     {
-        glBufferData(GL_ARRAY_BUFFER, k_STRIDE_SIZE * m_iNumVertexes, m_pData, m_eMode);
+        glBufferData(GL_ARRAY_BUFFER, k_STRIDE_SIZE * m_iNumVertexes, m_pData, m_eRenderMode);
     }
 }
 
@@ -78,12 +78,12 @@ void IVertexBuffer::Commit(void)
     glBindBuffer(GL_ARRAY_BUFFER, m_hHandle);
     if(!m_bIsCommited)
     {
-        glBufferData(GL_ARRAY_BUFFER, k_STRIDE_SIZE * m_iNumVertexes, m_pData, m_eMode);
+        glBufferData(GL_ARRAY_BUFFER, k_STRIDE_SIZE * m_iNumVertexes, m_pData, m_eRenderMode);
         m_bIsCommited = true;
     }
     else
     {
-        glBufferData(GL_ARRAY_BUFFER, k_STRIDE_SIZE * m_iNumVertexes, m_pData, m_eMode);
+        glBufferData(GL_ARRAY_BUFFER, k_STRIDE_SIZE * m_iNumVertexes, m_pData, m_eRenderMode);
     }
 }
 

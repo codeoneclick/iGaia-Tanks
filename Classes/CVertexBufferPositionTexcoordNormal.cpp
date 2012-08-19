@@ -12,7 +12,8 @@
 CVertexBufferPositionTexcoordNormal::CVertexBufferPositionTexcoordNormal(unsigned int _iNumVertexes, unsigned int _eMode)
 {
     m_iNumVertexes = _iNumVertexes;
-    m_eMode = _eMode;
+    m_eRenderMode = _eMode;
+    m_eVertexBufferMode = IVertexBuffer::E_VERTEX_BUFFER_MODE_PTN;
     m_pData = new char[m_iNumVertexes * k_STRIDE_SIZE];
 }
 

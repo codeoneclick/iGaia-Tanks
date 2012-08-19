@@ -38,7 +38,7 @@ void CGameInGameScene::Load(void)
     m_pMainCharacterController = static_cast<CCharacterControllerPlayer*>(m_pCharaterControllerMgr->Get_MainCharacterController());
     m_pMainCharacterController->Set_Position(glm::vec3(5.0f, 0.0f, 5.0f));
     
-    /*CCharacterControllerEnemy* pEnemy = static_cast<CCharacterControllerEnemy*>(m_pCharaterControllerMgr->Add_EnemyCharacterController());
+    CCharacterControllerEnemy* pEnemy = static_cast<CCharacterControllerEnemy*>(m_pCharaterControllerMgr->Add_EnemyCharacterController());
     pEnemy->Set_Position(glm::vec3(8.0f, 0.0f, 8.0f));
     m_pGameAIMgr->Add_AICharacterController(pEnemy);
     pEnemy->Set_Target(m_pMainCharacterController);
@@ -51,7 +51,7 @@ void CGameInGameScene::Load(void)
     pEnemy = static_cast<CCharacterControllerEnemy*>(m_pCharaterControllerMgr->Add_EnemyCharacterController());
     pEnemy->Set_Position(glm::vec3(8.0f, 0.0f, CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height() - 8.0f));
     m_pGameAIMgr->Add_AICharacterController(pEnemy);
-    pEnemy->Set_Target(m_pMainCharacterController);*/
+    pEnemy->Set_Target(m_pMainCharacterController);
     
     m_pLight = new CLightPoint();
     m_pLight->Set_Position(glm::vec3(32.0f, 16.0f, 32.0f));

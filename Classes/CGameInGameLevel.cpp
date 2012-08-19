@@ -74,6 +74,49 @@ void CGameInGameLevel::Load(void)
     pBuilding->Set_Position(glm::vec3(12.0f, 0.0f, 28.0f));
     m_lBuildings.push_back(pBuilding);
     
+    pBuilding = new CBuilding();
+    pBuilding->Load("building_04.mdl", "building.pvr");
+    pBuilding->Set_Position(glm::vec3(64.0f, 0.0f, 12.0f));
+    m_lBuildings.push_back(pBuilding);
+    
+    pBuilding = new CBuilding();
+    pBuilding->Load("building_05.mdl", "building.pvr");
+    pBuilding->Set_Position(glm::vec3(48.0f, 0.0f, 48.0f));
+    m_lBuildings.push_back(pBuilding);
+
+    
+    pBuilding = new CBuilding();
+    pBuilding->Load("building_04.mdl", "building.pvr");
+    pBuilding->Set_Position(glm::vec3(32.0f, 0.0f, 80.0f));
+    m_lBuildings.push_back(pBuilding);
+    
+    pBuilding = new CBuilding();
+    pBuilding->Load("building_05.mdl", "building.pvr");
+    pBuilding->Set_Position(glm::vec3(100.0f, 0.0f, 60.0f));
+    m_lBuildings.push_back(pBuilding);
+
+    
+    pBuilding = new CBuilding();
+    pBuilding->Load("building_04.mdl", "building.pvr");
+    pBuilding->Set_Position(glm::vec3(40.0f, 0.0f, 67.0f));
+    m_lBuildings.push_back(pBuilding);
+    
+    pBuilding = new CBuilding();
+    pBuilding->Load("building_05.mdl", "building.pvr");
+    pBuilding->Set_Position(glm::vec3(90.0f, 0.0f, 28.0f));
+    m_lBuildings.push_back(pBuilding);
+
+    pBuilding = new CBuilding();
+    pBuilding->Load("building_04.mdl", "building.pvr");
+    pBuilding->Set_Position(glm::vec3(14.0f, 0.0f, 78.0f));
+    m_lBuildings.push_back(pBuilding);
+    
+    pBuilding = new CBuilding();
+    pBuilding->Load("building_05.mdl", "building.pvr");
+    pBuilding->Set_Position(glm::vec3(90.0f, 0.0f, 90.0f));
+    m_lBuildings.push_back(pBuilding);
+
+    
     m_pSkyBox = (CSkyBox*)CSceneMgr::Instance()->Add_SkyBoxModel("skybox");
     m_pSkyBox->Set_Shader(CShader::E_RENDER_MODE_SIMPLE, IResource::E_SHADER_SKYBOX);
     m_pSkyBox->Set_Texture("clouds.pvr", 0, CTexture::E_WRAP_MODE_REPEAT);
