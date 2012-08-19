@@ -157,7 +157,8 @@
 		15AE147215DD659F00262A59 /* wrap.inl in Resources */ = {isa = PBXBuildFile; fileRef = 15AE13D515DD659F00262A59 /* wrap.inl */; };
 		15AE147315DD659F00262A59 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE13DA15DD659F00262A59 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		15AF6CBF15E0C90400034990 /* CBatchMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6CBD15E0C90400034990 /* CBatchMgr.cpp */; };
-		15AF6CC315E0C93500034990 /* CBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6CC115E0C93500034990 /* CBatch.cpp */; };
+		15AF6CC315E0C93500034990 /* CBatchModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6CC115E0C93500034990 /* CBatchModel.cpp */; };
+		15AF6CCC15E1052700034990 /* IBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6CCA15E1052700034990 /* IBatch.cpp */; };
 		1D3623260D0F684500981E51 /* MainAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MainAppDelegate.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -672,8 +673,10 @@
 		15AE13DD15DD659F00262A59 /* PVRTTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVRTTexture.h; sourceTree = "<group>"; };
 		15AF6CBD15E0C90400034990 /* CBatchMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBatchMgr.cpp; sourceTree = "<group>"; };
 		15AF6CBE15E0C90400034990 /* CBatchMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBatchMgr.h; sourceTree = "<group>"; };
-		15AF6CC115E0C93500034990 /* CBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBatch.cpp; sourceTree = "<group>"; };
-		15AF6CC215E0C93500034990 /* CBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBatch.h; sourceTree = "<group>"; };
+		15AF6CC115E0C93500034990 /* CBatchModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBatchModel.cpp; sourceTree = "<group>"; };
+		15AF6CC215E0C93500034990 /* CBatchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBatchModel.h; sourceTree = "<group>"; };
+		15AF6CCA15E1052700034990 /* IBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IBatch.cpp; sourceTree = "<group>"; };
+		15AF6CCB15E1052700034990 /* IBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBatch.h; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* MainAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* MainAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainAppDelegate.mm; sourceTree = "<group>"; };
@@ -1569,6 +1572,17 @@
 			path = ios/pvr;
 			sourceTree = "<group>";
 		};
+		15AF6CC915E1050F00034990 /* Batches */ = {
+			isa = PBXGroup;
+			children = (
+				15AF6CCB15E1052700034990 /* IBatch.h */,
+				15AF6CCA15E1052700034990 /* IBatch.cpp */,
+				15AF6CC215E0C93500034990 /* CBatchModel.h */,
+				15AF6CC115E0C93500034990 /* CBatchModel.cpp */,
+			);
+			name = Batches;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1718,6 +1732,7 @@
 		933EF3DA14EA4D3D00B7EBCE /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				15AF6CC915E1050F00034990 /* Batches */,
 				15AE127115DAFB1C00262A59 /* IndexBuffers */,
 				15AE127015DAFB0100262A59 /* VertexBuffers */,
 				A13F9EC31568DC82009DCBB4 /* Delegates */,
@@ -1739,8 +1754,6 @@
 				A1E37D60159DE9AD000314C3 /* CSettings.cpp */,
 				A1F98AE815DB8A6100B38C6E /* CNavigationHelper.h */,
 				A1F98AE715DB8A6100B38C6E /* CNavigationHelper.cpp */,
-				15AF6CC215E0C93500034990 /* CBatch.h */,
-				15AF6CC115E0C93500034990 /* CBatch.cpp */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -2719,7 +2732,8 @@
 				15AE140A15DD659F00262A59 /* b2Rope.cpp in Sources */,
 				15AE147315DD659F00262A59 /* JSONKit.m in Sources */,
 				15AF6CBF15E0C90400034990 /* CBatchMgr.cpp in Sources */,
-				15AF6CC315E0C93500034990 /* CBatch.cpp in Sources */,
+				15AF6CC315E0C93500034990 /* CBatchModel.cpp in Sources */,
+				15AF6CCC15E1052700034990 /* IBatch.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

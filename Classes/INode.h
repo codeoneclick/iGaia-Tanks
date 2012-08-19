@@ -87,7 +87,8 @@ public:
 // -- Getters block for recieve main varibles for current node -- //
     CShader*  Get_Shader(CShader::E_RENDER_MODE _eRenderMode);
     CTexture* Get_Texture(unsigned int index);
-    inline CMesh*    Get_Mesh(void) { return m_pMesh; }
+    inline CMesh* Get_Mesh(void) { return m_pMesh; }
+    inline CMaterial* Get_Material(void) { return m_pMaterial; }
 // -- -- //
     
 // -- Setters for texture by index. For preload/load texture. Can use background thread for preloading  -- //

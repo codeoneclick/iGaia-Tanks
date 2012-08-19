@@ -11,12 +11,12 @@
 
 #include <iostream>
 #include <unordered_map>
-#include "CBatch.h"
+#include "IBatch.h"
 
 class CBatchMgr
 {
 protected:
-    std::unordered_map<std::string, CBatch*> m_lContainer;
+    std::unordered_map<std::string, IBatch*> m_lContainer;
 public:
     CBatchMgr(void);
     ~CBatchMgr(void);

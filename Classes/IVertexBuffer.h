@@ -28,13 +28,16 @@
 
 class IVertexBuffer
 {
+public:
+    enum E_VERTEX_BUFFER_MODE { E_VERTEX_BUFFER_MODE_PC = 0, E_VERTEX_BUFFER_MODE_PT, E_VERTEX_BUFFER_MODE_PTC, E_VERTEX_BUFFER_MODE_PTN, E_VERTEX_BUFFER_MODE_PTNT };
 protected:
     char* m_pData;
     GLuint m_hHandle;
-    GLenum m_eMode;
+    GLenum m_eRenderMode;
     unsigned int m_iNumVertexes;
     std::map<CShader::E_RENDER_MODE, CShader*> m_lShaderRefContainer;
     bool m_bIsCommited;
+    E_VERTEX_BUFFER_MODE m_eVertexBufferMode;
 public:
     IVertexBuffer(void);
     virtual ~IVertexBuffer(void);
@@ -52,6 +55,8 @@ public:
     
     virtual void Enable(CShader::E_RENDER_MODE _eRenderMode) = 0;
     virtual void Disable(CShader::E_RENDER_MODE _eRenderMode) = 0;
+    
+    inline const IVertexBuffer::E_VERTEX_BUFFER_MODE Get_VertexBufferMode(void) { return m_eVertexBufferMode; }
 };
 
 #endif
