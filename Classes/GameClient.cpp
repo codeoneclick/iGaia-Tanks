@@ -8,6 +8,10 @@
 
 #include "GameClient.h"
 
+#ifndef WIN32
+#include <string.h>
+#endif
+
 void* GameClientThread(void *_pParam)
 {
     GameClient* pInstance = static_cast<GameClient*>(_pParam);
@@ -24,7 +28,7 @@ GameClient::GameClient(void)
 
 GameClient::~GameClient(void)
 {
-#ifdef OS_IPHONE
+#ifndef WIN32
     close(m_iSocketId);
 #else
     closesocket(m_iSocketId);
@@ -33,7 +37,7 @@ GameClient::~GameClient(void)
 
 void GameClient::Start(void)
 {
-#ifdef OS_IPHONE
+#ifndef WIN32
     if ((m_iSocketId = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
     {
         std::cout<<"[GameClient::Start] Creating Socket Error"<<std::endl;
@@ -62,7 +66,7 @@ void GameClient::Start(void)
 
 void GameClient::Stop(void)
 {
-#ifdef OS_IPHONE
+#ifndef WIN32
     close(m_iSocketId);
 #else
     closesocket(m_iSocketId);
@@ -82,7 +86,7 @@ void GameClient::Send_Position(const glm::vec3 &_vPosition)
 void GameClient::Update(void)
 {
     pthread_mutex_lock(&m_iMutex);
-#ifdef OS_IPHONE
+#ifndef WIN32
     for(unsigned int index = 0; index < m_lPacketContainer.size(); ++index)
     {
         CPacket* pPacket = m_lPacketContainer[index];
@@ -97,7 +101,7 @@ void GameClient::Update(void)
     m_lPacketContainer.clear();
 #endif
     pthread_mutex_unlock(&m_iMutex);
-#ifdef OS_IPHONE
+#ifndef WIN32
     usleep(1000);
 #endif
 }

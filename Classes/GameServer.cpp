@@ -7,6 +7,9 @@
 //
 
 #include "GameServer.h"
+#ifndef WIN32
+#include <string.h>
+#endif
 
 void* GameServerThread(void *_pParam)
 {
@@ -24,7 +27,7 @@ GameServer::GameServer(void)
 
 GameServer::~GameServer(void)
 {
-#ifdef OS_IPHONE
+#ifndef WIN32
     close(m_iSocketId);
 #else
     closesocket(m_iSocketId);
@@ -33,7 +36,7 @@ GameServer::~GameServer(void)
 
 void GameServer::Start(void)
 {
-#ifdef OS_IPHONE
+#ifndef WIN32
     if ((m_iSocketId = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0)
     {
         std::cout<<"[GameServer::Start] Creating Socket Error"<<std::endl;
@@ -63,7 +66,7 @@ void GameServer::Start(void)
 
 void GameServer::Stop(void)
 {
-#ifdef OS_IPHONE
+#ifndef WIN32
     close(m_iSocketId);
 #else
     closesocket(m_iSocketId);
@@ -72,7 +75,7 @@ void GameServer::Stop(void)
 
 void GameServer::Update(void)
 {
-#ifdef OS_IPHONE
+#ifndef WIN32
     struct sockaddr_in client_addr;
     socklen_t clint_length;
     clint_length = sizeof(client_addr);

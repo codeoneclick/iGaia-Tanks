@@ -9,7 +9,11 @@
 #include "CTimer.h"
 #ifdef WIN32
 #include <Windows.h>
+#elif __linux__
+#include "Common.h"
 #endif
+
+
 
 unsigned long long CTimer::Get_TickCount(void)
 {
@@ -24,6 +28,8 @@ unsigned long long CTimer::Get_TickCount(void)
     
     uint64_t millis = ((machTime / 1000000) * sTimebaseInfo.numer) / sTimebaseInfo.denom;
     return millis;
+#elif __linux__
+    return APP_API_GET_TIME();
 #else
 	return GetTickCount();
 #endif

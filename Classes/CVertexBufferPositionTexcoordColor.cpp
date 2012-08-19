@@ -68,5 +68,5 @@ void CVertexBufferPositionTexcoordColor::Disable(CShader::E_RENDER_MODE _eRender
     {
         glDisableVertexAttribArray(iSlot);
     }
-    glBindBuffer(GL_ARRAY_BUFFER, NULL);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
 }

@@ -24,7 +24,7 @@ GameClientHandler::GameClientHandler(void)
 
 GameClientHandler::~GameClientHandler(void)
 {
-#ifdef OS_IPHONE
+#ifndef WIN32
     close(m_iSocketId);
 #else
     closesocket(m_iSocketId);
@@ -39,7 +39,7 @@ void GameClientHandler::Create(int _iSocketId)
 
 void GameClientHandler::Update(void)
 {
-#ifdef OS_IPHONE
+#ifndef WIN32
     CPacketMessageIdDeserializer pPacketMessageId;
     int iPreMessageSize = pPacketMessageId.Get_MessageSize();
     int iRecvMessageSize = read(m_iSocketId, pPacketMessageId.Get_DeserializePtr(), iPreMessageSize);

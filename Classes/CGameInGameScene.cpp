@@ -28,7 +28,7 @@ CGameInGameScene::~CGameInGameScene(void)
 void CGameInGameScene::Load(void)
 {
     IGameScene::Load();
-      
+
     m_pLevel = new CGameInGameLevel();
     m_pLevel->Load();
     

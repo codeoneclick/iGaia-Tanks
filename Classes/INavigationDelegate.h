@@ -12,7 +12,7 @@
 #include <iostream>
 #include <iostream>
 #include "IDelegate.h"
-#include "box2d.h"
+#include <Box2D/Box2D.h>
 
 class INavigationDelegate : public virtual IDelegate
 {
