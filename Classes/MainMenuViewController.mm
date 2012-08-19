@@ -122,7 +122,7 @@ typedef void (^FailureBlock)(id object);
                            @"Kharkov",  @"q",
                            nil];
     
-    [[WebCommunicationMgr instance] googleRequestWithParams:params withSuccess:self.successGoogleBlock withFailure:self.failureGoogleBlock];
+    //[[WebCommunicationMgr instance] googleRequestWithParams:params withSuccess:self.successGoogleBlock withFailure:self.failureGoogleBlock];
 }
 
 - (void)viewDidUnload

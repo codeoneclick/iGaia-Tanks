@@ -156,6 +156,8 @@
 		15AE147115DD659F00262A59 /* verbose_operator.inl in Resources */ = {isa = PBXBuildFile; fileRef = 15AE13D315DD659F00262A59 /* verbose_operator.inl */; };
 		15AE147215DD659F00262A59 /* wrap.inl in Resources */ = {isa = PBXBuildFile; fileRef = 15AE13D515DD659F00262A59 /* wrap.inl */; };
 		15AE147315DD659F00262A59 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE13DA15DD659F00262A59 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		15AF6CBF15E0C90400034990 /* CBatchMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6CBD15E0C90400034990 /* CBatchMgr.cpp */; };
+		15AF6CC315E0C93500034990 /* CBatch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 15AF6CC115E0C93500034990 /* CBatch.cpp */; };
 		1D3623260D0F684500981E51 /* MainAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MainAppDelegate.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -668,6 +670,10 @@
 		15AE13DA15DD659F00262A59 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		15AE13DC15DD659F00262A59 /* PVRTGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVRTGlobal.h; sourceTree = "<group>"; };
 		15AE13DD15DD659F00262A59 /* PVRTTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PVRTTexture.h; sourceTree = "<group>"; };
+		15AF6CBD15E0C90400034990 /* CBatchMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBatchMgr.cpp; sourceTree = "<group>"; };
+		15AF6CBE15E0C90400034990 /* CBatchMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBatchMgr.h; sourceTree = "<group>"; };
+		15AF6CC115E0C93500034990 /* CBatch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBatch.cpp; sourceTree = "<group>"; };
+		15AF6CC215E0C93500034990 /* CBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBatch.h; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* MainAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* MainAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainAppDelegate.mm; sourceTree = "<group>"; };
@@ -1733,6 +1739,8 @@
 				A1E37D60159DE9AD000314C3 /* CSettings.cpp */,
 				A1F98AE815DB8A6100B38C6E /* CNavigationHelper.h */,
 				A1F98AE715DB8A6100B38C6E /* CNavigationHelper.cpp */,
+				15AF6CC215E0C93500034990 /* CBatch.h */,
+				15AF6CC115E0C93500034990 /* CBatch.cpp */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -1758,6 +1766,8 @@
 				937B276B14FF738C00B346E0 /* CScreenSpacePostMgr.cpp */,
 				A13F9ED0156932FD009DCBB4 /* CDecalMgr.h */,
 				A13F9ECF156932FC009DCBB4 /* CDecalMgr.cpp */,
+				15AF6CBE15E0C90400034990 /* CBatchMgr.h */,
+				15AF6CBD15E0C90400034990 /* CBatchMgr.cpp */,
 			);
 			name = Mgrs;
 			sourceTree = "<group>";
@@ -2708,6 +2718,8 @@
 				15AE140915DD659F00262A59 /* b2WheelJoint.cpp in Sources */,
 				15AE140A15DD659F00262A59 /* b2Rope.cpp in Sources */,
 				15AE147315DD659F00262A59 /* JSONKit.m in Sources */,
+				15AF6CBF15E0C90400034990 /* CBatchMgr.cpp in Sources */,
+				15AF6CC315E0C93500034990 /* CBatch.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

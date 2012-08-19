@@ -132,10 +132,12 @@ void CCharacterControllerEnemy::Update(void)
         case E_AI_STATE_NONE:
             std::cout<<"[CCharacterControllerEnemy::Update]"<<"state -> AI_STATE_NONE"<<std::endl;
             m_pChassis->StartExhaustEmitt(false);
+            m_pChassis->StartDirtEmitt(false);
             break;
         case E_AI_STATE_STAND:
         {
             m_pChassis->StartExhaustEmitt(false);
+            m_pChassis->StartDirtEmitt(false);
             std::cout<<"[CCharacterControllerEnemy::Update]"<<"state -> E_AI_STATE_STAND"<<std::endl;
         }
             break;
@@ -209,6 +211,7 @@ void CCharacterControllerEnemy::Update(void)
                 }
             }
             m_pChassis->StartExhaustEmitt(true);
+            m_pChassis->StartDirtEmitt(true);
         }
             break;
         default:
