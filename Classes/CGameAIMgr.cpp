@@ -51,15 +51,62 @@ glm::vec2 CGameAIMgr::_GenerateMovePoint(void)
 
 void CGameAIMgr::Update(void)
 {
-    for(size_t index = 0; index < m_lContainer.size(); ++index)
+    std::vector<CCharacterControllerEnemy*>::iterator pBeginIterator = m_lContainer.begin();
+    std::vector<CCharacterControllerEnemy*>::iterator pEndIterator = m_lContainer.end();
+
+    while (pBeginIterator != pEndIterator)
     {
-        CCharacterControllerEnemy::E_AI_STATE eState = m_lContainer[index]->Get_AIState();
-        if(eState == CCharacterControllerEnemy::E_AI_STATE_NONE)
-        {
-            glm::vec2 vGeneratedPoint = _GenerateMovePoint();
-            m_lContainer[index]->Set_AIMovePoint(glm::vec3(vGeneratedPoint.x, 0.0f, vGeneratedPoint.y));
-            m_lContainer[index]->Set_AIState(CCharacterControllerEnemy::E_AI_STATE_MOVE, 0);
-        }
+        CCharacterControllerEnemy::E_AI_STATE eState = (*pBeginIterator)->Get_AIState();
+		switch (eState) {
+			case CCharacterControllerEnemy::E_AI_STATE_STAND:
+			{
+			
+			}
+				break;
+			case CCharacterControllerEnemy::E_AI_STATE_MOVE:
+			{
+				glm::vec2 vPoint_01 = glm::vec2((*pBeginIterator)->Get_Position());
+				if ((*pBeginIterator)->Get_Target()) {
+					glm::vec2 vPoint_02 = glm::vec2((*pBeginIterator)->Get_Target()->Get_Position());
+					float fDistanceToTargetPoint = glm::distance(vPoint_01, vPoint_02);
+					if (fDistanceToTargetPoint < k_AI_SHOOT_DISTANCE) {
+						(*pBeginIterator)->Set_AIMovePoint(glm::vec3((*pBeginIterator)->Get_Target()->Get_Position().x, 0.0f, (*pBeginIterator)->Get_Target()->Get_Position().y));
+						(*pBeginIterator)->Set_AIState(CCharacterControllerEnemy::E_AI_STATE_CHASE, 0);
+					}
+				}
+			}
+				break;
+			case CCharacterControllerEnemy::E_AI_STATE_CHASE:
+			{
+				
+			}
+				break;
+			case CCharacterControllerEnemy::E_AI_STATE_CHASE_ATTACK:
+			{
+				
+			}
+				break;
+			case CCharacterControllerEnemy::E_AI_STATE_BACK:
+			{
+				
+			}
+				break;
+			case CCharacterControllerEnemy::E_AI_STATE_BACK_ATTACK:
+			{
+				
+			}
+				break;
+			case CCharacterControllerEnemy::E_AI_STATE_NONE:
+			default:
+			{
+				glm::vec2 vGeneratedPoint = _GenerateMovePoint();
+				(*pBeginIterator)->Set_AIMovePoint(glm::vec3(vGeneratedPoint.x, 0.0f, vGeneratedPoint.y));
+				(*pBeginIterator)->Set_AIState(CCharacterControllerEnemy::E_AI_STATE_MOVE, 0);
+			}
+				break;
+		}
+		
+        ++pBeginIterator;
     }
 }
 
