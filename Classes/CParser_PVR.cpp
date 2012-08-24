@@ -158,7 +158,6 @@ void CParser_PVR::Commit(void)
     m_pSourceData->m_iHeight = m_pDescription->m_vSize.y;
     
     glGenTextures( 1, &m_pSourceData->m_hTextureHanlde );
-
     GLenum iTextureTarget = GL_TEXTURE_2D;
     
     if(m_pDescription->m_iNumFaces > 1)
@@ -167,7 +166,6 @@ void CParser_PVR::Commit(void)
     }
     
     glBindTexture(iTextureTarget, m_pSourceData->m_hTextureHanlde );
-
     if(iTextureTarget == GL_TEXTURE_2D)
     {
         GLint iWrap = GL_REPEAT;
@@ -219,7 +217,6 @@ void CParser_PVR::Commit(void)
             glGenerateMipmap(iTextureTarget + iFaces);
         }
     }
-
 }
 
 
