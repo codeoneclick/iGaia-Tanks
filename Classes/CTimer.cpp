@@ -9,9 +9,11 @@
 #include "CTimer.h"
 #ifdef WIN32
 #include <Windows.h>
+#elif __linux__
+#include "Common.h"
 #endif
 
-#include "Common.h"
+
 
 unsigned long long CTimer::Get_TickCount(void)
 {

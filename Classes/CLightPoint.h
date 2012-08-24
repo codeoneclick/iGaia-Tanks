@@ -16,7 +16,7 @@
 #elif EMULATION_GL
 #include <GL/glew.h>
 #ifndef GL_GLEXT_PROTOTYPES
-#       define GL_GLEXT_PROTOTYPES 1
+#define GL_GLEXT_PROTOTYPES 1
 #endif
 #include <GL/gl.h>
 #include <GL/glext.h>
