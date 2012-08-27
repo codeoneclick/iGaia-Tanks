@@ -13,7 +13,7 @@
 
 CModel::CModel(void)
 {
-    
+
 }
 
 CModel::~CModel(void)
@@ -23,39 +23,15 @@ CModel::~CModel(void)
 
 void CModel::Load(const std::string& _sName, IResource::E_THREAD _eThread)
 {
-    m_pMesh = static_cast<CMesh*>(CResourceMgr::Instance()->Load(_sName, IResource::E_MGR_MESH, _eThread, this));
+    IResource::EventHandle iEventHandle = CResourceMgr::Instance()->AddEventListener(_sName, IResource::E_MGR_MESH, IResource::E_THREAD_ASYNC, m_pResourceEventSignature);
+    m_lResourceEventHandles.insert(iEventHandle);
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_CULL_MODE,  true);
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_DEPTH_MASK, true);
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_DEPTH_TEST, true);
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_BLEND_MODE, true);
     m_pMaterial->Set_CullFace(GL_FRONT);
     m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
-}
-
-void CModel::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
-{
-    switch (_eType)
-    {
-        case IResource::E_RESOURCE_TYPE_MESH:
-            std::cout<<"[CModel::OnLoadDone] Resource Mesh loaded : "<<_pResource->Get_Name()<<"\n";
-            m_pMesh = static_cast<CMesh*>(_pResource);
-            for(unsigned int i = 0; i < CShader::E_RENDER_MODE_MAX; ++i)
-            {
-                CShader* pShader = m_pMaterial->Get_Shader(static_cast<CShader::E_RENDER_MODE>(i));
-                if(pShader != NULL)
-                {
-                    m_pMesh->Get_VertexBufferRef()->Add_ShaderRef(static_cast<CShader::E_RENDER_MODE>(i), pShader);
-                }
-            }
-            
-            break;
-        case IResource::E_RESOURCE_TYPE_TEXTURE:
-            std::cout<<"[CModel::OnLoadDone] Resource Texture loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        default:
-            break;
-    }
+    m_pBoundingBox = new CBoundingBox(glm::vec3(-1.0f, -1.0f, -1.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 }
 
 void CModel::OnTouchEvent(ITouchDelegate* _pDelegateOwner)
@@ -89,6 +65,11 @@ void CModel::Update()
 void CModel::Render(CShader::E_RENDER_MODE _eMode)
 {
     if(CSceneMgr::Instance()->Get_Camera()->Get_Frustum()->IsBoxInFrustum(m_pBoundingBox->Get_MaxBound() + m_vPosition, m_pBoundingBox->Get_MinBound() + m_vPosition) == CFrustum::E_FRUSTUM_RESULT_OUTSIDE || !m_bIsVisible)
+    {
+        return;
+    }
+    
+    if(m_pMesh == nullptr)
     {
         return;
     }

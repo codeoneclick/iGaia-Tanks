@@ -1019,7 +1019,7 @@
 		CE914ED11455D7E900AA2000 /* CShaderComposite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CShaderComposite.h; sourceTree = "<group>"; };
 		CE914ED31455DA3200AA2000 /* CShaderComposite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CShaderComposite.cpp; sourceTree = "<group>"; };
 		CE914ED51455DA4400AA2000 /* CTextureMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTextureMgr.h; sourceTree = "<group>"; };
-		CE914ED61455DA5700AA2000 /* CTextureMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTextureMgr.cpp; sourceTree = "<group>"; };
+		CE914ED61455DA5700AA2000 /* CTextureMgr.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = CTextureMgr.cpp; sourceTree = "<group>"; };
 		CE914ED81455DA6800AA2000 /* CResourceMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CResourceMgr.h; sourceTree = "<group>"; };
 		CE914ED91455DA7800AA2000 /* CResourceMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CResourceMgr.cpp; sourceTree = "<group>"; };
 		CE919216145736D70021A0DC /* CTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTexture.h; sourceTree = "<group>"; };

@@ -11,58 +11,35 @@
 #include "CResourceMgr.h"
 #include "IResourceLoaderDelegate.h"
 
-IResource::IResource(void)
+IResource::IResource(void) : m_iEventHandle(0), m_iRefCount(0), m_eCreationMode(E_CREATION_MODE_NATIVE)
 {
-    m_iRefCount = 0;
-    m_eResourceType = E_RESOURCE_TYPE_NONE;
-    m_eCreationMode = E_CREATION_MODE_NATIVE;
+
 }
 
 IResource::~IResource(void)
 {
     std::cout<<"[IResource::~IResource]"<<std::endl;
-    m_lDelegateOwners.clear();
+    m_lListeners.clear();
 }
 
-void IResource::Release()
+IResource::EventHandle IResource::AddEventListener(const EventSignature &_pListener)
 {
-    CResourceMgr::Instance()->Unload(this);
+    m_lListeners.insert(std::make_pair(++m_iEventHandle, _pListener));
+    return m_iEventHandle;
 }
 
-void IResource::Add_DelegateOwner(IDelegate *_pDelegateOwner)
+void IResource::RemoveEventListener(EventHandle _eventHandler)
 {
-    for(size_t index = 0; index< m_lDelegateOwners.size(); index++)
+    m_lListeners.erase(_eventHandler);
+}
+
+void IResource::DispatchEvent(void)
+{
+    for(auto& pListener : m_lListeners)
     {
-        if(m_lDelegateOwners[index] == _pDelegateOwner)
-        {
-            return;
-        }
+        pListener.second(this, pListener.first);
     }
-    m_lDelegateOwners.push_back(_pDelegateOwner);
-}
-
-void IResource::Remove_DelegateOnwer(IDelegate *_pDelegateOwner)
-{
-    for(size_t index = 0; index < m_lDelegateOwners.size(); ++index)
-    {
-        if(m_lDelegateOwners[index] == _pDelegateOwner)
-        {
-            m_lDelegateOwners.erase(m_lDelegateOwners.begin() + index);
-        }
-    }
-}
-
-void IResource::Push_SignalToDelegateOwners(void)
-{
-    for(size_t index = 0; index < m_lDelegateOwners.size(); ++index)
-    {
-        IDelegate* pDelegateOwner = m_lDelegateOwners[index];
-        if(pDelegateOwner->Get_DelegateType() == IDelegate::E_DELEGATE_TYPE_RESOURCE_LOAD)
-        {
-            dynamic_cast<IResourceLoaderDelegate*>(pDelegateOwner)->OnResourceLoadDoneEvent(m_eResourceType, this);
-        }
-    }
-    m_lDelegateOwners.clear();
+    m_lListeners.clear();
 }
 
 

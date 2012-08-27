@@ -22,37 +22,37 @@ CMeshMgr::~CMeshMgr(void)
     
 }
 
-IResource* CMeshMgr::Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams)
+IResource::EventHandle CMeshMgr::AddEventListener(const std::string &_sName, IResource::E_THREAD _eThread, const IResource::EventSignature &_pListener, const std::map<std::string, std::string> *_lParams)
 {
-    CMesh* pMesh = NULL;
-    
+    IResource::EventHandle iEventHandle = 0;
     if(_eThread == IResource::E_THREAD_SYNC)
     {
         if( m_lContainer.find(_sName) != m_lContainer.end())
         {
-            pMesh = static_cast<CMesh*>(m_lContainer[_sName]);
+            CMesh* pMesh = static_cast<CMesh*>(m_lContainer[_sName]);
             pMesh->IncRefCount();
+            _pListener(pMesh, iEventHandle);
         }
         else
         {
-            pMesh = new CMesh(IResource::E_CREATION_MODE_NATIVE);
-            pMesh->Set_SourceData(m_pDefaultMeshSourceData);
-            
             IParser* pParser = new CParser_MDL();
-            
             pParser->Load(_sName.c_str());
             if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
             {
+                CMesh* pMesh = new CMesh(IResource::E_CREATION_MODE_NATIVE);
+                pMesh->Set_Name(_sName);
                 pMesh->Set_SourceData(pParser->Get_SourceData());
+                m_lContainer[_sName] = pMesh;
+                _pListener(pMesh, iEventHandle);
             }
-            delete pParser;
+            SAFE_DELETE(pParser);
         }
     }
     else if(_eThread == IResource::E_THREAD_ASYNC)
     {
         if( m_lContainer.find(_sName) != m_lContainer.end())
         {
-            pMesh = static_cast<CMesh*>(m_lContainer[_sName]);
+            CMesh* pMesh = static_cast<CMesh*>(m_lContainer[_sName]);
             pMesh->IncRefCount();
         }
         else
@@ -61,14 +61,13 @@ IResource* CMeshMgr::Load(const std::string& _sName, IResource::E_THREAD _eThrea
             {
                 m_lTaskPool[_sName] = new CParser_MDL();
             }
-            pMesh = new CMesh(IResource::E_CREATION_MODE_NATIVE);
-            pMesh->Set_SourceData(m_pDefaultMeshSourceData);
+            CMesh* pMesh = new CMesh(IResource::E_CREATION_MODE_NATIVE);
             pMesh->Set_Name(_sName);
-            pMesh->Add_DelegateOwner(_pDelegate);
+            iEventHandle = pMesh->AddEventListener(_pListener);
             m_lContainer[_sName] = pMesh;
         }
     }
-    return pMesh;
+    return iEventHandle;
 }
 
 void CMeshMgr::Unload(const std::string& _sName)

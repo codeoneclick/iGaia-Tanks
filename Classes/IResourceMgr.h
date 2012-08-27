@@ -25,9 +25,9 @@ public:
     
     virtual void Update(void);
     virtual void Thread(void);
-    virtual IResource* Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams) = 0;
-    void Cancel_Load(IDelegate* _pDelegate);
-    virtual void Unload(const std::string& _sName) = 0;
+    
+    virtual IResource::EventHandle AddEventListener(const std::string& _sName, IResource::E_THREAD _eThread, const IResource::EventSignature& _pListener, const std::map<std::string, std::string>* _lParams) = 0;
+    void RemoveEventListener(const IResource::EventHandle& _iEventHandle);
 };
 
 

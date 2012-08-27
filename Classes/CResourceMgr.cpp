@@ -52,17 +52,17 @@ void CResourceMgr::Update()
     }
 }
 
-void CResourceMgr::Cancel_Load(IDelegate *_pDeleagte)
+void CResourceMgr::RemoveEventListener(IResource::EventHandle _iEventHandle)
 {
     for(auto& pMgr : m_lMgr)
     {
-        pMgr.second->Cancel_Load(_pDeleagte);
+        pMgr.second->RemoveEventListener(_iEventHandle);
     }
 }
 
-IResource* CResourceMgr::Load(const std::string& _sName, IResource::E_MGR _eMgr, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams)
+IResource::EventHandle CResourceMgr::AddEventListener(const std::string &_sName, IResource::E_MGR _eMgr, IResource::E_THREAD _eThread, const IResource::EventSignature &_pListener,const std::map<std::string, std::string>* _lParams)
 {
-    return m_lMgr[_eMgr]->Load(_sName, _eThread, _pDelegate, _lParams);
+    return m_lMgr[_eMgr]->AddEventListener(_sName, _eThread, _pListener, _lParams);
 }
 
 void CResourceMgr::Unload(IResource *_pResource)

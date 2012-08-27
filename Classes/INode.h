@@ -25,10 +25,12 @@
 
 #include "CMathHelper.h"
 
+#include <set>
+
 #define SAFE_DELETE(a) { delete (a); (a) = NULL; }
 #define SAFE_DELETE_ARRAY(a) { delete[] (a); (a) = NULL; }
 
-class INode : public ITouchDelegate, public IResourceLoaderDelegate
+class INode : public ITouchDelegate 
 {
 protected:
 // -- Block for transform matrix -- //
@@ -68,6 +70,11 @@ protected:
 // -- Varible for enable/disable render -- //
     bool m_bIsVisible;
 // -- -- //
+    std::set<IResource::EventHandle> m_lResourceEventHandles;
+    std::map<std::string, unsigned int> m_lTextureLoadingQueue;
+    
+    IResource::EventSignature m_pResourceEventSignature;
+    
 public:
     INode(void);
     virtual ~INode(void);
@@ -129,7 +136,6 @@ public:
     
 // -- Block for the delegate listener methods -- //
     virtual void OnTouchEvent(ITouchDelegate* _pDelegateOwner) = 0;
-    virtual void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource) = 0;
 // -- -- //
     
 // -- Block for enable/disable and get current render mode. Use for the different materials -- //
@@ -141,6 +147,8 @@ public:
     inline bool Get_Visible(void) { return m_bIsVisible; }
     inline void Set_Visible(bool _bIsVisible) { m_bIsVisible = _bIsVisible; }
 // -- -- //
+    
+    inline IResource::EventSignature Get_ResourceEventSignature(void) { return m_pResourceEventSignature; }
 };
 
 #endif
