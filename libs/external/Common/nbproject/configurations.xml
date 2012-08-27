@@ -2,6 +2,7 @@
 <configurationDescriptor version="84">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="HeaderFiles" displayName="Include" projectFiles="true">
+      <itemPath>Include/Any.h</itemPath>
       <itemPath>Include/AppApi.h</itemPath>
       <itemPath>Include/BasicTypes.h</itemPath>
       <itemPath>Include/BoostInc.h</itemPath>
@@ -14,6 +15,7 @@
       <itemPath>Include/Logger.h</itemPath>
       <itemPath>Include/MemoryStream.h</itemPath>
       <itemPath>Include/MemoryStreamExceptions.h</itemPath>
+      <itemPath>Include/Noncopyable.h</itemPath>
       <itemPath>Include/Ptr.h</itemPath>
       <itemPath>Include/Serializable.h</itemPath>
       <itemPath>Include/SharedPtrForward.h</itemPath>

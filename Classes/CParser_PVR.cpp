@@ -149,8 +149,6 @@ void CParser_PVR::Load(const std::string& _sName)
 
 void CParser_PVR::Commit(void)
 {
-    GLenum e = glGetError();
-
     int iWidth  = m_pDescription->m_vSize.x;
     int iHeight = m_pDescription->m_vSize.y;
     char* pData = m_pDescription->m_pTextureData;
@@ -208,7 +206,6 @@ void CParser_PVR::Commit(void)
             {
                 GLsizei iSize = std::max(32, iWidth * iHeight * m_pDescription->m_uiBPP / 8);
                 glCompressedTexImage2D(iTextureTarget + iFaces, level, m_pDescription->m_glFormat, iWidth, iHeight, 0, iSize, pData);
-                e = glGetError();
                 pData += iSize;
                 iWidth >>= 1; iHeight >>= 1;
             }
@@ -216,11 +213,8 @@ void CParser_PVR::Commit(void)
         else
         {       
             glTexImage2D(iTextureTarget + iFaces, 0, m_pDescription->m_glFormat, iWidth, iHeight, 0, m_pDescription->m_glFormat, m_pDescription->m_glType, pData);
-            e = glGetError();
             glHint(GL_GENERATE_MIPMAP_HINT, GL_FASTEST);
-            e = glGetError();
             glGenerateMipmap(iTextureTarget + iFaces);
-            e = glGetError();
         }
     }
 }
