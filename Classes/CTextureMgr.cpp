@@ -11,6 +11,7 @@
 #include <cmath>
 #include "stdlib.h"
 #include <algorithm>
+#include "dispatch/dispatch.h"
 
 CTextureMgr::CTextureMgr(void)
 {
@@ -23,6 +24,66 @@ CTextureMgr::CTextureMgr(void)
 CTextureMgr::~CTextureMgr(void)
 {
     
+}
+
+IResource* CTextureMgr::LoadDefault(void)
+{
+    return m_pDefault;
+}
+
+IResource* CTextureMgr::LoadSync(const std::string &_sName)
+{
+    CTexture* pTexture = nullptr;
+    if(m_lContainer.find(_sName) != m_lContainer.end())
+    {
+        pTexture = static_cast<CTexture*>(m_lContainer[_sName]);
+        pTexture->IncRefCount();
+    }
+    else
+    {
+        CParser_PVR* pParser = new CParser_PVR();
+        pParser->Load(_sName.c_str());
+        if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
+        {
+            pTexture = new CTexture();
+            pParser->Commit();
+            pTexture->Set_SourceData(pParser->Get_SourceData());
+            m_lContainer[_sName] = pTexture;
+        }
+        else
+        {
+            pTexture = m_pDefault;
+        }
+        SAFE_DELETE(pParser);
+    }
+    return pTexture;
+}
+
+void CTextureMgr::LoadAsync(const std::string &_sName, const IResource::EventSignature &_pListener)
+{
+    if( m_lContainer.find(_sName) != m_lContainer.end())
+    {
+        CTexture*  pTexture = static_cast<CTexture*>(m_lContainer[_sName]);
+        pTexture->IncRefCount();
+        _pListener(pTexture);
+    }
+    else
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            CParser_PVR* pParser = new CParser_PVR();
+            pParser->Load(_sName.c_str());
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
+                {
+                    CTexture* pTexture = new CTexture();
+                    pParser->Commit();
+                    pTexture->Set_SourceData(pParser->Get_SourceData());
+                    m_lContainer[_sName] = pTexture;
+                    _pListener(pTexture);
+                }
+            });
+        });
+    }
 }
 
 IResource* CTextureMgr::Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams)

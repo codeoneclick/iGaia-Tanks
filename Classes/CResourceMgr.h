@@ -28,8 +28,13 @@ public:
     CResourceMgr();
     ~CResourceMgr();
     static CResourceMgr* Instance();
+    
+    IResource* LoadDefault(IResource::E_MGR _eMgr);
+    IResource* LoadSync(IResource::E_MGR _eMgr, const std::string& _sName);
+    void LoadAsync(IResource::E_MGR _eMgr, const std::string& _sName, const IResource::EventSignature& _pListener);
+    
     void Update();
-    IResource* Load(const std::string& _sName, IResource::E_MGR _eMgr, IResource::E_THREAD _eThread, IDelegate* _pDeleagte,const std::map<std::string, std::string>* _lParams = NULL);
+    //IResource* Load(const std::string& _sName, IResource::E_MGR _eMgr, IResource::E_THREAD _eThread, IDelegate* _pDeleagte,const std::map<std::string, std::string>* _lParams = NULL);
     void Unload(IResource* _pResource);
     void Cancel_Load(IDelegate* _pDeleagte);
 };

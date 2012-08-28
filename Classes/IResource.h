@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include "IDelegate.h"
+#include <functional>
 
 #define SAFE_DELETE(a) { delete (a); (a) = NULL; }
 #define SAFE_DELETE_ARRAY(a) { delete[] (a); (a) = NULL; }
@@ -28,6 +29,9 @@ public:
     enum E_SHADER { E_SHADER_LANDSCAPE = 0, E_SHADER_LANDSCAPE_ND, E_SHADER_MODEL, E_SHADER_MODEL_ND, E_SHADER_GRASS, E_SHADER_GRASS_ND, E_SHADER_OCEAN, E_SHADER_DECAL, E_SHADER_PARTICLE, E_SHADER_PARTICLE_ND, E_SHADER_SKYBOX, E_SHADER_LANDSCAPE_EDGES, E_SHADER_SCREEN_PLANE, E_SHADER_SCREEN_PLANE_BLOOM_EXTRACT, E_SHADER_SCREEN_PLANE_BLOOM_COMBINE, E_SHADER_SCREEN_PLANE_BLUR, E_SHADER_SCREEN_PLANE_EDGE_DETECT, E_SHADER_SCREEN_PLANE_LANDSCAPE_DETAIL };
     
     enum E_RESOURCE_TYPE { E_RESOURCE_TYPE_NONE = 0, E_RESOURCE_TYPE_TEXTURE, E_RESOURCE_TYPE_MESH, E_RESOURCE_TYPE_SHADER };
+    
+    typedef std::function<void(IResource *_pResource)> EventSignature;
+    
 protected:
     int m_iRefCount;
     std::string m_sName;

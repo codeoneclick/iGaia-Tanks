@@ -112,7 +112,7 @@ void CMaterial::Set_Texture(INode* _pNodeRef, const std::string &_sName, int _in
     {
         lParams["WRAP"] = "CLAMP";
     }
-    m_pTextures[_index] = static_cast<CTexture*>(CResourceMgr::Instance()->Load(_sName, IResource::E_MGR_TEXTURE, _eThread, static_cast<IDelegate*>(_pNodeRef), &lParams));
+    m_pTextures[_index] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, _sName));
 }
 
 void CMaterial::Set_Shader(INode* _pNodeRef, CShader::E_RENDER_MODE _eMode, IResource::E_SHADER _eShader)

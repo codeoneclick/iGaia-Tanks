@@ -68,6 +68,8 @@ protected:
 // -- Varible for enable/disable render -- //
     bool m_bIsVisible;
 // -- -- //
+    
+    IResource::EventSignature m_pAsyncLoadSignature;
 public:
     INode(void);
     virtual ~INode(void);

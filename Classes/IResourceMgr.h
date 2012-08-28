@@ -23,6 +23,10 @@ public:
     IResourceMgr(void);
     virtual ~IResourceMgr(void);
     
+    virtual IResource* LoadDefault(void) = 0;
+    virtual IResource* LoadSync(const std::string& _sName) = 0;
+    virtual void LoadAsync(const std::string& _sName, const IResource::EventSignature& _pListener) = 0;
+    
     virtual void Update(void);
     virtual void Thread(void);
     virtual IResource* Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams) = 0;

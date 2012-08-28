@@ -69,10 +69,26 @@ void CResourceMgr::Cancel_Load(IDelegate *_pDeleagte)
     }
 }
 
-IResource* CResourceMgr::Load(const std::string& _sName, IResource::E_MGR _eMgr, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams)
+IResource* CResourceMgr::LoadDefault(IResource::E_MGR _eMgr)
+{
+    return m_lMgr[_eMgr]->LoadDefault();
+}
+
+IResource* CResourceMgr::LoadSync(IResource::E_MGR _eMgr, const std::string &_sName)
+{
+    IResource* pResource = m_lMgr[_eMgr]->LoadSync(_sName);
+    return pResource;
+}
+
+void CResourceMgr::LoadAsync(IResource::E_MGR _eMgr, const std::string &_sName, const IResource::EventSignature &_pListener)
+{
+    m_lMgr[_eMgr]->LoadAsync(_sName, _pListener);
+}
+
+/*IResource* CResourceMgr::Load(const std::string& _sName, IResource::E_MGR _eMgr, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams)
 {
     return m_lMgr[_eMgr]->Load(_sName, _eThread, _pDelegate, _lParams);
-}
+}*/
 
 void CResourceMgr::Unload(IResource *_pResource)
 {

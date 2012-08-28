@@ -26,6 +26,11 @@ INode::INode(void)
     m_pBoundingBox = NULL;
     m_pMesh = NULL;
     m_bIsVisible = true;
+    
+    m_pAsyncLoadSignature = [this](IResource* _pResource)->void
+    {
+               
+    };
 }
 
 INode::~INode(void)

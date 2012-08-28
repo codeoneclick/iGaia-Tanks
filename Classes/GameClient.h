@@ -19,7 +19,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include "GameNetworkProtocol.h"
-#include <vector.h>
+#include <vector>
 
 class GameClient
 {

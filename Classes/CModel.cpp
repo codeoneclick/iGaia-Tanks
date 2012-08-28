@@ -23,7 +23,7 @@ CModel::~CModel(void)
 
 void CModel::Load(const std::string& _sName, IResource::E_THREAD _eThread)
 {
-    m_pMesh = static_cast<CMesh*>(CResourceMgr::Instance()->Load(_sName, IResource::E_MGR_MESH, _eThread, this));
+    m_pMesh = static_cast<CMesh*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_MESH, _sName));
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_CULL_MODE,  true);
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_DEPTH_MASK, true);
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_DEPTH_TEST, true);

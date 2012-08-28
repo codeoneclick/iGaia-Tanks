@@ -20,9 +20,14 @@ class CTextureMgr : public IResourceMgr
 {
 private:
     CTexture::SSourceData* m_pDefaultTextureSourceData;
+    CTexture* m_pDefault;
 public:
     CTextureMgr(void);
     virtual ~CTextureMgr(void);
+    
+    IResource* LoadDefault(void);
+    IResource* LoadSync(const std::string& _sName);
+    void LoadAsync(const std::string& _sName, const IResource::EventSignature& _pListener);
     
     virtual IResource* Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams);
     virtual void Unload(const std::string& _sName);
