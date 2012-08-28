@@ -30,13 +30,10 @@ CSprite::~CSprite(void)
 
 void CSprite::Load(const std::string &_sName, IResource::E_THREAD _eThread)
 {
-    CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
-    pSourceData->m_iNumVertexes = k_ELEMENT_NUM_VERTEXES;
-    pSourceData->m_iNumIndexes  = k_ELEMENT_NUM_INDEXES;
-    pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoord(pSourceData->m_iNumVertexes, GL_STREAM_DRAW);
-    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
-    pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes, GL_STATIC_DRAW);
-    unsigned short* pIndexBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
+    CVertexBufferPositionTexcoord* pVertexBuffer = new CVertexBufferPositionTexcoord(k_ELEMENT_NUM_VERTEXES, GL_STREAM_DRAW);
+    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pVertexBuffer->Lock());
+    CIndexBuffer* pIndexBuffer = new CIndexBuffer(k_ELEMENT_NUM_INDEXES, GL_STATIC_DRAW);
+    unsigned short* pIndexBufferData = pIndexBuffer->Get_SourceData();
     
     pIndexBufferData[0] = 0;
     pIndexBufferData[1] = 1;
@@ -55,11 +52,11 @@ void CSprite::Load(const std::string &_sName, IResource::E_THREAD _eThread)
     pVertexBufferData[2].m_vTexcoord = glm::vec2(1.0f,1.0f);
     pVertexBufferData[3].m_vTexcoord = glm::vec2(1.0f,0.0f);
     
-    pSourceData->m_pVertexBuffer->Commit();
-    pSourceData->m_pIndexBuffer->Commit();
-    
     m_pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
-    m_pMesh->Set_SourceData(pSourceData);
+    m_pMesh->Set_VertexBufferRef(pVertexBuffer);
+    m_pMesh->Set_IndexBufferRef(pIndexBuffer);
+    m_pMesh->Get_VertexBufferRef()->Commit();
+    m_pMesh->Get_IndexBufferRef()->Commit();
     
     m_pSequence = new SFrame[m_iNumFrames];
     

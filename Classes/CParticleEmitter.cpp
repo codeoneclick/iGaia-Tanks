@@ -28,14 +28,10 @@ CParticleEmitter::~CParticleEmitter(void)
 
 void CParticleEmitter::Load(const std::string& _sName, IResource::E_THREAD _eThread)
 {
-    CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
-    pSourceData->m_iNumVertexes = m_iNumParticles * 4;
-    pSourceData->m_iNumIndexes  = m_iNumParticles * 6;
-    
-    pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes, GL_STATIC_DRAW);
-    unsigned short* pIndexBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
-    pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoordColor(pSourceData->m_iNumVertexes, GL_STREAM_DRAW);
-    CVertexBufferPositionTexcoordColor::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoordColor::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
+    CIndexBuffer* pIndexBuffer = new CIndexBuffer(m_iNumParticles * 6, GL_STATIC_DRAW);
+    unsigned short* pIndexBufferData = pIndexBuffer->Get_SourceData();
+    CVertexBufferPositionTexcoordColor* pVertexBuffer = new CVertexBufferPositionTexcoordColor(m_iNumParticles * 4, GL_STREAM_DRAW);
+    CVertexBufferPositionTexcoordColor::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoordColor::SVertex*>(pVertexBuffer->Lock());
     
     m_pParticles = new SParticle[m_iNumParticles];
     
@@ -77,11 +73,13 @@ void CParticleEmitter::Load(const std::string& _sName, IResource::E_THREAD _eThr
         pIndexBufferData[index * 6 + 5] = static_cast<unsigned short>(index * 4 + 3);
     }
     
-    pSourceData->m_pVertexBuffer->Commit();
-    pSourceData->m_pIndexBuffer->Commit();
+    
     
     m_pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
-    m_pMesh->Set_SourceData(pSourceData);
+    m_pMesh->Set_VertexBufferRef(pVertexBuffer);
+    m_pMesh->Set_IndexBufferRef(pIndexBuffer);
+    m_pMesh->Get_IndexBufferRef()->Commit();
+    m_pMesh->Get_VertexBufferRef()->Commit();
     m_pMesh->Set_Name("emitter");
     
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_CULL_MODE,  false);
@@ -264,7 +262,7 @@ void CParticleEmitter::Render(CShader::E_RENDER_MODE _eMode)
     
     m_pMesh->Get_VertexBufferRef()->Enable(_eMode);
     m_pMesh->Get_IndexBufferRef()->Enable();
-    glDrawElements(GL_TRIANGLES, m_pMesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
+    glDrawElements(GL_TRIANGLES, m_pMesh->Get_IndexBufferRef()->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
     m_pMesh->Get_IndexBufferRef()->Disable();
     m_pMesh->Get_VertexBufferRef()->Disable(_eMode);
 }

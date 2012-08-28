@@ -18,8 +18,7 @@
 
 class CTextureMgr : public IResourceMgr
 {
-private:
-    CTexture::SSourceData* m_pDefaultTextureSourceData;
+protected:
     CTexture* m_pDefault;
 public:
     CTextureMgr(void);

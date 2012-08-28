@@ -12,6 +12,7 @@
 #include "stdlib.h"
 #include <string.h>
 #include <map>
+#include "IResource.h"
 
 class IParser
 {
@@ -30,9 +31,7 @@ public:
     IParser(void);
     virtual ~IParser(void);
     virtual void  Load(const std::string& _sName) = 0;
-    virtual void* Get_SourceData(void) = 0;
-    virtual void  Set_Params(const std::map<std::string, std::string>* _lParams) { m_lParams = (*_lParams); }
-    virtual void  Commit(void) = 0;
+    virtual IResource* Commit(void) = 0;
     inline E_STATUS Get_Status(void) { return m_eStatus; }
 };
 

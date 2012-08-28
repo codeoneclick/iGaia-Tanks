@@ -41,13 +41,9 @@ CMesh* CHeightMapSetter::Load_DataSource(const std::string _sName, int _iWidth, 
     m_iHeight = _iHeight;
     m_vScaleFactor = _vScaleFactor;
     
-    CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
-    pSourceData->m_iNumVertexes = m_iWidth * m_iHeight;
-    pSourceData->m_iNumIndexes  = (m_iWidth - 1) * (m_iHeight - 1) * 6;
+    CVertexBufferPositionTexcoordNormalTangent *pVertexBuffer = new CVertexBufferPositionTexcoordNormalTangent(m_iWidth * m_iHeight, GL_STATIC_DRAW);
     
-    pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoordNormalTangent(pSourceData->m_iNumVertexes, GL_STATIC_DRAW);
-    
-    CVertexBufferPositionTexcoordNormalTangent::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoordNormalTangent::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
+    CVertexBufferPositionTexcoordNormalTangent::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoordNormalTangent::SVertex*>(pVertexBuffer->Lock());
     
     m_pDataSource = new float[m_iWidth * m_iHeight];
     
@@ -67,8 +63,8 @@ CMesh* CHeightMapSetter::Load_DataSource(const std::string _sName, int _iWidth, 
         }
     }
     
-    pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes, GL_STREAM_DRAW);
-    unsigned short* pIndexBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
+    CIndexBuffer* pIndexBuffer = new CIndexBuffer((m_iWidth - 1) * (m_iHeight - 1) * 6, GL_STREAM_DRAW);
+    unsigned short* pIndexBufferData = pIndexBuffer->Get_SourceData();
     index = 0;
     for(unsigned int i = 0; i < (m_iWidth - 1); ++i)
     {
@@ -90,10 +86,11 @@ CMesh* CHeightMapSetter::Load_DataSource(const std::string _sName, int _iWidth, 
         }
     }
     
-    _CalculateNormals(pSourceData->m_pVertexBuffer, pSourceData->m_pIndexBuffer);
-    _CalculateTangentsAndBinormals(pSourceData->m_pVertexBuffer, pSourceData->m_pIndexBuffer);
+    _CalculateNormals(pVertexBuffer, pIndexBuffer);
+    _CalculateTangentsAndBinormals(pVertexBuffer, pIndexBuffer);
     CMesh* pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
-    pMesh->Set_SourceData(pSourceData);
+    pMesh->Set_VertexBufferRef(pVertexBuffer);
+    pMesh->Set_IndexBufferRef(pIndexBuffer);
     
     /*CParser_MDL* pParser = new CParser_MDL();
     pParser->Load(_sName);
@@ -353,12 +350,8 @@ void CHeightMapSetter::_Create_TextureHeightmap(void)
 
 void CHeightMapSetter::_Create_TextureDetail(void)
 {
-    CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
-    pSourceData->m_iNumVertexes = 4;
-    pSourceData->m_iNumIndexes  = 6;
-    
-    pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoord(pSourceData->m_iNumVertexes, GL_STATIC_DRAW);
-    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
+    CVertexBufferPositionTexcoord* pVertexBuffer = new CVertexBufferPositionTexcoord(4, GL_STATIC_DRAW);
+    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pVertexBuffer->Lock());
     
     unsigned i = 0;
     pVertexBufferData[i].m_vPosition = glm::vec3(-1.0f,-1.0f,0.0f);
@@ -374,8 +367,8 @@ void CHeightMapSetter::_Create_TextureDetail(void)
     pVertexBufferData[i].m_vTexcoord = glm::vec2(1.0f,1.0f);
     i++;
     
-    pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes, GL_STATIC_DRAW);
-    unsigned short* pIndexBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
+    CIndexBuffer* pIndexBuffer = new CIndexBuffer(6, GL_STATIC_DRAW);
+    unsigned short* pIndexBufferData = pIndexBuffer->Get_SourceData();
     
     i = 0;
     pIndexBufferData[i++] = 0;
@@ -387,7 +380,8 @@ void CHeightMapSetter::_Create_TextureDetail(void)
     pIndexBufferData[i++] = 1;
     
     m_pPostRenderScreenPlaneMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
-    m_pPostRenderScreenPlaneMesh->Set_SourceData(pSourceData);
+    m_pPostRenderScreenPlaneMesh->Set_VertexBufferRef(pVertexBuffer);
+    m_pPostRenderScreenPlaneMesh->Set_IndexBufferRef(pIndexBuffer);
     
     m_pPostRenderScreenPlaneMesh->Get_VertexBufferRef()->Commit();
     m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Commit();
@@ -418,7 +412,7 @@ void CHeightMapSetter::Draw_TextureDetail(void)
 
     m_pPostRenderScreenPlaneMesh->Get_VertexBufferRef()->Enable(CShader::E_RENDER_MODE_SIMPLE);
     m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Enable();
-    glDrawElements(GL_TRIANGLES, m_pPostRenderScreenPlaneMesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
+    glDrawElements(GL_TRIANGLES, m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
     m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Disable();
     m_pPostRenderScreenPlaneMesh->Get_VertexBufferRef()->Disable(CShader::E_RENDER_MODE_SIMPLE);
     
@@ -447,7 +441,7 @@ void CHeightMapSetter::Draw_TextureDetail(void)
     
     m_pPostRenderScreenPlaneMesh->Get_VertexBufferRef()->Enable(CShader::E_RENDER_MODE_SIMPLE);
     m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Enable();
-    glDrawElements(GL_TRIANGLES, m_pPostRenderScreenPlaneMesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
+    glDrawElements(GL_TRIANGLES, m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
     m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Disable();
     m_pPostRenderScreenPlaneMesh->Get_VertexBufferRef()->Disable(CShader::E_RENDER_MODE_SIMPLE);
     

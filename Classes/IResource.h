@@ -47,7 +47,6 @@ public:
     inline int  Get_RefCount(void) { return m_iRefCount; }
     inline void Set_Name(const std::string& _sName) { m_sName = _sName; }
     inline std::string Get_Name(void) { return m_sName; }
-    virtual void Set_SourceData(void* _pSourceData) = 0;
     inline E_RESOURCE_TYPE Get_ResourceType(void) { return m_eResourceType; }
     inline E_CREATION_MODE Get_CreationMode(void) { return m_eCreationMode; }
 

@@ -60,7 +60,6 @@ void IResourceMgr::Update(void)
             if(m_lContainer.find(pBeginIteratorTask->first) != m_lContainer.end())
             {
                 IResource* pResource = m_lContainer[pBeginIteratorTask->first];
-                pResource->Set_SourceData(pParser->Get_SourceData());
                 m_lTaskPool.erase(pBeginIteratorTask);
                 SAFE_DELETE(pParser);
                 pResource->Push_SignalToDelegateOwners();

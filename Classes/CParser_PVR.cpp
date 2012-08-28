@@ -14,17 +14,11 @@
 
 CParser_PVR::CParser_PVR(void)
 {
-    m_pSourceData = NULL;
-    m_pData = NULL;
+    
 }
 
 CParser_PVR::~CParser_PVR(void)
 {
-    if(m_pData != NULL)
-    {
-        delete m_pData;
-        m_pData = NULL;
-    }
 }
 
 void CParser_PVR::Load(const std::string& _sName)
@@ -37,17 +31,17 @@ void CParser_PVR::Load(const std::string& _sName)
     pStream.seekg( 0, std::ios::end );
     int iLength = pStream.tellg();
     pStream.seekg( 0, std::ios::beg );
-    m_pData = new char[iLength];
-    pStream.read( m_pData, iLength );
+    char* m_pRawData = new char[iLength];
+    pStream.read(m_pRawData, iLength );
     pStream.close();
     
     m_pDescription = new SDescription();
    
-    if(*(PVRTuint32*)m_pData != PVRTEX3_IDENT)
+    if(*(PVRTuint32*)m_pRawData != PVRTEX3_IDENT)
 	{
         std::cout<<"[CParser_PVR::Load] OLD PVR format"<<std::endl;
         PVR_Texture_Header* pHeader;
-        pHeader = (PVR_Texture_Header*)m_pData;
+        pHeader = (PVR_Texture_Header*)m_pRawData;
         
         switch (pHeader->dwpfFlags & PVRTEX_PIXELTYPE) 
         {
@@ -84,13 +78,13 @@ void CParser_PVR::Load(const std::string& _sName)
         m_pDescription->m_vSize.y = pHeader->dwHeight;
         m_pDescription->m_uiMIP = pHeader->dwMipMapCount ? pHeader->dwMipMapCount : 1;
         m_pDescription->m_bCompressed = true;
-        m_pDescription->m_pTextureData = m_pData + pHeader->dwHeaderSize;
+        m_pDescription->m_pData = m_pRawData + pHeader->dwHeaderSize;
         m_pDescription->m_iNumFaces = 1;
     }
     else
     {
         std::cout<<"[CParser_PVR::Load] NEW PVR format"<<std::endl;
-        PVRTextureHeaderV3* pHeader = (PVRTextureHeaderV3*)m_pData;
+        PVRTextureHeaderV3* pHeader = (PVRTextureHeaderV3*)m_pRawData;
         PVRTuint64 iPixelFormat = pHeader->u64PixelFormat;
         
         switch (iPixelFormat)
@@ -127,7 +121,7 @@ void CParser_PVR::Load(const std::string& _sName)
         m_pDescription->m_vSize.y = pHeader->u32Height;
         m_pDescription->m_uiMIP = pHeader->u32MIPMapCount ? pHeader->u32MIPMapCount : 1;
         m_pDescription->m_bCompressed = true;
-        m_pDescription->m_pTextureData = m_pData + PVRTEX3_HEADERSIZE + pHeader->u32MetaDataSize;
+        m_pDescription->m_pData = m_pRawData + PVRTEX3_HEADERSIZE + pHeader->u32MetaDataSize;
         m_pDescription->m_iNumFaces = pHeader->u32NumFaces;
     }
 
@@ -136,17 +130,14 @@ void CParser_PVR::Load(const std::string& _sName)
     m_eStatus = E_DONE_STATUS;
 }
 
-void CParser_PVR::Commit(void)
+IResource* CParser_PVR::Commit(void)
 {
     int iWidth  = m_pDescription->m_vSize.x;
     int iHeight = m_pDescription->m_vSize.y;
-    char* pData = m_pDescription->m_pTextureData;
+    char* pData = m_pDescription->m_pData;
     
-    m_pSourceData = new CTexture::SSourceData();
-    m_pSourceData->m_iWidth  = m_pDescription->m_vSize.x;
-    m_pSourceData->m_iHeight = m_pDescription->m_vSize.y;
-    
-    glGenTextures( 1, &m_pSourceData->m_hTextureHanlde );
+    GLuint iHandle = 0;
+    glGenTextures(1, &iHandle);
     
     GLenum iTextureTarget = GL_TEXTURE_2D;
     
@@ -155,7 +146,7 @@ void CParser_PVR::Commit(void)
         iTextureTarget = GL_TEXTURE_CUBE_MAP;
     }
     
-    glBindTexture(iTextureTarget, m_pSourceData->m_hTextureHanlde );
+    glBindTexture(iTextureTarget, iHandle);
     if(iTextureTarget == GL_TEXTURE_2D)
     {
         GLint iWrap = GL_REPEAT;
@@ -208,6 +199,12 @@ void CParser_PVR::Commit(void)
             glGenerateMipmap(iTextureTarget + iFaces);
         }
     }
+    
+    CTexture* pTexture = new CTexture();
+    pTexture->Set_Handle(iHandle);
+    pTexture->Set_Width(m_pDescription->m_vSize.x);
+    pTexture->Set_Height(m_pDescription->m_vSize.y);
+    return pTexture;
 }
 
 

@@ -21,14 +21,9 @@ CSkyBox::~CSkyBox(void)
 }
 
 void CSkyBox::Load(const std::string& _sName, IResource::E_THREAD _eThread)
-{     
-    CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
-    pSourceData->m_iNumVertexes = 24;
-    pSourceData->m_iNumIndexes  = 36;
-    
-    pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoord(pSourceData->m_iNumVertexes, GL_STATIC_DRAW);
-    
-    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
+{
+    CVertexBufferPositionTexcoord* pVertexBuffer = new CVertexBufferPositionTexcoord(24, GL_STATIC_DRAW);
+    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pVertexBuffer->Lock());
     
     //glm::vec3* pPositionData = pSourceData->m_pVertexBuffer->GetOrCreate_PositionSourceData();
     //glm::vec2* pTexCoordData = pSourceData->m_pVertexBuffer->GetOrCreate_TexcoordSourceData();
@@ -98,8 +93,8 @@ void CSkyBox::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     pVertexBufferData[22].m_vTexcoord = glm::vec2(1.0f, 1.0f);
     pVertexBufferData[23].m_vTexcoord = glm::vec2(0.0f, 1.0f);
     
-    pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes, GL_STATIC_DRAW);
-    unsigned short* pIndexBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
+    CIndexBuffer* pIndexBuffer = new CIndexBuffer(36, GL_STATIC_DRAW);
+    unsigned short* pIndexBufferData = pIndexBuffer->Get_SourceData();
     
     // Front
     pIndexBufferData[0] = 0;
@@ -144,11 +139,11 @@ void CSkyBox::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     pIndexBufferData[34] = 22;
     pIndexBufferData[35] = 23;
     
-    pSourceData->m_pVertexBuffer->Commit();
-    pSourceData->m_pIndexBuffer->Commit();
-    
     m_pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
-    m_pMesh->Set_SourceData(pSourceData);
+    m_pMesh->Set_VertexBufferRef(pVertexBuffer);
+    m_pMesh->Set_IndexBufferRef(pIndexBuffer);
+    m_pMesh->Get_VertexBufferRef()->Commit();
+    m_pMesh->Get_IndexBufferRef()->Commit();
     
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_CULL_MODE,  true);
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_DEPTH_MASK, true);
@@ -259,7 +254,7 @@ void CSkyBox::Render(CShader::E_RENDER_MODE _eMode)
     
     m_pMesh->Get_VertexBufferRef()->Enable(_eMode);
     m_pMesh->Get_IndexBufferRef()->Enable();
-    glDrawElements(GL_TRIANGLES, m_pMesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
+    glDrawElements(GL_TRIANGLES, m_pMesh->Get_IndexBufferRef()->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
     m_pMesh->Get_IndexBufferRef()->Disable();
     m_pMesh->Get_VertexBufferRef()->Disable(_eMode);
 }

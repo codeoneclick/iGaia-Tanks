@@ -15,10 +15,6 @@
 
 CTextureMgr::CTextureMgr(void)
 {
-    CParser_PVR* pParser = new CParser_PVR();
-    pParser->Load("default.pvr");
-    pParser->Commit();
-    m_pDefaultTextureSourceData = static_cast<CTexture::SSourceData*>(pParser->Get_SourceData());
 }
 
 CTextureMgr::~CTextureMgr(void)
@@ -45,9 +41,7 @@ IResource* CTextureMgr::LoadSync(const std::string &_sName)
         pParser->Load(_sName.c_str());
         if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
         {
-            pTexture = new CTexture();
-            pParser->Commit();
-            pTexture->Set_SourceData(pParser->Get_SourceData());
+            pTexture = static_cast<CTexture*>(pParser->Commit());
             m_lContainer[_sName] = pTexture;
         }
         else
@@ -75,9 +69,7 @@ void CTextureMgr::LoadAsync(const std::string &_sName, const IResource::EventSig
             dispatch_async(dispatch_get_main_queue(), ^{
                 if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
                 {
-                    CTexture* pTexture = new CTexture();
-                    pParser->Commit();
-                    pTexture->Set_SourceData(pParser->Get_SourceData());
+                    CTexture* pTexture = static_cast<CTexture*>(pParser->Commit());
                     m_lContainer[_sName] = pTexture;
                     _pListener(pTexture);
                 }
@@ -88,8 +80,7 @@ void CTextureMgr::LoadAsync(const std::string &_sName, const IResource::EventSig
 
 IResource* CTextureMgr::Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams)
 {
-    CTexture* pTexture = NULL;
-    
+/*  CTexture* pTexture = NULL;
     if(_eThread == IResource::E_THREAD_SYNC)
     {
         if( m_lContainer.find(_sName) != m_lContainer.end())
@@ -103,7 +94,6 @@ IResource* CTextureMgr::Load(const std::string& _sName, IResource::E_THREAD _eTh
             pTexture->Set_SourceData(m_pDefaultTextureSourceData);
             CParser_PVR* pParser = new CParser_PVR();
             pParser->Load(_sName.c_str());
-            pParser->Set_Params(_lParams);
             if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
             {
                 pParser->Commit();
@@ -125,7 +115,6 @@ IResource* CTextureMgr::Load(const std::string& _sName, IResource::E_THREAD _eTh
             if(m_lTaskPool.find(_sName) == m_lTaskPool.end())
             {
                 m_lTaskPool[_sName] = new CParser_PVR();
-                m_lTaskPool[_sName]->Set_Params(_lParams);
             }
             pTexture = new CTexture();
             pTexture->Set_SourceData(m_pDefaultTextureSourceData);
@@ -134,8 +123,7 @@ IResource* CTextureMgr::Load(const std::string& _sName, IResource::E_THREAD _eTh
             m_lContainer[_sName] = pTexture;
         }
     }
-
-    return pTexture;
+    return pTexture;*/
 }
 
 void CTextureMgr::Unload(const std::string& _sName)
@@ -146,7 +134,7 @@ void CTextureMgr::Unload(const std::string& _sName)
         pTexture = static_cast<CTexture*>(m_lContainer[_sName]);
         pTexture->DecRefCount();
         
-        if(pTexture->Get_RefCount() == 0 && pTexture->Get_Handle() != m_pDefaultTextureSourceData->m_hTextureHanlde)
+        if(pTexture->Get_RefCount() == 0)
         {
             delete pTexture;
             std::map<std::string, IResource*>::iterator pIterator = m_lContainer.find(_sName);

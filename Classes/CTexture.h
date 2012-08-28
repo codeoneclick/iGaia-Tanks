@@ -17,22 +17,20 @@
 class CTexture : public IResource
 {   
 public:
-    struct SSourceData
-    {
-        GLuint m_hTextureHanlde;
-        int m_iWidth;
-        int m_iHeight;
-    };
     enum E_WRAP_MODE { E_WRAP_MODE_REPEAT = 0, E_WRAP_MODE_CLAMP };
 protected:
-    SSourceData* m_pSourceData;
+    GLuint m_iHandle;
+    unsigned int m_iWidth;
+    unsigned int m_iHeight;
 public:
     CTexture(void);
     virtual ~CTexture(void);
-    inline GLuint Get_Handle(void) { return m_pSourceData->m_hTextureHanlde; }
-    inline unsigned int Get_Width(void) { return m_pSourceData->m_iWidth; }
-    inline unsigned int Get_Height(void) { return m_pSourceData->m_iHeight; }
-    virtual void Set_SourceData(void* _pSourceData);
+    inline GLuint Get_Handle(void) { return m_iHandle; }
+    inline void Set_Handle(GLuint _iHandle) { m_iHandle = _iHandle; }
+    inline unsigned int Get_Width(void) { return m_iWidth; }
+    inline unsigned int Get_Height(void) { return m_iHeight; }
+    inline void Set_Width(unsigned int _iWidth) { m_iWidth = _iWidth; }
+    inline void Set_Height(unsigned int _iHeight) { m_iHeight = _iHeight; }
 };
 
 #endif

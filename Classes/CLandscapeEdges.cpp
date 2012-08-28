@@ -25,13 +25,9 @@ CLandscapeEdges::~CLandscapeEdges(void)
 
 void CLandscapeEdges::Load(const std::string &_sName, IResource::E_THREAD _eThread)
 {
-    CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
-    pSourceData->m_iNumVertexes = 16;
-    pSourceData->m_iNumIndexes  = 24;
+    CVertexBufferPositionTexcoord* pVertexBuffer = new CVertexBufferPositionTexcoord(16, GL_STATIC_DRAW);
     
-    pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoord(pSourceData->m_iNumVertexes, GL_STATIC_DRAW);
-    
-    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
+    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pVertexBuffer->Lock());
     
     glm::vec3 m_vMin = glm::vec3(0.0f, m_vHeight.x, 0.0f);
     glm::vec3 m_vMax = glm::vec3((m_iWidth - 1), m_vHeight.y, (m_iHeight - 1));
@@ -75,8 +71,8 @@ void CLandscapeEdges::Load(const std::string &_sName, IResource::E_THREAD _eThre
     pVertexBufferData[14].m_vTexcoord = glm::vec2(1.0f - 0.001f, (1.0f / 4.0f) * 3.0f - 0.001f);
     pVertexBufferData[15].m_vTexcoord = glm::vec2(0.0f, (1.0f / 4.0f) * 3.0f - 0.001f);
     
-    pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes, GL_STATIC_DRAW);
-    unsigned short* pIndexBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
+    CIndexBuffer* pIndexBuffer = new CIndexBuffer(24, GL_STATIC_DRAW);
+    unsigned short* pIndexBufferData = pIndexBuffer->Get_SourceData();
     
     pIndexBufferData[0] = 0;
     pIndexBufferData[1] = 1;
@@ -106,12 +102,9 @@ void CLandscapeEdges::Load(const std::string &_sName, IResource::E_THREAD _eThre
     pIndexBufferData[22] = 14;
     pIndexBufferData[23] = 15;
     
-    pSourceData->m_pVertexBuffer->Commit();
-    pSourceData->m_pIndexBuffer->Commit();
-    
     m_pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
-    m_pMesh->Set_SourceData(pSourceData);
-    
+    m_pMesh->Set_VertexBufferRef(pVertexBuffer);
+    m_pMesh->Set_IndexBufferRef(pIndexBuffer);
     m_pMesh->Get_VertexBufferRef()->Commit();
     m_pMesh->Get_IndexBufferRef()->Commit();
     
@@ -211,7 +204,7 @@ void CLandscapeEdges::Render(CShader::E_RENDER_MODE _eMode)
     
     m_pMesh->Get_VertexBufferRef()->Enable(_eMode);
     m_pMesh->Get_IndexBufferRef()->Enable();
-    glDrawElements(GL_TRIANGLES, m_pMesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
+    glDrawElements(GL_TRIANGLES, m_pMesh->Get_IndexBufferRef()->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
     m_pMesh->Get_IndexBufferRef()->Disable();
     m_pMesh->Get_VertexBufferRef()->Disable(_eMode);
 }

@@ -17,8 +17,7 @@
 
 class CMeshMgr : public IResourceMgr
 {
-private:
-    CMesh::SSourceData* m_pDefaultMeshSourceData;
+protected:
     CMesh* m_pDefault;
 public:
     CMeshMgr(void);

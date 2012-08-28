@@ -27,13 +27,9 @@ COcean::~COcean(void)
 }
 
 void COcean::Load(const std::string& _sName, IResource::E_THREAD _eThread)
-{     
-    CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
-    pSourceData->m_iNumVertexes = 4;
-    pSourceData->m_iNumIndexes  = 6;
-    
-    pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoord(pSourceData->m_iNumVertexes, GL_STATIC_DRAW);
-    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
+{
+    CVertexBufferPositionTexcoord* pVertexBuffer = new CVertexBufferPositionTexcoord(4, GL_STATIC_DRAW);
+    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pVertexBuffer->Lock());
     
     pVertexBufferData[0].m_vPosition = glm::vec3( 0.0f + 0.1f,     m_fWaterHeight,  0.0f + 0.1f );
     pVertexBufferData[1].m_vPosition = glm::vec3( m_iWidth - 0.1f, m_fWaterHeight,  0.0f + 0.1f );
@@ -45,8 +41,8 @@ void COcean::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     pVertexBufferData[2].m_vTexcoord = glm::vec2( 1.0f,  1.0f );
     pVertexBufferData[3].m_vTexcoord = glm::vec2( 0.0f,  1.0f );
     
-    pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes, GL_STATIC_DRAW);
-    unsigned short* pIndexesBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
+    CIndexBuffer* pIndexBuffer = new CIndexBuffer(6, GL_STATIC_DRAW);
+    unsigned short* pIndexesBufferData = pIndexBuffer->Get_SourceData();
     
     pIndexesBufferData[0] = 0;
     pIndexesBufferData[1] = 1;
@@ -55,11 +51,11 @@ void COcean::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     pIndexesBufferData[4] = 2;
     pIndexesBufferData[5] = 3;
     
-    pSourceData->m_pVertexBuffer->Commit();
-    pSourceData->m_pIndexBuffer->Commit();
-    
     m_pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
-    m_pMesh->Set_SourceData(pSourceData);
+    m_pMesh->Set_VertexBufferRef(pVertexBuffer);
+    m_pMesh->Set_IndexBufferRef(pIndexBuffer);
+    m_pMesh->Get_VertexBufferRef()->Commit();
+    m_pMesh->Get_IndexBufferRef()->Commit();
     
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_CULL_MODE,  true);
     m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_DEPTH_MASK, true);
@@ -155,7 +151,7 @@ void COcean::Render(CShader::E_RENDER_MODE _eMode)
     
     m_pMesh->Get_VertexBufferRef()->Enable(_eMode);
     m_pMesh->Get_IndexBufferRef()->Enable();
-    glDrawElements(GL_TRIANGLES, m_pMesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*)m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
+    glDrawElements(GL_TRIANGLES, m_pMesh->Get_IndexBufferRef()->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*)m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
     m_pMesh->Get_IndexBufferRef()->Disable();
     m_pMesh->Get_VertexBufferRef()->Disable(_eMode);
 }

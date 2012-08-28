@@ -96,17 +96,13 @@ void CGrass::Load(const std::string &_sName, IResource::E_THREAD _eThread)
         }
     }
     
-    CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
-    pSourceData->m_iNumVertexes = m_lGrassElementsPosition.size() * k_ELEMENT_NUM_VERTEXES;
-    pSourceData->m_iNumIndexes  = m_lGrassElementsPosition.size() * k_ELEMENT_NUM_INDEXES;
+    CVertexBufferPositionTexcoord* pVertexBuffer = new CVertexBufferPositionTexcoord(m_lGrassElementsPosition.size() * k_ELEMENT_NUM_VERTEXES, GL_STREAM_DRAW);
+    CIndexBuffer* pIndexBuffer = new CIndexBuffer(m_lGrassElementsPosition.size() * k_ELEMENT_NUM_INDEXES, GL_STREAM_DRAW);
     
-    pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoord(pSourceData->m_iNumVertexes, GL_STREAM_DRAW);
-    pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes, GL_STREAM_DRAW);
-    
-    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
+    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pVertexBuffer->Lock());
     CVertexBufferPositionTexcoord::SVertex* pSingleElementVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(m_pSingleElementVertexBuffer->Lock());
     
-    unsigned short* pIndexesBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
+    unsigned short* pIndexesBufferData = pIndexBuffer->Get_SourceData();
     
     std::vector<glm::vec3>::iterator pElementsSourceDataBegin = m_lGrassElementsPosition.begin();
     std::vector<glm::vec3>::iterator pElementsSourceDataEnd   = m_lGrassElementsPosition.end();
@@ -131,11 +127,12 @@ void CGrass::Load(const std::string &_sName, IResource::E_THREAD _eThread)
     }
     
     m_pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
-    m_pMesh->Set_SourceData(pSourceData);
+    m_pMesh->Set_VertexBufferRef(pVertexBuffer);
+    m_pMesh->Set_IndexBufferRef(pIndexBuffer);
     m_pMesh->Get_VertexBufferRef()->Commit();
     m_pMesh->Get_IndexBufferRef()->Commit();
     
-    unsigned int iNumIndexes = m_pMesh->Get_NumIndexes();
+    unsigned int iNumIndexes = m_pMesh->Get_IndexBufferRef()->Get_NumIndexes();
     unsigned short* pIndexBufferData = m_pMesh->Get_IndexBufferRef()->Get_SourceData();
     
     m_pWorkingIndexesSourceDataRef = m_pMesh->Get_IndexBufferRef()->Get_WorkingSourceDataRef();

@@ -12,10 +12,7 @@
 
 CMeshMgr::CMeshMgr(void)
 {
-    CParser_MDL* pParser = new CParser_MDL();
-    pParser->Load("base_model.mdl");
-    pParser->Commit();
-    m_pDefaultMeshSourceData = static_cast<CMesh::SSourceData*>(pParser->Get_SourceData());
+
 }
 
 CMeshMgr::~CMeshMgr(void)
@@ -43,9 +40,7 @@ IResource* CMeshMgr::LoadSync(const std::string &_sName)
         
         if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
         {
-            pParser->Commit();
-            pMesh = new CMesh(IResource::E_CREATION_MODE_NATIVE);
-            pMesh->Set_SourceData(pParser->Get_SourceData());
+            pMesh = static_cast<CMesh*>(pParser->Commit());
             m_lContainer[_sName] = pMesh;
         }
         else
@@ -73,9 +68,7 @@ void CMeshMgr::LoadAsync(const std::string &_sName, const IResource::EventSignat
             dispatch_async(dispatch_get_main_queue(), ^{
                 if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
                 {
-                    CMesh* pMesh = new CMesh(IResource::E_CREATION_MODE_NATIVE);
-                    pParser->Commit();
-                    pMesh->Set_SourceData(pParser->Get_SourceData());
+                    CMesh* pMesh = static_cast<CMesh*>(pParser->Commit());
                     m_lContainer[_sName] = pMesh;
                     _pListener(pMesh);
                 }
@@ -86,7 +79,7 @@ void CMeshMgr::LoadAsync(const std::string &_sName, const IResource::EventSignat
 
 IResource* CMeshMgr::Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams)
 {
-    CMesh* pMesh = NULL;
+   /* CMesh* pMesh = NULL;
     
     if(_eThread == IResource::E_THREAD_SYNC)
     {
@@ -130,7 +123,7 @@ IResource* CMeshMgr::Load(const std::string& _sName, IResource::E_THREAD _eThrea
             m_lContainer[_sName] = pMesh;
         }
     }
-    return pMesh;
+    return pMesh;*/
 }
 
 void CMeshMgr::Unload(const std::string& _sName)

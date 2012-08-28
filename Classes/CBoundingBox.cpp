@@ -25,13 +25,9 @@ CMesh* CBoundingBox::Get_BoundingBoxMesh(void)
         glm::vec3 m_vMin = glm::vec3( -0.5f, -1.0f, -0.5f);
         glm::vec3 m_vMax = glm::vec3(  0.5f,  0.0f,  0.5f);
 
-        CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
-        pSourceData->m_iNumVertexes = 8;
-        pSourceData->m_iNumIndexes  = 24;
-    
-        pSourceData->m_pVertexBuffer = new CVertexBufferPositionColor(pSourceData->m_iNumVertexes, GL_STATIC_DRAW);
+        CVertexBufferPositionColor* pVertexBuffer = new CVertexBufferPositionColor(8, GL_STATIC_DRAW);
         
-        CVertexBufferPositionColor::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionColor::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
+        CVertexBufferPositionColor::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionColor::SVertex*>(pVertexBuffer->Lock());
     
         pVertexBufferData[0].m_vPosition = glm::vec3( m_vMin.x,  m_vMin.y, m_vMax.z);
         pVertexBufferData[1].m_vPosition = glm::vec3( m_vMax.x,  m_vMin.y, m_vMax.z);
@@ -43,13 +39,13 @@ CMesh* CBoundingBox::Get_BoundingBoxMesh(void)
         pVertexBufferData[6].m_vPosition = glm::vec3( m_vMax.x,  m_vMax.y,  m_vMin.z);
         pVertexBufferData[7].m_vPosition = glm::vec3( m_vMax.x,  m_vMin.y,  m_vMin.z);
     
-        for(unsigned int i = 0; i < pSourceData->m_iNumVertexes; i++)
+        for(unsigned int i = 0; i < pVertexBuffer->Get_NumVertexes(); i++)
         {
             pVertexBufferData[i].m_vColor = glm::u8vec4(0, 255, 0, 255);
         }
     
-        pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes, GL_STATIC_DRAW);
-        unsigned short* pIndexBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
+        CIndexBuffer* pIndexBuffer = new CIndexBuffer(24, GL_STATIC_DRAW);
+        unsigned short* pIndexBufferData = pIndexBuffer->Get_SourceData();
     
         pIndexBufferData[0] = 0;
         pIndexBufferData[1] = 1;
@@ -79,7 +75,8 @@ CMesh* CBoundingBox::Get_BoundingBoxMesh(void)
         pIndexBufferData[23] = 5;
     
         m_pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
-        m_pMesh->Set_SourceData(pSourceData);
+        m_pMesh->Set_VertexBufferRef(pVertexBuffer);
+        m_pMesh->Set_IndexBufferRef(pIndexBuffer);
         m_pMesh->Get_VertexBufferRef()->Commit();
         m_pMesh->Get_IndexBufferRef()->Commit();
         

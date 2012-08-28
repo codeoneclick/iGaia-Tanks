@@ -98,14 +98,8 @@ CScreenSpacePostMgr::CScreenSpacePostMgr(void)
     
     CMaterial::InitStates();
     
-    CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
-    pSourceData->m_iNumVertexes = 4;
-    pSourceData->m_iNumIndexes  = 6;
-    
-    pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoord(pSourceData->m_iNumVertexes, GL_STATIC_DRAW);
-    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
-    //glm::vec3* pPositionData = pSourceData->m_pVertexBuffer->GetOrCreate_PositionSourceData();
-    //glm::vec2* pTexCoordData = pSourceData->m_pVertexBuffer->GetOrCreate_TexcoordSourceData();
+    CVertexBufferPositionTexcoord* pVertexBuffer = new CVertexBufferPositionTexcoord(4, GL_STATIC_DRAW);
+    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pVertexBuffer->Lock());
     
     unsigned i = 0;
     pVertexBufferData[i].m_vPosition = glm::vec3(-1.0f,-1.0f,0.0f);
@@ -121,8 +115,8 @@ CScreenSpacePostMgr::CScreenSpacePostMgr(void)
     pVertexBufferData[i].m_vTexcoord = glm::vec2(1.0f,1.0f);
     i++;
 
-    pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes,GL_STATIC_DRAW);
-    unsigned short* pIndexBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
+    CIndexBuffer* pIndexBuffer = new CIndexBuffer(6, GL_STATIC_DRAW);
+    unsigned short* pIndexBufferData = pIndexBuffer->Get_SourceData();
     
     i = 0;
     pIndexBufferData[i++] = 0;
@@ -134,7 +128,8 @@ CScreenSpacePostMgr::CScreenSpacePostMgr(void)
     pIndexBufferData[i++] = 3;
     
     m_pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
-    m_pMesh->Set_SourceData(pSourceData);
+    m_pMesh->Set_VertexBufferRef(pVertexBuffer);
+    m_pMesh->Set_IndexBufferRef(pIndexBuffer);
     
     m_pMesh->Get_VertexBufferRef()->Commit();
     m_pMesh->Get_IndexBufferRef()->Commit();
@@ -191,7 +186,7 @@ void CScreenSpacePostMgr::Render_PostSimple(void)
     }
     m_pMesh->Get_VertexBufferRef()->Enable(CShader::E_RENDER_MODE_SCREEN_SPACE_SIMPLE);
     m_pMesh->Get_IndexBufferRef()->Enable();
-    glDrawElements(GL_TRIANGLES, m_pMesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
+    glDrawElements(GL_TRIANGLES, m_pMesh->Get_IndexBufferRef()->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
     m_pMesh->Get_IndexBufferRef()->Disable();
     m_pMesh->Get_VertexBufferRef()->Disable(CShader::E_RENDER_MODE_SCREEN_SPACE_SIMPLE);
 }
@@ -242,7 +237,7 @@ void CScreenSpacePostMgr::Render_PostEdgeDetect(void)
     m_pPostShader[E_OFFSCREEN_MODE_EDGE_DETECT]->Set_Texture(m_hOffScreenTextures[E_OFFSCREEN_MODE_SCREEN_NORMAL_MAP], CShader::E_TEXTURE_SLOT_02);
     m_pMesh->Get_VertexBufferRef()->Enable(CShader::E_RENDER_MODE_SCREEN_SPACE_EDGE_DETECT);
     m_pMesh->Get_IndexBufferRef()->Enable();
-    glDrawElements(GL_TRIANGLES, m_pMesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
+    glDrawElements(GL_TRIANGLES, m_pMesh->Get_IndexBufferRef()->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
     m_pMesh->Get_IndexBufferRef()->Disable();
     m_pMesh->Get_VertexBufferRef()->Disable(CShader::E_RENDER_MODE_SCREEN_SPACE_EDGE_DETECT);
 }
