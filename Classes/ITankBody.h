@@ -20,11 +20,17 @@ protected:
     CParticleEmitter* m_pLeftExhaustSmokeEmitter;
     CParticleEmitter* m_pRightExhaustSmokeEmitter;
     
+    CParticleEmitter* m_pLeftDirtEmitter;
+    CParticleEmitter* m_pRightDirtEmitter;
+    
     float m_fBodyCurrentHealth;
     float m_fBodyTotalHealth;
     
     glm::vec3 m_vLeftExhaustEmitterOffset;
     glm::vec3 m_vRightExhaustEmitterOffset;
+    
+    glm::vec3 m_vLeftDirtEmitterOffset;
+    glm::vec3 m_vRightDirtEmitterOffset;
     
     glm::vec3 m_vMaxBound;
     glm::vec3 m_vMinBound;
@@ -47,7 +53,8 @@ public:
     inline glm::vec3 Get_BodyMinBound(void)    { return m_vMinBound; }
     inline glm::vec3 Get_BodyCenterBound(void) { return m_vCenterBound; }
     
-    void StartExhaust(bool _bValue);
+    void StartExhaustEmitt(bool _bValue);
+    void StartDirtEmitt(bool _bValue);
     
     INode* Get_BasisNode(void) { return m_pBody; };
 };

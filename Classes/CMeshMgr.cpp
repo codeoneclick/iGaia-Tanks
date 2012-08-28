@@ -43,6 +43,7 @@ IResource* CMeshMgr::LoadSync(const std::string &_sName)
         
         if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
         {
+            pParser->Commit();
             pMesh = new CMesh(IResource::E_CREATION_MODE_NATIVE);
             pMesh->Set_SourceData(pParser->Get_SourceData());
             m_lContainer[_sName] = pMesh;

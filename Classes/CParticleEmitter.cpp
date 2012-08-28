@@ -8,7 +8,6 @@
 
 #include "CParticleEmitter.h"
 #include "CSceneMgr.h"
-#include "CVertexBufferPositionTexcoordColor.h"
 #include "CTimer.h"
 
 CParticleEmitter::CParticleEmitter(void)
@@ -49,7 +48,7 @@ void CParticleEmitter::Load(const std::string& _sName, IResource::E_THREAD _eThr
         m_pParticles[index].m_vSize = m_vMinSize;
         m_pParticles[index].m_bIsDead = false;
         m_pParticles[index].m_iLifeTime = _Get_RandomFromRange(m_iMinLifeTime, m_iMaxLifeTime);
-        m_pParticles[index].m_iTimeStamp = 0;
+        m_pParticles[index].m_iTimeStamp = CTimer::Instance()->Get_TickCount();
         
         pVertexBufferData[index * 4 + 0].m_vPosition = glm::vec3(m_pParticles[index].m_vPosition.x - m_pParticles[index].m_vSize.x, m_pParticles[index].m_vPosition.y, m_pParticles[index].m_vPosition.z - m_pParticles[index].m_vSize.y);
         pVertexBufferData[index * 4 + 1].m_vPosition = glm::vec3(m_pParticles[index].m_vPosition.x + m_pParticles[index].m_vSize.x, m_pParticles[index].m_vPosition.y, m_pParticles[index].m_vPosition.z - m_pParticles[index].m_vSize.y);
@@ -204,12 +203,6 @@ void CParticleEmitter::Render(CShader::E_RENDER_MODE _eMode)
     }
     
     INode::Render(_eMode);
-    
-    /*if(m_bIsBatching)
-    {
-        CSceneMgr::Instance()->Get_BatchMgr()->Push(this, CBatch::E_BATCH_MODE_PARTICLE_EMITTER);
-        return;
-    }*/
     
     ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();
     CShader* pShader = m_pMaterial->Get_Shader(_eMode);

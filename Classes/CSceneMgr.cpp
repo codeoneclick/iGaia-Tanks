@@ -23,6 +23,7 @@
 #include "CLightPoint.h"
 #include "CTimer.h"
 #include "CSettings.h"
+#include "dispatch/dispatch.h"
 
 CSceneMgr* CSceneMgr::m_pInstance = NULL;
 
@@ -243,12 +244,12 @@ void CSceneMgr::Update()
     {
         m_pDecalMgr->Update();
     }
-    
+
     if(m_pParticleMgr != NULL)
     {
         m_pParticleMgr->Update();
     }
-    
+
     if(m_pSpriteMgr != NULL)
     {
         m_pSpriteMgr->Update();
@@ -259,6 +260,7 @@ void CSceneMgr::Update()
         m_pSkyBox->Set_Position(m_pCamera->Get_Position());
         m_pSkyBox->Update();
     }
+    
 }
 
 void CSceneMgr::_DrawSimpleStep(void)

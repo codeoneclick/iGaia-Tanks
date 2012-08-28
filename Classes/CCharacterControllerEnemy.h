@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include "ICharacterController.h"
+#include "CTimer.h"
 
 #define k_AI_SHOOT_INTERVAL 2000
 #define k_AI_SHOOT_DISTANCE 10.0f

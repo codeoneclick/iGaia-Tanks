@@ -23,8 +23,8 @@ INode::INode(void)
     m_vTexCoordOffset = glm::vec2(0.0f, 0.0f);
     
     m_pMaterial = new CMaterial();
-    m_pBoundingBox = NULL;
-    m_pMesh = NULL;
+    m_pBoundingBox = nullptr;
+    m_pMesh = nullptr;
     m_bIsVisible = true;
     
     m_pAsyncLoadSignature = [this](IResource* _pResource)->void

@@ -32,9 +32,22 @@ CParticleEmitterFire* CParticleMgr::Add_ParticleEmitterFire(unsigned int _iNumPa
     return pParticleEmitter;
 }
 
-CParticleEmitterFireTrail* CParticleMgr::Add_ParticleEmitterFireTrail(unsigned int _iNumParticles, const glm::vec2 &_vMinSize, const glm::vec2 &_vMaxSize, int _iLifeTime, bool _bIsRepeat)
+CParticleEmitterExplosion* CParticleMgr::Add_ParticleEmitterExplosion(unsigned int _iNumParticles, const glm::vec2 &_vMinSize, const glm::vec2 &_vMaxSize, int _iLifeTime, bool _bIsRepeat)
 {
-    CParticleEmitterFireTrail* pParticleEmitter = new CParticleEmitterFireTrail();
+    CParticleEmitterExplosion* pParticleEmitter = new CParticleEmitterExplosion();
+    pParticleEmitter->Set_NumParticles(_iNumParticles);
+    pParticleEmitter->Set_MinSize(_vMinSize);
+    pParticleEmitter->Set_MaxSize(_vMaxSize);
+    pParticleEmitter->Set_LifeTime(_iLifeTime);
+    pParticleEmitter->Set_IsRepeat(_bIsRepeat);
+    m_lEmitterContainer.push_back(pParticleEmitter);
+    pParticleEmitter->Load("emitter", IResource::E_THREAD_ASYNC);
+    return pParticleEmitter;
+}
+
+CParticleEmitterTrail* CParticleMgr::Add_ParticleEmitterTrail(unsigned int _iNumParticles, const glm::vec2 &_vMinSize, const glm::vec2 &_vMaxSize, int _iLifeTime, bool _bIsRepeat)
+{
+    CParticleEmitterTrail* pParticleEmitter = new CParticleEmitterTrail();
     pParticleEmitter->Set_NumParticles(_iNumParticles);
     pParticleEmitter->Set_MinSize(_vMinSize);
     pParticleEmitter->Set_MaxSize(_vMaxSize);
@@ -47,19 +60,13 @@ CParticleEmitterFireTrail* CParticleMgr::Add_ParticleEmitterFireTrail(unsigned i
 
 void CParticleMgr::Remove_ParticleEmitter(CParticleEmitter *_pParticleEmitter)
 {
-    std::vector<CParticleEmitter*>::iterator pBeginEmitterIterator = m_lEmitterContainer.begin();
-    std::vector<CParticleEmitter*>::iterator pEndEmitterIterator = m_lEmitterContainer.end();
-    
-    while(pBeginEmitterIterator != pEndEmitterIterator)
+    for(size_t index = 0; index < m_lEmitterContainer.size(); ++index)
     {
-        if((*pBeginEmitterIterator) == _pParticleEmitter)
+        if(m_lEmitterContainer[index] == _pParticleEmitter)
         {
-            m_lEmitterContainer.erase(pBeginEmitterIterator);
-            delete _pParticleEmitter;
-            _pParticleEmitter = NULL;
-            break;
+            SAFE_DELETE(m_lEmitterContainer[index]);
+            m_lEmitterContainer.erase(m_lEmitterContainer.begin() + index);
         }
-        ++pBeginEmitterIterator;
     }
 }
 
@@ -70,25 +77,22 @@ void CParticleMgr::Remove_Effect(INode *_pEffect)
 
 void CParticleMgr::Update(void)
 {
-    std::vector<CParticleEmitter*>::iterator pBeginEmitterIterator = m_lEmitterContainer.begin();
-    std::vector<CParticleEmitter*>::iterator pEndEmitterIterator = m_lEmitterContainer.end();
-    
-    while(pBeginEmitterIterator != pEndEmitterIterator)
+    for(size_t index = 0; index < m_lEmitterContainer.size(); ++index)
     {
-        (*pBeginEmitterIterator)->Update();
-        ++pBeginEmitterIterator;
+        m_lEmitterContainer[index]->Update();
     }
 }
 
 void CParticleMgr::Render(CShader::E_RENDER_MODE _eMode)
 {
-    std::vector<CParticleEmitter*>::iterator pBeginEmitterIterator = m_lEmitterContainer.begin();
-    std::vector<CParticleEmitter*>::iterator pEndEmitterIterator = m_lEmitterContainer.end();
-    
-    while(pBeginEmitterIterator != pEndEmitterIterator)
+    for(size_t index = 0; index < m_lEmitterContainer.size(); ++index)
     {
-        (*pBeginEmitterIterator)->Render(_eMode);
-        ++pBeginEmitterIterator;
+        m_lEmitterContainer[index]->Render(_eMode);
     }
 }
+
+
+
+
+
 

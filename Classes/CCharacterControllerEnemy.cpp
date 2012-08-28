@@ -21,11 +21,7 @@ CCharacterControllerEnemy::CCharacterControllerEnemy(void)
     
     m_eState = E_AI_STATE_NONE;
     m_iAIStateDuration = 0;
-    
-    m_iAIShootTimeStamp = 0;
-    
     m_vMoveDirection = glm::vec3(0.0f, 0.0, 0.0f);
-    
     m_eStreerMode = E_AI_STEER_MODE_NONE;
 }
 
@@ -42,8 +38,8 @@ long CCharacterControllerEnemy::_Get_TimeStamp(void)
 
 bool CCharacterControllerEnemy::_IsStateTimeElapsed(void)
 {
-    long iCurrentTimeStamp = _Get_TimeStamp();
-    if((iCurrentTimeStamp - m_iAIStateTimeStamp) >= m_iAIStateDuration)
+    int iCurrentTime = CTimer::Instance()->Get_TickCount();
+    if(iCurrentTime - m_iAIStateTimeStamp >= m_iAIStateDuration)
     {
         return true;
     }
@@ -85,7 +81,7 @@ void CCharacterControllerEnemy::Set_AIState(E_AI_STATE _eState, long _iAIStateDu
 {
     m_eState = _eState;
     m_iAIStateDuration = _iAIStateDuration;
-    m_iAIStateTimeStamp = _Get_TimeStamp();
+    m_iAIStateTimeStamp = CTimer::Instance()->Get_TickCount();
     if(m_eState == E_AI_STATE_MOVE)
     {
         m_vMoveDirection = glm::normalize(m_vPosition - m_vMovePoint);
@@ -115,13 +111,13 @@ void CCharacterControllerEnemy::Shoot(void)
     
     float fDistanceToTargetPoint = glm::distance(vPoint_01, vPoint_02);
     
-    int iAICurrentShootTimeStamp = CTimer::Instance()->Get_TickCount();
+    int iCurrentTime = CTimer::Instance()->Get_TickCount();
     
-    if((iAICurrentShootTimeStamp - m_iAIShootTimeStamp > k_AI_SHOOT_INTERVAL) && fDistanceToTargetPoint < k_AI_SHOOT_DISTANCE && m_pTower != NULL)
+    if(((iCurrentTime - m_iAIShootTimeStamp) > k_AI_SHOOT_INTERVAL) && fDistanceToTargetPoint < k_AI_SHOOT_DISTANCE && m_pTower != NULL)
     {
         glm::vec3 vTowerGunOffset = m_pTower->Get_TowerGunOffset();
         CGameSceneMgr::Instance()->Get_Scene()->Get_GameShooterMgr()->CreateBullet(glm::vec3(m_vPosition.x + sinf(glm::radians(m_fTowerRotationY)) * vTowerGunOffset.x, m_vPosition.y + vTowerGunOffset.y, m_vPosition.z + cosf(glm::radians(m_fTowerRotationY)) * vTowerGunOffset.z), glm::vec3(m_vRotation.x, m_fTowerRotationY, m_vRotation.z), this);
-        m_iAIShootTimeStamp = iAICurrentShootTimeStamp;
+        m_iAIShootTimeStamp = CTimer::Instance()->Get_TickCount();
     }
 }
 
@@ -135,11 +131,13 @@ void CCharacterControllerEnemy::Update(void)
     {
         case E_AI_STATE_NONE:
             std::cout<<"[CCharacterControllerEnemy::Update]"<<"state -> AI_STATE_NONE"<<std::endl;
-            m_pChassis->StartExhaust(false);
+            m_pChassis->StartExhaustEmitt(false);
+            m_pChassis->StartDirtEmitt(false);
             break;
         case E_AI_STATE_STAND:
         {
-            m_pChassis->StartExhaust(false);
+            m_pChassis->StartExhaustEmitt(false);
+            m_pChassis->StartDirtEmitt(false);
             std::cout<<"[CCharacterControllerEnemy::Update]"<<"state -> E_AI_STATE_STAND"<<std::endl;
         }
             break;
@@ -212,7 +210,8 @@ void CCharacterControllerEnemy::Update(void)
                     m_pTrack->Move_RightTrack(-fTrackTexCoordOffsetMoveFactor);
                 }
             }
-            m_pChassis->StartExhaust(true);
+            m_pChassis->StartExhaustEmitt(true);
+            m_pChassis->StartDirtEmitt(true);
         }
             break;
         default:

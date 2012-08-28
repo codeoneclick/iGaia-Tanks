@@ -11,13 +11,15 @@
 
 #include <iostream>
 #include "INode.h"
-
-#define k_DEFAULT_NUM_PARTICLES 64
-#define k_PARTICLE_LIFE_TIME_OFFSET 500
+#include "CTimer.h"
+#include "CVertexBufferPositionTexcoordColor.h"
 
 class CParticleEmitter : public INode
 {
 protected:
+    constexpr static unsigned int k_DEFAULT_NUM_PARTICLES = 64;
+    constexpr static unsigned int k_PARTICLE_LIFE_TIME_OFFSET = 500;
+    
     struct SParticle
     {
         glm::vec3 m_vPosition;

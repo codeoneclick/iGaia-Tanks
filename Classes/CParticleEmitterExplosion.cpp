@@ -9,6 +9,12 @@
 #include "CParticleEmitterExplosion.h"
 #include "CTimer.h"
 
+static float k_RANDOM_MODIFICATOR = 256.0f;
+static float k_PARTICLE_START_OFFSET_X = 0.15f;
+static float k_PARTICLE_START_OFFSET_Z = 0.15f;
+static float k_PARTICLE_MIN_MOVE_SPEED = 0.0f;
+static float k_PARTICLE_MAX_MOVE_SPEED = 0.25f;
+
 CParticleEmitterExplosion::CParticleEmitterExplosion(void)
 {
     m_fMoveSpeed = 0.0f;
@@ -16,73 +22,127 @@ CParticleEmitterExplosion::CParticleEmitterExplosion(void)
 
 CParticleEmitterExplosion::~CParticleEmitterExplosion(void)
 {
-    std::cout<<"[CParticleEmitterExplosion::~CParticleEmitterExplosion] delete"<<std::endl;
+    std::cout<<"[CParticleEmitterExplosion::CParticleEmitterExplosion] delete"<<std::endl;
 }
 
 void CParticleEmitterExplosion::Load(const std::string &_sName, IResource::E_THREAD _eThread)
 {
-    /*CParticleEmitter::Load(_sName, _eThread);
+    CParticleEmitter::Load(_sName, _eThread);
     
-    unsigned int iNumParticlesPerAxis = m_iNumParticles / 3;
-    float fStepAngle = 360.0f / iNumParticlesPerAxis;
-    unsigned int index = 0;
-    float fCurrentAngle = 0.0f;
-    
-    for(unsigned int i = 0; i < iNumParticlesPerAxis; ++i)
+    for(unsigned short i = 0; i < m_iNumParticles; i++)
     {
-        m_pParticles[index].m_vDirection.x += sinf(glm::radians(fCurrentAngle));
-        m_pParticles[index].m_vDirection.y += cosf(glm::radians(fCurrentAngle));
-        fCurrentAngle += fStepAngle;
-        ++index;
+        glm::vec3 vPosition = m_pParticles[i].m_vPosition;
+        vPosition.x = _Get_RandomFromRange(-k_PARTICLE_START_OFFSET_X , k_PARTICLE_START_OFFSET_X);
+        vPosition.z = _Get_RandomFromRange(-k_PARTICLE_START_OFFSET_Z , k_PARTICLE_START_OFFSET_Z);
+        vPosition.y = 0.0f;
+        m_pParticles[i].m_vPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+        m_pParticles[i].m_vVelocity = glm::vec3(0.0f, 1.0f, 0.0f);
     }
-    
-    fCurrentAngle = 0.0f;
-    
-    for(unsigned int i = 0; i < iNumParticlesPerAxis; ++i)
+}
+
+void CParticleEmitterExplosion::Start(void)
+{
+    CParticleEmitter::Start();
+    int iCurrentTimeStamp = CTimer::Instance()->Get_TickCount();
+    for(unsigned short i = 0; i < m_iNumParticles; i++)
     {
-        m_pParticles[index].m_vDirection.x += sinf(glm::radians(fCurrentAngle));
-        m_pParticles[index].m_vDirection.z += cosf(glm::radians(fCurrentAngle));
-        fCurrentAngle += fStepAngle;
-        ++index;
+        m_pParticles[i].m_iTimeStamp = iCurrentTimeStamp;
     }
-    
-    fCurrentAngle = 0.0f;
-    
-    for(unsigned int i = 0; i < iNumParticlesPerAxis; ++i)
+}
+
+void CParticleEmitterExplosion::Stop(void)
+{
+    CParticleEmitter::Stop();
+}
+
+void CParticleEmitterExplosion::Reset(void)
+{
+    m_bIsDead = false;
+    for(unsigned short i = 0; i < m_iNumParticles; i++)
     {
-        m_pParticles[index].m_vDirection.y += sinf(glm::radians(fCurrentAngle));
-        m_pParticles[index].m_vDirection.z += cosf(glm::radians(fCurrentAngle));
-        fCurrentAngle += fStepAngle;
-        ++index;
-    }*/
+        glm::vec3 vPosition;
+        vPosition.x = _Get_RandomFromRange(-k_PARTICLE_START_OFFSET_X , k_PARTICLE_START_OFFSET_X);
+        vPosition.z = _Get_RandomFromRange(-k_PARTICLE_START_OFFSET_Z , k_PARTICLE_START_OFFSET_Z);
+        vPosition.y = 0.0f;
+        m_pParticles[i].m_vPosition = vPosition;
+        m_pParticles[i].m_vSize = m_vMinSize;
+        m_pParticles[i].m_vColor.a = 255;
+        m_pParticles[i].m_bIsDead = false;
+    }
 }
 
 void CParticleEmitterExplosion::Update(void)
 {
-    /*for(unsigned short i = 0; i < m_iNumParticles; i++)
+    if(m_bIsDead)
     {
-        glm::vec3 vPosition = m_pParticles[i].m_vPosition;
-        m_fMoveSpeed = _Get_RandomFromRange(0.0f, 250.0f) / 500.0f;
+        return;
+    }
+    
+    for(unsigned short i = 0; i < m_iNumParticles; i += 6)
+    {
+        glm::vec3 vPosition = m_pParticles[i + 0].m_vPosition;
+        m_fMoveSpeed = _Get_RandomFromRange(k_PARTICLE_MIN_MOVE_SPEED * k_RANDOM_MODIFICATOR, k_PARTICLE_MAX_MOVE_SPEED * k_RANDOM_MODIFICATOR) / k_RANDOM_MODIFICATOR;
+        vPosition.x += m_fMoveSpeed;
+        m_pParticles[i + 0].m_vPosition = vPosition;
+        
+        vPosition = m_pParticles[i + 1].m_vPosition;
+        m_fMoveSpeed = _Get_RandomFromRange(k_PARTICLE_MIN_MOVE_SPEED * k_RANDOM_MODIFICATOR, k_PARTICLE_MAX_MOVE_SPEED * k_RANDOM_MODIFICATOR) / k_RANDOM_MODIFICATOR;
+        vPosition.x -= m_fMoveSpeed;
+        m_pParticles[i + 1].m_vPosition = vPosition;
+        
+        vPosition = m_pParticles[i + 2].m_vPosition;
+        m_fMoveSpeed = _Get_RandomFromRange(k_PARTICLE_MIN_MOVE_SPEED * k_RANDOM_MODIFICATOR, k_PARTICLE_MAX_MOVE_SPEED * k_RANDOM_MODIFICATOR) / k_RANDOM_MODIFICATOR;
         vPosition.y += m_fMoveSpeed;
-        m_pParticles[i].m_vPosition = vPosition;
-        m_pParticles[i].m_vSize += m_vMinSize;
-        int iCurrentTime = CTimer::Instance()->Get_TickCount();
-        if(m_pParticles[i].m_vPosition.y > 1.5f && m_bIsEnable)
+        m_pParticles[i + 2].m_vPosition = vPosition;
+        
+        vPosition = m_pParticles[i + 3].m_vPosition;
+        m_fMoveSpeed = _Get_RandomFromRange(k_PARTICLE_MIN_MOVE_SPEED * k_RANDOM_MODIFICATOR, k_PARTICLE_MAX_MOVE_SPEED * k_RANDOM_MODIFICATOR) / k_RANDOM_MODIFICATOR;
+        vPosition.y -= m_fMoveSpeed;
+        m_pParticles[i + 3].m_vPosition = vPosition;
+        
+        vPosition = m_pParticles[i + 4].m_vPosition;
+        m_fMoveSpeed = _Get_RandomFromRange(k_PARTICLE_MIN_MOVE_SPEED * k_RANDOM_MODIFICATOR, k_PARTICLE_MAX_MOVE_SPEED * k_RANDOM_MODIFICATOR) / k_RANDOM_MODIFICATOR;
+        vPosition.z += m_fMoveSpeed;
+        m_pParticles[i + 4].m_vPosition = vPosition;
+        
+        vPosition = m_pParticles[i + 5].m_vPosition;
+        m_fMoveSpeed = _Get_RandomFromRange(k_PARTICLE_MIN_MOVE_SPEED * k_RANDOM_MODIFICATOR, k_PARTICLE_MAX_MOVE_SPEED * k_RANDOM_MODIFICATOR) / k_RANDOM_MODIFICATOR;
+        vPosition.z -= m_fMoveSpeed;
+        m_pParticles[i + 5].m_vPosition = vPosition;
+        
+        for(unsigned short j = i; j < (i + 6); ++j)
         {
-            m_pParticles[i].m_vPosition.y = 0.0f;
-            m_pParticles[i].m_vSize = m_vMinSize;
-            if((iCurrentTime - m_pParticles[i].m_iTime) > m_iLifeTime)
+            if(m_pParticles[j].m_vSize.x < m_vMaxSize.x && m_pParticles[i].m_vSize.y < m_vMaxSize.y)
             {
-                m_pParticles[i].m_iTime = CTimer::Instance()->Get_TickCount();
+                m_pParticles[j].m_vSize += m_vMinSize;
             }
-            m_pParticles[i].m_vColor.a = 255;
-        }
-        else if(!m_bIsEnable && m_pParticles[i].m_vColor.a > 0)
-        {
-            m_pParticles[i].m_vColor.a -= 1;
+            
+            int iCurrentTimeStamp = CTimer::Instance()->Get_TickCount();
+            int iTimeStampDelta = iCurrentTimeStamp - m_pParticles[j].m_iTimeStamp;
+            float iLifeDelta = static_cast<float>(iTimeStampDelta) / static_cast<float>(m_pParticles[j].m_iLifeTime);
+            if(iLifeDelta <= 1)
+            {
+                m_pParticles[j].m_vColor.a = (1 - iLifeDelta) * 255;
+            }
+            else if(!m_bIsRepeat || m_bIsStop)
+            {
+                m_pParticles[j].m_bIsDead = true;
+            }
+            else
+            {
+                glm::vec3 vPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+                vPosition.x = _Get_RandomFromRange(-k_PARTICLE_START_OFFSET_X * k_RANDOM_MODIFICATOR, k_PARTICLE_START_OFFSET_X * k_RANDOM_MODIFICATOR) / k_RANDOM_MODIFICATOR;
+                vPosition.z = _Get_RandomFromRange(-k_PARTICLE_START_OFFSET_Z * k_RANDOM_MODIFICATOR, k_PARTICLE_START_OFFSET_Z * k_RANDOM_MODIFICATOR) / k_RANDOM_MODIFICATOR;
+                vPosition.y = 0.0f;
+                m_pParticles[j].m_vPosition = vPosition;
+                m_pParticles[j].m_vSize = m_vMinSize;
+                m_pParticles[j].m_vColor.a = 255;
+                m_pParticles[j].m_bIsDead = false;
+                m_pParticles[j].m_iTimeStamp = CTimer::Instance()->Get_TickCount();
+            }
         }
     }
-    CParticleEmitter::Update();*/
+    CParticleEmitter::Update();
 }
 
 
