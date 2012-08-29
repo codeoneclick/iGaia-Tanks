@@ -12,6 +12,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp> 
 #include "CFrustum.h"
+#include <unordered_map>
 
 class ICamera
 {
@@ -34,6 +35,9 @@ protected:
     float m_fHeightFromLookAt;
     
     CFrustum* m_pFrustum;
+    
+    static std::unordered_map<std::string, glm::mat4x4> m_lMemoizeSpherical;
+    static std::unordered_map<std::string, glm::mat4x4> m_lMemoizeCylindrical;
     
 public:
     ICamera(void);

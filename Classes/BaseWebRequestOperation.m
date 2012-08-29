@@ -82,7 +82,7 @@
     
     do 
     {        
-		[[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate: [NSDate distantFuture]]; 
+		[[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]; 
 		if ([self isCancelled])
 		{
             if (connection != nil)
@@ -103,7 +103,7 @@
     
     if (self.requestFailed)
     {
-        [self notifyOnFailure];
+        [self notifyOnFailure:self.error];
     }
     else if (self.requestCompleted)
 	{
@@ -112,20 +112,20 @@
 		
 		if (!parsedData && rawData)
 		{
-			self.error = [NSError errorWithDomain:@"ErrorDataParsing" code:1 userInfo:nil];
-			[self notifyOnFailure];
+			self.error = [NSError errorWithDomain:@"Error ! Data parsing failure." code:1 userInfo:nil];
+			[self notifyOnFailure:self.error];
 		}
 		else
 		{
 			id processError = [self processData: parsedData];
 			if (!processError)
             {
-				[self notifyOnSuccess];
+				[self notifyOnSuccess:self.data];
             }
 			else
 			{                
                 self.error = processError;
-				[self notifyOnFailure];
+				[self notifyOnFailure:self.error];
 			}
 		}
 	}
@@ -148,14 +148,14 @@
 {
     [self.data setLength:0];
     NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
-    int statusCode = [httpResponse statusCode];
+    NSInteger statusCode = [httpResponse statusCode];
     NSLog(@"Response status code for url: %@ = %d", self.url, statusCode);
     
     if (statusCode >= 400)
     {
         self.requestFailed    = YES;
         self.requestCompleted = NO;
-        self.error            = [NSError errorWithDomain:@"Error" code:statusCode userInfo:nil];
+        self.error            = [NSError errorWithDomain:[NSString stringWithFormat:@"Error ! Response status code : %i.", statusCode] code:statusCode userInfo:nil];
         self.connection       = nil;
     }
 }

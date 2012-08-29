@@ -18,11 +18,6 @@
 @synthesize finished;
 @synthesize executing;
 
-@synthesize successSelector;
-@synthesize failureSelector;
-@synthesize progressSelector;
-@synthesize cancelSelector;
-
 @synthesize successBlock;
 @synthesize failureBlock;
 @synthesize progressBlock;
@@ -35,7 +30,6 @@
 		self.finished  = NO;
 		self.executing = NO;
 	}
-	
 	return self;
 }
 
@@ -107,19 +101,19 @@
 	return YES;
 }
 
-- (void) notifyOnSuccess
+- (void)notifyOnSuccess:(NSMutableData*)data
 {
-    self.successBlock();
+    self.successBlock(data);
 }
 
-- (void) notifyOnFailure
+- (void)notifyOnFailure:(NSError*)error
 {
-    self.failureBlock();
+    self.failureBlock(error);
 }
 
-- (void) notifyOnProgress
+- (void)notifyOnProgress:(NSData*)data
 {
-    self.progressBlock();
+    self.progressBlock(data);
 }
 
 - (void) notifyOnCancel

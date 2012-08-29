@@ -20,4 +20,6 @@ CMesh::CMesh(IResource::E_CREATION_MODE _eCreationMode)
 CMesh::~CMesh(void)
 {
     std::cout<<"[CMesh::~CMesh] delete"<<std::endl;
+    SAFE_DELETE(m_pVertexBuffer);
+    SAFE_DELETE(m_pIndexBuffer);
 }

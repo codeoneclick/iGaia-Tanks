@@ -32,9 +32,10 @@ typedef void (^FailureBlock)(id object);
 @property(nonatomic, copy) FailureBlock failureGoogleBlock;
 @end
 
-//0.501961 0.501961 0 1
-
 @implementation MainMenuViewController
+
+@synthesize successGoogleBlock;
+@synthesize failureGoogleBlock;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

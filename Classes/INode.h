@@ -24,11 +24,12 @@
 #include "ITouchDelegate.h"
 
 #include "CMathHelper.h"
+#include <unordered_map>
 
 #define SAFE_DELETE(a) { delete (a); (a) = NULL; }
 #define SAFE_DELETE_ARRAY(a) { delete[] (a); (a) = NULL; }
 
-class INode : public ITouchDelegate, public IResourceLoaderDelegate
+class INode : public ITouchDelegate
 {
 protected:
 // -- Block for transform matrix -- //
@@ -70,6 +71,11 @@ protected:
 // -- -- //
     
     IResource::EventSignature m_pAsyncLoadSignature;
+    
+    static std::unordered_map<std::string, glm::mat4x4> m_lMemoizeTranslation;
+    static std::unordered_map<std::string, glm::mat4x4> m_lMemoizeRotation;
+    static std::unordered_map<std::string, glm::mat4x4> m_lMemoizeScale;
+    
 public:
     INode(void);
     virtual ~INode(void);

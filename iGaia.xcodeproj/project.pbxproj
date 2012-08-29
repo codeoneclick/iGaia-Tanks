@@ -1046,7 +1046,7 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		15AE126C15DAF1B500262A59 /* 2dNodes */ = {
+		15AE126C15DAF1B500262A59 /* 2d */ = {
 			isa = PBXGroup;
 			children = (
 				A1F68E5F157E39C00048A717 /* CSprite.h */,
@@ -1058,10 +1058,10 @@
 				A13F9EB81568D743009DCBB4 /* CLandscapeDecal.h */,
 				A13F9EB71568D743009DCBB4 /* CLandscapeDecal.cpp */,
 			);
-			name = 2dNodes;
+			name = 2d;
 			sourceTree = "<group>";
 		};
-		15AE126E15DAF1BE00262A59 /* 3dNodes */ = {
+		15AE126E15DAF1BE00262A59 /* 3d */ = {
 			isa = PBXGroup;
 			children = (
 				93243D57147553AB00ED7443 /* CModel.h */,
@@ -1077,10 +1077,10 @@
 				A1AF6F761549383200703E2E /* CSkyBox.h */,
 				A1AF6F751549383200703E2E /* CSkyBox.cpp */,
 			);
-			name = 3dNodes;
+			name = 3d;
 			sourceTree = "<group>";
 		};
-		15AE126F15DAF1CD00262A59 /* AbstractNodes */ = {
+		15AE126F15DAF1CD00262A59 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
 				9373680414559D3D0051ED8D /* ICamera.h */,
@@ -1098,7 +1098,7 @@
 				93F814F514D01DF8005D6699 /* CLightPoint.h */,
 				93F814F714D01E08005D6699 /* CLightPoint.cpp */,
 			);
-			name = AbstractNodes;
+			name = Abstract;
 			sourceTree = "<group>";
 		};
 		15AE127015DAFB0100262A59 /* VertexBuffers */ = {
@@ -1418,10 +1418,10 @@
 		93B6BB761484149300E34B78 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
-				15AE126F15DAF1CD00262A59 /* AbstractNodes */,
-				15AE126E15DAF1BE00262A59 /* 3dNodes */,
-				15AE126C15DAF1B500262A59 /* 2dNodes */,
-				A166A16A1546DF2000E659D5 /* ParticlesNodes */,
+				15AE126F15DAF1CD00262A59 /* Abstract */,
+				15AE126E15DAF1BE00262A59 /* 3d */,
+				15AE126C15DAF1B500262A59 /* 2d */,
+				A166A16A1546DF2000E659D5 /* Particles */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -1758,7 +1758,7 @@
 			name = GameUI;
 			sourceTree = "<group>";
 		};
-		A166A16A1546DF2000E659D5 /* ParticlesNodes */ = {
+		A166A16A1546DF2000E659D5 /* Particles */ = {
 			isa = PBXGroup;
 			children = (
 				A1AB4E3D1546B71D00434639 /* CParticleEmitter.h */,
@@ -1770,7 +1770,7 @@
 				15AF6D9415ED304400034990 /* CParticleEmitterTrail.h */,
 				15AF6D9315ED304400034990 /* CParticleEmitterTrail.cpp */,
 			);
-			name = ParticlesNodes;
+			name = Particles;
 			sourceTree = "<group>";
 		};
 		A176DD5A15D3A8DE00B8FD7D /* Network */ = {

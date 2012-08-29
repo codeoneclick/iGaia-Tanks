@@ -10,19 +10,14 @@
 
 @interface BaseOperation : NSOperation
 
-@property (nonatomic, assign) SEL successSelector;
-@property (nonatomic, assign) SEL failureSelector;
-@property (nonatomic, assign) SEL progressSelector;
-@property (nonatomic, assign) SEL cancelSelector;
-
 @property (nonatomic, copy) void (^successBlock)();
 @property (nonatomic, copy) void (^failureBlock)();
 @property (nonatomic, copy) void (^progressBlock)();
 @property (nonatomic, copy) void (^cancelBlock)();
 
-- (void) notifyOnSuccess;
-- (void) notifyOnFailure;
-- (void) notifyOnProgress;
-- (void) notifyOnCancel;
+- (void)notifyOnSuccess:(NSMutableData*)data;
+- (void)notifyOnFailure:(NSError*)error;
+- (void)notifyOnProgress:(NSData*)data;
+- (void)notifyOnCancel;
 
 @end

@@ -14,6 +14,13 @@
 #include "CCollisionMgr.h"
 #include "CWindow.h"
 #include "CSettings.h"
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+
+std::unordered_map<std::string, glm::mat4x4> INode::m_lMemoizeTranslation;
+std::unordered_map<std::string, glm::mat4x4> INode::m_lMemoizeRotation;
+std::unordered_map<std::string, glm::mat4x4> INode::m_lMemoizeScale;
 
 INode::INode(void)
 {
@@ -119,15 +126,58 @@ void INode::Remove_DelegateOwner(IDelegate *_pDelegateOwner)
 
 void INode::Update(void)
 {
-    m_mRotation = glm::rotate(glm::mat4(1.0f), m_vRotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
-    m_mRotation = glm::rotate(m_mRotation, m_vRotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
-    m_mRotation = glm::rotate(m_mRotation, m_vRotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
+    bool isTranslationMemoize = false, isRotationMemoize = false, isScaleMemoize = false;
+    std::stringstream stream;
+    stream<<std::fixed<< std::showpoint<< std::setprecision(2)<<m_vRotation.x<<m_vRotation.y<<m_vRotation.z;
+    std::string str(stream.str());
+    if(m_lMemoizeRotation.find(str) != m_lMemoizeRotation.end())
+    {
+        m_mRotation = m_lMemoizeRotation[str];
+        isRotationMemoize = true;
+    }
+    else
+    {
+        m_mRotation = glm::rotate(glm::mat4(1.0f), m_vRotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
+        m_mRotation = glm::rotate(m_mRotation, m_vRotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
+        m_mRotation = glm::rotate(m_mRotation, m_vRotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
+        m_lMemoizeRotation[str] = m_mRotation;
+    }
     
-    m_mTranslation = glm::translate(glm::mat4(1.0f), m_vPosition);
+    stream.str(std::string());
+    stream<<std::fixed<< std::showpoint<< std::setprecision(2)<<m_vPosition.x<<m_vPosition.y<<m_vPosition.z;
+    str = stream.str();
+    if(m_lMemoizeTranslation.find(str) != m_lMemoizeTranslation.end())
+    {
+        m_mTranslation = m_lMemoizeTranslation[str];
+        isTranslationMemoize = true;
+    }
+    else
+    {
+        m_mTranslation = glm::translate(glm::mat4(1.0f), m_vPosition);
+        m_lMemoizeTranslation[str] = m_mTranslation;
+    }
     
-    m_mScale = glm::scale(glm::mat4(1.0f), m_vScale);
+    stream.str(std::string());
+    stream<<std::fixed<< std::showpoint<<std::setprecision(2)<<m_vScale.x<<m_vScale.y<<m_vScale.z;
+    str = stream.str();
+    if(m_lMemoizeScale.find(str) != m_lMemoizeScale.end())
+    {
+        m_mScale = m_lMemoizeScale[str];
+        isScaleMemoize = true;
+    }
+    else
+    {
+        m_mScale = glm::scale(glm::mat4(1.0f), m_vScale);
+        m_lMemoizeScale[str] = m_mScale;
+    }
     
-    m_mWorld = m_mTranslation * m_mRotation * m_mScale;
+    stream.flush();
+    stream.clear();
+    
+    if(!isRotationMemoize || !isTranslationMemoize || !isScaleMemoize)
+    {
+        m_mWorld = m_mTranslation * m_mRotation * m_mScale;
+    }
     
     ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();
     

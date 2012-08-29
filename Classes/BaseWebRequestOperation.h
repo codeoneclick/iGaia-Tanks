@@ -13,10 +13,10 @@ static NSString* k_METHOD_GET = @"GET";
 
 @interface BaseWebRequestOperation : BaseOperation
 
-@property (nonatomic, retain) NSString* method;
-@property (nonatomic, retain) NSURL* url;
-@property (nonatomic, retain) NSData* params;
-@property (nonatomic, retain) NSMutableData* data;
-@property (nonatomic, retain) id <NSObject> error;
+@property (nonatomic, strong) NSString* method;
+@property (nonatomic, strong) NSURL* url;
+@property (nonatomic, strong) NSData* params;
+@property (nonatomic, strong) NSMutableData* data;
+@property (nonatomic, strong) NSError* error;
 
 @end
