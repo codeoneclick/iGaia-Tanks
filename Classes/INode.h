@@ -9,8 +9,7 @@
 #ifndef iGaia_INode_h
 #define iGaia_INode_h
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp> 
+#include "CCommon.h"
 
 #include "CMaterial.h"
 #include "CMesh.h"
@@ -24,10 +23,6 @@
 #include "ITouchDelegate.h"
 
 #include "CMathHelper.h"
-#include <unordered_map>
-
-#define SAFE_DELETE(a) { delete (a); (a) = NULL; }
-#define SAFE_DELETE_ARRAY(a) { delete[] (a); (a) = NULL; }
 
 class INode : public ITouchDelegate
 {
@@ -72,10 +67,6 @@ protected:
     
     IResource::EventSignature m_pAsyncLoadSignature;
     
-    static std::unordered_map<std::string, glm::mat4x4> m_lMemoizeTranslation;
-    static std::unordered_map<std::string, glm::mat4x4> m_lMemoizeRotation;
-    static std::unordered_map<std::string, glm::mat4x4> m_lMemoizeScale;
-    
 public:
     INode(void);
     virtual ~INode(void);
@@ -95,7 +86,7 @@ public:
 // -- Getters block for recieve main varibles for current node -- //
     CShader*  Get_Shader(CShader::E_RENDER_MODE _eRenderMode);
     CTexture* Get_Texture(unsigned int index);
-    inline CMesh*    Get_Mesh(void) { return m_pMesh; }
+    inline CMesh* Get_Mesh(void) { return m_pMesh; }
 // -- -- //
     
 // -- Setters for texture by index. For preload/load texture. Can use background thread for preloading  -- //
@@ -136,7 +127,6 @@ public:
     
 // -- Block for the delegate listener methods -- //
     virtual void OnTouchEvent(ITouchDelegate* _pDelegateOwner) = 0;
-    virtual void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource) = 0;
 // -- -- //
     
 // -- Block for enable/disable and get current render mode. Use for the different materials -- //

@@ -16,6 +16,18 @@ const float CGrass::k_ELEMENT_HEIGHT = 1.0f;
 const int CGrass::k_ELEMENT_NUM_INDEXES = 6;
 const int CGrass::k_ELEMENT_NUM_VERTEXES = 4;
 
+CGrass* CGrass::m_pInstance = nullptr;
+
+CGrass* CGrass::Instance(void)
+{
+    if(m_pInstance == nullptr)
+    {
+        m_pInstance = new CGrass();
+        m_pInstance->_Load(nullptr);
+    }
+    return m_pInstance;
+}
+
 CGrass::CGrass(void)
 {
     m_iWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
@@ -29,40 +41,18 @@ CGrass::CGrass(void)
     m_pSingleElementIndexBuffer[4] = 3;
     m_pSingleElementIndexBuffer[5] = 1;
     
-    /*m_pSingleElementIndexBuffer[6]  = 4;
-    m_pSingleElementIndexBuffer[7]  = 5;
-    m_pSingleElementIndexBuffer[8]  = 6;
-    m_pSingleElementIndexBuffer[9]  = 6;
-    m_pSingleElementIndexBuffer[10] = 7;
-    m_pSingleElementIndexBuffer[11] = 5;*/
-    
     m_pSingleElementVertexBuffer = new CVertexBufferPositionTexcoord(k_ELEMENT_NUM_VERTEXES, GL_STATIC_DRAW);
     CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(m_pSingleElementVertexBuffer->Lock());
-    //glm::vec3* pPositionData = m_pSingleElementVertexBuffer->GetOrCreate_PositionSourceData();
 
     pVertexBufferData[0].m_vPosition = glm::vec3(-k_ELEMENT_SIZE / 2, 0.0f, 0.0f);
     pVertexBufferData[1].m_vPosition = glm::vec3(-k_ELEMENT_SIZE / 2, k_ELEMENT_HEIGHT, 0.0f);
     pVertexBufferData[2].m_vPosition = glm::vec3( k_ELEMENT_SIZE / 2, 0.0f, 0.0f);
     pVertexBufferData[3].m_vPosition = glm::vec3( k_ELEMENT_SIZE / 2, k_ELEMENT_HEIGHT, 0.0f);
     
-    /*pPositionData[4] = glm::vec3(0.0f, 0.0f, -k_ELEMENT_SIZE / 2);
-    pPositionData[5] = glm::vec3(0.0f, k_ELEMENT_HEIGHT, -k_ELEMENT_SIZE / 2);
-    pPositionData[6] = glm::vec3(0.0f, 0.0f,  k_ELEMENT_SIZE / 2);
-    pPositionData[7] = glm::vec3(0.0f, k_ELEMENT_HEIGHT,  k_ELEMENT_SIZE / 2);*/
-    
-    //glm::vec2* pTexCoordData = m_pSingleElementVertexBuffer->GetOrCreate_TexcoordSourceData();
-    
     pVertexBufferData[0].m_vTexcoord = glm::vec2(0.0f,1.0f);
     pVertexBufferData[1].m_vTexcoord = glm::vec2(0.0f,0.0f);
     pVertexBufferData[2].m_vTexcoord = glm::vec2(1.0f,1.0f);
     pVertexBufferData[3].m_vTexcoord = glm::vec2(1.0f,0.0f);
-    
-    /*pTexCoordData[4] = glm::vec2(0.0f,1.0f);
-    pTexCoordData[5] = glm::vec2(0.0f,0.0f);
-    pTexCoordData[6] = glm::vec2(1.0f,1.0f);
-    pTexCoordData[7] = glm::vec2(1.0f,0.0f);*/
-    
-    m_pHeightMapSetter = NULL;
 }
 
 CGrass::~CGrass(void)
@@ -70,28 +60,25 @@ CGrass::~CGrass(void)
     SAFE_DELETE(m_pQuadTree);
     SAFE_DELETE_ARRAY(m_pSingleElementIndexBuffer);
     SAFE_DELETE(m_pSingleElementVertexBuffer);
-    m_pHeightMapSetter = NULL;
 }
 
-void CGrass::Load(const std::string &_sName, IResource::E_THREAD _eThread)
-{   
-    m_pHeightMapSetter = CSceneMgr::Instance()->Get_HeightMapSetterRef();
-    
+void CGrass::_Load(void* data)
+{
     srand(time(NULL));
     
     for(unsigned int i = 1; i < (m_iWidth - 1); i += 2)
     {
         for(unsigned int j = 1; j < (m_iHeight - 1); j += 2)
         {
-           
+            
             float fRange = 0.9f - 0.1f;
             float fOffetX = 0.1f + float(fRange * rand() / (RAND_MAX + 1.0f));
             float fOffetY = 0.1f + float(fRange * rand() / (RAND_MAX + 1.0f));
             
-            float fHeight = m_pHeightMapSetter->Get_HeightValue(i * m_pHeightMapSetter->Get_ScaleFactor().x + fOffetX, j * m_pHeightMapSetter->Get_ScaleFactor().y + fOffetY);
+            float fHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightValue(i * CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor().x + fOffetX, j * CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor().y + fOffetY);
             if(fHeight < 1.25f && fHeight > 0.05f)
             {
-                m_lGrassElementsPosition.push_back(glm::vec3(i * m_pHeightMapSetter->Get_ScaleFactor().x + fOffetX, fHeight + 0.025f, j *m_pHeightMapSetter->Get_ScaleFactor().y + fOffetY));
+                m_lGrassElementsPosition.push_back(glm::vec3(i * CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor().x + fOffetX, fHeight + 0.025f, j *CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor().y + fOffetY));
             }
         }
     }
@@ -140,7 +127,7 @@ void CGrass::Load(const std::string &_sName, IResource::E_THREAD _eThread)
     
     m_pQuadTree = new SQuadTreeNode();
     m_pQuadTree->m_pParent = NULL;
-    m_pQuadTree->m_vMaxBound = glm::vec3(m_iWidth * m_pHeightMapSetter->Get_ScaleFactor().x, 64.0f, m_iHeight * m_pHeightMapSetter->Get_ScaleFactor().y);
+    m_pQuadTree->m_vMaxBound = glm::vec3(m_iWidth * CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor().x, 64.0f, m_iHeight * CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor().y);
     m_pQuadTree->m_vMinBound = glm::vec3(0.0f, -64.0f, 0.0f);
     m_pQuadTree->m_iNumIndexes = iNumIndexes;
     m_pQuadTree->m_pIndexes = static_cast<unsigned short*>(malloc(m_pQuadTree->m_iNumIndexes * sizeof(unsigned short)));
@@ -293,21 +280,6 @@ bool CGrass::_IsPointInBoundBox(glm::vec3 _vPoint, glm::vec3 _vMinBound, glm::ve
     else
     {
         return false;
-    }
-}
-
-void CGrass::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
-{
-    switch (_eType)
-    {
-        case IResource::E_RESOURCE_TYPE_MESH:
-            std::cout<<"[CModel::OnLoadDone] Resource Mesh loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        case IResource::E_RESOURCE_TYPE_TEXTURE:
-            std::cout<<"[CModel::OnLoadDone] Resource Texture loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        default:
-            break;
     }
 }
 

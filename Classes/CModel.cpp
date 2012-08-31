@@ -33,31 +33,6 @@ void CModel::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
 }
 
-void CModel::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
-{
-    switch (_eType)
-    {
-        case IResource::E_RESOURCE_TYPE_MESH:
-            std::cout<<"[CModel::OnLoadDone] Resource Mesh loaded : "<<_pResource->Get_Name()<<"\n";
-            m_pMesh = static_cast<CMesh*>(_pResource);
-            for(unsigned int i = 0; i < CShader::E_RENDER_MODE_MAX; ++i)
-            {
-                CShader* pShader = m_pMaterial->Get_Shader(static_cast<CShader::E_RENDER_MODE>(i));
-                if(pShader != NULL)
-                {
-                    m_pMesh->Get_VertexBufferRef()->Add_ShaderRef(static_cast<CShader::E_RENDER_MODE>(i), pShader);
-                }
-            }
-            
-            break;
-        case IResource::E_RESOURCE_TYPE_TEXTURE:
-            std::cout<<"[CModel::OnLoadDone] Resource Texture loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        default:
-            break;
-    }
-}
-
 void CModel::OnTouchEvent(ITouchDelegate* _pDelegateOwner)
 {
     CCollisionMgr::SRay3d tTouchRay = CSceneMgr::Instance()->Get_CollisionMgr()->Get_TouchRay();
@@ -99,15 +74,15 @@ void CModel::Render(CShader::E_RENDER_MODE _eMode)
     
     ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();
     CShader* pShader = m_pMaterial->Get_Shader(_eMode);
+    ILight* pLight = CSceneMgr::Instance()->Get_Light();
     
     switch (_eMode)
     {
         case CShader::E_RENDER_MODE_SIMPLE:
         {
-            if(pShader == NULL)
+            if(pShader == nullptr)
             {
-                std::cout<<"[CModel::Render] Shader MODE_SIMPLE is NULL"<<std::endl;
-                return;
+                LOG("Shader MODE_SIMPLE is NULL");
             }
             
             pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
@@ -115,13 +90,12 @@ void CModel::Render(CShader::E_RENDER_MODE _eMode)
             pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             pShader->Set_Vector3(pCamera->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_CAMERA_POSITION);
             pShader->Set_Vector2(m_vTexCoordOffset, CShader::E_ATTRIBUTE_VECTOR_TEXCOORD_OFFSET);
-            glm::vec3 vLightPosition = glm::vec3(m_vPosition.x + 4.0f, 8.0f, m_vPosition.z + 4.0f);
-            pShader->Set_Vector3(vLightPosition, CShader::E_ATTRIBUTE_VECTOR_LIGHT_POSITION);
+            pShader->Set_Vector3(pLight->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_LIGHT_POSITION);
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
             {
                 CTexture* pTexture = m_pMaterial->Get_Texture(i);
-                if(pTexture == NULL)
+                if(pTexture == nullptr)
                 {
                     continue;
                 }
@@ -131,10 +105,9 @@ void CModel::Render(CShader::E_RENDER_MODE _eMode)
             break;
         case CShader::E_RENDER_MODE_REFLECTION:
         {
-            if(pShader == NULL)
+            if(pShader == nullptr)
             {
-                std::cout<<"[CModel::Render] Shader MODE_SIMPLE is NULL"<<std::endl;
-                return;
+                LOG("Shader RENDER_MODE_REFLECTION is NULL");
             }
             
             pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
@@ -142,13 +115,12 @@ void CModel::Render(CShader::E_RENDER_MODE _eMode)
             pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             pShader->Set_Vector3(pCamera->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_CAMERA_POSITION);
             pShader->Set_Vector2(m_vTexCoordOffset, CShader::E_ATTRIBUTE_VECTOR_TEXCOORD_OFFSET);
-            glm::vec3 vLightPosition = glm::vec3(m_vPosition.x + 4.0f, 8.0f, m_vPosition.z + 4.0f);
-            pShader->Set_Vector3(vLightPosition, CShader::E_ATTRIBUTE_VECTOR_LIGHT_POSITION);
+            pShader->Set_Vector3(pLight->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_LIGHT_POSITION);
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
             {
                 CTexture* pTexture = m_pMaterial->Get_Texture(i);
-                if(pTexture == NULL)
+                if(pTexture == nullptr)
                 {
                     continue;
                 }
@@ -158,10 +130,9 @@ void CModel::Render(CShader::E_RENDER_MODE _eMode)
             break;
         case CShader::E_RENDER_MODE_REFRACTION:
         {
-            if(pShader == NULL)
+            if(pShader == nullptr)
             {
-                std::cout<<"[CModel::Render] Shader MODE_SIMPLE is NULL"<<std::endl;
-                return;
+                LOG("Shader RENDER_MODE_REFRACTION is NULL");
             }
             
             pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
@@ -169,13 +140,12 @@ void CModel::Render(CShader::E_RENDER_MODE _eMode)
             pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             pShader->Set_Vector3(pCamera->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_CAMERA_POSITION);
             pShader->Set_Vector2(m_vTexCoordOffset, CShader::E_ATTRIBUTE_VECTOR_TEXCOORD_OFFSET);
-            glm::vec3 vLightPosition = glm::vec3(m_vPosition.x + 4.0f, 8.0f, m_vPosition.z + 4.0f);
-            pShader->Set_Vector3(vLightPosition, CShader::E_ATTRIBUTE_VECTOR_LIGHT_POSITION);
+            pShader->Set_Vector3(pLight->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_LIGHT_POSITION);
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
             {
                 CTexture* pTexture = m_pMaterial->Get_Texture(i);
-                if(pTexture == NULL)
+                if(pTexture == nullptr)
                 {
                     continue;
                 }
@@ -185,10 +155,9 @@ void CModel::Render(CShader::E_RENDER_MODE _eMode)
             break;
         case CShader::E_RENDER_MODE_SCREEN_NORMAL_MAP:
         {
-            if(pShader == NULL)
+            if(pShader == nullptr)
             {
-                std::cout<<"[CModel::Render] Shader MODE_SCREEN_NORMAL_MAP is NULL"<<std::endl;
-                return;
+                LOG("Shader RENDER_MODE_SCREEN_NORMAL_MAP is NULL");
             }
             
             pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
@@ -198,7 +167,7 @@ void CModel::Render(CShader::E_RENDER_MODE _eMode)
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
             {
                 CTexture* pTexture = m_pMaterial->Get_Texture(i);
-                if(pTexture == NULL)
+                if(pTexture == nullptr)
                 {
                     continue;
                 }
@@ -216,10 +185,9 @@ void CModel::Render(CShader::E_RENDER_MODE _eMode)
     m_pMesh->Get_IndexBufferRef()->Disable();
     m_pMesh->Get_VertexBufferRef()->Disable(_eMode);
     
-    if(m_pBoundingBox != NULL && CShader::E_RENDER_MODE_SIMPLE == _eMode)
+    if(CShader::E_RENDER_MODE_SIMPLE == _eMode)
     {
         m_pBoundingBox->Render();
     }
-
 }
 

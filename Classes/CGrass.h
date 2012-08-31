@@ -10,14 +10,15 @@
 #define iGaia_CGrass_h
 
 #include "INode.h"
-#include <map>
-#include "CHeightMapSetter.h"
 
 #define k_MAX_QUADTREE_CHILDREN 4
 
 class CGrass: public INode
 {
 protected:
+    static CGrass* m_pInstance;
+    void _Load(void* data);
+    
     struct SQuadTreeNode
     {
         SQuadTreeNode* m_pParent;
@@ -64,8 +65,6 @@ protected:
     unsigned int m_iWidth;
     unsigned int m_iHeight;
     
-    CHeightMapSetter* m_pHeightMapSetter;
-    
     std::vector<glm::vec3> m_lGrassElementsPosition;
 
     unsigned short* m_pWorkingIndexesSourceDataRef;
@@ -80,12 +79,12 @@ protected:
 public:
     CGrass(void);
     ~CGrass(void);
-    void Load(const std::string& _sName, IResource::E_THREAD _eThread);
+    static CGrass* Instance(void);
+    void Load(const std::string& _sName, IResource::E_THREAD _eThread) { LOG("Grass can not create manualy"); } 
     void Update(void);
     void Render(CShader::E_RENDER_MODE _eMode);
     
     void OnTouchEvent(ITouchDelegate* _pDelegateOwner);
-    void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource);
 };
 
 #endif

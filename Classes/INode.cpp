@@ -14,13 +14,6 @@
 #include "CCollisionMgr.h"
 #include "CWindow.h"
 #include "CSettings.h"
-#include <sstream>
-#include <iostream>
-#include <iomanip>
-
-std::unordered_map<std::string, glm::mat4x4> INode::m_lMemoizeTranslation;
-std::unordered_map<std::string, glm::mat4x4> INode::m_lMemoizeRotation;
-std::unordered_map<std::string, glm::mat4x4> INode::m_lMemoizeScale;
 
 INode::INode(void)
 {
@@ -36,13 +29,13 @@ INode::INode(void)
     
     m_pAsyncLoadSignature = [this](IResource* _pResource)->void
     {
-               
+        //TODO : implement async mode loading
     };
 }
 
 INode::~INode(void)
 {
-    std::cout<<"[INode::~INode] delete"<<std::endl;
+    LOG("destruct");
     CResourceMgr::Instance()->Cancel_Load(this);
     m_lDelegateOwners.clear();
     SAFE_DELETE(m_pBoundingBox);
@@ -56,9 +49,9 @@ INode::~INode(void)
 void INode::Set_Rotation(const glm::vec3 &_vRotation)
 {
     m_vRotation = _vRotation;
-    m_vRotation.x = CMathHelper::Instance()->Get_WrapAngle(m_vRotation.x, 0.0f, 360.0f);
-    m_vRotation.y = CMathHelper::Instance()->Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f);
-    m_vRotation.z = CMathHelper::Instance()->Get_WrapAngle(m_vRotation.z, 0.0f, 360.0f);
+    m_vRotation.x = CMathHelper::Get_WrapAngle(m_vRotation.x, 0.0f, 360.0f);
+    m_vRotation.y = CMathHelper::Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f);
+    m_vRotation.z = CMathHelper::Get_WrapAngle(m_vRotation.z, 0.0f, 360.0f);
 }
 
 void INode::Set_Texture(CTexture *_pTexture, int _index, CTexture::E_WRAP_MODE _eWrap)
@@ -102,7 +95,7 @@ void INode::Add_DelegateOwner(IDelegate *_pDelegateOwner)
     {
         if(m_lDelegateOwners[index] == _pDelegateOwner)
         {
-            std::cout<<"[INode::Add_DelegateOwner] Error - can not add same delegate owner"<<std::endl;
+            LOG("Error - can not add same delegate owner");
             return;
         }
     }
@@ -126,68 +119,25 @@ void INode::Remove_DelegateOwner(IDelegate *_pDelegateOwner)
 
 void INode::Update(void)
 {
-    bool isTranslationMemoize = false, isRotationMemoize = false, isScaleMemoize = false;
-    std::stringstream stream;
-    stream<<std::fixed<< std::showpoint<< std::setprecision(2)<<m_vRotation.x<<m_vRotation.y<<m_vRotation.z;
-    std::string str(stream.str());
-    if(m_lMemoizeRotation.find(str) != m_lMemoizeRotation.end())
-    {
-        m_mRotation = m_lMemoizeRotation[str];
-        isRotationMemoize = true;
-    }
-    else
-    {
-        m_mRotation = glm::rotate(glm::mat4(1.0f), m_vRotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
-        m_mRotation = glm::rotate(m_mRotation, m_vRotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
-        m_mRotation = glm::rotate(m_mRotation, m_vRotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
-        m_lMemoizeRotation[str] = m_mRotation;
-    }
+    m_mRotation = glm::rotate(glm::mat4(1.0f), m_vRotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
+    m_mRotation = glm::rotate(m_mRotation, m_vRotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
+    m_mRotation = glm::rotate(m_mRotation, m_vRotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
     
-    stream.str(std::string());
-    stream<<std::fixed<< std::showpoint<< std::setprecision(2)<<m_vPosition.x<<m_vPosition.y<<m_vPosition.z;
-    str = stream.str();
-    if(m_lMemoizeTranslation.find(str) != m_lMemoizeTranslation.end())
-    {
-        m_mTranslation = m_lMemoizeTranslation[str];
-        isTranslationMemoize = true;
-    }
-    else
-    {
-        m_mTranslation = glm::translate(glm::mat4(1.0f), m_vPosition);
-        m_lMemoizeTranslation[str] = m_mTranslation;
-    }
+    m_mTranslation = glm::translate(glm::mat4(1.0f), m_vPosition);
+
+    m_mScale = glm::scale(glm::mat4(1.0f), m_vScale);
     
-    stream.str(std::string());
-    stream<<std::fixed<< std::showpoint<<std::setprecision(2)<<m_vScale.x<<m_vScale.y<<m_vScale.z;
-    str = stream.str();
-    if(m_lMemoizeScale.find(str) != m_lMemoizeScale.end())
-    {
-        m_mScale = m_lMemoizeScale[str];
-        isScaleMemoize = true;
-    }
-    else
-    {
-        m_mScale = glm::scale(glm::mat4(1.0f), m_vScale);
-        m_lMemoizeScale[str] = m_mScale;
-    }
-    
-    stream.flush();
-    stream.clear();
-    
-    if(!isRotationMemoize || !isTranslationMemoize || !isScaleMemoize)
-    {
-        m_mWorld = m_mTranslation * m_mRotation * m_mScale;
-    }
+    m_mWorld = m_mTranslation * m_mRotation * m_mScale;
     
     ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();
     
     m_mWVP = pCamera->Get_Projection() * pCamera->Get_View() * m_mWorld;
     
-    if(m_pBoundingBox != NULL)
-    {
-        m_pBoundingBox->Set_MaxMinPoints(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
-        m_pBoundingBox->Set_WorldMatrix(m_mWorld);
-    }
+    m_pBoundingBox->Set_MaxBound(m_pMesh->Get_MaxBound());
+    m_pBoundingBox->Set_MinBound(m_pMesh->Get_MinBound());
+    m_pBoundingBox->Set_WorldMatrix(m_mWorld);
+    
+    
 }
 
 void INode::Render(CShader::E_RENDER_MODE _eMode)

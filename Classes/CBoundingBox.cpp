@@ -15,12 +15,12 @@
 const float CBoundingBox::k_MAX_VALUE = -4096.0f;
 const float CBoundingBox::k_MIN_VALUE = 4096.0f;
 
-CMesh* CBoundingBox::m_pMesh = NULL;
-CMaterial* CBoundingBox::m_pMaterial = NULL;
+CMesh* CBoundingBox::m_pMesh = nullptr;
+CMaterial* CBoundingBox::m_pMaterial = nullptr;
 
-CMesh* CBoundingBox::Get_BoundingBoxMesh(void)
+CMesh* CBoundingBox::_Get_DefaultBoxMesh(void)
 {
-    if(m_pMesh == NULL)
+    if(m_pMesh == nullptr)
     {
         glm::vec3 m_vMin = glm::vec3( -0.5f, -1.0f, -0.5f);
         glm::vec3 m_vMax = glm::vec3(  0.5f,  0.0f,  0.5f);
@@ -90,21 +90,24 @@ CMesh* CBoundingBox::Get_BoundingBoxMesh(void)
     return m_pMesh;
 }
 
-CBoundingBox::CBoundingBox(const glm::vec3 &_vMax, const glm::vec3 &_vMin)
+CBoundingBox::CBoundingBox(const glm::vec3 &_vMaxBound, const glm::vec3 &_vMinBound)
 {
-    m_vMax = _vMax;
-    m_vMin = _vMin;
-    
-    m_vScale = m_vMin - m_vMax;
-    m_vCenter = (m_vMax - m_vMin) / 2.0f + m_vMin;
+    m_vMaxBound = _vMaxBound;
+    m_vMinBound = _vMinBound;
+    _UpdateBounds();
     m_mWorld = glm::mat4x4(1.0f);
-    Get_BoundingBoxMesh();
-
+    _Get_DefaultBoxMesh();
 }
 
 CBoundingBox::~CBoundingBox(void)
 {
     
+}
+
+void CBoundingBox::_UpdateBounds(void)
+{
+    m_vScale = m_vMinBound - m_vMaxBound;
+    m_vCenter = (m_vMaxBound - m_vMinBound) / 2.0f + m_vMinBound;
 }
 
 void CBoundingBox::Set_WorldMatrix(const glm::mat4x4& _mWorld)
@@ -113,12 +116,16 @@ void CBoundingBox::Set_WorldMatrix(const glm::mat4x4& _mWorld)
     m_mWorld = _mWorld * mScale;
 }
 
-void CBoundingBox::Set_MaxMinPoints(const glm::vec3 &_vMax, const glm::vec3 &_vMin)
+void CBoundingBox::Set_MaxBound(const glm::vec3 &_vMaxBound)
 {
-    m_vMax = _vMax;
-    m_vMin = _vMin;
-    m_vScale = m_vMin - m_vMax;
-    m_vCenter = (m_vMax - m_vMin) / 2.0f + m_vMin;
+    m_vMaxBound = _vMaxBound;
+    _UpdateBounds();
+}
+
+void CBoundingBox::Set_MinBound(const glm::vec3 &_vMinBound)
+{
+    m_vMinBound = _vMinBound;
+    _UpdateBounds();
 }
 
 void CBoundingBox::Render(void)

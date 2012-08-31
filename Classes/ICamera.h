@@ -9,8 +9,6 @@
 #ifndef iGaia_ICamera_h
 #define iGaia_ICamera_h
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp> 
 #include "CFrustum.h"
 #include <unordered_map>
 
@@ -60,10 +58,10 @@ public:
     void Set_FovY(float _fFovY);
     inline float Get_FovY(void) { return m_fFovY; }
     
-    void Set_FarPlane(float _fFarPlane); //{ m_fFarPlane = _fFarPlane; }
+    void Set_FarPlane(float _fFarPlane); 
     inline float Get_FarPlane(void) { return m_fFarPlane; }
     
-    void Set_NearPlane(float _fNearPlane); //{ m_fNearPlane = _fNearPlane; }
+    void Set_NearPlane(float _fNearPlane);
     float Get_NearPlane(void) { return m_fNearPlane; }
     
     void Set_DistanceToLookAt(float _fDistanceToLookAt) { m_fDistanceToLookAt = _fDistanceToLookAt; }
@@ -71,17 +69,17 @@ public:
     void Set_HeightFromLookAt(float _fHeightFromLookAt) { m_fHeightFromLookAt = _fHeightFromLookAt; }
     float Get_HeightFromLookAt(void) { return m_fHeightFromLookAt; }
     
-    void Set_AspectRatio(float _fAspectRatio);// { m_fAspectRatio = _fAspectRatio; }
+    void Set_AspectRatio(float _fAspectRatio);
     inline float Get_AspectRatio(void) { return m_fAspectRatio; }
     
     virtual glm::vec3 Get_Position(void) { return m_vPosition; }
     virtual void Set_Position(const glm::vec3& _vPosition) { m_vPosition = _vPosition; }
     
-    glm::vec3 Get_Rotation(void) { return m_vRotation; }
-    void Set_Rotation(const glm::vec3& _fRotation) { m_vRotation = _fRotation; }
+    inline glm::vec3 Get_Rotation(void) { return m_vRotation; }
+    inline void Set_Rotation(const glm::vec3& _fRotation) { m_vRotation = _fRotation; }
     
-    glm::vec3 Get_LookAt(void) { return m_vLookAt; }
-    void Set_LookAt(const glm::vec3& _vLookAt) { m_vLookAt = _vLookAt; }
+    inline glm::vec3 Get_LookAt(void) { return m_vLookAt; }
+    inline void Set_LookAt(const glm::vec3& _vLookAt) { m_vLookAt = _vLookAt; }
 };
 
 

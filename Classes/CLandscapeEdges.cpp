@@ -11,6 +11,18 @@
 #include "CHeightMapSetter.h"
 #include "CVertexBufferPositionTexcoord.h"
 
+CLandscapeEdges* CLandscapeEdges::m_pInstance = nullptr;
+
+CLandscapeEdges* CLandscapeEdges::Instance(void)
+{
+    if(m_pInstance == nullptr)
+    {
+        m_pInstance = new CLandscapeEdges();
+        m_pInstance->_Load(nullptr);
+    }
+    return m_pInstance;
+}
+
 CLandscapeEdges::CLandscapeEdges(void)
 {
     m_iWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
@@ -23,7 +35,7 @@ CLandscapeEdges::~CLandscapeEdges(void)
     
 }
 
-void CLandscapeEdges::Load(const std::string &_sName, IResource::E_THREAD _eThread)
+void CLandscapeEdges::_Load(void *data)
 {
     CVertexBufferPositionTexcoord* pVertexBuffer = new CVertexBufferPositionTexcoord(16, GL_STATIC_DRAW);
     
@@ -117,21 +129,6 @@ void CLandscapeEdges::Load(const std::string &_sName, IResource::E_THREAD _eThre
     
     glm::vec2 vScaleFactor = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor();
     Set_Scale(glm::vec3(vScaleFactor.x, 1.0f, vScaleFactor.y));
-}
-
-void CLandscapeEdges::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
-{
-    switch (_eType)
-    {
-        case IResource::E_RESOURCE_TYPE_MESH:
-            std::cout<<"[CModel::OnLoadDone] Resource Mesh loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        case IResource::E_RESOURCE_TYPE_TEXTURE:
-            std::cout<<"[CModel::OnLoadDone] Resource Texture loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        default:
-            break;
-    }
 }
 
 void CLandscapeEdges::OnTouchEvent(ITouchDelegate *_pDelegateOwner)

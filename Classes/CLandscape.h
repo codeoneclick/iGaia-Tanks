@@ -10,16 +10,16 @@
 #define iGaia_CLandscape_h
 
 #include "INode.h"
-#include <map>
-#include <vector>
-#include "CHeightMapSetter.h"
-#include "CLandscapeEdges.h"
 
 #define k_MAX_QUADTREE_CHILDREN 4
 
 class CLandscape : public INode
 {
 protected:
+    
+    static CLandscape* m_pInstance;
+    void _Load(void* data);
+    
     struct SQuadTreeNode
     {
         SQuadTreeNode* m_pParent;
@@ -38,7 +38,7 @@ protected:
         }
         ~SQuadTreeNode(void)
         {
-            std::cout<<"[~SQuadTreeNode] delete"<<std::endl;
+            LOG("destruct");
             SAFE_DELETE_ARRAY(m_pIndexes);
             SAFE_DELETE_ARRAY(m_pIndexesId);
             for(unsigned int i = 0; i < k_MAX_QUADTREE_CHILDREN; ++i)
@@ -52,10 +52,9 @@ protected:
             m_pParent = NULL;
         }
     };
+    
     unsigned int m_iWidth;
     unsigned int m_iHeight;
-    CHeightMapSetter* m_pHeightMapSetter;
-    CLandscapeEdges* m_pLandscapeEdges;
     unsigned short* m_pWorkingIndexesSourceDataRef;
     unsigned int m_iWorkingNumIndexes;
     SQuadTreeNode* m_pQuadTree;
@@ -63,22 +62,16 @@ protected:
     void _CreateIndexBufferRefForQuadTreeNode(SQuadTreeNode* _pNode);
     bool _IsPointInBoundBox(glm::vec3 _vPoint, glm::vec3 _vMinBound, glm::vec3 _vMaxBound);
     void _CheckVisibleQuadTreeNode(SQuadTreeNode* _pNode);
-    void _CreateLandscapeEdges(void);
-
     glm::vec2 m_vScaleFactor;
 public:
     CLandscape(void);
     ~CLandscape(void);
-    void Load(const std::string& _sName, IResource::E_THREAD _eThread);
+    static CLandscape* Instance(void);
+    void Load(const std::string& _sName, IResource::E_THREAD _eThread) { LOG("Landscape can not create manualy"); };
     void Update(void);
     void Render(CShader::E_RENDER_MODE _eMode);
-    CHeightMapSetter* Get_HeightMapSetter(void) { return m_pHeightMapSetter; }
-    CLandscapeEdges* Get_LandscapeEdges(void) { return m_pLandscapeEdges; }
-    unsigned int Get_Width(void) { return m_iWidth; }
-    unsigned int Get_Height(void) { return m_iHeight; }
     
     void OnTouchEvent(ITouchDelegate* _pDelegateOwner);
-    void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource);
 };
 
 #endif

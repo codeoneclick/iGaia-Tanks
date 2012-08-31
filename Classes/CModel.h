@@ -19,9 +19,7 @@ public:
     void Load(const std::string& _sName, IResource::E_THREAD _eThread);
     void Update(void);
     void Render(CShader::E_RENDER_MODE _eMode);
-    
     void OnTouchEvent(ITouchDelegate* _pDelegateOwner);
-    void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource);
 };
 
 #endif

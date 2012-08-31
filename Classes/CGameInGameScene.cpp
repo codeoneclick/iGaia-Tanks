@@ -115,11 +115,11 @@ void CGameInGameScene::Update(void)
     
     m_fCurrentCameraHeight = vCameraPosition.y;
     
-    if(!CMathHelper::Instance()->IsFloatEqualWithDelta(m_fCurrentCameraHeight, m_fNeedCameraHeight, k_CAMERA_DISPLACE_INC * 1.33f) && m_fCurrentCameraHeight > m_fNeedCameraHeight)
+    if(!CMathHelper::IsFloatEqualWithDelta(m_fCurrentCameraHeight, m_fNeedCameraHeight, k_CAMERA_DISPLACE_INC * 1.33f) && m_fCurrentCameraHeight > m_fNeedCameraHeight)
     {
         m_fCurrentCameraHeight -= std::fabs(m_fCurrentCameraHeight - m_fNeedCameraHeight) * 0.1f;
     }
-    else if(!CMathHelper::Instance()->IsFloatEqualWithDelta(m_fCurrentCameraHeight, m_fNeedCameraHeight, k_CAMERA_DISPLACE_INC * 1.33f) && m_fCurrentCameraHeight < m_fNeedCameraHeight)
+    else if(!CMathHelper::IsFloatEqualWithDelta(m_fCurrentCameraHeight, m_fNeedCameraHeight, k_CAMERA_DISPLACE_INC * 1.33f) && m_fCurrentCameraHeight < m_fNeedCameraHeight)
     {
          m_fCurrentCameraHeight += std::fabs(m_fCurrentCameraHeight - m_fNeedCameraHeight) * 0.1f;
     }

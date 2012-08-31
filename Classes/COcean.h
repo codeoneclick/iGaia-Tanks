@@ -14,6 +14,9 @@
 class COcean: public INode
 {
 protected:
+    static COcean* m_pInstance;
+    void _Load(void* data);
+    
     static const int k_ELEMENT_NUM_INDEXES;
     static const int k_ELEMENT_NUM_VERTEXES;
     
@@ -24,12 +27,12 @@ protected:
 public:
     COcean(void);
     ~COcean(void);
-    void Load(const std::string& _sName, IResource::E_THREAD _eThread);
+    static COcean* Instance(void);
+    void Load(const std::string& _sName, IResource::E_THREAD _eThread){ LOG("Ocean can not create manualy"); } 
     void Update(void);
     void Render(CShader::E_RENDER_MODE _eMode);
     
     void OnTouchEvent(ITouchDelegate* _pDelegateOwner);
-    void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource);
 };
 
 #endif

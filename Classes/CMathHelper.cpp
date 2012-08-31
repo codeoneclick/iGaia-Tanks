@@ -11,30 +11,9 @@
 #include <cmath>
 #include <limits>
 
-CMathHelper* CMathHelper::m_pInstance = NULL;
-
 float CMathHelper::k_PI = 3.14159265359f;
 float CMathHelper::k_HALF_PI = k_PI / 2.0f;
 
-CMathHelper::CMathHelper(void)
-{
-    
-}
-
-CMathHelper::~CMathHelper(void)
-{
-    
-}
-
-CMathHelper* CMathHelper::Instance(void)
-{
-    if(m_pInstance == NULL)
-    {
-        m_pInstance = new CMathHelper();
-    }
-    
-    return m_pInstance;
-}
 
 bool CMathHelper::IsFloatEqual(float _fValue_01, float _fValue_02)
 {

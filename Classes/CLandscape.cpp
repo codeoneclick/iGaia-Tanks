@@ -13,33 +13,37 @@
 #include "CCollisionMgr.h"
 #include "CVertexBufferPositionTexcoordNormalTangent.h"
 
+
+CLandscape* CLandscape::m_pInstance = nullptr;
+
+CLandscape* CLandscape::Instance(void)
+{
+    if(m_pInstance == nullptr)
+    {
+        m_pInstance = new CLandscape();
+        m_pInstance->_Load(nullptr);
+    }
+    return m_pInstance;
+}
+
 CLandscape::CLandscape(void)
 {
     m_iWidth = 64;
     m_iHeight = 64;
     m_vScaleFactor = glm::vec2(2.0f, 2.0f);
-    m_pHeightMapSetter = NULL;
+    m_pQuadTree = nullptr;
 }
 
 CLandscape::~CLandscape(void)
 {
     SAFE_DELETE(m_pQuadTree);
-    SAFE_DELETE(m_pHeightMapSetter);
-    CSceneMgr::Instance()->Set_HeightMapSetterRef(NULL);
-    m_pLandscapeEdges = NULL;
 }
 
-void CLandscape::Load(const std::string& _sName, IResource::E_THREAD _eThread)
+void CLandscape::_Load(void *data)
 {
-    m_pHeightMapSetter = new CHeightMapSetter();
-    m_pMesh = m_pHeightMapSetter->Load_DataSource(_sName, m_iWidth, m_iHeight, m_vScaleFactor);
-    
-    CSceneMgr::Instance()->Set_HeightMapSetterRef(m_pHeightMapSetter);
-    
+    m_pMesh = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Load_DataSource("", m_iWidth, m_iHeight, m_vScaleFactor);
     m_pMesh->Get_VertexBufferRef()->Commit();
     m_pMesh->Get_IndexBufferRef()->Commit();
-    
-    m_pLandscapeEdges = new CLandscapeEdges();
     
     unsigned short* pIndexBufferData = m_pMesh->Get_IndexBufferRef()->Get_SourceData();
     unsigned int iNumIndexes = m_pMesh->Get_IndexBufferRef()->Get_NumIndexes();
@@ -48,7 +52,7 @@ void CLandscape::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     m_iWorkingNumIndexes = 0;
     
     m_pQuadTree = new SQuadTreeNode();
-    m_pQuadTree->m_pParent = NULL;
+    m_pQuadTree->m_pParent = nullptr;
     m_pQuadTree->m_vMaxBound = glm::vec3(m_iWidth * m_vScaleFactor.x, 64.0f, m_iHeight * m_vScaleFactor.y);
     m_pQuadTree->m_vMinBound = glm::vec3(0.0f, -64.0f, 0.0f);
     m_pQuadTree->m_iNumIndexes = iNumIndexes;
@@ -68,11 +72,7 @@ void CLandscape::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
     
     Set_Scale(glm::vec3(m_vScaleFactor.x, 1.0f, m_vScaleFactor.y));
-}
 
-void CLandscape::_CreateLandscapeEdges(void)
-{
-    
 }
 
 void CLandscape::_CreateQuadTreeNode(int _iSize, CLandscape::SQuadTreeNode *_pParentNode)
@@ -127,7 +127,7 @@ void CLandscape::_CreateIndexBufferRefForQuadTreeNode(CLandscape::SQuadTreeNode 
     
     unsigned int iQuadTreeNodeId = 0;
     CLandscape::SQuadTreeNode* pParentNode = _pNode->m_pParent;
-    while (pParentNode != NULL)
+    while (pParentNode != nullptr)
     {
         iQuadTreeNodeId++;
         pParentNode = pParentNode->m_pParent;
@@ -212,21 +212,6 @@ bool CLandscape::_IsPointInBoundBox(glm::vec3 _vPoint, glm::vec3 _vMinBound, glm
     }
 }
 
-void CLandscape::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
-{
-    switch (_eType)
-    {
-        case IResource::E_RESOURCE_TYPE_MESH:
-            std::cout<<"[CModel::OnLoadDone] Resource Mesh loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        case IResource::E_RESOURCE_TYPE_TEXTURE:
-            std::cout<<"[CModel::OnLoadDone] Resource Texture loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        default:
-            break;
-    }
-}
-
 void CLandscape::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 {
     CCollisionMgr::SRay3d tTouchRay = CSceneMgr::Instance()->Get_CollisionMgr()->Get_TouchRay();
@@ -299,7 +284,7 @@ void CLandscape::Update(void)
     m_pMesh->Get_IndexBufferRef()->Set_NumWorkingIndexes(m_iWorkingNumIndexes);
     m_pMesh->Get_IndexBufferRef()->Commit();
     
-    m_pHeightMapSetter->Set_TextureDetailLayers(m_pMaterial->Get_Textures());
+    CSceneMgr::Instance()->Get_HeightMapSetterRef()->Set_TextureDetailLayers(m_pMaterial->Get_Textures());
 }
 
 void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
@@ -336,8 +321,8 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 pShader->Set_Texture(pTexture->Get_Handle(), static_cast<CShader::E_TEXTURE_SLOT>(i));
             }
 
-            pShader->Set_Texture(m_pHeightMapSetter->Get_TextureDetailColor(), CShader::E_TEXTURE_SLOT_01);
-            pShader->Set_Texture(m_pHeightMapSetter->Get_TextureDetailNormal(), CShader::E_TEXTURE_SLOT_02);
+            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureDetailColor(), CShader::E_TEXTURE_SLOT_01);
+            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureDetailNormal(), CShader::E_TEXTURE_SLOT_02);
             pShader->Set_Vector4(glm::vec4(0.0f, 1.0, 0.0, 16.0), CShader::E_ATTRIBUTE_VECTOR_CLIP_PLANE);
         }
             break;
@@ -349,9 +334,6 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
 
-            //pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            //pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            //pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             pShader->Set_Vector3(pCamera->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_CAMERA_POSITION);
             pShader->Set_Vector3(pLight->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_LIGHT_POSITION);
@@ -366,8 +348,8 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 pShader->Set_Texture(pTexture->Get_Handle(), static_cast<CShader::E_TEXTURE_SLOT>(i));
             }
             
-            pShader->Set_Texture(m_pHeightMapSetter->Get_TextureDetailColor(), CShader::E_TEXTURE_SLOT_01);
-            pShader->Set_Texture(m_pHeightMapSetter->Get_TextureDetailNormal(), CShader::E_TEXTURE_SLOT_02);
+            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureDetailColor(), CShader::E_TEXTURE_SLOT_01);
+            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureDetailNormal(), CShader::E_TEXTURE_SLOT_02);
             pShader->Set_Vector4(glm::vec4(0.0f, 1.0, 0.0, 0.1), CShader::E_ATTRIBUTE_VECTOR_CLIP_PLANE);
         }
             break;
@@ -379,9 +361,6 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            //pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            //pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            //pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             pShader->Set_Vector3(pCamera->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_CAMERA_POSITION);
             pShader->Set_Vector3(pLight->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_LIGHT_POSITION);
@@ -395,8 +374,8 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 }
                 pShader->Set_Texture(pTexture->Get_Handle(), static_cast<CShader::E_TEXTURE_SLOT>(i));
             }
-            pShader->Set_Texture(m_pHeightMapSetter->Get_TextureDetailColor(), CShader::E_TEXTURE_SLOT_01);
-            pShader->Set_Texture(m_pHeightMapSetter->Get_TextureDetailNormal(), CShader::E_TEXTURE_SLOT_02);
+            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureDetailColor(), CShader::E_TEXTURE_SLOT_01);
+            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureDetailNormal(), CShader::E_TEXTURE_SLOT_02);
             pShader->Set_Vector4(glm::vec4(0.0f, -1.0, 0.0, 0.1), CShader::E_ATTRIBUTE_VECTOR_CLIP_PLANE);
         }
             break;

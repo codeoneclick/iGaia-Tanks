@@ -87,8 +87,8 @@ void CCharacterControllerEnemy::Set_AIState(E_AI_STATE _eState, long _iAIStateDu
         m_vMoveDirection = glm::normalize(m_vPosition - m_vMovePoint);
     }
     
-    float fAngleFromSeekerToTarget = CMathHelper::Instance()->Get_RotationBetweenPoints(m_vMovePoint, m_vPosition) + 180.0f;
-    fAngleFromSeekerToTarget = CMathHelper::Instance()->Get_WrapAngle(fAngleFromSeekerToTarget, 0.0f, 360.0f);
+    float fAngleFromSeekerToTarget = CMathHelper::Get_RotationBetweenPoints(m_vMovePoint, m_vPosition) + 180.0f;
+    fAngleFromSeekerToTarget = CMathHelper::Get_WrapAngle(fAngleFromSeekerToTarget, 0.0f, 360.0f);
     if(fAngleFromSeekerToTarget > m_vRotation.y)
     {
         m_eStreerMode = E_AI_STEER_MODE_LEFT;
@@ -125,7 +125,7 @@ void CCharacterControllerEnemy::Update(void)
 {
     float fTrackTexCoordOffsetMoveFactor  = 0.2f;
     
-    m_vRotation.y = CMathHelper::Instance()->Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f);
+    m_vRotation.y = CMathHelper::Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f);
     
     switch (m_eState)
     {
@@ -153,9 +153,8 @@ void CCharacterControllerEnemy::Update(void)
                 break;
             }
             
-            float fAngleFromSeekerToTarget = CMathHelper::Instance()->Get_RotationBetweenPoints(m_vMovePoint, m_vPosition) + 180.0f;
-            //glm::degrees(CMathHelper::Instance()->Get_RotationBetweenPointsDot(vPoint_01, vPoint_02));
-            fAngleFromSeekerToTarget = CMathHelper::Instance()->Get_WrapAngle(fAngleFromSeekerToTarget, 0.0f, 360.0f);
+            float fAngleFromSeekerToTarget = CMathHelper::Get_RotationBetweenPoints(m_vMovePoint, m_vPosition) + 180.0f;
+            fAngleFromSeekerToTarget = CMathHelper::Get_WrapAngle(fAngleFromSeekerToTarget, 0.0f, 360.0f);
             if(m_eStreerMode == E_AI_STEER_MODE_LEFT)
             {
                 if(fabsf(fAngleFromSeekerToTarget - m_vRotation.y) > 45.0f)
@@ -240,7 +239,7 @@ void CCharacterControllerEnemy::Update(void)
     }
     
     //m_fTowerRotationY = CMathHelper::Instance()->Get_RotationBetweenPoints(m_vPosition, vTargetPoint);
-    m_vRotation.y = CMathHelper::Instance()->Get_RotationBetweenPoints(m_vPosition, vTargetPoint);
+    m_vRotation.y = CMathHelper::Get_RotationBetweenPoints(m_vPosition, vTargetPoint);
     
     /*glm::vec3 vStepPosition = m_vPosition;
     vStepPosition.x += sinf(glm::radians(m_vRotation.y)) * m_fMoveSpeed;

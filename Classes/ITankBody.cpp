@@ -33,7 +33,7 @@ void ITankBody::Set_Position(const glm::vec3 &_vPosition)
         m_pBody->Set_Position(_vPosition);
     }
     
-    if(!CMathHelper::Instance()->IsFloatEqual(m_vRotation.x, m_vCachedRotation.x) || !CMathHelper::Instance()->IsFloatEqual(m_vRotation.y, m_vCachedRotation.y) || !CMathHelper::Instance()->IsFloatEqual(m_vRotation.z, m_vCachedRotation.z))
+    if(!CMathHelper::IsFloatEqual(m_vRotation.x, m_vCachedRotation.x) || !CMathHelper::IsFloatEqual(m_vRotation.y, m_vCachedRotation.y) || !CMathHelper::IsFloatEqual(m_vRotation.z, m_vCachedRotation.z))
     {
         m_vCachedPosition = m_vRotation;
         m_mTransformHelper = glm::rotate(glm::mat4(1.0f),    m_vRotation.x, glm::vec3(1.0f, 0.0f, 0.0f));

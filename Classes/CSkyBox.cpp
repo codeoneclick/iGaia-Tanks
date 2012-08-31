@@ -10,6 +10,18 @@
 #include "CSceneMgr.h"
 #include "CVertexBufferPositionTexcoord.h"
 
+CSkyBox* CSkyBox::m_pInstance = nullptr;
+
+CSkyBox* CSkyBox::Instance(void)
+{
+    if(m_pInstance == nullptr)
+    {
+        m_pInstance = new CSkyBox();
+        m_pInstance->_Load(nullptr);
+    }
+    return m_pInstance;
+}
+
 CSkyBox::CSkyBox(void)
 {
 
@@ -20,13 +32,10 @@ CSkyBox::~CSkyBox(void)
     
 }
 
-void CSkyBox::Load(const std::string& _sName, IResource::E_THREAD _eThread)
+void CSkyBox::_Load(void *data)
 {
     CVertexBufferPositionTexcoord* pVertexBuffer = new CVertexBufferPositionTexcoord(24, GL_STATIC_DRAW);
     CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pVertexBuffer->Lock());
-    
-    //glm::vec3* pPositionData = pSourceData->m_pVertexBuffer->GetOrCreate_PositionSourceData();
-    //glm::vec2* pTexCoordData = pSourceData->m_pVertexBuffer->GetOrCreate_TexcoordSourceData();
     
     glm::vec3 m_vMin = glm::vec3( -1.0f, -1.0f, -1.0f);
     glm::vec3 m_vMax = glm::vec3(  1.0f,  1.0f,  1.0f);
@@ -153,21 +162,6 @@ void CSkyBox::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
-}
-
-void CSkyBox::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
-{
-    switch (_eType)
-    {
-        case IResource::E_RESOURCE_TYPE_MESH:
-            std::cout<<"[CModel::OnLoadDone] Resource Mesh loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        case IResource::E_RESOURCE_TYPE_TEXTURE:
-            std::cout<<"[CModel::OnLoadDone] Resource Texture loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        default:
-            break;
-    }
 }
 
 void CSkyBox::OnTouchEvent(ITouchDelegate *_pDelegateOwner)

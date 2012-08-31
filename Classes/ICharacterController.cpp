@@ -96,7 +96,7 @@ void ICharacterController::Set_Position(const glm::vec3 &_vPosition)
 void ICharacterController::_SmoothRotation(void)
 {
     glm::vec3 vCurrentRotation = glm::vec3(0.0f, m_vRotation.y, 0.0f);
-    glm::vec2 vRotationOnHeightMap = CMathHelper::Instance()->Get_RotationOnHeightmap(m_vPosition);
+    glm::vec2 vRotationOnHeightMap = CMathHelper::Get_RotationOnHeightmap(m_vPosition);
     vCurrentRotation.x = -glm::degrees(vRotationOnHeightMap.x);
     vCurrentRotation.z =  glm::degrees(vRotationOnHeightMap.y);
     m_vRotation = glm::mix(m_vRotation, vCurrentRotation, 0.25f);

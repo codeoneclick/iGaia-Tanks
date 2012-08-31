@@ -14,6 +14,19 @@
 const int COcean::k_ELEMENT_NUM_INDEXES = 6;
 const int COcean::k_ELEMENT_NUM_VERTEXES = 4;
 
+COcean* COcean::m_pInstance = nullptr;
+
+COcean* COcean::Instance(void)
+{
+    if(m_pInstance == nullptr)
+    {
+        m_pInstance = new COcean();
+        m_pInstance->_Load(nullptr);
+    }
+    return m_pInstance;
+}
+
+
 COcean::COcean(void)
 {
     m_iWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width() - 1;
@@ -26,7 +39,7 @@ COcean::~COcean(void)
     
 }
 
-void COcean::Load(const std::string& _sName, IResource::E_THREAD _eThread)
+void COcean::_Load(void* data)
 {
     CVertexBufferPositionTexcoord* pVertexBuffer = new CVertexBufferPositionTexcoord(4, GL_STATIC_DRAW);
     CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pVertexBuffer->Lock());
@@ -68,21 +81,6 @@ void COcean::Load(const std::string& _sName, IResource::E_THREAD _eThread)
     
     glm::vec2 vScaleFactor = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor();
     Set_Scale(glm::vec3(vScaleFactor.x, 1.0f, vScaleFactor.y));
-}
-
-void COcean::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
-{
-    switch (_eType)
-    {
-        case IResource::E_RESOURCE_TYPE_MESH:
-            std::cout<<"[CModel::OnLoadDone] Resource Mesh loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        case IResource::E_RESOURCE_TYPE_TEXTURE:
-            std::cout<<"[CModel::OnLoadDone] Resource Texture loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        default:
-            break;
-    }
 }
 
 void COcean::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
