@@ -13,7 +13,6 @@
 #include "CCollisionMgr.h"
 #include "CVertexBufferPositionTexcoordNormalTangent.h"
 
-
 CLandscape* CLandscape::m_pInstance = nullptr;
 
 CLandscape* CLandscape::Instance(void)
@@ -28,14 +27,15 @@ CLandscape* CLandscape::Instance(void)
 
 CLandscape::CLandscape(void)
 {
-    m_iWidth = 64;
-    m_iHeight = 64;
-    m_vScaleFactor = glm::vec2(2.0f, 2.0f);
+    m_iWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
+    m_iHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height();
+    m_vScaleFactor = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor();
     m_pQuadTree = nullptr;
 }
 
 CLandscape::~CLandscape(void)
 {
+    m_pInstance = nullptr;
     SAFE_DELETE(m_pQuadTree);
 }
 
@@ -317,8 +317,8 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 pShader->Set_Texture(pTexture->Get_Handle(), static_cast<CShader::E_TEXTURE_SLOT>(i));
             }
 
-            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureDetailColor(), CShader::E_TEXTURE_SLOT_01);
-            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureDetailNormal(), CShader::E_TEXTURE_SLOT_02);
+            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureColor(), CShader::E_TEXTURE_SLOT_01);
+            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureNormal(), CShader::E_TEXTURE_SLOT_02);
             pShader->Set_Vector4(glm::vec4(0.0f, 1.0, 0.0, 16.0), CShader::E_ATTRIBUTE_VECTOR_CLIP_PLANE);
         }
             break;
@@ -344,8 +344,8 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 pShader->Set_Texture(pTexture->Get_Handle(), static_cast<CShader::E_TEXTURE_SLOT>(i));
             }
             
-            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureDetailColor(), CShader::E_TEXTURE_SLOT_01);
-            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureDetailNormal(), CShader::E_TEXTURE_SLOT_02);
+            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureColor(), CShader::E_TEXTURE_SLOT_01);
+            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureNormal(), CShader::E_TEXTURE_SLOT_02);
             pShader->Set_Vector4(glm::vec4(0.0f, 1.0, 0.0, 0.1), CShader::E_ATTRIBUTE_VECTOR_CLIP_PLANE);
         }
             break;
@@ -370,8 +370,8 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 }
                 pShader->Set_Texture(pTexture->Get_Handle(), static_cast<CShader::E_TEXTURE_SLOT>(i));
             }
-            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureDetailColor(), CShader::E_TEXTURE_SLOT_01);
-            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureDetailNormal(), CShader::E_TEXTURE_SLOT_02);
+            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureColor(), CShader::E_TEXTURE_SLOT_01);
+            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureNormal(), CShader::E_TEXTURE_SLOT_02);
             pShader->Set_Vector4(glm::vec4(0.0f, -1.0, 0.0, 0.1), CShader::E_ATTRIBUTE_VECTOR_CLIP_PLANE);
         }
             break;

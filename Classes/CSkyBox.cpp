@@ -29,7 +29,7 @@ CSkyBox::CSkyBox(void)
 
 CSkyBox::~CSkyBox(void)
 {
-    
+    m_pInstance = nullptr;
 }
 
 void CSkyBox::_Load(void *data)

@@ -43,6 +43,7 @@ void CGameMainMenuLevel::Load(void)
 void CGameMainMenuLevel::Unload(void)
 {
     IGameLevel::Unload();
+    CSceneMgr::Instance()->UnloadEnvironment();
 }
 
 void CGameMainMenuLevel::OnTouchEvent(ITouchDelegate* _pDelegateOwner)

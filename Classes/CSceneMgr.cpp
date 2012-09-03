@@ -271,6 +271,8 @@ void CSceneMgr::Render(void)
     
     m_pRenderMgr->DrawResult();
     
+    m_pHeightMapSetterRef->Update();
+    
     CSettings::g_iTotalTriagnlesPerFrame = CSettings::g_iCurrentTrianglesPerFrame;
     
     static int iLastTime = 0;

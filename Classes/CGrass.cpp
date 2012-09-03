@@ -57,6 +57,7 @@ CGrass::CGrass(void)
 
 CGrass::~CGrass(void)
 {
+    m_pInstance = nullptr;
     SAFE_DELETE(m_pQuadTree);
     SAFE_DELETE_ARRAY(m_pSingleElementIndexBuffer);
     SAFE_DELETE(m_pSingleElementVertexBuffer);

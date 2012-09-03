@@ -27,6 +27,7 @@ CEnvironment::~CEnvironment(void)
     SAFE_DELETE(m_pGrass);
     SAFE_DELETE(m_pOcean);
     SAFE_DELETE(m_pSkyBox);
+    CSceneMgr::Instance()->Set_HeightMapSetterRef(nullptr);
 }
 
 void CEnvironment::Load(const std::string &_sName)

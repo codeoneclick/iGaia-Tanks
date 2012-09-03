@@ -29,11 +29,13 @@ protected:
     GLuint m_hTextureEdgesMask;
     GLuint m_hTextureHeightmap;
     
-    GLuint m_hTextureDetailColor;
-    GLuint m_hTextureDetailNormal;
+    GLuint m_iHandleTextureColor;
+    GLuint m_iHandleTextureNormal;
     
-    CMesh* m_pPostRenderScreenPlaneMesh;
-    CShader* m_pPostRenderScreenPlaneShader;
+    CMesh* m_pPreRenderScreenQuad;
+    CShader* m_pPreRenderShader;
+    
+    bool m_bIsTexturePreRender;
     
     void _Create_TextureSplatting(void);
     void _Create_TextureEgdesMask(void);
@@ -67,8 +69,8 @@ public:
     GLuint Get_TextureHeightmap(void) { return m_hTextureHeightmap; }
     GLuint Get_TextureEdgesMask(void) { return m_hTextureEdgesMask; }
     
-    GLuint Get_TextureDetailColor(void)   { return m_hTextureDetailColor; }
-    GLuint Get_TextureDetailNormal(void)  { return m_hTextureDetailNormal; }
+    GLuint Get_TextureColor(void)   { return m_iHandleTextureColor; }
+    GLuint Get_TextureNormal(void)  { return m_iHandleTextureNormal; }
 
     void Update(void);
 };

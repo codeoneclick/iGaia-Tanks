@@ -20,15 +20,19 @@ CHeightMapSetter::CHeightMapSetter(void)
     m_pHeightMapData = nullptr;
     m_fXThreshold = 0.0f;
     m_fZThreshold = 0.0f;
-    m_pPostRenderScreenPlaneMesh = nullptr;
-    m_pPostRenderScreenPlaneShader = nullptr;
+    m_pPreRenderScreenQuad = nullptr;
+    m_pPreRenderShader = nullptr;
     m_vScaleFactor = glm::vec2(1.0f, 1.0f);
+    m_bIsTexturePreRender = false;
 }
 
 CHeightMapSetter::~CHeightMapSetter(void)
 {
     SAFE_DELETE_ARRAY(m_pHeightMapData);
+    SAFE_DELETE(m_pPreRenderScreenQuad);
     glDeleteTextures(1, &m_hTextureSplatting);
+    glDeleteTextures(1, &m_hTextureEdgesMask);
+    glDeleteTextures(1, &m_hTextureHeightmap);
 }
 
 void CHeightMapSetter::Load(const std::string _sName, unsigned int _iWidth, unsigned int _iHeight, const glm::vec2& _vScaleFactor)
@@ -307,6 +311,7 @@ void CHeightMapSetter::_Create_TextureSplatting(void)
         }
     }
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_iWidth, m_iHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pTextureData);
+    SAFE_DELETE_ARRAY(pTextureData);
 }
 
 void CHeightMapSetter::_Create_TextureHeightmap(void)
@@ -317,23 +322,23 @@ void CHeightMapSetter::_Create_TextureHeightmap(void)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    unsigned short* m_pTextureData = new unsigned short[m_iWidth * m_iHeight];
+    unsigned short* pTextureData = new unsigned short[m_iWidth * m_iHeight];
     for(int i = 0; i < m_iWidth; i++)
     {
         for(int j = 0; j < m_iHeight; j++)
         {
             if(Get_HeightValue(i * m_vScaleFactor.x, j * m_vScaleFactor.y) > 0.0f || Get_HeightValue(i * m_vScaleFactor.x, j * m_vScaleFactor.y) < -1.0f)
             {
-                m_pTextureData[i + j * m_iHeight] = RGB(0, static_cast<unsigned char>(255), 0);
+                pTextureData[i + j * m_iHeight] = RGB(0, static_cast<unsigned char>(255), 0);
             }
             else
             {
-                m_pTextureData[i + j * m_iHeight] = RGB(static_cast<unsigned char>(fabsf(Get_HeightValue(i * m_vScaleFactor.x, j * m_vScaleFactor.y)) * 255), 0, 0);
+                pTextureData[i + j * m_iHeight] = RGB(static_cast<unsigned char>(fabsf(Get_HeightValue(i * m_vScaleFactor.x, j * m_vScaleFactor.y)) * 255), 0, 0);
             }
         }
     }
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_iWidth, m_iHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, m_pTextureData);
-    delete[] m_pTextureData;
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_iWidth, m_iHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pTextureData);
+    SAFE_DELETE_ARRAY(pTextureData);
 }
 
 void CHeightMapSetter::_Create_TextureDetail(void)
@@ -367,81 +372,89 @@ void CHeightMapSetter::_Create_TextureDetail(void)
     pIndexBufferData[i++] = 2; 
     pIndexBufferData[i++] = 1;
     
-    m_pPostRenderScreenPlaneMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
-    m_pPostRenderScreenPlaneMesh->Set_VertexBufferRef(pVertexBuffer);
-    m_pPostRenderScreenPlaneMesh->Set_IndexBufferRef(pIndexBuffer);
+    m_pPreRenderScreenQuad = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
+    m_pPreRenderScreenQuad->Set_VertexBufferRef(pVertexBuffer);
+    m_pPreRenderScreenQuad->Set_IndexBufferRef(pIndexBuffer);
     
-    m_pPostRenderScreenPlaneMesh->Get_VertexBufferRef()->Commit();
-    m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Commit();
+    m_pPreRenderScreenQuad->Get_VertexBufferRef()->Commit();
+    m_pPreRenderScreenQuad->Get_IndexBufferRef()->Commit();
     
-    m_pPostRenderScreenPlaneShader = CShaderComposite::Instance()->Get_Shader(IResource::E_SHADER_SCREEN_PLANE_LANDSCAPE_DETAIL);
-    m_pPostRenderScreenPlaneMesh->Get_VertexBufferRef()->Add_ShaderRef(CShader::E_RENDER_MODE_SIMPLE, m_pPostRenderScreenPlaneShader);
-    
-    CSceneMgr::Instance()->Get_RenderMgr()->BeginDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_COLOR);
-    
-    CMaterial::Set_ExtCommitedShaderRef(m_pPostRenderScreenPlaneShader);
-    
-    CTexture** pTextures = new CTexture*[k_TEXTURES_MAX_COUNT];
-    pTextures[0] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_01_diffuse.pvr"));
-    pTextures[1] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_01_normal.pvr"));
-    pTextures[2] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_02_diffuse.pvr"));
-    pTextures[3] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_02_bump.pvr"));
-    pTextures[4] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_03_diffuse.pvr"));
-    pTextures[5] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_01_normal.pvr"));
-    pTextures[6] = nullptr;
-    pTextures[7] = nullptr;
-    
-    unsigned int iTextureIndex = 0;
-    for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; i += 2)
+    m_pPreRenderShader = CShaderComposite::Instance()->Get_Shader(IResource::E_SHADER_SCREEN_PLANE_LANDSCAPE_DETAIL);
+    m_pPreRenderScreenQuad->Get_VertexBufferRef()->Add_ShaderRef(CShader::E_RENDER_MODE_SIMPLE, m_pPreRenderShader);
+}
+
+void CHeightMapSetter::Update(void)
+{
+    if(!m_bIsTexturePreRender)
     {
-        CTexture* pTexture = pTextures[i];
-        if(pTexture == NULL)
+        CSceneMgr::Instance()->Get_RenderMgr()->BeginDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_COLOR);
+        
+        CMaterial::Set_ExtCommitedShaderRef(m_pPreRenderShader);
+        
+        CTexture** pTextures = new CTexture*[k_TEXTURES_MAX_COUNT];
+        pTextures[0] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_01_diffuse.pvr"));
+        pTextures[1] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_01_normal.pvr"));
+        pTextures[2] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_02_diffuse.pvr"));
+        pTextures[3] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_02_bump.pvr"));
+        pTextures[4] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_03_diffuse.pvr"));
+        pTextures[5] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_01_normal.pvr"));
+        pTextures[6] = nullptr;
+        pTextures[7] = nullptr;
+        
+        unsigned int iTextureIndex = 0;
+        for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; i += 2)
         {
-            continue;
+            CTexture* pTexture = pTextures[i];
+            if(pTexture == nullptr)
+            {
+                continue;
+            }
+            m_pPreRenderShader->Set_Texture(pTexture->Get_Handle(), static_cast<CShader::E_TEXTURE_SLOT>(iTextureIndex));
+            iTextureIndex++;
         }
-        m_pPostRenderScreenPlaneShader->Set_Texture(pTexture->Get_Handle(), static_cast<CShader::E_TEXTURE_SLOT>(iTextureIndex));
-        iTextureIndex++;
-    }
-    
-    m_pPostRenderScreenPlaneShader->Set_Texture(Get_TextureSplatting(), CShader::E_TEXTURE_SLOT_07);
-    
-    m_pPostRenderScreenPlaneMesh->Get_VertexBufferRef()->Enable(CShader::E_RENDER_MODE_SIMPLE);
-    m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Enable();
-    glDrawElements(GL_TRIANGLES, m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
-    m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Disable();
-    m_pPostRenderScreenPlaneMesh->Get_VertexBufferRef()->Disable(CShader::E_RENDER_MODE_SIMPLE);
-    
-    
-    CSceneMgr::Instance()->Get_RenderMgr()->EndDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_COLOR);
-    m_hTextureDetailColor = CSceneMgr::Instance()->Get_RenderMgr()->Get_OffScreenTexture(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_COLOR);
-    
-    
-    CSceneMgr::Instance()->Get_RenderMgr()->BeginDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_NORMAL);
-    
-    CMaterial::Set_ExtCommitedShaderRef(m_pPostRenderScreenPlaneShader);
-    
-    iTextureIndex = 0;
-    for(unsigned int i = 1; i < k_TEXTURES_MAX_COUNT; i += 2)
-    {
-        CTexture* pTexture = pTextures[i];
-        if(pTexture == NULL)
+        
+        m_pPreRenderShader->Set_Texture(Get_TextureSplatting(), CShader::E_TEXTURE_SLOT_07);
+        
+        m_pPreRenderScreenQuad->Get_VertexBufferRef()->Enable(CShader::E_RENDER_MODE_SIMPLE);
+        m_pPreRenderScreenQuad->Get_IndexBufferRef()->Enable();
+        glDrawElements(GL_TRIANGLES, m_pPreRenderScreenQuad->Get_IndexBufferRef()->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pPreRenderScreenQuad->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
+        m_pPreRenderScreenQuad->Get_IndexBufferRef()->Disable();
+        m_pPreRenderScreenQuad->Get_VertexBufferRef()->Disable(CShader::E_RENDER_MODE_SIMPLE);
+        
+        
+        CSceneMgr::Instance()->Get_RenderMgr()->EndDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_COLOR);
+        m_iHandleTextureColor = CSceneMgr::Instance()->Get_RenderMgr()->Get_OffScreenTexture(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_COLOR);
+        
+        
+        CSceneMgr::Instance()->Get_RenderMgr()->BeginDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_NORMAL);
+        
+        CMaterial::Set_ExtCommitedShaderRef(m_pPreRenderShader);
+        
+        iTextureIndex = 0;
+        for(unsigned int i = 1; i < k_TEXTURES_MAX_COUNT; i += 2)
         {
-            continue;
+            CTexture* pTexture = pTextures[i];
+            if(pTexture == NULL)
+            {
+                continue;
+            }
+            m_pPreRenderShader->Set_Texture(pTexture->Get_Handle(), static_cast<CShader::E_TEXTURE_SLOT>(iTextureIndex));
+            iTextureIndex++;
         }
-        m_pPostRenderScreenPlaneShader->Set_Texture(pTexture->Get_Handle(), static_cast<CShader::E_TEXTURE_SLOT>(iTextureIndex));
-        iTextureIndex++;
+        
+        m_pPreRenderShader->Set_Texture(Get_TextureSplatting(), CShader::E_TEXTURE_SLOT_07);
+        
+        m_pPreRenderScreenQuad->Get_VertexBufferRef()->Enable(CShader::E_RENDER_MODE_SIMPLE);
+        m_pPreRenderScreenQuad->Get_IndexBufferRef()->Enable();
+        glDrawElements(GL_TRIANGLES, m_pPreRenderScreenQuad->Get_IndexBufferRef()->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pPreRenderScreenQuad->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
+        m_pPreRenderScreenQuad->Get_IndexBufferRef()->Disable();
+        m_pPreRenderScreenQuad->Get_VertexBufferRef()->Disable(CShader::E_RENDER_MODE_SIMPLE);
+        
+        CSceneMgr::Instance()->Get_RenderMgr()->EndDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_NORMAL);
+        m_iHandleTextureNormal = CSceneMgr::Instance()->Get_RenderMgr()->Get_OffScreenTexture(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_NORMAL);
+        
+        m_bIsTexturePreRender = true;
     }
-    
-    m_pPostRenderScreenPlaneShader->Set_Texture(Get_TextureSplatting(), CShader::E_TEXTURE_SLOT_07);
-    
-    m_pPostRenderScreenPlaneMesh->Get_VertexBufferRef()->Enable(CShader::E_RENDER_MODE_SIMPLE);
-    m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Enable();
-    glDrawElements(GL_TRIANGLES, m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
-    m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Disable();
-    m_pPostRenderScreenPlaneMesh->Get_VertexBufferRef()->Disable(CShader::E_RENDER_MODE_SIMPLE);
-    
-    CSceneMgr::Instance()->Get_RenderMgr()->EndDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_NORMAL);
-    m_hTextureDetailNormal = CSceneMgr::Instance()->Get_RenderMgr()->Get_OffScreenTexture(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_NORMAL);
 }
 
 

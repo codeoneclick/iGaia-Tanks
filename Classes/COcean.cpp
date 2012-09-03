@@ -36,7 +36,7 @@ COcean::COcean(void)
 
 COcean::~COcean(void)
 {
-    
+    m_pInstance = nullptr;
 }
 
 void COcean::_Load(void* data)

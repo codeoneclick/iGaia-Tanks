@@ -44,6 +44,7 @@ void CGameInGameLevel::Load(void)
 void CGameInGameLevel::Unload(void)
 {
     IGameLevel::Unload();
+    CSceneMgr::Instance()->UnloadEnvironment();
 }
 
 void CGameInGameLevel::OnTouchEvent(ITouchDelegate* _pDelegateOwner)

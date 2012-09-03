@@ -32,7 +32,7 @@ CLandscapeEdges::CLandscapeEdges(void)
 
 CLandscapeEdges::~CLandscapeEdges(void)
 {
-    
+    m_pInstance = nullptr;
 }
 
 void CLandscapeEdges::_Load(void *data)
