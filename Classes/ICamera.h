@@ -10,7 +10,6 @@
 #define iGaia_ICamera_h
 
 #include "CFrustum.h"
-#include <unordered_map>
 
 class ICamera
 {
@@ -33,10 +32,6 @@ protected:
     float m_fHeightFromLookAt;
     
     CFrustum* m_pFrustum;
-    
-    static std::unordered_map<std::string, glm::mat4x4> m_lMemoizeSpherical;
-    static std::unordered_map<std::string, glm::mat4x4> m_lMemoizeCylindrical;
-    
 public:
     ICamera(void);
     virtual ~ICamera(void);

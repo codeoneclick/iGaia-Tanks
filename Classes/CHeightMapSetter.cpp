@@ -47,7 +47,8 @@ void CHeightMapSetter::Load(const std::string _sName, unsigned int _iWidth, unsi
     {
         for(unsigned int j = 0; j < m_iHeight; ++j)
         {
-            m_pHeightMapData[i + j * m_iWidth] = sin(i * 0.33f) / 2.0f + cos(j * 0.33f) / 2.0f;
+            float fHeight = sin(i * 0.33f) / 2.0f + cos(j * 0.33f) / 2.0f;
+            m_pHeightMapData[i + j * m_iWidth] = fHeight;
         }
     }
     
@@ -62,8 +63,6 @@ CMesh* CHeightMapSetter::Get_HeightMapMesh(void)
     CVertexBufferPositionTexcoordNormalTangent *pVertexBuffer = new CVertexBufferPositionTexcoordNormalTangent(m_iWidth * m_iHeight, GL_STATIC_DRAW);
     
     CVertexBufferPositionTexcoordNormalTangent::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoordNormalTangent::SVertex*>(pVertexBuffer->Lock());
-    
-    m_pHeightMapData = new float[m_iWidth * m_iHeight];
     
     unsigned int index = 0;
     for(unsigned int i = 0; i < m_iWidth;++i)

@@ -353,6 +353,8 @@
 /* Begin PBXFileReference section */
 		1520865215A82C05001F0F8F /* ShaderPostLandscapeDetail.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostLandscapeDetail.frag; path = Shaders/ShaderPostLandscapeDetail.frag; sourceTree = "<group>"; };
 		1520865315A82C05001F0F8F /* ShaderPostLandscapeDetail.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostLandscapeDetail.vert; path = Shaders/ShaderPostLandscapeDetail.vert; sourceTree = "<group>"; };
+		1577F01215F53C3800F920EE /* CCompiledResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCompiledResources.h; sourceTree = "<group>"; };
+		1577F01315F53C3800F920EE /* CCompiledResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCompiledResources.m; sourceTree = "<group>"; };
 		1578F8A315CD80F60056B51E /* ShaderLandscapeEdges.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscapeEdges.frag; path = Shaders/ShaderLandscapeEdges.frag; sourceTree = "<group>"; };
 		1578F8A415CD80F60056B51E /* ShaderLandscapeEdges.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscapeEdges.vert; path = Shaders/ShaderLandscapeEdges.vert; sourceTree = "<group>"; };
 		15AF6D9315ED304400034990 /* CParticleEmitterTrail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CParticleEmitterTrail.cpp; sourceTree = "<group>"; };
@@ -1176,6 +1178,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1577F01215F53C3800F920EE /* CCompiledResources.h */,
+				1577F01315F53C3800F920EE /* CCompiledResources.m */,
 				936FEC8F14F579CB00A33A33 /* Models */,
 				CE91921914573F630021A0DC /* Textures */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -2333,6 +2337,7 @@
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				1577F01615F5461900F920EE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2546,6 +2551,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1577F01615F5461900F920EE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/CCompiledResources.h",
+				"$(SRCROOT)/CCompiledResources.m",
+				"$(SRCROOT)/Resources/*.png",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/CCompiledResources.h",
+				"$(DERIVED_FILE_DIR)/CCompiledResources.m",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "RESOURCES_FOLDER=`dirname \"$SCRIPT_INPUT_FILE_0\"`\n\nSOURCE_NAME=\"CCompiledResources\"\n\ntmp=\"$TEMP_FILES_DIR/compile-images-$$.tmp\"\ncd \"$RESOURCES_FOLDER\"\nfor image in *.png; do\nxxd -i \"$image\" >> $tmp.1\ndone\n\nTEMPLATE_M=`sed -n '/{%LOAD_TEMPLATE_M%}/,/{%LOAD_TEMPLATE_M END%}/ p' \"$RESOURCES_FOLDER/$SOURCE_NAME.m\" | sed '1 d;$ d'`\n\nfor image in *.png; do\nif echo \"$image\" | grep -q \"@2x\"; then continue; fi\nORIGINAL_FILENAME=\"$image\"\nSANITISED_FILENAME=`echo \"$ORIGINAL_FILENAME\" | sed 's/[^a-zA-Z0-9]/_/g'`\nSANITISED_2X_FILENAME=`echo \"$SANITISED_FILENAME\" | sed 's/_png/_2x_png/'`\necho \"$TEMPLATE_M\" | sed \"s/ORIGINAL_FILENAME/$ORIGINAL_FILENAME/g;s/SANITISED_FILENAME/$SANITISED_FILENAME/g;s/SANITISED_2X_FILENAME/$SANITISED_2X_FILENAME/g\" >> $tmp.2\ndone\n\nsed \"/{%IMAGELOADERS_M START%}/ r $tmp.2\n1,/{%IMAGELOADERS_M START%}/!{/{%IMAGELOADERS_M END%}/,/{%IMAGELOADERS_M START%]/! d;}\" \"$RESOURCES_FOLDER/$SOURCE_NAME.m\" > \"$DERIVED_FILE_DIR/$SOURCE_NAME.m\"\n    \nrm \"$tmp.1\" \"$tmp.2\"    \n\ntmp=\"$TEMP_FILES_DIR/compile-images-$$.tmp\"\ncd \"$RESOURCES_FOLDER\"\nfor image in *.png; do\nxxd -i \"$image\" >> $tmp.1\ndone\n    \nTEMPLATE_H=`sed -n '/{%LOAD_TEMPLATE_H%}/,/{%LOAD_TEMPLATE_H END%}/ p' \"$RESOURCES_FOLDER/$SOURCE_NAME.h\" | sed '1 d;$ d'`\n    \nfor image in *.png; do\nif echo \"$image\" | grep -q \"@2x\"; then continue; fi\nORIGINAL_FILENAME=\"$image\"\nSANITISED_FILENAME=`echo \"$ORIGINAL_FILENAME\" | sed 's/[^a-zA-Z0-9]/_/g'`\nSANITISED_2X_FILENAME=`echo \"$SANITISED_FILENAME\" | sed 's/_png/_2x_png/'`\necho \"$TEMPLATE_H\" | sed \"s/ORIGINAL_FILENAME/$ORIGINAL_FILENAME/g;s/SANITISED_FILENAME/$SANITISED_FILENAME/g;s/SANITISED_2X_FILENAME/$SANITISED_2X_FILENAME/g\" >> $tmp.2\ndone\n\nsed \"/{%IMAGELOADERS_H START%}/ r $tmp.2\n1,/{%IMAGELOADERS_H START%}/!{/{%IMAGELOADERS_H END%}/,/{%IMAGELOADERS_H START%]/! d;}\" \"$RESOURCES_FOLDER/$SOURCE_NAME.h\" > \"$DERIVED_FILE_DIR/$SOURCE_NAME.h\"\n    \nrm \"$tmp.1\" \"$tmp.2\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {

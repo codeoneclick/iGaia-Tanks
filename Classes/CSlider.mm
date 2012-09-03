@@ -21,13 +21,13 @@
         m_iMinOffsetX = 32;
         
         m_pBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-        [m_pBackground setImage:[UIImage imageNamed:@"joystick.png"]];
+        [m_pBackground setImage:[UIImage imageNamed:@"joystick"]];
         [m_pBackground setBackgroundColor:[UIColor clearColor]];
         [m_pBackground setAlpha:0.25f];
         [self addSubview:m_pBackground];
         
         m_pControl = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width / 2 - (self.frame.size.width / 3) / 2, self.frame.size.height / 2 - (self.frame.size.height / 3) / 2, self.frame.size.width / 3, self.frame.size.height / 3)];
-        [m_pControl setImage:[UIImage imageNamed:@"joystick.png"]];
+        [m_pControl setImage:[UIImage imageNamed:@"joystick"]];
         [m_pControl setBackgroundColor:[UIColor clearColor]];
         [m_pControl setAlpha:0.5];
         [self addSubview:m_pControl];

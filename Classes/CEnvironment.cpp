@@ -80,5 +80,6 @@ void CEnvironment::Update(void)
     m_pLandscapeEdges->Update();
     m_pGrass->Update();
     m_pOcean->Update();
+    m_pSkyBox->Set_Position(CSceneMgr::Instance()->Get_Camera()->Get_Position());
     m_pSkyBox->Update();
 }
