@@ -23,8 +23,8 @@ public:
     CMeshMgr(void);
     virtual ~CMeshMgr(void);
     
-    virtual IResource* Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams);
-    virtual void Unload(const std::string& _sName);
+    IResource::EventHandle AddEventListener(const std::string& _sName, IResource::E_THREAD _eThread, const IResource::EventSignature& _pListener, const std::map<std::string, std::string>* _lParams);
+    void Unload(const std::string& _sName);
 };
 
 #endif

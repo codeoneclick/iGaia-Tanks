@@ -30,11 +30,11 @@ void IResourceMgr::Thread(void)
     }
 }
 
-void IResourceMgr::Cancel_Load(IDelegate *_pDelegate)
+void IResourceMgr::RemoveEventListener(const IResource::EventHandle &_iEventHandle)
 {
     for(auto& pResource : m_lContainer)
     {
-        pResource.second->Remove_DelegateOnwer(_pDelegate);
+        pResource.second->RemoveEventListener(_iEventHandle);
     }
 }
 
@@ -51,7 +51,7 @@ void IResourceMgr::Update(void)
                 pResource->Set_SourceData(pTask.second->Get_SourceData());
                 SAFE_DELETE(pTask.second);
                 m_lTaskPool.erase(pTask.first);
-                pResource->Push_SignalToDelegateOwners();
+                pResource->DispatchEvent();
                 return;
             }
         }

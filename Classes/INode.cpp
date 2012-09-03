@@ -23,15 +23,52 @@ INode::INode(void)
     m_vTexCoordOffset = glm::vec2(0.0f, 0.0f);
     
     m_pMaterial = new CMaterial();
-    m_pBoundingBox = NULL;
-    m_pMesh = NULL;
+    m_pBoundingBox = nullptr;
+    m_pMesh = nullptr;
     m_bIsVisible = true;
+    
+    m_pResourceEventSignature = [this](IResource* _pResource, IResource::EventHandle iEventHandle)->void
+    {
+        switch (_pResource->Get_ResourceType())
+        {
+            case IResource::E_RESOURCE_TYPE_MESH:
+                std::cout<<"[CModel::OnLoadDone] Resource Mesh loaded : "<<_pResource->Get_Name()<<"\n";
+                m_pMesh = static_cast<CMesh*>(_pResource);
+                for(unsigned int i = 0; i < CShader::E_RENDER_MODE_MAX; ++i)
+                {
+                    CShader* pShader = m_pMaterial->Get_Shader(static_cast<CShader::E_RENDER_MODE>(i));
+                    if(pShader != NULL)
+                    {
+                        m_pMesh->Get_VertexBufferRef()->Add_ShaderRef(static_cast<CShader::E_RENDER_MODE>(i), pShader);
+                    }
+                }
+                
+                break;
+            case IResource::E_RESOURCE_TYPE_TEXTURE:
+                std::cout<<"[CModel::OnLoadDone] Resource Texture loaded : "<<_pResource->Get_Name()<<"\n";
+                if(m_lTextureLoadingQueue.find(_pResource->Get_Name()) != m_lTextureLoadingQueue.end())
+                {
+                    unsigned int index = m_lTextureLoadingQueue[_pResource->Get_Name()];
+                    m_pMaterial->Set_Texture(static_cast<CTexture*>(_pResource), index, CTexture::E_WRAP_MODE_REPEAT);
+                    m_lTextureLoadingQueue.erase(_pResource->Get_Name());
+                }
+                break;
+            default:
+                break;
+        }
+    };
 }
 
 INode::~INode(void)
 {
     std::cout<<"[INode::~INode] delete"<<std::endl;
-    CResourceMgr::Instance()->Cancel_Load(this);
+    
+    for(auto& iEventHandler : m_lResourceEventHandles)
+    {
+        CResourceMgr::Instance()->RemoveEventListener(iEventHandler);
+    }
+    m_lResourceEventHandles.clear();
+    
     m_lDelegateOwners.clear();
     SAFE_DELETE(m_pBoundingBox);
     if(m_pMesh->Get_CreationMode() == IResource::E_CREATION_MODE_CUSTOM)
@@ -56,7 +93,8 @@ void INode::Set_Texture(CTexture *_pTexture, int _index, CTexture::E_WRAP_MODE _
 
 void INode::Set_Texture(const std::string &_sName, int _index, CTexture::E_WRAP_MODE _eWrap, IResource::E_THREAD _eThread)
 {
-    m_pMaterial->Set_Texture(this, _sName, _index, _eWrap, _eThread);
+    m_lTextureLoadingQueue[_sName] = _index;
+    CResourceMgr::Instance()->AddEventListener(_sName, IResource::E_MGR_TEXTURE, _eThread, m_pResourceEventSignature);
 }
 
 void INode::Set_Shader(CShader::E_RENDER_MODE _eMode, IResource::E_SHADER _eShader)
@@ -124,7 +162,7 @@ void INode::Update(void)
     
     m_mWVP = pCamera->Get_Projection() * pCamera->Get_View() * m_mWorld;
     
-    if(m_pBoundingBox != NULL)
+    if(m_pBoundingBox != nullptr && m_pMesh != nullptr)
     {
         m_pBoundingBox->Set_MaxMinPoints(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
         m_pBoundingBox->Set_WorldMatrix(m_mWorld);
@@ -133,6 +171,7 @@ void INode::Update(void)
 
 void INode::Render(CShader::E_RENDER_MODE _eMode)
 {
+    if(m_pMesh != nullptr)
     CSettings::g_iCurrentTrianglesPerFrame += m_pMesh->Get_IndexBufferRef()->Get_NumWorkingIndexes() / 3;
 }
 
