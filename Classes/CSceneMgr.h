@@ -20,6 +20,7 @@
 #include "CDecalMgr.h"
 #include "CSpriteMgr.h"
 #include "CFrustum.h"
+#include "CEnvironment.h"
 
 class ICharacterController;
 class CSceneMgr
@@ -29,18 +30,15 @@ private:
     
     std::vector<INode*> m_lContainer;
     ILight* m_pLight;
-    INode* m_pSkyBox;
-    INode* m_pLandscape;
-    INode* m_pLandscapeEdges;
-    INode* m_pOcean;
-    INode* m_pGrass;
     ICamera* m_pCamera;
+    CEnvironment* m_pEnvironment;
     
     CRenderMgr* m_pRenderMgr;
     CCollisionMgr* m_pCollisionMgr;
     CParticleMgr* m_pParticleMgr;
     CDecalMgr* m_pDecalMgr;
     CSpriteMgr* m_pSpriteMgr;
+    
     CHeightMapSetter* m_pHeightMapSetterRef;
     
     void _DrawSimpleStep(void);
@@ -55,29 +53,20 @@ public:
     static CSceneMgr* Instance(void);
     
     ICamera* Get_Camera(void) { return m_pCamera; }
-    void Set_Camera(ICamera* _pCamera);
     
     ILight* Get_Light(void) { return m_pLight; }
     void Set_Light(ILight* _pLight) { m_pLight = _pLight; }
     
     INode* Add_CustomModel(const std::string& _sName, IResource::E_THREAD _eThread = IResource::E_THREAD_SYNC);
-    INode* Add_LandscapeModel(const std::string& _sName, IResource::E_THREAD _eThread = IResource::E_THREAD_SYNC);
-    INode* Add_LandscapeGrassModel(const std::string& _sName, IResource::E_THREAD _eThread = IResource::E_THREAD_SYNC);
-    INode* Add_OceanModel(const std::string& _sName, IResource::E_THREAD _eThread = IResource::E_THREAD_SYNC);
-    INode* Add_SkyBoxModel(const std::string& _sName, IResource::E_THREAD _eThread = IResource::E_THREAD_SYNC);
-    
     void Remove_CustomModel(INode* _pNode);
-    void Remove_LandscapeModel(INode* _pNode);
-    void Remove_LandscapeGrassModel(INode* _pNode);
-    void Remove_OceanModel(INode* _pNode);
-    void Remove_SkyBoxModel(INode* _pNode);
+    void LoadEnvironment(const std::string& _sName);
+    void UnloadEnvironment(void);
     
     void AddEventListener(INode* _pNode, CEventMgr::E_EVENT _eEvent);
     void RemoveEventListener(INode* _pNode, CEventMgr::E_EVENT _eEvent);
     
     ICamera* CreateFreeCamera(float _fFov, float _fNearPlane, float _fFarPlane);
     ICamera* CreateTargetCamera(float _fFov, float _fNearPlane, float _fFarPlane, ICharacterController* _pTarget);
-    void Remove_Camera(ICamera* _pCamera);
     
     CRenderMgr* Get_RenderMgr(void) { return m_pRenderMgr; }
     CCollisionMgr* Get_CollisionMgr(void) { return m_pCollisionMgr; }

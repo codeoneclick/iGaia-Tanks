@@ -120,7 +120,7 @@ void CLandscapeDecal::Update()
     float* pHeightmapData = NULL;
     if(pHeightMapSetterRef != NULL)
     {
-        pHeightmapData = pHeightMapSetterRef->Get_SourceData();
+        pHeightmapData = pHeightMapSetterRef->Get_HeightMapData();
     }
     else
     {

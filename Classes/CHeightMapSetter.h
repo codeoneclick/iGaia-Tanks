@@ -15,7 +15,7 @@
 class CHeightMapSetter
 {
 protected:
-    float* m_pDataSource;
+    float* m_pHeightMapData;
     
     int m_iWidth;
     int m_iHeight;
@@ -31,18 +31,9 @@ protected:
     
     GLuint m_hTextureDetailColor;
     GLuint m_hTextureDetailNormal;
-
-    CTexture** m_pTexturesDetailLayers; 
     
     CMesh* m_pPostRenderScreenPlaneMesh;
     CShader* m_pPostRenderScreenPlaneShader;
-    
-    CMesh* m_pLandscapeEdgesMesh;
-    CMesh* m_pLandscapeHeightMapMesh;
-    
-    bool m_bIsTextureDetailCreated;
-    
-    unsigned short* m_pTextureSplattingDataSource;
     
     void _Create_TextureSplatting(void);
     void _Create_TextureEgdesMask(void);
@@ -60,8 +51,9 @@ public:
     CHeightMapSetter(void);
     ~CHeightMapSetter(void);
     
-    CMesh* Load_DataSource(const std::string _sName, int _iWidth, int _iHeight, const glm::vec2& _vScaleFactor);
-    float* Get_SourceData(void) { return m_pDataSource; }
+    void Load(const std::string _sName, unsigned int _iWidth, unsigned int _iHeight, const glm::vec2& _vScaleFactor);
+    CMesh* Get_HeightMapMesh(void);
+    inline float* Get_HeightMapData(void) { return m_pHeightMapData; }
     
     inline int Get_Width(void) { return m_iWidth; }
     inline int Get_Height(void) { return m_iHeight; }
@@ -77,10 +69,7 @@ public:
     
     GLuint Get_TextureDetailColor(void)   { return m_hTextureDetailColor; }
     GLuint Get_TextureDetailNormal(void)  { return m_hTextureDetailNormal; }
-    void Set_TextureDetailLayers(CTexture** _pTextures) { m_pTexturesDetailLayers = _pTextures;}
-    void Draw_TextureDetail(void);
-    bool Get_IsTextureDetailCreated(void) { return m_bIsTextureDetailCreated; }
-    
+
     void Update(void);
 };
 

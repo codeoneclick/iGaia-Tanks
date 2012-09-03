@@ -58,7 +58,6 @@ void CGameInGameScene::Load(void)
     CSceneMgr::Instance()->Set_Light(m_pLight);
     
     m_pCamera = CSceneMgr::Instance()->CreateTargetCamera(45.0f, 0.1f, 256.0f, m_pMainCharacterController);
-    CSceneMgr::Instance()->Set_Camera(m_pCamera);
     m_pCamera->Set_DistanceToLookAt(k_CAMERA_DISTANCE_MODE_1);
     m_pCamera->Set_HeightFromLookAt(k_CAMERA_HEIGHT_MODE_1);
     m_fNeedCameraHeight = k_CAMERA_HEIGHT_MODE_1;

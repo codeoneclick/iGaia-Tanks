@@ -17,7 +17,7 @@
 #include "COcean.h"
 #include "CSkyBox.h"
 
-class CEnviroment
+class CEnvironment
 {
 protected:
     CHeightMapSetter* m_pHeightMapSetter;
@@ -27,11 +27,10 @@ protected:
     COcean* m_pOcean;
     CSkyBox* m_pSkyBox;
 public:
-    CEnviroment(void);
-    ~CEnviroment(void);
+    CEnvironment(void);
+    ~CEnvironment(void);
     void Load(const std::string& _sName);
     void Update(void);
-    void Render(CShader::E_RENDER_MODE _eMode);
     
     inline INode* Get_Landscape(void) const { return m_pLandscape; }
     inline INode* Get_LandscapeEdges(void) const { return m_pLandscapeEdges; }

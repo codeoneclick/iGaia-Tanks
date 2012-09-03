@@ -17,35 +17,49 @@
 
 CHeightMapSetter::CHeightMapSetter(void)
 {
-    m_pDataSource = NULL;
+    m_pHeightMapData = nullptr;
     m_fXThreshold = 0.0f;
     m_fZThreshold = 0.0f;
-    m_pTextureSplattingDataSource = NULL;
-    m_pPostRenderScreenPlaneMesh = NULL;
-    m_pPostRenderScreenPlaneShader = NULL;
-    
-    m_bIsTextureDetailCreated = false;
+    m_pPostRenderScreenPlaneMesh = nullptr;
+    m_pPostRenderScreenPlaneShader = nullptr;
     m_vScaleFactor = glm::vec2(1.0f, 1.0f);
 }
 
 CHeightMapSetter::~CHeightMapSetter(void)
 {
-    SAFE_DELETE_ARRAY(m_pDataSource);
-    SAFE_DELETE_ARRAY(m_pTextureSplattingDataSource);
+    SAFE_DELETE_ARRAY(m_pHeightMapData);
     glDeleteTextures(1, &m_hTextureSplatting);
 }
 
-CMesh* CHeightMapSetter::Load_DataSource(const std::string _sName, int _iWidth, int _iHeight, const glm::vec2& _vScaleFactor)
+void CHeightMapSetter::Load(const std::string _sName, unsigned int _iWidth, unsigned int _iHeight, const glm::vec2& _vScaleFactor)
 {
     m_iWidth = _iWidth;
     m_iHeight = _iHeight;
     m_vScaleFactor = _vScaleFactor;
     
+    m_pHeightMapData = new float[m_iWidth * m_iHeight];
+    
+    for(unsigned int i = 0; i < m_iWidth; ++i)
+    {
+        for(unsigned int j = 0; j < m_iHeight; ++j)
+        {
+            m_pHeightMapData[i + j * m_iWidth] = sin(i * 0.33f) / 2.0f + cos(j * 0.33f) / 2.0f;
+        }
+    }
+    
+    _Create_TextureSplatting();
+    _Create_TextureHeightmap();
+    _Create_TextureDetail();
+    _Create_TextureEgdesMask();
+}
+
+CMesh* CHeightMapSetter::Get_HeightMapMesh(void)
+{
     CVertexBufferPositionTexcoordNormalTangent *pVertexBuffer = new CVertexBufferPositionTexcoordNormalTangent(m_iWidth * m_iHeight, GL_STATIC_DRAW);
     
     CVertexBufferPositionTexcoordNormalTangent::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoordNormalTangent::SVertex*>(pVertexBuffer->Lock());
     
-    m_pDataSource = new float[m_iWidth * m_iHeight];
+    m_pHeightMapData = new float[m_iWidth * m_iHeight];
     
     unsigned int index = 0;
     for(unsigned int i = 0; i < m_iWidth;++i)
@@ -53,8 +67,7 @@ CMesh* CHeightMapSetter::Load_DataSource(const std::string _sName, int _iWidth, 
         for(unsigned int j = 0; j < m_iHeight;++j)
         {
             pVertexBufferData[index].m_vPosition.x = i;
-            pVertexBufferData[index].m_vPosition.y = sin(i * 0.33f) / 2.0f + cos(j * 0.33f) / 2.0f;
-            m_pDataSource[i + j * m_iWidth] = pVertexBufferData[index].m_vPosition.y;
+            pVertexBufferData[index].m_vPosition.y = m_pHeightMapData[i + j * m_iWidth];
             pVertexBufferData[index].m_vPosition.z = j;
             
             pVertexBufferData[index].m_vTexcoord.x = i / static_cast<float>(m_iWidth);
@@ -88,37 +101,12 @@ CMesh* CHeightMapSetter::Load_DataSource(const std::string _sName, int _iWidth, 
     
     _CalculateNormals(pVertexBuffer, pIndexBuffer);
     _CalculateTangentsAndBinormals(pVertexBuffer, pIndexBuffer);
+    
     CMesh* pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
     pMesh->Set_VertexBufferRef(pVertexBuffer);
     pMesh->Set_IndexBufferRef(pIndexBuffer);
-    
-    /*CParser_MDL* pParser = new CParser_MDL();
-    pParser->Load(_sName);
-    pParser->Commit();
-    
-    CMesh* pMesh = new CMesh();
-    if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
-    {
-        pMesh->Set_SourceData(pParser->Get_SourceData());
-    }
-
-    glm::vec3* pPositionData = pMesh->Get_VertexBufferRef()->CreateOrReUse_PositionData();
-    m_pDataSource = new float[m_iWidth * m_iHeight];
-    for(unsigned int i = 0; i < m_iWidth; ++i)
-    {
-        for(unsigned int j = 0; j < m_iHeight; ++j)
-        {
-            float fHeight = pPositionData[i + ((m_iWidth - 1) - j) * m_iWidth].y;
-            pPositionData[i + ((m_iWidth - 1) - j) * m_iWidth].y = fHeight;
-            m_pDataSource[i + j * m_iHeight] = pPositionData[i + ((m_iWidth - 1) - j) * m_iWidth].y;
-        }
-    }*/
-    
-    _Create_TextureSplatting();
-    _Create_TextureHeightmap();
-    _Create_TextureDetail();
-    _Create_TextureEgdesMask();
-    
+    pMesh->Get_VertexBufferRef()->Commit();
+    pMesh->Get_IndexBufferRef()->Commit();
     return pMesh;
 }
 
@@ -261,24 +249,24 @@ float CHeightMapSetter::Get_HeightValue(float _x, float _z)
     if((x < 0) || (z < 0) || (x > (m_iWidth - 1)) || (z > (m_iHeight - 1)))
         return -16.0f;
     
-    float fHeight_00 = m_pDataSource[x + z * m_iWidth];
+    float fHeight_00 = m_pHeightMapData[x + z * m_iWidth];
     
-    float fHeight_01 = m_pDataSource[x + z * m_iWidth];
+    float fHeight_01 = m_pHeightMapData[x + z * m_iWidth];
     if(z < (m_iHeight - 1) && z >= 0)
     {
-        fHeight_01 = m_pDataSource[x + (z + 1) * m_iWidth];
+        fHeight_01 = m_pHeightMapData[x + (z + 1) * m_iWidth];
     }
     
-    float fHeight_10 = m_pDataSource[x + z * m_iWidth];
+    float fHeight_10 = m_pHeightMapData[x + z * m_iWidth];
     if(x < (m_iWidth - 1) && x >= 0)
     {
-        fHeight_10 = m_pDataSource[x + 1 + z * m_iWidth];
+        fHeight_10 = m_pHeightMapData[x + 1 + z * m_iWidth];
     }
     
-    float fHeight_11 = m_pDataSource[x + z * m_iWidth];
+    float fHeight_11 = m_pHeightMapData[x + z * m_iWidth];
     if(z < (m_iHeight - 1) && z >= 0 && x < (m_iWidth - 1) && x >= 0)
     {
-        fHeight_11 = m_pDataSource[x + 1 + (z + 1) * m_iWidth];
+        fHeight_11 = m_pHeightMapData[x + 1 + (z + 1) * m_iWidth];
     }
     
     float fHeight_0 = fHeight_00 * (1.0f - dy) + fHeight_01 * dy;
@@ -295,30 +283,30 @@ void CHeightMapSetter::_Create_TextureSplatting(void)
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    m_pTextureSplattingDataSource = new unsigned short[m_iWidth * m_iHeight];
+    unsigned short* pTextureData = new unsigned short[m_iWidth * m_iHeight];
     for(int i = 0; i < m_iWidth; i++)
     {
         for(int j = 0; j < m_iHeight; j++)
         {
-            m_pTextureSplattingDataSource[i + j * m_iHeight] = RGB(255, 0, 0);
+            pTextureData[i + j * m_iHeight] = RGB(255, 0, 0);
             
             if(Get_HeightValue(i * m_vScaleFactor.x, j * m_vScaleFactor.y) > 1.0f)
             {
-                m_pTextureSplattingDataSource[i + j * m_iHeight] = RGB(0, 255, 0);
+                pTextureData[i + j * m_iHeight] = RGB(0, 255, 0);
             }
             if(Get_HeightValue(i * m_vScaleFactor.x, j * m_vScaleFactor.y) < 0.1f)
             {
-                m_pTextureSplattingDataSource[i + j * m_iHeight] = RGB(0, 0, 255);
+                pTextureData[i + j * m_iHeight] = RGB(0, 0, 255);
             }
             
             if( i == 0 || j == 0 || i == (m_iWidth - 1) * m_vScaleFactor.x || j == (m_iHeight - 1) * m_vScaleFactor.y)
             {
-                 m_pTextureSplattingDataSource[i + j * m_iHeight] = RGB(255, 0, 0);
+                 pTextureData[i + j * m_iHeight] = RGB(255, 0, 0);
             }
 
         }
     }
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_iWidth, m_iHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, m_pTextureSplattingDataSource);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_iWidth, m_iHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pTextureData);
 }
 
 void CHeightMapSetter::_Create_TextureHeightmap(void)
@@ -388,18 +376,25 @@ void CHeightMapSetter::_Create_TextureDetail(void)
     
     m_pPostRenderScreenPlaneShader = CShaderComposite::Instance()->Get_Shader(IResource::E_SHADER_SCREEN_PLANE_LANDSCAPE_DETAIL);
     m_pPostRenderScreenPlaneMesh->Get_VertexBufferRef()->Add_ShaderRef(CShader::E_RENDER_MODE_SIMPLE, m_pPostRenderScreenPlaneShader);
-}
-
-void CHeightMapSetter::Draw_TextureDetail(void)
-{
+    
     CSceneMgr::Instance()->Get_RenderMgr()->BeginDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_COLOR);
     
     CMaterial::Set_ExtCommitedShaderRef(m_pPostRenderScreenPlaneShader);
     
+    CTexture** pTextures = new CTexture*[k_TEXTURES_MAX_COUNT];
+    pTextures[0] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_01_diffuse.pvr"));
+    pTextures[1] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_01_normal.pvr"));
+    pTextures[2] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_02_diffuse.pvr"));
+    pTextures[3] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_02_bump.pvr"));
+    pTextures[4] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_03_diffuse.pvr"));
+    pTextures[5] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, "layer_01_normal.pvr"));
+    pTextures[6] = nullptr;
+    pTextures[7] = nullptr;
+    
     unsigned int iTextureIndex = 0;
     for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; i += 2)
     {
-        CTexture* pTexture = m_pTexturesDetailLayers[i];
+        CTexture* pTexture = pTextures[i];
         if(pTexture == NULL)
         {
             continue;
@@ -409,7 +404,7 @@ void CHeightMapSetter::Draw_TextureDetail(void)
     }
     
     m_pPostRenderScreenPlaneShader->Set_Texture(Get_TextureSplatting(), CShader::E_TEXTURE_SLOT_07);
-
+    
     m_pPostRenderScreenPlaneMesh->Get_VertexBufferRef()->Enable(CShader::E_RENDER_MODE_SIMPLE);
     m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Enable();
     glDrawElements(GL_TRIANGLES, m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pPostRenderScreenPlaneMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
@@ -428,7 +423,7 @@ void CHeightMapSetter::Draw_TextureDetail(void)
     iTextureIndex = 0;
     for(unsigned int i = 1; i < k_TEXTURES_MAX_COUNT; i += 2)
     {
-        CTexture* pTexture = m_pTexturesDetailLayers[i];
+        CTexture* pTexture = pTextures[i];
         if(pTexture == NULL)
         {
             continue;
@@ -447,10 +442,8 @@ void CHeightMapSetter::Draw_TextureDetail(void)
     
     CSceneMgr::Instance()->Get_RenderMgr()->EndDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_NORMAL);
     m_hTextureDetailNormal = CSceneMgr::Instance()->Get_RenderMgr()->Get_OffScreenTexture(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_NORMAL);
-    
-    
-    m_bIsTextureDetailCreated = true;
 }
+
 
 void CHeightMapSetter::_CalculateNormals(IVertexBuffer* _pVertexBuffer, CIndexBuffer* _pIndexBuffer)
 {

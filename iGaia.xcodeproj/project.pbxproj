@@ -341,7 +341,7 @@
 		A1FE33BD15D93CE000D82CF6 /* GameServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE33BB15D93CDF00D82CF6 /* GameServer.cpp */; };
 		A1FE33C415D9596D00D82CF6 /* GameClientHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE33C215D9596D00D82CF6 /* GameClientHandler.cpp */; };
 		A1FFAA8B156CBAE500B01ECB /* CFrustum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FFAA89156CBAE500B01ECB /* CFrustum.cpp */; };
-		A426EBCD15F1028B008B985A /* СEnvironment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A426EBCB15F1028B008B985A /* СEnvironment.cpp */; };
+		A426EBCD15F1028B008B985A /* CEnvironment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A426EBCB15F1028B008B985A /* CEnvironment.cpp */; };
 		A4C029A115EE408A004AB73E /* CLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4C0299F15EE408A004AB73E /* CLogger.cpp */; };
 		CE8DFA9314587B0C00AE7288 /* CGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8DFA9214587B0C00AE7288 /* CGame.cpp */; };
 		CE914ED41455DA3200AA2000 /* CShaderComposite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE914ED31455DA3200AA2000 /* CShaderComposite.cpp */; };
@@ -1009,8 +1009,8 @@
 		A1FE33C315D9596D00D82CF6 /* GameClientHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameClientHandler.h; sourceTree = "<group>"; };
 		A1FFAA89156CBAE500B01ECB /* CFrustum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFrustum.cpp; sourceTree = "<group>"; };
 		A1FFAA8A156CBAE500B01ECB /* CFrustum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFrustum.h; sourceTree = "<group>"; };
-		A426EBCB15F1028B008B985A /* СEnvironment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "СEnvironment.cpp"; sourceTree = "<group>"; };
-		A426EBCC15F1028B008B985A /* СEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "СEnvironment.h"; sourceTree = "<group>"; };
+		A426EBCB15F1028B008B985A /* CEnvironment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEnvironment.cpp; sourceTree = "<group>"; };
+		A426EBCC15F1028B008B985A /* CEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEnvironment.h; sourceTree = "<group>"; };
 		A445220815F0E77D00EFAC36 /* CCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCommon.h; sourceTree = "<group>"; };
 		A4C0299F15EE408A004AB73E /* CLogger.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLogger.cpp; sourceTree = "<group>"; };
 		A4C029A015EE408A004AB73E /* CLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLogger.h; sourceTree = "<group>"; };
@@ -1083,8 +1083,8 @@
 				932D540A151B662F00C77E95 /* COcean.cpp */,
 				A1AF6F761549383200703E2E /* CSkyBox.h */,
 				A1AF6F751549383200703E2E /* CSkyBox.cpp */,
-				A426EBCC15F1028B008B985A /* СEnvironment.h */,
-				A426EBCB15F1028B008B985A /* СEnvironment.cpp */,
+				A426EBCC15F1028B008B985A /* CEnvironment.h */,
+				A426EBCB15F1028B008B985A /* CEnvironment.cpp */,
 			);
 			name = 3d;
 			sourceTree = "<group>";
@@ -2720,7 +2720,7 @@
 				A1F98AF115DBA84600B38C6E /* INavigationDelegate.cpp in Sources */,
 				15AF6D9515ED304400034990 /* CParticleEmitterTrail.cpp in Sources */,
 				A4C029A115EE408A004AB73E /* CLogger.cpp in Sources */,
-				A426EBCD15F1028B008B985A /* СEnvironment.cpp in Sources */,
+				A426EBCD15F1028B008B985A /* CEnvironment.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

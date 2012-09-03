@@ -41,9 +41,7 @@ CLandscape::~CLandscape(void)
 
 void CLandscape::_Load(void *data)
 {
-    m_pMesh = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Load_DataSource("", m_iWidth, m_iHeight, m_vScaleFactor);
-    m_pMesh->Get_VertexBufferRef()->Commit();
-    m_pMesh->Get_IndexBufferRef()->Commit();
+    m_pMesh = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_HeightMapMesh();
     
     unsigned short* pIndexBufferData = m_pMesh->Get_IndexBufferRef()->Get_SourceData();
     unsigned int iNumIndexes = m_pMesh->Get_IndexBufferRef()->Get_NumIndexes();
@@ -283,8 +281,6 @@ void CLandscape::Update(void)
     _CheckVisibleQuadTreeNode(m_pQuadTree);
     m_pMesh->Get_IndexBufferRef()->Set_NumWorkingIndexes(m_iWorkingNumIndexes);
     m_pMesh->Get_IndexBufferRef()->Commit();
-    
-    CSceneMgr::Instance()->Get_HeightMapSetterRef()->Set_TextureDetailLayers(m_pMaterial->Get_Textures());
 }
 
 void CLandscape::Render(CShader::E_RENDER_MODE _eMode)

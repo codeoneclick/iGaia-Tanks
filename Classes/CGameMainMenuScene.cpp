@@ -52,7 +52,6 @@ void CGameMainMenuScene::Load(void)
     m_pMainCharacterController = pEnemy;
     
     m_pCamera = CSceneMgr::Instance()->CreateTargetCamera(45.0f, 0.25f, 128.0f, m_pMainCharacterController);
-    CSceneMgr::Instance()->Set_Camera(m_pCamera);
     m_pCamera->Set_DistanceToLookAt(k_CAMERA_DISTANCE);
     m_pCamera->Set_HeightFromLookAt(k_CAMERA_HEIGHT);
 }

@@ -38,7 +38,6 @@ void IGameScene::Unload(void)
     SAFE_DELETE(m_pGameShooterMgr);
     m_pLevel->Unload();
     SAFE_DELETE(m_pLevel);
-    CSceneMgr::Instance()->Remove_Camera(m_pCamera);
 }
 
 void IGameScene::Update(void)

@@ -133,11 +133,12 @@ void INode::Update(void)
     
     m_mWVP = pCamera->Get_Projection() * pCamera->Get_View() * m_mWorld;
     
-    m_pBoundingBox->Set_MaxBound(m_pMesh->Get_MaxBound());
-    m_pBoundingBox->Set_MinBound(m_pMesh->Get_MinBound());
-    m_pBoundingBox->Set_WorldMatrix(m_mWorld);
-    
-    
+    if(m_pBoundingBox != nullptr)
+    {
+        m_pBoundingBox->Set_MaxBound(m_pMesh->Get_MaxBound());
+        m_pBoundingBox->Set_MinBound(m_pMesh->Get_MinBound());
+        m_pBoundingBox->Set_WorldMatrix(m_mWorld);
+    }
 }
 
 void INode::Render(CShader::E_RENDER_MODE _eMode)
