@@ -85,9 +85,9 @@ void CMaterial::Set_Texture(CTexture *_pTexture, int _index, CTexture::E_WRAP_MO
         std::cout<<"[INode] Critical index for the texture.";
         return;
     }
-    if( m_pTextures[_index] != NULL )
+    if( m_pTextures[_index] != nullptr )
     {
-        // TODO: unload
+        return;
     }
     m_pTextures[_index] = _pTexture;
 }
@@ -99,20 +99,13 @@ void CMaterial::Set_Texture(INode* _pNodeRef, const std::string &_sName, int _in
         std::cout<<"[INode] Critical index for the texture.";
         return;
     }
-    if( m_pTextures[_index] != NULL )
+    if( m_pTextures[_index] != nullptr )
     {
-        // TODO: unload
+        return;
     }
-    std::map<std::string, std::string> lParams;
-    if(_eWrap == CTexture::E_WRAP_MODE_REPEAT)
-    {
-        lParams["WRAP"] = "REPEAT";
-    }
-    else if(_eWrap == CTexture::E_WRAP_MODE_CLAMP)
-    {
-        lParams["WRAP"] = "CLAMP";
-    }
+
     m_pTextures[_index] = static_cast<CTexture*>(CResourceMgr::Instance()->LoadSync(IResource::E_MGR_TEXTURE, _sName));
+    m_pTextures[_index]->Set_WrapMode(_eWrap);
 }
 
 void CMaterial::Set_Shader(INode* _pNodeRef, CShader::E_RENDER_MODE _eMode, IResource::E_SHADER _eShader)
