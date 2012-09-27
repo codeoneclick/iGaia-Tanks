@@ -19,34 +19,17 @@
 class CParser_PVR : public IParser
 {
 protected:
-    struct SDescription
-    {
-        GLenum m_glFormat;
-        GLenum m_glType;
-        int m_uiBPP;
-        glm::vec2 m_vSize;
-        unsigned int m_uiMIP;
-        char* m_pData;
-        bool m_bCompressed;
-        unsigned int m_iNumFaces;
-        
-        SDescription(void)
-        {
-            m_pData = nullptr;
-        };
-        
-        ~SDescription(void)
-        {
-            SAFE_DELETE(m_pData);
-        };
-    };
     
-private:
-    SDescription* m_pDescription;
+    GLenum m_format;
+    int m_bytesPerPixel;
+    glm::vec2 m_size;
+    char* m_dataSource;
+    unsigned int m_headerOffset;
+    
 public:
     CParser_PVR(void);
     ~CParser_PVR(void);
-    void Load(const std::string& _sName);
+    void Load(const std::string& _name);
     IResource* Commit(void);
 };
 

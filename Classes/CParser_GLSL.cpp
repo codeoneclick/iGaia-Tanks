@@ -9,52 +9,52 @@
 #include <iostream>
 #include "CParser_GLSL.h"
 
-CParser_GLSL::CParser_GLSL()
+CParser_GLSL::CParser_GLSL(void)
 {
     
 }
 
-CParser_GLSL::~CParser_GLSL()
+CParser_GLSL::~CParser_GLSL(void)
 {
     
 }
 
-CParser_GLSL::SGLSLData CParser_GLSL::Load(const char *_vSource, const char *_fSource)
+CShader* CParser_GLSL::Load(const char* _dataSourceVertexShader, const char* _dataSourceFragmentShader)
 {
-    SGLSLData data;
-    data.s_vHandle = Build(_vSource, GL_VERTEX_SHADER);
-    data.s_fHandle = Build(_fSource, GL_FRAGMENT_SHADER);
+    unsigned int handleVertexShader = Compile(_dataSourceVertexShader, GL_VERTEX_SHADER);
+    unsigned int handleFragmentShader = Compile(_dataSourceFragmentShader, GL_FRAGMENT_SHADER);
     
-    data.s_pHandle = glCreateProgram();
-    glAttachShader(data.s_pHandle, data.s_vHandle);
-    glAttachShader(data.s_pHandle, data.s_fHandle);
-    glLinkProgram(data.s_pHandle);
+    unsigned int handle = glCreateProgram();
+    glAttachShader(handle, handleVertexShader);
+    glAttachShader(handle, handleFragmentShader);
+    glLinkProgram(handle);
     
-    GLint success;
-    glGetProgramiv(data.s_pHandle, GL_LINK_STATUS, &success);
+    int success;
+    glGetProgramiv(handle, GL_LINK_STATUS, &success);
     if (success == GL_FALSE) 
     {
-        GLchar messages[256];
-        glGetProgramInfoLog(data.s_pHandle, sizeof(messages), 0, &messages[0]);
-        std::cout << messages;
+        char message[256];
+        glGetProgramInfoLog(handle, sizeof(message), 0, &message[0]);
+        std::cout<<message;
     }
-    return data;
+    
+    CShader* shader = new CShader(handle);
+    return shader;
 }
 
-GLuint CParser_GLSL::Build(const char *_pSource, GLenum _eShader) 
+unsigned int CParser_GLSL::Compile(const char *_dataSource, GLenum _shader)
 {
-    GLuint handle = glCreateShader(_eShader);
-    glShaderSource(handle, 1, &_pSource, 0);
+    unsigned int handle = glCreateShader(_shader);
+    glShaderSource(handle, 1, &_dataSource, 0);
     glCompileShader(handle);
     
-    GLint success;
+    int success;
     glGetShaderiv(handle, GL_COMPILE_STATUS, &success);
-    
     if (success == GL_FALSE) 
     {
-        GLchar messages[256];
-        glGetShaderInfoLog(handle, sizeof(messages), 0, &messages[0]);
-        std::cout << messages;
+        GLchar message[256];
+        glGetShaderInfoLog(handle, sizeof(message), 0, &message[0]);
+        std::cout<<message;
         handle = 0;
     }
     return handle;

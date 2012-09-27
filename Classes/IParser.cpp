@@ -11,7 +11,7 @@
 
 IParser::IParser()
 {
-    m_eStatus = E_NONE_STATUS;
+    m_status = E_STATUS_INIT;
 }
 
 IParser::~IParser()

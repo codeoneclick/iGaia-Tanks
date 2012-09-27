@@ -17,43 +17,22 @@
 class CParser_MDL : public IParser
 {
 protected:
-    struct SData
+    struct SVertex
     {
-        struct SVertex
-        {
-            glm::vec3 m_vPosition;
-            glm::vec2 m_vTexCoord;
-            glm::vec3 m_vNormal;
-            glm::vec3 m_vTangent;
-        };
-        
-        SVertex* m_pVertexData;
-        unsigned short* m_pIndexData;
-        unsigned int m_iNumVertexes;
-        unsigned int m_iNumIndexes;
-        glm::vec3       m_vMaxBound;
-        glm::vec3       m_vMinBound;
-        SData(void)
-        {
-            m_pVertexData = nullptr;
-            m_pIndexData = nullptr;
-            m_iNumVertexes = 0;
-            m_iNumIndexes = 0;
-            m_vMaxBound = glm::vec3(-4096.0f, -4096.0f, -4096.0f);
-            m_vMinBound = glm::vec3(4096.0f, 4096.0f, 4096.0f);
-        };
-        ~SData(void)
-        {
-            SAFE_DELETE_ARRAY(m_pVertexData);
-            SAFE_DELETE_ARRAY(m_pIndexData);
-        };
+        glm::vec3 m_vPosition;
+        glm::vec2 m_vTexCoord;
+        glm::vec3 m_vNormal;
+        glm::vec3 m_vTangent;
     };
-    
-    SData* m_pData;
+        
+    SVertex* m_vertexData;
+    unsigned short* m_indexData;
+    unsigned int m_numVertexes;
+    unsigned int m_numIndexes;
 public:
     CParser_MDL(void);
     ~CParser_MDL(void);
-    void Load(const std::string& _sName);
+    void Load(const std::string& _name);
     IResource* Commit(void);
 };
 

@@ -11,16 +11,15 @@
 #include <fstream>
 #include <strstream>
 #include "CCommon_IOS.h"
-#include "CVertexBufferPositionTexcoordNormalTangent.h"
 
 CParser_MDL::CParser_MDL(void)
 {
-    m_pData = new SData();
+
 }
 
 CParser_MDL::~CParser_MDL(void)
 {
-    SAFE_DELETE(m_pData);
+  
 }
 
 void CParser_MDL::Load(const std::string& _sName)

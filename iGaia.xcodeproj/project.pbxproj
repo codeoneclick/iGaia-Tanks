@@ -176,7 +176,6 @@
 		93FB5AB21517CF9800E096A9 /* verbose_operator.inl in Resources */ = {isa = PBXBuildFile; fileRef = 93FB5A471517CF9800E096A9 /* verbose_operator.inl */; };
 		93FB5AB31517CF9800E096A9 /* wrap.inl in Resources */ = {isa = PBXBuildFile; fileRef = 93FB5A491517CF9800E096A9 /* wrap.inl */; };
 		A10074FE156130A8000E324E /* clouds.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A10074FD156130A8000E324E /* clouds.pvr */; };
-		A100AB7415775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A100AB7215775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.cpp */; };
 		A100AB7D15776E57003BB7BA /* CParticleEmitterFire.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A100AB7B15776E57003BB7BA /* CParticleEmitterFire.cpp */; };
 		A100AB8415777FC3003BB7BA /* CBillboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A100AB8215777FC3003BB7BA /* CBillboard.cpp */; };
 		A100AB8815777FD8003BB7BA /* CSpriteCross.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A100AB8615777FD8003BB7BA /* CSpriteCross.cpp */; };
@@ -251,11 +250,7 @@
 		A1D635ED15AC0FBA00F5D42B /* tank_light.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1D635E915AC0FBA00F5D42B /* tank_light.pvr */; };
 		A1D635EE15AC0FBA00F5D42B /* tank_medium.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1D635EA15AC0FBA00F5D42B /* tank_medium.pvr */; };
 		A1D635EF15AC0FBA00F5D42B /* tank_track.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1D635EB15AC0FBA00F5D42B /* tank_track.pvr */; };
-		A1D8067D15735D1400EF81D0 /* CVertexBufferPositionColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1D8067515735D1400EF81D0 /* CVertexBufferPositionColor.cpp */; };
-		A1D8067E15735D1400EF81D0 /* CVertexBufferPositionTexcoord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1D8067715735D1400EF81D0 /* CVertexBufferPositionTexcoord.cpp */; };
-		A1D8067F15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1D8067915735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.cpp */; };
-		A1D8068015735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1D8067B15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.cpp */; };
-		A1D8068415735D2500EF81D0 /* IVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1D8068215735D2500EF81D0 /* IVertexBuffer.cpp */; };
+		A1D8068415735D2500EF81D0 /* CVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1D8068215735D2500EF81D0 /* CVertexBuffer.cpp */; };
 		A1E37D62159DE9AD000314C3 /* CSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1E37D60159DE9AD000314C3 /* CSettings.cpp */; };
 		A1ED8E8915591C6B00B82AE3 /* joystick.png in Resources */ = {isa = PBXBuildFile; fileRef = A1ED8E8815591C6B00B82AE3 /* joystick.png */; };
 		A1F39F6215A1D0EF00E39591 /* ITankPart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F5B15A1D0EF00E39591 /* ITankPart.cpp */; };
@@ -353,8 +348,6 @@
 /* Begin PBXFileReference section */
 		1520865215A82C05001F0F8F /* ShaderPostLandscapeDetail.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostLandscapeDetail.frag; path = Shaders/ShaderPostLandscapeDetail.frag; sourceTree = "<group>"; };
 		1520865315A82C05001F0F8F /* ShaderPostLandscapeDetail.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostLandscapeDetail.vert; path = Shaders/ShaderPostLandscapeDetail.vert; sourceTree = "<group>"; };
-		1577F01215F53C3800F920EE /* CCompiledResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCompiledResources.h; sourceTree = "<group>"; };
-		1577F01315F53C3800F920EE /* CCompiledResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCompiledResources.m; sourceTree = "<group>"; };
 		1578F8A315CD80F60056B51E /* ShaderLandscapeEdges.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscapeEdges.frag; path = Shaders/ShaderLandscapeEdges.frag; sourceTree = "<group>"; };
 		1578F8A415CD80F60056B51E /* ShaderLandscapeEdges.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscapeEdges.vert; path = Shaders/ShaderLandscapeEdges.vert; sourceTree = "<group>"; };
 		15AF6D9315ED304400034990 /* CParticleEmitterTrail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CParticleEmitterTrail.cpp; sourceTree = "<group>"; };
@@ -708,8 +701,6 @@
 		93FB5A491517CF9800E096A9 /* wrap.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wrap.inl; sourceTree = "<group>"; };
 		93FB5A4B1517CF9800E096A9 /* xstream.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = xstream.hpp; sourceTree = "<group>"; };
 		A10074FD156130A8000E324E /* clouds.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = clouds.pvr; path = Resources/Textures/clouds.pvr; sourceTree = "<group>"; };
-		A100AB7215775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBufferPositionTexcoordColor.cpp; sourceTree = "<group>"; };
-		A100AB7315775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVertexBufferPositionTexcoordColor.h; sourceTree = "<group>"; };
 		A100AB7B15776E57003BB7BA /* CParticleEmitterFire.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CParticleEmitterFire.cpp; sourceTree = "<group>"; };
 		A100AB7C15776E57003BB7BA /* CParticleEmitterFire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CParticleEmitterFire.h; sourceTree = "<group>"; };
 		A100AB8215777FC3003BB7BA /* CBillboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBillboard.cpp; sourceTree = "<group>"; };
@@ -827,16 +818,8 @@
 		A1D635E915AC0FBA00F5D42B /* tank_light.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = tank_light.pvr; path = Resources/Textures/tank_light.pvr; sourceTree = "<group>"; };
 		A1D635EA15AC0FBA00F5D42B /* tank_medium.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = tank_medium.pvr; path = Resources/Textures/tank_medium.pvr; sourceTree = "<group>"; };
 		A1D635EB15AC0FBA00F5D42B /* tank_track.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = tank_track.pvr; path = Resources/Textures/tank_track.pvr; sourceTree = "<group>"; };
-		A1D8067515735D1400EF81D0 /* CVertexBufferPositionColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBufferPositionColor.cpp; sourceTree = "<group>"; };
-		A1D8067615735D1400EF81D0 /* CVertexBufferPositionColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVertexBufferPositionColor.h; sourceTree = "<group>"; };
-		A1D8067715735D1400EF81D0 /* CVertexBufferPositionTexcoord.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBufferPositionTexcoord.cpp; sourceTree = "<group>"; };
-		A1D8067815735D1400EF81D0 /* CVertexBufferPositionTexcoord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVertexBufferPositionTexcoord.h; sourceTree = "<group>"; };
-		A1D8067915735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBufferPositionTexcoordNormal.cpp; sourceTree = "<group>"; };
-		A1D8067A15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVertexBufferPositionTexcoordNormal.h; sourceTree = "<group>"; };
-		A1D8067B15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBufferPositionTexcoordNormalTangent.cpp; sourceTree = "<group>"; };
-		A1D8067C15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVertexBufferPositionTexcoordNormalTangent.h; sourceTree = "<group>"; };
-		A1D8068215735D2500EF81D0 /* IVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IVertexBuffer.cpp; sourceTree = "<group>"; };
-		A1D8068315735D2500EF81D0 /* IVertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IVertexBuffer.h; sourceTree = "<group>"; };
+		A1D8068215735D2500EF81D0 /* CVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBuffer.cpp; sourceTree = "<group>"; };
+		A1D8068315735D2500EF81D0 /* CVertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVertexBuffer.h; sourceTree = "<group>"; };
 		A1E37D60159DE9AD000314C3 /* CSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSettings.cpp; sourceTree = "<group>"; };
 		A1E37D61159DE9AD000314C3 /* CSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSettings.h; sourceTree = "<group>"; };
 		A1E5CAE51598914C0038393C /* ShaderSkybox.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderSkybox.frag; path = Shaders/ShaderSkybox.frag; sourceTree = "<group>"; };
@@ -1115,18 +1098,8 @@
 		15AE127015DAFB0100262A59 /* VertexBuffers */ = {
 			isa = PBXGroup;
 			children = (
-				A1D8068315735D2500EF81D0 /* IVertexBuffer.h */,
-				A1D8068215735D2500EF81D0 /* IVertexBuffer.cpp */,
-				A1D8067615735D1400EF81D0 /* CVertexBufferPositionColor.h */,
-				A1D8067515735D1400EF81D0 /* CVertexBufferPositionColor.cpp */,
-				A1D8067815735D1400EF81D0 /* CVertexBufferPositionTexcoord.h */,
-				A1D8067715735D1400EF81D0 /* CVertexBufferPositionTexcoord.cpp */,
-				A100AB7315775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.h */,
-				A100AB7215775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.cpp */,
-				A1D8067A15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.h */,
-				A1D8067915735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.cpp */,
-				A1D8067C15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.h */,
-				A1D8067B15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.cpp */,
+				A1D8068315735D2500EF81D0 /* CVertexBuffer.h */,
+				A1D8068215735D2500EF81D0 /* CVertexBuffer.cpp */,
 			);
 			name = VertexBuffers;
 			sourceTree = "<group>";
@@ -1178,8 +1151,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1577F01215F53C3800F920EE /* CCompiledResources.h */,
-				1577F01315F53C3800F920EE /* CCompiledResources.m */,
 				936FEC8F14F579CB00A33A33 /* Models */,
 				CE91921914573F630021A0DC /* Textures */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -2337,7 +2308,6 @@
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
-				1577F01615F5461900F920EE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2552,27 +2522,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		1577F01615F5461900F920EE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/CCompiledResources.h",
-				"$(SRCROOT)/CCompiledResources.m",
-				"$(SRCROOT)/Resources/*.png",
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/CCompiledResources.h",
-				"$(DERIVED_FILE_DIR)/CCompiledResources.m",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "RESOURCES_FOLDER=`dirname \"$SCRIPT_INPUT_FILE_0\"`\n\nSOURCE_NAME=\"CCompiledResources\"\nSOURCE_NAME_EXT=\"CCompiledResourcesExt\"\n\ntmp=\"$TEMP_FILES_DIR/compile-images-$$.tmp\"\ncd \"$RESOURCES_FOLDER\"\nfor image in *.png; do\nxxd -i \"$image\" >> $tmp.1\ndone\n\nTEMPLATE_M=`sed -n '/{%LOAD_TEMPLATE_M%}/,/{%LOAD_TEMPLATE_M END%}/ p' \"$RESOURCES_FOLDER/$SOURCE_NAME.m\" | sed '1 d;$ d'`\n\nfor image in *.png; do\nif echo \"$image\" | grep -q \"@2x\"; then continue; fi\nORIGINAL_FILENAME=\"$image\"\nSANITISED_FILENAME=`echo \"$ORIGINAL_FILENAME\" | sed 's/[^a-zA-Z0-9]/_/g'`\nSANITISED_2X_FILENAME=`echo \"$SANITISED_FILENAME\" | sed 's/_png/_2x_png/'`\necho \"$TEMPLATE_M\" | sed \"s/ORIGINAL_FILENAME/$ORIGINAL_FILENAME/g;s/SANITISED_FILENAME/$SANITISED_FILENAME/g;s/SANITISED_2X_FILENAME/$SANITISED_2X_FILENAME/g\" >> $tmp.2\ndone\n\nsed \"/{%IMAGELOADERS_M START%}/ r $tmp.2\n1,/{%IMAGELOADERS_M START%}/!{/{%IMAGELOADERS_M END%}/,/{%IMAGELOADERS_M START%]/! d;}\" \"$RESOURCES_FOLDER/$SOURCE_NAME.m\" > \"$RESOURCES_FOLDER/$SOURCE_NAME_EXT.m\"\n    \nrm \"$tmp.1\" \"$tmp.2\"    \n\ntmp=\"$TEMP_FILES_DIR/compile-images-$$.tmp\"\ncd \"$RESOURCES_FOLDER\"\nfor image in *.png; do\nxxd -i \"$image\" >> $tmp.1\ndone\n    \nTEMPLATE_H=`sed -n '/{%LOAD_TEMPLATE_H%}/,/{%LOAD_TEMPLATE_H END%}/ p' \"$RESOURCES_FOLDER/$SOURCE_NAME.h\" | sed '1 d;$ d'`\n    \nfor image in *.png; do\nif echo \"$image\" | grep -q \"@2x\"; then continue; fi\nORIGINAL_FILENAME=\"$image\"\nSANITISED_FILENAME=`echo \"$ORIGINAL_FILENAME\" | sed 's/[^a-zA-Z0-9]/_/g'`\nSANITISED_2X_FILENAME=`echo \"$SANITISED_FILENAME\" | sed 's/_png/_2x_png/'`\necho \"$TEMPLATE_H\" | sed \"s/ORIGINAL_FILENAME/$ORIGINAL_FILENAME/g;s/SANITISED_FILENAME/$SANITISED_FILENAME/g;s/SANITISED_2X_FILENAME/$SANITISED_2X_FILENAME/g\" >> $tmp.2\ndone\n\nsed \"/{%IMAGELOADERS_H START%}/ r $tmp.2\n1,/{%IMAGELOADERS_H START%}/!{/{%IMAGELOADERS_H END%}/,/{%IMAGELOADERS_H START%]/! d;}\" \"$RESOURCES_FOLDER/$SOURCE_NAME.h\" > \"$RESOURCES_FOLDER/$SOURCE_NAME_EXT.h\"\n    \nrm \"$tmp.1\" \"$tmp.2\"";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -2638,12 +2587,7 @@
 				A1FFAA8B156CBAE500B01ECB /* CFrustum.cpp in Sources */,
 				A1AC4D9C156F7E440031FE05 /* CBullet.cpp in Sources */,
 				A1AC4DA3156FC74F0031FE05 /* CGameShooterMgr.cpp in Sources */,
-				A1D8067D15735D1400EF81D0 /* CVertexBufferPositionColor.cpp in Sources */,
-				A1D8067E15735D1400EF81D0 /* CVertexBufferPositionTexcoord.cpp in Sources */,
-				A1D8067F15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.cpp in Sources */,
-				A1D8068015735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.cpp in Sources */,
-				A1D8068415735D2500EF81D0 /* IVertexBuffer.cpp in Sources */,
-				A100AB7415775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.cpp in Sources */,
+				A1D8068415735D2500EF81D0 /* CVertexBuffer.cpp in Sources */,
 				A100AB7D15776E57003BB7BA /* CParticleEmitterFire.cpp in Sources */,
 				A100AB8415777FC3003BB7BA /* CBillboard.cpp in Sources */,
 				A100AB8815777FD8003BB7BA /* CSpriteCross.cpp in Sources */,
@@ -2782,7 +2726,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2814,7 +2758,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

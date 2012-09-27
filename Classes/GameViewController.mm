@@ -44,6 +44,8 @@ GameViewController* g_GameViewController;
     NSTimer *pTimer = [NSTimer timerWithTimeInterval:1.0 invocation:pInvocation repeats:YES];
     NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
     [runLoop addTimer:pTimer forMode:NSDefaultRunLoopMode];
+    
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft animated:NO];
 }
 
 - (void)viewDidUnload
@@ -53,7 +55,7 @@ GameViewController* g_GameViewController;
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return interfaceOrientation == UIDeviceOrientationLandscapeRight || interfaceOrientation == UIDeviceOrientationLandscapeLeft;
+    return interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight;
 }
 
 -(void)onTick:(NSTimer *)timer

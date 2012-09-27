@@ -19,19 +19,19 @@ class IParser
 public:
     enum E_STATUS
     {
-        E_NONE_STATUS,
-        E_START_STATUS,
-        E_ERROR_STATUS,
-        E_DONE_STATUS,
+        E_STATUS_INIT = 0,
+        E_STATUS_LOAD,
+        E_STATUS_ERROR,
+        E_STATUS_DONE,
     };
 protected:
-    E_STATUS m_eStatus;
+    E_STATUS m_status;
 public:
     IParser(void);
     virtual ~IParser(void);
     virtual void  Load(const std::string& _sName) = 0;
     virtual IResource* Commit(void) = 0;
-    inline E_STATUS Get_Status(void) { return m_eStatus; }
+    inline E_STATUS Get_Status(void) { return m_status; }
 };
 
 #endif
