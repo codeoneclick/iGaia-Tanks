@@ -19,10 +19,12 @@ class ICamera;
 class CFrustum
 {
 public:
-    enum E_FRUSTUM_RESULT {
+    enum E_FRUSTUM_RESULT
+    {
         E_FRUSTUM_RESULT_OUTSIDE = 0,
         E_FRUSTUM_RESULT_INTERSECT,
-        E_FRUSTUM_RESULT_INSIDE };
+        E_FRUSTUM_RESULT_INSIDE
+    };
 protected:
     class CPlane
     {
@@ -37,13 +39,15 @@ protected:
         inline glm::vec3 Get_Normal(void) { return m_vNormal; }
         inline float Get_Offset(void) { return m_fOffset; }
     };
-    enum E_FRUSTUM_PLANE {
+    enum E_FRUSTUM_PLANE
+    {
         E_FRUSTUM_PLANE_TOP = 0,
         E_FRUSTUM_PLANE_BOTTOM,
         E_FRUSTUM_PLANE_LEFT,
         E_FRUSTUM_PLANE_RIGHT,
         E_FRUSTUM_PLANE_NEAR,
-        E_FRUSTUM_PLANE_FAR };
+        E_FRUSTUM_PLANE_FAR
+    };
     CPlane m_pPlanes[k_MAX_FRUSTUM_PLANES];
     glm::vec3 m_vNearTopLeftPoint,m_vNearTopRightPoint, m_vNearBottomLeftPoint, m_vNearBottomRightPoint, m_vFarTopLeftPoint,m_vFarTopRightPoint, m_vFarBottomLeftPoint, m_vFarBottomRightPoint;
     float m_fNearOffset, m_fFarOffset;

@@ -24,7 +24,7 @@ public:
     void Update(void);
     void Render(CShader::E_RENDER_MODE _eMode);
     
-    void OnTouchEvent(ITouchDelegate* _pDelegateOwner);
+    //void OnTouchEvent(ITouchDelegate* _pDelegateOwner);
 };
 
 #endif /* defined(__iGaia__CSkyBox__) */

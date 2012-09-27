@@ -42,9 +42,6 @@ public:
     void Update(void);
     void Render(CShader::E_RENDER_MODE _eMode);
     
-    void OnTouchEvent(ITouchDelegate* _pDelegateOwner);
-    void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource);
-    
     inline void Set_NumFrames(unsigned int _iNumFrames) { m_iNumFrames = _iNumFrames; }
     inline void Set_SizeFrame(const glm::vec2& _vSize) { m_vSizeFrame = _vSize; }
     inline void Set_SizeAtlas(const glm::vec2& _vSize) { m_vSizeAtlas = _vSize; }

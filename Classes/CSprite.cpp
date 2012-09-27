@@ -90,7 +90,7 @@ void CSprite::Load(const std::string &_sName, IResource::E_THREAD _eThread)
     }
 }
 
-void CSprite::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
+/*void CSprite::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
 {
     switch (_eType)
     {
@@ -108,7 +108,7 @@ void CSprite::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResour
 void CSprite::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 {
     
-}
+}*/
 
 void CSprite::Update(void)
 {
@@ -146,9 +146,9 @@ void CSprite::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
+            pShader->Set_Matrix4x4(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
+            pShader->Set_Matrix4x4(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
+            pShader->Set_Matrix4x4(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             pShader->Set_CustomVector2(m_vTexcoordOffset, "EXT_TexcoordOffset");
             pShader->Set_CustomVector2(m_vTexcoordRepeat, "EXT_TexcoordRepeat");
             
@@ -183,9 +183,9 @@ void CSprite::Render(CShader::E_RENDER_MODE _eMode)
             }
             
             pShader->Enable();
-            pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
+            pShader->Set_Matrix4x4(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
+            pShader->Set_Matrix4x4(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
+            pShader->Set_Matrix4x4(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
             {

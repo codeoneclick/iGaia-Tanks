@@ -210,7 +210,7 @@ bool CLandscape::_IsPointInBoundBox(glm::vec3 _vPoint, glm::vec3 _vMinBound, glm
     }
 }
 
-void CLandscape::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
+/*void CLandscape::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 {
     CCollisionMgr::SRay3d tTouchRay = CSceneMgr::Instance()->Get_CollisionMgr()->Get_TouchRay();
     glm::vec3 vCollisionPoint;
@@ -233,7 +233,7 @@ void CLandscape::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
             dynamic_cast<ITouchDelegate*>(m_lDelegateOwners[index])->OnTouchEvent(this);
         }
     }
-}
+}*/
 
 void CLandscape::_CheckVisibleQuadTreeNode(CLandscape::SQuadTreeNode *_pNode)
 {
@@ -303,7 +303,7 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
+            pShader->Set_Matrix4x4(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             pShader->Set_Vector3(pCamera->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_CAMERA_POSITION);
             pShader->Set_Vector3(pLight->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_LIGHT_POSITION);
             
@@ -330,7 +330,7 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
 
-            pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
+            pShader->Set_Matrix4x4(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             pShader->Set_Vector3(pCamera->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_CAMERA_POSITION);
             pShader->Set_Vector3(pLight->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_LIGHT_POSITION);
             
@@ -357,7 +357,7 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
+            pShader->Set_Matrix4x4(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             pShader->Set_Vector3(pCamera->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_CAMERA_POSITION);
             pShader->Set_Vector3(pLight->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_LIGHT_POSITION);
             
@@ -383,10 +383,10 @@ void CLandscape::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
-            pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
+            pShader->Set_Matrix4x4(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
+            pShader->Set_Matrix4x4(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
+            pShader->Set_Matrix4x4(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
+            pShader->Set_Matrix4x4(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             pShader->Set_Vector4(glm::vec4(0.0f, 1.0, 0.0, 0.1), CShader::E_ATTRIBUTE_VECTOR_CLIP_PLANE);
         }
             break;

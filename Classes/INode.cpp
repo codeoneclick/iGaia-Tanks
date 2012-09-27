@@ -27,7 +27,7 @@ INode::INode(void)
     m_pMesh = nullptr;
     m_bIsVisible = true;
     
-    m_pAsyncLoadSignature = [this](IResource* _pResource)->void
+    m_pLoadBlock = [this](IResource* _pResource)->void
     {
         //TODO : implement async mode loading
     };
@@ -35,9 +35,6 @@ INode::INode(void)
 
 INode::~INode(void)
 {
-    LOG("destruct");
-    CResourceMgr::Instance()->Cancel_Load(this);
-    m_lDelegateOwners.clear();
     SAFE_DELETE(m_pBoundingBox);
     if(m_pMesh->Get_CreationMode() == IResource::E_CREATION_MODE_CUSTOM)
     {
@@ -87,34 +84,6 @@ void INode::Set_RenderMode(CShader::E_RENDER_MODE _eMode, bool _value)
 bool INode::Get_RenderMode(CShader::E_RENDER_MODE _eMode)
 {
     return m_pMaterial->Get_RenderMode(_eMode);
-}
-
-void INode::Add_DelegateOwner(IDelegate *_pDelegateOwner)
-{
-    for(size_t index = 0; index< m_lDelegateOwners.size(); index++)
-    {
-        if(m_lDelegateOwners[index] == _pDelegateOwner)
-        {
-            LOG("Error - can not add same delegate owner");
-            return;
-        }
-    }
-    m_lDelegateOwners.push_back(_pDelegateOwner);
-}
-
-void INode::Remove_DelegateOwner(IDelegate *_pDelegateOwner)
-{
-    std::vector<IDelegate*>::iterator pBeginIterator = m_lDelegateOwners.begin();
-    std::vector<IDelegate*>::iterator pEndIterator = m_lDelegateOwners.end();
-    while (pBeginIterator != pEndIterator)
-    {
-        if((*pBeginIterator) == _pDelegateOwner)
-        {
-            m_lDelegateOwners.erase(pBeginIterator);
-            return;
-        }
-        ++pBeginIterator;
-    }
 }
 
 void INode::Update(void)

@@ -33,9 +33,6 @@ public:
     
     void Set_Color(const glm::vec4& _vColor) { m_vColor = _vColor; }
     glm::vec4 Get_Color(void) { return m_vColor; }
-    
-    void OnTouchEvent(ITouchDelegate* _pDelegateOwner);
-    void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource);
 };
 
 #endif /* defined(__iGaia__CLandscapeDecal__) */

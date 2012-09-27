@@ -19,12 +19,9 @@
 #include "CResourceMgr.h"
 #include "CShaderComposite.h"
 
-#include "IResourceLoaderDelegate.h"
-#include "ITouchDelegate.h"
-
 #include "CMathHelper.h"
 
-class INode : public ITouchDelegate
+class INode
 {
 protected:
 // -- Block for transform matrix -- //
@@ -56,16 +53,11 @@ protected:
 // -- Bound box for current mesh -- //
     CBoundingBox* m_pBoundingBox;
 // -- -- //
-    
-// -- List of delegates which contain owners for callback -- //
-    std::vector<IDelegate*> m_lDelegateOwners;
-// -- -- //
 
 // -- Varible for enable/disable render -- //
     bool m_bIsVisible;
 // -- -- //
-    
-    IResource::EventSignature m_pAsyncLoadSignature;
+    IResource::EventSignature m_pLoadBlock;
     
 public:
     INode(void);
@@ -118,15 +110,6 @@ public:
 // -- Setters/Getters for manipulation texture coord -- //
     void Set_TexCoordOffset(glm::vec2 _vOffset) { m_vTexCoordOffset = _vOffset; }
     glm::vec2 Get_TexCoordOffset(void) { return m_vTexCoordOffset; }
-// -- -- //
-    
-// -- Block for manipulation delegate owners, to add/remove current node to the listeners -- //
-    void Add_DelegateOwner(IDelegate* _pDelegateOwner);
-    void Remove_DelegateOwner(IDelegate* _pDelegateOwner);
-// -- -- //
-    
-// -- Block for the delegate listener methods -- //
-    virtual void OnTouchEvent(ITouchDelegate* _pDelegateOwner) = 0;
 // -- -- //
     
 // -- Block for enable/disable and get current render mode. Use for the different materials -- //

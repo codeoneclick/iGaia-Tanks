@@ -96,7 +96,7 @@ float CParticleEmitter::_Get_RandomFromRange(float _fMin, float _fMax)
     return _fMin + float(fRange * rand() / (RAND_MAX + 1.0f)); 
 }
 
-void CParticleEmitter::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
+/*void CParticleEmitter::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
 {
     switch (_eType)
     {
@@ -114,7 +114,7 @@ void CParticleEmitter::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType
 void CParticleEmitter::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 {
     
-}
+}*/
 
 void CParticleEmitter::Reset(void)
 {
@@ -217,9 +217,9 @@ void CParticleEmitter::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
 
-            pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
+            pShader->Set_Matrix4x4(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
+            pShader->Set_Matrix4x4(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
+            pShader->Set_Matrix4x4(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             pShader->Set_Vector3(pCamera->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_CAMERA_POSITION);
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
@@ -241,9 +241,9 @@ void CParticleEmitter::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
+            pShader->Set_Matrix4x4(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
+            pShader->Set_Matrix4x4(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
+            pShader->Set_Matrix4x4(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
             {

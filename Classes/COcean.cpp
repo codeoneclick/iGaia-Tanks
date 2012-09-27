@@ -83,10 +83,10 @@ void COcean::_Load(void* data)
     Set_Scale(glm::vec3(vScaleFactor.x, 1.0f, vScaleFactor.y));
 }
 
-void COcean::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
-{
+//void COcean::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
+//{
     
-}
+//}
 
 void COcean::Update()
 {
@@ -116,7 +116,7 @@ void COcean::Render(CShader::E_RENDER_MODE _eMode)
             }
 
             pShader->Set_Vector3(pCamera->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_CAMERA_POSITION);
-            pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
+            pShader->Set_Matrix4x4(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             pShader->Set_CustomFloat(fTimer, "EXT_Timer");
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)

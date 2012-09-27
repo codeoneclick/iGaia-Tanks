@@ -85,11 +85,6 @@ void CResourceMgr::LoadAsync(IResource::E_MGR _eMgr, const std::string &_sName, 
     m_lMgr[_eMgr]->LoadAsync(_sName, _pListener);
 }
 
-/*IResource* CResourceMgr::Load(const std::string& _sName, IResource::E_MGR _eMgr, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams)
-{
-    return m_lMgr[_eMgr]->Load(_sName, _eThread, _pDelegate, _lParams);
-}*/
-
 void CResourceMgr::Unload(IResource *_pResource)
 {
     //TODO: create Unload

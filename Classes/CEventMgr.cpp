@@ -60,7 +60,7 @@ void CEventMgr::OnEvent(CEventMgr::E_EVENT _eEvent)
         switch (_eEvent)
         {
             case E_EVENT_TOUCH:
-                pNode->OnTouchEvent(NULL);
+                //pNode->OnTouchEvent(NULL);
                 break;
             case E_EVENT_UNTOUCH:
                 

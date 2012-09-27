@@ -26,7 +26,6 @@ public:
     };
 protected:
     E_STATUS m_eStatus;
-    std::map<std::string, std::string> m_lParams;
 public:
     IParser(void);
     virtual ~IParser(void);

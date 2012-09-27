@@ -420,10 +420,8 @@ void CHeightMapSetter::Update(void)
         m_pPreRenderScreenQuad->Get_IndexBufferRef()->Disable();
         m_pPreRenderScreenQuad->Get_VertexBufferRef()->Disable(CShader::E_RENDER_MODE_SIMPLE);
         
-        
         CSceneMgr::Instance()->Get_RenderMgr()->EndDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_COLOR);
         m_iHandleTextureColor = CSceneMgr::Instance()->Get_RenderMgr()->Get_OffScreenTexture(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_COLOR);
-        
         
         CSceneMgr::Instance()->Get_RenderMgr()->BeginDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_LANDSCAPE_DETAIL_NORMAL);
         

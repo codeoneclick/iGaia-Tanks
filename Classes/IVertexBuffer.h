@@ -14,6 +14,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/type_precision.hpp>
 #include <stdlib.h>
+#include <map>
 #include "CShader.h"
 
 #define SAFE_DELETE(a) { delete (a); (a) = NULL; }

@@ -164,10 +164,10 @@ void CSkyBox::_Load(void *data)
     m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
 }
 
-void CSkyBox::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
+/*void CSkyBox::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 {
     
-}
+}*/
 
 void CSkyBox::Update()
 {
@@ -199,9 +199,9 @@ void CSkyBox::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
+            pShader->Set_Matrix4x4(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
+            pShader->Set_Matrix4x4(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
+            pShader->Set_Matrix4x4(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
             {
@@ -222,9 +222,9 @@ void CSkyBox::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
+            pShader->Set_Matrix4x4(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
+            pShader->Set_Matrix4x4(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
+            pShader->Set_Matrix4x4(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
             {

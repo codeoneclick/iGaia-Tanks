@@ -44,6 +44,9 @@ void CGame::Load(void)
     CGameSceneMgr::Instance()->Set_Scene(pScene);
     pScene->Load();
     CGameUIMgr::Instance()->Set_GameUI("main_menu_ui");
+
+    char a[] = "bfdbfd";
+    int bbb = sizeof(a);
     //GameNativeCommunicationMgr::Instance()->CreateGameServer();
     //GameNativeCommunicationMgr::Instance()->ConnectToGameServer();
 }

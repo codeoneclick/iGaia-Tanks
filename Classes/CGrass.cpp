@@ -284,10 +284,10 @@ bool CGrass::_IsPointInBoundBox(glm::vec3 _vPoint, glm::vec3 _vMinBound, glm::ve
     }
 }
 
-void CGrass::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
+/*void CGrass::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 {
     
-}
+}*/
 
 void CGrass::_CheckVisibleQuadTreeNode(CGrass::SQuadTreeNode *_pNode)
 {
@@ -399,7 +399,7 @@ void CGrass::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
+            pShader->Set_Matrix4x4(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
             {
@@ -430,7 +430,7 @@ void CGrass::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
+            pShader->Set_Matrix4x4(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
             {

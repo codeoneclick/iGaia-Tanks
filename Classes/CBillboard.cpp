@@ -23,7 +23,7 @@ void CBillboard::Load(const std::string &_sName, IResource::E_THREAD _eThread)
     
 }
 
-void CBillboard::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
+/*void CBillboard::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
 {
     switch (_eType)
     {
@@ -41,7 +41,7 @@ void CBillboard::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IRes
 void CBillboard::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 {
     
-}
+}*/
 
 void CBillboard::Update(void)
 {

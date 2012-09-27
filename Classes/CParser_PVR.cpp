@@ -149,27 +149,11 @@ IResource* CParser_PVR::Commit(void)
     glBindTexture(iTextureTarget, iHandle);
     if(iTextureTarget == GL_TEXTURE_2D)
     {
-        GLint iWrap = GL_REPEAT;
-        if(m_lParams.find("WRAP") != m_lParams.end())
-        {
-            if(m_lParams.find("WRAP")->second == "CLAMP")
-            {
-                iWrap = GL_CLAMP_TO_EDGE;
-            }
-            else if(m_lParams.find("WRAP")->second == "REPEAT")
-            {
-                iWrap = GL_REPEAT;
-            }    
-        }
-        glTexParameteri(iTextureTarget, GL_TEXTURE_WRAP_S, iWrap);
-        glTexParameteri(iTextureTarget, GL_TEXTURE_WRAP_T, iWrap);
         glTexParameteri(iTextureTarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
         glTexParameteri(iTextureTarget, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     }
     else
     {
-        glTexParameteri(iTextureTarget, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(iTextureTarget, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         glTexParameteri(iTextureTarget, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(iTextureTarget, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         m_pDescription->m_bCompressed = false;

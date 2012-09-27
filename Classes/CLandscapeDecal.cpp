@@ -70,9 +70,7 @@ void CLandscapeDecal::Load(const std::string& _sName, IResource::E_THREAD _eThre
             index++;
         }
     }
-    
-   
-    
+
     m_pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
     m_pMesh->Set_VertexBufferRef(pVertexBuffer);
     m_pMesh->Set_IndexBufferRef(pIndexBuffer);
@@ -87,7 +85,7 @@ void CLandscapeDecal::Load(const std::string& _sName, IResource::E_THREAD _eThre
     m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void CLandscapeDecal::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
+/*void CLandscapeDecal::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
 {
     switch (_eType)
     {
@@ -105,7 +103,7 @@ void CLandscapeDecal::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType,
 void CLandscapeDecal::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 {
     
-}
+}*/
 
 void CLandscapeDecal::Update()
 {
@@ -182,9 +180,9 @@ void CLandscapeDecal::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
 
-            pShader->Set_Matrix(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
-            pShader->Set_Matrix(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
-            pShader->Set_Matrix(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
+            pShader->Set_Matrix4x4(m_mWorld, CShader::E_ATTRIBUTE_MATRIX_WORLD);
+            pShader->Set_Matrix4x4(pCamera->Get_Projection(), CShader::E_ATTRIBUTE_MATRIX_PROJECTION);
+            pShader->Set_Matrix4x4(pCamera->Get_View(), CShader::E_ATTRIBUTE_MATRIX_VIEW);
             pShader->Set_CustomVector3(m_vPosition, "EXT_Center");
             pShader->Set_CustomMatrix3x3(m_mTexture, "EXT_MATRIX_TEXTURE");
             pShader->Set_CustomVector4(m_vColor, "EXT_Color");

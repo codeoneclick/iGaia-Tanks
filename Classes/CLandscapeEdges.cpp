@@ -131,10 +131,10 @@ void CLandscapeEdges::_Load(void *data)
     Set_Scale(glm::vec3(vScaleFactor.x, 1.0f, vScaleFactor.y));
 }
 
-void CLandscapeEdges::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
+/*void CLandscapeEdges::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
 {
     
-}
+}*/
 
 void CLandscapeEdges::Update(void)
 {
@@ -170,7 +170,7 @@ void CLandscapeEdges::Render(CShader::E_RENDER_MODE _eMode)
                 return;
             }
             
-            pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
+            pShader->Set_Matrix4x4(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
             pShader->Set_Vector2(m_vTexCoordOffset, CShader::E_ATTRIBUTE_VECTOR_TEXCOORD_OFFSET);
             
             for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)

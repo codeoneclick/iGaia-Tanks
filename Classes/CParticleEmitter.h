@@ -55,9 +55,6 @@ public:
     virtual void Update(void);
     void Render(CShader::E_RENDER_MODE _eMode);
 
-    void OnTouchEvent(ITouchDelegate* _pDelegateOwner);
-    void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource);
-
     void Set_NumParticles(unsigned int _iNumParticles) { m_iNumParticles = _iNumParticles; }
     void Set_MinSize(glm::vec2 _vSize) { m_vMinSize = _vSize; }
     void Set_MaxSize(glm::vec2 _vSize) { m_vMaxSize = _vSize; }
