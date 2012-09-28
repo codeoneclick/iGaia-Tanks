@@ -15,6 +15,12 @@
 
 CTextureMgr::CTextureMgr(void)
 {
+    CParser_PVR* parser = new CParser_PVR();
+    parser->Load("stub.pvr");
+    if(parser->Get_Status() != IParser::E_STATUS_ERROR)
+    {
+        m_stub = static_cast<CTexture*>(parser->Commit());
+    }
 }
 
 CTextureMgr::~CTextureMgr(void)
@@ -22,123 +28,77 @@ CTextureMgr::~CTextureMgr(void)
     
 }
 
-IResource* CTextureMgr::LoadDefault(void)
+IResource* CTextureMgr::LoadSync(const std::string &_name)
 {
-    return m_pDefault;
-}
-
-IResource* CTextureMgr::LoadSync(const std::string &_sName)
-{
-    CTexture* pTexture = nullptr;
-    if(m_lContainer.find(_sName) != m_lContainer.end())
+    CTexture* texture = nullptr;
+    if(m_resources.find(_name) != m_resources.end())
     {
-        pTexture = static_cast<CTexture*>(m_lContainer[_sName]);
-        pTexture->IncRefCount();
+        texture = static_cast<CTexture*>(m_resources[_name]);
+        texture->IncReferenceCount();
     }
     else
     {
-        CParser_PVR* pParser = new CParser_PVR();
-        pParser->Load(_sName.c_str());
-        if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
+        CParser_PVR* parser = new CParser_PVR();
+        parser->Load(_name.c_str());
+        if(parser->Get_Status() != IParser::E_STATUS_ERROR)
         {
-            pTexture = static_cast<CTexture*>(pParser->Commit());
-            m_lContainer[_sName] = pTexture;
+            texture = static_cast<CTexture*>(parser->Commit());
+            texture->Set_Name(_name);
+            m_resources[_name] = texture;
         }
         else
         {
-            pTexture = m_pDefault;
+            texture = new CTexture(*m_stub);
+            texture->Set_Name(_name);
+            texture->IncReferenceCount();
+            m_resources[_name] = texture;
         }
-        SAFE_DELETE(pParser);
+        SAFE_DELETE(parser);
     }
-    return pTexture;
+    return texture;
 }
 
-void CTextureMgr::LoadAsync(const std::string &_sName, const IResource::EventSignature &_pListener)
+IResource* CTextureMgr::LoadAsync(const std::string &_name)
 {
-    if( m_lContainer.find(_sName) != m_lContainer.end())
+    CTexture* texture = nullptr;
+    if( m_resources.find(_name) != m_resources.end())
     {
-        CTexture*  pTexture = static_cast<CTexture*>(m_lContainer[_sName]);
-        pTexture->IncRefCount();
-        _pListener(pTexture);
+        texture = static_cast<CTexture*>(m_resources[_name]);
+        texture->IncReferenceCount();
     }
     else
     {
+        texture = new CTexture(*m_stub);
+        texture->Set_Name(_name);
+        texture->IncReferenceCount();
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            CParser_PVR* pParser = new CParser_PVR();
-            pParser->Load(_sName.c_str());
+            CParser_PVR* parser = new CParser_PVR();
+            parser->Load(_name.c_str());
             dispatch_async(dispatch_get_main_queue(), ^{
-                if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
+                if(parser->Get_Status() != IParser::E_STATUS_ERROR)
                 {
-                    CTexture* pTexture = static_cast<CTexture*>(pParser->Commit());
-                    m_lContainer[_sName] = pTexture;
-                    _pListener(pTexture);
+                    texture->PutInstance(parser->Commit());
+                    m_resources[_name] = texture;
                 }
             });
         });
     }
+    return texture;
 }
 
-IResource* CTextureMgr::Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams)
+void CTextureMgr::Unload(const std::string& _name)
 {
-/*  CTexture* pTexture = NULL;
-    if(_eThread == IResource::E_THREAD_SYNC)
+    CTexture* texture = nullptr;
+    if( m_resources.find(_name) != m_resources.end())
     {
-        if( m_lContainer.find(_sName) != m_lContainer.end())
-        {
-            pTexture = static_cast<CTexture*>(m_lContainer[_sName]);
-            pTexture->IncRefCount();
-        }
-        else
-        {
-            pTexture = new CTexture();
-            pTexture->Set_SourceData(m_pDefaultTextureSourceData);
-            CParser_PVR* pParser = new CParser_PVR();
-            pParser->Load(_sName.c_str());
-            if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
-            {
-                pParser->Commit();
-                pTexture->Set_SourceData(pParser->Get_SourceData());
-            }
-            delete pParser;
-            m_lContainer[_sName] = pTexture;
-        }
-    }
-    else if(_eThread == IResource::E_THREAD_ASYNC)
-    {
-        if( m_lContainer.find(_sName) != m_lContainer.end())
-        {
-            pTexture = static_cast<CTexture*>(m_lContainer[_sName]);
-            pTexture->IncRefCount();
-        }
-        else
-        {
-            if(m_lTaskPool.find(_sName) == m_lTaskPool.end())
-            {
-                m_lTaskPool[_sName] = new CParser_PVR();
-            }
-            pTexture = new CTexture();
-            pTexture->Set_SourceData(m_pDefaultTextureSourceData);
-            pTexture->Set_Name(_sName);
-            pTexture->Add_DelegateOwner(_pDelegate);
-            m_lContainer[_sName] = pTexture;
-        }
-    }
-    return pTexture;*/
-}
-
-void CTextureMgr::Unload(const std::string& _sName)
-{
-    CTexture* pTexture = NULL;
-    if( m_lContainer.find(_sName) != m_lContainer.end())
-    {
-        pTexture = static_cast<CTexture*>(m_lContainer[_sName]);
-        pTexture->DecRefCount();
+        texture = static_cast<CTexture*>(m_resources[_name]);
+        texture->DecReferenceCount();
         
-        if(pTexture->Get_RefCount() == 0)
+        if(texture->Get_ReferenceCount() == 0)
         {
-            delete pTexture;
-            std::map<std::string, IResource*>::iterator pIterator = m_lContainer.find(_sName);
-            m_lContainer.erase(pIterator);
+            SAFE_DELETE(texture);
+            std::map<std::string, IResource*>::iterator iterator = m_resources.find(_name);
+            m_resources.erase(iterator);
         }
     }
 }

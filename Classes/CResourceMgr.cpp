@@ -7,38 +7,24 @@
 //
 
 #include <iostream>
+
 #include "CResourceMgr.h"
 
-void* UpdateThread(void *_pParam)
-{
-    CResourceMgr* pInstance = (CResourceMgr*)_pParam;
-    while (true)
-    {
-        std::map<IResource::E_MGR,IResourceMgr*>::iterator pBMgr = pInstance->m_lMgr.begin();
-        std::map<IResource::E_MGR,IResourceMgr*>::iterator pEMgr = pInstance->m_lMgr.end();
-        while( pBMgr != pEMgr)
-        {
-            pBMgr->second->Thread();
-            ++pBMgr;
-        }
-    }
-}
-
-CResourceMgr* CResourceMgr::m_pInstance = NULL;
+CResourceMgr* CResourceMgr::m_instance = nullptr;
 
 CResourceMgr* CResourceMgr::Instance()
 {
-    if(m_pInstance == NULL)
+    if(m_instance == nullptr)
     {
-        m_pInstance = new CResourceMgr();
+        m_instance = new CResourceMgr();
     }
-    return m_pInstance;
+    return m_instance;
 }
 
 CResourceMgr::CResourceMgr()
 {
-    m_lMgr[IResource::E_MGR_TEXTURE] = new CTextureMgr();
-    m_lMgr[IResource::E_MGR_MESH] = new CMeshMgr();
+    m_textureMgr = new CTextureMgr();
+    m_meshMgr = new CMeshMgr();
 }
 
 CResourceMgr::~CResourceMgr()
@@ -46,47 +32,68 @@ CResourceMgr::~CResourceMgr()
     
 }
 
-void CResourceMgr::Update()
+IResource* CResourceMgr::LoadSync(IResource::E_MGR _mgr, const std::string &_name)
 {
-    std::map<IResource::E_MGR,IResourceMgr*>::iterator pBeginIteratorMgr = m_lMgr.begin();
-    std::map<IResource::E_MGR,IResourceMgr*>::iterator pEndIteratorMgr = m_lMgr.end();
-    while(pBeginIteratorMgr != pEndIteratorMgr)
+    IResource* resource = nullptr;
+    switch (_mgr)
     {
-        pBeginIteratorMgr->second->Thread();
-        pBeginIteratorMgr->second->Update();
-        ++pBeginIteratorMgr;
+        case IResource::E_MGR_TEXTURE:
+        {
+            resource = m_textureMgr->LoadSync(_name);
+        }
+            break;
+        case IResource::E_MGR_MESH:
+        {
+            resource = m_meshMgr->LoadSync(_name);
+        }
+            break;
+
+        default:
+            break;
     }
+    return resource;
 }
 
-void CResourceMgr::Cancel_Load(IDelegate *_pDeleagte)
+IResource* CResourceMgr::LoadAsync(IResource::E_MGR _mgr, const std::string &_name)
 {
-    std::map<IResource::E_MGR,IResourceMgr*>::iterator pBeginIteratorMgr = m_lMgr.begin();
-    std::map<IResource::E_MGR,IResourceMgr*>::iterator pEndIteratorMgr = m_lMgr.end();
-    while(pBeginIteratorMgr != pEndIteratorMgr)
+    IResource* resource = nullptr;
+    switch (_mgr)
     {
-        pBeginIteratorMgr->second->Cancel_Load(_pDeleagte);
-        ++pBeginIteratorMgr;
+        case IResource::E_MGR_TEXTURE:
+        {
+            resource = m_textureMgr->LoadAsync(_name);
+        }
+            break;
+        case IResource::E_MGR_MESH:
+        {
+            resource = m_meshMgr->LoadAsync(_name);
+        }
+            break;
+
+        default:
+            break;
     }
+    return resource;
 }
 
-IResource* CResourceMgr::LoadDefault(IResource::E_MGR _eMgr)
+void CResourceMgr::Unload(IResource::E_MGR _mgr, IResource* _resource)
 {
-    return m_lMgr[_eMgr]->LoadDefault();
-}
+    switch (_mgr)
+    {
+        case IResource::E_MGR_TEXTURE:
+        {
+            m_textureMgr->Unload(_resource->Get_Name());
+        }
+            break;
+        case IResource::E_MGR_MESH:
+        {
+            m_meshMgr->Unload(_resource->Get_Name());
+        }
+            break;
 
-IResource* CResourceMgr::LoadSync(IResource::E_MGR _eMgr, const std::string &_sName)
-{
-    IResource* pResource = m_lMgr[_eMgr]->LoadSync(_sName);
-    return pResource;
-}
+        default:
+            break;
+    }
 
-void CResourceMgr::LoadAsync(IResource::E_MGR _eMgr, const std::string &_sName, const IResource::EventSignature &_pListener)
-{
-    m_lMgr[_eMgr]->LoadAsync(_sName, _pListener);
-}
-
-void CResourceMgr::Unload(IResource *_pResource)
-{
-    //TODO: create Unload
 }
 

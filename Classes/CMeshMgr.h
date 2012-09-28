@@ -13,22 +13,20 @@
 #include <string>
 #include <map>
 #include "CParser_MDL.h"
-#include "IResourceMgr.h"
 
-class CMeshMgr : public IResourceMgr
+class CMeshMgr
 {
 protected:
-    CMesh* m_pDefault;
+    std::map<std::string, IParser*> m_taskPool;
+    std::map<std::string, IResource*> m_resources;
+    CMesh* m_stub;
 public:
     CMeshMgr(void);
-    virtual ~CMeshMgr(void);
+    ~CMeshMgr(void);
     
-    IResource* LoadDefault(void);
-    IResource* LoadSync(const std::string& _sName);
-    void LoadAsync(const std::string& _sName, const IResource::EventSignature& _pListener);
-    
-    virtual IResource* Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams);
-    virtual void Unload(const std::string& _sName);
+    IResource* LoadSync(const std::string& _name);
+    IResource* LoadAsync(const std::string& _name);
+    void Unload(const std::string& _name);
 };
 
 #endif

@@ -19,14 +19,14 @@
 class CShaderComposite
 {
 private:
-    static CShaderComposite* m_pInstance;
+    static CShaderComposite* m_instance;
 protected:
-    std::map<IResource::E_SHADER, CShader*> m_lContainer;
+    std::map<CShader::E_SHADER, CShader*> m_shaders;
 public:
-    CShaderComposite();
-    ~CShaderComposite();
+    CShaderComposite(void);
+    ~CShaderComposite(void);
     static CShaderComposite* Instance();
-    CShader* Get_Shader(IResource::E_SHADER _eShader);
+    CShader* Get_Shader(CShader::E_SHADER _shader);
 };
 
 #endif

@@ -56,8 +56,8 @@ public:
     }
     void Unlock(void);
     
-    virtual void Bind(unsigned int _renderMode) = 0;
-    virtual void Unbind(unsigned int _renderMode) = 0;
+    virtual void Bind(unsigned int _renderMode);
+    virtual void Unbind(unsigned int _renderMode);
 };
 
 #endif

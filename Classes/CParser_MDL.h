@@ -17,15 +17,7 @@
 class CParser_MDL : public IParser
 {
 protected:
-    struct SVertex
-    {
-        glm::vec3 m_vPosition;
-        glm::vec2 m_vTexCoord;
-        glm::vec3 m_vNormal;
-        glm::vec3 m_vTangent;
-    };
-        
-    SVertex* m_vertexData;
+    CVertexBuffer::SVertex* m_vertexData;
     unsigned short* m_indexData;
     unsigned int m_numVertexes;
     unsigned int m_numIndexes;

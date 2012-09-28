@@ -11,32 +11,24 @@
 
 #include "CTextureMgr.h"
 #include "CMeshMgr.h"
-#include "IDelegate.h"
 
 #include "stdlib.h"
-#include <map>
 
 class CResourceMgr
 {
 public:
-    friend void* UpdateThread(void *_pParam);
-    std::map<IResource::E_MGR,IResourceMgr*> m_lMgr;
+    CTextureMgr* m_textureMgr;
+    CMeshMgr* m_meshMgr;
 private:
-    static CResourceMgr* m_pInstance;
-    pthread_t m_thread;
+    static CResourceMgr* m_instance;
 public:   
-    CResourceMgr();
-    ~CResourceMgr();
-    static CResourceMgr* Instance();
+    CResourceMgr(void);
+    ~CResourceMgr(void);
+    static CResourceMgr* Instance(void);
     
-    IResource* LoadDefault(IResource::E_MGR _eMgr);
-    IResource* LoadSync(IResource::E_MGR _eMgr, const std::string& _sName);
-    void LoadAsync(IResource::E_MGR _eMgr, const std::string& _sName, const IResource::EventSignature& _pListener);
-    
-    void Update();
-    //IResource* Load(const std::string& _sName, IResource::E_MGR _eMgr, IResource::E_THREAD _eThread, IDelegate* _pDeleagte,const std::map<std::string, std::string>* _lParams = NULL);
-    void Unload(IResource* _pResource);
-    void Cancel_Load(IDelegate* _pDeleagte);
+    IResource* LoadSync(IResource::E_MGR _mgr, const std::string& _name);
+    IResource* LoadAsync(IResource::E_MGR _mgr, const std::string& _name);
+    void Unload(IResource::E_MGR _mgr, IResource* _resource);
 };
 
 #endif

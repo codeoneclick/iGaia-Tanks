@@ -17,46 +17,32 @@
 
 INode::INode(void)
 {
-    m_vScale    = glm::vec3(1.0f, 1.0f, 1.0f);
-    m_vRotation = glm::vec3(0.0f, 0.0f, 0.0f);
-    m_vPosition = glm::vec3(0.0f, 0.0f, 0.0f);
-    m_vTexCoordOffset = glm::vec2(0.0f, 0.0f);
+    m_scale    = glm::vec3(1.0f, 1.0f, 1.0f);
+    m_rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+    m_position = glm::vec3(0.0f, 0.0f, 0.0f);
+    m_texcoordOffset = glm::vec2(0.0f, 0.0f);
     
-    m_pMaterial = new CMaterial();
-    m_pBoundingBox = nullptr;
-    m_pMesh = nullptr;
-    m_bIsVisible = true;
+    m_material = new CMaterial();
+    m_mesh = nullptr;
     
-    m_pLoadBlock = [this](IResource* _pResource)->void
-    {
-        //TODO : implement async mode loading
-    };
+    m_visible = true;
 }
 
 INode::~INode(void)
 {
-    SAFE_DELETE(m_pBoundingBox);
-    if(m_pMesh->Get_CreationMode() == IResource::E_CREATION_MODE_CUSTOM)
+    if(m_mesh->Get_CreationMode() == IResource::E_CREATION_MODE_CUSTOM)
     {
-        SAFE_DELETE(m_pMesh);
+        SAFE_DELETE(m_mesh);
     }
-    SAFE_DELETE(m_pMaterial);
+    SAFE_DELETE(m_material);
 }
 
-void INode::Set_Rotation(const glm::vec3 &_vRotation)
+void INode::Set_Texture(CTexture *_texture, int _index, CTexture::E_WRAP_MODE _wrap)
 {
-    m_vRotation = _vRotation;
-    m_vRotation.x = CMathHelper::Get_WrapAngle(m_vRotation.x, 0.0f, 360.0f);
-    m_vRotation.y = CMathHelper::Get_WrapAngle(m_vRotation.y, 0.0f, 360.0f);
-    m_vRotation.z = CMathHelper::Get_WrapAngle(m_vRotation.z, 0.0f, 360.0f);
+    m_material->Set_Texture(_texture, _index, _wrap);
 }
 
-void INode::Set_Texture(CTexture *_pTexture, int _index, CTexture::E_WRAP_MODE _eWrap)
-{
-    m_pMaterial->Set_Texture(_pTexture, _index, _eWrap);
-}
-
-void INode::Set_Texture(const std::string &_sName, int _index, CTexture::E_WRAP_MODE _eWrap, IResource::E_THREAD _eThread)
+void INode::Set_Texture(const std::string &_name, int _index, CTexture::E_WRAP_MODE _wrap, IResource::E_THREAD _thread)
 {
     m_pMaterial->Set_Texture(this, _sName, _index, _eWrap, _eThread);
 }

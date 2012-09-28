@@ -22,6 +22,8 @@ protected:
     
     glm::vec3       m_maxBound;
     glm::vec3       m_minBound;
+
+    void _CreateBounds(void);
 public:
     CMesh(E_CREATION_MODE _eCreationMode, CVertexBuffer* _vertexBuffer, CIndexBuffer* _indexBuffer);
     ~CMesh(void);

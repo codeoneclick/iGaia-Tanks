@@ -12,7 +12,12 @@
 
 CMeshMgr::CMeshMgr(void)
 {
-
+    CParser_MDL* parser = new CParser_MDL();
+    parser->Load("base_model.mdl");
+    if(parser->Get_Status() != IParser::E_STATUS_ERROR)
+    {
+        m_stub = static_cast<CMesh*>(parser->Commit());
+    }
 }
 
 CMeshMgr::~CMeshMgr(void)
@@ -20,124 +25,77 @@ CMeshMgr::~CMeshMgr(void)
     
 }
 
-IResource* CMeshMgr::LoadDefault(void)
+IResource* CMeshMgr::LoadSync(const std::string &_name)
 {
-    return m_pDefault;
-}
-
-IResource* CMeshMgr::LoadSync(const std::string &_sName)
-{
-    CMesh* pMesh = nullptr;
-    if( m_lContainer.find(_sName) != m_lContainer.end())
+    CMesh* mesh = nullptr;
+    if(m_resources.find(_name) != m_resources.end())
     {
-        pMesh = static_cast<CMesh*>(m_lContainer[_sName]);
-        pMesh->IncRefCount();
+        mesh = static_cast<CMesh*>(m_resources[_name]);
+        mesh->IncReferenceCount();
     }
     else
     {
-        IParser* pParser = new CParser_MDL();
-        pParser->Load(_sName.c_str());
-        
-        if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
+        CParser_MDL* parser = new CParser_MDL();
+        parser->Load(_name.c_str());
+        if(parser->Get_Status() != IParser::E_STATUS_ERROR)
         {
-            pMesh = static_cast<CMesh*>(pParser->Commit());
-            m_lContainer[_sName] = pMesh;
+            mesh = static_cast<CMesh*>(parser->Commit());
+            mesh->Set_Name(_name);
+            m_resources[_name] = mesh;
         }
         else
         {
-            pMesh = m_pDefault;
+            mesh = new CMesh(*m_stub);
+            mesh->Set_Name(_name);
+            mesh->IncReferenceCount();
+            m_resources[_name] = mesh;
         }
-        SAFE_DELETE(pParser);
+        SAFE_DELETE(parser);
     }
-    return pMesh;
+    return mesh;
 }
 
-void CMeshMgr::LoadAsync(const std::string &_sName, const IResource::EventSignature &_pListener)
+IResource* CMeshMgr::LoadAsync(const std::string &_name)
 {
-    if( m_lContainer.find(_sName) != m_lContainer.end())
+    CMesh* mesh = nullptr;
+    if( m_resources.find(_name) != m_resources.end())
     {
-        CMesh* pMesh = static_cast<CMesh*>(m_lContainer[_sName]);
-        pMesh->IncRefCount();
-        _pListener(pMesh);
+        mesh = static_cast<CMesh*>(m_resources[_name]);
+        mesh->IncReferenceCount();
     }
     else
     {
+        mesh = new CMesh(*m_stub);
+        mesh->Set_Name(_name);
+        mesh->IncReferenceCount();
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            CParser_MDL* pParser = new CParser_MDL();
-            pParser->Load(_sName.c_str());
+            CParser_MDL* parser = new CParser_MDL();
+            parser->Load(_name.c_str());
             dispatch_async(dispatch_get_main_queue(), ^{
-                if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
+                if(parser->Get_Status() != IParser::E_STATUS_ERROR)
                 {
-                    CMesh* pMesh = static_cast<CMesh*>(pParser->Commit());
-                    m_lContainer[_sName] = pMesh;
-                    _pListener(pMesh);
+                    mesh->PutInstance(parser->Commit());
+                    m_resources[_name] = mesh;
                 }
             });
         });
     }
+    return mesh;
 }
 
-IResource* CMeshMgr::Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams)
+void CMeshMgr::Unload(const std::string& _name)
 {
-   /* CMesh* pMesh = NULL;
-    
-    if(_eThread == IResource::E_THREAD_SYNC)
+    CMesh* mesh = nullptr;
+    if( m_resources.find(_name) != m_resources.end())
     {
-        if( m_lContainer.find(_sName) != m_lContainer.end())
-        {
-            pMesh = static_cast<CMesh*>(m_lContainer[_sName]);
-            pMesh->IncRefCount();
-        }
-        else
-        {
-            pMesh = new CMesh(IResource::E_CREATION_MODE_NATIVE);
-            pMesh->Set_SourceData(m_pDefaultMeshSourceData);
-            
-            IParser* pParser = new CParser_MDL();
-            
-            pParser->Load(_sName.c_str());
-            if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
-            {
-                pMesh->Set_SourceData(pParser->Get_SourceData());
-            }
-            delete pParser;
-        }
-    }
-    else if(_eThread == IResource::E_THREAD_ASYNC)
-    {
-        if( m_lContainer.find(_sName) != m_lContainer.end())
-        {
-            pMesh = static_cast<CMesh*>(m_lContainer[_sName]);
-            pMesh->IncRefCount();
-        }
-        else
-        {
-            if(m_lTaskPool.find(_sName) == m_lTaskPool.end())
-            {
-                m_lTaskPool[_sName] = new CParser_MDL();
-            }
-            pMesh = new CMesh(IResource::E_CREATION_MODE_NATIVE);
-            pMesh->Set_SourceData(m_pDefaultMeshSourceData);
-            pMesh->Set_Name(_sName);
-            pMesh->Add_DelegateOwner(_pDelegate);
-            m_lContainer[_sName] = pMesh;
-        }
-    }
-    return pMesh;*/
-}
+        mesh = static_cast<CMesh*>(m_resources[_name]);
+        mesh->DecReferenceCount();
 
-void CMeshMgr::Unload(const std::string& _sName)
-{
-    CMesh* pMesh = NULL;
-    if( m_lContainer.find(_sName) != m_lContainer.end())
-    {
-        pMesh = static_cast<CMesh*>(m_lContainer[_sName]);
-        pMesh->DecRefCount();
-        if(pMesh->Get_RefCount() == 0)
+        if(mesh->Get_ReferenceCount() == 0)
         {
-            delete pMesh;
-            std::map<std::string, IResource*>::iterator pIterator = m_lContainer.find(_sName);
-            m_lContainer.erase(pIterator);
+            SAFE_DELETE(mesh);
+            std::map<std::string, IResource*>::iterator iterator = m_resources.find(_name);
+            m_resources.erase(iterator);
         }
     }
 }

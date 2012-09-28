@@ -13,23 +13,20 @@
 #include <string>
 #include <map>
 #include "CParser_PVR.h"
-#include "IResourceMgr.h"
-#include "IDelegate.h"
 
-class CTextureMgr : public IResourceMgr
+class CTextureMgr
 {
 protected:
-    CTexture* m_pDefault;
+    std::map<std::string, IParser*> m_taskPool;
+    std::map<std::string, IResource*> m_resources;
+    CTexture* m_stub;
 public:
     CTextureMgr(void);
-    virtual ~CTextureMgr(void);
+    ~CTextureMgr(void);
     
-    IResource* LoadDefault(void);
-    IResource* LoadSync(const std::string& _sName);
-    void LoadAsync(const std::string& _sName, const IResource::EventSignature& _pListener);
-    
-    virtual IResource* Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams);
-    virtual void Unload(const std::string& _sName);
+    IResource* LoadSync(const std::string& _name);
+    IResource* LoadAsync(const std::string& _name);
+    void Unload(const std::string& _name);
 };
 
 

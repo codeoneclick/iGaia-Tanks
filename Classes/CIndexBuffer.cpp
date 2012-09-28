@@ -7,102 +7,49 @@
 //
 
 #include <iostream>
+
 #include "CIndexBuffer.h"
 
-CIndexBuffer::CIndexBuffer(unsigned int _iNumIndexes, unsigned int _eMode)
+CIndexBuffer::CIndexBuffer(unsigned int _numIndexes, unsigned int _mode)
 {
-    m_pSourceData = new unsigned short[_iNumIndexes];
-    m_pWorkingSourceData = NULL;
-    m_iNumIndexes = _iNumIndexes;
-    m_iNumWorkingIndexes = m_iNumIndexes;
-    m_bIsCommited = false;
-    m_eMode = _eMode;
-    glGenBuffers(1, &m_hHandle);
+    m_dataSource = new unsigned short[_numIndexes];
+    m_numIndexes = _numIndexes;
+    m_mode = _mode;
+    glGenBuffers(1, &m_hanlde);
 }
 
 CIndexBuffer::~CIndexBuffer(void)
 {  
-    SAFE_DELETE_ARRAY(m_pWorkingSourceData);
-    SAFE_DELETE_ARRAY(m_pSourceData);
-    try
-    {
-        std::cout<<"[~CIndexBuffer] glDeleteBuffers id :"<<m_hHandle<<std::endl;
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, NULL);
-        glDeleteBuffers(1, &m_hHandle);
-    }
-    catch (int _error)
-    {
-        std::cout<<"[~CIndexBuffer] glDeleteBuffers exception id :"<<_error<<std::endl;
-    }
-    m_hHandle = 0;
+    SAFE_DELETE_ARRAY(m_dataSource);
+    std::cout<<"[~CIndexBuffer] glDeleteBuffers id :"<<m_hanlde<<std::endl;
+    glDeleteBuffers(1, &m_hanlde);
+    m_hanlde = 0;
 }
 
-unsigned short* CIndexBuffer::Get_SourceData(void)
+unsigned short* CIndexBuffer::Lock(void)
 {
-    return m_pSourceData;
+    return m_dataSource;
 }
 
-unsigned short* CIndexBuffer::Get_SourceDataFromVRAM(void)
+void CIndexBuffer::Unlock(void)
 {
-    if(m_bIsCommited == true)
-    {
-        return NULL;
-    }
-    else
-    {
-        if(m_pWorkingSourceData == NULL)
-        {
-            m_pWorkingSourceData = new unsigned short[m_iNumIndexes];
-            memcpy(m_pWorkingSourceData, m_pSourceData, sizeof(unsigned short) * m_iNumIndexes);
-        }
-        return m_pWorkingSourceData;
-    }
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_hanlde);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned short) * m_numIndexes, m_dataSource, m_mode);
 }
 
-void CIndexBuffer::Enable(void)
+void CIndexBuffer::Bind(void)
 {
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_hHandle);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_hanlde);
 }
 
-void CIndexBuffer::Disable(void)
+void CIndexBuffer::Unbind(void)
 {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, NULL);
 }
 
-unsigned short* CIndexBuffer::Get_WorkingSourceDataRef(void)
-{
-    if(m_pWorkingSourceData == NULL)
-    {
-        m_pWorkingSourceData = new unsigned short[m_iNumIndexes];
-        memcpy(m_pWorkingSourceData, m_pSourceData, sizeof(unsigned short) * m_iNumIndexes);
-    }
-    return m_pWorkingSourceData;
-}
 
-void CIndexBuffer::Commit(void)
-{
-    if(!m_bIsCommited)
-    {
-        if(m_pWorkingSourceData == NULL)
-        {
-            m_pWorkingSourceData = new unsigned short[m_iNumIndexes];
-            memcpy(m_pWorkingSourceData, m_pSourceData, sizeof(unsigned short) * m_iNumIndexes);
-        }
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_hHandle);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned short) * m_iNumWorkingIndexes, m_pWorkingSourceData, m_eMode);
-        m_bIsCommited = true;
-    }
-    else
-    {
-        if(m_pWorkingSourceData == NULL)
-        {
-            m_pWorkingSourceData = new unsigned short[m_iNumIndexes];
-            memcpy(m_pWorkingSourceData, m_pSourceData, sizeof(unsigned short) * m_iNumIndexes);
-        }
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_hHandle);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned short) * m_iNumWorkingIndexes, m_pWorkingSourceData, m_eMode);
-    }
-}
+
+
 
 
 

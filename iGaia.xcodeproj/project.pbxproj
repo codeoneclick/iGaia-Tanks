@@ -68,7 +68,6 @@
 		93CFC05E145EF15300720766 /* CInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC05D145EF15300720766 /* CInput.cpp */; };
 		93CFC0931463E61800720766 /* IParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0921463E61800720766 /* IParser.cpp */; };
 		93CFC0961463EC0D00720766 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
-		93CFC0991463FA2C00720766 /* IResourceMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0981463FA2800720766 /* IResourceMgr.cpp */; };
 		93E52C1A14C6E04900697561 /* CIndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93E52C1914C6E04900697561 /* CIndexBuffer.cpp */; };
 		93F814F814D01E09005D6699 /* CLightPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93F814F714D01E08005D6699 /* CLightPoint.cpp */; };
 		93FB5A4C1517CF9800E096A9 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93FB596A1517CF9700E096A9 /* CMakeLists.txt */; };
@@ -197,7 +196,7 @@
 		A12D2F2A1541582800955C6B /* CCharacterControllerEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A12D2F281541582800955C6B /* CCharacterControllerEnemy.cpp */; };
 		A13F9EB91568D743009DCBB4 /* CLandscapeDecal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A13F9EB71568D743009DCBB4 /* CLandscapeDecal.cpp */; };
 		A13F9EC11568DC64009DCBB4 /* ITouchDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A13F9EBF1568DC64009DCBB4 /* ITouchDelegate.cpp */; };
-		A13F9EC91568ECB3009DCBB4 /* default.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A13F9EC81568ECB3009DCBB4 /* default.pvr */; };
+		A13F9EC91568ECB3009DCBB4 /* stub.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A13F9EC81568ECB3009DCBB4 /* stub.pvr */; };
 		A13F9ED1156932FE009DCBB4 /* CDecalMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A13F9ECF156932FC009DCBB4 /* CDecalMgr.cpp */; };
 		A153D5C2153DA3D000FBFFD5 /* CGameInGameUI.mm in Sources */ = {isa = PBXBuildFile; fileRef = A153D5C1153DA3D000FBFFD5 /* CGameInGameUI.mm */; };
 		A153D5C8153DA75000FBFFD5 /* btn.png in Resources */ = {isa = PBXBuildFile; fileRef = A153D5C7153DA75000FBFFD5 /* btn.png */; };
@@ -375,7 +374,6 @@
 		93060C8C14EE8BB100306309 /* CGameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameState.cpp; sourceTree = "<group>"; };
 		9307CBAE14EBB89F00ADFE2B /* CGameInGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameInGameScene.h; sourceTree = "<group>"; };
 		9307CBB014EBB8AB00ADFE2B /* CGameInGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameInGameScene.cpp; sourceTree = "<group>"; };
-		931217EB146D110F00DDC82D /* IResourceMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IResourceMgr.h; sourceTree = "<group>"; };
 		9319B4A014E30904002152EC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		9319B4A314E30923002152EC /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		9319B4A514E30980002152EC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -471,7 +469,6 @@
 		93CFC0921463E61800720766 /* IParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IParser.cpp; sourceTree = "<group>"; };
 		93CFC0941463EBF500720766 /* IResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IResource.h; sourceTree = "<group>"; };
 		93CFC0951463EC0700720766 /* IResource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IResource.cpp; sourceTree = "<group>"; };
-		93CFC0981463FA2800720766 /* IResourceMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IResourceMgr.cpp; sourceTree = "<group>"; };
 		93E52C1714C6E01E00697561 /* CIndexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndexBuffer.h; sourceTree = "<group>"; };
 		93E52C1914C6E04900697561 /* CIndexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndexBuffer.cpp; sourceTree = "<group>"; };
 		93F814F514D01DF8005D6699 /* CLightPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLightPoint.h; sourceTree = "<group>"; };
@@ -741,7 +738,7 @@
 		A13F9EB81568D743009DCBB4 /* CLandscapeDecal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLandscapeDecal.h; sourceTree = "<group>"; };
 		A13F9EBF1568DC64009DCBB4 /* ITouchDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ITouchDelegate.cpp; sourceTree = "<group>"; };
 		A13F9EC01568DC64009DCBB4 /* ITouchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITouchDelegate.h; sourceTree = "<group>"; };
-		A13F9EC81568ECB3009DCBB4 /* default.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.pvr; path = Resources/Textures/default.pvr; sourceTree = "<group>"; };
+		A13F9EC81568ECB3009DCBB4 /* stub.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = stub.pvr; path = Resources/Textures/stub.pvr; sourceTree = "<group>"; };
 		A13F9ECF156932FC009DCBB4 /* CDecalMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDecalMgr.cpp; sourceTree = "<group>"; };
 		A13F9ED0156932FD009DCBB4 /* CDecalMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDecalMgr.h; sourceTree = "<group>"; };
 		A153D5C0153DA3D000FBFFD5 /* CGameInGameUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameInGameUI.h; sourceTree = "<group>"; };
@@ -1098,8 +1095,6 @@
 		15AE127015DAFB0100262A59 /* VertexBuffers */ = {
 			isa = PBXGroup;
 			children = (
-				A1D8068315735D2500EF81D0 /* CVertexBuffer.h */,
-				A1D8068215735D2500EF81D0 /* CVertexBuffer.cpp */,
 			);
 			name = VertexBuffers;
 			sourceTree = "<group>";
@@ -1107,8 +1102,6 @@
 		15AE127115DAFB1C00262A59 /* IndexBuffers */ = {
 			isa = PBXGroup;
 			children = (
-				93E52C1714C6E01E00697561 /* CIndexBuffer.h */,
-				93E52C1914C6E04900697561 /* CIndexBuffer.cpp */,
 			);
 			name = IndexBuffers;
 			sourceTree = "<group>";
@@ -1215,16 +1208,14 @@
 			children = (
 				9315D5A7147BBC4500F42FE7 /* Resources */,
 				93205988145E8C6D00DEBCCB /* Loaders */,
-				931217EB146D110F00DDC82D /* IResourceMgr.h */,
-				93CFC0981463FA2800720766 /* IResourceMgr.cpp */,
-				CE914ED51455DA4400AA2000 /* CTextureMgr.h */,
-				CE914ED61455DA5700AA2000 /* CTextureMgr.cpp */,
 				CE914ED81455DA6800AA2000 /* CResourceMgr.h */,
 				CE914ED91455DA7800AA2000 /* CResourceMgr.cpp */,
-				CE914ED11455D7E900AA2000 /* CShaderComposite.h */,
-				CE914ED31455DA3200AA2000 /* CShaderComposite.cpp */,
+				CE914ED51455DA4400AA2000 /* CTextureMgr.h */,
+				CE914ED61455DA5700AA2000 /* CTextureMgr.cpp */,
 				93B6BB8D148420ED00E34B78 /* CMeshMgr.h */,
 				93B6BB8E148420FE00E34B78 /* CMeshMgr.cpp */,
+				CE914ED11455D7E900AA2000 /* CShaderComposite.h */,
+				CE914ED31455DA3200AA2000 /* CShaderComposite.cpp */,
 			);
 			name = ResourceMgr;
 			sourceTree = "<group>";
@@ -1238,6 +1229,10 @@
 				93CFC0951463EC0700720766 /* IResource.cpp */,
 				CE919216145736D70021A0DC /* CTexture.h */,
 				CE919217145736FD0021A0DC /* CTexture.cpp */,
+				93E52C1714C6E01E00697561 /* CIndexBuffer.h */,
+				93E52C1914C6E04900697561 /* CIndexBuffer.cpp */,
+				A1D8068315735D2500EF81D0 /* CVertexBuffer.h */,
+				A1D8068215735D2500EF81D0 /* CVertexBuffer.cpp */,
 				93B6BB8A14841DC400E34B78 /* CMesh.h */,
 				93B6BB8B14841F0B00E34B78 /* CMesh.cpp */,
 			);
@@ -2271,7 +2266,7 @@
 				A1A8A078159999AF00A9B82E /* ring.pvr */,
 				A1A8BF93156F6C0100CBFAD1 /* camera_button.png */,
 				A1BE19A4156A29D4004C3610 /* shadow.pvr */,
-				A13F9EC81568ECB3009DCBB4 /* default.pvr */,
+				A13F9EC81568ECB3009DCBB4 /* stub.pvr */,
 				A10074FD156130A8000E324E /* clouds.pvr */,
 				A1ED8E8815591C6B00B82AE3 /* joystick.png */,
 				A1AF6F731549380400703E2E /* Skybox.pvr */,
@@ -2485,7 +2480,7 @@
 				A1AF6F741549380400703E2E /* Skybox.pvr in Resources */,
 				A1ED8E8915591C6B00B82AE3 /* joystick.png in Resources */,
 				A10074FE156130A8000E324E /* clouds.pvr in Resources */,
-				A13F9EC91568ECB3009DCBB4 /* default.pvr in Resources */,
+				A13F9EC91568ECB3009DCBB4 /* stub.pvr in Resources */,
 				A1BE19A5156A29D4004C3610 /* shadow.pvr in Resources */,
 				A1A8BF94156F6C0100CBFAD1 /* camera_button.png in Resources */,
 				A1A8A079159999AF00A9B82E /* ring.pvr in Resources */,
@@ -2542,7 +2537,6 @@
 				93CFC05E145EF15300720766 /* CInput.cpp in Sources */,
 				93CFC0931463E61800720766 /* IParser.cpp in Sources */,
 				93CFC0961463EC0D00720766 /* IResource.cpp in Sources */,
-				93CFC0991463FA2C00720766 /* IResourceMgr.cpp in Sources */,
 				93243D5A147553B500ED7443 /* CModel.cpp in Sources */,
 				93B6BB7214840FD600E34B78 /* INode.cpp in Sources */,
 				93B6BB8C14841F0C00E34B78 /* CMesh.cpp in Sources */,

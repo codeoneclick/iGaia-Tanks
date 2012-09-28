@@ -21,26 +21,24 @@
 class CIndexBuffer
 { 
 private:
-    unsigned short* m_pSourceData;
-    unsigned short* m_pWorkingSourceData;
-    GLuint m_hHandle;
-    unsigned int m_iNumIndexes;
-    unsigned int m_iNumWorkingIndexes;
-    bool m_bIsCommited;
-    GLenum m_eMode;
+    unsigned int m_hanlde;
+    unsigned short* m_dataSource;
+    unsigned int m_numIndexes;
+    GLenum m_mode;
 public:
-    CIndexBuffer(unsigned int _iNumIndexes, unsigned int _eMode);
+    CIndexBuffer(unsigned int _numIndexes, unsigned int _mode);
     ~CIndexBuffer(void);
     
-    unsigned int Get_NumIndexes(void) { return m_iNumIndexes; }
-    unsigned int Get_NumWorkingIndexes(void) { return m_iNumWorkingIndexes; }
-    void Set_NumWorkingIndexes(unsigned int _iNumWorkingIndexes) { m_iNumWorkingIndexes = _iNumWorkingIndexes; }
-    unsigned short* Get_WorkingSourceDataRef(void);
-    unsigned short* Get_SourceData(void);
-    unsigned short* Get_SourceDataFromVRAM(void);
-    void Enable(void);
-    void Disable(void);
-    void Commit(void);
+    unsigned int Get_NumIndexes(void)
+    {
+        return m_numIndexes;
+    }
+
+    unsigned short* Lock(void);
+    void Unlock(void);
+
+    void Bind(void);
+    void Unbind(void);
 };
 
 

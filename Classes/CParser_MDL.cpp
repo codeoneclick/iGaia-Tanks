@@ -22,112 +22,72 @@ CParser_MDL::~CParser_MDL(void)
   
 }
 
-void CParser_MDL::Load(const std::string& _sName)
+void CParser_MDL::Load(const std::string& _name)
 {
-    m_eStatus = E_START_STATUS;
+    m_status = E_STATUS_LOAD;
 
-    std::string sPath = Get_ResourceFileName(_sName); 
+    std::string path = Get_ResourceFileName(_name);
     
-    FILE *pFile = fopen(sPath.c_str(), "r");
-    if (!pFile)
+    FILE *file = fopen(path.c_str(), "r");
+    if (!file)
     {
         return;
     }
     
-    fread(&m_pData->m_iNumVertexes, sizeof(int), 1, pFile);
-    fread(&m_pData->m_iNumIndexes, sizeof(int), 1, pFile);
-    
-    m_pData->m_vMaxBound = glm::vec3( -4096.0f, -4096.0f, -4096.0f );
-    m_pData->m_vMinBound = glm::vec3(  4096.0f,  4096.0f,  4096.0f );
-    
-    m_pData->m_pVertexData = new SData::SVertex[m_pData->m_iNumVertexes];
-    
-    for(unsigned int i = 0; i < m_pData->m_iNumVertexes; ++i)
+    fread(&m_numVertexes, sizeof(int), 1, file);
+    fread(&m_numIndexes, sizeof(int), 1, file);
+
+    m_vertexData = new CVertexBuffer::SVertex[m_numVertexes];
+
+    for(unsigned int i = 0; i < m_numVertexes; ++i)
     {
-        fread(&m_pData->m_pVertexData[i].m_vPosition,sizeof(glm::vec3), 1, pFile);
-        fread(&m_pData->m_pVertexData[i].m_vNormal, sizeof(glm::vec3), 1, pFile);
-        fread(&m_pData->m_pVertexData[i].m_vTangent, sizeof(glm::vec3), 1, pFile);
-        fread(&m_pData->m_pVertexData[i].m_vTexCoord, sizeof(glm::vec2), 1, pFile);
-       
-        if(m_pData->m_pVertexData[i].m_vPosition.x > m_pData->m_vMaxBound.x)
-        {
-            m_pData->m_vMaxBound.x = m_pData->m_pVertexData[i].m_vPosition.x;
-        }
-        
-        if(m_pData->m_pVertexData[i].m_vPosition.y > m_pData->m_vMaxBound.y)
-        {
-            m_pData->m_vMaxBound.y = m_pData->m_pVertexData[i].m_vPosition.y;
-        }
-        
-        if(m_pData->m_pVertexData[i].m_vPosition.z > m_pData->m_vMaxBound.z)
-        {
-            m_pData->m_vMaxBound.z = m_pData->m_pVertexData[i].m_vPosition.z;
-        }
-        
-        if(m_pData->m_pVertexData[i].m_vPosition.x < m_pData->m_vMinBound.x)
-        {
-            m_pData->m_vMinBound.x = m_pData->m_pVertexData[i].m_vPosition.x;
-        }
-        
-        if(m_pData->m_pVertexData[i].m_vPosition.y < m_pData->m_vMinBound.y)
-        {
-            m_pData->m_vMinBound.y = m_pData->m_pVertexData[i].m_vPosition.y;
-        }
-        
-        if(m_pData->m_pVertexData[i].m_vPosition.z < m_pData->m_vMinBound.z)
-        {
-            m_pData->m_vMinBound.z = m_pData->m_pVertexData[i].m_vPosition.z;
-        }
+        glm::vec3 position; 
+        fread(&position,sizeof(glm::vec3), 1, file);
+        glm::vec3 normal;
+        fread(&normal, sizeof(glm::vec3), 1, file);
+        glm::vec3 tangent;
+        fread(&tangent, sizeof(glm::vec3), 1, file);
+        glm::vec2 texcoord;
+        fread(&texcoord, sizeof(glm::vec2), 1, file);
+
+        m_vertexData[i].m_position = position;
+        m_vertexData[i].m_texcoord = texcoord;
+        m_vertexData[i].m_normal = CVertexBuffer::CompressVEC3(normal);
+        m_vertexData[i].m_tangent = CVertexBuffer::CompressVEC3(tangent);
     }
 
-    m_pData->m_pIndexData = new unsigned short[m_pData->m_iNumIndexes];
+    m_indexData = new unsigned short[m_numIndexes];
     
-    for(unsigned int i = 0; i < m_pData->m_iNumIndexes; ++i)
+    for(unsigned int i = 0; i < m_numIndexes; ++i)
     {
-        fread(&m_pData->m_pIndexData[i], sizeof(unsigned short),1, pFile);
+        fread(&m_indexData[i], sizeof(unsigned short),1, file);
     }
     
-    for(unsigned int i = 0; i < m_pData->m_iNumIndexes; i += 3)
+    for(unsigned int i = 0; i < m_numIndexes; i += 3)
     {
-        unsigned short iTempIndex = m_pData->m_pIndexData[i + 1];
-        m_pData->m_pIndexData[i + 1] = m_pData->m_pIndexData[i + 2];
-        m_pData->m_pIndexData[i + 2] = iTempIndex;
+        unsigned short index = m_indexData[i + 1];
+        m_indexData[i + 1] = m_indexData[i + 2];
+        m_indexData[i + 2] = index;
     }
-    fclose(pFile);
+    fclose(file);
     
-    m_eStatus = E_DONE_STATUS;
+    m_status = E_STATUS_DONE;
 }
 
 IResource* CParser_MDL::Commit(void)
 {
-    CVertexBufferPositionTexcoordNormalTangent* pVertexBuffer = new CVertexBufferPositionTexcoordNormalTangent(m_pData->m_iNumVertexes, GL_STATIC_DRAW);
-    CVertexBufferPositionTexcoordNormalTangent::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoordNormalTangent::SVertex*>(pVertexBuffer->Lock());
-    for(unsigned int index = 0; index < m_pData->m_iNumVertexes; index++)
-    {
-        pVertexBufferData[index].m_vPosition = m_pData->m_pVertexData[index].m_vPosition;
-        pVertexBufferData[index].m_vTexcoord = m_pData->m_pVertexData[index].m_vTexCoord;
-        pVertexBufferData[index].m_vNormal = IVertexBuffer::CompressVEC3(m_pData->m_pVertexData[index].m_vNormal);
-        pVertexBufferData[index].m_vTangent = IVertexBuffer::CompressVEC3(m_pData->m_pVertexData[index].m_vTangent);
-    }
+    CVertexBuffer* vertexBuffer = new CVertexBuffer(m_numVertexes, GL_STATIC_DRAW);
+    CVertexBuffer::SVertex* vertexData = vertexBuffer->Lock();
+    memcpy(m_vertexData, vertexData, sizeof(CVertexBuffer::SVertex) * m_numVertexes);
+    vertexBuffer->Unlock();
+
+    CIndexBuffer* indexBuffer = new CIndexBuffer(m_numIndexes, GL_STATIC_DRAW);
+    unsigned short* indexData = indexBuffer->Lock();
+    memcpy(m_indexData, indexData, sizeof(unsigned short) * m_numIndexes);
+    indexBuffer->Unlock();
     
-    CIndexBuffer* pIndexBuffer = new CIndexBuffer(m_pData->m_iNumIndexes, GL_STATIC_DRAW);
-    unsigned short* pIndexBufferData = pIndexBuffer->Get_SourceData();
-    for(unsigned int index = 0; index < m_pData->m_iNumIndexes; ++index)
-    {
-        pIndexBufferData[index] = m_pData->m_pIndexData[index];
-    }
-    
-    CMesh* pMesh = new CMesh(IResource::E_CREATION_MODE_NATIVE);
-    pMesh->Set_VertexBufferRef(pVertexBuffer);
-    pMesh->Set_IndexBufferRef(pIndexBuffer);
-    
-    pMesh->Get_VertexBufferRef()->Commit();
-    pMesh->Get_IndexBufferRef()->Commit();
-    
-    pMesh->Set_MaxBound(m_pData->m_vMaxBound);
-    pMesh->Set_MinBound(m_pData->m_vMinBound);
-    
-    return pMesh;
+    CMesh* mesh = new CMesh(IResource::E_CREATION_MODE_NATIVE, vertexBuffer, indexBuffer);
+    return mesh;
 }
 
 
