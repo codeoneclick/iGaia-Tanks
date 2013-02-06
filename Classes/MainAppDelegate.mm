@@ -13,7 +13,7 @@
     m_pNavigationViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     [m_pNavigationViewController setNavigationBarHidden:YES animated:NO];
     m_pWindow.backgroundColor = [UIColor blackColor];
-    [m_pWindow addSubview:m_pNavigationViewController.view];
+    [m_pWindow setRootViewController:m_pNavigationViewController];
     [m_pWindow makeKeyAndVisible];
     
 }  
