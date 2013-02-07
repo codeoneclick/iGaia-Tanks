@@ -28,7 +28,10 @@
 #define SAFE_DELETE(a) { delete (a); (a) = NULL; }
 #define SAFE_DELETE_ARRAY(a) { delete[] (a); (a) = NULL; }
 
-class INode : public ITouchDelegate, public IResourceLoaderDelegate
+
+#include "CResourceLoadCallback.h"
+
+class INode : public ITouchDelegate, public IResourceLoaderDelegate, public CResourceLoadCallback_INTERFACE
 {
 protected:
 // -- Block for transform matrix -- //
@@ -68,6 +71,10 @@ protected:
 // -- Varible for enable/disable render -- //
     bool m_bIsVisible;
 // -- -- //
+
+    void OnResourceDidLoad(IResource* _pResource, E_RESOURCE_TYPE _eResourceType);
+
+
 public:
     INode(void);
     virtual ~INode(void);

@@ -9,12 +9,7 @@
 #ifndef __iGaia__GameServer__
 #define __iGaia__GameServer__
 
-#include <iostream>
-#include "stdlib.h"
-#include <vector.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "HCommon.h"
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>

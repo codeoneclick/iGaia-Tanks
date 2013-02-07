@@ -6,15 +6,4 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include <iostream>
 #include "IParser.h"
-
-IParser::IParser()
-{
-    m_eStatus = E_NONE_STATUS;
-}
-
-IParser::~IParser()
-{
-    
-}

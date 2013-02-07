@@ -6,12 +6,11 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef iGaia_CCommon_IOS_h
-#define iGaia_CCommon_IOS_h
+#ifndef CCommon_IOS_h
+#define CCommon_IOS_h
 
-#include "stdlib.h"
-#include <string>
+#include "HCommon.h"
 
-std::string Get_ResourceFileName(const std::string& _sName);
+std::string Get_BundlePath(void);
 
 #endif

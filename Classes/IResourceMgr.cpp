@@ -21,6 +21,13 @@ IResourceMgr::~IResourceMgr(void)
 
 void IResourceMgr::Thread(void)
 {
+
+    for(std::map<std::string, IParser*>::iterator iterator = m_tOperationsPool.begin(); iterator != m_tOperationsPool.end(); ++iterator)
+    {
+        // TODO : implement cancel load
+    }
+
+
     std::map<std::string, IParser*>::iterator pBeginIteratorTask = m_lTaskPool.begin();
     std::map<std::string, IParser*>::iterator pEndIteratorTask = m_lTaskPool.end();
     while(pBeginIteratorTask != pEndIteratorTask)

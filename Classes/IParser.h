@@ -6,34 +6,25 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef iGaia_IParser_h
-#define iGaia_IParser_h
+#ifndef IParser_h
+#define IParser_h
 
-#include "stdlib.h"
-#include <string.h>
-#include <map>
+#include "HCommon.h"
+#include "IResource.h"
 
-class IParser
+class IParser_INTERFACE
 {
-public:
-    enum E_STATUS
-    {
-        E_NONE_STATUS,
-        E_START_STATUS,
-        E_ERROR_STATUS,
-        E_DONE_STATUS,
-    };
+private:
+    
 protected:
-    E_STATUS m_eStatus;
-    std::map<std::string, std::string> m_lParams;
+    
 public:
-    IParser(void);
-    virtual ~IParser(void);
-    virtual void  Load(const std::string& _sName) = 0;
-    virtual void* Get_SourceData(void) = 0;
-    virtual void  Set_Params(const std::map<std::string, std::string>* _lParams) { m_lParams = (*_lParams); }
-    virtual void  Commit(void) = 0;
-    inline E_STATUS Get_Status(void) { return m_eStatus; }
+    
+    IParser_INTERFACE(void) = default;
+    virtual ~IParser_INTERFACE(void) = default;
+
+    virtual E_PARSER_STATUS Read(const std::string& _sName, IResource* _resource) = 0;
+    
 };
 
 #endif

@@ -112,6 +112,11 @@ void INode::Remove_DelegateOwner(IDelegate *_pDelegateOwner)
     }
 }
 
+void INode::OnResourceDidLoad(IResource* _pResource, E_RESOURCE_TYPE _eResourceType)
+{
+    
+}
+
 void INode::Update(void)
 {
     m_mRotation = glm::rotate(glm::mat4(1.0f), m_vRotation.x, glm::vec3(1.0f, 0.0f, 0.0f));

@@ -6,15 +6,11 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include <iostream>
 #include "CCommon_IOS.h"
 
-
-std::string Get_ResourceFileName(const std::string& _sName)
+std::string Get_BundlePath(void)
 {
-    NSString* nsName = [NSString stringWithUTF8String:_sName.c_str()];
-    NSString* nsDirectory = [[NSBundle mainBundle] resourcePath];
-    nsDirectory = [nsDirectory stringByAppendingPathComponent:nsName];
-    std::string sDirectory = [nsDirectory UTF8String];
-    return sDirectory;
+    std::string path([[[NSBundle mainBundle] resourcePath] UTF8String]);
+    path.append("/");
+    return path;
 };

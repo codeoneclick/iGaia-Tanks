@@ -9,10 +9,7 @@
 #ifndef iGaia_CCollisionMgr_h
 #define iGaia_CCollisionMgr_h
 
-#include "stdlib.h"
-#include <vector>
-#include <iostream.h>
-#include <map>
+#include "HCommon.h"
 #include "box2d.h"
 #include "IVertexBuffer.h"
 #include "CIndexBuffer.h"

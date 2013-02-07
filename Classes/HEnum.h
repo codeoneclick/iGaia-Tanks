@@ -1,0 +1,41 @@
+//
+//  HEnum.h
+//  iGaia
+//
+//  Created by Sergey Sergeev on 2/7/13.
+//
+//
+
+#ifndef HEnum_h
+#define HEnum_h
+
+enum E_RESOURCE_MGR
+{
+    E_RESOURCE_MGR_TEXTURE = 0,
+    E_RESOURCE_MGR_MESH
+};
+
+enum E_RESOURCE_LOAD_THREAD
+{
+    E_RESOURCE_LOAD_THREAD_SYNC = 0,
+    E_RESOURCE_LOAD_THREAD_ASYNC
+};
+
+enum E_RESOURCE_TYPE
+{
+    E_RESOURCE_TYPE_UNKNOWN = 0,
+    E_RESOURCE_TYPE_TEXTURE,
+    E_RESOURCE_TYPE_MESH,
+    E_RESOURCE_TYPE_SHADER,
+    E_RESOURCE_TYPE_XML
+};
+
+enum E_PARSER_STATUS
+{
+    E_PARSER_STATUS_UNKNOWN = 0,
+    E_PARSER_STATUS_PROCESS,
+    E_PARSER_STATUS_ERROR,
+    E_PARSER_STATUS_DONE,
+};
+
+#endif
