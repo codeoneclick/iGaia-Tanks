@@ -6,9 +6,23 @@
 //
 //
 
-#ifndef __iGaia__CIndexBuffer__
-#define __iGaia__CIndexBuffer__
+#ifndef CIndexBuffer_h
+#define CIndexBuffer_h
 
-#include <iostream>
+#include "HCommon.h"
+
+#define K_NUM_REPLACEMENT_INDEX_BUFFERS 2
+
+class CIndexBuffer
+{
+private:
+
+protected:
+    
+public:
+
+    CIndexBuffer(ui32 _numIndexes, GLenum _mode);
+    ~CIndexBuffer(void);
+};
 
 #endif 
