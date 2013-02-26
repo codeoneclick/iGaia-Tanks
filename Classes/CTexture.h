@@ -6,33 +6,43 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef iGaia_CTexture_h
-#define iGaia_CTexture_h
+#ifndef CTexture_h
+#define CTexture_h
 
-#include <OpenGLES/ES2/gl.h>
-#include <OpenGLES/ES2/glext.h>
-#include "PVRTTexture.h"
 #include "IResource.h"
 
 class CTexture : public IResource
 {   
-public:
-    struct SSourceData
-    {
-        GLuint m_hTextureHanlde;
-        int m_iWidth;
-        int m_iHeight;
-    };
-    enum E_WRAP_MODE { E_WRAP_MODE_REPEAT = 0, E_WRAP_MODE_CLAMP };
+private:
+
 protected:
-    SSourceData* m_pSourceData;
+
+    ui32 m_width;
+    ui32 m_height;
+    ui32 m_handle;
+    ui32 m_wrapMode;
+    
 public:
+    
     CTexture(void);
-    virtual ~CTexture(void);
-    inline GLuint Get_Handle(void) { return m_pSourceData->m_hTextureHanlde; }
-    inline unsigned int Get_Width(void) { return m_pSourceData->m_iWidth; }
-    inline unsigned int Get_Height(void) { return m_pSourceData->m_iHeight; }
-    virtual void Set_SourceData(void* _pSourceData);
+    ~CTexture(void);
+    
+    inline ui32 Get_Handle(void)
+    {
+        return m_handle;
+    };
+    
+    inline ui32 Get_Width(void)
+    {
+        return m_width;
+    };
+    
+    inline ui32 Get_Height(void)
+    {
+        return m_height;
+    };
+
+    void Set_WrapMode(ui32 _mode);
 };
 
 #endif

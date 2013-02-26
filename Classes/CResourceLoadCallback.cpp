@@ -8,16 +8,16 @@
 
 #include "CResourceLoadCallback.h"
 
-void CResourceLoadCallback::ConnectResourceDidLoadListener(const __RESOURCE_DID_LOAD_LISTENER &_tListener)
+void CResourceLoadCallback::ConnectResourceDidLoadListener(const __RESOURCE_DID_LOAD_LISTENER &_listener)
 {
-    assert(_tListener != nullptr);
-    m_tResourceDidLoadListener = _tListener;
+    assert(_listener != nullptr);
+    m_resourceDidLoadListener = _listener;
 }
 
-void CResourceLoadCallback::NotifyResourceDidLoadListener(IResource *_pResource, E_RESOURCE_TYPE _eResourceType)
+void CResourceLoadCallback::NotifyResourceDidLoadListener(IResource *_resource)
 {
-    assert(m_tResourceDidLoadListener != nullptr);
-    m_tResourceDidLoadListener(_pResource, _eResourceType);
+    assert(m_resourceDidLoadListener != nullptr);
+    m_resourceDidLoadListener(_resource);
 }
 
 
@@ -28,5 +28,5 @@ CResourceLoadCallback_INTERFACE::CResourceLoadCallback_INTERFACE(void)
 
 void CResourceLoadCallback_INTERFACE::ConnectResourceLoadCallback(void)
 {
-    m_tResourceLoadCallback.ConnectResourceDidLoadListener(std::bind(&CResourceLoadCallback_INTERFACE::OnResourceDidLoad, this, std::placeholders::_1, std::placeholders::_2));
+    m_resourceLoadCallback.ConnectResourceDidLoadListener(std::bind(&CResourceLoadCallback_INTERFACE::OnResourceDidLoad, this, std::placeholders::_1));
 }

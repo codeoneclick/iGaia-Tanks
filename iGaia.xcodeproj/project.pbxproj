@@ -7,69 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3623260D0F684500981E51 /* MainAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MainAppDelegate.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		4D27E4840F9AD71900447247 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4830F9AD71900447247 /* OpenGLES.framework */; };
 		4D27E4B50F9AD7D600447247 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4B40F9AD7D600447247 /* QuartzCore.framework */; };
-		4D3135ED0F9A6649001FFC34 /* GLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4D3135EC0F9A6649001FFC34 /* GLView.mm */; };
-		4D8FB3730F9EC1010055EDDB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8FB3720F9EC1010055EDDB /* main.m */; };
-		9303B33C14AC902A005ED3BF /* CCameraFree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9303B33B14AC902A005ED3BF /* CCameraFree.cpp */; };
-		9303B33F14AC9054005ED3BF /* CCameraTarget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9303B33E14AC9053005ED3BF /* CCameraTarget.cpp */; };
-		93060C8D14EE8BB100306309 /* CGameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93060C8C14EE8BB100306309 /* CGameState.cpp */; };
-		9307CBB114EBB8AB00ADFE2B /* CGameInGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9307CBB014EBB8AB00ADFE2B /* CGameInGameScene.cpp */; };
 		9319B4A114E30904002152EC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9319B4A014E30904002152EC /* icon.png */; };
 		9319B4A414E30924002152EC /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9319B4A314E30923002152EC /* icon@2x.png */; };
-		931A76E514DA8914007EDB2F /* CHeightMapSetter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 931A76E414DA8914007EDB2F /* CHeightMapSetter.cpp */; };
-		9320598F145E964E00DEBCCB /* CParser_GLSL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9320598E145E964E00DEBCCB /* CParser_GLSL.cpp */; };
-		93205996145EA7D900DEBCCB /* CParser_PVR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93205995145EA7D800DEBCCB /* CParser_PVR.cpp */; };
-		93243D5A147553B500ED7443 /* CModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93243D59147553B500ED7443 /* CModel.cpp */; };
-		932D540B151B663100C77E95 /* COcean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 932D540A151B662F00C77E95 /* COcean.cpp */; };
 		932D54AA151F8A9700C77E95 /* mod_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 932D54A9151F8A9700C77E95 /* mod_02.png */; };
 		932D54AC151F8B0300C77E95 /* mod_02.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 932D54AB151F8B0300C77E95 /* mod_02.pvr */; };
 		932D54AE151FBEE700C77E95 /* mod_03.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 932D54AD151FBEE600C77E95 /* mod_03.pvr */; };
-		933AFE2A14BC341D0090B5EC /* CCollisionMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 933AFE2914BC341D0090B5EC /* CCollisionMgr.cpp */; };
 		933CC920150A8C0900624C22 /* layer_03_diffuse.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 933CC91E150A8C0900624C22 /* layer_03_diffuse.pvr */; };
 		933CC921150A8C0900624C22 /* layer_03_normal.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 933CC91F150A8C0900624C22 /* layer_03_normal.pvr */; };
 		93490B97150A26B3005C8274 /* layer_02_bump.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 93490B95150A26B3005C8274 /* layer_02_bump.pvr */; };
 		93490B98150A26B3005C8274 /* layer_02_diffuse.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 93490B96150A26B3005C8274 /* layer_02_diffuse.pvr */; };
 		936FEC9214F579CB00A33A33 /* landscape.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 936FEC9014F579CB00A33A33 /* landscape.mdl */; };
 		936FEC9314F579CB00A33A33 /* player.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 936FEC9114F579CB00A33A33 /* player.mdl */; };
-		937367C9144ECE150051ED8D /* CShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 937367C8144ECE140051ED8D /* CShader.cpp */; };
-		9373680614559D540051ED8D /* ICamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9373680514559D4F0051ED8D /* ICamera.cpp */; };
 		937B276814FF677D00B346E0 /* layer_01.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 937B276714FF677D00B346E0 /* layer_01.pvr */; };
-		937B276C14FF738C00B346E0 /* CScreenSpacePostMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 937B276B14FF738C00B346E0 /* CScreenSpacePostMgr.cpp */; };
 		939733A814CF048C005268B7 /* TileSet.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 939733A714CF048C005268B7 /* TileSet.pvr */; };
 		9399F6AF15062DBC0066639A /* layer_01_bump.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9399F6AC15062DBC0066639A /* layer_01_bump.pvr */; };
 		9399F6B015062DBC0066639A /* layer_01_normal.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9399F6AD15062DBC0066639A /* layer_01_normal.pvr */; };
 		9399F6B115062DBC0066639A /* layer_01_diffuse.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 9399F6AE15062DBC0066639A /* layer_01_diffuse.pvr */; };
 		93A26DE9148BB1D800D14A0B /* footman.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 93A26DE8148BB1D800D14A0B /* footman.pvr */; };
-		93A26E05148D087800D14A0B /* CWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93A26E04148D087600D14A0B /* CWindow.cpp */; };
-		93A26E09148D1DEA00D14A0B /* CParser_MDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93A26E08148D1DE700D14A0B /* CParser_MDL.cpp */; };
-		93A26E0B148D1E3800D14A0B /* CCommon_IOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93A26E0A148D1E3000D14A0B /* CCommon_IOS.mm */; };
-		93A8E1F614ECF6ED0014BE15 /* ICharacterController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93A8E1F514ECF6ED0014BE15 /* ICharacterController.cpp */; };
-		93A8E1F914ECF7060014BE15 /* CCharacterControllerPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93A8E1F814ECF7060014BE15 /* CCharacterControllerPlayer.cpp */; };
-		93A8E1FC14ECF7380014BE15 /* CGameCharaterControllerMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93A8E1FB14ECF7380014BE15 /* CGameCharaterControllerMgr.cpp */; };
-		93A8E1FF14ED12520014BE15 /* IDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93A8E1FE14ED12520014BE15 /* IDelegate.cpp */; };
-		93A8E20214ED27250014BE15 /* CGameInGameLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93A8E20114ED27230014BE15 /* CGameInGameLevel.cpp */; };
-		93AA2A661487A7D10073F016 /* CRenderMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93AA2A651487A7CD0073F016 /* CRenderMgr.cpp */; };
-		93AA2A691487B3A30073F016 /* CSceneMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93AA2A681487B39F0073F016 /* CSceneMgr.cpp */; };
-		93AA2A7A148831D50073F016 /* ILight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93AA2A79148831D00073F016 /* ILight.cpp */; };
-		93AE336614C4447C00F1A516 /* CLandscape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93AE336514C4447C00F1A516 /* CLandscape.cpp */; };
-		93B40547148E111A00EB887D /* GameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93B40545148E111A00EB887D /* GameViewController.mm */; };
-		93B6BB7214840FD600E34B78 /* INode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B6BB7114840FD500E34B78 /* INode.cpp */; };
-		93B6BB8C14841F0C00E34B78 /* CMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B6BB8B14841F0B00E34B78 /* CMesh.cpp */; };
-		93B6BB8F1484210000E34B78 /* CMeshMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B6BB8E148420FE00E34B78 /* CMeshMgr.cpp */; };
-		93C06CF914D2951100B7502A /* CEventMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93C06CF814D2951100B7502A /* CEventMgr.cpp */; };
-		93CBB220150E141900CB1EFF /* CGrass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CBB21F150E141800CB1EFF /* CGrass.cpp */; };
-		93CE486014B458E000C5F031 /* CBoundingBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CE485F14B458E000C5F031 /* CBoundingBox.cpp */; };
-		93CFC05E145EF15300720766 /* CInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC05D145EF15300720766 /* CInput.cpp */; };
-		93CFC0931463E61800720766 /* IParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0921463E61800720766 /* IParser.cpp */; };
-		93CFC0961463EC0D00720766 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
-		93CFC0991463FA2C00720766 /* IResourceMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0981463FA2800720766 /* IResourceMgr.cpp */; };
-		93E52C1A14C6E04900697561 /* CIndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93E52C1914C6E04900697561 /* CIndexBuffer.cpp */; };
-		93F814F814D01E09005D6699 /* CLightPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93F814F714D01E08005D6699 /* CLightPoint.cpp */; };
 		93FB5A4C1517CF9800E096A9 /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = 93FB596A1517CF9700E096A9 /* CMakeLists.txt */; };
 		93FB5A4D1517CF9800E096A9 /* func_common.inl in Resources */ = {isa = PBXBuildFile; fileRef = 93FB59721517CF9700E096A9 /* func_common.inl */; };
 		93FB5A4E1517CF9800E096A9 /* func_exponential.inl in Resources */ = {isa = PBXBuildFile; fileRef = 93FB59741517CF9700E096A9 /* func_exponential.inl */; };
@@ -175,16 +134,8 @@
 		93FB5AB21517CF9800E096A9 /* verbose_operator.inl in Resources */ = {isa = PBXBuildFile; fileRef = 93FB5A471517CF9800E096A9 /* verbose_operator.inl */; };
 		93FB5AB31517CF9800E096A9 /* wrap.inl in Resources */ = {isa = PBXBuildFile; fileRef = 93FB5A491517CF9800E096A9 /* wrap.inl */; };
 		A10074FE156130A8000E324E /* clouds.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A10074FD156130A8000E324E /* clouds.pvr */; };
-		A100AB7415775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A100AB7215775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.cpp */; };
-		A100AB7D15776E57003BB7BA /* CParticleEmitterFire.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A100AB7B15776E57003BB7BA /* CParticleEmitterFire.cpp */; };
-		A100AB8415777FC3003BB7BA /* CBillboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A100AB8215777FC3003BB7BA /* CBillboard.cpp */; };
-		A100AB8815777FD8003BB7BA /* CSpriteCross.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A100AB8615777FD8003BB7BA /* CSpriteCross.cpp */; };
-		A100AB931577C4CD003BB7BA /* CParticleEmitterExplosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A100AB911577C4CD003BB7BA /* CParticleEmitterExplosion.cpp */; };
-		A10E64A9157F3360007B576A /* CMathHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A10E64A7157F3360007B576A /* CMathHelper.cpp */; };
-		A10E64AD157F3373007B576A /* CTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A10E64AB157F3373007B576A /* CTimer.cpp */; };
 		A11AA3CA1547218800113AA3 /* smoke.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A11AA3C91547218800113AA3 /* smoke.pvr */; };
 		A1207C6D153C02C60021A0C7 /* model_01.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1207C6C153C02C60021A0C7 /* model_01.pvr */; };
-		A12156B2152EDE9C002E1942 /* IResourceLoaderDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A12156B1152EDE9C002E1942 /* IResourceLoaderDelegate.cpp */; };
 		A123835715D0F876007769E7 /* building.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A123835615D0F876007769E7 /* building.pvr */; };
 		A123835915D0F886007769E7 /* building_01.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A123835815D0F886007769E7 /* building_01.mdl */; };
 		A123835F15D0FAA1007769E7 /* building_02.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A123835A15D0FAA1007769E7 /* building_02.mdl */; };
@@ -192,29 +143,12 @@
 		A123836115D0FAA1007769E7 /* building_04.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A123835C15D0FAA1007769E7 /* building_04.mdl */; };
 		A123836215D0FAA1007769E7 /* building_05.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A123835D15D0FAA1007769E7 /* building_05.mdl */; };
 		A123836315D0FAA1007769E7 /* building_06.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A123835E15D0FAA1007769E7 /* building_06.mdl */; };
-		A123836715D12811007769E7 /* CBuilding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A123836515D12811007769E7 /* CBuilding.cpp */; };
-		A123836A15D12D2E007769E7 /* ICollisionDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A123836815D12D2D007769E7 /* ICollisionDelegate.cpp */; };
-		A12D2F2A1541582800955C6B /* CCharacterControllerEnemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A12D2F281541582800955C6B /* CCharacterControllerEnemy.cpp */; };
-		A13F9EB91568D743009DCBB4 /* CLandscapeDecal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A13F9EB71568D743009DCBB4 /* CLandscapeDecal.cpp */; };
-		A13F9EC11568DC64009DCBB4 /* ITouchDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A13F9EBF1568DC64009DCBB4 /* ITouchDelegate.cpp */; };
 		A13F9EC91568ECB3009DCBB4 /* default.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A13F9EC81568ECB3009DCBB4 /* default.pvr */; };
-		A13F9ED1156932FE009DCBB4 /* CDecalMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A13F9ECF156932FC009DCBB4 /* CDecalMgr.cpp */; };
-		A153D5C2153DA3D000FBFFD5 /* CGameInGameUI.mm in Sources */ = {isa = PBXBuildFile; fileRef = A153D5C1153DA3D000FBFFD5 /* CGameInGameUI.mm */; };
 		A153D5C8153DA75000FBFFD5 /* btn.png in Resources */ = {isa = PBXBuildFile; fileRef = A153D5C7153DA75000FBFFD5 /* btn.png */; };
-		A166A1641546D1F800E659D5 /* CParticleMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A166A1621546D1F800E659D5 /* CParticleMgr.cpp */; };
-		A176DD6215D3AC2000B8FD7D /* BaseOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A176DD6115D3AC2000B8FD7D /* BaseOperation.m */; };
-		A176DD6515D3AC8000B8FD7D /* BaseWebRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A176DD6415D3AC8000B8FD7D /* BaseWebRequestOperation.m */; };
-		A176DD6815D3AD2200B8FD7D /* WebCommunicationMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = A176DD6715D3AD2200B8FD7D /* WebCommunicationMgr.m */; };
-		A176DD7115D3C12B00B8FD7D /* GoogleGetCityLocationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A176DD7015D3C12B00B8FD7D /* GoogleGetCityLocationRequest.m */; };
-		A179C1FD15ADA78200FA872B /* GameInGameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A179C1FB15ADA78200FA872B /* GameInGameViewController.mm */; };
 		A179C1FE15ADA78200FA872B /* GameInGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A179C1FC15ADA78200FA872B /* GameInGameViewController.xib */; };
-		A179C20215ADA83700FA872B /* GameBaseViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A179C20115ADA83700FA872B /* GameBaseViewController.mm */; };
-		A179C21615ADC08900FA872B /* GameLoadingViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A179C21415ADC08800FA872B /* GameLoadingViewController.mm */; };
 		A179C21715ADC08900FA872B /* GameLoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A179C21515ADC08800FA872B /* GameLoadingViewController.xib */; };
-		A179C21B15ADD50000FA872B /* CLandscapeEdges.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A179C21915ADD50000FA872B /* CLandscapeEdges.cpp */; };
 		A181673E15442E97004B483A /* model_02.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A181673D15442E97004B483A /* model_02.pvr */; };
 		A1895C6415AD76CA0009FD73 /* ocean_riple.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1895C6315AD76CA0009FD73 /* ocean_riple.pvr */; };
-		A18D576F1598418000FCD8C9 /* CMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A18D576D1598418000FCD8C9 /* CMaterial.cpp */; };
 		A1A5E8DF1532E0E6004DD73B /* base_model_full.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A1A5E8DA1532E0E6004DD73B /* base_model_full.mdl */; };
 		A1A5E8E01532E0E6004DD73B /* base_model.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A1A5E8DB1532E0E6004DD73B /* base_model.mdl */; };
 		A1A5E8E11532E0E6004DD73B /* left_track_model.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A1A5E8DC1532E0E6004DD73B /* left_track_model.mdl */; };
@@ -222,17 +156,11 @@
 		A1A5E8E31532E0E6004DD73B /* tower_model.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A1A5E8DE1532E0E6004DD73B /* tower_model.mdl */; };
 		A1A8A079159999AF00A9B82E /* ring.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1A8A078159999AF00A9B82E /* ring.pvr */; };
 		A1A8BF94156F6C0100CBFAD1 /* camera_button.png in Resources */ = {isa = PBXBuildFile; fileRef = A1A8BF93156F6C0100CBFAD1 /* camera_button.png */; };
-		A1AB4E3E1546B71D00434639 /* CParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1AB4E3C1546B71D00434639 /* CParticleEmitter.cpp */; };
-		A1AC4D9C156F7E440031FE05 /* CBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1AC4D9A156F7E440031FE05 /* CBullet.cpp */; };
-		A1AC4DA3156FC74F0031FE05 /* CGameShooterMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1AC4DA1156FC74F0031FE05 /* CGameShooterMgr.cpp */; };
 		A1AF6F741549380400703E2E /* Skybox.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1AF6F731549380400703E2E /* Skybox.pvr */; };
-		A1AF6F771549383200703E2E /* CSkyBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1AF6F751549383200703E2E /* CSkyBox.cpp */; };
-		A1BAD24815418C4A00B4149D /* CGameAIMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1BAD24615418C4A00B4149D /* CGameAIMgr.cpp */; };
 		A1BE19A5156A29D4004C3610 /* shadow.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1BE19A4156A29D4004C3610 /* shadow.pvr */; };
 		A1C7ADE91547E5010047264E /* fire.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1C7ADE81547E5010047264E /* fire.pvr */; };
 		A1C7ADEC1548441A0047264E /* Treads.png in Resources */ = {isa = PBXBuildFile; fileRef = A1C7ADEB1548441A0047264E /* Treads.png */; };
 		A1D635B515AADDCE00F5D42B /* grass.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1D635B415AADDCE00F5D42B /* grass.pvr */; };
-		A1D635BA15AAEB2A00F5D42B /* MainMenuViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1D635B815AAEB2A00F5D42B /* MainMenuViewController.mm */; };
 		A1D635BB15AAEB2A00F5D42B /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D635B915AAEB2A00F5D42B /* MainMenuViewController.xib */; };
 		A1D635D415AC0E6E00F5D42B /* tank_heavy_body.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A1D635D015AC0E6E00F5D42B /* tank_heavy_body.mdl */; };
 		A1D635D515AC0E6E00F5D42B /* tank_heavy_left_track.mdl in Resources */ = {isa = PBXBuildFile; fileRef = A1D635D115AC0E6E00F5D42B /* tank_heavy_left_track.mdl */; };
@@ -250,103 +178,14 @@
 		A1D635ED15AC0FBA00F5D42B /* tank_light.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1D635E915AC0FBA00F5D42B /* tank_light.pvr */; };
 		A1D635EE15AC0FBA00F5D42B /* tank_medium.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1D635EA15AC0FBA00F5D42B /* tank_medium.pvr */; };
 		A1D635EF15AC0FBA00F5D42B /* tank_track.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A1D635EB15AC0FBA00F5D42B /* tank_track.pvr */; };
-		A1D8067D15735D1400EF81D0 /* CVertexBufferPositionColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1D8067515735D1400EF81D0 /* CVertexBufferPositionColor.cpp */; };
-		A1D8067E15735D1400EF81D0 /* CVertexBufferPositionTexcoord.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1D8067715735D1400EF81D0 /* CVertexBufferPositionTexcoord.cpp */; };
-		A1D8067F15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1D8067915735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.cpp */; };
-		A1D8068015735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1D8067B15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.cpp */; };
-		A1D8068415735D2500EF81D0 /* IVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1D8068215735D2500EF81D0 /* IVertexBuffer.cpp */; };
-		A1E37D62159DE9AD000314C3 /* CSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1E37D60159DE9AD000314C3 /* CSettings.cpp */; };
 		A1ED8E8915591C6B00B82AE3 /* joystick.png in Resources */ = {isa = PBXBuildFile; fileRef = A1ED8E8815591C6B00B82AE3 /* joystick.png */; };
-		A1F05DAA15877EF200812D02 /* CParticleEmitterFireTrail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F05DA815877EF200812D02 /* CParticleEmitterFireTrail.cpp */; };
-		A1F39F6215A1D0EF00E39591 /* ITankPart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F5B15A1D0EF00E39591 /* ITankPart.cpp */; };
-		A1F39F7715A1D13900E39591 /* CTankHeavyBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F6515A1D13900E39591 /* CTankHeavyBody.cpp */; };
-		A1F39F7815A1D13900E39591 /* CTankHeavyTower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F6715A1D13900E39591 /* CTankHeavyTower.cpp */; };
-		A1F39F7915A1D13900E39591 /* CTankHeavyTrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F6915A1D13900E39591 /* CTankHeavyTrack.cpp */; };
-		A1F39F7A15A1D13900E39591 /* CTankLightBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F6B15A1D13900E39591 /* CTankLightBody.cpp */; };
-		A1F39F7B15A1D13900E39591 /* CTankLightTower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F6D15A1D13900E39591 /* CTankLightTower.cpp */; };
-		A1F39F7C15A1D13900E39591 /* CTankLightTrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F6F15A1D13900E39591 /* CTankLightTrack.cpp */; };
-		A1F39F7D15A1D13900E39591 /* CTankMediumBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F7115A1D13900E39591 /* CTankMediumBody.cpp */; };
-		A1F39F7E15A1D13900E39591 /* CTankMediumTower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F7315A1D13900E39591 /* CTankMediumTower.cpp */; };
-		A1F39F7F15A1D13900E39591 /* CTankMediumTrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F7515A1D13900E39591 /* CTankMediumTrack.cpp */; };
-		A1F39F8215A1D14B00E39591 /* ITankBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8015A1D14B00E39591 /* ITankBody.cpp */; };
-		A1F39F8715A1D17300E39591 /* ITankTower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8315A1D17200E39591 /* ITankTower.cpp */; };
-		A1F39F8815A1D17300E39591 /* ITankTrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8515A1D17200E39591 /* ITankTrack.cpp */; };
-		A1F68E5C157E399E0048A717 /* CSpriteMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F68E5A157E399E0048A717 /* CSpriteMgr.cpp */; };
-		A1F68E60157E39C00048A717 /* CSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F68E5E157E39C00048A717 /* CSprite.cpp */; };
-		A1F690471557CCAC00A2920A /* CJoystick.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1F690461557CCAC00A2920A /* CJoystick.mm */; };
-		A1F98AE915DB8A6100B38C6E /* CNavigationHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F98AE715DB8A6100B38C6E /* CNavigationHelper.cpp */; };
-		A1F98AF115DBA84600B38C6E /* INavigationDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F98AEF15DBA84600B38C6E /* INavigationDelegate.cpp */; };
-		A1FCBE7D15A44B17004FC37B /* IGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBE7B15A44B17004FC37B /* IGameScene.cpp */; };
-		A1FCBE8015A44B4B004FC37B /* CGameSceneMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBE7E15A44B4B004FC37B /* CGameSceneMgr.cpp */; };
-		A1FCBE8715A44D27004FC37B /* IGameLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBE8515A44D27004FC37B /* IGameLevel.cpp */; };
-		A1FCBE9515A4741E004FC37B /* CGameMainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBE9315A4741E004FC37B /* CGameMainMenuScene.cpp */; };
-		A1FCBE9815A47430004FC37B /* CGameMainMenuLevel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBE9615A47430004FC37B /* CGameMainMenuLevel.cpp */; };
-		A1FCBF1015A49E4E004FC37B /* CSlider.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBF0F15A49E4E004FC37B /* CSlider.mm */; };
-		A1FCBF1815A58692004FC37B /* CGameUIMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBF1615A58692004FC37B /* CGameUIMgr.cpp */; };
-		A1FCBF8015A5D511004FC37B /* CGameMenuUI.mm in Sources */ = {isa = PBXBuildFile; fileRef = A1FCBF7F15A5D511004FC37B /* CGameMenuUI.mm */; };
-		A1FE32DE15D3E17600D82CF6 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32DD15D3E17600D82CF6 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		A1FE334815D4FE8F00D82CF6 /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32E815D4FE8F00D82CF6 /* b2BroadPhase.cpp */; };
-		A1FE334915D4FE8F00D82CF6 /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32EA15D4FE8F00D82CF6 /* b2CollideCircle.cpp */; };
-		A1FE334A15D4FE8F00D82CF6 /* b2CollideEdge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32EB15D4FE8F00D82CF6 /* b2CollideEdge.cpp */; };
-		A1FE334B15D4FE8F00D82CF6 /* b2CollidePolygon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32EC15D4FE8F00D82CF6 /* b2CollidePolygon.cpp */; };
-		A1FE334C15D4FE8F00D82CF6 /* b2Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32ED15D4FE8F00D82CF6 /* b2Collision.cpp */; };
-		A1FE334D15D4FE8F00D82CF6 /* b2Distance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32EF15D4FE8F00D82CF6 /* b2Distance.cpp */; };
-		A1FE334E15D4FE8F00D82CF6 /* b2DynamicTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32F115D4FE8F00D82CF6 /* b2DynamicTree.cpp */; };
-		A1FE334F15D4FE8F00D82CF6 /* b2TimeOfImpact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32F315D4FE8F00D82CF6 /* b2TimeOfImpact.cpp */; };
-		A1FE335015D4FE8F00D82CF6 /* b2ChainShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32F615D4FE8F00D82CF6 /* b2ChainShape.cpp */; };
-		A1FE335115D4FE8F00D82CF6 /* b2CircleShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32F815D4FE8F00D82CF6 /* b2CircleShape.cpp */; };
-		A1FE335215D4FE8F00D82CF6 /* b2EdgeShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32FA15D4FE8F00D82CF6 /* b2EdgeShape.cpp */; };
-		A1FE335315D4FE8F00D82CF6 /* b2PolygonShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE32FC15D4FE8F00D82CF6 /* b2PolygonShape.cpp */; };
-		A1FE335415D4FE8F00D82CF6 /* b2BlockAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE330015D4FE8F00D82CF6 /* b2BlockAllocator.cpp */; };
-		A1FE335515D4FE8F00D82CF6 /* b2Draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE330215D4FE8F00D82CF6 /* b2Draw.cpp */; };
-		A1FE335615D4FE8F00D82CF6 /* b2Math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE330515D4FE8F00D82CF6 /* b2Math.cpp */; };
-		A1FE335715D4FE8F00D82CF6 /* b2Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE330715D4FE8F00D82CF6 /* b2Settings.cpp */; };
-		A1FE335815D4FE8F00D82CF6 /* b2StackAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE330915D4FE8F00D82CF6 /* b2StackAllocator.cpp */; };
-		A1FE335915D4FE8F00D82CF6 /* b2Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE330B15D4FE8F00D82CF6 /* b2Timer.cpp */; };
-		A1FE335A15D4FE8F00D82CF6 /* b2Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE330E15D4FE8F00D82CF6 /* b2Body.cpp */; };
-		A1FE335B15D4FE8F00D82CF6 /* b2ContactManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE331015D4FE8F00D82CF6 /* b2ContactManager.cpp */; };
-		A1FE335C15D4FE8F00D82CF6 /* b2Fixture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE331215D4FE8F00D82CF6 /* b2Fixture.cpp */; };
-		A1FE335D15D4FE8F00D82CF6 /* b2Island.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE331415D4FE8F00D82CF6 /* b2Island.cpp */; };
-		A1FE335E15D4FE8F00D82CF6 /* b2World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE331715D4FE8F00D82CF6 /* b2World.cpp */; };
-		A1FE335F15D4FE8F00D82CF6 /* b2WorldCallbacks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE331915D4FE8F00D82CF6 /* b2WorldCallbacks.cpp */; };
-		A1FE336015D4FE8F00D82CF6 /* b2ChainAndCircleContact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE331C15D4FE8F00D82CF6 /* b2ChainAndCircleContact.cpp */; };
-		A1FE336115D4FE8F00D82CF6 /* b2ChainAndPolygonContact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE331E15D4FE8F00D82CF6 /* b2ChainAndPolygonContact.cpp */; };
-		A1FE336215D4FE8F00D82CF6 /* b2CircleContact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE332015D4FE8F00D82CF6 /* b2CircleContact.cpp */; };
-		A1FE336315D4FE8F00D82CF6 /* b2Contact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE332215D4FE8F00D82CF6 /* b2Contact.cpp */; };
-		A1FE336415D4FE8F00D82CF6 /* b2ContactSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE332415D4FE8F00D82CF6 /* b2ContactSolver.cpp */; };
-		A1FE336515D4FE8F00D82CF6 /* b2EdgeAndCircleContact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE332615D4FE8F00D82CF6 /* b2EdgeAndCircleContact.cpp */; };
-		A1FE336615D4FE8F00D82CF6 /* b2EdgeAndPolygonContact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE332815D4FE8F00D82CF6 /* b2EdgeAndPolygonContact.cpp */; };
-		A1FE336715D4FE8F00D82CF6 /* b2PolygonAndCircleContact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE332A15D4FE8F00D82CF6 /* b2PolygonAndCircleContact.cpp */; };
-		A1FE336815D4FE8F00D82CF6 /* b2PolygonContact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE332C15D4FE8F00D82CF6 /* b2PolygonContact.cpp */; };
-		A1FE336915D4FE8F00D82CF6 /* b2DistanceJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE332F15D4FE8F00D82CF6 /* b2DistanceJoint.cpp */; };
-		A1FE336A15D4FE8F00D82CF6 /* b2FrictionJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE333115D4FE8F00D82CF6 /* b2FrictionJoint.cpp */; };
-		A1FE336B15D4FE8F00D82CF6 /* b2GearJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE333315D4FE8F00D82CF6 /* b2GearJoint.cpp */; };
-		A1FE336C15D4FE8F00D82CF6 /* b2Joint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE333515D4FE8F00D82CF6 /* b2Joint.cpp */; };
-		A1FE336D15D4FE8F00D82CF6 /* b2MouseJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE333715D4FE8F00D82CF6 /* b2MouseJoint.cpp */; };
-		A1FE336E15D4FE8F00D82CF6 /* b2PrismaticJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE333915D4FE8F00D82CF6 /* b2PrismaticJoint.cpp */; };
-		A1FE336F15D4FE8F00D82CF6 /* b2PulleyJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE333B15D4FE8F00D82CF6 /* b2PulleyJoint.cpp */; };
-		A1FE337015D4FE8F00D82CF6 /* b2RevoluteJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE333D15D4FE8F00D82CF6 /* b2RevoluteJoint.cpp */; };
-		A1FE337115D4FE8F00D82CF6 /* b2RopeJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE333F15D4FE8F00D82CF6 /* b2RopeJoint.cpp */; };
-		A1FE337215D4FE8F00D82CF6 /* b2WeldJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE334115D4FE8F00D82CF6 /* b2WeldJoint.cpp */; };
-		A1FE337315D4FE8F00D82CF6 /* b2WheelJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE334315D4FE8F00D82CF6 /* b2WheelJoint.cpp */; };
-		A1FE337415D4FE8F00D82CF6 /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE334615D4FE8F00D82CF6 /* b2Rope.cpp */; };
-		A1FE338615D9117000D82CF6 /* GameUserSDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE338415D9117000D82CF6 /* GameUserSDB.cpp */; };
-		A1FE338915D9117F00D82CF6 /* GameLightTankSDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE338715D9117F00D82CF6 /* GameLightTankSDB.cpp */; };
-		A1FE338C15D9119500D82CF6 /* GameMediumTankSDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE338A15D9119500D82CF6 /* GameMediumTankSDB.cpp */; };
-		A1FE338F15D911B900D82CF6 /* GameHeavyTankSDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE338D15D911B900D82CF6 /* GameHeavyTankSDB.cpp */; };
-		A1FE339615D9155800D82CF6 /* GameTankSDB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE339415D9155700D82CF6 /* GameTankSDB.cpp */; };
-		A1FE339E15D9169500D82CF6 /* GameSDBStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE339C15D9169500D82CF6 /* GameSDBStorage.cpp */; };
-		A1FE33B615D93CA100D82CF6 /* GameNativeCommunicationMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE33B415D93CA100D82CF6 /* GameNativeCommunicationMgr.cpp */; };
-		A1FE33BA15D93CD400D82CF6 /* GameClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE33B815D93CD400D82CF6 /* GameClient.cpp */; };
-		A1FE33BD15D93CE000D82CF6 /* GameServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE33BB15D93CDF00D82CF6 /* GameServer.cpp */; };
-		A1FE33C415D9596D00D82CF6 /* GameClientHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FE33C215D9596D00D82CF6 /* GameClientHandler.cpp */; };
-		A1FFAA8B156CBAE500B01ECB /* CFrustum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FFAA89156CBAE500B01ECB /* CFrustum.cpp */; };
-		A4DF957216C3EC1C0004EB83 /* CResourceLoadCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */; };
-		CE8DFA9314587B0C00AE7288 /* CGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE8DFA9214587B0C00AE7288 /* CGame.cpp */; };
-		CE914ED41455DA3200AA2000 /* CShaderComposite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE914ED31455DA3200AA2000 /* CShaderComposite.cpp */; };
-		CE914ED71455DA5700AA2000 /* CTextureMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE914ED61455DA5700AA2000 /* CTextureMgr.cpp */; };
-		CE914EDA1455DA7800AA2000 /* CResourceMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE914ED91455DA7800AA2000 /* CResourceMgr.cpp */; };
-		CE919218145736FD0021A0DC /* CTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE919217145736FD0021A0DC /* CTexture.cpp */; };
+		A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
+		A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */; };
+		A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE919217145736FD0021A0DC /* CTexture.cpp */; };
+		A4A9847E16DCF729007F9CF6 /* CVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A9847C16DCF728007F9CF6 /* CVertexBuffer.cpp */; };
+		A4A9848116DCF73F007F9CF6 /* CIndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A9847F16DCF73E007F9CF6 /* CIndexBuffer.cpp */; };
+		A4A9848316DCFA55007F9CF6 /* MainAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MainAppDelegate.mm */; };
+		A4A9848416DCFA72007F9CF6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D8FB3720F9EC1010055EDDB /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1008,6 +847,14 @@
 		A1FE33C315D9596D00D82CF6 /* GameClientHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameClientHandler.h; sourceTree = "<group>"; };
 		A1FFAA89156CBAE500B01ECB /* CFrustum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFrustum.cpp; sourceTree = "<group>"; };
 		A1FFAA8A156CBAE500B01ECB /* CFrustum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFrustum.h; sourceTree = "<group>"; };
+		A4A9846F16DCE3F8007F9CF6 /* CLoadOperation_GLSL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLoadOperation_GLSL.cpp; sourceTree = "<group>"; };
+		A4A9847016DCE3F8007F9CF6 /* CLoadOperation_GLSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLoadOperation_GLSL.h; sourceTree = "<group>"; };
+		A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ILoadOperation.cpp; sourceTree = "<group>"; };
+		A4A9847316DCE410007F9CF6 /* ILoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILoadOperation.h; sourceTree = "<group>"; };
+		A4A9847C16DCF728007F9CF6 /* CVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBuffer.cpp; sourceTree = "<group>"; };
+		A4A9847D16DCF728007F9CF6 /* CVertexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVertexBuffer.h; sourceTree = "<group>"; };
+		A4A9847F16DCF73E007F9CF6 /* CIndexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CIndexBuffer.cpp; sourceTree = "<group>"; };
+		A4A9848016DCF73E007F9CF6 /* CIndexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndexBuffer.h; sourceTree = "<group>"; };
 		A4DF956E16C3E8980004EB83 /* HCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCommon.h; sourceTree = "<group>"; };
 		A4DF956F16C3E8BD0004EB83 /* HEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HEnum.h; sourceTree = "<group>"; };
 		A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CResourceLoadCallback.cpp; sourceTree = "<group>"; };
@@ -1255,14 +1102,18 @@
 		9315D5A7147BBC4500F42FE7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				937367C7144ECE030051ED8D /* CShader.h */,
-				937367C8144ECE140051ED8D /* CShader.cpp */,
 				93CFC0941463EBF500720766 /* IResource.h */,
 				93CFC0951463EC0700720766 /* IResource.cpp */,
+				937367C7144ECE030051ED8D /* CShader.h */,
+				937367C8144ECE140051ED8D /* CShader.cpp */,
 				CE919216145736D70021A0DC /* CTexture.h */,
 				CE919217145736FD0021A0DC /* CTexture.cpp */,
 				93B6BB8A14841DC400E34B78 /* CMesh.h */,
 				93B6BB8B14841F0B00E34B78 /* CMesh.cpp */,
+				A4A9847D16DCF728007F9CF6 /* CVertexBuffer.h */,
+				A4A9847C16DCF728007F9CF6 /* CVertexBuffer.cpp */,
+				A4A9848016DCF73E007F9CF6 /* CIndexBuffer.h */,
+				A4A9847F16DCF73E007F9CF6 /* CIndexBuffer.cpp */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1278,6 +1129,10 @@
 				93205995145EA7D800DEBCCB /* CParser_PVR.cpp */,
 				93A26DEA148BB1F600D14A0B /* CParser_MDL.h */,
 				93A26E08148D1DE700D14A0B /* CParser_MDL.cpp */,
+				A4A9847316DCE410007F9CF6 /* ILoadOperation.h */,
+				A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */,
+				A4A9847016DCE3F8007F9CF6 /* CLoadOperation_GLSL.h */,
+				A4A9846F16DCE3F8007F9CF6 /* CLoadOperation_GLSL.cpp */,
 			);
 			name = Loaders;
 			sourceTree = "<group>";
@@ -2557,174 +2412,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D3623260D0F684500981E51 /* MainAppDelegate.mm in Sources */,
-				4D3135ED0F9A6649001FFC34 /* GLView.mm in Sources */,
-				4D8FB3730F9EC1010055EDDB /* main.m in Sources */,
-				937367C9144ECE150051ED8D /* CShader.cpp in Sources */,
-				9373680614559D540051ED8D /* ICamera.cpp in Sources */,
-				CE914ED41455DA3200AA2000 /* CShaderComposite.cpp in Sources */,
-				CE914ED71455DA5700AA2000 /* CTextureMgr.cpp in Sources */,
-				CE914EDA1455DA7800AA2000 /* CResourceMgr.cpp in Sources */,
-				CE919218145736FD0021A0DC /* CTexture.cpp in Sources */,
-				CE8DFA9314587B0C00AE7288 /* CGame.cpp in Sources */,
-				9320598F145E964E00DEBCCB /* CParser_GLSL.cpp in Sources */,
-				93205996145EA7D900DEBCCB /* CParser_PVR.cpp in Sources */,
-				93CFC05E145EF15300720766 /* CInput.cpp in Sources */,
-				93CFC0931463E61800720766 /* IParser.cpp in Sources */,
-				93CFC0961463EC0D00720766 /* IResource.cpp in Sources */,
-				93CFC0991463FA2C00720766 /* IResourceMgr.cpp in Sources */,
-				93243D5A147553B500ED7443 /* CModel.cpp in Sources */,
-				93B6BB7214840FD600E34B78 /* INode.cpp in Sources */,
-				93B6BB8C14841F0C00E34B78 /* CMesh.cpp in Sources */,
-				93B6BB8F1484210000E34B78 /* CMeshMgr.cpp in Sources */,
-				93AA2A661487A7D10073F016 /* CRenderMgr.cpp in Sources */,
-				93AA2A691487B3A30073F016 /* CSceneMgr.cpp in Sources */,
-				93AA2A7A148831D50073F016 /* ILight.cpp in Sources */,
-				93A26E05148D087800D14A0B /* CWindow.cpp in Sources */,
-				93A26E09148D1DEA00D14A0B /* CParser_MDL.cpp in Sources */,
-				93A26E0B148D1E3800D14A0B /* CCommon_IOS.mm in Sources */,
-				93B40547148E111A00EB887D /* GameViewController.mm in Sources */,
-				9303B33C14AC902A005ED3BF /* CCameraFree.cpp in Sources */,
-				9303B33F14AC9054005ED3BF /* CCameraTarget.cpp in Sources */,
-				93CE486014B458E000C5F031 /* CBoundingBox.cpp in Sources */,
-				933AFE2A14BC341D0090B5EC /* CCollisionMgr.cpp in Sources */,
-				93AE336614C4447C00F1A516 /* CLandscape.cpp in Sources */,
-				93E52C1A14C6E04900697561 /* CIndexBuffer.cpp in Sources */,
-				93F814F814D01E09005D6699 /* CLightPoint.cpp in Sources */,
-				93C06CF914D2951100B7502A /* CEventMgr.cpp in Sources */,
-				931A76E514DA8914007EDB2F /* CHeightMapSetter.cpp in Sources */,
-				9307CBB114EBB8AB00ADFE2B /* CGameInGameScene.cpp in Sources */,
-				93A8E1F614ECF6ED0014BE15 /* ICharacterController.cpp in Sources */,
-				93A8E1F914ECF7060014BE15 /* CCharacterControllerPlayer.cpp in Sources */,
-				93A8E1FC14ECF7380014BE15 /* CGameCharaterControllerMgr.cpp in Sources */,
-				93A8E1FF14ED12520014BE15 /* IDelegate.cpp in Sources */,
-				93A8E20214ED27250014BE15 /* CGameInGameLevel.cpp in Sources */,
-				93060C8D14EE8BB100306309 /* CGameState.cpp in Sources */,
-				937B276C14FF738C00B346E0 /* CScreenSpacePostMgr.cpp in Sources */,
-				93CBB220150E141900CB1EFF /* CGrass.cpp in Sources */,
-				932D540B151B663100C77E95 /* COcean.cpp in Sources */,
-				A12156B2152EDE9C002E1942 /* IResourceLoaderDelegate.cpp in Sources */,
-				A153D5C2153DA3D000FBFFD5 /* CGameInGameUI.mm in Sources */,
-				A12D2F2A1541582800955C6B /* CCharacterControllerEnemy.cpp in Sources */,
-				A1BAD24815418C4A00B4149D /* CGameAIMgr.cpp in Sources */,
-				A1AB4E3E1546B71D00434639 /* CParticleEmitter.cpp in Sources */,
-				A166A1641546D1F800E659D5 /* CParticleMgr.cpp in Sources */,
-				A1AF6F771549383200703E2E /* CSkyBox.cpp in Sources */,
-				A1F690471557CCAC00A2920A /* CJoystick.mm in Sources */,
-				A13F9EB91568D743009DCBB4 /* CLandscapeDecal.cpp in Sources */,
-				A13F9EC11568DC64009DCBB4 /* ITouchDelegate.cpp in Sources */,
-				A13F9ED1156932FE009DCBB4 /* CDecalMgr.cpp in Sources */,
-				A1FFAA8B156CBAE500B01ECB /* CFrustum.cpp in Sources */,
-				A1AC4D9C156F7E440031FE05 /* CBullet.cpp in Sources */,
-				A1AC4DA3156FC74F0031FE05 /* CGameShooterMgr.cpp in Sources */,
-				A1D8067D15735D1400EF81D0 /* CVertexBufferPositionColor.cpp in Sources */,
-				A1D8067E15735D1400EF81D0 /* CVertexBufferPositionTexcoord.cpp in Sources */,
-				A1D8067F15735D1400EF81D0 /* CVertexBufferPositionTexcoordNormal.cpp in Sources */,
-				A1D8068015735D1400EF81D0 /* CVertexBufferPositionTexcoordNormalTangent.cpp in Sources */,
-				A1D8068415735D2500EF81D0 /* IVertexBuffer.cpp in Sources */,
-				A100AB7415775CCE003BB7BA /* CVertexBufferPositionTexcoordColor.cpp in Sources */,
-				A100AB7D15776E57003BB7BA /* CParticleEmitterFire.cpp in Sources */,
-				A100AB8415777FC3003BB7BA /* CBillboard.cpp in Sources */,
-				A100AB8815777FD8003BB7BA /* CSpriteCross.cpp in Sources */,
-				A100AB931577C4CD003BB7BA /* CParticleEmitterExplosion.cpp in Sources */,
-				A1F68E5C157E399E0048A717 /* CSpriteMgr.cpp in Sources */,
-				A1F68E60157E39C00048A717 /* CSprite.cpp in Sources */,
-				A10E64A9157F3360007B576A /* CMathHelper.cpp in Sources */,
-				A10E64AD157F3373007B576A /* CTimer.cpp in Sources */,
-				A1F05DAA15877EF200812D02 /* CParticleEmitterFireTrail.cpp in Sources */,
-				A18D576F1598418000FCD8C9 /* CMaterial.cpp in Sources */,
-				A1E37D62159DE9AD000314C3 /* CSettings.cpp in Sources */,
-				A1F39F6215A1D0EF00E39591 /* ITankPart.cpp in Sources */,
-				A1F39F7715A1D13900E39591 /* CTankHeavyBody.cpp in Sources */,
-				A1F39F7815A1D13900E39591 /* CTankHeavyTower.cpp in Sources */,
-				A1F39F7915A1D13900E39591 /* CTankHeavyTrack.cpp in Sources */,
-				A1F39F7A15A1D13900E39591 /* CTankLightBody.cpp in Sources */,
-				A1F39F7B15A1D13900E39591 /* CTankLightTower.cpp in Sources */,
-				A1F39F7C15A1D13900E39591 /* CTankLightTrack.cpp in Sources */,
-				A1F39F7D15A1D13900E39591 /* CTankMediumBody.cpp in Sources */,
-				A1F39F7E15A1D13900E39591 /* CTankMediumTower.cpp in Sources */,
-				A1F39F7F15A1D13900E39591 /* CTankMediumTrack.cpp in Sources */,
-				A1F39F8215A1D14B00E39591 /* ITankBody.cpp in Sources */,
-				A1F39F8715A1D17300E39591 /* ITankTower.cpp in Sources */,
-				A1F39F8815A1D17300E39591 /* ITankTrack.cpp in Sources */,
-				A1FCBE7D15A44B17004FC37B /* IGameScene.cpp in Sources */,
-				A1FCBE8015A44B4B004FC37B /* CGameSceneMgr.cpp in Sources */,
-				A1FCBE8715A44D27004FC37B /* IGameLevel.cpp in Sources */,
-				A1FCBE9515A4741E004FC37B /* CGameMainMenuScene.cpp in Sources */,
-				A1FCBE9815A47430004FC37B /* CGameMainMenuLevel.cpp in Sources */,
-				A1FCBF1015A49E4E004FC37B /* CSlider.mm in Sources */,
-				A1FCBF1815A58692004FC37B /* CGameUIMgr.cpp in Sources */,
-				A1FCBF8015A5D511004FC37B /* CGameMenuUI.mm in Sources */,
-				A1D635BA15AAEB2A00F5D42B /* MainMenuViewController.mm in Sources */,
-				A179C1FD15ADA78200FA872B /* GameInGameViewController.mm in Sources */,
-				A179C20215ADA83700FA872B /* GameBaseViewController.mm in Sources */,
-				A179C21615ADC08900FA872B /* GameLoadingViewController.mm in Sources */,
-				A179C21B15ADD50000FA872B /* CLandscapeEdges.cpp in Sources */,
-				A123836715D12811007769E7 /* CBuilding.cpp in Sources */,
-				A123836A15D12D2E007769E7 /* ICollisionDelegate.cpp in Sources */,
-				A176DD6215D3AC2000B8FD7D /* BaseOperation.m in Sources */,
-				A176DD6515D3AC8000B8FD7D /* BaseWebRequestOperation.m in Sources */,
-				A176DD6815D3AD2200B8FD7D /* WebCommunicationMgr.m in Sources */,
-				A176DD7115D3C12B00B8FD7D /* GoogleGetCityLocationRequest.m in Sources */,
-				A1FE32DE15D3E17600D82CF6 /* JSONKit.m in Sources */,
-				A1FE334815D4FE8F00D82CF6 /* b2BroadPhase.cpp in Sources */,
-				A1FE334915D4FE8F00D82CF6 /* b2CollideCircle.cpp in Sources */,
-				A1FE334A15D4FE8F00D82CF6 /* b2CollideEdge.cpp in Sources */,
-				A1FE334B15D4FE8F00D82CF6 /* b2CollidePolygon.cpp in Sources */,
-				A1FE334C15D4FE8F00D82CF6 /* b2Collision.cpp in Sources */,
-				A1FE334D15D4FE8F00D82CF6 /* b2Distance.cpp in Sources */,
-				A1FE334E15D4FE8F00D82CF6 /* b2DynamicTree.cpp in Sources */,
-				A1FE334F15D4FE8F00D82CF6 /* b2TimeOfImpact.cpp in Sources */,
-				A1FE335015D4FE8F00D82CF6 /* b2ChainShape.cpp in Sources */,
-				A1FE335115D4FE8F00D82CF6 /* b2CircleShape.cpp in Sources */,
-				A1FE335215D4FE8F00D82CF6 /* b2EdgeShape.cpp in Sources */,
-				A1FE335315D4FE8F00D82CF6 /* b2PolygonShape.cpp in Sources */,
-				A1FE335415D4FE8F00D82CF6 /* b2BlockAllocator.cpp in Sources */,
-				A1FE335515D4FE8F00D82CF6 /* b2Draw.cpp in Sources */,
-				A1FE335615D4FE8F00D82CF6 /* b2Math.cpp in Sources */,
-				A1FE335715D4FE8F00D82CF6 /* b2Settings.cpp in Sources */,
-				A1FE335815D4FE8F00D82CF6 /* b2StackAllocator.cpp in Sources */,
-				A1FE335915D4FE8F00D82CF6 /* b2Timer.cpp in Sources */,
-				A1FE335A15D4FE8F00D82CF6 /* b2Body.cpp in Sources */,
-				A1FE335B15D4FE8F00D82CF6 /* b2ContactManager.cpp in Sources */,
-				A1FE335C15D4FE8F00D82CF6 /* b2Fixture.cpp in Sources */,
-				A1FE335D15D4FE8F00D82CF6 /* b2Island.cpp in Sources */,
-				A1FE335E15D4FE8F00D82CF6 /* b2World.cpp in Sources */,
-				A1FE335F15D4FE8F00D82CF6 /* b2WorldCallbacks.cpp in Sources */,
-				A1FE336015D4FE8F00D82CF6 /* b2ChainAndCircleContact.cpp in Sources */,
-				A1FE336115D4FE8F00D82CF6 /* b2ChainAndPolygonContact.cpp in Sources */,
-				A1FE336215D4FE8F00D82CF6 /* b2CircleContact.cpp in Sources */,
-				A1FE336315D4FE8F00D82CF6 /* b2Contact.cpp in Sources */,
-				A1FE336415D4FE8F00D82CF6 /* b2ContactSolver.cpp in Sources */,
-				A1FE336515D4FE8F00D82CF6 /* b2EdgeAndCircleContact.cpp in Sources */,
-				A1FE336615D4FE8F00D82CF6 /* b2EdgeAndPolygonContact.cpp in Sources */,
-				A1FE336715D4FE8F00D82CF6 /* b2PolygonAndCircleContact.cpp in Sources */,
-				A1FE336815D4FE8F00D82CF6 /* b2PolygonContact.cpp in Sources */,
-				A1FE336915D4FE8F00D82CF6 /* b2DistanceJoint.cpp in Sources */,
-				A1FE336A15D4FE8F00D82CF6 /* b2FrictionJoint.cpp in Sources */,
-				A1FE336B15D4FE8F00D82CF6 /* b2GearJoint.cpp in Sources */,
-				A1FE336C15D4FE8F00D82CF6 /* b2Joint.cpp in Sources */,
-				A1FE336D15D4FE8F00D82CF6 /* b2MouseJoint.cpp in Sources */,
-				A1FE336E15D4FE8F00D82CF6 /* b2PrismaticJoint.cpp in Sources */,
-				A1FE336F15D4FE8F00D82CF6 /* b2PulleyJoint.cpp in Sources */,
-				A1FE337015D4FE8F00D82CF6 /* b2RevoluteJoint.cpp in Sources */,
-				A1FE337115D4FE8F00D82CF6 /* b2RopeJoint.cpp in Sources */,
-				A1FE337215D4FE8F00D82CF6 /* b2WeldJoint.cpp in Sources */,
-				A1FE337315D4FE8F00D82CF6 /* b2WheelJoint.cpp in Sources */,
-				A1FE337415D4FE8F00D82CF6 /* b2Rope.cpp in Sources */,
-				A1FE338615D9117000D82CF6 /* GameUserSDB.cpp in Sources */,
-				A1FE338915D9117F00D82CF6 /* GameLightTankSDB.cpp in Sources */,
-				A1FE338C15D9119500D82CF6 /* GameMediumTankSDB.cpp in Sources */,
-				A1FE338F15D911B900D82CF6 /* GameHeavyTankSDB.cpp in Sources */,
-				A1FE339615D9155800D82CF6 /* GameTankSDB.cpp in Sources */,
-				A1FE339E15D9169500D82CF6 /* GameSDBStorage.cpp in Sources */,
-				A1FE33B615D93CA100D82CF6 /* GameNativeCommunicationMgr.cpp in Sources */,
-				A1FE33BA15D93CD400D82CF6 /* GameClient.cpp in Sources */,
-				A1FE33BD15D93CE000D82CF6 /* GameServer.cpp in Sources */,
-				A1FE33C415D9596D00D82CF6 /* GameClientHandler.cpp in Sources */,
-				A1F98AE915DB8A6100B38C6E /* CNavigationHelper.cpp in Sources */,
-				A1F98AF115DBA84600B38C6E /* INavigationDelegate.cpp in Sources */,
-				A4DF957216C3EC1C0004EB83 /* CResourceLoadCallback.cpp in Sources */,
+				A4A9848416DCFA72007F9CF6 /* main.m in Sources */,
+				A4A9848316DCFA55007F9CF6 /* MainAppDelegate.mm in Sources */,
+				A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */,
+				A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */,
+				A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */,
+				A4A9847E16DCF729007F9CF6 /* CVertexBuffer.cpp in Sources */,
+				A4A9848116DCF73F007F9CF6 /* CIndexBuffer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

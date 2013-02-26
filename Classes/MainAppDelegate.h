@@ -1,4 +1,4 @@
-#import "GLView.h"
+//#import "GLView.h"
 
 @interface MainAppDelegate : NSObject <UIApplicationDelegate> 
 {

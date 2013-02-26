@@ -6,22 +6,20 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include <iostream>
 #include "CTexture.h"
 
 CTexture::CTexture(void)
 {
-    m_pSourceData = NULL;
-    m_eResourceType = E_RESOURCE_TYPE_TEXTURE;
+    m_resourceType = E_RESOURCE_TYPE_TEXTURE;
 }
 
 CTexture::~CTexture(void)
 {
-    glDeleteTextures(1, &m_pSourceData->m_hTextureHanlde);
-    delete m_pSourceData;
+    glDeleteTextures(1, &m_handle);
 }
 
-void CTexture::Set_SourceData(void *_pSourceData)
+void CTexture::Set_WrapMode(ui32 _mode)
 {
-    m_pSourceData = static_cast<SSourceData*>(_pSourceData);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, _mode);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, _mode);
 }

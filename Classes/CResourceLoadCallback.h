@@ -10,9 +10,10 @@
 #define CResourceLoadCallback_h
 
 #include "HCommon.h"
-#include "IResource.h"
 
-typedef std::function<void(IResource* _pResource, E_RESOURCE_TYPE _eResourceType)> __RESOURCE_DID_LOAD_LISTENER;
+extern "C" class IResource;
+
+typedef std::function<void(IResource* _resource)> __RESOURCE_DID_LOAD_LISTENER;
 
 class CResourceLoadCallback final
 {
@@ -21,33 +22,33 @@ private:
 
     friend class CResourceLoadCallback_INTERFACE;
     
-    __RESOURCE_DID_LOAD_LISTENER m_tResourceDidLoadListener;
+    __RESOURCE_DID_LOAD_LISTENER m_resourceDidLoadListener;
 
 protected:
     
     CResourceLoadCallback(void) = default;
 
-    void ConnectResourceDidLoadListener(const __RESOURCE_DID_LOAD_LISTENER& _tListener);
+    void ConnectResourceDidLoadListener(const __RESOURCE_DID_LOAD_LISTENER& _listener);
     
 public:
     
     ~CResourceLoadCallback(void) = default;
 
-    void NotifyResourceDidLoadListener(IResource* _pResource, E_RESOURCE_TYPE _eResourceType);
+    void NotifyResourceDidLoadListener(IResource* _resource);
 };
 
 class CResourceLoadCallback_INTERFACE
 {
 private:
 
-    CResourceLoadCallback m_tResourceLoadCallback;
+    CResourceLoadCallback m_resourceLoadCallback;
     void ConnectResourceLoadCallback(void);
     
 protected:
 
     CResourceLoadCallback_INTERFACE(void);
 
-    virtual void OnResourceDidLoad(IResource* _pResource, E_RESOURCE_TYPE _eResourceType) = 0;
+    virtual void OnResourceDidLoad(IResource* _resource) = 0;
     
 public:
 
