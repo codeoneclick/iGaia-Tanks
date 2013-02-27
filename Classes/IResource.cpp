@@ -8,23 +8,14 @@
 
 #include "IResource.h"
 
-IResource::IResource(void)
+IResource_INTERFACE::IResource_INTERFACE(void)
 {
     m_referencesCount = 0;
 }
 
-IResource::~IResource(void)
+IResource_INTERFACE::~IResource_INTERFACE(void)
 {
     
-}
-
-void IResource::NotifyLoadingListeners(void)
-{
-    for(CResourceLoadCallback* _listener : m_listeners)
-    {
-        _listener->NotifyResourceDidLoadListener(this);
-    }
-    m_listeners.clear();
 }
 
 

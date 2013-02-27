@@ -6,47 +6,67 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef iGaia_CMesh_h
-#define iGaia_CMesh_h
+#ifndef CMesh_h
+#define CMesh_h
 
-#include "IVertexBuffer.h"
-#include "CIndexBuffer.h"
 #include "IResource.h"
-#include <vector>
+#include "CVertexBuffer.h"
+#include "CIndexBuffer.h"
 
-class CMesh : public IResource
+class CMesh : public IResource_INTERFACE
 {   
+private:
+
+protected:
+
+    CVertexBuffer* m_vertexBuffer;
+    CIndexBuffer* m_indexBuffer;
+
+    glm::vec3 m_maxBound;
+    glm::vec3 m_minBound;
+
 public:
-    struct SVertex 
+
+    CMesh(CVertexBuffer* _vertexBuffer, CIndexBuffer* _indexBuffer, const glm::vec3& _maxBound, const glm::vec3& _minBound);
+    ~CMesh(void);
+
+    inline CVertexBuffer* Get_VertexBuffer(void)
     {
-        glm::vec3    m_vPosition;
-        glm::vec2    m_vTexCoord;
-        glm::vec3    m_vNormal;
-        glm::vec3    m_vTangent;
+        assert(m_vertexBuffer != nullptr);
+        return m_vertexBuffer;
     };
     
-    struct SSourceData
+    inline CIndexBuffer* Get_IndexBuffer(void)
     {
-        SVertex*        m_pData;
-        IVertexBuffer*  m_pVertexBuffer;
-        CIndexBuffer*   m_pIndexBuffer;
-        int             m_iNumVertexes;
-        int             m_iNumIndexes;
-        glm::vec3       m_vMaxBound;
-        glm::vec3       m_vMinBound;
-    }; 
-protected:
-    SSourceData* m_pSourceData;
-public:
-    CMesh(E_CREATION_MODE _eCreationMode);
-    virtual ~CMesh(void);
-    IVertexBuffer*  Get_VertexBufferRef(void) { return m_pSourceData->m_pVertexBuffer; }
-    CIndexBuffer*   Get_IndexBufferRef(void) { return m_pSourceData->m_pIndexBuffer; }
-    virtual void Set_SourceData(void* _pSourceData);
-    int Get_NumIndexes(void) { return m_pSourceData->m_iNumIndexes; }
-    int Get_NumVertexes(void) { return m_pSourceData->m_iNumVertexes; }
-    glm::vec3 Get_MaxBound(void) { return m_pSourceData->m_vMaxBound; }
-    glm::vec3 Get_MinBound(void) { return m_pSourceData->m_vMinBound; }
+        assert(m_indexBuffer != nullptr);
+        return m_indexBuffer;
+    };
+
+    inline ui32 Get_NumVertexes(void)
+    {
+        assert(m_vertexBuffer != nullptr);
+        return m_vertexBuffer->Get_NumVertexes();
+    };
+
+    inline ui32 Get_NumIndexes(void)
+    {
+        assert(m_indexBuffer != nullptr);
+        return m_indexBuffer->Get_NumIndexes();
+    };
+
+    inline glm::vec3 Get_MaxBound(void)
+    {
+        return m_maxBound;
+    }
+
+    inline glm::vec3 Get_MinBound(void)
+    {
+        return m_minBound;
+    }
+
+    void Bind(const std::map<E_SHADER_VERTEX_SLOT, i32>& _slots);
+    void Draw(void);
+    void Unbind(const std::map<E_SHADER_VERTEX_SLOT, i32>& _slots);
 };
 
 #endif

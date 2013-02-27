@@ -5,16 +5,13 @@
 //  Created by sergey.sergeev on 11/28/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
-
-#include <iostream>
 #include "CMeshMgr.h"
+#include "CMesh.h"
+#include "CLoadOperation_MDL.h"
 
 CMeshMgr::CMeshMgr(void)
 {
-    CParser_MDL* pParser = new CParser_MDL();
-    pParser->Load("base_model.mdl");
-    pParser->Commit();
-    m_pDefaultMeshSourceData = static_cast<CMesh::SSourceData*>(pParser->Get_SourceData());
+
 }
 
 CMeshMgr::~CMeshMgr(void)
@@ -22,67 +19,50 @@ CMeshMgr::~CMeshMgr(void)
     
 }
 
-IResource* CMeshMgr::Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams)
+IResource_INTERFACE* CMeshMgr::StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadCallback_INTERFACE* _listener)
 {
-    CMesh* pMesh = NULL;
+    CMesh* mesh = nullptr;
     
-    if(_eThread == IResource::E_THREAD_SYNC)
+    if(_thread == E_RESOURCE_LOAD_THREAD_SYNC)
     {
-        if( m_lContainer.find(_sName) != m_lContainer.end())
+        if(m_resourceContainer.find(_filename) != m_resourceContainer.end())
         {
-            pMesh = static_cast<CMesh*>(m_lContainer[_sName]);
-            pMesh->IncRefCount();
+            mesh = static_cast<CMesh*>(m_resourceContainer[_filename]);
+            mesh->IncReferencesCount();
         }
         else
         {
-            pMesh = new CMesh(IResource::E_CREATION_MODE_NATIVE);
-            pMesh->Set_SourceData(m_pDefaultMeshSourceData);
-            
-            IParser* pParser = new CParser_MDL();
-            
-            pParser->Load(_sName.c_str());
-            if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
+            CLoadOperation_MDL* operation = new CLoadOperation_MDL();
+            operation->Load(_filename);
+            if(operation->Get_Status() == E_PARSER_STATUS_DONE)
             {
-                pMesh->Set_SourceData(pParser->Get_SourceData());
+                mesh = static_cast<CMesh*>(operation->Build());
+                operation->Dispatch(mesh);
+                mesh->IncReferencesCount();
             }
-            delete pParser;
+            delete operation;
         }
     }
-    else if(_eThread == IResource::E_THREAD_ASYNC)
+    else if(_thread == E_RESOURCE_LOAD_THREAD_ASYNC)
     {
-        if( m_lContainer.find(_sName) != m_lContainer.end())
+        if(m_resourceContainer.find(_filename) != m_resourceContainer.end())
         {
-            pMesh = static_cast<CMesh*>(m_lContainer[_sName]);
-            pMesh->IncRefCount();
+            CMesh* mesh = static_cast<CMesh*>(m_resourceContainer[_filename]);
+            Dispatch(_listener, mesh);
         }
         else
         {
-            if(m_lTaskPool.find(_sName) == m_lTaskPool.end())
+            if(m_operationsQueue.find(_filename) == m_operationsQueue.end())
             {
-                m_lTaskPool[_sName] = new CParser_MDL();
+                CLoadOperation_MDL* operation = new CLoadOperation_MDL();
+                m_operationsQueue.insert(std::make_pair(_filename, operation));
             }
-            pMesh = new CMesh(IResource::E_CREATION_MODE_NATIVE);
-            pMesh->Set_SourceData(m_pDefaultMeshSourceData);
-            pMesh->Set_Name(_sName);
-            pMesh->Add_DelegateOwner(_pDelegate);
-            m_lContainer[_sName] = pMesh;
+
+            CLoadOperation_MDL* operation = static_cast<CLoadOperation_MDL*>(m_operationsQueue.find(_filename)->second);
+            AddListener(_listener, operation);
         }
     }
-    return pMesh;
+    return mesh;
 }
 
-void CMeshMgr::Unload(const std::string& _sName)
-{
-    CMesh* pMesh = NULL;
-    if( m_lContainer.find(_sName) != m_lContainer.end())
-    {
-        pMesh = static_cast<CMesh*>(m_lContainer[_sName]);
-        pMesh->DecRefCount();
-        if(pMesh->Get_RefCount() == 0)
-        {
-            delete pMesh;
-            std::map<std::string, IResource*>::iterator pIterator = m_lContainer.find(_sName);
-            m_lContainer.erase(pIterator);
-        }
-    }
-}
+

@@ -11,7 +11,7 @@
 
 #include "IResource.h"
 
-class CTexture : public IResource
+class CTexture : public IResource_INTERFACE
 {   
 private:
 
@@ -24,7 +24,7 @@ protected:
     
 public:
     
-    CTexture(void);
+    CTexture(ui32 _handle, ui32 _width, ui32 _height);
     ~CTexture(void);
     
     inline ui32 Get_Handle(void)

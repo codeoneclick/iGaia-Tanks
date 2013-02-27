@@ -14,7 +14,7 @@ void CResourceLoadCallback::ConnectResourceDidLoadListener(const __RESOURCE_DID_
     m_resourceDidLoadListener = _listener;
 }
 
-void CResourceLoadCallback::NotifyResourceDidLoadListener(IResource *_resource)
+void CResourceLoadCallback::DispatchResourceDidLoad(IResource_INTERFACE *_resource)
 {
     assert(m_resourceDidLoadListener != nullptr);
     m_resourceDidLoadListener(_resource);

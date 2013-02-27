@@ -6,25 +6,23 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef iGaia_CMeshMgr_h
-#define iGaia_CMeshMgr_h
+#ifndef CMeshMgr_h
+#define CMeshMgr_h
 
-#include "stdlib.h"
-#include <string>
-#include <map>
-#include "CParser_MDL.h"
 #include "IResourceMgr.h"
 
-class CMeshMgr : public IResourceMgr
+class CMeshMgr : public IResourceMgr_INTERFACE
 {
 private:
-    CMesh::SSourceData* m_pDefaultMeshSourceData;
-public:
-    CMeshMgr(void);
-    virtual ~CMeshMgr(void);
     
-    virtual IResource* Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams);
-    virtual void Unload(const std::string& _sName);
+protected:
+    
+public:
+    
+    CMeshMgr(void);
+    ~CMeshMgr(void);
+    
+    IResource_INTERFACE* StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadCallback_INTERFACE* _listener);
 };
 
 #endif

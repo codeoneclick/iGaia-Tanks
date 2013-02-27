@@ -10,26 +10,27 @@
 #define IResource_h
 
 #include "HCommon.h"
-#include "CResourceLoadCallback.h"
 
-class IResource
+class IResource_INTERFACE
 {
 private:
-    
+
+    friend class ILoadOperation_INTERFACE;
+
 protected:
 
     std::string m_name;
     ui32 m_referencesCount;
     E_RESOURCE_TYPE m_resourceType;
-    std::set<CResourceLoadCallback*> m_listeners;
     
 public:
     
-    IResource(void);
-    virtual ~IResource(void);
+    IResource_INTERFACE(void);
+    virtual ~IResource_INTERFACE(void);
 
     inline std::string Get_Name(void)
     {
+        assert(m_name.length() != 0);
         return m_name;
     };
 
@@ -52,18 +53,6 @@ public:
     {
         return m_referencesCount;
     };
-
-    inline void AddLoadingListener(CResourceLoadCallback* _listener)
-    {
-        m_listeners.insert(_listener);
-    };
-
-    inline void RemoveLoadingListener(CResourceLoadCallback* _listener)
-    {
-        m_listeners.erase(_listener);
-    };
-
-    void NotifyLoadingListeners(void);
 };
 
 #endif

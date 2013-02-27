@@ -11,9 +11,9 @@
 
 #include "HCommon.h"
 
-extern "C" class IResource;
+extern "C" class IResource_INTERFACE;
 
-typedef std::function<void(IResource* _resource)> __RESOURCE_DID_LOAD_LISTENER;
+typedef std::function<void(IResource_INTERFACE* _resource)> __RESOURCE_DID_LOAD_LISTENER;
 
 class CResourceLoadCallback final
 {
@@ -34,7 +34,7 @@ public:
     
     ~CResourceLoadCallback(void) = default;
 
-    void NotifyResourceDidLoadListener(IResource* _resource);
+    void DispatchResourceDidLoad(IResource_INTERFACE* _resource);
 };
 
 class CResourceLoadCallback_INTERFACE
@@ -48,11 +48,16 @@ protected:
 
     CResourceLoadCallback_INTERFACE(void);
 
-    virtual void OnResourceDidLoad(IResource* _resource) = 0;
+    virtual void OnResourceDidLoad(IResource_INTERFACE* _resource) = 0;
     
 public:
 
     virtual ~CResourceLoadCallback_INTERFACE(void) = default;
+
+    inline CResourceLoadCallback* Get_Commands(void)
+    {
+        return &m_resourceLoadCallback;
+    }
 };
 
 #endif 

@@ -6,26 +6,23 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef iGaia_CTextureMgr_h
-#define iGaia_CTextureMgr_h
+#ifndef CTextureMgr_h
+#define CTextureMgr_h
 
-#include "stdlib.h"
-#include <string>
-#include <map>
-#include "CParser_PVR.h"
 #include "IResourceMgr.h"
-#include "IDelegate.h"
 
-class CTextureMgr : public IResourceMgr
+class CTextureMgr : public IResourceMgr_INTERFACE
 {
 private:
-    CTexture::SSourceData* m_pDefaultTextureSourceData;
-public:
-    CTextureMgr(void);
-    virtual ~CTextureMgr(void);
+
+protected:
     
-    virtual IResource* Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams);
-    virtual void Unload(const std::string& _sName);
+public:
+    
+    CTextureMgr(void);
+    ~CTextureMgr(void);
+    
+    IResource_INTERFACE* StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadCallback_INTERFACE* _listener);
 };
 
 

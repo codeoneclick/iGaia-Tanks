@@ -8,9 +8,13 @@
 
 #include "CTexture.h"
 
-CTexture::CTexture(void)
+CTexture::CTexture(ui32 _handle, ui32 _width, ui32 _height)
 {
     m_resourceType = E_RESOURCE_TYPE_TEXTURE;
+
+    m_handle = _handle;
+    m_width = _width;
+    m_height = _height;
 }
 
 CTexture::~CTexture(void)

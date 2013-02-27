@@ -5,19 +5,13 @@
 //  Created by Snow Leopard User on 24/10/2011.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
-
-#include <iostream>
 #include "CTextureMgr.h"
-#include <cmath>
-#include "stdlib.h"
-#include <algorithm>
+#include "CTexture.h"
+#include "CLoadOperation_PVR.h"
 
 CTextureMgr::CTextureMgr(void)
 {
-    CParser_PVR* pParser = new CParser_PVR();
-    pParser->Load("default.pvr");
-    pParser->Commit();
-    m_pDefaultTextureSourceData = static_cast<CTexture::SSourceData*>(pParser->Get_SourceData());
+
 }
 
 CTextureMgr::~CTextureMgr(void)
@@ -25,73 +19,50 @@ CTextureMgr::~CTextureMgr(void)
     
 }
 
-IResource* CTextureMgr::Load(const std::string& _sName, IResource::E_THREAD _eThread, IDelegate* _pDelegate, const std::map<std::string, std::string>* _lParams)
+IResource_INTERFACE* CTextureMgr::StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadCallback_INTERFACE* _listener)
 {
-    CTexture* pTexture = NULL;
+    CTexture* texture = nullptr;
     
-    if(_eThread == IResource::E_THREAD_SYNC)
+    if(_thread == E_RESOURCE_LOAD_THREAD_SYNC)
     {
-        if( m_lContainer.find(_sName) != m_lContainer.end())
+        if(m_resourceContainer.find(_filename) != m_resourceContainer.end())
         {
-            pTexture = static_cast<CTexture*>(m_lContainer[_sName]);
-            pTexture->IncRefCount();
+            texture = static_cast<CTexture*>(m_resourceContainer[_filename]);
+            texture->IncReferencesCount();
         }
         else
         {
-            pTexture = new CTexture();
-            pTexture->Set_SourceData(m_pDefaultTextureSourceData);
-            CParser_PVR* pParser = new CParser_PVR();
-            pParser->Load(_sName.c_str());
-            pParser->Set_Params(_lParams);
-            if(pParser->Get_Status() != IParser::E_ERROR_STATUS)
+            CLoadOperation_PVR* operation = new CLoadOperation_PVR();
+            operation->Load(_filename);
+            if(operation->Get_Status() == E_PARSER_STATUS_DONE)
             {
-                pParser->Commit();
-                pTexture->Set_SourceData(pParser->Get_SourceData());
+                texture = static_cast<CTexture*>(operation->Build());
+                operation->Dispatch(texture);
+                texture->IncReferencesCount();
             }
-            delete pParser;
-            m_lContainer[_sName] = pTexture;
+            delete operation;
         }
     }
-    else if(_eThread == IResource::E_THREAD_ASYNC)
+    else if(_thread == E_RESOURCE_LOAD_THREAD_ASYNC)
     {
-        if( m_lContainer.find(_sName) != m_lContainer.end())
+        if(m_resourceContainer.find(_filename) != m_resourceContainer.end())
         {
-            pTexture = static_cast<CTexture*>(m_lContainer[_sName]);
-            pTexture->IncRefCount();
+            CTexture* texture = static_cast<CTexture*>(m_resourceContainer[_filename]);
+            Dispatch(_listener, texture);
         }
         else
         {
-            if(m_lTaskPool.find(_sName) == m_lTaskPool.end())
+            if(m_operationsQueue.find(_filename) == m_operationsQueue.end())
             {
-                m_lTaskPool[_sName] = new CParser_PVR();
-                m_lTaskPool[_sName]->Set_Params(_lParams);
+                CLoadOperation_PVR* operation = new CLoadOperation_PVR();
+                m_operationsQueue.insert(std::make_pair(_filename, operation));
             }
-            pTexture = new CTexture();
-            pTexture->Set_SourceData(m_pDefaultTextureSourceData);
-            pTexture->Set_Name(_sName);
-            pTexture->Add_DelegateOwner(_pDelegate);
-            m_lContainer[_sName] = pTexture;
+
+            CLoadOperation_PVR* operation = static_cast<CLoadOperation_PVR*>(m_operationsQueue.find(_filename)->second);
+            AddListener(_listener, operation);
         }
     }
-
-    return pTexture;
-}
-
-void CTextureMgr::Unload(const std::string& _sName)
-{
-    CTexture* pTexture = NULL;
-    if( m_lContainer.find(_sName) != m_lContainer.end())
-    {
-        pTexture = static_cast<CTexture*>(m_lContainer[_sName]);
-        pTexture->DecRefCount();
-        
-        if(pTexture->Get_RefCount() == 0 && pTexture->Get_Handle() != m_pDefaultTextureSourceData->m_hTextureHanlde)
-        {
-            delete pTexture;
-            std::map<std::string, IResource*>::iterator pIterator = m_lContainer.find(_sName);
-            m_lContainer.erase(pIterator);
-        }
-    }
+    return texture;
 }
 
 
