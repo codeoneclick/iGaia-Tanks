@@ -37,7 +37,7 @@ IResource_INTERFACE* CMeshMgr::StartLoadOperation(const std::string& _filename, 
             if(operation->Get_Status() == E_PARSER_STATUS_DONE)
             {
                 mesh = static_cast<CMesh*>(operation->Build());
-                operation->Dispatch(mesh);
+                m_resourceContainer.insert(std::make_pair(_filename, mesh));
                 mesh->IncReferencesCount();
             }
             delete operation;

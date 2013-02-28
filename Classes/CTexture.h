@@ -43,6 +43,9 @@ public:
     };
 
     void Set_WrapMode(ui32 _mode);
+    
+    void Bind(void);
+    void Unbind(void);
 };
 
 #endif

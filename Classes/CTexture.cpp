@@ -24,6 +24,17 @@ CTexture::~CTexture(void)
 
 void CTexture::Set_WrapMode(ui32 _mode)
 {
+    glBindTexture(GL_TEXTURE_2D, m_handle);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, _mode);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, _mode);
+}
+
+void CTexture::Bind(void)
+{
+    glBindTexture(GL_TEXTURE_2D, m_handle);
+}
+
+void CTexture::Unbind(void)
+{
+    glBindTexture(GL_TEXTURE_2D, NULL);
 }

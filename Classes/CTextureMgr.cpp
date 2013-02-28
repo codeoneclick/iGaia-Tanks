@@ -37,7 +37,7 @@ IResource_INTERFACE* CTextureMgr::StartLoadOperation(const std::string& _filenam
             if(operation->Get_Status() == E_PARSER_STATUS_DONE)
             {
                 texture = static_cast<CTexture*>(operation->Build());
-                operation->Dispatch(texture);
+                m_resourceContainer.insert(std::make_pair(_filename, texture));
                 texture->IncReferencesCount();
             }
             delete operation;

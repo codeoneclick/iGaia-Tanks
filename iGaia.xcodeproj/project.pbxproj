@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		216E115B16DE8C58002C98B3 /* CMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A18D576D1598418000FCD8C9 /* CMaterial.cpp */; };
+		216E115C16DE9CB9002C98B3 /* CShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 937367C8144ECE140051ED8D /* CShader.cpp */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		4D27E4840F9AD71900447247 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4830F9AD71900447247 /* OpenGLES.framework */; };
 		4D27E4B50F9AD7D600447247 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4B40F9AD7D600447247 /* QuartzCore.framework */; };
@@ -2471,6 +2473,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				216E115C16DE9CB9002C98B3 /* CShader.cpp in Sources */,
+				216E115B16DE8C58002C98B3 /* CMaterial.cpp in Sources */,
 				A41C872F16DE69A2003DA026 /* CRenderMgr.cpp in Sources */,
 				A41C871916DE5061003DA026 /* CResourceMgrsFacade.cpp in Sources */,
 				A41C871816DE3E32003DA026 /* CMeshMgr.cpp in Sources */,
