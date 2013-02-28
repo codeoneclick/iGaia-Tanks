@@ -11,6 +11,8 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		216E115B16DE8C58002C98B3 /* CMaterial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A18D576D1598418000FCD8C9 /* CMaterial.cpp */; };
 		216E115C16DE9CB9002C98B3 /* CShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 937367C8144ECE140051ED8D /* CShader.cpp */; };
+		216E115D16E00074002C98B3 /* CShaderComposite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE914ED31455DA3200AA2000 /* CShaderComposite.cpp */; };
+		216E115E16E00089002C98B3 /* CParser_GLSL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9320598E145E964E00DEBCCB /* CParser_GLSL.cpp */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		4D27E4840F9AD71900447247 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4830F9AD71900447247 /* OpenGLES.framework */; };
 		4D27E4B50F9AD7D600447247 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4B40F9AD7D600447247 /* QuartzCore.framework */; };
@@ -195,7 +197,6 @@
 		A41C872516DE596D003DA026 /* CRenderOperationWorldSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C872316DE596D003DA026 /* CRenderOperationWorldSpace.cpp */; };
 		A41C872816DE5988003DA026 /* CRenderOperationScreenSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C872616DE5988003DA026 /* CRenderOperationScreenSpace.cpp */; };
 		A41C872B16DE5A85003DA026 /* CRenderCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C872916DE5A83003DA026 /* CRenderCallback.cpp */; };
-		A41C872F16DE69A2003DA026 /* CRenderMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93AA2A651487A7CD0073F016 /* CRenderMgr.cpp */; };
 		A41C873216DF4A58003DA026 /* CRenderOperationScreenOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C873016DF4A58003DA026 /* CRenderOperationScreenOutput.cpp */; };
 		A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
 		A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */; };
@@ -2478,9 +2479,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				216E115E16E00089002C98B3 /* CParser_GLSL.cpp in Sources */,
+				216E115D16E00074002C98B3 /* CShaderComposite.cpp in Sources */,
 				216E115C16DE9CB9002C98B3 /* CShader.cpp in Sources */,
 				216E115B16DE8C58002C98B3 /* CMaterial.cpp in Sources */,
-				A41C872F16DE69A2003DA026 /* CRenderMgr.cpp in Sources */,
 				A41C871916DE5061003DA026 /* CResourceMgrsFacade.cpp in Sources */,
 				A41C871816DE3E32003DA026 /* CMeshMgr.cpp in Sources */,
 				A41C871716DE3E2B003DA026 /* CTextureMgr.cpp in Sources */,

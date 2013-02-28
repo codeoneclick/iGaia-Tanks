@@ -6,29 +6,32 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef iGaia_CParser_GLSL_h
-#define iGaia_CParser_GLSL_h
+#ifndef CParser_GLSL_h
+#define CParser_GLSL_h
 
-#include <OpenGLES/ES2/gl.h>
-#include <OpenGLES/ES2/glext.h>
-#include "stdlib.h"
-#include <string>
+#include "HCommon.h"
+
+struct SGLSLData
+{
+    ui32 m_linkedShaderHandle;
+    ui32 m_vertexShaderHandle;
+    ui32 m_fragmentShaderHandle;
+};
 
 class CParser_GLSL
 {
-public:
-    struct SGLSLData
-    {
-        GLuint s_pHandle;
-        GLuint s_vHandle;
-        GLuint s_fHandle;
-    };
 private:
-    GLuint Build(const char* _pSource, GLenum _eShader);
+    
+protected:
+    
+    ui32 Build(const char* _source, GLenum _shader);
+    
 public:
-    CParser_GLSL();
-    ~CParser_GLSL();
-    SGLSLData Load(const char *_vSource, const char*_fSource);
+    
+    CParser_GLSL(void);
+    ~CParser_GLSL(void);
+    
+    SGLSLData Load(const char *_vertexShaderSource, const char*_fragmentShaderSource);
 };
 
 #endif

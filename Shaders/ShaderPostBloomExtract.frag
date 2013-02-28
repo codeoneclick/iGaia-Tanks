@@ -1,4 +1,4 @@
-const char* ShaderPostBloomExtractF = STRINGIFY(
+const char* ShaderPostBloomExtractF = STRING_SHADER(
 
                                                    varying mediump vec3   OUT_View;
                                                    varying mediump vec3   OUT_Light;

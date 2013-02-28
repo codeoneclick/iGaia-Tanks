@@ -1,4 +1,4 @@
-const char* ShaderPostBlurF = STRINGIFY(
+const char* ShaderPostBlurF = STRING_SHADER(
 
                                                    varying mediump vec3   OUT_View;
                                                    varying mediump vec3   OUT_Light;

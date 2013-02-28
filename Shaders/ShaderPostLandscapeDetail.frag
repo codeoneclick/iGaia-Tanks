@@ -1,4 +1,4 @@
-const char* ShaderPostLandscapeDetailF = STRINGIFY(
+const char* ShaderPostLandscapeDetailF = STRING_SHADER(
 
                                                    varying highp vec2 OUT_SplattingTexCoord;                                     
                                                    varying highp vec2 OUT_TexCoord;

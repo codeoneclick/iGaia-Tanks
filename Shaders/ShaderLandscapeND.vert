@@ -1,4 +1,4 @@
-const char* ShaderLandscapeNDV = STRINGIFY(  
+const char* ShaderLandscapeNDV = STRING_SHADER(  
                                               
                                               attribute vec3 IN_SLOT_Position;
                                               attribute vec2 IN_SLOT_TexCoord;

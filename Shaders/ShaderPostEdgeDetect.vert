@@ -1,4 +1,4 @@
-const char* ShaderPostEdgeDetectV = STRINGIFY(
+const char* ShaderPostEdgeDetectV = STRING_SHADER(
                                                    
                                                    attribute vec3 IN_SLOT_Position;
                                                    attribute vec2 IN_SLOT_TexCoord;

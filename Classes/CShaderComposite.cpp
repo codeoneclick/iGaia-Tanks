@@ -5,11 +5,9 @@
 //  Created by Snow Leopard User on 24/10/2011.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
-
-#include <iostream>
 #include "CShaderComposite.h"
 
-#define STRINGIFY(A)  #A
+#define STRING_SHADER(SHADER)  #SHADER
 
 #include "../Shaders/ShaderModel.frag"
 #include "../Shaders/ShaderModel.vert"
@@ -65,108 +63,100 @@
 #include "../Shaders/ShaderLandscapeEdges.frag"
 #include "../Shaders/ShaderLandscapeEdges.vert"
 
-CShaderComposite* CShaderComposite::m_pInstance = NULL;
+#include "CParser_GLSL.h"
 
-CShaderComposite::CShaderComposite()
+CShaderComposite::CShaderComposite(void)
 {
-    CParser_GLSL *pParser = new CParser_GLSL(); 
-    CParser_GLSL::SGLSLData pData;
+    CParser_GLSL *parser = new CParser_GLSL();
+    SGLSLData data;
     
-    pData = pParser->Load(ShaderModelV, ShaderModelF);
-    CShader* pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_MODEL] = pShader;
+    data = parser->Load(ShaderModelV, ShaderModelF);
+    CShader* shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_MODEL] = shader;
     
-    pData = pParser->Load(ShaderModelNDV, ShaderModelNDF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_MODEL_ND] = pShader;
+    data = parser->Load(ShaderModelNDV, ShaderModelNDF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_MODEL_ND] = shader;
     
-    pData = pParser->Load(ShaderLandscapeV, ShaderLandscapeF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_LANDSCAPE] = pShader;
+    data = parser->Load(ShaderLandscapeV, ShaderLandscapeF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_LANDSCAPE] = shader;
 
-    pData = pParser->Load(ShaderLandscapeNDV, ShaderLandscapeNDF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_LANDSCAPE_ND] = pShader;
+    data = parser->Load(ShaderLandscapeNDV, ShaderLandscapeNDF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_LANDSCAPE_ND] = shader;
     
-    pData = pParser->Load(ShaderOceanV, ShaderOceanF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_OCEAN] = pShader;
+    data = parser->Load(ShaderOceanV, ShaderOceanF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_OCEAN] = shader;
     
-    pData = pParser->Load(ShaderSkyboxV, ShaderSkyboxF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_SKYBOX] = pShader;
+    data = parser->Load(ShaderSkyboxV, ShaderSkyboxF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_SKYBOX] = shader;
     
-    pData = pParser->Load(ShaderGrassV, ShaderGrassF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_GRASS] = pShader;
+    data = parser->Load(ShaderGrassV, ShaderGrassF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_GRASS] = shader;
     
-    pData = pParser->Load(ShaderGrassNDV, ShaderGrassNDF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_GRASS_ND] = pShader;
+    data = parser->Load(ShaderGrassNDV, ShaderGrassNDF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_GRASS_ND] = shader;
     
-    pData = pParser->Load(ShaderDecalV, ShaderDecalF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_DECAL] = pShader;
+    data = parser->Load(ShaderDecalV, ShaderDecalF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_DECAL] = shader;
     
-    pData = pParser->Load(ShaderParticleV, ShaderParticleF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_PARTICLE] = pShader;
+    data = parser->Load(ShaderParticleV, ShaderParticleF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_PARTICLE] = shader;
     
-    pData = pParser->Load(ShaderParticleNDV, ShaderParticleNDF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_PARTICLE_ND] = pShader;
+    data = parser->Load(ShaderParticleNDV, ShaderParticleNDF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_PARTICLE_ND] = shader;
     
-    pData = pParser->Load(ShaderPostPlaneV, ShaderPostPlaneF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_SCREEN_PLANE] = pShader;
+    data = parser->Load(ShaderPostPlaneV, ShaderPostPlaneF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_SCREEN_PLANE] = shader;
     
-    pData = pParser->Load(ShaderPostBloomExtractV, ShaderPostBloomExtractF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_SCREEN_PLANE_BLOOM_EXTRACT] = pShader;
+    data = parser->Load(ShaderPostBloomExtractV, ShaderPostBloomExtractF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_SCREEN_PLANE_BLOOM_EXTRACT] = shader;
     
-    pData = pParser->Load(ShaderPostBloomCombineV, ShaderPostBloomCombineF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_SCREEN_PLANE_BLOOM_COMBINE] = pShader;
+    data = parser->Load(ShaderPostBloomCombineV, ShaderPostBloomCombineF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_SCREEN_PLANE_BLOOM_COMBINE] = shader;
     
-    pData = pParser->Load(ShaderPostBlurV, ShaderPostBlurF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_SCREEN_PLANE_BLUR] = pShader;
+    data = parser->Load(ShaderPostBlurV, ShaderPostBlurF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_SCREEN_PLANE_BLUR] = shader;
     
-    pData = pParser->Load(ShaderPostEdgeDetectV, ShaderPostEdgeDetectF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_SCREEN_PLANE_EDGE_DETECT] = pShader;
+    data = parser->Load(ShaderPostEdgeDetectV, ShaderPostEdgeDetectF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_SCREEN_PLANE_EDGE_DETECT] = shader;
     
-    pData = pParser->Load(ShaderPostLandscapeDetailV, ShaderPostLandscapeDetailF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_SCREEN_PLANE_LANDSCAPE_DETAIL] = pShader;
+    data = parser->Load(ShaderPostLandscapeDetailV, ShaderPostLandscapeDetailF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_SCREEN_PLANE_LANDSCAPE_DETAIL] = shader;
     
-    pData = pParser->Load(ShaderLandscapeEdgesV, ShaderLandscapeEdgesF);
-    pShader = new CShader(pData.s_pHandle);
-    m_lContainer[IResource::E_SHADER_LANDSCAPE_EDGES] = pShader;
+    data = parser->Load(ShaderLandscapeEdgesV, ShaderLandscapeEdgesF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_LANDSCAPE_EDGES] = shader;
 }
 
-CShaderComposite::~CShaderComposite()
+CShaderComposite::~CShaderComposite(void)
 {
     
 }
 
-CShaderComposite* CShaderComposite::Instance()
+CShader* CShaderComposite::Get_Shader(E_SHADER _shader)
 {
-    if(m_pInstance == NULL)
+    if( m_shadersContainer.find(_shader) != m_shadersContainer.end())
     {
-        m_pInstance = new CShaderComposite();
-    }
-    return m_pInstance;
-}
-
-CShader* CShaderComposite::Get_Shader(IResource::E_SHADER _eShader)
-{
-    if( m_lContainer.find(_eShader) != m_lContainer.end())
-    {
-        return m_lContainer[_eShader];
+        return m_shadersContainer[_shader];
     }
     else
     {
-        return NULL;
+        return nullptr;
     }
 }
+

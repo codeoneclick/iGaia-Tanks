@@ -1,4 +1,4 @@
-const char* ShaderOceanF = STRINGIFY(
+const char* ShaderOceanF = STRING_SHADER(
                                                    varying highp vec4   OUT_TexCoordProj;
                                                    varying highp vec2   OUT_TexCoord;
                                                    uniform highp float  EXT_Timer;

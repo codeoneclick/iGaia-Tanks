@@ -43,7 +43,6 @@ public:
     void Unbind(void);
 
     void Draw(void);
-
 };
 
 #endif

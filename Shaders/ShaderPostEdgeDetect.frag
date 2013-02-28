@@ -1,4 +1,4 @@
-const char* ShaderPostEdgeDetectF = STRINGIFY(                                    
+const char* ShaderPostEdgeDetectF = STRING_SHADER(                                    
                                                    varying highp vec2   OUT_TexCoord;
                                                    varying highp vec4   OUT_TexCoord_01;
                                                    varying highp vec4   OUT_TexCoord_02;

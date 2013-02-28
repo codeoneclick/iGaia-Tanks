@@ -6,48 +6,47 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include <iostream>
 #include "CParser_GLSL.h"
 
-CParser_GLSL::CParser_GLSL()
+CParser_GLSL::CParser_GLSL(void)
 {
     
 }
 
-CParser_GLSL::~CParser_GLSL()
+CParser_GLSL::~CParser_GLSL(void)
 {
     
 }
 
-CParser_GLSL::SGLSLData CParser_GLSL::Load(const char *_vSource, const char *_fSource)
+SGLSLData CParser_GLSL::Load(const char *_vertexShaderSource, const char *_fragmentShaderSource)
 {
     SGLSLData data;
-    data.s_vHandle = Build(_vSource, GL_VERTEX_SHADER);
-    data.s_fHandle = Build(_fSource, GL_FRAGMENT_SHADER);
+    data.m_vertexShaderHandle = Build(_vertexShaderSource, GL_VERTEX_SHADER);
+    data.m_fragmentShaderHandle = Build(_fragmentShaderSource, GL_FRAGMENT_SHADER);
     
-    data.s_pHandle = glCreateProgram();
-    glAttachShader(data.s_pHandle, data.s_vHandle);
-    glAttachShader(data.s_pHandle, data.s_fHandle);
-    glLinkProgram(data.s_pHandle);
+    data.m_linkedShaderHandle = glCreateProgram();
+    glAttachShader(data.m_linkedShaderHandle, data.m_vertexShaderHandle);
+    glAttachShader(data.m_linkedShaderHandle, data.m_fragmentShaderHandle);
+    glLinkProgram(data.m_linkedShaderHandle);
     
-    GLint success;
-    glGetProgramiv(data.s_pHandle, GL_LINK_STATUS, &success);
+    i32 success;
+    glGetProgramiv(data.m_linkedShaderHandle, GL_LINK_STATUS, &success);
     if (success == GL_FALSE) 
     {
         GLchar messages[256];
-        glGetProgramInfoLog(data.s_pHandle, sizeof(messages), 0, &messages[0]);
+        glGetProgramInfoLog(data.m_linkedShaderHandle, sizeof(messages), 0, &messages[0]);
         std::cout << messages;
     }
     return data;
 }
 
-GLuint CParser_GLSL::Build(const char *_pSource, GLenum _eShader) 
+GLuint CParser_GLSL::Build(const char *_source, GLenum _shader)
 {
-    GLuint handle = glCreateShader(_eShader);
-    glShaderSource(handle, 1, &_pSource, 0);
+    ui32 handle = glCreateShader(_shader);
+    glShaderSource(handle, 1, &_source, 0);
     glCompileShader(handle);
     
-    GLint success;
+    i32 success;
     glGetShaderiv(handle, GL_COMPILE_STATUS, &success);
     
     if (success == GL_FALSE) 

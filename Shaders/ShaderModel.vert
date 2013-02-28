@@ -1,4 +1,4 @@
-const char* ShaderModelV = STRINGIFY(
+const char* ShaderModelV = STRING_SHADER(
                                                     attribute vec3 IN_SLOT_Position;
                                                     attribute vec2 IN_SLOT_TexCoord;
                                                     attribute vec4 IN_SLOT_Normal;

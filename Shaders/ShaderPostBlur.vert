@@ -1,4 +1,4 @@
-const char* ShaderPostBlurV = STRINGIFY(
+const char* ShaderPostBlurV = STRING_SHADER(
                                                    
                                                    attribute vec3 IN_SLOT_Position;
                                                    attribute vec2 IN_SLOT_TexCoord;

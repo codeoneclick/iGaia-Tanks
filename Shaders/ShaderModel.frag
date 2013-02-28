@@ -1,4 +1,4 @@
-const char* ShaderModelF = STRINGIFY(
+const char* ShaderModelF = STRING_SHADER(
                                                     varying lowp     vec3   OUT_Light;
                                                     varying lowp     vec3   OUT_Normal;                                     
                                                     varying highp    vec2   OUT_TexCoord;

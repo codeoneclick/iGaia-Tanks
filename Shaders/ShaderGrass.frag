@@ -1,4 +1,4 @@
-const char* ShaderGrassF = STRINGIFY(                                    
+const char* ShaderGrassF = STRING_SHADER(                                    
                                                     varying highp vec2 OUT_TexCoord;
                                                     uniform sampler2D EXT_TEXTURE_01; 
 void main(void)

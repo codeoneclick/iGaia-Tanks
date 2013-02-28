@@ -1,4 +1,4 @@
-const char* ShaderLandscapeF = STRINGIFY(
+const char* ShaderLandscapeF = STRING_SHADER(
                                                     varying highp vec3  OUT_Light;                                    
                                                     varying highp vec2  OUT_TexCoord;
                                                     varying lowp float  OUT_Clip;

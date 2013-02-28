@@ -1,4 +1,4 @@
-const char* ShaderParticleF = STRINGIFY(                                  
+const char* ShaderParticleF = STRING_SHADER(                                  
                                                     varying highp    vec2   OUT_TexCoord;
                                                     varying lowp     vec4   OUT_Color;
                                                     uniform sampler2D EXT_TEXTURE_01;

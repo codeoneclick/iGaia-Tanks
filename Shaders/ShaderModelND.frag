@@ -1,4 +1,4 @@
-const char* ShaderModelNDF = STRINGIFY(
+const char* ShaderModelNDF = STRING_SHADER(
                                                    uniform sampler2D EXT_TEXTURE_01;
                                                    varying highp vec2 OUT_TexCoord;
                                        

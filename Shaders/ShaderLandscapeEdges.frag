@@ -1,4 +1,4 @@
-const char* ShaderLandscapeEdgesF = STRINGIFY(                                  
+const char* ShaderLandscapeEdgesF = STRING_SHADER(                                  
                                                   varying highp vec2   OUT_TexCoord;
                                                   uniform highp vec2   EXT_Texcoord_Offset;
                                                   uniform sampler2D EXT_TEXTURE_01;

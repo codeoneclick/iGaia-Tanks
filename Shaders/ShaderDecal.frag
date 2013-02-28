@@ -1,4 +1,4 @@
-const char* ShaderDecalF = STRINGIFY(                                    
+const char* ShaderDecalF = STRING_SHADER(                                    
                                                     varying highp   vec3   OUT_Position;
                                                     uniform highp   vec3   EXT_Center;
                                                     uniform highp   float  EXT_Angle;
