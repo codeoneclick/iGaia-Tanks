@@ -27,6 +27,7 @@ protected:
 
 public:
 
+    CMesh(CVertexBuffer* _vertexBuffer, CIndexBuffer* _indexBuffer);
     CMesh(CVertexBuffer* _vertexBuffer, CIndexBuffer* _indexBuffer, const glm::vec3& _maxBound, const glm::vec3& _minBound);
     ~CMesh(void);
 

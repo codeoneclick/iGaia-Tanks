@@ -8,6 +8,17 @@
 
 #include "CMesh.h"
 
+CMesh::CMesh(CVertexBuffer* _vertexBuffer, CIndexBuffer* _indexBuffer)
+{
+    m_resourceType = E_RESOURCE_TYPE_MESH;
+
+    m_vertexBuffer = _vertexBuffer;
+    m_indexBuffer = _indexBuffer;
+
+    m_maxBound = glm::vec3(0.0f, 0.0f, 0.0f);
+    m_minBound = glm::vec3(0.0f, 0.0f, 0.0f);
+}
+
 CMesh::CMesh(CVertexBuffer* _vertexBuffer, CIndexBuffer* _indexBuffer, const glm::vec3& _maxBound, const glm::vec3& _minBound)
 {
     m_resourceType = E_RESOURCE_TYPE_MESH;

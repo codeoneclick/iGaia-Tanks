@@ -10,7 +10,11 @@
 
 CRenderOperationWorldSpace::CRenderOperationWorldSpace(ui32 _frameWidth, ui32 _frameHeight, E_RENDER_MODE_WORLD_SPACE _mode, const std::string& _name)
 {
+    m_frameWidth = _frameWidth;
+    m_frameHeight = _frameHeight;
+    
     ui32 textureHandle;
+    
     glGenTextures(1, &textureHandle);
     glGenFramebuffers(1, &m_frameBufferHandle);
     glGenRenderbuffers(1, &m_depthBufferHandle);
@@ -19,16 +23,16 @@ CRenderOperationWorldSpace::CRenderOperationWorldSpace(ui32 _frameWidth, ui32 _f
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _frameWidth, _frameHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, NULL);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_frameWidth, m_frameHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, NULL);
     glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferHandle);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textureHandle, 0);
     glBindRenderbuffer(GL_RENDERBUFFER, m_depthBufferHandle);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, _frameWidth, _frameHeight);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, m_frameWidth, m_frameHeight);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_depthBufferHandle);
 
     assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE);
 
-    m_operatingTexture = new CTexture(textureHandle, _frameWidth, _frameHeight);
+    m_operatingTexture = new CTexture(textureHandle, m_frameWidth, m_frameHeight);
     m_operatingTexture->Set_WrapMode(GL_CLAMP_TO_EDGE);
 
     m_mode = _mode;
