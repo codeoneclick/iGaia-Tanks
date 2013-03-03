@@ -6,11 +6,10 @@
 //
 //
 
-#ifndef __iGaia__CRenderOperationScreenSpace__
-#define __iGaia__CRenderOperationScreenSpace__
+#ifndef CRenderOperationScreenSpace_h
+#define CRenderOperationScreenSpace_h
 
 #include "CMaterial.h"
-#include "CRenderCallback.h"
 #include "CMesh.h"
 #include "CShaderComposite.h"
 
@@ -27,9 +26,6 @@ protected:
     ui32 m_frameWidth;
     ui32 m_frameHeight;
     CMesh* m_mesh;
-
-    std::map<ui32, std::set<CRenderCallback_INTERFACE*>> m_listeners;
-    E_RENDER_MODE_WORLD_SPACE m_mode;
 
 public:
 

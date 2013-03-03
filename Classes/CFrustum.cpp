@@ -7,163 +7,134 @@
 //
 
 #include "CFrustum.h"
-#include "ICamera.h"
+#include "CCamera.h"
 
-CFrustum::CPlane::CPlane(void)
+void CFrustumPlane::OnUpdate(const glm::vec3 &_point_01, const glm::vec3 &_point_02, const glm::vec3 &_point_03)
 {
-
+    glm::vec3 edge_01, edge_02;
+	edge_01 = _point_01 - _point_02;
+	edge_02 = _point_03 - _point_02;
+	m_normal = glm::normalize(glm::cross(edge_01, edge_02));
+	m_offset = -glm::dot(m_normal, _point_02);
 }
 
-CFrustum::CPlane::~CPlane(void)
+CFrustum::CFrustum(CCamera* _camera)
 {
-    
-}
-
-float CFrustum::CPlane::Get_Distance(const glm::vec3 &_vPoint)
-{
-    float fDot = glm::dot(m_vNormal, _vPoint);
-    return (m_fOffset + fDot) * -1.0f;
-}
-
-void CFrustum::CPlane::Update(const glm::vec3 &_vPoint_01, const glm::vec3 &_vPoint_02, const glm::vec3 &_vPoint_03)
-{
-    glm::vec3 vEdge_01, vEdge_02;
-	vEdge_01 = _vPoint_01 - _vPoint_02;
-	vEdge_02 = _vPoint_03 - _vPoint_02;
-    
-	m_vNormal = glm::normalize(glm::cross(vEdge_01, vEdge_02));
-	m_fOffset = -glm::dot(m_vNormal, _vPoint_02);
-}
-
-CFrustum::CFrustum(ICamera* _pCameraRef)
-{
-    m_pCameraRef = _pCameraRef;
+    m_camera = _camera;
 }
 
 CFrustum::~CFrustum(void)
 {
-    
+    m_camera = nullptr;
 }
 
-void CFrustum::Update(void)
+void CFrustum::OnUpdate(void)
 {
-    glm::vec3 vCameraPosition = m_pCameraRef->Get_Position();
-    glm::vec3 vCameraLookAt = m_pCameraRef->Get_LookAt();
-    glm::vec3 vCameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+    f32 tan = tanf(glm::radians(m_camera->Get_Fov()) * 0.5f);
+	f32 nearHeight = m_camera->Get_Near() * tan;
+	f32 nearWidth = nearHeight * m_camera->Get_Aspect();
+	f32 farHeight = m_camera->Get_Far()  * tan;
+	f32 farWidth = farHeight * m_camera->Get_Aspect();
     
-    m_fNearOffset = m_pCameraRef->Get_NearPlane();
-	m_fFarOffset = m_pCameraRef->Get_FarPlane();
+    glm::vec3 basis_Z = glm::normalize(m_camera->Get_Position() - m_camera->Get_LookAt());
+    glm::vec3 basis_X = glm::normalize(glm::cross(m_camera->Get_Up(), basis_Z));
+    glm::vec3 basis_Y = glm::cross(basis_Z, basis_X);
     
-	float fTan = tanf(glm::radians(m_pCameraRef->Get_FovY() + 15.0f) * 0.5f);
-	m_fNearHeight = m_fNearOffset * fTan;
-	m_fNearWidth = m_fNearHeight * m_pCameraRef->Get_AspectRatio();
-	m_fFarHeight = m_fFarOffset  * fTan;
-	m_fFarWidth = m_fFarHeight * m_pCameraRef->Get_AspectRatio();
+    glm::vec3 nearOffset = m_camera->Get_Position() - basis_Z * m_camera->Get_Near();
+	glm::vec3 farOffset = m_camera->Get_Position() - basis_Z * m_camera->Get_Far();
     
-    glm::vec3 vNearOffset, vFarOffset, vCameraBasis_X, vCameraBasis_Y, vCameraBasis_Z;
+	glm::vec3 nearTopLeftPoint = nearOffset + basis_Y * nearHeight - basis_X * nearWidth;
+	glm::vec3 nearTopRightPoint = nearOffset + basis_Y * nearHeight + basis_X * nearWidth;
+	glm::vec3 nearBottomLeftPoint = nearOffset - basis_Y * nearHeight - basis_X * nearWidth;
+	glm::vec3 nearBottomRightPoint = nearOffset - basis_Y * nearHeight + basis_X * nearWidth;
     
-	vCameraBasis_Z = glm::normalize(vCameraPosition - vCameraLookAt);
-	vCameraBasis_X = glm::normalize(glm::cross(vCameraUp, vCameraBasis_Z));
-	vCameraBasis_Y = glm::cross(vCameraBasis_Z, vCameraBasis_X);
+	glm::vec3 farTopLeftPoint = farOffset + basis_Y * farHeight - basis_X * farWidth;
+	glm::vec3 farTopRightPoint = farOffset + basis_Y * farHeight + basis_X * farWidth;
+	glm::vec3 farBottomLeftPoint = farOffset - basis_Y * farHeight - basis_X * farWidth;
+	glm::vec3 farBottomRightPoint = farOffset - basis_Y * farHeight + basis_X * farWidth;
     
-	vNearOffset = vCameraPosition - vCameraBasis_Z * m_fNearOffset;
-	vFarOffset = vCameraPosition - vCameraBasis_Z * m_fFarOffset;
-    
-	m_vNearTopLeftPoint = vNearOffset + vCameraBasis_Y * m_fNearHeight - vCameraBasis_X * m_fNearWidth;
-	m_vNearTopRightPoint = vNearOffset + vCameraBasis_Y * m_fNearHeight + vCameraBasis_X * m_fNearWidth;
-	m_vNearBottomLeftPoint = vNearOffset - vCameraBasis_Y * m_fNearHeight - vCameraBasis_X * m_fNearWidth;
-	m_vNearBottomRightPoint = vNearOffset - vCameraBasis_Y * m_fNearHeight + vCameraBasis_X * m_fNearWidth;
-    
-	m_vFarTopLeftPoint = vFarOffset + vCameraBasis_Y * m_fFarHeight - vCameraBasis_X * m_fFarWidth;
-	m_vFarTopRightPoint = vFarOffset + vCameraBasis_Y * m_fFarHeight + vCameraBasis_X * m_fFarWidth;
-	m_vFarBottomLeftPoint = vFarOffset - vCameraBasis_Y * m_fFarHeight - vCameraBasis_X * m_fFarWidth;
-	m_vFarBottomRightPoint = vFarOffset - vCameraBasis_Y * m_fFarHeight + vCameraBasis_X * m_fFarWidth;
-    
-	m_pPlanes[E_FRUSTUM_PLANE_TOP].Update(m_vNearTopRightPoint,m_vNearTopLeftPoint,m_vFarTopLeftPoint);
-	m_pPlanes[E_FRUSTUM_PLANE_BOTTOM].Update(m_vNearBottomLeftPoint,m_vNearBottomRightPoint,m_vFarBottomRightPoint);
-	m_pPlanes[E_FRUSTUM_PLANE_LEFT].Update(m_vNearTopLeftPoint,m_vNearBottomLeftPoint,m_vFarBottomLeftPoint);
-	m_pPlanes[E_FRUSTUM_PLANE_RIGHT].Update(m_vNearBottomRightPoint,m_vNearTopRightPoint,m_vFarBottomRightPoint);
-	m_pPlanes[E_FRUSTUM_PLANE_NEAR].Update(m_vNearTopLeftPoint,m_vNearTopRightPoint,m_vNearBottomRightPoint);
-	m_pPlanes[E_FRUSTUM_PLANE_FAR].Update(m_vFarTopRightPoint,m_vFarTopLeftPoint,m_vFarBottomLeftPoint);
+	m_planes[E_FRUSTUM_PLANE_TOP].OnUpdate(nearTopRightPoint, nearTopLeftPoint, farTopLeftPoint);
+	m_planes[E_FRUSTUM_PLANE_BOTTOM].OnUpdate(nearBottomLeftPoint, nearBottomRightPoint, farBottomRightPoint);
+	m_planes[E_FRUSTUM_PLANE_LEFT].OnUpdate(nearTopLeftPoint, nearBottomLeftPoint, farBottomLeftPoint);
+	m_planes[E_FRUSTUM_PLANE_RIGHT].OnUpdate(nearBottomRightPoint, nearTopRightPoint, farBottomRightPoint);
+	m_planes[E_FRUSTUM_PLANE_NEAR].OnUpdate(nearTopLeftPoint, nearTopRightPoint, nearBottomRightPoint);
+	m_planes[E_FRUSTUM_PLANE_FAR].OnUpdate(farTopRightPoint, farTopLeftPoint, farBottomLeftPoint);
 }
 
-
-int CFrustum::IsPointInFrustum(const glm::vec3 &_vPoint)
+E_FRUSTUM_BOUND_RESULT CFrustum::IsPointInFrustum(const glm::vec3& _point)
 {
-    int iResult = E_FRUSTUM_RESULT_INSIDE;
-	for(unsigned int i = 0; i < k_MAX_FRUSTUM_PLANES; i++)
+    for(ui32 i = 0; i < E_FRUSTUM_PLANE_MAX; ++i)
     {
-		if (m_pPlanes[i].Get_Distance(_vPoint) < 0.0f)
+		if (m_planes[i].Get_Distance(_point) < 0.0f)
         {
-			return E_FRUSTUM_RESULT_OUTSIDE;
+			return E_FRUSTUM_BOUND_RESULT_OUTSIDE;
         }
 	}
-	return iResult;
+	return E_FRUSTUM_BOUND_RESULT_INSIDE;
 }
 
-int CFrustum::IsSphereInFrustum(const glm::vec3& _vPoint, float _fRadius)
+E_FRUSTUM_BOUND_RESULT CFrustum::IsSphereInFrumstum(const glm::vec3& _center, f32 _radius)
 {
-    int iRresult = E_FRUSTUM_RESULT_INSIDE;
-	float fDistance;
-    
-	for(int i = 0; i < k_MAX_FRUSTUM_PLANES; i++)
+    E_FRUSTUM_BOUND_RESULT result = E_FRUSTUM_BOUND_RESULT_INSIDE;
+	for(ui32 i = 0; i < E_FRUSTUM_PLANE_MAX; ++i)
     {
-		fDistance = m_pPlanes[i].Get_Distance(_vPoint);
-		if (fDistance < -_fRadius)
-			return E_FRUSTUM_RESULT_OUTSIDE;
-		else if (fDistance < _fRadius)
-			iRresult =  E_FRUSTUM_RESULT_INTERSECT;
+		f32 distance = m_planes[i].Get_Distance(_center);
+		if (distance < -_radius)
+        {
+			return E_FRUSTUM_BOUND_RESULT_OUTSIDE;
+        }
+		else if (distance < _radius)
+        {
+			result =  E_FRUSTUM_BOUND_RESULT_INTERSECT;
+        }
 	}
-	return(iRresult);
+	return result;
 }
 
-int CFrustum::IsBoxInFrustum(const glm::vec3& _vMaxBound, const glm::vec3& _vMinBound)
+E_FRUSTUM_BOUND_RESULT CFrustum::IsBoundBoxInFrustum(const glm::vec3& _maxBound, const glm::vec3& _minBound)
 {
-    int iResult = E_FRUSTUM_RESULT_INSIDE; 
-    glm::vec3 vMin, vMax;
+    glm::vec3 points[8];
     
-    for(int i = 0; i < k_MAX_FRUSTUM_PLANES; ++i)
+    points[0] = _minBound;
+    points[1] = glm::vec3(_minBound.x, _minBound.y, _maxBound.z);
+    points[2] = glm::vec3(_maxBound.x, _minBound.y, _minBound.z);
+    points[3] = glm::vec3(_maxBound.x, _minBound.y, _maxBound.z);
+    
+    points[4] = _maxBound;
+    points[5] = glm::vec3(_maxBound.x, _maxBound.y, _minBound.z);
+    points[6] = glm::vec3(_minBound.x, _maxBound.y, _maxBound.z);
+    points[7] = glm::vec3(_minBound.x, _maxBound.y, _minBound.z);
+    
+    E_FRUSTUM_BOUND_RESULT result = E_FRUSTUM_BOUND_RESULT_INSIDE;
+    ui32 pointsIn, pointsOut;
+    
+	for(ui32 i = 0; i < E_FRUSTUM_PLANE_MAX; ++i)
     {
-        glm::vec3 vNormal = m_pPlanes[i].Get_Normal();
-        // X axis
-        if(vNormal.x > 0)
+        pointsIn = 0;
+        pointsOut = 0;
+
+		for (ui32 k = 0; k < 8 && (pointsIn == 0 || pointsOut == 0); ++k)
         {
-            vMin.x = _vMinBound.x; 
-            vMax.x = _vMaxBound.x; 
+			if (m_planes[i].Get_Distance(points[k]) < 0)
+            {
+				pointsOut++;
+            }
+			else
+            {
+				pointsIn++;
+            }
+		}
+
+		if (!pointsIn)
+        {
+			return E_FRUSTUM_BOUND_RESULT_OUTSIDE;
         }
-        else
+		else if (pointsOut)
         {
-            vMin.x = _vMaxBound.x; 
-            vMax.x = _vMinBound.x; 
-        } 
-        // Y axis 
-        if(vNormal.y > 0)
-        {
-            vMin.y = _vMinBound.y; 
-            vMax.y = _vMaxBound.y; 
+			result = E_FRUSTUM_BOUND_RESULT_INTERSECT;
         }
-        else
-        {
-            vMin.y = _vMaxBound.y; 
-            vMax.y = _vMinBound.y; 
-        } 
-        // Z axis 
-        if(vNormal.z > 0)
-        {
-            vMin.z = _vMinBound.z; 
-            vMax.z = _vMaxBound.z; 
-        }
-        else
-        {
-            vMin.z = _vMaxBound.z; 
-            vMax.z = _vMinBound.z; 
-        } 
-        if(glm::dot(vNormal, vMin) + m_pPlanes[i].Get_Offset() > 0)
-            return E_FRUSTUM_RESULT_OUTSIDE; 
-        if(glm::dot(vNormal, vMax) + m_pPlanes[i].Get_Offset() >= 0)
-            iResult = E_FRUSTUM_RESULT_INTERSECT; 
-    } 
-    return iResult;
+	}
+	return result;
 }
 
 

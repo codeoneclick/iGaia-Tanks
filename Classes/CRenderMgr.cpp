@@ -6,12 +6,27 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include <iostream>
 #include "CRenderMgr.h"
+#include "CCommon_IOS.h"
 
-CRenderMgr::CRenderMgr(void)
+CRenderMgr::CRenderMgr(const IGLContext_INTERFACE* _glContext)
 {
-    m_pScreenSpacePostMgr = new CScreenSpacePostMgr();
+    m_glContext = _glContext;
+    
+    m_shaderComposite = new CShaderComposite();
+    
+    for(ui32 i = 0; i < E_RENDER_MODE_WORLD_SPACE_MAX; ++i)
+    {
+        m_worldSpaceOperations[i] = new CRenderOperationWorldSpace(Get_ScreenWidth(), Get_ScreenHeight(), static_cast<E_RENDER_MODE_WORLD_SPACE>(i), "render.mode.worldspace");
+    }
+    
+    for(ui32 i = 0; i < E_RENDER_MODE_SCREEN_SPACE_MAX; ++i)
+    {
+        m_screenSpaceOperations[i] = nullptr;
+    }
+    
+    CMaterial* screenOutputMaterial = new CMaterial(m_shaderComposite->Get_Shader(E_SHADER_SCREEN_PLANE));
+    m_screenOutputOperation = new CRenderOperationScreenOutput(Get_ScreenWidth(), Get_ScreenHeight(), screenOutputMaterial, m_glContext->Get_FrameBufferHandle(), m_glContext->Get_RenderBufferHandle(), "render.mode.screenoutput");
 }
 
 CRenderMgr::~CRenderMgr(void)
@@ -19,48 +34,46 @@ CRenderMgr::~CRenderMgr(void)
     
 }
 
-void CRenderMgr::BeginDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE _eMode)
+void CRenderMgr::AddEventListener(CRenderCallback_INTERFACE *_listener, E_RENDER_MODE_WORLD_SPACE _mode)
 {
-    m_pScreenSpacePostMgr->EnableOffScreenMode(_eMode);
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+    m_worldSpaceOperations[_mode]->AddEventListener(_listener);
 }
 
-void CRenderMgr::EndDrawMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE _eMode)
+void CRenderMgr::RemoveEventListener(CRenderCallback_INTERFACE *_listener, E_RENDER_MODE_WORLD_SPACE _mode)
 {
-    m_pScreenSpacePostMgr->DisableOffScreenMode(_eMode);
+    m_worldSpaceOperations[_mode]->RemoveEventListener(_listener);
 }
 
-void CRenderMgr::DrawResult(void)
-{
-    if(CSettings::g_bEdgeDetect)
+void CRenderMgr::OnUpdate(f32 _deltatime)
+{    
+    for(i32 i = (E_RENDER_MODE_WORLD_SPACE_MAX - 1); i >= 0; --i)
     {
-        m_pScreenSpacePostMgr->EnableOffScreenMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_EDGE_DETECT);
-        glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-        m_pScreenSpacePostMgr->Render_PostEdgeDetect();
-        m_pScreenSpacePostMgr->DisableOffScreenMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_EDGE_DETECT);
+        assert(m_worldSpaceOperations[i] != nullptr);
+        m_worldSpaceOperations[i]->Bind();
+        m_worldSpaceOperations[i]->Draw();
+        m_worldSpaceOperations[i]->Unbind();
     }
     
-    /*m_pScreenSpacePostMgr->EnableOffScreenMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_BLOOM_EXTRACT);
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    m_pScreenSpacePostMgr->Render_PostBloomExtract();
-    m_pScreenSpacePostMgr->DisableOffScreenMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_BLOOM_EXTRACT);
+    for(ui32 i = 0; i < E_RENDER_MODE_SCREEN_SPACE_MAX; ++i)
+    {
+        if(m_screenSpaceOperations[i] != nullptr)
+        {
+            m_screenSpaceOperations[i]->Bind();
+            m_screenSpaceOperations[i]->Draw();
+            m_screenSpaceOperations[i]->Unbind();
+        }
+    }
     
-    m_pScreenSpacePostMgr->EnableOffScreenMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_BLUR);
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    m_pScreenSpacePostMgr->Render_PostBlur();
-    m_pScreenSpacePostMgr->DisableOffScreenMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_BLUR);
+    m_screenOutputOperation->Get_Material()->Set_Texture(m_worldSpaceOperations[E_RENDER_MODE_WORLD_SPACE_COMMON]->Get_OperatingTexture(), E_TEXTURE_SLOT_01);
+    m_screenOutputOperation->Bind();
+    m_screenOutputOperation->Draw();
+    m_screenOutputOperation->Unbind();
     
-    m_pScreenSpacePostMgr->EnableOffScreenMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_BLOOM_COMBINE);
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    m_pScreenSpacePostMgr->Render_PostBloomCombine();
-    m_pScreenSpacePostMgr->DisableOffScreenMode(CScreenSpacePostMgr::E_OFFSCREEN_MODE_BLOOM_COMBINE);*/
+    m_glContext->Present();
     
-    m_pScreenSpacePostMgr->EnableScreenMode();
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-    m_pScreenSpacePostMgr->Render_PostSimple();
+    GLenum error = glGetError();
+    assert(error != GL_NO_ERROR);
 }
-
-
 
 
 

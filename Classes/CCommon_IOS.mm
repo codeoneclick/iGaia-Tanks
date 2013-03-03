@@ -14,3 +14,13 @@ std::string Get_BundlePath(void)
     path.append("/");
     return path;
 };
+
+ui32 Get_ScreenWidth(void)
+{
+    return [UIScreen mainScreen].bounds.size.width;
+}
+
+ui32 Get_ScreenHeight(void)
+{
+    return [UIScreen mainScreen].bounds.size.height;
+}
