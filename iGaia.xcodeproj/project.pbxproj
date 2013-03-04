@@ -212,6 +212,7 @@
 		A41C872816DE5988003DA026 /* CRenderOperationScreenSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C872616DE5988003DA026 /* CRenderOperationScreenSpace.cpp */; };
 		A41C872B16DE5A85003DA026 /* CRenderCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C872916DE5A83003DA026 /* CRenderCallback.cpp */; };
 		A41C873216DF4A58003DA026 /* CRenderOperationScreenOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C873016DF4A58003DA026 /* CRenderOperationScreenOutput.cpp */; };
+		A429344A16E4F8F8006A01D0 /* CSceneUpdateCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A429344816E4F8F8006A01D0 /* CSceneUpdateCallback.cpp */; };
 		A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
 		A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */; };
 		A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE919217145736FD0021A0DC /* CTexture.cpp */; };
@@ -914,6 +915,8 @@
 		A41C872A16DE5A84003DA026 /* CRenderCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRenderCallback.h; sourceTree = "<group>"; };
 		A41C873016DF4A58003DA026 /* CRenderOperationScreenOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRenderOperationScreenOutput.cpp; sourceTree = "<group>"; };
 		A41C873116DF4A58003DA026 /* CRenderOperationScreenOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRenderOperationScreenOutput.h; sourceTree = "<group>"; };
+		A429344816E4F8F8006A01D0 /* CSceneUpdateCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneUpdateCallback.cpp; sourceTree = "<group>"; };
+		A429344916E4F8F8006A01D0 /* CSceneUpdateCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneUpdateCallback.h; sourceTree = "<group>"; };
 		A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ILoadOperation.cpp; sourceTree = "<group>"; };
 		A4A9847316DCE410007F9CF6 /* ILoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILoadOperation.h; sourceTree = "<group>"; };
 		A4A9847C16DCF728007F9CF6 /* CVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBuffer.cpp; sourceTree = "<group>"; };
@@ -1048,6 +1051,8 @@
 				21904E1616E2C1AE00A1689A /* Nodes */,
 				21904E1416E2B86F00A1689A /* CMainLoopUpdateCallback.h */,
 				21904E1316E2B86F00A1689A /* CMainLoopUpdateCallback.cpp */,
+				A429344916E4F8F8006A01D0 /* CSceneUpdateCallback.h */,
+				A429344816E4F8F8006A01D0 /* CSceneUpdateCallback.cpp */,
 				21904E1816E2C29900A1689A /* CSceneGraph.h */,
 				21904E1716E2C29900A1689A /* CSceneGraph.cpp */,
 				21904E1B16E2C2B500A1689A /* CSceneFabricator.h */,
@@ -2621,6 +2626,7 @@
 				21904E3316E2C4FF00A1689A /* CNavigator.cpp in Sources */,
 				21904E3616E2C5DE00A1689A /* CHeightmapProcessor.cpp in Sources */,
 				21904E3916E2C65600A1689A /* CScreenSpaceRenderProcessor.cpp in Sources */,
+				A429344A16E4F8F8006A01D0 /* CSceneUpdateCallback.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
