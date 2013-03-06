@@ -27,31 +27,32 @@ CCamera::~CCamera(void)
 
 void CCamera::OnUpdate(f32 _deltatime)
 {
-    m_position.y = m_look.y + 64.0f;
-    m_position.x = m_look.x + cosf(-m_rotation) * -32.0f;
-    m_position.z = m_look.z + sinf(-m_rotation) * -32.0f;
-    m_view = lookAt(m_position, m_look, m_up);
+    m_position.y = m_look.y + m_height;
+    m_position.x = m_look.x + cosf(-m_rotation) * -m_distance;
+    m_position.z = m_look.z + sinf(-m_rotation) * -m_distance;
+    m_view = glm::lookAt(m_position, m_look, m_up);
 
-    vec3 position = m_position;
+    glm::vec3 position = m_position;
     position.y = -position.y + m_altitude * 2.0f;
-    vec3 look = m_look;
+    glm::vec3 look = m_look;
     look.y = -look.y + m_altitude * 2.0f;
-    m_reflection = lookAt(position, look, m_up * -1.0f);
+    m_reflection = glm::lookAt(position, look, m_up * -1.0f);
 
+    assert(m_frustum != nullptr);
     m_frustum->OnUpdate();
 }
 
-mat4x4 iGaiaCamera::Get_CylindricalMatrixForPosition(const vec3 &_position)
+glm::mat4x4 CCamera::Get_CylindricalMatrixForPosition(const glm::vec3 &_position)
 {
-    vec3 direction = m_position - _position;
-    direction = normalize(direction);
+    glm::vec3 direction = m_position - _position;
+    direction = glm::normalize(direction);
 
-    vec3 up = vec3(0.0f, 1.0f, 0.0f);
-    vec3 right = cross(direction, up);
-    right = normalize(right);
-    direction = cross(right, direction);
+    glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+    glm::vec3 right = glm::cross(direction, up);
+    right = glm::normalize(right);
+    direction = glm::cross(right, direction);
 
-    mat4x4 cylindricalMatrix;
+    glm::mat4x4 cylindricalMatrix;
     cylindricalMatrix[0][0] = right.x;
     cylindricalMatrix[0][1] = right.y;
     cylindricalMatrix[0][2] = right.z;
@@ -73,21 +74,21 @@ mat4x4 iGaiaCamera::Get_CylindricalMatrixForPosition(const vec3 &_position)
     return cylindricalMatrix;
 }
 
-mat4x4 iGaiaCamera::Get_SphericalMatrixForPosition(const vec3 &_position)
+glm::mat4x4 CCamera::Get_SphericalMatrixForPosition(const glm::vec3 &_position)
 {
-    vec3 direction = _position - m_position;
-    direction = normalize(direction);
+    glm::vec3 direction = _position - m_position;
+    direction = glm::normalize(direction);
 
-    vec3 up = vec3(m_view[1][0], m_view[1][1], m_view[1][2]);
-    up = normalize(up);
+    glm::vec3 up = glm::vec3(m_view[1][0], m_view[1][1], m_view[1][2]);
+    up = glm::normalize(up);
 
-    vec3 right = cross(direction, up);
-    right = normalize(right);
+    glm::vec3 right = glm::cross(direction, up);
+    right = glm::normalize(right);
 
-    up = cross(direction, right);
-    up = normalize(up);
+    up = glm::cross(direction, right);
+    up = glm::normalize(up);
 
-    mat4x4 sphericalMatrix;
+    glm::mat4x4 sphericalMatrix;
     sphericalMatrix[0][0] = right.x;
     sphericalMatrix[0][1] = right.y;
     sphericalMatrix[0][2] = right.z;

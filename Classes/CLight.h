@@ -6,9 +6,21 @@
 //
 //
 
-#ifndef __iGaia__CLight__
-#define __iGaia__CLight__
+#ifndef CLight_h
+#define CLight_h
 
-#include <iostream>
+#include "HCommon.h"
 
-#endif /* defined(__iGaia__CLight__) */
+class CLight
+{
+private:
+
+protected:
+
+public:
+
+    CLight(void);
+    ~CLight(void);
+};
+
+#endif 

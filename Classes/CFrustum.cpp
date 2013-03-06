@@ -5,7 +5,6 @@
 //  Created by sergey sergeev on 5/23/12.
 //
 //
-
 #include "CFrustum.h"
 #include "CCamera.h"
 

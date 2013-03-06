@@ -6,147 +6,129 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef iGaia_INode_h
-#define iGaia_INode_h
+#ifndef INode_h
+#define INode_h
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp> 
-
+#include "HCommon.h"
+#include "CRenderMgr.h"
+#include "CSceneUpdateMgr.h"
+#include "CResourceMgrsFacade.h"
 #include "CMaterial.h"
-#include "CMesh.h"
-#include "CBoundingBox.h"
-#include "ILight.h"
+#include "CCamera.h"
+#include "CLight.h"
 
-#include "CResourceMgr.h"
-#include "CShaderComposite.h"
-
-#include "IResourceLoaderDelegate.h"
-#include "ITouchDelegate.h"
-
-#include "CMathHelper.h"
-
-#define SAFE_DELETE(a) { delete (a); (a) = NULL; }
-#define SAFE_DELETE_ARRAY(a) { delete[] (a); (a) = NULL; }
-
-
-#include "CResourceLoadCallback.h"
-
-class INode : public ITouchDelegate, public IResourceLoaderDelegate, public CResourceLoadCallback_INTERFACE
+class INode :
+public CSceneUpdateCallback_INTERFACE,
+public CRenderCallback_INTERFACE,
+public CResourceLoadCallback_INTERFACE
 {
+private:
+
 protected:
-// -- Block for transform matrix -- //
-    glm::mat4x4 m_mScale;
-    glm::mat4x4 m_mRotation;
-    glm::mat4x4 m_mTranslation;
-    glm::mat4x4 m_mWorld;
-    glm::mat4x4 m_mWVP;
-// -- -- //
-    
-// -- Block for transform vectors -- //
-    glm::vec3 m_vPosition;
-    glm::vec3 m_vRotation;
-    glm::vec3 m_vScale;
-// -- -- //
-    
-// -- Transform mesh texture coord -- //
-    glm::vec2 m_vTexCoordOffset;
-// --  -- //
 
-// -- Render material states -- //
-    CMaterial* m_pMaterial;
-// -- -- //
+    glm::mat4x4 m_matrixScale;
+    glm::mat4x4 m_matrixRotation;
+    glm::mat4x4 m_matrixTranslation;
+    glm::mat4x4 m_matrixWorld;
+    glm::mat4x4 m_matrixWVP;
 
-// -- Mesh which contain index and vertex buffers -- //
-    CMesh* m_pMesh;
-// -- -- //
+    glm::vec3 m_position;
+    glm::vec3 m_rotation;
+    glm::vec3 m_scale;
+    glm::vec2 m_texcoordDisplacement;
 
-// -- Bound box for current mesh -- //
-    CBoundingBox* m_pBoundingBox;
-// -- -- //
-    
-// -- List of delegates which contain owners for callback -- //
-    std::vector<IDelegate*> m_lDelegateOwners;
-// -- -- //
+    CMaterial* m_materials[E_RENDER_MODE_WORLD_SPACE_MAX];
+    CMesh* m_mesh;
 
-// -- Varible for enable/disable render -- //
-    bool m_bIsVisible;
-// -- -- //
+    CCamera* m_camera;
+    CLight* m_light;
 
-    void OnResourceDidLoad(IResource* _pResource, E_RESOURCE_TYPE _eResourceType);
+    CRenderMgr* m_renderMgr;
+    CSceneUpdateMgr* m_updateMgr;
 
+    virtual void OnResourceDidLoad(IResource_INTERFACE* _resource);
+
+    virtual void OnUpdate(f32 _deltatime);
+
+    virtual ui32 OnDrawIndex(void) = 0;
+    virtual void OnBind(E_RENDER_MODE_WORLD_SPACE _mode);
+    virtual void OnDraw(E_RENDER_MODE_WORLD_SPACE _mode);
+    virtual void OnUnbind(E_RENDER_MODE_WORLD_SPACE _mode);
 
 public:
+    
     INode(void);
     virtual ~INode(void);
-    
-// -- Load resource function for the mesh loading. Can use background thread for preloading. Overwrite for all nodes -- //
-    virtual void Load(const std::string& _sName, IResource::E_THREAD _eThread) = 0;
-// -- -- //
-    
-// --  Update for main loop. Overwrite for all nodes -- //
-    virtual void Update(void);
-// -- -- //
-    
-// -- Render mesh which can use material by enum value. Overwrite for all nodes -- //
-    virtual void Render(CShader::E_RENDER_MODE _eMode);
-// -- -- //
-    
-// -- Getters block for recieve main varibles for current node -- //
-    CShader*  Get_Shader(CShader::E_RENDER_MODE _eRenderMode);
-    CTexture* Get_Texture(unsigned int index);
-    inline CMesh*    Get_Mesh(void) { return m_pMesh; }
-// -- -- //
-    
-// -- Setters for texture by index. For preload/load texture. Can use background thread for preloading  -- //
-    void Set_Texture(CTexture* _pTexture, int index, CTexture::E_WRAP_MODE _eWrap);
-    void Set_Texture(const std::string &_sName, int _index, CTexture::E_WRAP_MODE _eWrap, IResource::E_THREAD _eThread = IResource::E_THREAD_SYNC);
-// -- -- //
 
-// -- Setter for shader. Use render mode to set shader to the current material and render state -- //
-    void Set_Shader(CShader::E_RENDER_MODE _eRenderMode, IResource::E_SHADER _eShader);
-// -- -- //
+    inline void Set_Position(const glm::vec3& _position)
+    {
+        m_position = _position;
+    };
+
+    inline glm::vec3 Get_Position(void)
+    {
+        return m_position;
+    };
+
+    inline void Set_Rotation(const glm::vec3& _rotation)
+    {
+        m_rotation = _rotation;
+    };
+
+    inline glm::vec3 Get_Rotation(void)
+    {
+        return m_rotation;
+    };
+
+    inline void Set_Scale(const glm::vec3& _scale)
+    {
+        m_scale = _scale;
+    };
+
+    inline glm::vec3 Get_Scale(void)
+    {
+        return m_scale;
+    };
+
+    inline void Set_TexcoordDisplacement(const glm::vec2& _texcoordDisplacement)
+    {
+        m_texcoordDisplacement = _texcoordDisplacement;
+    };
+
+    inline glm::vec2 Get_TexcoordDisplacement(void)
+    {
+        return m_texcoordDisplacement;
+    };
+
+    virtual INode* Load(CResourceMgrsFacade* _resourceMgrsFacade, const std::string& _name);
+
+    glm::vec3 Get_MaxBound(void);
+    glm::vec3 Get_MinBound(void);
+
+    inline void Set_Camera(CCamera* _camera)
+    {
+        m_camera = _camera;
+    };
     
-// -- Getter to receive bound box for current mesh -- //
-    inline CBoundingBox* Get_BoundingBox(void) { return m_pBoundingBox; }
-// -- -- //
-    
-// -- Block with getters/setters to receive main transform vectors -- //
-    void Set_Position(const glm::vec3& _vPosition) { m_vPosition = _vPosition; }
-    glm::vec3 Get_Position(void) { return m_vPosition; }
-    void Set_Rotation(const glm::vec3& _vRotation);
-    glm::vec3 Get_Rotation(void) { return m_vRotation; }
-    void Set_Scale(const glm::vec3& _vScale) { m_vScale = _vScale; }
-    glm::vec3 Get_Scale(void) { return m_vScale; }
-// -- -- //
-    
-// -- Getter to receive current world matrix scale*rotation*position -- //
-    glm::mat4x4 Get_WorldMatrix(void) { return m_mWorld; }
-// -- -- //
-    
-// -- Setters/Getters for manipulation texture coord -- //
-    void Set_TexCoordOffset(glm::vec2 _vOffset) { m_vTexCoordOffset = _vOffset; }
-    glm::vec2 Get_TexCoordOffset(void) { return m_vTexCoordOffset; }
-// -- -- //
-    
-// -- Block for manipulation delegate owners, to add/remove current node to the listeners -- //
-    void Add_DelegateOwner(IDelegate* _pDelegateOwner);
-    void Remove_DelegateOwner(IDelegate* _pDelegateOwner);
-// -- -- //
-    
-// -- Block for the delegate listener methods -- //
-    virtual void OnTouchEvent(ITouchDelegate* _pDelegateOwner) = 0;
-    virtual void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource) = 0;
-// -- -- //
-    
-// -- Block for enable/disable and get current render mode. Use for the different materials -- //
-    void Set_RenderMode(CShader::E_RENDER_MODE _eMode, bool _value);
-    bool Get_RenderMode(CShader::E_RENDER_MODE _eMode);
-// -- -- //
-    
-// -- Block for the set/check visibility of object -- //
-    inline bool Get_Visible(void) { return m_bIsVisible; }
-    inline void Set_Visible(bool _bIsVisible) { m_bIsVisible = _bIsVisible; }
-// -- -- //
+    inline void Set_Light(CLight* _light)
+    {
+        m_light = _light;
+    };
+
+    void Set_Texture(CTexture* _texture, E_TEXTURE_SLOT _slot, E_RENDER_MODE_WORLD_SPACE _mode);
+
+    inline void Set_RenderMgr(CRenderMgr* _renderMgr)
+    {
+        m_renderMgr = _renderMgr;
+    };
+
+    inline void Set_UpdateMgr(CSceneUpdateMgr* _updateMgr)
+    {
+        m_updateMgr = _updateMgr;
+    };
+
+    void ListenRenderMgr(bool _value);
+    void ListenUpdateMgr(bool _value);
 };
 
 #endif

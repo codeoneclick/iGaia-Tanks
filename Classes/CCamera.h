@@ -27,6 +27,7 @@ private:
     f32 m_rotation;
     f32 m_altitude;
     f32 m_distance;
+    f32 m_height;
     f32 m_fov;
     f32 m_aspect;
 
@@ -113,6 +114,16 @@ public:
     {
         return m_distance;
     };
+
+    inline void Set_Height(f32 _height)
+    {
+        m_height = _height;
+    }
+
+    inline f32 Get_Height(void)
+    {
+        return m_height;
+    }
 
     inline f32 Get_Fov(void)
     {
