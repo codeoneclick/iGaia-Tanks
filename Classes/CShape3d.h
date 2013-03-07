@@ -6,9 +6,33 @@
 //
 //
 
-#ifndef __iGaia__CShape3d__
-#define __iGaia__CShape3d__
+#ifndef CShape3d_h
+#define CShape3d_h
 
-#include <iostream>
+#include "CGameObject3d.h"
 
-#endif /* defined(__iGaia__CShape3d__) */
+class CShape3d : public CGameObject3d
+{
+private:
+
+protected:
+
+    void OnResourceDidLoad(IResource_INTERFACE* _resource);
+
+    void OnUpdate(f32 _deltatime);
+
+    ui32 OnDrawIndex(void);
+    void OnBind(E_RENDER_MODE_WORLD_SPACE _mode);
+    void OnDraw(E_RENDER_MODE_WORLD_SPACE _mode);
+    void OnUnbind(E_RENDER_MODE_WORLD_SPACE _mode);
+
+public:
+
+    CShape3d(void);
+    ~CShape3d(void);
+
+    void Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _shaderComposite, const std::string& _filename);
+};
+
+
+#endif 

@@ -58,6 +58,54 @@ CMesh* CResourceMgrsFacade::LoadMesh(const std::string& _filename)
     return mesh;
 }
 
+SShape3dSettings* CResourceMgrsFacade::LoadShape3dSettings(const std::string& _filename)
+{
+    assert(m_settingsContainer != nullptr);
+    SShape3dSettings* settings = m_settingsContainer->LoadShape3dSettings(_filename);
+    assert(settings != nullptr);
+    return settings;
+}
+
+SLandscapeSettings* CResourceMgrsFacade::LoadLandscapeSettings(const std::string& _filename)
+{
+    assert(m_settingsContainer != nullptr);
+    SLandscapeSettings* settings = m_settingsContainer->LoadLandscapeSettings(_filename);
+    assert(settings != nullptr);
+    return settings;
+}
+
+SOceanSettings* CResourceMgrsFacade::LoadOceanSettings(const std::string& _filename)
+{
+    assert(m_settingsContainer != nullptr);
+    SOceanSettings* settings = m_settingsContainer->LoadOceanSettings(_filename);
+    assert(settings != nullptr);
+    return settings;
+}
+
+SGrassSettings* CResourceMgrsFacade::LoadGrassSettings(const std::string& _filename)
+{
+    assert(m_settingsContainer != nullptr);
+    SGrassSettings* settings = m_settingsContainer->LoadGrassSettings(_filename);
+    assert(settings != nullptr);
+    return settings;
+}
+
+SSkyDomeSettings* CResourceMgrsFacade::LoadSkyDomeSettings(const std::string& _filename)
+{
+    assert(m_settingsContainer != nullptr);
+    SSkyDomeSettings* settings = m_settingsContainer->LoadSkyDomeSettings(_filename);
+    assert(settings != nullptr);
+    return settings;
+}
+
+SParticleEmitterSettings* CResourceMgrsFacade::LoadParticleEmitterSettings(const std::string& _filename)
+{
+    assert(m_settingsContainer != nullptr);
+    SParticleEmitterSettings* settings = m_settingsContainer->LoadParticleEmitterSettings(_filename);
+    assert(settings != nullptr);
+    return settings;
+}
+
 void CResourceMgrsFacade::CancelLoadResource(CResourceLoadCallback_INTERFACE* _listener)
 {
     IResourceMgr_INTERFACE* textureMgr = m_resourceMgrsContainer.find(E_RESOURCE_MGR_TEXTURE)->second;

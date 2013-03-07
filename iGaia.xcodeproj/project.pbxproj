@@ -211,14 +211,14 @@
 		A41C872816DE5988003DA026 /* CRenderOperationScreenSpace.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C872616DE5988003DA026 /* CRenderOperationScreenSpace.cpp */; };
 		A41C872B16DE5A85003DA026 /* CRenderCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C872916DE5A83003DA026 /* CRenderCallback.cpp */; };
 		A41C873216DF4A58003DA026 /* CRenderOperationScreenOutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C873016DF4A58003DA026 /* CRenderOperationScreenOutput.cpp */; };
-		A425B3AD16E747FA00E300F9 /* INode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B6BB7114840FD500E34B78 /* INode.cpp */; };
-		A425B3B016E7503400E300F9 /* CGameObjectSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3AE16E7503400E300F9 /* CGameObjectSettings.cpp */; };
-		A425B3B316E7505000E300F9 /* CShape3dSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3B116E7504F00E300F9 /* CShape3dSettings.cpp */; };
-		A425B3B616E751E700E300F9 /* CLandscapeSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3B416E751E600E300F9 /* CLandscapeSettings.cpp */; };
-		A425B3B916E751FE00E300F9 /* COceanSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3B716E751FD00E300F9 /* COceanSettings.cpp */; };
-		A425B3BC16E7520E00E300F9 /* CGrassSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3BA16E7520E00E300F9 /* CGrassSettings.cpp */; };
-		A425B3BF16E7522200E300F9 /* CSkyDomeSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3BD16E7522100E300F9 /* CSkyDomeSettings.cpp */; };
-		A425B3C216E7523A00E300F9 /* CParticleEmitterSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3C016E7523900E300F9 /* CParticleEmitterSettings.cpp */; };
+		A425B3AD16E747FA00E300F9 /* CGameObject3d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B6BB7114840FD500E34B78 /* CGameObject3d.cpp */; };
+		A425B3B016E7503400E300F9 /* CGameObjectSettings_PARSER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3AE16E7503400E300F9 /* CGameObjectSettings_PARSER.cpp */; };
+		A425B3B316E7505000E300F9 /* CShape3dSettings_PARSER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3B116E7504F00E300F9 /* CShape3dSettings_PARSER.cpp */; };
+		A425B3B616E751E700E300F9 /* CLandscapeSettings_PARSER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3B416E751E600E300F9 /* CLandscapeSettings_PARSER.cpp */; };
+		A425B3B916E751FE00E300F9 /* COceanSettings_PARSER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3B716E751FD00E300F9 /* COceanSettings_PARSER.cpp */; };
+		A425B3BC16E7520E00E300F9 /* CGrassSettings_PARSER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3BA16E7520E00E300F9 /* CGrassSettings_PARSER.cpp */; };
+		A425B3BF16E7522200E300F9 /* CSkyDomeSettings_PARSER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3BD16E7522100E300F9 /* CSkyDomeSettings_PARSER.cpp */; };
+		A425B3C216E7523A00E300F9 /* CParticleEmitterSettings_PARSER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3C016E7523900E300F9 /* CParticleEmitterSettings_PARSER.cpp */; };
 		A425B3C716E753BF00E300F9 /* pugixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3C516E753BF00E300F9 /* pugixml.cpp */; };
 		A425B3CA16E7553200E300F9 /* CSettingsContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3C816E7553100E300F9 /* CSettingsContainer.cpp */; };
 		A429344A16E4F8F8006A01D0 /* CSceneUpdateCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A429344816E4F8F8006A01D0 /* CSceneUpdateCallback.cpp */; };
@@ -358,8 +358,8 @@
 		93AE336514C4447C00F1A516 /* CLandscape.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLandscape.cpp; sourceTree = "<group>"; };
 		93B40544148E111A00EB887D /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		93B40545148E111A00EB887D /* GameViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameViewController.mm; sourceTree = "<group>"; };
-		93B6BB6F14840FC700E34B78 /* INode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INode.h; sourceTree = "<group>"; };
-		93B6BB7114840FD500E34B78 /* INode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = INode.cpp; sourceTree = "<group>"; };
+		93B6BB6F14840FC700E34B78 /* CGameObject3d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameObject3d.h; sourceTree = "<group>"; };
+		93B6BB7114840FD500E34B78 /* CGameObject3d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameObject3d.cpp; sourceTree = "<group>"; };
 		93B6BB8A14841DC400E34B78 /* CMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMesh.h; sourceTree = "<group>"; };
 		93B6BB8B14841F0B00E34B78 /* CMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMesh.cpp; sourceTree = "<group>"; };
 		93B6BB8D148420ED00E34B78 /* CMeshMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMeshMgr.h; sourceTree = "<group>"; };
@@ -922,20 +922,20 @@
 		A41C872A16DE5A84003DA026 /* CRenderCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRenderCallback.h; sourceTree = "<group>"; };
 		A41C873016DF4A58003DA026 /* CRenderOperationScreenOutput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRenderOperationScreenOutput.cpp; sourceTree = "<group>"; };
 		A41C873116DF4A58003DA026 /* CRenderOperationScreenOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRenderOperationScreenOutput.h; sourceTree = "<group>"; };
-		A425B3AE16E7503400E300F9 /* CGameObjectSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameObjectSettings.cpp; sourceTree = "<group>"; };
-		A425B3AF16E7503400E300F9 /* CGameObjectSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameObjectSettings.h; sourceTree = "<group>"; };
-		A425B3B116E7504F00E300F9 /* CShape3dSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CShape3dSettings.cpp; sourceTree = "<group>"; };
-		A425B3B216E7505000E300F9 /* CShape3dSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CShape3dSettings.h; sourceTree = "<group>"; };
-		A425B3B416E751E600E300F9 /* CLandscapeSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLandscapeSettings.cpp; sourceTree = "<group>"; };
-		A425B3B516E751E600E300F9 /* CLandscapeSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLandscapeSettings.h; sourceTree = "<group>"; };
-		A425B3B716E751FD00E300F9 /* COceanSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = COceanSettings.cpp; sourceTree = "<group>"; };
-		A425B3B816E751FE00E300F9 /* COceanSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COceanSettings.h; sourceTree = "<group>"; };
-		A425B3BA16E7520E00E300F9 /* CGrassSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGrassSettings.cpp; sourceTree = "<group>"; };
-		A425B3BB16E7520E00E300F9 /* CGrassSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGrassSettings.h; sourceTree = "<group>"; };
-		A425B3BD16E7522100E300F9 /* CSkyDomeSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSkyDomeSettings.cpp; sourceTree = "<group>"; };
-		A425B3BE16E7522200E300F9 /* CSkyDomeSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSkyDomeSettings.h; sourceTree = "<group>"; };
-		A425B3C016E7523900E300F9 /* CParticleEmitterSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CParticleEmitterSettings.cpp; sourceTree = "<group>"; };
-		A425B3C116E7523900E300F9 /* CParticleEmitterSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CParticleEmitterSettings.h; sourceTree = "<group>"; };
+		A425B3AE16E7503400E300F9 /* CGameObjectSettings_PARSER.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameObjectSettings_PARSER.cpp; sourceTree = "<group>"; };
+		A425B3AF16E7503400E300F9 /* CGameObjectSettings_PARSER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameObjectSettings_PARSER.h; sourceTree = "<group>"; };
+		A425B3B116E7504F00E300F9 /* CShape3dSettings_PARSER.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CShape3dSettings_PARSER.cpp; sourceTree = "<group>"; };
+		A425B3B216E7505000E300F9 /* CShape3dSettings_PARSER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CShape3dSettings_PARSER.h; sourceTree = "<group>"; };
+		A425B3B416E751E600E300F9 /* CLandscapeSettings_PARSER.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLandscapeSettings_PARSER.cpp; sourceTree = "<group>"; };
+		A425B3B516E751E600E300F9 /* CLandscapeSettings_PARSER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLandscapeSettings_PARSER.h; sourceTree = "<group>"; };
+		A425B3B716E751FD00E300F9 /* COceanSettings_PARSER.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = COceanSettings_PARSER.cpp; sourceTree = "<group>"; };
+		A425B3B816E751FE00E300F9 /* COceanSettings_PARSER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COceanSettings_PARSER.h; sourceTree = "<group>"; };
+		A425B3BA16E7520E00E300F9 /* CGrassSettings_PARSER.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGrassSettings_PARSER.cpp; sourceTree = "<group>"; };
+		A425B3BB16E7520E00E300F9 /* CGrassSettings_PARSER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGrassSettings_PARSER.h; sourceTree = "<group>"; };
+		A425B3BD16E7522100E300F9 /* CSkyDomeSettings_PARSER.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSkyDomeSettings_PARSER.cpp; sourceTree = "<group>"; };
+		A425B3BE16E7522200E300F9 /* CSkyDomeSettings_PARSER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSkyDomeSettings_PARSER.h; sourceTree = "<group>"; };
+		A425B3C016E7523900E300F9 /* CParticleEmitterSettings_PARSER.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CParticleEmitterSettings_PARSER.cpp; sourceTree = "<group>"; };
+		A425B3C116E7523900E300F9 /* CParticleEmitterSettings_PARSER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CParticleEmitterSettings_PARSER.h; sourceTree = "<group>"; };
 		A425B3C416E753BF00E300F9 /* pugiconfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pugiconfig.hpp; sourceTree = "<group>"; };
 		A425B3C516E753BF00E300F9 /* pugixml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pugixml.cpp; sourceTree = "<group>"; };
 		A425B3C616E753BF00E300F9 /* pugixml.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pugixml.hpp; sourceTree = "<group>"; };
@@ -1098,8 +1098,8 @@
 			isa = PBXGroup;
 			children = (
 				21904E2D16E2C3CC00A1689A /* Landscape */,
-				93B6BB6F14840FC700E34B78 /* INode.h */,
-				93B6BB7114840FD500E34B78 /* INode.cpp */,
+				93B6BB6F14840FC700E34B78 /* CGameObject3d.h */,
+				93B6BB7114840FD500E34B78 /* CGameObject3d.cpp */,
 				21904E2B16E2C38400A1689A /* CShape3d.h */,
 				21904E2A16E2C38400A1689A /* CShape3d.cpp */,
 				93CBB21D150E13FD00CB1EFF /* CGrass.h */,
@@ -1150,20 +1150,6 @@
 			isa = PBXGroup;
 			children = (
 				A425B3CB16E7593400E300F9 /* HSettings_DTO.h */,
-				A425B3AF16E7503400E300F9 /* CGameObjectSettings.h */,
-				A425B3AE16E7503400E300F9 /* CGameObjectSettings.cpp */,
-				A425B3B216E7505000E300F9 /* CShape3dSettings.h */,
-				A425B3B116E7504F00E300F9 /* CShape3dSettings.cpp */,
-				A425B3B516E751E600E300F9 /* CLandscapeSettings.h */,
-				A425B3B416E751E600E300F9 /* CLandscapeSettings.cpp */,
-				A425B3B816E751FE00E300F9 /* COceanSettings.h */,
-				A425B3B716E751FD00E300F9 /* COceanSettings.cpp */,
-				A425B3BB16E7520E00E300F9 /* CGrassSettings.h */,
-				A425B3BA16E7520E00E300F9 /* CGrassSettings.cpp */,
-				A425B3BE16E7522200E300F9 /* CSkyDomeSettings.h */,
-				A425B3BD16E7522100E300F9 /* CSkyDomeSettings.cpp */,
-				A425B3C116E7523900E300F9 /* CParticleEmitterSettings.h */,
-				A425B3C016E7523900E300F9 /* CParticleEmitterSettings.cpp */,
 			);
 			name = Settings_DTO;
 			sourceTree = "<group>";
@@ -1260,6 +1246,7 @@
 		931217E4146D0DA500DDC82D /* ResourceMgr */ = {
 			isa = PBXGroup;
 			children = (
+				A468349716E8C30200D34692 /* GameObjectSettings_PARSERS */,
 				9315D5A7147BBC4500F42FE7 /* Resources */,
 				93205988145E8C6D00DEBCCB /* Loaders */,
 				A4DF957116C3EC1C0004EB83 /* CResourceLoadCallback.h */,
@@ -2312,6 +2299,27 @@
 			path = pugixml;
 			sourceTree = "<group>";
 		};
+		A468349716E8C30200D34692 /* GameObjectSettings_PARSERS */ = {
+			isa = PBXGroup;
+			children = (
+				A425B3AF16E7503400E300F9 /* CGameObjectSettings_PARSER.h */,
+				A425B3AE16E7503400E300F9 /* CGameObjectSettings_PARSER.cpp */,
+				A425B3B216E7505000E300F9 /* CShape3dSettings_PARSER.h */,
+				A425B3B116E7504F00E300F9 /* CShape3dSettings_PARSER.cpp */,
+				A425B3B516E751E600E300F9 /* CLandscapeSettings_PARSER.h */,
+				A425B3B416E751E600E300F9 /* CLandscapeSettings_PARSER.cpp */,
+				A425B3B816E751FE00E300F9 /* COceanSettings_PARSER.h */,
+				A425B3B716E751FD00E300F9 /* COceanSettings_PARSER.cpp */,
+				A425B3BB16E7520E00E300F9 /* CGrassSettings_PARSER.h */,
+				A425B3BA16E7520E00E300F9 /* CGrassSettings_PARSER.cpp */,
+				A425B3BE16E7522200E300F9 /* CSkyDomeSettings_PARSER.h */,
+				A425B3BD16E7522100E300F9 /* CSkyDomeSettings_PARSER.cpp */,
+				A425B3C116E7523900E300F9 /* CParticleEmitterSettings_PARSER.h */,
+				A425B3C016E7523900E300F9 /* CParticleEmitterSettings_PARSER.cpp */,
+			);
+			name = GameObjectSettings_PARSERS;
+			sourceTree = "<group>";
+		};
 		A4DF956D16C3E8620004EB83 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -2633,7 +2641,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A425B3AD16E747FA00E300F9 /* INode.cpp in Sources */,
+				A425B3AD16E747FA00E300F9 /* CGameObject3d.cpp in Sources */,
 				21904E3B16E33D7D00A1689A /* CFrustum.cpp in Sources */,
 				21904E1116E2B60400A1689A /* CRenderMgr.cpp in Sources */,
 				216E115E16E00089002C98B3 /* CParser_GLSL.cpp in Sources */,
@@ -2675,13 +2683,13 @@
 				21904E3616E2C5DE00A1689A /* CHeightmapProcessor.cpp in Sources */,
 				21904E3916E2C65600A1689A /* CScreenSpaceRenderProcessor.cpp in Sources */,
 				A429344A16E4F8F8006A01D0 /* CSceneUpdateCallback.cpp in Sources */,
-				A425B3B016E7503400E300F9 /* CGameObjectSettings.cpp in Sources */,
-				A425B3B316E7505000E300F9 /* CShape3dSettings.cpp in Sources */,
-				A425B3B616E751E700E300F9 /* CLandscapeSettings.cpp in Sources */,
-				A425B3B916E751FE00E300F9 /* COceanSettings.cpp in Sources */,
-				A425B3BC16E7520E00E300F9 /* CGrassSettings.cpp in Sources */,
-				A425B3BF16E7522200E300F9 /* CSkyDomeSettings.cpp in Sources */,
-				A425B3C216E7523A00E300F9 /* CParticleEmitterSettings.cpp in Sources */,
+				A425B3B016E7503400E300F9 /* CGameObjectSettings_PARSER.cpp in Sources */,
+				A425B3B316E7505000E300F9 /* CShape3dSettings_PARSER.cpp in Sources */,
+				A425B3B616E751E700E300F9 /* CLandscapeSettings_PARSER.cpp in Sources */,
+				A425B3B916E751FE00E300F9 /* COceanSettings_PARSER.cpp in Sources */,
+				A425B3BC16E7520E00E300F9 /* CGrassSettings_PARSER.cpp in Sources */,
+				A425B3BF16E7522200E300F9 /* CSkyDomeSettings_PARSER.cpp in Sources */,
+				A425B3C216E7523A00E300F9 /* CParticleEmitterSettings_PARSER.cpp in Sources */,
 				A425B3C716E753BF00E300F9 /* pugixml.cpp in Sources */,
 				A425B3CA16E7553200E300F9 /* CSettingsContainer.cpp in Sources */,
 				A468349416E7836100D34692 /* CSceneUpdateMgr.cpp in Sources */,

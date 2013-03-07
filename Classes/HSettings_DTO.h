@@ -20,7 +20,7 @@ struct SShaderSettings
 {
     std::string m_vsName;
     std::string m_fsName;
-    ui32 m_shaderGuid;
+    ui32 m_guid;
 };
 
 struct SMaterialSettings
@@ -58,9 +58,16 @@ struct SOceanSettings : public SObject3dSettings
 
 struct SSkyDomeSettings : public SObject3dSettings
 {
+    
 };
 
-struct LandscapeSettings : public SObject3dSettings
+struct SGrassSettings : public SObject3dSettings
+{
+    f32 m_width;
+    f32 m_height;
+};
+
+struct SLandscapeSettings : public SObject3dSettings
 {
     f32 m_width;
     f32 m_height;

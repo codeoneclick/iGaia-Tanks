@@ -17,10 +17,22 @@ private:
 
 protected:
 
+    glm::vec3 m_position;
+
 public:
 
     CLight(void);
     ~CLight(void);
+
+    inline void Set_Position(const glm::vec3& _position)
+    {
+        m_position = _position;
+    };
+
+    inline glm::vec3 Get_Position(void)
+    {
+        return m_position;
+    };
 };
 
 #endif 

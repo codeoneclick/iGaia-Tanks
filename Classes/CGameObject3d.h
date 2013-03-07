@@ -6,8 +6,8 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef INode_h
-#define INode_h
+#ifndef CGameObject3d_h
+#define CGameObject3d_h
 
 #include "HCommon.h"
 #include "CRenderMgr.h"
@@ -17,7 +17,7 @@
 #include "CCamera.h"
 #include "CLight.h"
 
-class INode :
+class CGameObject3d :
 public CSceneUpdateCallback_INTERFACE,
 public CRenderCallback_INTERFACE,
 public CResourceLoadCallback_INTERFACE
@@ -57,8 +57,8 @@ protected:
 
 public:
     
-    INode(void);
-    virtual ~INode(void);
+    CGameObject3d(void);
+    virtual ~CGameObject3d(void);
 
     inline void Set_Position(const glm::vec3& _position)
     {
@@ -100,7 +100,7 @@ public:
         return m_texcoordDisplacement;
     };
 
-    virtual INode* Load(CResourceMgrsFacade* _resourceMgrsFacade, const std::string& _name);
+    virtual void Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _shaderComposite, const std::string& _filename) = 0;
 
     glm::vec3 Get_MaxBound(void);
     glm::vec3 Get_MinBound(void);
