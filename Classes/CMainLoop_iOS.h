@@ -6,9 +6,13 @@
 //
 //
 
-#ifndef __iGaia__CMainLoop_iOS__
-#define __iGaia__CMainLoop_iOS__
+#ifndef CMainLoop_iOS_h
+#define CMainLoop_iOS_h
 
-#include <iostream>
+#include "HCommon.h"
+#include "CMainLoopUpdateCallback.h"
 
-#endif /* defined(__iGaia__CMainLoop_iOS__) */
+void ConnectToMainLoop(CMainLoopUpdateCallback_INTERFACE* _listener);
+void DisconnectFromMainLoop(CMainLoopUpdateCallback_INTERFACE* _listener);
+
+#endif 

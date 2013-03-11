@@ -301,7 +301,7 @@
 		A468354B16EE094C00D34692 /* CLoadOperation_MDL_TEST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A468354A16EE094C00D34692 /* CLoadOperation_MDL_TEST.cpp */; };
 		A468354D16EE0A0300D34692 /* CTextureMgr_TEST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A468354C16EE0A0200D34692 /* CTextureMgr_TEST.cpp */; };
 		A468354F16EE0A2000D34692 /* CMeshMgr_TEST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A468354E16EE0A2000D34692 /* CMeshMgr_TEST.cpp */; };
-		A468355216EE41AA00D34692 /* CMainLoop_iOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A468355016EE418D00D34692 /* CMainLoop_iOS.cpp */; };
+		A468355316EE430800D34692 /* CMainLoop_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A468355016EE418D00D34692 /* CMainLoop_iOS.mm */; };
 		A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
 		A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */; };
 		A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE919217145736FD0021A0DC /* CTexture.cpp */; };
@@ -1092,7 +1092,7 @@
 		A468354A16EE094C00D34692 /* CLoadOperation_MDL_TEST.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLoadOperation_MDL_TEST.cpp; sourceTree = "<group>"; };
 		A468354C16EE0A0200D34692 /* CTextureMgr_TEST.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTextureMgr_TEST.cpp; sourceTree = "<group>"; };
 		A468354E16EE0A2000D34692 /* CMeshMgr_TEST.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMeshMgr_TEST.cpp; sourceTree = "<group>"; };
-		A468355016EE418D00D34692 /* CMainLoop_iOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMainLoop_iOS.cpp; sourceTree = "<group>"; };
+		A468355016EE418D00D34692 /* CMainLoop_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CMainLoop_iOS.mm; sourceTree = "<group>"; };
 		A468355116EE419900D34692 /* CMainLoop_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMainLoop_iOS.h; sourceTree = "<group>"; };
 		A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ILoadOperation.cpp; sourceTree = "<group>"; };
 		A4A9847316DCE410007F9CF6 /* ILoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILoadOperation.h; sourceTree = "<group>"; };
@@ -1252,7 +1252,7 @@
 				A468349316E7836100D34692 /* CSceneUpdateMgr.h */,
 				A468349216E7836100D34692 /* CSceneUpdateMgr.cpp */,
 				A468355116EE419900D34692 /* CMainLoop_iOS.h */,
-				A468355016EE418D00D34692 /* CMainLoop_iOS.cpp */,
+				A468355016EE418D00D34692 /* CMainLoop_iOS.mm */,
 			);
 			name = SceneGraph;
 			sourceTree = "<group>";
@@ -3008,6 +3008,7 @@
 				A425B3C716E753BF00E300F9 /* pugixml.cpp in Sources */,
 				A425B3CA16E7553200E300F9 /* CSettingsContainer.cpp in Sources */,
 				A468349416E7836100D34692 /* CSceneUpdateMgr.cpp in Sources */,
+				A468355316EE430800D34692 /* CMainLoop_iOS.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3066,7 +3067,6 @@
 				A468354B16EE094C00D34692 /* CLoadOperation_MDL_TEST.cpp in Sources */,
 				A468354D16EE0A0300D34692 /* CTextureMgr_TEST.cpp in Sources */,
 				A468354F16EE0A2000D34692 /* CMeshMgr_TEST.cpp in Sources */,
-				A468355216EE41AA00D34692 /* CMainLoop_iOS.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
