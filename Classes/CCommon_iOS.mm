@@ -7,6 +7,8 @@
 //
 
 #include "CCommon_IOS.h"
+#include <UIKit/UIKit.h>
+#include <Foundation/Foundation.h>
 
 std::string Get_BundlePath(void)
 {

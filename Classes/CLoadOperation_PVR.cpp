@@ -30,6 +30,11 @@ void CLoadOperation_PVR::Load(const std::string& _filename)
 
     std::ifstream stream;
     stream.open(path.c_str(), std::ios::binary);
+    if (!stream.is_open())
+    {
+        m_status = E_PARSER_STATUS_ERROR;
+        return;
+    }
     stream.seekg(0, std::ios::end);
     i32 lenght = stream.tellg();
     stream.seekg(0, std::ios::beg);

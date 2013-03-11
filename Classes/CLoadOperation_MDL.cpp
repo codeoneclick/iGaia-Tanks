@@ -30,6 +30,11 @@ void CLoadOperation_MDL::Load(const std::string& _filename)
 
     std::ifstream stream;
     stream.open(path.c_str(), std::ios::binary);
+    if (!stream.is_open())
+    {
+        m_status = E_PARSER_STATUS_ERROR;
+        return;
+    }
     stream.read((char*)&m_numVertexes, sizeof(ui32));
     stream.read((char*)&m_numIndexes, sizeof(ui32));
 

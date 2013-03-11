@@ -1,4 +1,6 @@
-//#import "GLView.h"
+
+#include <UIKit/UIKit.h>
+#include <Foundation/Foundation.h>
 
 @interface MainAppDelegate : NSObject <UIApplicationDelegate> 
 {

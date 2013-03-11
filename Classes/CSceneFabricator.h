@@ -6,9 +6,40 @@
 //
 //
 
-#ifndef __iGaia__CSceneFabricator__
-#define __iGaia__CSceneFabricator__
+#ifndef CSceneFabricator_h
+#define CSceneFabricator_h
 
-#include <iostream>
+#include "CCamera.h"
+#include "CLight.h"
+#include "CShape3d.h"
+#include "CSceneContainer.h"
+#include "CResourceMgrsFacade.h"
+#include "CShaderComposite.h"
 
-#endif /* defined(__iGaia__CSceneFabricator__) */
+class CSceneFabricator
+{
+private:
+
+protected:
+    
+    CSceneContainer* m_sceneContainer;
+    CShaderComposite* m_shaderComposite;
+    CResourceMgrsFacade* m_resourceMgrsFacade;
+    
+public:
+
+    CSceneFabricator(void);
+    ~CSceneFabricator(void);
+
+    inline void Set_ShaderComposite(CShaderComposite* _shaderComposite)
+    {
+        m_shaderComposite = _shaderComposite;
+    }
+
+    CCamera* CreateCamera(f32 _fov, f32 _near, f32 _far,const glm::vec4& _viewport);
+    CLight* CreateLight(void);
+
+    CShape3d* CreateShape3d(const std::string& _filename);
+};
+
+#endif 

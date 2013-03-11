@@ -52,6 +52,12 @@ void CGameObject3d::Set_Texture(CTexture* _texture, E_TEXTURE_SLOT _slot, E_REND
     m_materials[_mode]->Set_Texture(_texture, _slot);
 }
 
+void CGameObject3d::Set_Clipping(const glm::vec4 &_clipping, E_RENDER_MODE_WORLD_SPACE _mode)
+{
+    assert(m_materials[_mode] != nullptr);
+    m_materials[_mode]->Set_Clipping(_clipping);
+}
+
 void CGameObject3d::ListenRenderMgr(bool _value)
 {
     assert(m_renderMgr != nullptr);

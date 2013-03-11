@@ -6,9 +6,38 @@
 //
 //
 
-#ifndef __iGaia__CSceneContainer__
-#define __iGaia__CSceneContainer__
+#ifndef CSceneContainer_h
+#define CSceneContainer_h
 
-#include <iostream>
+#include "HCommon.h"
+#include "CCamera.h"
+#include "CLight.h"
+#include "CGameObject3d.h"
 
-#endif /* defined(__iGaia__CSceneContainer__) */
+class CSceneContainer
+{
+private:
+    
+    std::set<CGameObject3d*> m_gameObjects3dContainer;
+    std::set<CCamera*> m_camerasContainer;
+    std::set<CLight*> m_lightsContainer;
+    
+protected:
+
+public:
+    
+    CSceneContainer(void) = default;
+    ~CSceneContainer(void);
+
+    void AddGameObject3d(CGameObject3d* _gameObject3d);
+    void RemoveGameObject3d(CGameObject3d* _gameObject3d);
+
+    void AddCamera(CCamera* _camera);
+    void RemoveCamera(CCamera* _camera);
+
+    void AddLight(CLight* _light);
+    void RemoveLight(CLight* _light);
+    
+};
+
+#endif 
