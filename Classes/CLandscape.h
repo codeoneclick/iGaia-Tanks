@@ -9,76 +9,35 @@
 #ifndef iGaia_CLandscape_h
 #define iGaia_CLandscape_h
 
-#include "INode.h"
-#include <map>
-#include <vector>
-#include "CHeightMapSetter.h"
-#include "CLandscapeEdges.h"
+#include "CGameObject3d.h"
+#include "CHeightmapProcessor.h"
+#include "CQuadTree.h"
 
-#define k_MAX_QUADTREE_CHILDREN 4
-
-class CLandscape : public INode
+class CLandscape : public CGameObject3d
 {
-protected:
-    struct SQuadTreeNode
-    {
-        SQuadTreeNode* m_pParent;
-        SQuadTreeNode** m_pChilds;
-        glm::vec3 m_vMaxBound;
-        glm::vec3 m_vMinBound;
-        unsigned short* m_pIndexes;
-        unsigned short* m_pIndexesId;
-        unsigned int m_iNumIndexes;
-        SQuadTreeNode(void)
-        {
-            m_pParent = NULL;
-            m_pChilds = NULL;
-            m_pIndexes = NULL;
-            m_iNumIndexes = 0;
-        }
-        ~SQuadTreeNode(void)
-        {
-            std::cout<<"[~SQuadTreeNode] delete"<<std::endl;
-            SAFE_DELETE_ARRAY(m_pIndexes);
-            SAFE_DELETE_ARRAY(m_pIndexesId);
-            for(unsigned int i = 0; i < k_MAX_QUADTREE_CHILDREN; ++i)
-            {
-                if(m_pChilds != NULL)
-                {
-                    SAFE_DELETE(m_pChilds[i]);
-                }
-            }
-            SAFE_DELETE_ARRAY(m_pChilds);
-            m_pParent = NULL;
-        }
-    };
-    unsigned int m_iWidth;
-    unsigned int m_iHeight;
-    CHeightMapSetter* m_pHeightMapSetter;
-    CLandscapeEdges* m_pLandscapeEdges;
-    unsigned short* m_pWorkingIndexesSourceDataRef;
-    unsigned int m_iWorkingNumIndexes;
-    SQuadTreeNode* m_pQuadTree;
-    void _CreateQuadTreeNode(int _iSize, SQuadTreeNode* _pParentNode);
-    void _CreateIndexBufferRefForQuadTreeNode(SQuadTreeNode* _pNode);
-    bool _IsPointInBoundBox(glm::vec3 _vPoint, glm::vec3 _vMinBound, glm::vec3 _vMaxBound);
-    void _CheckVisibleQuadTreeNode(SQuadTreeNode* _pNode);
-    void _CreateLandscapeEdges(void);
+private:
 
-    glm::vec2 m_vScaleFactor;
+    CHeightmapProcessor* m_heightmapProcessor;
+
+    CQuadTree* m_quadTree;
+
+protected:
+
+    void OnResourceDidLoad(IResource_INTERFACE* _resource);
+
+    void OnUpdate(f32 _deltatime);
+
+    ui32 OnDrawIndex(void);
+    void OnBind(E_RENDER_MODE_WORLD_SPACE _mode);
+    void OnDraw(E_RENDER_MODE_WORLD_SPACE _mode);
+    void OnUnbind(E_RENDER_MODE_WORLD_SPACE _mode);
+
 public:
+
     CLandscape(void);
     ~CLandscape(void);
-    void Load(const std::string& _sName, IResource::E_THREAD _eThread);
-    void Update(void);
-    void Render(CShader::E_RENDER_MODE _eMode);
-    CHeightMapSetter* Get_HeightMapSetter(void) { return m_pHeightMapSetter; }
-    CLandscapeEdges* Get_LandscapeEdges(void) { return m_pLandscapeEdges; }
-    unsigned int Get_Width(void) { return m_iWidth; }
-    unsigned int Get_Height(void) { return m_iHeight; }
-    
-    void OnTouchEvent(ITouchDelegate* _pDelegateOwner);
-    void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource);
+
+    void Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _shaderComposite, const std::string& _filename);
 };
 
 #endif

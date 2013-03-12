@@ -1,0 +1,14 @@
+<settings name="landscape_01">
+	<heightmap_data_filename value="landscape_01.hdata"/>
+    <splatting_data_filename value="landscape_01.sdata"/>
+    <width value="64"/>
+    <height value="64"/>
+	<materials>
+		<material render_mode="0" is_cull_face="0" is_depth_test="1" is_depth_mask="1" is_blend="0" cull_face_mode="GL_FRONT" blend_function_source="GL_SRC_ALPHA" blend_function_destination="GL_ONE_MINUS_SRC_ALPHA">
+			<shader vs_name="landscape.vs" fs_name="landscape.fs" guid="0"/>
+			<textures>
+				<texture name="building.pvr" slot="0" wrap="GL_REPEAT"/>
+			</textures>
+		</material>
+	</materials>
+</settings>

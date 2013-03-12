@@ -31,7 +31,7 @@
 		21BFC90416EE644B00FA9F50 /* CGLWindow_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90216EE644B00FA9F50 /* CGLWindow_iOS.mm */; };
 		21BFC90716EE685700FA9F50 /* CGameMainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90516EE685600FA9F50 /* CGameMainMenuScene.cpp */; };
 		21BFC90A16EE68C100FA9F50 /* CGameAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90816EE68C000FA9F50 /* CGameAppDelegate.mm */; };
-		21BFC90E16EE68F700FA9F50 /* CGameMainMenuSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.m */; };
+		21BFC90E16EE68F700FA9F50 /* CGameMainMenuSceneViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.mm */; };
 		21BFC90F16EE68F700FA9F50 /* CGameMainMenuSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21BFC90D16EE68F600FA9F50 /* CGameMainMenuSceneViewController.xib */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		4D27E4840F9AD71900447247 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4830F9AD71900447247 /* OpenGLES.framework */; };
@@ -228,6 +228,9 @@
 		A425B3C716E753BF00E300F9 /* pugixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3C516E753BF00E300F9 /* pugixml.cpp */; };
 		A425B3CA16E7553200E300F9 /* CSettingsContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3C816E7553100E300F9 /* CSettingsContainer.cpp */; };
 		A429344A16E4F8F8006A01D0 /* CSceneUpdateCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A429344816E4F8F8006A01D0 /* CSceneUpdateCallback.cpp */; };
+		A438FEBA16EF3EE80030085C /* building_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = A438FEB916EF3EE80030085C /* building_01.xml */; };
+		A438FEC916EF6F9D0030085C /* CLandscape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93AE336514C4447C00F1A516 /* CLandscape.cpp */; };
+		A438FECB16EF7E860030085C /* landscape_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = A438FECA16EF7E860030085C /* landscape_01.xml */; };
 		A468349416E7836100D34692 /* CSceneUpdateMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A468349216E7836100D34692 /* CSceneUpdateMgr.cpp */; };
 		A46834E616EDF87600D34692 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		A46834E716EDF87600D34692 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -419,7 +422,7 @@
 		21BFC90816EE68C000FA9F50 /* CGameAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CGameAppDelegate.mm; sourceTree = "<group>"; };
 		21BFC90916EE68C100FA9F50 /* CGameAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameAppDelegate.h; sourceTree = "<group>"; };
 		21BFC90B16EE68F600FA9F50 /* CGameMainMenuSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameMainMenuSceneViewController.h; sourceTree = "<group>"; };
-		21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGameMainMenuSceneViewController.m; sourceTree = "<group>"; };
+		21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CGameMainMenuSceneViewController.mm; sourceTree = "<group>"; };
 		21BFC90D16EE68F600FA9F50 /* CGameMainMenuSceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CGameMainMenuSceneViewController.xib; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4D27E4830F9AD71900447247 /* OpenGLES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -1098,6 +1101,8 @@
 		A425B3CB16E7593400E300F9 /* HSettings_DTO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSettings_DTO.h; sourceTree = "<group>"; };
 		A429344816E4F8F8006A01D0 /* CSceneUpdateCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneUpdateCallback.cpp; sourceTree = "<group>"; };
 		A429344916E4F8F8006A01D0 /* CSceneUpdateCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneUpdateCallback.h; sourceTree = "<group>"; };
+		A438FEB916EF3EE80030085C /* building_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = building_01.xml; path = Resources/building_01.xml; sourceTree = "<group>"; };
+		A438FECA16EF7E860030085C /* landscape_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = landscape_01.xml; path = Resources/landscape_01.xml; sourceTree = "<group>"; };
 		A468349216E7836100D34692 /* CSceneUpdateMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneUpdateMgr.cpp; sourceTree = "<group>"; };
 		A468349316E7836100D34692 /* CSceneUpdateMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneUpdateMgr.h; sourceTree = "<group>"; };
 		A46834C116EDF52900D34692 /* gtest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gtest.xcodeproj; path = "Libs/gtest-1.6.0/xcode/gtest.xcodeproj"; sourceTree = "<group>"; };
@@ -1383,6 +1388,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A438FECA16EF7E860030085C /* landscape_01.xml */,
+				A438FEB916EF3EE80030085C /* building_01.xml */,
 				936FEC8F14F579CB00A33A33 /* Models */,
 				CE91921914573F630021A0DC /* Textures */,
 			);
@@ -2595,7 +2602,7 @@
 				21BFC90916EE68C100FA9F50 /* CGameAppDelegate.h */,
 				21BFC90816EE68C000FA9F50 /* CGameAppDelegate.mm */,
 				21BFC90B16EE68F600FA9F50 /* CGameMainMenuSceneViewController.h */,
-				21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.m */,
+				21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.mm */,
 				21BFC90D16EE68F600FA9F50 /* CGameMainMenuSceneViewController.xib */,
 			);
 			name = Game;
@@ -2962,6 +2969,8 @@
 				A123836215D0FAA1007769E7 /* building_05.mdl in Resources */,
 				A123836315D0FAA1007769E7 /* building_06.mdl in Resources */,
 				21BFC90F16EE68F700FA9F50 /* CGameMainMenuSceneViewController.xib in Resources */,
+				A438FEBA16EF3EE80030085C /* building_01.xml in Resources */,
+				A438FECB16EF7E860030085C /* landscape_01.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3001,6 +3010,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A438FEC916EF6F9D0030085C /* CLandscape.cpp in Sources */,
 				A425B3AD16E747FA00E300F9 /* CGameObject3d.cpp in Sources */,
 				21904E3B16E33D7D00A1689A /* CFrustum.cpp in Sources */,
 				21904E1116E2B60400A1689A /* CRenderMgr.cpp in Sources */,
@@ -3058,7 +3068,7 @@
 				21BFC90416EE644B00FA9F50 /* CGLWindow_iOS.mm in Sources */,
 				21BFC90716EE685700FA9F50 /* CGameMainMenuScene.cpp in Sources */,
 				21BFC90A16EE68C100FA9F50 /* CGameAppDelegate.mm in Sources */,
-				21BFC90E16EE68F700FA9F50 /* CGameMainMenuSceneViewController.m in Sources */,
+				21BFC90E16EE68F700FA9F50 /* CGameMainMenuSceneViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

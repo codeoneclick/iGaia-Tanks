@@ -12,6 +12,7 @@
 #include "CCamera.h"
 #include "CLight.h"
 #include "CShape3d.h"
+#include "CLandscape.h"
 #include "CSceneContainer.h"
 #include "CResourceMgrsFacade.h"
 #include "CShaderComposite.h"
@@ -37,6 +38,10 @@ public:
 
     CShape3d* CreateShape3d(const std::string& _filename);
     void DeleteShape3d(CShape3d* _shape3d);
+
+    CLandscape* CreateLandscape(const std::string& _filename);
+    void DeleteLandscape(CLandscape* _landscape);
+    
 };
 
 #endif 

@@ -15,6 +15,8 @@ CRenderOperationScreenOutput::CRenderOperationScreenOutput(ui32 _frameWidth, ui3
     
     m_frameBufferHandle = _frameBufferHandle;
     m_renderBufferHandle = _renderBufferHandle;
+
+    m_material = _material;
     
     CVertexBuffer* vertexBuffer = new CVertexBuffer(4, GL_STATIC_DRAW);
     SVertex* vertexData = vertexBuffer->Lock();

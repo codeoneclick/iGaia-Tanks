@@ -19,5 +19,9 @@ SLandscapeSettings* CLandscapeSettings_PARSER::Deserialize(const std::string& _n
     pugi::xml_node settings_node = document.child("settings");
     SLandscapeSettings* settings = new SLandscapeSettings();
     settings->m_materialsSettings = m_gameObjectSettings.Deserialize(settings_node);
+    settings->m_heightmapDataFileName = settings_node.child("heightmap_data_filename").attribute("value").as_string();
+    settings->m_splattingDataFileName = settings_node.child("splatting_data_filename").attribute("value").as_string();
+    settings->m_width = settings_node.child("width").attribute("value").as_uint();
+    settings->m_height = settings_node.child("height").attribute("value").as_float();
     return settings;
 }

@@ -46,13 +46,14 @@ glm::vec3 CVertexBuffer::UncompressU8Vec4(const glm::u8vec4& _compressed)
 
 void CVertexBuffer::Unlock(void)
 {
-    m_currentHandleIndex = m_currentHandleIndex >= (K_NUM_REPLACEMENT_VERTEX_BUFFERS - 1) ? 0 : m_currentHandleIndex++;
+    m_currentHandleIndex = (m_currentHandleIndex >= (K_NUM_REPLACEMENT_VERTEX_BUFFERS - 1)) ? 0 : m_currentHandleIndex + 1;
     glBindBuffer(GL_ARRAY_BUFFER, m_handles[m_currentHandleIndex]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(SVertex) * m_numVertexes, m_data, m_mode);
 }
 
 void CVertexBuffer::Bind(const std::map<E_SHADER_VERTEX_SLOT, i32>& _slots)
 {
+    assert(m_currentHandleIndex >= 0 && m_currentHandleIndex <= (K_NUM_REPLACEMENT_VERTEX_BUFFERS - 1));
     glBindBuffer(GL_ARRAY_BUFFER, m_handles[m_currentHandleIndex]);
     ui32 offset = 0;
     i32 slot = _slots.find(E_SHADER_VERTEX_SLOT_POSITION)->second;
@@ -93,6 +94,7 @@ void CVertexBuffer::Bind(const std::map<E_SHADER_VERTEX_SLOT, i32>& _slots)
 
 void CVertexBuffer::Unbind(const std::map<E_SHADER_VERTEX_SLOT, i32>& _slots)
 {
+    assert(m_currentHandleIndex >= 0 && m_currentHandleIndex <= (K_NUM_REPLACEMENT_VERTEX_BUFFERS - 1));
     glBindBuffer(GL_ARRAY_BUFFER, m_handles[m_currentHandleIndex]);
     i32 slot = _slots.find(E_SHADER_VERTEX_SLOT_POSITION)->second;
     if(slot >= 0)

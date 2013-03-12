@@ -67,28 +67,28 @@ void CQuadTree::BuildQuadTreeNode(i32 _size, i32 _depth, CQuadTree* _root)
     _root->m_childs[0] = new CQuadTree();
     _root->m_childs[0]->m_parent = _root;
     _root->m_childs[0]->m_minBound = glm::vec3(_root->m_minBound.x, _root->m_minBound.y, _root->m_minBound.z );
-    _root->m_childs[0]->m_maxBound = glm::vec3(_root->m_maxBound.x / 2.0f, _root->m_maxBound.y, _root->m_maxBound.z / 2.0f);
+    _root->m_childs[0]->m_maxBound = glm::vec3(_root->m_minBound.x + (_root->m_maxBound.x - _root->m_minBound.x) / 2.0f, _root->m_maxBound.y, _root->m_minBound.z + (_root->m_maxBound.z - _root->m_minBound.z) / 2.0f);
     _root->m_childs[0]->m_vertexes = m_vertexes;
     CreateIndexBufferForQuadTreeNode(_root->m_childs[0]);
 
     _root->m_childs[1] = new CQuadTree();
     _root->m_childs[1]->m_parent = _root;
-    _root->m_childs[1]->m_minBound = glm::vec3(_root->m_minBound.x, _root->m_minBound.y, _root->m_maxBound.z / 2.0f);
-    _root->m_childs[1]->m_maxBound = glm::vec3(_root->m_maxBound.x / 2.0f, _root->m_maxBound.y, _root->m_maxBound.z);
+    _root->m_childs[1]->m_minBound = glm::vec3(_root->m_minBound.x, _root->m_minBound.y, _root->m_minBound.z + (_root->m_maxBound.z - _root->m_minBound.z) / 2.0f);
+    _root->m_childs[1]->m_maxBound = glm::vec3(_root->m_minBound.x + (_root->m_maxBound.x - _root->m_minBound.x) / 2.0f, _root->m_maxBound.y, _root->m_maxBound.z);
     _root->m_childs[1]->m_vertexes = m_vertexes;
     CreateIndexBufferForQuadTreeNode(_root->m_childs[1]);
 
     _root->m_childs[2] = new CQuadTree();
     _root->m_childs[2]->m_parent = _root;
-    _root->m_childs[2]->m_minBound = glm::vec3(_root->m_maxBound.x / 2.0f, _root->m_minBound.y, _root->m_maxBound.z / 2.0f);
+    _root->m_childs[2]->m_minBound = glm::vec3(_root->m_minBound.x + (_root->m_maxBound.x - _root->m_minBound.x) / 2.0f, _root->m_minBound.y, _root->m_minBound.z + (_root->m_maxBound.z - _root->m_minBound.z) / 2.0f);
     _root->m_childs[2]->m_maxBound = glm::vec3(_root->m_maxBound.x, _root->m_maxBound.y, _root->m_maxBound.z);
     _root->m_childs[2]->m_vertexes = m_vertexes;
     CreateIndexBufferForQuadTreeNode(_root->m_childs[2]);
 
     _root->m_childs[3] = new CQuadTree();
     _root->m_childs[3]->m_parent = _root;
-    _root->m_childs[3]->m_minBound = glm::vec3(_root->m_maxBound.x / 2.0f, _root->m_minBound.y, _root->m_minBound.z);
-    _root->m_childs[3]->m_maxBound = glm::vec3(_root->m_maxBound.x, _root->m_maxBound.y, _root->m_maxBound.z / 2.0f);
+    _root->m_childs[3]->m_minBound = glm::vec3(_root->m_minBound.x + (_root->m_maxBound.x - _root->m_minBound.x) / 2.0f, _root->m_minBound.y, _root->m_minBound.z);
+    _root->m_childs[3]->m_maxBound = glm::vec3(_root->m_maxBound.x, _root->m_maxBound.y, _root->m_minBound.z + (_root->m_maxBound.z - _root->m_minBound.z) / 2.0f);
     _root->m_childs[3]->m_vertexes = m_vertexes;
     CreateIndexBufferForQuadTreeNode(_root->m_childs[3]);
 

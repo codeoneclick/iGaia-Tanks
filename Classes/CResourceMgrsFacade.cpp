@@ -11,6 +11,7 @@ CResourceMgrsFacade::CResourceMgrsFacade(void)
 {
     m_resourceMgrsContainer.insert(std::make_pair(E_RESOURCE_MGR_TEXTURE, new CTextureMgr()));
     m_resourceMgrsContainer.insert(std::make_pair(E_RESOURCE_MGR_MESH, new CMeshMgr()));
+    m_settingsContainer = new CSettingsContainer();
 }
 
 CResourceMgrsFacade::~CResourceMgrsFacade(void)

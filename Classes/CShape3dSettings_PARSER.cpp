@@ -19,6 +19,6 @@ SShape3dSettings* CShape3dSettings_PARSER::Deserialize(const std::string& _name)
     pugi::xml_node settings_node = document.child("settings");
     SShape3dSettings* settings = new SShape3dSettings();
     settings->m_materialsSettings = m_gameObjectSettings.Deserialize(settings_node);
-    settings->m_meshName = settings_node.child("name").attribute("value").as_string();
+    settings->m_meshName = settings_node.child("mesh").attribute("value").as_string();
     return settings;
 }

@@ -19,10 +19,10 @@ std::string Get_BundlePath(void)
 
 ui32 Get_ScreenWidth(void)
 {
-    return [UIScreen mainScreen].bounds.size.width;
+    return [UIScreen mainScreen].bounds.size.height;
 }
 
 ui32 Get_ScreenHeight(void)
 {
-    return [UIScreen mainScreen].bounds.size.height;
+    return [UIScreen mainScreen].bounds.size.width;
 }

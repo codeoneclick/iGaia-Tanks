@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
 {
     @autoreleasepool
     {
-        int result = UIApplicationMain(argc, argv, nil, @"MainAppDelegate");
+        int result = UIApplicationMain(argc, argv, nil, @"CGameAppDelegate");
         return result;
     }
 }

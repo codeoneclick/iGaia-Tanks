@@ -52,3 +52,24 @@ void CSceneFabricator::DeleteShape3d(CShape3d *_shape3d)
     assert(m_sceneContainer != nullptr);
     m_sceneContainer->RemoveGameObject3d(_shape3d);
 }
+
+CLandscape* CSceneFabricator::CreateLandscape(const std::string& _filename)
+{
+    assert(m_resourceMgrsFacade != nullptr);
+    assert(m_shaderComposite != nullptr);
+    assert(m_sceneContainer != nullptr);
+    CLandscape* landscape = new CLandscape();
+    landscape->Load(m_resourceMgrsFacade, m_shaderComposite, _filename);
+    m_sceneContainer->AddGameObject3d(landscape);
+    return landscape;
+}
+
+void CSceneFabricator::DeleteLandscape(CLandscape* _landscape)
+{
+    assert(m_sceneContainer != nullptr);
+    m_sceneContainer->RemoveGameObject3d(_landscape);
+}
+
+
+
+

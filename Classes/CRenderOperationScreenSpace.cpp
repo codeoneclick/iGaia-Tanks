@@ -13,6 +13,8 @@ CRenderOperationScreenSpace::CRenderOperationScreenSpace(ui32 _frameWidth, ui32 
     m_frameWidth = _frameWidth;
     m_frameHeight = _frameHeight;
 
+    m_material = _material;
+
     ui32 textureHandle;
     glGenTextures(1, &textureHandle);
     glGenFramebuffers(1, &m_frameBufferHandle);
@@ -29,7 +31,7 @@ CRenderOperationScreenSpace::CRenderOperationScreenSpace(ui32 _frameWidth, ui32 
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, m_frameWidth, m_frameHeight);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_depthBufferHandle);
 
-    assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE);
+    assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
 
     m_operatingTexture = new CTexture(textureHandle, m_frameWidth, m_frameHeight);
     m_operatingTexture->Set_WrapMode(GL_CLAMP_TO_EDGE);

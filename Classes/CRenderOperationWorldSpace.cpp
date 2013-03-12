@@ -30,7 +30,7 @@ CRenderOperationWorldSpace::CRenderOperationWorldSpace(ui32 _frameWidth, ui32 _f
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, m_frameWidth, m_frameHeight);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_depthBufferHandle);
 
-    assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE);
+    assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
 
     m_operatingTexture = new CTexture(textureHandle, m_frameWidth, m_frameHeight);
     m_operatingTexture->Set_WrapMode(GL_CLAMP_TO_EDGE);
@@ -82,7 +82,7 @@ void CRenderOperationWorldSpace::Bind(void)
 
     glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferHandle);
     glViewport(0, 0, m_frameWidth, m_frameHeight);
-    glClearColor(1.0, 1.0, 1.0, 1.0);
+    glClearColor(0.5, 0.5, 0.5, 1.0);
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 }
 

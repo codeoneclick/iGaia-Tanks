@@ -7,16 +7,20 @@
 //
 
 #include "CGameAppDelegate.h"
+#include "CGameMainMenuSceneViewController.h"
+
+@implementation CGameAppDelegate
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    m_pWindow = [[UIWindow alloc] initWithFrame: screenBounds];
-    MainMenuViewController *vc = [MainMenuViewController new];
-    m_pNavigationViewController = [[UINavigationController alloc] initWithRootViewController:vc];
-    [m_pNavigationViewController setNavigationBarHidden:YES animated:NO];
-    m_pWindow.backgroundColor = [UIColor blackColor];
-    [m_pWindow setRootViewController:_pNavigationViewController];
-    [m_pWindow makeKeyAndVisible];
-    
+    self.m_window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    CGameMainMenuSceneViewController *vc = [CGameMainMenuSceneViewController new];
+    UINavigationController* navigationViewController = [[UINavigationController alloc] initWithRootViewController:vc];
+    [navigationViewController setNavigationBarHidden:YES animated:NO];
+    self.m_window.backgroundColor = [UIColor blackColor];
+    [self.m_window setRootViewController:navigationViewController];
+    [self.m_window makeKeyAndVisible];
 }
+
+@end
+

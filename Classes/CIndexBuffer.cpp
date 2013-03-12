@@ -26,17 +26,19 @@ CIndexBuffer::~CIndexBuffer(void)
 
 void CIndexBuffer::Unlock(void)
 {
-    m_currentHandleIndex = m_currentHandleIndex >= (K_NUM_REPLACEMENT_INDEX_BUFFERS - 1) ? 0 : m_currentHandleIndex++;
+    m_currentHandleIndex = (m_currentHandleIndex >= (K_NUM_REPLACEMENT_INDEX_BUFFERS - 1)) ? 0 : m_currentHandleIndex + 1;
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_handles[m_currentHandleIndex]);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(ui16) * m_numIndexes, m_data, m_mode);
 }
 
 void CIndexBuffer::Bind(void)
 {
+    assert(m_currentHandleIndex >= 0 && m_currentHandleIndex <= (K_NUM_REPLACEMENT_INDEX_BUFFERS - 1));
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_handles[m_currentHandleIndex]);
 }
 
 void CIndexBuffer::Unbind(void)
 {
+    assert(m_currentHandleIndex >= 0 && m_currentHandleIndex <= (K_NUM_REPLACEMENT_INDEX_BUFFERS - 1));
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }

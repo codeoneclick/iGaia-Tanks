@@ -51,8 +51,8 @@ struct SShape3dSettings : public SObject3dSettings
 
 struct SOceanSettings : public SObject3dSettings
 {
-    f32 m_width;
-    f32 m_height;
+    ui32 m_width;
+    ui32 m_height;
     f32 m_altitude;
 };
 
@@ -63,14 +63,14 @@ struct SSkyDomeSettings : public SObject3dSettings
 
 struct SGrassSettings : public SObject3dSettings
 {
-    f32 m_width;
-    f32 m_height;
+    ui32 m_width;
+    ui32 m_height;
 };
 
 struct SLandscapeSettings : public SObject3dSettings
 {
-    f32 m_width;
-    f32 m_height;
+    ui32 m_width;
+    ui32 m_height;
     std::string m_heightmapDataFileName;
     std::string m_splattingDataFileName;
 };

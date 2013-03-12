@@ -7,7 +7,6 @@
 //
 #include "CGameObject3d.h"
 
-
 CGameObject3d::CGameObject3d(void)
 {
     m_position = glm::vec3(0.0f, 0.0f, 0.0f);

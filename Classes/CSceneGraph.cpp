@@ -13,6 +13,8 @@ CSceneGraph::CSceneGraph(void)
     m_camera = nullptr;
     m_light = nullptr;
 
+    m_landscape = nullptr;
+
     m_updateMgr = nullptr;
     m_renderMgr = nullptr;
 }
@@ -51,13 +53,39 @@ void CSceneGraph::Set_Light(CLight* _light)
     }
 }
 
+void CSceneGraph::Set_Landscape(CLandscape* _landscape)
+{
+    if(m_landscape != nullptr)
+    {
+        m_landscape->ListenUpdateMgr(false);
+        m_landscape->ListenRenderMgr(false);
+        m_landscape = nullptr;
+    }
+
+    m_landscape = _landscape;
+
+    // FIXME :
+    //m_landscape->Set_Clipping(glm::vec4(0.0f, 1.0f, 0.0f, 0.1f), E_RENDER_MODE_WORLD_SPACE_REFLECTION);
+    //m_landscape->Set_Clipping(glm::vec4(0.0f, -1.0f, 0.0f, 0.1f), E_RENDER_MODE_WORLD_SPACE_REFRACTION);
+
+    assert(m_updateMgr != nullptr);
+    assert(m_renderMgr != nullptr);
+    
+    m_landscape->Set_Camera(m_camera);
+    m_landscape->Set_Light(m_light);
+    m_landscape->Set_UpdateMgr(m_updateMgr);
+    m_landscape->Set_RenderMgr(m_renderMgr);
+    m_landscape->ListenUpdateMgr(true);
+    m_landscape->ListenRenderMgr(true);
+}
+
 void CSceneGraph::InsertShape3d(CShape3d *_shape3d)
 {
     CShape3d* shape3d = _shape3d;
 
     // FIXME :
-    shape3d->Set_Clipping(glm::vec4(0.0f, 1.0f, 0.0f, 0.1f), E_RENDER_MODE_WORLD_SPACE_REFLECTION);
-    shape3d->Set_Clipping(glm::vec4(0.0f, -1.0f, 0.0f, 0.1f), E_RENDER_MODE_WORLD_SPACE_REFRACTION);
+    //shape3d->Set_Clipping(glm::vec4(0.0f, 1.0f, 0.0f, 0.1f), E_RENDER_MODE_WORLD_SPACE_REFLECTION);
+    //shape3d->Set_Clipping(glm::vec4(0.0f, -1.0f, 0.0f, 0.1f), E_RENDER_MODE_WORLD_SPACE_REFRACTION);
 
     if(m_camera != nullptr)
     {

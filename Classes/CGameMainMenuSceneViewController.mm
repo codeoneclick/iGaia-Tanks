@@ -6,12 +6,15 @@
 //
 //
 
-#import "CGameMainMenuSceneViewController.h"
-#import "CGLContext_iOS.h"
+#include "CGameMainMenuSceneViewController.h"
+#include "CGLContext_iOS.h"
+#include "CGLWindow_iOS.h"
+#include "CGameMainMenuScene.h"
 
 @interface CGameMainMenuSceneViewController ()
 
-@property (weak, nonatomic) IBOutlet CGLWindow_iOS *m_glView;
+@property(weak, nonatomic) IBOutlet CGLWindow_iOS *m_glView;
+@property(unsafe_unretained, nonatomic) CGameMainMenuScene* m_scene;
 
 @end
 
@@ -30,6 +33,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    CRoot_iOS* root = new CRoot_iOS((__bridge void*)_m_glView);
+    self.m_scene = new CGameMainMenuScene();
+    self.m_scene->Load(root);
 }
 
 - (void)didReceiveMemoryWarning
