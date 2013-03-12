@@ -20,26 +20,23 @@ class CSceneFabricator
 {
 private:
 
+    CSceneContainer* m_sceneContainer;
+    CResourceMgrsFacade* m_resourceMgrsFacade;
+    
 protected:
     
-    CSceneContainer* m_sceneContainer;
     CShaderComposite* m_shaderComposite;
-    CResourceMgrsFacade* m_resourceMgrsFacade;
     
 public:
 
     CSceneFabricator(void);
-    ~CSceneFabricator(void);
-
-    inline void Set_ShaderComposite(CShaderComposite* _shaderComposite)
-    {
-        m_shaderComposite = _shaderComposite;
-    }
+    virtual ~CSceneFabricator(void);
 
     CCamera* CreateCamera(f32 _fov, f32 _near, f32 _far,const glm::vec4& _viewport);
     CLight* CreateLight(void);
 
     CShape3d* CreateShape3d(const std::string& _filename);
+    void DeleteShape3d(CShape3d* _shape3d);
 };
 
 #endif 

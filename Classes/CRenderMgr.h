@@ -34,6 +34,11 @@ public:
 
     CRenderMgr(const IGLContext_INTERFACE* _glContext);
     ~CRenderMgr(void);
+    
+    inline CShaderComposite* Get_ShaderComposite(void)
+    {
+        return m_shaderComposite;
+    };
 
     void AddEventListener(CRenderCallback_INTERFACE* _listener, E_RENDER_MODE_WORLD_SPACE _mode);
     void RemoveEventListener(CRenderCallback_INTERFACE* _listener, E_RENDER_MODE_WORLD_SPACE _mode);

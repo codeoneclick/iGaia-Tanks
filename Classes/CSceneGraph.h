@@ -32,21 +32,7 @@ protected:
 public:
 
     CSceneGraph(void);
-    ~CSceneGraph(void);
-
-    inline void Set_RenderMgr(CRenderMgr* _renderMgr)
-    {
-        assert(m_renderMgr == nullptr);
-        assert(_renderMgr != nullptr);
-        m_renderMgr = _renderMgr;
-    };
-    
-    inline void Set_UpdateMgr(CSceneUpdateMgr* _updateMgr)
-    {
-        assert(m_updateMgr == nullptr);
-        assert(_updateMgr != nullptr);
-        m_updateMgr = _updateMgr;
-    };
+    virtual ~CSceneGraph(void);
 
     void Set_Camera(CCamera* _camera);
     void Set_Light(CLight* _light);

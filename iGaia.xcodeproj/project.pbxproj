@@ -27,6 +27,12 @@
 		21904E3616E2C5DE00A1689A /* CHeightmapProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21904E3416E2C5DC00A1689A /* CHeightmapProcessor.cpp */; };
 		21904E3916E2C65600A1689A /* CScreenSpaceRenderProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21904E3716E2C65300A1689A /* CScreenSpaceRenderProcessor.cpp */; };
 		21904E3B16E33D7D00A1689A /* CFrustum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FFAA89156CBAE500B01ECB /* CFrustum.cpp */; };
+		21BFC8FF16EE5BB900FA9F50 /* CRoot_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC8FD16EE5BB700FA9F50 /* CRoot_iOS.mm */; };
+		21BFC90416EE644B00FA9F50 /* CGLWindow_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90216EE644B00FA9F50 /* CGLWindow_iOS.mm */; };
+		21BFC90716EE685700FA9F50 /* CGameMainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90516EE685600FA9F50 /* CGameMainMenuScene.cpp */; };
+		21BFC90A16EE68C100FA9F50 /* CGameAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90816EE68C000FA9F50 /* CGameAppDelegate.mm */; };
+		21BFC90E16EE68F700FA9F50 /* CGameMainMenuSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.m */; };
+		21BFC90F16EE68F700FA9F50 /* CGameMainMenuSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21BFC90D16EE68F600FA9F50 /* CGameMainMenuSceneViewController.xib */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		4D27E4840F9AD71900447247 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4830F9AD71900447247 /* OpenGLES.framework */; };
 		4D27E4B50F9AD7D600447247 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4B40F9AD7D600447247 /* QuartzCore.framework */; };
@@ -404,6 +410,17 @@
 		21904E3516E2C5DD00A1689A /* CHeightmapProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHeightmapProcessor.h; sourceTree = "<group>"; };
 		21904E3716E2C65300A1689A /* CScreenSpaceRenderProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CScreenSpaceRenderProcessor.cpp; sourceTree = "<group>"; };
 		21904E3816E2C65400A1689A /* CScreenSpaceRenderProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CScreenSpaceRenderProcessor.h; sourceTree = "<group>"; };
+		21BFC8FD16EE5BB700FA9F50 /* CRoot_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CRoot_iOS.mm; sourceTree = "<group>"; };
+		21BFC8FE16EE5BB800FA9F50 /* CRoot_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoot_iOS.h; sourceTree = "<group>"; };
+		21BFC90216EE644B00FA9F50 /* CGLWindow_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CGLWindow_iOS.mm; sourceTree = "<group>"; };
+		21BFC90316EE644B00FA9F50 /* CGLWindow_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLWindow_iOS.h; sourceTree = "<group>"; };
+		21BFC90516EE685600FA9F50 /* CGameMainMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameMainMenuScene.cpp; sourceTree = "<group>"; };
+		21BFC90616EE685700FA9F50 /* CGameMainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameMainMenuScene.h; sourceTree = "<group>"; };
+		21BFC90816EE68C000FA9F50 /* CGameAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CGameAppDelegate.mm; sourceTree = "<group>"; };
+		21BFC90916EE68C100FA9F50 /* CGameAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameAppDelegate.h; sourceTree = "<group>"; };
+		21BFC90B16EE68F600FA9F50 /* CGameMainMenuSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameMainMenuSceneViewController.h; sourceTree = "<group>"; };
+		21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGameMainMenuSceneViewController.m; sourceTree = "<group>"; };
+		21BFC90D16EE68F600FA9F50 /* CGameMainMenuSceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CGameMainMenuSceneViewController.xib; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4D27E4830F9AD71900447247 /* OpenGLES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4D27E4B40F9AD7D600447247 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1251,8 +1268,6 @@
 				21904E1D16E2C2DC00A1689A /* CSceneContainer.cpp */,
 				A468349316E7836100D34692 /* CSceneUpdateMgr.h */,
 				A468349216E7836100D34692 /* CSceneUpdateMgr.cpp */,
-				A468355116EE419900D34692 /* CMainLoop_iOS.h */,
-				A468355016EE418D00D34692 /* CMainLoop_iOS.mm */,
 			);
 			name = SceneGraph;
 			sourceTree = "<group>";
@@ -1315,6 +1330,27 @@
 				A425B3CB16E7593400E300F9 /* HSettings_DTO.h */,
 			);
 			name = Settings_DTO;
+			sourceTree = "<group>";
+		};
+		21BFC90016EE640600FA9F50 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				21BFC90116EE640D00FA9F50 /* Support */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		21BFC90116EE640D00FA9F50 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A468355116EE419900D34692 /* CMainLoop_iOS.h */,
+				A468355016EE418D00D34692 /* CMainLoop_iOS.mm */,
+				21BFC8FE16EE5BB800FA9F50 /* CRoot_iOS.h */,
+				21BFC8FD16EE5BB700FA9F50 /* CRoot_iOS.mm */,
+				21BFC90316EE644B00FA9F50 /* CGLWindow_iOS.h */,
+				21BFC90216EE644B00FA9F50 /* CGLWindow_iOS.mm */,
+			);
+			name = Support;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
@@ -1581,6 +1617,7 @@
 		937367C5144ECDC20051ED8D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				21BFC90016EE640600FA9F50 /* iOS */,
 				A4DF956D16C3E8620004EB83 /* Common */,
 				933EF3DB14EA4D4B00B7EBCE /* Mgrs */,
 				933EF3DA14EA4D3D00B7EBCE /* Helpers */,
@@ -2553,6 +2590,13 @@
 				CE8DFA9214587B0C00AE7288 /* CGame.cpp */,
 				93060C8B14EE8BA300306309 /* CGameState.h */,
 				93060C8C14EE8BB100306309 /* CGameState.cpp */,
+				21BFC90616EE685700FA9F50 /* CGameMainMenuScene.h */,
+				21BFC90516EE685600FA9F50 /* CGameMainMenuScene.cpp */,
+				21BFC90916EE68C100FA9F50 /* CGameAppDelegate.h */,
+				21BFC90816EE68C000FA9F50 /* CGameAppDelegate.mm */,
+				21BFC90B16EE68F600FA9F50 /* CGameMainMenuSceneViewController.h */,
+				21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.m */,
+				21BFC90D16EE68F600FA9F50 /* CGameMainMenuSceneViewController.xib */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -2917,6 +2961,7 @@
 				A123836115D0FAA1007769E7 /* building_04.mdl in Resources */,
 				A123836215D0FAA1007769E7 /* building_05.mdl in Resources */,
 				A123836315D0FAA1007769E7 /* building_06.mdl in Resources */,
+				21BFC90F16EE68F700FA9F50 /* CGameMainMenuSceneViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3009,6 +3054,11 @@
 				A425B3CA16E7553200E300F9 /* CSettingsContainer.cpp in Sources */,
 				A468349416E7836100D34692 /* CSceneUpdateMgr.cpp in Sources */,
 				A468355316EE430800D34692 /* CMainLoop_iOS.mm in Sources */,
+				21BFC8FF16EE5BB900FA9F50 /* CRoot_iOS.mm in Sources */,
+				21BFC90416EE644B00FA9F50 /* CGLWindow_iOS.mm in Sources */,
+				21BFC90716EE685700FA9F50 /* CGameMainMenuScene.cpp in Sources */,
+				21BFC90A16EE68C100FA9F50 /* CGameAppDelegate.mm in Sources */,
+				21BFC90E16EE68F700FA9F50 /* CGameMainMenuSceneViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3265,6 +3315,7 @@
 				A46834FD16EDF87600D34692 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iGaia" */ = {
 			isa = XCConfigurationList;

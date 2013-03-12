@@ -7,3 +7,8 @@
 //
 
 #include "CLight.h"
+
+CLight::CLight(void)
+{
+    m_position = glm::vec3(0.0f, 0.0f, 0.0f);
+}

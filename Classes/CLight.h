@@ -22,7 +22,7 @@ protected:
 public:
 
     CLight(void);
-    ~CLight(void);
+    ~CLight(void) = default;
 
     inline void Set_Position(const glm::vec3& _position)
     {
