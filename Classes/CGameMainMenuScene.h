@@ -11,6 +11,7 @@
 
 #include "HCommon.h"
 #include "CRoot_iOS.h"
+#include "CCharacterController.h"
 
 class CGameMainMenuScene
 {
@@ -22,6 +23,7 @@ protected:
     CLight* m_light;
     CShape3d* m_shape3d;
     CLandscape* m_landscape;
+    CCharacterController* m_characterController;
 
 public:
 
@@ -30,6 +32,11 @@ public:
 
     void Load(CRoot_iOS* _root);
 
+    inline CCharacterController* Get_CharacterController(void)
+    {
+        assert(m_characterController != nullptr);
+        return m_characterController;
+    };
 };
 
 #endif 

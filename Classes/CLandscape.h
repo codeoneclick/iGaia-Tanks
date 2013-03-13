@@ -38,6 +38,27 @@ public:
     ~CLandscape(void);
 
     void Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _shaderComposite, const std::string& _filename);
+
+    inline f32* Get_HeightmapData(void)
+    {
+        assert(m_heightmapProcessor != nullptr);
+        assert(m_heightmapProcessor->Get_HeightmapData() != nullptr);
+        return m_heightmapProcessor->Get_HeightmapData();
+    };
+
+    inline ui32 Get_HeightmapWidth(void)
+    {
+        assert(m_heightmapProcessor != nullptr);
+        assert(m_heightmapProcessor->Get_Width() != 0);
+        return m_heightmapProcessor->Get_Width();
+    };
+
+    inline ui32 Get_HeightmapHeight(void)
+    {
+        assert(m_heightmapProcessor != nullptr);
+        assert(m_heightmapProcessor->Get_Height() != 0);
+        return m_heightmapProcessor->Get_Height();
+    };
 };
 
 #endif

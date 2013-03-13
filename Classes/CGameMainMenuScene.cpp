@@ -14,7 +14,7 @@ CGameMainMenuScene::CGameMainMenuScene(void)
     m_light = nullptr;
     m_shape3d = nullptr;
     m_landscape = nullptr;
-    delete m_landscape;
+    m_characterController = nullptr;
 }
 
 CGameMainMenuScene::~CGameMainMenuScene(void)
@@ -41,5 +41,12 @@ void CGameMainMenuScene::Load(CRoot_iOS* _root)
 
     m_landscape = _root->CreateLandscape("landscape_01.xml");
     _root->Set_Landscape(m_landscape);
-    
+
+    m_characterController = new CCharacterController();
+    m_characterController->Set_Camera(m_camera);
+    m_characterController->Set_Character(m_shape3d);
+    m_characterController->Get_Navigator()->Set_Heightmap(m_landscape->Get_HeightmapData(), m_landscape->Get_HeightmapWidth(), m_landscape->Get_HeightmapHeight());
 }
+
+
+

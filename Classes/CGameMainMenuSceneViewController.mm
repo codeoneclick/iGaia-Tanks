@@ -10,6 +10,7 @@
 #include "CGLContext_iOS.h"
 #include "CGLWindow_iOS.h"
 #include "CGameMainMenuScene.h"
+#include "CMainLoop_iOS.h"
 
 @interface CGameMainMenuSceneViewController ()
 

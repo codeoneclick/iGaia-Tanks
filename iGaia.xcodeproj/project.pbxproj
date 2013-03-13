@@ -231,6 +231,10 @@
 		A438FEBA16EF3EE80030085C /* building_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = A438FEB916EF3EE80030085C /* building_01.xml */; };
 		A438FEC916EF6F9D0030085C /* CLandscape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93AE336514C4447C00F1A516 /* CLandscape.cpp */; };
 		A438FECB16EF7E860030085C /* landscape_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = A438FECA16EF7E860030085C /* landscape_01.xml */; };
+		A465C16016F0B8CB009404ED /* CHeightmapHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A465C15E16F0B8CB009404ED /* CHeightmapHelper.cpp */; };
+		A465C16D16F0BFFC009404ED /* CMoveControllerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A465C16B16F0BFFB009404ED /* CMoveControllerCallback.cpp */; };
+		A465C17116F0C821009404ED /* CMoveControllerView_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A465C17016F0C821009404ED /* CMoveControllerView_iOS.mm */; };
+		A465C17416F0CA50009404ED /* CCharacterController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A465C17216F0CA4F009404ED /* CCharacterController.cpp */; };
 		A468349416E7836100D34692 /* CSceneUpdateMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A468349216E7836100D34692 /* CSceneUpdateMgr.cpp */; };
 		A46834E616EDF87600D34692 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		A46834E716EDF87600D34692 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -1103,6 +1107,15 @@
 		A429344916E4F8F8006A01D0 /* CSceneUpdateCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneUpdateCallback.h; sourceTree = "<group>"; };
 		A438FEB916EF3EE80030085C /* building_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = building_01.xml; path = Resources/building_01.xml; sourceTree = "<group>"; };
 		A438FECA16EF7E860030085C /* landscape_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = landscape_01.xml; path = Resources/landscape_01.xml; sourceTree = "<group>"; };
+		A465C15E16F0B8CB009404ED /* CHeightmapHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CHeightmapHelper.cpp; sourceTree = "<group>"; };
+		A465C15F16F0B8CB009404ED /* CHeightmapHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHeightmapHelper.h; sourceTree = "<group>"; };
+		A465C16916F0BD88009404ED /* HGameEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGameEnum.h; sourceTree = "<group>"; };
+		A465C16B16F0BFFB009404ED /* CMoveControllerCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMoveControllerCallback.cpp; sourceTree = "<group>"; };
+		A465C16C16F0BFFC009404ED /* CMoveControllerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMoveControllerCallback.h; sourceTree = "<group>"; };
+		A465C16F16F0C821009404ED /* CMoveControllerView_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMoveControllerView_iOS.h; sourceTree = "<group>"; };
+		A465C17016F0C821009404ED /* CMoveControllerView_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CMoveControllerView_iOS.mm; sourceTree = "<group>"; };
+		A465C17216F0CA4F009404ED /* CCharacterController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCharacterController.cpp; sourceTree = "<group>"; };
+		A465C17316F0CA4F009404ED /* CCharacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCharacterController.h; sourceTree = "<group>"; };
 		A468349216E7836100D34692 /* CSceneUpdateMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneUpdateMgr.cpp; sourceTree = "<group>"; };
 		A468349316E7836100D34692 /* CSceneUpdateMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneUpdateMgr.h; sourceTree = "<group>"; };
 		A46834C116EDF52900D34692 /* gtest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gtest.xcodeproj; path = "Libs/gtest-1.6.0/xcode/gtest.xcodeproj"; sourceTree = "<group>"; };
@@ -1312,6 +1325,8 @@
 				21904E2716E2C35400A1689A /* CQuadTree.cpp */,
 				21904E3516E2C5DD00A1689A /* CHeightmapProcessor.h */,
 				21904E3416E2C5DC00A1689A /* CHeightmapProcessor.cpp */,
+				A465C15F16F0B8CB009404ED /* CHeightmapHelper.h */,
+				A465C15E16F0B8CB009404ED /* CHeightmapHelper.cpp */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -2505,6 +2520,15 @@
 			path = pugixml;
 			sourceTree = "<group>";
 		};
+		A465C16E16F0C7F9009404ED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A465C16F16F0C821009404ED /* CMoveControllerView_iOS.h */,
+				A465C17016F0C821009404ED /* CMoveControllerView_iOS.mm */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		A468349716E8C30200D34692 /* GameObjectSettings_PARSERS */ = {
 			isa = PBXGroup;
 			children = (
@@ -2586,6 +2610,7 @@
 		CE8DFA8E14587A8200AE7288 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				A465C16E16F0C7F9009404ED /* Views */,
 				A123836415D12244007769E7 /* GameBuildings */,
 				A153D5BE153DA3A400FBFFD5 /* GameUI */,
 				A1FCBE7415A4495A004FC37B /* GameScenes */,
@@ -2604,6 +2629,11 @@
 				21BFC90B16EE68F600FA9F50 /* CGameMainMenuSceneViewController.h */,
 				21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.mm */,
 				21BFC90D16EE68F600FA9F50 /* CGameMainMenuSceneViewController.xib */,
+				A465C16916F0BD88009404ED /* HGameEnum.h */,
+				A465C16C16F0BFFC009404ED /* CMoveControllerCallback.h */,
+				A465C16B16F0BFFB009404ED /* CMoveControllerCallback.cpp */,
+				A465C17316F0CA4F009404ED /* CCharacterController.h */,
+				A465C17216F0CA4F009404ED /* CCharacterController.cpp */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -3069,6 +3099,10 @@
 				21BFC90716EE685700FA9F50 /* CGameMainMenuScene.cpp in Sources */,
 				21BFC90A16EE68C100FA9F50 /* CGameAppDelegate.mm in Sources */,
 				21BFC90E16EE68F700FA9F50 /* CGameMainMenuSceneViewController.mm in Sources */,
+				A465C16016F0B8CB009404ED /* CHeightmapHelper.cpp in Sources */,
+				A465C16D16F0BFFC009404ED /* CMoveControllerCallback.cpp in Sources */,
+				A465C17116F0C821009404ED /* CMoveControllerView_iOS.mm in Sources */,
+				A465C17416F0CA50009404ED /* CCharacterController.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
