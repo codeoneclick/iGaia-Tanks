@@ -12,15 +12,18 @@
 #include "CGameObject3d.h"
 #include "CHeightmapProcessor.h"
 #include "CQuadTree.h"
+#include "CLandscapeChunk.h"
 
 class CLandscape : public CGameObject3d
 {
 private:
 
     CHeightmapProcessor* m_heightmapProcessor;
-
-    CQuadTree* m_quadTree;
-
+    CLandscapeChunk** m_landscapeContainer;
+    
+    ui32 m_numChunkRows;
+    ui32 m_numChunkCells;
+    
 protected:
 
     void OnResourceDidLoad(IResource_INTERFACE* _resource);
@@ -38,6 +41,9 @@ public:
     ~CLandscape(void);
 
     void Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _shaderComposite, const std::string& _filename);
+    
+    void Set_Camera(CCamera* _camera);
+    void Set_Light(CLight* _light);
 
     inline f32* Get_HeightmapData(void)
     {

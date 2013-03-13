@@ -19,8 +19,6 @@ private:
 
 protected:
 
-    CMesh* m_mesh;
-
     f32* m_heightmapData;
 
     CTexture* m_heightmapTexture;
@@ -29,6 +27,17 @@ protected:
 
     ui32 m_width;
     ui32 m_height;
+    
+    ui32 m_chunkWidth;
+    ui32 m_chunkHeight;
+    
+    ui32 m_numChunkRows;
+    ui32 m_numChunkCells;
+    
+    CMesh** m_chunksContainer;
+    
+    CIndexBuffer* CreateIndexBuffer(void);
+    CVertexBuffer* CreateVertexBuffer(ui32 _widthOffset, ui32 _heightOffset, ui32 _numVertexes, GLenum _mode, glm::vec3* _maxBound, glm::vec3* _minBound);
 
 public:
 
@@ -47,10 +56,31 @@ public:
         return m_height;
     };
 
-    inline CMesh* Get_HeightmapMesh(void)
+    inline CMesh* Get_Chunk(ui32 _i, ui32 _j)
     {
-        assert(m_mesh != nullptr);
-        return m_mesh;
+        assert(m_chunksContainer != nullptr);
+        assert(m_chunksContainer[_i + _j * m_numChunkRows] != nullptr);
+        return m_chunksContainer[_i + _j * m_numChunkRows];
+    };
+    
+    inline ui32 Get_NumChunkRows(void)
+    {
+        return m_numChunkRows;
+    };
+    
+    inline ui32 Get_NumChunkCells(void)
+    {
+        return m_numChunkCells;
+    };
+    
+    inline ui32 Get_ChunkWidth(void)
+    {
+        return m_chunkWidth;
+    };
+    
+    inline ui32 Get_ChunkHeight(void)
+    {
+        return m_chunkHeight;
     };
     
     inline f32* Get_HeightmapData(void)

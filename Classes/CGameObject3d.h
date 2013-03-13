@@ -105,12 +105,12 @@ public:
     glm::vec3 Get_MaxBound(void);
     glm::vec3 Get_MinBound(void);
 
-    inline void Set_Camera(CCamera* _camera)
+    virtual inline void Set_Camera(CCamera* _camera)
     {
         m_camera = _camera;
     };
     
-    inline void Set_Light(CLight* _light)
+    virtual inline void Set_Light(CLight* _light)
     {
         m_light = _light;
     };

@@ -27,12 +27,6 @@ void CLandscape::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite
     assert(m_heightmapProcessor != nullptr);
     m_heightmapProcessor->Process(settings->m_heightmapDataFileName, glm::vec2(settings->m_width, settings->m_height), settings->m_splattingDataFileName, glm::vec2(settings->m_width, settings->m_height));
 
-    m_mesh = m_heightmapProcessor->Get_HeightmapMesh();
-    assert(m_mesh != nullptr);
-
-    m_quadTree = new CQuadTree();
-    m_quadTree->BuildRoot(m_mesh->Get_VertexBuffer(), m_mesh->Get_IndexBuffer(), m_mesh->Get_MaxBound(), m_mesh->Get_MinBound(), 8, settings->m_width);
-
     std::vector<const SMaterialSettings*> m_materialsSettings = settings->m_materialsSettings;
     for(const SMaterialSettings* materialSettings : m_materialsSettings)
     {
@@ -63,20 +57,77 @@ void CLandscape::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite
             m_materials[materialSettings->m_renderMode]->Set_Texture(texture, static_cast<E_TEXTURE_SLOT>(textureSettings->m_slot));
         }
     }
+    
+    m_numChunkRows = m_heightmapProcessor->Get_NumChunkRows();
+    m_numChunkCells = m_heightmapProcessor->Get_NumChunkCells();
+    
+    ui32 chunkWidth = m_heightmapProcessor->Get_ChunkWidth();
+    ui32 chunkHeight = m_heightmapProcessor->Get_ChunkHeight();
+    
+    m_landscapeContainer = new CLandscapeChunk*[m_numChunkRows * m_numChunkCells];
+    
+    for(ui32 i = 0; i < m_numChunkRows; ++i)
+    {
+        for(ui32 j = 0; j < m_numChunkCells; ++j)
+        {
+            CMesh* mesh = m_heightmapProcessor->Get_Chunk(i, j);
+            m_landscapeContainer[i + j * m_numChunkRows] = new CLandscapeChunk();
+            m_landscapeContainer[i + j * m_numChunkRows]->Load(mesh, m_materials, chunkWidth, chunkHeight);
+        }
+    }
+
+}
+
+void CLandscape::Set_Camera(CCamera* _camera)
+{
+    for(ui32 i = 0; i < m_numChunkRows; ++i)
+    {
+        for(ui32 j = 0; j < m_numChunkCells; ++j)
+        {
+            assert(m_landscapeContainer != nullptr);
+            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
+            m_landscapeContainer[i + j * m_numChunkRows]->Set_Camera(_camera);
+        }
+    }
+}
+
+void CLandscape::Set_Light(CLight* _light)
+{
+    for(ui32 i = 0; i < m_numChunkRows; ++i)
+    {
+        for(ui32 j = 0; j < m_numChunkCells; ++j)
+        {
+            assert(m_landscapeContainer != nullptr);
+            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
+            m_landscapeContainer[i + j * m_numChunkRows]->Set_Light(_light);
+        }
+    }
 }
 
 void CLandscape::OnResourceDidLoad(IResource_INTERFACE* _resource)
 {
-    CGameObject3d::OnResourceDidLoad(_resource);
+    for(ui32 i = 0; i < m_numChunkRows; ++i)
+    {
+        for(ui32 j = 0; j < m_numChunkCells; ++j)
+        {
+            assert(m_landscapeContainer != nullptr);
+            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
+            m_landscapeContainer[i + j * m_numChunkRows]->OnResourceDidLoad(_resource);
+        }
+    }
 }
 
 void CLandscape::OnUpdate(f32 _deltatime)
 {
-    assert(m_quadTree != nullptr);
-    assert(m_camera != nullptr);
-    assert(m_camera->Get_Frustum() != nullptr);
-    m_quadTree->OnUpdate(m_camera->Get_Frustum());
-    CGameObject3d::OnUpdate(_deltatime);
+    for(ui32 i = 0; i < m_numChunkRows; ++i)
+    {
+        for(ui32 j = 0; j < m_numChunkCells; ++j)
+        {
+            assert(m_landscapeContainer != nullptr);
+            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
+            m_landscapeContainer[i + j * m_numChunkRows]->OnUpdate(_deltatime);
+        }
+    }
 }
 
 ui32 CLandscape::OnDrawIndex(void)
@@ -86,63 +137,43 @@ ui32 CLandscape::OnDrawIndex(void)
 
 void CLandscape::OnBind(E_RENDER_MODE_WORLD_SPACE _mode)
 {
-    CGameObject3d::OnBind(_mode);
+    for(ui32 i = 0; i < m_numChunkRows; ++i)
+    {
+        for(ui32 j = 0; j < m_numChunkCells; ++j)
+        {
+            assert(m_landscapeContainer != nullptr);
+            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
+            m_landscapeContainer[i + j * m_numChunkRows]->OnBind(_mode);
+        }
+    }
 }
 
 void CLandscape::OnDraw(E_RENDER_MODE_WORLD_SPACE _mode)
 {
     assert(m_materials[_mode] != nullptr);
-    assert(m_camera != nullptr);
-    assert(m_light != nullptr);
-
-    switch (_mode)
+    
+    for(ui32 i = 0; i < m_numChunkRows; ++i)
     {
-        case E_RENDER_MODE_WORLD_SPACE_COMMON:
+        for(ui32 j = 0; j < m_numChunkCells; ++j)
         {
-            assert(m_materials[_mode]->Get_Shader() != nullptr);
-            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_matrixWorld, E_SHADER_ATTRIBUTE_MATRIX_WORLD);
-            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), E_SHADER_ATTRIBUTE_MATRIX_PROJECTION);
-            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_camera->Get_ViewMatrix(), E_SHADER_ATTRIBUTE_MATRIX_VIEW);
-
-            m_materials[_mode]->Get_Shader()->Set_Vector3(m_camera->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_CAMERA_POSITION);
-            m_materials[_mode]->Get_Shader()->Set_Vector3(m_light->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_LIGHT_POSITION);
+            assert(m_landscapeContainer != nullptr);
+            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
+            m_landscapeContainer[i + j * m_numChunkRows]->OnDraw(_mode);
         }
-            break;
-        case E_RENDER_MODE_WORLD_SPACE_REFLECTION:
-        {
-            assert(m_materials[_mode]->Get_Shader() != nullptr);
-            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_matrixWorld, E_SHADER_ATTRIBUTE_MATRIX_WORLD);
-            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), E_SHADER_ATTRIBUTE_MATRIX_PROJECTION);
-            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_camera->Get_ViewReflectionMatrix(), E_SHADER_ATTRIBUTE_MATRIX_VIEW);
-
-            m_materials[_mode]->Get_Shader()->Set_Vector3(m_camera->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_CAMERA_POSITION);
-            m_materials[_mode]->Get_Shader()->Set_Vector3(m_light->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_LIGHT_POSITION);
-            m_materials[_mode]->Get_Shader()->Set_Vector4(m_materials[_mode]->Get_Clipping(), E_SHADER_ATTRIBUTE_VECTOR_CLIP_PLANE);
-        }
-            break;
-        case E_RENDER_MODE_WORLD_SPACE_REFRACTION:
-        {
-            assert(m_materials[_mode]->Get_Shader() != nullptr);
-
-            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_matrixWorld, E_SHADER_ATTRIBUTE_MATRIX_WORLD);
-            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), E_SHADER_ATTRIBUTE_MATRIX_PROJECTION);
-            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_camera->Get_ViewMatrix(), E_SHADER_ATTRIBUTE_MATRIX_VIEW);
-
-            m_materials[_mode]->Get_Shader()->Set_Vector3(m_camera->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_CAMERA_POSITION);
-            m_materials[_mode]->Get_Shader()->Set_Vector3(m_light->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_LIGHT_POSITION);
-            m_materials[_mode]->Get_Shader()->Set_Vector4(glm::vec4(m_materials[_mode]->Get_Clipping().x, m_materials[_mode]->Get_Clipping().y * -1.0f, m_materials[_mode]->Get_Clipping().z, m_materials[_mode]->Get_Clipping().w), E_SHADER_ATTRIBUTE_VECTOR_CLIP_PLANE);
-        }
-            break;
-        default:
-            break;
     }
-
-    CGameObject3d::OnDraw(_mode);
 }
 
 void CLandscape::OnUnbind(E_RENDER_MODE_WORLD_SPACE _mode)
 {
-    CGameObject3d::OnUnbind(_mode);
+    for(ui32 i = 0; i < m_numChunkRows; ++i)
+    {
+        for(ui32 j = 0; j < m_numChunkCells; ++j)
+        {
+            assert(m_landscapeContainer != nullptr);
+            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
+            m_landscapeContainer[i + j * m_numChunkRows]->OnUnbind(_mode);
+        }
+    }
 }
 
 

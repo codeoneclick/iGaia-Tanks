@@ -33,6 +33,7 @@
 		21BFC90A16EE68C100FA9F50 /* CGameAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90816EE68C000FA9F50 /* CGameAppDelegate.mm */; };
 		21BFC90E16EE68F700FA9F50 /* CGameMainMenuSceneViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.mm */; };
 		21BFC90F16EE68F700FA9F50 /* CGameMainMenuSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21BFC90D16EE68F600FA9F50 /* CGameMainMenuSceneViewController.xib */; };
+		21BFC91416F137B300FA9F50 /* CLandscapeChunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC91216F137B300FA9F50 /* CLandscapeChunk.cpp */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		4D27E4840F9AD71900447247 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4830F9AD71900447247 /* OpenGLES.framework */; };
 		4D27E4B50F9AD7D600447247 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4B40F9AD7D600447247 /* QuartzCore.framework */; };
@@ -428,6 +429,8 @@
 		21BFC90B16EE68F600FA9F50 /* CGameMainMenuSceneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameMainMenuSceneViewController.h; sourceTree = "<group>"; };
 		21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CGameMainMenuSceneViewController.mm; sourceTree = "<group>"; };
 		21BFC90D16EE68F600FA9F50 /* CGameMainMenuSceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CGameMainMenuSceneViewController.xib; sourceTree = "<group>"; };
+		21BFC91216F137B300FA9F50 /* CLandscapeChunk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLandscapeChunk.cpp; sourceTree = "<group>"; };
+		21BFC91316F137B300FA9F50 /* CLandscapeChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLandscapeChunk.h; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4D27E4830F9AD71900447247 /* OpenGLES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4D27E4B40F9AD7D600447247 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1340,6 +1343,8 @@
 				A179C21915ADD50000FA872B /* CLandscapeEdges.cpp */,
 				A13F9EB81568D743009DCBB4 /* CLandscapeDecal.h */,
 				A13F9EB71568D743009DCBB4 /* CLandscapeDecal.cpp */,
+				21BFC91316F137B300FA9F50 /* CLandscapeChunk.h */,
+				21BFC91216F137B300FA9F50 /* CLandscapeChunk.cpp */,
 			);
 			name = Landscape;
 			sourceTree = "<group>";
@@ -3103,6 +3108,7 @@
 				A465C16D16F0BFFC009404ED /* CMoveControllerCallback.cpp in Sources */,
 				A465C17116F0C821009404ED /* CMoveControllerView_iOS.mm in Sources */,
 				A465C17416F0CA50009404ED /* CCharacterController.cpp in Sources */,
+				21BFC91416F137B300FA9F50 /* CLandscapeChunk.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
