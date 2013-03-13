@@ -42,7 +42,7 @@ std::vector<const SMaterialSettings*> CGameObjectSettings_PARSER::Deserialize(pu
 
     pugi::xml_node materials_node = _settingsNode.child("materials");
 
-    for (pugi::xml_node material = materials_node.child("material"); material; material = materials_node.next_sibling("material"))
+    for (pugi::xml_node material = materials_node.child("material"); material; material = material.next_sibling("material"))
     {
         SMaterialSettings* materialSettings = new SMaterialSettings();
         materialSettings->m_renderMode = material.attribute("render_mode").as_uint();
@@ -70,7 +70,7 @@ std::vector<const SMaterialSettings*> CGameObjectSettings_PARSER::Deserialize(pu
         materialSettings->m_shaderSettings = shaderSettings;
 
         pugi::xml_node textures_node = material.child("textures");
-        for (pugi::xml_node texture = textures_node.child("texture"); texture; texture = textures_node.next_sibling("texture"))
+        for (pugi::xml_node texture = textures_node.child("texture"); texture; texture = texture.next_sibling("texture"))
         {
             STextureSettings* textureSettings = new STextureSettings();
             textureSettings->m_name = texture.attribute("name").as_string();

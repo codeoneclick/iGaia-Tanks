@@ -90,8 +90,6 @@ void CCharacterController::OnUpdate(f32 _deltatime)
     m_position = m_navigator->Get_Position();
     m_rotation = m_navigator->Get_Rotation();
 
-    m_direction = E_MOVE_CONTROLLER_DIRECTION_NONE;
-
     assert(m_camera != nullptr);
     m_camera->Set_LookAt(m_position);
     m_camera->Set_Rotation(m_rotation.y);

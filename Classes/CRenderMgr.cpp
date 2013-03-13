@@ -72,7 +72,7 @@ void CRenderMgr::OnUpdate(f32 _deltatime)
     m_glContext->Present();
     
     GLenum error = glGetError();
-    assert(error != GL_NO_ERROR);
+    assert(error == GL_NO_ERROR);
 }
 
 

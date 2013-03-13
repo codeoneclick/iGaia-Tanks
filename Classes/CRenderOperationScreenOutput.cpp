@@ -11,7 +11,7 @@
 CRenderOperationScreenOutput::CRenderOperationScreenOutput(ui32 _frameWidth, ui32 _frameHeight, CMaterial* _material, ui32 _frameBufferHandle, ui32 _renderBufferHandle, const std::string& _name)
 {
     m_frameWidth = _frameWidth;
-    m_frameHeight = -_frameHeight;
+    m_frameHeight = _frameHeight;
     
     m_frameBufferHandle = _frameBufferHandle;
     m_renderBufferHandle = _renderBufferHandle;

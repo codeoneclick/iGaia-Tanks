@@ -36,9 +36,9 @@ public:
 
     inline void Set_Heightmap(f32* _heightmapData, ui32 _heightmapWidth, ui32 _heightmapHeight)
     {
-        assert(m_heightmapData != nullptr);
-        assert(m_heightmapHeight != 0);
-        assert(m_heightmapWidth != 0);
+        assert(_heightmapData != nullptr);
+        assert(_heightmapHeight != 0);
+        assert(_heightmapWidth != 0);
         m_heightmapData = _heightmapData;
         m_heightmapWidth = _heightmapWidth;
         m_heightmapHeight = _heightmapHeight;

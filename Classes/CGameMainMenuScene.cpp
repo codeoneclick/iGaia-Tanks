@@ -7,6 +7,7 @@
 //
 
 #include "CGameMainMenuScene.h"
+#include "CMainLoop_iOS.h"
 
 CGameMainMenuScene::CGameMainMenuScene(void)
 {
@@ -46,6 +47,7 @@ void CGameMainMenuScene::Load(CRoot_iOS* _root)
     m_characterController->Set_Camera(m_camera);
     m_characterController->Set_Character(m_shape3d);
     m_characterController->Get_Navigator()->Set_Heightmap(m_landscape->Get_HeightmapData(), m_landscape->Get_HeightmapWidth(), m_landscape->Get_HeightmapHeight());
+    ConnectToMainLoop(m_characterController);
 }
 
 

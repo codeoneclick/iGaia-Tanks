@@ -11,7 +11,7 @@
 
 #include "HCommon.h"
 
-#define K_NUM_REPLACEMENT_VERTEX_BUFFERS 2
+#define K_NUM_REPLACEMENT_VERTEX_BUFFERS 3
 
 struct SVertex
 {
