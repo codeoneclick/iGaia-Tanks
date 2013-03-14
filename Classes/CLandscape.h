@@ -45,6 +45,12 @@ public:
     void Set_Camera(CCamera* _camera);
     void Set_Light(CLight* _light);
 
+    void Set_RenderMgr(CRenderMgr* _renderMgr);
+    void Set_UpdateMgr(CSceneUpdateMgr* _updateMgr);
+
+    void ListenRenderMgr(bool _value);
+    void ListenUpdateMgr(bool _value);
+
     inline f32* Get_HeightmapData(void)
     {
         assert(m_heightmapProcessor != nullptr);

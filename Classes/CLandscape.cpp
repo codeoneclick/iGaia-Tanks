@@ -75,7 +75,6 @@ void CLandscape::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite
             m_landscapeContainer[i + j * m_numChunkRows]->Load(mesh, m_materials, chunkWidth, chunkHeight);
         }
     }
-
 }
 
 void CLandscape::Set_Camera(CCamera* _camera)
@@ -104,6 +103,65 @@ void CLandscape::Set_Light(CLight* _light)
     }
 }
 
+void CLandscape::Set_RenderMgr(CRenderMgr* _renderMgr)
+{
+    assert(m_heightmapProcessor != nullptr);
+    m_heightmapProcessor->Set_RenderMgr(_renderMgr);
+    m_heightmapProcessor->PreprocessTextures();
+
+    assert(m_materials[E_RENDER_MODE_WORLD_SPACE_COMMON]);
+    m_materials[E_RENDER_MODE_WORLD_SPACE_COMMON]->Set_Texture(m_heightmapProcessor->Get_SplattingTexture(), E_TEXTURE_SLOT_01);
+    
+    for(ui32 i = 0; i < m_numChunkRows; ++i)
+    {
+        for(ui32 j = 0; j < m_numChunkCells; ++j)
+        {
+            assert(m_landscapeContainer != nullptr);
+            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
+            m_landscapeContainer[i + j * m_numChunkRows]->Set_RenderMgr(_renderMgr);
+        }
+    }
+}
+
+void CLandscape::Set_UpdateMgr(CSceneUpdateMgr* _updateMgr)
+{
+    for(ui32 i = 0; i < m_numChunkRows; ++i)
+    {
+        for(ui32 j = 0; j < m_numChunkCells; ++j)
+        {
+            assert(m_landscapeContainer != nullptr);
+            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
+            m_landscapeContainer[i + j * m_numChunkRows]->Set_UpdateMgr(_updateMgr);
+        }
+    }
+}
+
+void CLandscape::ListenRenderMgr(bool _value)
+{
+    for(ui32 i = 0; i < m_numChunkRows; ++i)
+    {
+        for(ui32 j = 0; j < m_numChunkCells; ++j)
+        {
+            assert(m_landscapeContainer != nullptr);
+            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
+            m_landscapeContainer[i + j * m_numChunkRows]->ListenRenderMgr(_value);
+        }
+    }
+}
+
+void CLandscape::ListenUpdateMgr(bool _value)
+{
+    for(ui32 i = 0; i < m_numChunkRows; ++i)
+    {
+        for(ui32 j = 0; j < m_numChunkCells; ++j)
+        {
+            assert(m_landscapeContainer != nullptr);
+            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
+            m_landscapeContainer[i + j * m_numChunkRows]->ListenUpdateMgr(_value);
+        }
+    }
+}
+
 void CLandscape::OnResourceDidLoad(IResource_INTERFACE* _resource)
 {
     for(ui32 i = 0; i < m_numChunkRows; ++i)
@@ -119,61 +177,28 @@ void CLandscape::OnResourceDidLoad(IResource_INTERFACE* _resource)
 
 void CLandscape::OnUpdate(f32 _deltatime)
 {
-    for(ui32 i = 0; i < m_numChunkRows; ++i)
-    {
-        for(ui32 j = 0; j < m_numChunkCells; ++j)
-        {
-            assert(m_landscapeContainer != nullptr);
-            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
-            m_landscapeContainer[i + j * m_numChunkRows]->OnUpdate(_deltatime);
-        }
-    }
+    assert(false);
 }
 
 ui32 CLandscape::OnDrawIndex(void)
 {
-    return 1;
+    assert(false);
+    return 0;
 }
 
 void CLandscape::OnBind(E_RENDER_MODE_WORLD_SPACE _mode)
 {
-    for(ui32 i = 0; i < m_numChunkRows; ++i)
-    {
-        for(ui32 j = 0; j < m_numChunkCells; ++j)
-        {
-            assert(m_landscapeContainer != nullptr);
-            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
-            m_landscapeContainer[i + j * m_numChunkRows]->OnBind(_mode);
-        }
-    }
+    assert(false);
 }
 
 void CLandscape::OnDraw(E_RENDER_MODE_WORLD_SPACE _mode)
 {
-    assert(m_materials[_mode] != nullptr);
-    
-    for(ui32 i = 0; i < m_numChunkRows; ++i)
-    {
-        for(ui32 j = 0; j < m_numChunkCells; ++j)
-        {
-            assert(m_landscapeContainer != nullptr);
-            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
-            m_landscapeContainer[i + j * m_numChunkRows]->OnDraw(_mode);
-        }
-    }
+    assert(false);
 }
 
 void CLandscape::OnUnbind(E_RENDER_MODE_WORLD_SPACE _mode)
 {
-    for(ui32 i = 0; i < m_numChunkRows; ++i)
-    {
-        for(ui32 j = 0; j < m_numChunkCells; ++j)
-        {
-            assert(m_landscapeContainer != nullptr);
-            assert(m_landscapeContainer[i + j * m_numChunkRows] != nullptr);
-            m_landscapeContainer[i + j * m_numChunkRows]->OnUnbind(_mode);
-        }
-    }
+    assert(false);
 }
 
 

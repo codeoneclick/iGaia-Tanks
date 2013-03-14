@@ -72,7 +72,7 @@ CRenderOperationScreenSpace::CRenderOperationScreenSpace(ui32 _frameWidth, ui32 
 
 CRenderOperationScreenSpace::~CRenderOperationScreenSpace(void)
 {
-    
+    delete m_mesh;
 }
 
 void CRenderOperationScreenSpace::Bind(void)

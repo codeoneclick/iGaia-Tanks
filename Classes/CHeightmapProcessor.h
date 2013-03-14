@@ -12,6 +12,7 @@
 #include "HCommon.h"
 #include "CMesh.h"
 #include "CTexture.h"
+#include "CRenderMgr.h"
 
 class CHeightmapProcessor
 {
@@ -22,8 +23,9 @@ protected:
     f32* m_heightmapData;
 
     CTexture* m_heightmapTexture;
-    CTexture* m_splattingDiffuseTexture;
-    CTexture* m_splattingNormalTexture;
+    CTexture* m_splattingTexture;
+    CTexture* m_diffuseTexture;
+    CTexture* m_normalTexture;
 
     ui32 m_width;
     ui32 m_height;
@@ -33,11 +35,18 @@ protected:
     
     ui32 m_numChunkRows;
     ui32 m_numChunkCells;
+
+    f32 m_maxAltitude;
     
     CMesh** m_chunksContainer;
+
+    CRenderMgr* m_renderMgr;
     
     CIndexBuffer* CreateIndexBuffer(void);
     CVertexBuffer* CreateVertexBuffer(ui32 _widthOffset, ui32 _heightOffset, ui32 _numVertexes, GLenum _mode, glm::vec3* _maxBound, glm::vec3* _minBound);
+
+    CTexture* PreprocessHeightmapTexture(void);
+    CTexture* PreprocessSplattingTexture(void);
 
 public:
 
@@ -45,6 +54,13 @@ public:
     ~CHeightmapProcessor(void);
 
     void Process(const std::string& _heightmapFilename, const glm::vec2& _heightmapSize, const std::string& _splattingFilename, const glm::vec2& _splattingSize);
+    void PreprocessTextures(void);
+
+    inline void Set_RenderMgr(CRenderMgr* _renderMgr)
+    {
+        assert(_renderMgr != nullptr);
+        m_renderMgr = _renderMgr;
+    };
 
     inline ui32 Get_Width(void)
     {
@@ -91,22 +107,27 @@ public:
 
     CTexture* Get_HeightmapTexture(void)
     {
-        assert(m_heightmapTexture);
+        assert(m_heightmapTexture != nullptr);
         return m_heightmapTexture;
     };
     
-    CTexture* Get_SplattingDiffuseTexture(void)
+    CTexture* Get_SplattingTexture(void)
     {
-        assert(m_splattingDiffuseTexture);
-        return m_splattingDiffuseTexture;
-    };
-    
-    CTexture* Get_SplattingNormalTexture(void)
-    {
-        assert(m_splattingNormalTexture);
-        return m_splattingNormalTexture;
+        assert(m_splattingTexture != nullptr);
+        return m_splattingTexture;
     };
 
+    CTexture* Get_DiffuseTexture(void)
+    {
+        assert(m_diffuseTexture != nullptr);
+        return m_splattingTexture;
+    };
+    
+    CTexture* Get_NormalTexture(void)
+    {
+        assert(m_normalTexture != nullptr);
+        return m_normalTexture;
+    };
 };
 
 #endif 

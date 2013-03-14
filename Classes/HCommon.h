@@ -49,4 +49,6 @@ typedef unsigned int ui32;
 typedef unsigned long long ui64;
 typedef float f32;
 
+#define TO_RGB(r,g,b) (unsigned short)(((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3))
+
 #endif

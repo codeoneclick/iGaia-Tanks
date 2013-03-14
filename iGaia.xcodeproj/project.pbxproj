@@ -316,6 +316,7 @@
 		A468354D16EE0A0300D34692 /* CTextureMgr_TEST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A468354C16EE0A0200D34692 /* CTextureMgr_TEST.cpp */; };
 		A468354F16EE0A2000D34692 /* CMeshMgr_TEST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A468354E16EE0A2000D34692 /* CMeshMgr_TEST.cpp */; };
 		A468355316EE430800D34692 /* CMainLoop_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A468355016EE418D00D34692 /* CMainLoop_iOS.mm */; };
+		A480206516F21C2700BC9901 /* CObject3dBasisProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A480206316F21C2600BC9901 /* CObject3dBasisProcessor.cpp */; };
 		A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
 		A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */; };
 		A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE919217145736FD0021A0DC /* CTexture.cpp */; };
@@ -1132,6 +1133,8 @@
 		A468354E16EE0A2000D34692 /* CMeshMgr_TEST.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMeshMgr_TEST.cpp; sourceTree = "<group>"; };
 		A468355016EE418D00D34692 /* CMainLoop_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CMainLoop_iOS.mm; sourceTree = "<group>"; };
 		A468355116EE419900D34692 /* CMainLoop_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMainLoop_iOS.h; sourceTree = "<group>"; };
+		A480206316F21C2600BC9901 /* CObject3dBasisProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CObject3dBasisProcessor.cpp; sourceTree = "<group>"; };
+		A480206416F21C2600BC9901 /* CObject3dBasisProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CObject3dBasisProcessor.h; sourceTree = "<group>"; };
 		A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ILoadOperation.cpp; sourceTree = "<group>"; };
 		A4A9847316DCE410007F9CF6 /* ILoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILoadOperation.h; sourceTree = "<group>"; };
 		A4A9847C16DCF728007F9CF6 /* CVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBuffer.cpp; sourceTree = "<group>"; };
@@ -1330,6 +1333,8 @@
 				21904E3416E2C5DC00A1689A /* CHeightmapProcessor.cpp */,
 				A465C15F16F0B8CB009404ED /* CHeightmapHelper.h */,
 				A465C15E16F0B8CB009404ED /* CHeightmapHelper.cpp */,
+				A480206416F21C2600BC9901 /* CObject3dBasisProcessor.h */,
+				A480206316F21C2600BC9901 /* CObject3dBasisProcessor.cpp */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -3109,6 +3114,7 @@
 				A465C17116F0C821009404ED /* CMoveControllerView_iOS.mm in Sources */,
 				A465C17416F0CA50009404ED /* CCharacterController.cpp in Sources */,
 				21BFC91416F137B300FA9F50 /* CLandscapeChunk.cpp in Sources */,
+				A480206516F21C2700BC9901 /* CObject3dBasisProcessor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

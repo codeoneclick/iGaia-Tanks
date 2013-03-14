@@ -33,6 +33,15 @@ CGameObject3d::~CGameObject3d(void)
     
 }
 
+bool CGameObject3d::IsBoundBoxInFrustum(void)
+{
+    assert(m_camera != nullptr);
+    assert(m_camera->Get_Frustum() != nullptr);
+    assert(m_mesh != nullptr);
+    i32 result =  m_camera->Get_Frustum()->IsBoundBoxInFrustum(m_mesh->Get_MaxBound() + m_position, m_mesh->Get_MinBound() + m_position);
+    return result == E_FRUSTUM_BOUND_RESULT_OUTSIDE ? false : true;
+}
+
 glm::vec3 CGameObject3d::Get_MaxBound(void)
 {
     assert(m_mesh != nullptr);

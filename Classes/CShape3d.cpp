@@ -66,7 +66,10 @@ void CShape3d::OnResourceDidLoad(IResource_INTERFACE* _resource)
 
 void CShape3d::OnUpdate(f32 _deltatime)
 {
-    CGameObject3d::OnUpdate(_deltatime);
+    if(IsBoundBoxInFrustum())
+    {
+        CGameObject3d::OnUpdate(_deltatime);
+    }
 }
 
 ui32 CShape3d::OnDrawIndex(void)
@@ -76,7 +79,10 @@ ui32 CShape3d::OnDrawIndex(void)
 
 void CShape3d::OnBind(E_RENDER_MODE_WORLD_SPACE _mode)
 {
-    CGameObject3d::OnBind(_mode);
+    if(IsBoundBoxInFrustum())
+    {
+        CGameObject3d::OnBind(_mode);
+    }
 }
 
 void CShape3d::OnDraw(E_RENDER_MODE_WORLD_SPACE _mode)
@@ -84,6 +90,11 @@ void CShape3d::OnDraw(E_RENDER_MODE_WORLD_SPACE _mode)
     assert(m_materials[_mode] != nullptr);
     assert(m_camera != nullptr);
     assert(m_light != nullptr);
+    
+    if(!IsBoundBoxInFrustum())
+    {
+        return;
+    }
 
     switch (_mode)
     {
@@ -132,5 +143,8 @@ void CShape3d::OnDraw(E_RENDER_MODE_WORLD_SPACE _mode)
 
 void CShape3d::OnUnbind(E_RENDER_MODE_WORLD_SPACE _mode)
 {
-    CGameObject3d::OnUnbind(_mode);
+    if(IsBoundBoxInFrustum())
+    {
+        CGameObject3d::OnUnbind(_mode);
+    }
 }

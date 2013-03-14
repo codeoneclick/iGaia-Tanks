@@ -26,6 +26,8 @@ private:
     
     CShaderComposite* m_shaderComposite;
 
+    std::queue<CRenderOperationScreenSpace*> m_customScreenSpaceOperationsQueue;
+
 protected:
     
     void OnUpdate(f32 _deltatime);
@@ -52,6 +54,8 @@ public:
     {
         return m_screenSpaceOperations[_mode]->Get_OperatingTexture();
     }
+
+    CTexture* ProcessCustomScreenSpaceOperation(CMaterial* _material);
 };
 
 #endif

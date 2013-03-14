@@ -31,7 +31,7 @@ void CLandscapeChunk::Load(CMesh *_mesh, CMaterial **_materials, ui32 _width, ui
     }
     
     m_quadTree = new CQuadTree();
-    m_quadTree->BuildRoot(m_mesh->Get_VertexBuffer(), m_mesh->Get_IndexBuffer(), m_mesh->Get_MaxBound(), m_mesh->Get_MinBound(), 8, _width);    
+    m_quadTree->BuildRoot(m_mesh->Get_VertexBuffer(), m_mesh->Get_IndexBuffer(), m_mesh->Get_MaxBound(), m_mesh->Get_MinBound(), 4, _width);
 }
 
 void CLandscapeChunk::OnResourceDidLoad(IResource_INTERFACE* _resource)
@@ -42,10 +42,11 @@ void CLandscapeChunk::OnResourceDidLoad(IResource_INTERFACE* _resource)
 void CLandscapeChunk::OnUpdate(f32 _deltatime)
 {
     assert(m_quadTree != nullptr);
-    assert(m_camera != nullptr);
-    assert(m_camera->Get_Frustum() != nullptr);
-    //m_quadTree->OnUpdate(m_camera->Get_Frustum());
-    CGameObject3d::OnUpdate(_deltatime);
+    if(IsBoundBoxInFrustum())
+    {
+        m_quadTree->OnUpdate(m_camera->Get_Frustum());
+        CGameObject3d::OnUpdate(_deltatime);
+    }
 }
 
 ui32 CLandscapeChunk::OnDrawIndex(void)
@@ -55,7 +56,10 @@ ui32 CLandscapeChunk::OnDrawIndex(void)
 
 void CLandscapeChunk::OnBind(E_RENDER_MODE_WORLD_SPACE _mode)
 {
-    CGameObject3d::OnBind(_mode);
+    if(IsBoundBoxInFrustum())
+    {
+        CGameObject3d::OnBind(_mode);
+    }
 }
 
 void CLandscapeChunk::OnDraw(E_RENDER_MODE_WORLD_SPACE _mode)
@@ -63,6 +67,11 @@ void CLandscapeChunk::OnDraw(E_RENDER_MODE_WORLD_SPACE _mode)
     assert(m_materials[_mode] != nullptr);
     assert(m_camera != nullptr);
     assert(m_light != nullptr);
+
+    if(!IsBoundBoxInFrustum())
+    {
+        return;
+    }
     
     switch (_mode)
     {
@@ -92,7 +101,6 @@ void CLandscapeChunk::OnDraw(E_RENDER_MODE_WORLD_SPACE _mode)
         case E_RENDER_MODE_WORLD_SPACE_REFRACTION:
         {
             assert(m_materials[_mode]->Get_Shader() != nullptr);
-            
             m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_matrixWorld, E_SHADER_ATTRIBUTE_MATRIX_WORLD);
             m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), E_SHADER_ATTRIBUTE_MATRIX_PROJECTION);
             m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_camera->Get_ViewMatrix(), E_SHADER_ATTRIBUTE_MATRIX_VIEW);
@@ -105,11 +113,13 @@ void CLandscapeChunk::OnDraw(E_RENDER_MODE_WORLD_SPACE _mode)
         default:
             break;
     }
-    
     CGameObject3d::OnDraw(_mode);
 }
 
 void CLandscapeChunk::OnUnbind(E_RENDER_MODE_WORLD_SPACE _mode)
 {
-    CGameObject3d::OnUnbind(_mode);
+    if(IsBoundBoxInFrustum())
+    {
+        CGameObject3d::OnUnbind(_mode);
+    }
 }

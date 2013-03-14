@@ -55,6 +55,8 @@ protected:
     virtual void OnDraw(E_RENDER_MODE_WORLD_SPACE _mode);
     virtual void OnUnbind(E_RENDER_MODE_WORLD_SPACE _mode);
 
+    bool IsBoundBoxInFrustum(void);
+
 public:
     
     CGameObject3d(void);
@@ -118,18 +120,18 @@ public:
     void Set_Texture(CTexture* _texture, E_TEXTURE_SLOT _slot, E_RENDER_MODE_WORLD_SPACE _mode);
     void Set_Clipping(const glm::vec4& _clipping, E_RENDER_MODE_WORLD_SPACE _mode);
 
-    inline void Set_RenderMgr(CRenderMgr* _renderMgr)
+    virtual inline void Set_RenderMgr(CRenderMgr* _renderMgr)
     {
         m_renderMgr = _renderMgr;
     };
 
-    inline void Set_UpdateMgr(CSceneUpdateMgr* _updateMgr)
+    virtual inline void Set_UpdateMgr(CSceneUpdateMgr* _updateMgr)
     {
         m_updateMgr = _updateMgr;
     };
 
-    void ListenRenderMgr(bool _value);
-    void ListenUpdateMgr(bool _value);
+    virtual void ListenRenderMgr(bool _value);
+    virtual void ListenUpdateMgr(bool _value);
 };
 
 #endif

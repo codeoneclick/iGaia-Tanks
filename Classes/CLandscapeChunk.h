@@ -17,7 +17,6 @@ class CLandscapeChunk : public CGameObject3d
 private:
     
     friend class CLandscape;
-    
     CQuadTree* m_quadTree;
     
 protected:
