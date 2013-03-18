@@ -13,7 +13,7 @@ uniform lowp sampler2D EXT_TEXTURE_08;
                                        
 void main(void)
 {
-    lowp vec4 vSplattingColor = texture2D(EXT_TEXTURE_07, OUT_SplattingTexCoord);
+    lowp vec4 vSplattingColor = texture2D(EXT_TEXTURE_04, OUT_SplattingTexCoord);
     
     lowp vec4 vDiffuseColor = vec4(0.0, 0.0, 0.0, 1.0);
 

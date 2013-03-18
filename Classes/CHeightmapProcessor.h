@@ -26,6 +26,7 @@ protected:
     CTexture* m_splattingTexture;
     CTexture* m_diffuseTexture;
     CTexture* m_normalTexture;
+    CTexture* m_edgesMaskTexture;
 
     ui32 m_width;
     ui32 m_height;
@@ -37,6 +38,8 @@ protected:
     ui32 m_numChunkCells;
 
     f32 m_maxAltitude;
+    f32 m_maxHeight;
+    f32 m_minHeight;
     
     CMesh** m_chunksContainer;
 
@@ -45,8 +48,7 @@ protected:
     CIndexBuffer* CreateIndexBuffer(void);
     CVertexBuffer* CreateVertexBuffer(ui32 _widthOffset, ui32 _heightOffset, ui32 _numVertexes, GLenum _mode, glm::vec3* _maxBound, glm::vec3* _minBound);
 
-    CTexture* PreprocessHeightmapTexture(void);
-    CTexture* PreprocessSplattingTexture(void);
+    void FillEdgesMaskTextureBlock(ui16* _data,ui32 _index, ui32 _edgesMaskWidth, ui32 _edgesMaskHeight, ui32 _textureBlockSize, glm::vec3 _point);
 
 public:
 
@@ -54,7 +56,13 @@ public:
     ~CHeightmapProcessor(void);
 
     void Process(const std::string& _heightmapFilename, const glm::vec2& _heightmapSize, const std::string& _splattingFilename, const glm::vec2& _splattingSize);
-    void PreprocessTextures(void);
+
+    CTexture* PreprocessHeightmapTexture(void);
+    CTexture* PreprocessSplattingTexture(void);
+    CTexture* PreprocessEdgesMaskTexture(void);
+    CTexture* PreprocessSplattingDiffuseTexture(CMaterial* _material);
+    CTexture* PreprocessSplattingNormalTexture(CMaterial* _material);
+
 
     inline void Set_RenderMgr(CRenderMgr* _renderMgr)
     {
@@ -105,28 +113,44 @@ public:
         return m_heightmapData;
     };
 
-    CTexture* Get_HeightmapTexture(void)
+    inline CTexture* Get_HeightmapTexture(void)
     {
         assert(m_heightmapTexture != nullptr);
         return m_heightmapTexture;
     };
     
-    CTexture* Get_SplattingTexture(void)
+    inline CTexture* Get_SplattingTexture(void)
     {
         assert(m_splattingTexture != nullptr);
         return m_splattingTexture;
     };
 
-    CTexture* Get_DiffuseTexture(void)
+    inline CTexture* Get_DiffuseTexture(void)
     {
         assert(m_diffuseTexture != nullptr);
         return m_splattingTexture;
     };
     
-    CTexture* Get_NormalTexture(void)
+    inline CTexture* Get_NormalTexture(void)
     {
         assert(m_normalTexture != nullptr);
         return m_normalTexture;
+    };
+
+    inline CTexture* Get_EdgesMaskTexture(void)
+    {
+        assert(m_edgesMaskTexture != nullptr);
+        return m_edgesMaskTexture;
+    };
+
+    inline f32 Get_MinHeight(void)
+    {
+        return m_minHeight;
+    };
+
+    inline f32 Get_MaxHeight(void)
+    {
+        return m_maxHeight;
     };
 };
 

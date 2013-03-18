@@ -23,6 +23,7 @@ protected:
     CLight* m_light;
     CShape3d* m_shape3d;
     CLandscape* m_landscape;
+    COcean* m_ocean;
     CCharacterController* m_characterController;
 
 public:

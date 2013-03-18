@@ -6,28 +6,42 @@
 //
 //
 
-#ifndef __iGaia__CLandscapeEdges__
-#define __iGaia__CLandscapeEdges__
+#ifndef CLandscapeEdges_h
+#define CLandscapeEdges_h
 
-#include <iostream>
-#include "INode.h"
+#include "CGameObject3d.h"
 
-class CLandscapeEdges : public INode
+class CLandscapeEdges : public CGameObject3d
 {
+private:
+
+    ui32 m_width;
+    ui32 m_height;
+    glm::vec2 m_heightBound;
+
 protected:
-    int m_iWidth;
-    int m_iHeight;
-    glm::vec2 m_vHeight;
+
+    void OnResourceDidLoad(IResource_INTERFACE* _resource);
+
+    void OnUpdate(f32 _deltatime);
+
+    ui32 OnDrawIndex(void);
+    void OnBind(E_RENDER_MODE_WORLD_SPACE _mode);
+    void OnDraw(E_RENDER_MODE_WORLD_SPACE _mode);
+    void OnUnbind(E_RENDER_MODE_WORLD_SPACE _mode);
+    
 public:
+    
     CLandscapeEdges(void);
     ~CLandscapeEdges(void);
+
+    void Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _shaderComposite, const std::string& _filename)
+    {
+        assert(false);
+    };
+
+    void Load(CMaterial* _material, ui32 _width, ui32 _height, const glm::vec2 _heightBound);
     
-    void Load(const std::string& _sName, IResource::E_THREAD _eThread);
-    void Update(void);
-    void Render(CShader::E_RENDER_MODE _eMode);
-    
-    void OnTouchEvent(ITouchDelegate* _pDelegateOwner);
-    void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource);
 };
 
-#endif /* defined(__iGaia__CLandscapeEdges__) */
+#endif 

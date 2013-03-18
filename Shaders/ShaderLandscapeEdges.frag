@@ -6,10 +6,7 @@ const char* ShaderLandscapeEdgesF = STRING_SHADER(
                                                   uniform sampler2D EXT_TEXTURE_03;
 void main(void)
 {
-    lowp vec4 vMaskColor = texture2D(EXT_TEXTURE_03, OUT_TexCoord);
-    lowp vec4 vEdgeColor_01 = texture2D(EXT_TEXTURE_01, OUT_TexCoord * 8.0) * vMaskColor.b;
-    lowp vec4 vEdgeColor_02 = texture2D(EXT_TEXTURE_02, vec2(OUT_TexCoord.x * 8.0, OUT_TexCoord.y * 16.0) + EXT_Texcoord_Offset) * vMaskColor.g;
-    vEdgeColor_02.a = vEdgeColor_02.a * 0.5;
-    gl_FragColor = vEdgeColor_01 + vEdgeColor_02;
+    lowp vec4 vMaskColor = texture2D(EXT_TEXTURE_02, OUT_TexCoord);
+    gl_FragColor = texture2D(EXT_TEXTURE_01, OUT_TexCoord * 8.0) * vMaskColor.r;
 }
 );

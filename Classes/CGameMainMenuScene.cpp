@@ -15,6 +15,7 @@ CGameMainMenuScene::CGameMainMenuScene(void)
     m_light = nullptr;
     m_shape3d = nullptr;
     m_landscape = nullptr;
+    m_ocean = nullptr;
     m_characterController = nullptr;
 }
 
@@ -42,6 +43,9 @@ void CGameMainMenuScene::Load(CRoot_iOS* _root)
 
     m_landscape = _root->CreateLandscape("landscape_01.xml");
     _root->Set_Landscape(m_landscape);
+
+    m_ocean = _root->CreateOcean("ocean_01.xml");
+    _root->Set_Ocean(m_ocean);
 
     m_characterController = new CCharacterController();
     m_characterController->Set_Camera(m_camera);

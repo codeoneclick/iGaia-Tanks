@@ -13,6 +13,7 @@
 #include "CHeightmapProcessor.h"
 #include "CQuadTree.h"
 #include "CLandscapeChunk.h"
+#include "CLandscapeEdges.h"
 
 class CLandscape : public CGameObject3d
 {
@@ -20,9 +21,15 @@ private:
 
     CHeightmapProcessor* m_heightmapProcessor;
     CLandscapeChunk** m_landscapeContainer;
+    CLandscapeEdges* m_landscapeEdges;
     
     ui32 m_numChunkRows;
     ui32 m_numChunkCells;
+
+    CMaterial* m_splattingDiffuseMaterial;
+    CMaterial* m_splattingNormalMaterial;
+
+    void CreateLandscapeEdges(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _shaderComposite, SLandscapeSettings* _settings);
     
 protected:
 
@@ -50,6 +57,13 @@ public:
 
     void ListenRenderMgr(bool _value);
     void ListenUpdateMgr(bool _value);
+
+    inline CTexture* Get_HeightmapTexture(void)
+    {
+        assert(m_heightmapProcessor != nullptr);
+        assert(m_heightmapProcessor->Get_HeightmapTexture() != nullptr);
+        return m_heightmapProcessor->Get_HeightmapTexture();
+    }
 
     inline f32* Get_HeightmapData(void)
     {

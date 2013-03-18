@@ -136,7 +136,7 @@ CShaderComposite::CShaderComposite(void)
     
     data = parser->Load(ShaderPostLandscapeDetailV, ShaderPostLandscapeDetailF);
     shader = new CShader(data.m_linkedShaderHandle);
-    m_shadersContainer[E_SHADER_SCREEN_PLANE_LANDSCAPE_DETAIL] = shader;
+    m_shadersContainer[E_SHADER_SCREEN_PLANE_LANDSCAPE_SPLATTING_PREPROCESS] = shader;
     
     data = parser->Load(ShaderLandscapeEdgesV, ShaderLandscapeEdgesF);
     shader = new CShader(data.m_linkedShaderHandle);

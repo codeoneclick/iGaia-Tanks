@@ -13,6 +13,7 @@
 #include "CLight.h"
 #include "CShape3d.h"
 #include "CLandscape.h"
+#include "COcean.h"
 #include "CSceneContainer.h"
 #include "CResourceMgrsFacade.h"
 #include "CShaderComposite.h"
@@ -41,7 +42,9 @@ public:
 
     CLandscape* CreateLandscape(const std::string& _filename);
     void DeleteLandscape(CLandscape* _landscape);
-    
+
+    COcean* CreateOcean(const std::string& _filename);
+    void DeleteOcean(COcean* _ocean);
 };
 
 #endif 

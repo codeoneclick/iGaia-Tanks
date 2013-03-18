@@ -23,5 +23,6 @@ SLandscapeSettings* CLandscapeSettings_PARSER::Deserialize(const std::string& _n
     settings->m_splattingDataFileName = settings_node.child("splatting_data_filename").attribute("value").as_string();
     settings->m_width = settings_node.child("width").attribute("value").as_uint();
     settings->m_height = settings_node.child("height").attribute("value").as_float();
+    settings->m_edgesTextureFileName = settings_node.child("edges_texture_filename").attribute("value").as_string();
     return settings;
 }

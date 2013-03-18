@@ -84,6 +84,7 @@ void CLandscapeChunk::OnDraw(E_RENDER_MODE_WORLD_SPACE _mode)
             
             m_materials[_mode]->Get_Shader()->Set_Vector3(m_camera->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_CAMERA_POSITION);
             m_materials[_mode]->Get_Shader()->Set_Vector3(m_light->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_LIGHT_POSITION);
+            m_materials[_mode]->Get_Shader()->Set_Vector4(glm::vec4(0.0f, 1.0f, 0.0f, MAXFLOAT), E_SHADER_ATTRIBUTE_VECTOR_CLIP_PLANE);
         }
             break;
         case E_RENDER_MODE_WORLD_SPACE_REFLECTION:
@@ -107,7 +108,7 @@ void CLandscapeChunk::OnDraw(E_RENDER_MODE_WORLD_SPACE _mode)
             
             m_materials[_mode]->Get_Shader()->Set_Vector3(m_camera->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_CAMERA_POSITION);
             m_materials[_mode]->Get_Shader()->Set_Vector3(m_light->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_LIGHT_POSITION);
-            m_materials[_mode]->Get_Shader()->Set_Vector4(glm::vec4(m_materials[_mode]->Get_Clipping().x, m_materials[_mode]->Get_Clipping().y * -1.0f, m_materials[_mode]->Get_Clipping().z, m_materials[_mode]->Get_Clipping().w), E_SHADER_ATTRIBUTE_VECTOR_CLIP_PLANE);
+            m_materials[_mode]->Get_Shader()->Set_Vector4(m_materials[_mode]->Get_Clipping(), E_SHADER_ATTRIBUTE_VECTOR_CLIP_PLANE);
         }
             break;
         default:

@@ -6,19 +6,15 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#include <iostream>
-#include "COcean.h"
-#include "CSceneMgr.h"
-#include "CVertexBufferPositionTexcoord.h"
 
-const int COcean::k_ELEMENT_NUM_INDEXES = 6;
-const int COcean::k_ELEMENT_NUM_VERTEXES = 4;
+#include "COcean.h"
+
 
 COcean::COcean(void)
 {
-    m_iWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width() - 1;
-    m_iHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height() - 1;
-    m_fWaterHeight = -0.1f;
+    m_reflectionTexture = nullptr;
+    m_refractionTexture = nullptr;
+    m_heightmapTexture = nullptr;
 }
 
 COcean::~COcean(void)
@@ -26,140 +22,139 @@ COcean::~COcean(void)
     
 }
 
-void COcean::Load(const std::string& _sName, IResource::E_THREAD _eThread)
-{     
-    CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
-    pSourceData->m_iNumVertexes = 4;
-    pSourceData->m_iNumIndexes  = 6;
-    
-    pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoord(pSourceData->m_iNumVertexes, GL_STATIC_DRAW);
-    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
-    
-    pVertexBufferData[0].m_vPosition = glm::vec3( 0.0f + 0.1f,     m_fWaterHeight,  0.0f + 0.1f );
-    pVertexBufferData[1].m_vPosition = glm::vec3( m_iWidth - 0.1f, m_fWaterHeight,  0.0f + 0.1f );
-    pVertexBufferData[2].m_vPosition = glm::vec3( m_iWidth - 0.1f, m_fWaterHeight,  m_iHeight - 0.1f );
-    pVertexBufferData[3].m_vPosition = glm::vec3( 0.0f + 0.1f,     m_fWaterHeight,  m_iHeight - 0.1f);
-    
-    pVertexBufferData[0].m_vTexcoord = glm::vec2( 0.0f,  0.0f );
-    pVertexBufferData[1].m_vTexcoord = glm::vec2( 1.0f,  0.0f );
-    pVertexBufferData[2].m_vTexcoord = glm::vec2( 1.0f,  1.0f );
-    pVertexBufferData[3].m_vTexcoord = glm::vec2( 0.0f,  1.0f );
-    
-    pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes, GL_STATIC_DRAW);
-    unsigned short* pIndexesBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
-    
-    pIndexesBufferData[0] = 0;
-    pIndexesBufferData[1] = 1;
-    pIndexesBufferData[2] = 2;
-    pIndexesBufferData[3] = 0;
-    pIndexesBufferData[4] = 2;
-    pIndexesBufferData[5] = 3;
-    
-    pSourceData->m_pVertexBuffer->Commit();
-    pSourceData->m_pIndexBuffer->Commit();
-    
-    m_pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
-    m_pMesh->Set_SourceData(pSourceData);
-    
-    m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_CULL_MODE,  true);
-    m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_DEPTH_MASK, true);
-    m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_DEPTH_TEST, true);
-    m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_BLEND_MODE, true);
-    m_pMaterial->Set_CullFace(GL_FRONT);
-    m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    
-    m_pBoundingBox = new CBoundingBox(m_pMesh->Get_MaxBound(), m_pMesh->Get_MinBound());
-    
-    glm::vec2 vScaleFactor = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor();
-    Set_Scale(glm::vec3(vScaleFactor.x, 1.0f, vScaleFactor.y));
+void COcean::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _shaderComposite, const std::string& _filename)
+{
+    assert(_resourceMgrsFacade != nullptr);
+    SOceanSettings* settings = _resourceMgrsFacade->LoadOceanSettings(_filename);
+    assert(settings != nullptr);
+
+    m_width = settings->m_width;
+    m_height = settings->m_height;
+    m_altitude = settings->m_altitude;
+
+    m_waveGeneratorTimer = 0.0f;
+    m_waveGeneratorInterval = settings->m_waveGeneratorInterval;
+
+    CVertexBuffer* vertexBuffer = new CVertexBuffer(4, GL_STATIC_DRAW);
+    SVertex* vertexData = vertexBuffer->Lock();
+
+    vertexData[0].m_position = glm::vec3(0.0f,  settings->m_altitude,  0.0f);
+    vertexData[1].m_position = glm::vec3(m_width, settings->m_altitude,  0.0f);
+    vertexData[2].m_position = glm::vec3(m_width, settings->m_altitude,  m_height);
+    vertexData[3].m_position = glm::vec3(0.0f,  settings->m_altitude,  m_height);
+
+    vertexData[0].m_texcoord = glm::vec2(0.0f,  0.0f);
+    vertexData[1].m_texcoord = glm::vec2(1.0f,  0.0f);
+    vertexData[2].m_texcoord = glm::vec2(1.0f,  1.0f);
+    vertexData[3].m_texcoord = glm::vec2(0.0f,  1.0f);
+
+    vertexBuffer->Unlock();
+
+    CIndexBuffer* indexBuffer = new CIndexBuffer(6, GL_STATIC_DRAW);
+    ui16* indexData = indexBuffer->Lock();
+
+    indexData[0] = 0;
+    indexData[1] = 1;
+    indexData[2] = 2;
+    indexData[3] = 0;
+    indexData[4] = 2;
+    indexData[5] = 3;
+
+    indexBuffer->Unlock();
+
+    m_mesh = new CMesh(vertexBuffer, indexBuffer);
+
+    std::vector<const SMaterialSettings*> m_materialsSettings = settings->m_materialsSettings;
+    for(const SMaterialSettings* materialSettings : m_materialsSettings)
+    {
+        assert(materialSettings->m_renderMode < E_RENDER_MODE_WORLD_SPACE_MAX && materialSettings->m_renderMode >= 0);
+        assert(m_materials[materialSettings->m_renderMode] == nullptr);
+
+        const SShaderSettings* shaderSettings = materialSettings->m_shaderSettings;
+
+        assert(shaderSettings->m_guid >= 0 && shaderSettings->m_guid < E_SHADER_MAX);
+
+        CShader* shader = _shaderComposite->Get_Shader(static_cast<E_SHADER>(shaderSettings->m_guid));
+        m_materials[materialSettings->m_renderMode] = new CMaterial(shader);
+        m_materials[materialSettings->m_renderMode]->Set_RenderState(E_RENDER_STATE_CULL_MODE, materialSettings->m_isCullFace);
+        m_materials[materialSettings->m_renderMode]->Set_RenderState(E_RENDER_STATE_DEPTH_TEST, materialSettings->m_isDepthTest);
+        m_materials[materialSettings->m_renderMode]->Set_RenderState(E_RENDER_STATE_DEPTH_MASK, materialSettings->m_isDepthMask);
+        m_materials[materialSettings->m_renderMode]->Set_RenderState(E_RENDER_STATE_BLEND_MODE, materialSettings->m_isBlend);
+
+        m_materials[materialSettings->m_renderMode]->Set_CullFaceMode(materialSettings->m_cullFaceMode);
+        m_materials[materialSettings->m_renderMode]->Set_BlendFunctionSource(materialSettings->m_blendFunctionSource);
+        m_materials[materialSettings->m_renderMode]->Set_BlendFunctionDest(materialSettings->m_blendFunctionDestination);
+
+        for(const STextureSettings* textureSettings : materialSettings->m_texturesSettings)
+        {
+            CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name);
+            texture->Set_WrapMode(textureSettings->m_wrap);
+            assert(texture != nullptr);
+            assert(textureSettings->m_slot >= 0 && textureSettings->m_slot < E_TEXTURE_SLOT_MAX);
+            m_materials[materialSettings->m_renderMode]->Set_Texture(texture, static_cast<E_TEXTURE_SLOT>(textureSettings->m_slot));
+        }
+    }
 }
 
-void COcean::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
+
+void COcean::OnResourceDidLoad(IResource_INTERFACE* _resource)
 {
-    switch (_eType)
+    CGameObject3d::OnResourceDidLoad(_resource);
+}
+
+void COcean::OnUpdate(f32 _deltatime)
+{
+    m_waveGeneratorTimer += m_waveGeneratorInterval;
+    CGameObject3d::OnUpdate(_deltatime);
+}
+
+ui32 COcean::OnDrawIndex(void)
+{
+    return 0;
+}
+
+void COcean::OnBind(E_RENDER_MODE_WORLD_SPACE _mode)
+{
+    CGameObject3d::OnBind(_mode);
+}
+
+void COcean::OnDraw(E_RENDER_MODE_WORLD_SPACE _mode)
+{
+    assert(m_materials[_mode] != nullptr);
+    assert(m_camera != nullptr);
+    assert(m_light != nullptr);
+
+    switch (_mode)
     {
-        case IResource::E_RESOURCE_TYPE_MESH:
-            std::cout<<"[CModel::OnLoadDone] Resource Mesh loaded : "<<_pResource->Get_Name()<<"\n";
+        case E_RENDER_MODE_WORLD_SPACE_COMMON:
+        {
+            assert(m_materials[_mode]->Get_Shader() != nullptr);
+            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_matrixWorld, E_SHADER_ATTRIBUTE_MATRIX_WORLD);
+            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), E_SHADER_ATTRIBUTE_MATRIX_PROJECTION);
+            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_camera->Get_ViewMatrix(), E_SHADER_ATTRIBUTE_MATRIX_VIEW);
+
+            m_materials[_mode]->Get_Shader()->Set_Vector3(m_camera->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_CAMERA_POSITION);
+            m_materials[_mode]->Get_Shader()->Set_Vector3(m_light->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_LIGHT_POSITION);
+            m_materials[_mode]->Get_Shader()->Set_FloatCustom(m_waveGeneratorTimer, "EXT_Timer");
+        }
             break;
-        case IResource::E_RESOURCE_TYPE_TEXTURE:
-            std::cout<<"[CModel::OnLoadDone] Resource Texture loaded : "<<_pResource->Get_Name()<<"\n";
+        case E_RENDER_MODE_WORLD_SPACE_REFLECTION:
+        {
+
+        }
+            break;
+        case E_RENDER_MODE_WORLD_SPACE_REFRACTION:
+        {
+        }
             break;
         default:
             break;
     }
+
+    CGameObject3d::OnDraw(_mode);
 }
 
-void COcean::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
+void COcean::OnUnbind(E_RENDER_MODE_WORLD_SPACE _mode)
 {
-    
+    CGameObject3d::OnUnbind(_mode);
 }
-
-void COcean::Update()
-{
-    INode::Update();
-}
-
-void COcean::Render(CShader::E_RENDER_MODE _eMode)
-{
-    INode::Render(_eMode);
-    
-    ICamera* pCamera = CSceneMgr::Instance()->Get_Camera();
-    CShader* pShader = m_pMaterial->Get_Shader(_eMode);
-    
-    m_pMaterial->Commit(_eMode);
-    
-    static float fTimer = 0.0f;
-    fTimer += 0.005f;
-    
-    switch (_eMode)
-    {
-        case CShader::E_RENDER_MODE_SIMPLE:
-        {
-            if(pShader == NULL)
-            {
-                std::cout<<"[CModel::Render] Shader MODE_SIMPLE is NULL"<<std::endl;
-                return;
-            }
-
-            pShader->Set_Vector3(pCamera->Get_Position(), CShader::E_ATTRIBUTE_VECTOR_CAMERA_POSITION);
-            pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
-            pShader->Set_CustomFloat(fTimer, "EXT_Timer");
-            
-            for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
-            {
-                CTexture* pTexture = m_pMaterial->Get_Texture(i);
-                if(pTexture == NULL)
-                {
-                    continue;
-                }
-                pShader->Set_Texture(pTexture->Get_Handle(), static_cast<CShader::E_TEXTURE_SLOT>(i));
-            }
-            pShader->Set_Texture(CSceneMgr::Instance()->Get_RenderMgr()->Get_OffScreenTexture(CScreenSpacePostMgr::E_OFFSCREEN_MODE_REFLECTION), CShader::E_TEXTURE_SLOT_01);
-            pShader->Set_Texture(CSceneMgr::Instance()->Get_RenderMgr()->Get_OffScreenTexture(CScreenSpacePostMgr::E_OFFSCREEN_MODE_REFRACTION), CShader::E_TEXTURE_SLOT_02);
-            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureHeightmap(), CShader::E_TEXTURE_SLOT_03);
-        }
-            break;
-        case CShader::E_RENDER_MODE_REFLECTION:
-        {
-            
-        }
-            break;
-        case CShader::E_RENDER_MODE_REFRACTION:
-        {
-            
-        }
-            break;
-        default:
-            break;
-    }
-    
-    m_pMesh->Get_VertexBufferRef()->Enable(_eMode);
-    m_pMesh->Get_IndexBufferRef()->Enable();
-    glDrawElements(GL_TRIANGLES, m_pMesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*)m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
-    m_pMesh->Get_IndexBufferRef()->Disable();
-    m_pMesh->Get_VertexBufferRef()->Disable(_eMode);
-}
-
-
-
-

@@ -54,6 +54,7 @@ struct SOceanSettings : public SObject3dSettings
     ui32 m_width;
     ui32 m_height;
     f32 m_altitude;
+    f32 m_waveGeneratorInterval;
 };
 
 struct SSkyDomeSettings : public SObject3dSettings
@@ -73,6 +74,7 @@ struct SLandscapeSettings : public SObject3dSettings
     ui32 m_height;
     std::string m_heightmapDataFileName;
     std::string m_splattingDataFileName;
+    std::string m_edgesTextureFileName;
 };
 
 struct SParticleEmitterSettings : public SObject3dSettings

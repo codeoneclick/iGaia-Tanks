@@ -44,7 +44,7 @@
 		932D54AE151FBEE700C77E95 /* mod_03.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 932D54AD151FBEE600C77E95 /* mod_03.pvr */; };
 		933CC920150A8C0900624C22 /* layer_03_diffuse.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 933CC91E150A8C0900624C22 /* layer_03_diffuse.pvr */; };
 		933CC921150A8C0900624C22 /* layer_03_normal.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 933CC91F150A8C0900624C22 /* layer_03_normal.pvr */; };
-		93490B97150A26B3005C8274 /* layer_02_bump.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 93490B95150A26B3005C8274 /* layer_02_bump.pvr */; };
+		93490B97150A26B3005C8274 /* layer_02_normal.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 93490B95150A26B3005C8274 /* layer_02_normal.pvr */; };
 		93490B98150A26B3005C8274 /* layer_02_diffuse.pvr in Resources */ = {isa = PBXBuildFile; fileRef = 93490B96150A26B3005C8274 /* layer_02_diffuse.pvr */; };
 		936FEC9214F579CB00A33A33 /* landscape.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 936FEC9014F579CB00A33A33 /* landscape.mdl */; };
 		936FEC9314F579CB00A33A33 /* player.mdl in Resources */ = {isa = PBXBuildFile; fileRef = 936FEC9114F579CB00A33A33 /* player.mdl */; };
@@ -317,6 +317,9 @@
 		A468354F16EE0A2000D34692 /* CMeshMgr_TEST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A468354E16EE0A2000D34692 /* CMeshMgr_TEST.cpp */; };
 		A468355316EE430800D34692 /* CMainLoop_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A468355016EE418D00D34692 /* CMainLoop_iOS.mm */; };
 		A480206516F21C2700BC9901 /* CObject3dBasisProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A480206316F21C2600BC9901 /* CObject3dBasisProcessor.cpp */; };
+		A480206E16F72C6900BC9901 /* COcean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 932D540A151B662F00C77E95 /* COcean.cpp */; };
+		A480207016F7427600BC9901 /* ocean_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = A480206F16F7427500BC9901 /* ocean_01.xml */; };
+		A480207116F74DDD00BC9901 /* CLandscapeEdges.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A179C21915ADD50000FA872B /* CLandscapeEdges.cpp */; };
 		A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
 		A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */; };
 		A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE919217145736FD0021A0DC /* CTexture.cpp */; };
@@ -475,7 +478,7 @@
 		93490B8E150A0A72005C8274 /* ShaderLandscape.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscape.vert; path = Shaders/ShaderLandscape.vert; sourceTree = "<group>"; };
 		93490B8F150A0A72005C8274 /* ShaderModel.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderModel.frag; path = Shaders/ShaderModel.frag; sourceTree = "<group>"; };
 		93490B90150A0A72005C8274 /* ShaderModel.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderModel.vert; path = Shaders/ShaderModel.vert; sourceTree = "<group>"; };
-		93490B95150A26B3005C8274 /* layer_02_bump.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = layer_02_bump.pvr; path = Resources/Textures/layer_02_bump.pvr; sourceTree = "<group>"; };
+		93490B95150A26B3005C8274 /* layer_02_normal.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = layer_02_normal.pvr; path = Resources/Textures/layer_02_normal.pvr; sourceTree = "<group>"; };
 		93490B96150A26B3005C8274 /* layer_02_diffuse.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = layer_02_diffuse.pvr; path = Resources/Textures/layer_02_diffuse.pvr; sourceTree = "<group>"; };
 		935D65071504AE3C00FBE552 /* ShaderPostBloomCombine.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostBloomCombine.frag; path = Shaders/ShaderPostBloomCombine.frag; sourceTree = "<group>"; };
 		935D65081504AE3C00FBE552 /* ShaderPostBloomCombine.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderPostBloomCombine.vert; path = Shaders/ShaderPostBloomCombine.vert; sourceTree = "<group>"; };
@@ -1135,6 +1138,7 @@
 		A468355116EE419900D34692 /* CMainLoop_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMainLoop_iOS.h; sourceTree = "<group>"; };
 		A480206316F21C2600BC9901 /* CObject3dBasisProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CObject3dBasisProcessor.cpp; sourceTree = "<group>"; };
 		A480206416F21C2600BC9901 /* CObject3dBasisProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CObject3dBasisProcessor.h; sourceTree = "<group>"; };
+		A480206F16F7427500BC9901 /* ocean_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ocean_01.xml; path = Resources/ocean_01.xml; sourceTree = "<group>"; };
 		A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ILoadOperation.cpp; sourceTree = "<group>"; };
 		A4A9847316DCE410007F9CF6 /* ILoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILoadOperation.h; sourceTree = "<group>"; };
 		A4A9847C16DCF728007F9CF6 /* CVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBuffer.cpp; sourceTree = "<group>"; };
@@ -1413,6 +1417,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A480206F16F7427500BC9901 /* ocean_01.xml */,
 				A438FECA16EF7E860030085C /* landscape_01.xml */,
 				A438FEB916EF3EE80030085C /* building_01.xml */,
 				936FEC8F14F579CB00A33A33 /* Models */,
@@ -2700,7 +2705,7 @@
 				932D54A9151F8A9700C77E95 /* mod_02.png */,
 				933CC91E150A8C0900624C22 /* layer_03_diffuse.pvr */,
 				933CC91F150A8C0900624C22 /* layer_03_normal.pvr */,
-				93490B95150A26B3005C8274 /* layer_02_bump.pvr */,
+				93490B95150A26B3005C8274 /* layer_02_normal.pvr */,
 				93490B96150A26B3005C8274 /* layer_02_diffuse.pvr */,
 				9399F6AC15062DBC0066639A /* layer_01_bump.pvr */,
 				9399F6AD15062DBC0066639A /* layer_01_normal.pvr */,
@@ -2852,7 +2857,7 @@
 				9399F6AF15062DBC0066639A /* layer_01_bump.pvr in Resources */,
 				9399F6B015062DBC0066639A /* layer_01_normal.pvr in Resources */,
 				9399F6B115062DBC0066639A /* layer_01_diffuse.pvr in Resources */,
-				93490B97150A26B3005C8274 /* layer_02_bump.pvr in Resources */,
+				93490B97150A26B3005C8274 /* layer_02_normal.pvr in Resources */,
 				93490B98150A26B3005C8274 /* layer_02_diffuse.pvr in Resources */,
 				933CC920150A8C0900624C22 /* layer_03_diffuse.pvr in Resources */,
 				933CC921150A8C0900624C22 /* layer_03_normal.pvr in Resources */,
@@ -3011,6 +3016,7 @@
 				21BFC90F16EE68F700FA9F50 /* CGameMainMenuSceneViewController.xib in Resources */,
 				A438FEBA16EF3EE80030085C /* building_01.xml in Resources */,
 				A438FECB16EF7E860030085C /* landscape_01.xml in Resources */,
+				A480207016F7427600BC9901 /* ocean_01.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3050,6 +3056,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A480207116F74DDD00BC9901 /* CLandscapeEdges.cpp in Sources */,
+				A480206E16F72C6900BC9901 /* COcean.cpp in Sources */,
 				A438FEC916EF6F9D0030085C /* CLandscape.cpp in Sources */,
 				A425B3AD16E747FA00E300F9 /* CGameObject3d.cpp in Sources */,
 				21904E3B16E33D7D00A1689A /* CFrustum.cpp in Sources */,

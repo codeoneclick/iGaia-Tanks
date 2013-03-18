@@ -7,15 +7,10 @@
 //
 
 #include "CLandscapeEdges.h"
-#include "CSceneMgr.h"
-#include "CHeightMapSetter.h"
-#include "CVertexBufferPositionTexcoord.h"
 
 CLandscapeEdges::CLandscapeEdges(void)
 {
-    m_iWidth = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Width();
-    m_iHeight = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_Height();
-    m_vHeight = glm::vec2(-8.0f, 8.0f);
+
 }
 
 CLandscapeEdges::~CLandscapeEdges(void)
@@ -23,199 +18,153 @@ CLandscapeEdges::~CLandscapeEdges(void)
     
 }
 
-void CLandscapeEdges::Load(const std::string &_sName, IResource::E_THREAD _eThread)
+void CLandscapeEdges::Load(CMaterial* _material, ui32 _width, ui32 _height, const glm::vec2 _heightBound)
 {
-    CMesh::SSourceData* pSourceData = new CMesh::SSourceData();
-    pSourceData->m_iNumVertexes = 16;
-    pSourceData->m_iNumIndexes  = 24;
+    m_width = _width;
+    m_height = _height;
+    m_materials[E_RENDER_MODE_WORLD_SPACE_COMMON] = _material;
     
-    pSourceData->m_pVertexBuffer = new CVertexBufferPositionTexcoord(pSourceData->m_iNumVertexes, GL_STATIC_DRAW);
+    CVertexBuffer* vertexBuffer = new CVertexBuffer(16, GL_STATIC_DRAW);
+    SVertex* vertexData = vertexBuffer->Lock();
+
+    glm::vec3 boundMin = glm::vec3(0.0f, _heightBound.x, 0.0f);
+    glm::vec3 boundMax = glm::vec3((m_width - 1), _heightBound.y, (m_height - 1));
+
+    vertexData[0].m_position = glm::vec3(boundMin.x,  boundMin.y, boundMax.z);
+    vertexData[1].m_position = glm::vec3(boundMax.x,  boundMin.y, boundMax.z);
+    vertexData[2].m_position = glm::vec3(boundMax.x,  boundMax.y, boundMax.z);
+    vertexData[3].m_position = glm::vec3(boundMin.x,  boundMax.y, boundMax.z);
     
-    CVertexBufferPositionTexcoord::SVertex* pVertexBufferData = static_cast<CVertexBufferPositionTexcoord::SVertex*>(pSourceData->m_pVertexBuffer->Lock());
-    
-    glm::vec3 m_vMin = glm::vec3(0.0f, m_vHeight.x, 0.0f);
-    glm::vec3 m_vMax = glm::vec3((m_iWidth - 1), m_vHeight.y, (m_iHeight - 1));
-    
-    pVertexBufferData[0].m_vPosition = glm::vec3(m_vMin.x,  m_vMin.y, m_vMax.z);
-    pVertexBufferData[1].m_vPosition = glm::vec3(m_vMax.x,  m_vMin.y, m_vMax.z);
-    pVertexBufferData[2].m_vPosition = glm::vec3(m_vMax.x,  m_vMax.y, m_vMax.z);
-    pVertexBufferData[3].m_vPosition = glm::vec3(m_vMin.x,  m_vMax.y, m_vMax.z);
-    pVertexBufferData[4].m_vPosition = glm::vec3(m_vMin.x,  m_vMin.y,  m_vMin.z);
-    pVertexBufferData[5].m_vPosition = glm::vec3(m_vMin.x,  m_vMax.y,  m_vMin.z);
-    pVertexBufferData[6].m_vPosition = glm::vec3(m_vMax.x,  m_vMax.y,  m_vMin.z);
-    pVertexBufferData[7].m_vPosition = glm::vec3(m_vMax.x,  m_vMin.y,  m_vMin.z);
-    
-    pVertexBufferData[8].m_vPosition = glm::vec3(m_vMax.x,  m_vMin.y,   m_vMax.z);
-    pVertexBufferData[9].m_vPosition = glm::vec3(m_vMax.x,  m_vMin.y,   m_vMin.z);
-    pVertexBufferData[10].m_vPosition = glm::vec3(m_vMax.x,  m_vMax.y,  m_vMin.z);
-    pVertexBufferData[11].m_vPosition = glm::vec3(m_vMax.x,  m_vMax.y,  m_vMax.z);
-    
-    pVertexBufferData[12].m_vPosition = glm::vec3(m_vMin.x,  m_vMin.y,  m_vMin.z);
-    pVertexBufferData[13].m_vPosition = glm::vec3(m_vMin.x,  m_vMin.y,  m_vMax.z);
-    pVertexBufferData[14].m_vPosition = glm::vec3(m_vMin.x,  m_vMax.y,  m_vMax.z);
-    pVertexBufferData[15].m_vPosition = glm::vec3(m_vMin.x,  m_vMax.y,  m_vMin.z);
-    
-    pVertexBufferData[0].m_vTexcoord = glm::vec2(0.0f, 1.0f / 4.0f);
-    pVertexBufferData[1].m_vTexcoord = glm::vec2(1.0f - 0.001f, 1.0f / 4.0f);
-    pVertexBufferData[2].m_vTexcoord = glm::vec2(1.0f - 0.001f, (1.0f / 4.0f) * 2.0f - 0.001f);
-    pVertexBufferData[3].m_vTexcoord = glm::vec2(0.0f, (1.0f / 4.0f) * 2.0f - 0.001f);
-    
-    pVertexBufferData[4].m_vTexcoord = glm::vec2(1.0f - 0.001f, 0.0f);
-    pVertexBufferData[5].m_vTexcoord = glm::vec2(1.0f - 0.001f, 1.0f / 4.0f - 0.001f);
-    pVertexBufferData[6].m_vTexcoord = glm::vec2(0.0f, 1.0f / 4.0f - 0.001f);
-    pVertexBufferData[7].m_vTexcoord = glm::vec2(0.0f, 0.0f);
-    
-    pVertexBufferData[8].m_vTexcoord =  glm::vec2(0.0f, (1.0f / 4.0f) * 3.0f);
-    pVertexBufferData[9].m_vTexcoord =  glm::vec2(1.0f - 0.001f, (1.0f / 4.0f) * 3.0f);
-    pVertexBufferData[10].m_vTexcoord = glm::vec2(1.0f - 0.001f, 1.0f - 0.001f);
-    pVertexBufferData[11].m_vTexcoord = glm::vec2(0.0f, 1.0f - 0.001f);
-    
-    pVertexBufferData[12].m_vTexcoord = glm::vec2(0.0f, (1.0f / 4.0f) * 2.0f);
-    pVertexBufferData[13].m_vTexcoord = glm::vec2(1.0f - 0.001f, (1.0f / 4.0f) * 2.0f);
-    pVertexBufferData[14].m_vTexcoord = glm::vec2(1.0f - 0.001f, (1.0f / 4.0f) * 3.0f - 0.001f);
-    pVertexBufferData[15].m_vTexcoord = glm::vec2(0.0f, (1.0f / 4.0f) * 3.0f - 0.001f);
-    
-    pSourceData->m_pIndexBuffer = new CIndexBuffer(pSourceData->m_iNumIndexes, GL_STATIC_DRAW);
-    unsigned short* pIndexBufferData = pSourceData->m_pIndexBuffer->Get_SourceData();
-    
-    pIndexBufferData[0] = 0;
-    pIndexBufferData[1] = 1;
-    pIndexBufferData[2] = 2;
-    pIndexBufferData[3] = 0;
-    pIndexBufferData[4] = 2;
-    pIndexBufferData[5] = 3;
-    
-    pIndexBufferData[6] = 4;
-    pIndexBufferData[7] = 5;
-    pIndexBufferData[8] = 6;
-    pIndexBufferData[9] = 4;
-    pIndexBufferData[10] = 6;
-    pIndexBufferData[11] = 7;
-    
-    pIndexBufferData[12] = 8;
-    pIndexBufferData[13] = 9;
-    pIndexBufferData[14] = 10;
-    pIndexBufferData[15] = 8;
-    pIndexBufferData[16] = 10;
-    pIndexBufferData[17] = 11;
-    
-    pIndexBufferData[18] = 12;
-    pIndexBufferData[19] = 13;
-    pIndexBufferData[20] = 14;
-    pIndexBufferData[21] = 12;
-    pIndexBufferData[22] = 14;
-    pIndexBufferData[23] = 15;
-    
-    pSourceData->m_pVertexBuffer->Commit();
-    pSourceData->m_pIndexBuffer->Commit();
-    
-    m_pMesh = new CMesh(IResource::E_CREATION_MODE_CUSTOM);
-    m_pMesh->Set_SourceData(pSourceData);
-    
-    m_pMesh->Get_VertexBufferRef()->Commit();
-    m_pMesh->Get_IndexBufferRef()->Commit();
-    
-    m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_CULL_MODE,  false);
-    m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_DEPTH_MASK, false);
-    m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_DEPTH_TEST, true);
-    m_pMaterial->Set_RenderState(CMaterial::E_RENDER_STATE_BLEND_MODE, true);
-    m_pMaterial->Set_CullFace(GL_BACK);
-    m_pMaterial->Set_BlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    
-    glm::vec2 vScaleFactor = CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_ScaleFactor();
-    Set_Scale(glm::vec3(vScaleFactor.x, 1.0f, vScaleFactor.y));
+    vertexData[4].m_position = glm::vec3(boundMin.x,  boundMin.y,  boundMin.z);
+    vertexData[5].m_position = glm::vec3(boundMin.x,  boundMax.y,  boundMin.z);
+    vertexData[6].m_position = glm::vec3(boundMax.x,  boundMax.y,  boundMin.z);
+    vertexData[7].m_position = glm::vec3(boundMax.x,  boundMin.y,  boundMin.z);
+
+    vertexData[8].m_position = glm::vec3(boundMax.x,  boundMin.y,   boundMax.z);
+    vertexData[9].m_position = glm::vec3(boundMax.x,  boundMin.y,   boundMin.z);
+    vertexData[10].m_position = glm::vec3(boundMax.x,  boundMax.y,  boundMin.z);
+    vertexData[11].m_position = glm::vec3(boundMax.x,  boundMax.y,  boundMax.z);
+
+    vertexData[12].m_position = glm::vec3(boundMin.x,  boundMin.y,  boundMin.z);
+    vertexData[13].m_position = glm::vec3(boundMin.x,  boundMin.y,  boundMax.z);
+    vertexData[14].m_position = glm::vec3(boundMin.x,  boundMax.y,  boundMax.z);
+    vertexData[15].m_position = glm::vec3(boundMin.x,  boundMax.y,  boundMin.z);
+
+    vertexData[0].m_texcoord = glm::vec2(0.0f, 1.0f / 4.0f);
+    vertexData[1].m_texcoord = glm::vec2(1.0f - 0.001f, 1.0f / 4.0f);
+    vertexData[2].m_texcoord = glm::vec2(1.0f - 0.001f, (1.0f / 4.0f) * 2.0f - 0.001f);
+    vertexData[3].m_texcoord = glm::vec2(0.0f, (1.0f / 4.0f) * 2.0f - 0.001f);
+
+    vertexData[4].m_texcoord = glm::vec2(1.0f - 0.001f, 0.0f);
+    vertexData[5].m_texcoord = glm::vec2(1.0f - 0.001f, 1.0f / 4.0f - 0.001f);
+    vertexData[6].m_texcoord = glm::vec2(0.0f, 1.0f / 4.0f - 0.001f);
+    vertexData[7].m_texcoord = glm::vec2(0.0f, 0.0f);
+
+    vertexData[8].m_texcoord =  glm::vec2(0.0f, (1.0f / 4.0f) * 3.0f);
+    vertexData[9].m_texcoord =  glm::vec2(1.0f - 0.001f, (1.0f / 4.0f) * 3.0f);
+    vertexData[10].m_texcoord = glm::vec2(1.0f - 0.001f, 1.0f - 0.001f);
+    vertexData[11].m_texcoord = glm::vec2(0.0f, 1.0f - 0.001f);
+
+    vertexData[12].m_texcoord = glm::vec2(0.0f, (1.0f / 4.0f) * 2.0f);
+    vertexData[13].m_texcoord = glm::vec2(1.0f - 0.001f, (1.0f / 4.0f) * 2.0f);
+    vertexData[14].m_texcoord = glm::vec2(1.0f - 0.001f, (1.0f / 4.0f) * 3.0f - 0.001f);
+    vertexData[15].m_texcoord = glm::vec2(0.0f, (1.0f / 4.0f) * 3.0f - 0.001f);
+
+    vertexBuffer->Unlock();
+
+    CIndexBuffer* indexBuffer = new CIndexBuffer(24, GL_STATIC_DRAW);
+    ui16* indexData = indexBuffer->Lock();
+
+    indexData[0] = 0;
+    indexData[1] = 1;
+    indexData[2] = 2;
+    indexData[3] = 0;
+    indexData[4] = 2;
+    indexData[5] = 3;
+
+    indexData[6] = 4;
+    indexData[7] = 5;
+    indexData[8] = 6;
+    indexData[9] = 4;
+    indexData[10] = 6;
+    indexData[11] = 7;
+
+    indexData[12] = 8;
+    indexData[13] = 9;
+    indexData[14] = 10;
+    indexData[15] = 8;
+    indexData[16] = 10;
+    indexData[17] = 11;
+
+    indexData[18] = 12;
+    indexData[19] = 13;
+    indexData[20] = 14;
+    indexData[21] = 12;
+    indexData[22] = 14;
+    indexData[23] = 15;
+
+    indexBuffer->Unlock();
+
+    m_mesh = new CMesh(vertexBuffer, indexBuffer);
 }
 
-void CLandscapeEdges::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource *_pResource)
+void CLandscapeEdges::OnResourceDidLoad(IResource_INTERFACE* _resource)
 {
-    switch (_eType)
-    {
-        case IResource::E_RESOURCE_TYPE_MESH:
-            std::cout<<"[CModel::OnLoadDone] Resource Mesh loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        case IResource::E_RESOURCE_TYPE_TEXTURE:
-            std::cout<<"[CModel::OnLoadDone] Resource Texture loaded : "<<_pResource->Get_Name()<<"\n";
-            break;
-        default:
-            break;
-    }
+    CGameObject3d::OnResourceDidLoad(_resource);
 }
 
-void CLandscapeEdges::OnTouchEvent(ITouchDelegate *_pDelegateOwner)
+void CLandscapeEdges::OnUpdate(f32 _deltatime)
 {
-    
+    CGameObject3d::OnUpdate(_deltatime);
 }
 
-void CLandscapeEdges::Update(void)
+ui32 CLandscapeEdges::OnDrawIndex(void)
 {
-    INode::Update();
-    m_vTexCoordOffset.x += 0.05f;
-    if(m_vTexCoordOffset.x >= 1.0f)
-    {
-        m_vTexCoordOffset.x = 0.0f;
-    }
+    return 1024;
 }
 
-void CLandscapeEdges::Render(CShader::E_RENDER_MODE _eMode)
+void CLandscapeEdges::OnBind(E_RENDER_MODE_WORLD_SPACE _mode)
 {
-    if(!m_pMaterial->Check_RenderMode(_eMode))
+    CGameObject3d::OnBind(_mode);
+}
+
+void CLandscapeEdges::OnDraw(E_RENDER_MODE_WORLD_SPACE _mode)
+{
+    assert(m_materials[_mode] != nullptr);
+    assert(m_camera != nullptr);
+    assert(m_light != nullptr);
+
+    switch (_mode)
     {
-        std::cout<<"[CSkyBox::Render] Render mode incorrect"<<std::endl;
-        return;
-    }
-    
-    INode::Render(_eMode);
-    
-    CShader* pShader = m_pMaterial->Get_Shader(_eMode);
-    
-    m_pMaterial->Commit(_eMode);
-    
-    switch (_eMode)
-    {
-        case CShader::E_RENDER_MODE_SIMPLE:
+        case E_RENDER_MODE_WORLD_SPACE_COMMON:
         {
-            if(pShader == NULL)
-            {
-                std::cout<<"[CModel::Render] Shader MODE_SIMPLE is NULL"<<std::endl;
-                return;
-            }
-            
-            pShader->Set_Matrix(m_mWVP, CShader::E_ATTRIBUTE_MATRIX_WVP);
-            pShader->Set_Vector2(m_vTexCoordOffset, CShader::E_ATTRIBUTE_VECTOR_TEXCOORD_OFFSET);
-            
-            for(unsigned int i = 0; i < k_TEXTURES_MAX_COUNT; ++i)
-            {
-                CTexture* pTexture = m_pMaterial->Get_Texture(i);
-                if(pTexture == NULL)
-                {
-                    continue;
-                }
-                pShader->Set_Texture(pTexture->Get_Handle(), static_cast<CShader::E_TEXTURE_SLOT>(i));
-            }
-            pShader->Set_Texture(CSceneMgr::Instance()->Get_HeightMapSetterRef()->Get_TextureEdgesMask(), CShader::E_TEXTURE_SLOT_03);
+            assert(m_materials[_mode]->Get_Shader() != nullptr);
+            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_matrixWorld, E_SHADER_ATTRIBUTE_MATRIX_WORLD);
+            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_camera->Get_ProjectionMatrix(), E_SHADER_ATTRIBUTE_MATRIX_PROJECTION);
+            m_materials[_mode]->Get_Shader()->Set_Matrix4x4(m_camera->Get_ViewMatrix(), E_SHADER_ATTRIBUTE_MATRIX_VIEW);
+
+            m_materials[_mode]->Get_Shader()->Set_Vector3(m_camera->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_CAMERA_POSITION);
+            m_materials[_mode]->Get_Shader()->Set_Vector3(m_light->Get_Position(), E_SHADER_ATTRIBUTE_VECTOR_LIGHT_POSITION);
         }
             break;
-        case CShader::E_RENDER_MODE_REFLECTION:
+        case E_RENDER_MODE_WORLD_SPACE_REFLECTION:
         {
-            
         }
             break;
-        case CShader::E_RENDER_MODE_REFRACTION:
+        case E_RENDER_MODE_WORLD_SPACE_REFRACTION:
         {
-            
         }
             break;
         default:
             break;
     }
-    
-    m_pMesh->Get_VertexBufferRef()->Enable(_eMode);
-    m_pMesh->Get_IndexBufferRef()->Enable();
-    glDrawElements(GL_TRIANGLES, m_pMesh->Get_NumIndexes(), GL_UNSIGNED_SHORT, (void*) m_pMesh->Get_IndexBufferRef()->Get_SourceDataFromVRAM());
-    m_pMesh->Get_IndexBufferRef()->Disable();
-    m_pMesh->Get_VertexBufferRef()->Disable(_eMode);
+
+    CGameObject3d::OnDraw(_mode);
 }
 
-
+void CLandscapeEdges::OnUnbind(E_RENDER_MODE_WORLD_SPACE _mode)
+{
+    CGameObject3d::OnUnbind(_mode);
+}
 
 

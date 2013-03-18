@@ -13,6 +13,7 @@
 #include "CLight.h"
 #include "CShape3d.h"
 #include "CLandscape.h"
+#include "COcean.h"
 #include "CRenderMgr.h"
 #include "CSceneUpdateMgr.h"
 
@@ -24,6 +25,7 @@ private:
     CLight* m_light;
 
     CLandscape* m_landscape;
+    COcean* m_ocean;
 
     std::set<CShape3d*> m_shapes3dContainer;
 
@@ -41,6 +43,7 @@ public:
     void Set_Light(CLight* _light);
 
     void Set_Landscape(CLandscape* _landscape);
+    void Set_Ocean(COcean* _ocean);
 
     void InsertShape3d(CShape3d* _shape3d);
     void RemoveShape3d(CShape3d* _shape3d);

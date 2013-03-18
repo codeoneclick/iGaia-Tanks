@@ -3,11 +3,17 @@
     <splatting_data_filename value="landscape_01.sdata"/>
     <width value="128"/>
     <height value="128"/>
+    <edges_texture_filename value="layer_03_diffuse.pvr"/>
 	<materials>
 		<material render_mode="0" is_cull_face="0" is_depth_test="1" is_depth_mask="1" is_blend="0" cull_face_mode="GL_FRONT" blend_function_source="GL_SRC_ALPHA" blend_function_destination="GL_ONE_MINUS_SRC_ALPHA">
 			<shader vs_name="landscape.vs" fs_name="landscape.fs" guid="0"/>
 			<textures>
 				<texture name="layer_01_diffuse.pvr" slot="0" wrap="GL_REPEAT"/>
+                <texture name="layer_02_diffuse.pvr" slot="1" wrap="GL_REPEAT"/>
+                <texture name="layer_03_diffuse.pvr" slot="2" wrap="GL_REPEAT"/>
+                <texture name="layer_01_normal.pvr" slot="4" wrap="GL_REPEAT"/>
+                <texture name="layer_02_normal.pvr" slot="5" wrap="GL_REPEAT"/>
+                <texture name="layer_03_normal.pvr" slot="6" wrap="GL_REPEAT"/>
 			</textures>
 		</material>
         <material render_mode="1" is_cull_face="0" is_depth_test="1" is_depth_mask="1" is_blend="0" cull_face_mode="GL_FRONT" blend_function_source="GL_SRC_ALPHA" blend_function_destination="GL_ONE_MINUS_SRC_ALPHA">

@@ -13,7 +13,9 @@ const char* ShaderOceanV = STRING_SHADER(
                                     
 void main(void)
 {
-    gl_Position = EXT_MATRIX_WVP * vec4(IN_SLOT_Position, 1.0);
+    vec4 vPosition = EXT_MATRIX_World * vec4(IN_SLOT_Position, 1.0);
+    gl_Position = EXT_MATRIX_Projection * EXT_MATRIX_View * vPosition;
+    
     OUT_TexCoord = IN_SLOT_TexCoord;
     OUT_TexCoordProj = gl_Position;
 }
