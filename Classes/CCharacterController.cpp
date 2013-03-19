@@ -11,7 +11,8 @@
 CCharacterController::CCharacterController(void)
 {
     m_camera = nullptr;
-    m_direction = E_MOVE_CONTROLLER_DIRECTION_NONE;
+    m_moveDirection = E_MOVE_CONTROLLER_DIRECTION_NONE;
+    m_rotateDirection = E_ROTATE_CONTROLLER_DIRECTION_NONE;
     m_navigator = new CNavigator(0.75f, 0.75f, 0.75f, 0.066f);
 
     m_position = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -28,12 +29,17 @@ CCharacterController::~CCharacterController(void)
 
 void CCharacterController::OnMoveControllerUpdate(ui32 _direction)
 {
-    m_direction = static_cast<E_MOVE_CONTROLLER_DIRECTION>(_direction);
+    m_moveDirection = static_cast<E_MOVE_CONTROLLER_DIRECTION>(_direction);
+}
+
+void CCharacterController::OnRotateControllerUpdate(ui32 _direction)
+{
+    m_rotateDirection = static_cast<E_ROTATE_CONTROLLER_DIRECTION>(_direction);
 }
 
 void CCharacterController::OnUpdate(f32 _deltatime)
 {
-    switch(m_direction)
+    switch(m_moveDirection)
     {
         case E_MOVE_CONTROLLER_DIRECTION_NONE:
         {
@@ -83,6 +89,25 @@ void CCharacterController::OnUpdate(f32 _deltatime)
         {
             m_navigator->MoveForward();
             m_navigator->MoveLeft();
+        }
+            break;
+    }
+
+    switch (m_rotateDirection)
+    {
+        case E_ROTATE_CONTROLLER_DIRECTION_NONE:
+        {
+            
+        }
+            break;
+        case E_ROTATE_CONTROLLER_DIRECTION_LEFT:
+        {
+            m_navigator->SteerLeft();
+        }
+            break;
+        case E_ROTATE_CONTROLLER_DIRECTION_RIGHT:
+        {
+            m_navigator->SteerRight();
         }
             break;
     }

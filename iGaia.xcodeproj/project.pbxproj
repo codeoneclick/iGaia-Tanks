@@ -320,6 +320,9 @@
 		A480206E16F72C6900BC9901 /* COcean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 932D540A151B662F00C77E95 /* COcean.cpp */; };
 		A480207016F7427600BC9901 /* ocean_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = A480206F16F7427500BC9901 /* ocean_01.xml */; };
 		A480207116F74DDD00BC9901 /* CLandscapeEdges.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A179C21915ADD50000FA872B /* CLandscapeEdges.cpp */; };
+		A480207516F89A7F00BC9901 /* CRotateControllerView_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A480207416F89A7F00BC9901 /* CRotateControllerView_iOS.mm */; };
+		A480208016F89AE500BC9901 /* CRotateControllerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A480207E16F89AE200BC9901 /* CRotateControllerCallback.cpp */; };
+		A480208216F8BBE300BC9901 /* heightmap_data_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A480208116F8BBE300BC9901 /* heightmap_data_01.jpg */; };
 		A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
 		A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */; };
 		A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE919217145736FD0021A0DC /* CTexture.cpp */; };
@@ -1139,6 +1142,11 @@
 		A480206316F21C2600BC9901 /* CObject3dBasisProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CObject3dBasisProcessor.cpp; sourceTree = "<group>"; };
 		A480206416F21C2600BC9901 /* CObject3dBasisProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CObject3dBasisProcessor.h; sourceTree = "<group>"; };
 		A480206F16F7427500BC9901 /* ocean_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ocean_01.xml; path = Resources/ocean_01.xml; sourceTree = "<group>"; };
+		A480207316F89A7F00BC9901 /* CRotateControllerView_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRotateControllerView_iOS.h; sourceTree = "<group>"; };
+		A480207416F89A7F00BC9901 /* CRotateControllerView_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CRotateControllerView_iOS.mm; sourceTree = "<group>"; };
+		A480207E16F89AE200BC9901 /* CRotateControllerCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRotateControllerCallback.cpp; sourceTree = "<group>"; };
+		A480207F16F89AE300BC9901 /* CRotateControllerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRotateControllerCallback.h; sourceTree = "<group>"; };
+		A480208116F8BBE300BC9901 /* heightmap_data_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = heightmap_data_01.jpg; path = Resources/heightmap_data_01.jpg; sourceTree = "<group>"; };
 		A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ILoadOperation.cpp; sourceTree = "<group>"; };
 		A4A9847316DCE410007F9CF6 /* ILoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILoadOperation.h; sourceTree = "<group>"; };
 		A4A9847C16DCF728007F9CF6 /* CVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBuffer.cpp; sourceTree = "<group>"; };
@@ -1417,6 +1425,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A480208116F8BBE300BC9901 /* heightmap_data_01.jpg */,
 				A480206F16F7427500BC9901 /* ocean_01.xml */,
 				A438FECA16EF7E860030085C /* landscape_01.xml */,
 				A438FEB916EF3EE80030085C /* building_01.xml */,
@@ -2540,6 +2549,8 @@
 			children = (
 				A465C16F16F0C821009404ED /* CMoveControllerView_iOS.h */,
 				A465C17016F0C821009404ED /* CMoveControllerView_iOS.mm */,
+				A480207316F89A7F00BC9901 /* CRotateControllerView_iOS.h */,
+				A480207416F89A7F00BC9901 /* CRotateControllerView_iOS.mm */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -2647,6 +2658,8 @@
 				A465C16916F0BD88009404ED /* HGameEnum.h */,
 				A465C16C16F0BFFC009404ED /* CMoveControllerCallback.h */,
 				A465C16B16F0BFFB009404ED /* CMoveControllerCallback.cpp */,
+				A480207F16F89AE300BC9901 /* CRotateControllerCallback.h */,
+				A480207E16F89AE200BC9901 /* CRotateControllerCallback.cpp */,
 				A465C17316F0CA4F009404ED /* CCharacterController.h */,
 				A465C17216F0CA4F009404ED /* CCharacterController.cpp */,
 			);
@@ -3017,6 +3030,7 @@
 				A438FEBA16EF3EE80030085C /* building_01.xml in Resources */,
 				A438FECB16EF7E860030085C /* landscape_01.xml in Resources */,
 				A480207016F7427600BC9901 /* ocean_01.xml in Resources */,
+				A480208216F8BBE300BC9901 /* heightmap_data_01.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3123,6 +3137,8 @@
 				A465C17416F0CA50009404ED /* CCharacterController.cpp in Sources */,
 				21BFC91416F137B300FA9F50 /* CLandscapeChunk.cpp in Sources */,
 				A480206516F21C2700BC9901 /* CObject3dBasisProcessor.cpp in Sources */,
+				A480207516F89A7F00BC9901 /* CRotateControllerView_iOS.mm in Sources */,
+				A480208016F89AE500BC9901 /* CRotateControllerCallback.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

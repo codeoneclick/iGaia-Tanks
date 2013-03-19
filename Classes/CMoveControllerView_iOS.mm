@@ -37,25 +37,11 @@
 
     _m_background = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.frame.size.width, self.frame.size.height)];
     [_m_background setBackgroundColor:[UIColor yellowColor]];
-    /*[_m_background.layer setCornerRadius:self.frame.size.width / 2.0f];
-    [_m_background.layer setBorderColor:[UIColor yellowColor].CGColor];
-    [_m_background.layer setBorderWidth:2.5f];
-    [_m_background.layer setShadowColor:[UIColor greenColor].CGColor];
-    [_m_background.layer setShadowOpacity:0.8];
-    [_m_background.layer setShadowRadius:3.0];
-    [_m_background.layer setShadowOffset:CGSizeMake(2.0, 2.0)];*/
     [self addSubview:_m_background];
 
     _m_control = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.frame.size.width / 3, self.frame.size.height / 3)];
     _m_control.center = CGPointMake(self.frame.size.width / 2.0f, self.frame.size.height / 2.0f);
     [_m_control setBackgroundColor:[UIColor greenColor]];
-   /*[_m_control.layer setCornerRadius:self.frame.size.width / (3.0f * 2.0f)];
-    [_m_control.layer setBorderColor:[UIColor yellowColor].CGColor];
-    [_m_control.layer setBorderWidth:2.5f];
-    [_m_control.layer setShadowColor:[UIColor greenColor].CGColor];
-    [_m_control.layer setShadowOpacity:0.8];
-    [_m_control.layer setShadowRadius:3.0];
-    [_m_control.layer setShadowOffset:CGSizeMake(2.0, 2.0)];*/
     [self addSubview:_m_control];
 }
 

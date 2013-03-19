@@ -105,7 +105,7 @@ void CSceneGraph::Set_Ocean(COcean *_ocean)
     m_ocean->ListenRenderMgr(true);
 
     m_ocean->Set_ReflectionTexture(m_renderMgr->Get_TextureWorldSpaceRenderMode(E_RENDER_MODE_WORLD_SPACE_REFLECTION));
-    m_ocean->Set_ReflectionTexture(m_renderMgr->Get_TextureWorldSpaceRenderMode(E_RENDER_MODE_WORLD_SPACE_REFRACTION));
+    m_ocean->Set_RefractionTexture(m_renderMgr->Get_TextureWorldSpaceRenderMode(E_RENDER_MODE_WORLD_SPACE_REFRACTION));
 
     if(m_landscape != nullptr)
     {

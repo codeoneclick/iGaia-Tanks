@@ -16,4 +16,6 @@ std::string Get_BundlePath(void);
 ui32 Get_ScreenWidth(void);
 ui32 Get_ScreenHeight(void);
 
+ui8* Get_ImageData(const std::string& _filename);
+
 #endif

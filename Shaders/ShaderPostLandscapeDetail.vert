@@ -12,7 +12,7 @@ const char* ShaderPostLandscapeDetailV = STRING_SHADER(
                                        
 void main(void)
 {
-    OUT_TexCoord = IN_SLOT_TexCoord * 8.0;
+    OUT_TexCoord = IN_SLOT_TexCoord * 16.0;
     OUT_SplattingTexCoord = IN_SLOT_TexCoord;
     gl_Position = vec4(IN_SLOT_Position, 1.0);
 }

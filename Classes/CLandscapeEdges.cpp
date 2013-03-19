@@ -28,7 +28,7 @@ void CLandscapeEdges::Load(CMaterial* _material, ui32 _width, ui32 _height, cons
     SVertex* vertexData = vertexBuffer->Lock();
 
     glm::vec3 boundMin = glm::vec3(0.0f, _heightBound.x, 0.0f);
-    glm::vec3 boundMax = glm::vec3((m_width - 1), _heightBound.y, (m_height - 1));
+    glm::vec3 boundMax = glm::vec3(m_width, _heightBound.y, m_height);
 
     vertexData[0].m_position = glm::vec3(boundMin.x,  boundMin.y, boundMax.z);
     vertexData[1].m_position = glm::vec3(boundMax.x,  boundMin.y, boundMax.z);

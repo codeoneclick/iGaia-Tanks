@@ -110,7 +110,7 @@ void COcean::OnUpdate(f32 _deltatime)
 
 ui32 COcean::OnDrawIndex(void)
 {
-    return 0;
+    return 10;
 }
 
 void COcean::OnBind(E_RENDER_MODE_WORLD_SPACE _mode)

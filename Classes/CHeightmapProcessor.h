@@ -48,7 +48,7 @@ protected:
     CIndexBuffer* CreateIndexBuffer(void);
     CVertexBuffer* CreateVertexBuffer(ui32 _widthOffset, ui32 _heightOffset, ui32 _numVertexes, GLenum _mode, glm::vec3* _maxBound, glm::vec3* _minBound);
 
-    void FillEdgesMaskTextureBlock(ui16* _data,ui32 _index, ui32 _edgesMaskWidth, ui32 _edgesMaskHeight, ui32 _textureBlockSize, glm::vec3 _point);
+    void FillEdgesMaskTextureBlock(ui16* _data,ui32 _index, ui32 _edgesMaskWidth, ui32 _edgesMaskHeight, ui32 _textureBlockSize, glm::vec3 _point, bool _reverse);
 
 public:
 
@@ -128,7 +128,7 @@ public:
     inline CTexture* Get_DiffuseTexture(void)
     {
         assert(m_diffuseTexture != nullptr);
-        return m_splattingTexture;
+        return m_diffuseTexture;
     };
     
     inline CTexture* Get_NormalTexture(void)

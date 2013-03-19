@@ -44,9 +44,9 @@ void CRenderMgr::RemoveEventListener(CRenderCallback_INTERFACE *_listener, E_REN
     m_worldSpaceOperations[_mode]->RemoveEventListener(_listener);
 }
 
-CTexture* CRenderMgr::ProcessCustomScreenSpaceOperation(CMaterial *_material)
+CTexture* CRenderMgr::ProcessCustomScreenSpaceOperation(CMaterial *_material, ui32 _textureWidth, ui32 _textureHeight)
 {
-    CRenderOperationScreenSpace* operation = new CRenderOperationScreenSpace(Get_ScreenWidth(), Get_ScreenHeight(), E_RENDER_MODE_SCREEN_SPACE_COMMON, _material, "render.mode.custom");
+    CRenderOperationScreenSpace* operation = new CRenderOperationScreenSpace(_textureWidth, _textureHeight, E_RENDER_MODE_SCREEN_SPACE_COMMON, _material, "render.mode.custom");
     m_customScreenSpaceOperationsQueue.push(operation);
     return operation->Get_OperatingTexture();
 }
@@ -73,12 +73,12 @@ void CRenderMgr::OnUpdate(f32 _deltatime)
 
     while(!m_customScreenSpaceOperationsQueue.empty())
     {
-        CRenderOperationScreenSpace* operation = m_customScreenSpaceOperationsQueue.back();
+        CRenderOperationScreenSpace* operation = m_customScreenSpaceOperationsQueue.front();
         operation->Bind();
         operation->Draw();
         operation->Unbind();
-        delete operation;
         m_customScreenSpaceOperationsQueue.pop();
+        delete operation;
     }
 
     m_screenOutputOperation->Get_Material()->Set_Texture(m_worldSpaceOperations[E_RENDER_MODE_WORLD_SPACE_COMMON]->Get_OperatingTexture(), E_TEXTURE_SLOT_01);

@@ -129,7 +129,7 @@ void CLandscape::CreateLandscapeEdges(CResourceMgrsFacade* _resourceMgrsFacade, 
     landscapeEdgesMaterial->Set_BlendFunctionSource(GL_SRC_ALPHA);
     landscapeEdgesMaterial->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
     
-    m_landscapeEdges->Load(landscapeEdgesMaterial, m_heightmapProcessor->Get_Width(), m_heightmapProcessor->Get_Height(), glm::vec2(-32.0f, 32.0f));
+    m_landscapeEdges->Load(landscapeEdgesMaterial, m_heightmapProcessor->Get_Width(), m_heightmapProcessor->Get_Height(), glm::vec2(-8.0f, 8.0f));
 }
 
 void CLandscape::Set_Camera(CCamera* _camera)
@@ -166,11 +166,23 @@ void CLandscape::Set_RenderMgr(CRenderMgr* _renderMgr)
 {
     assert(m_heightmapProcessor != nullptr);
     m_heightmapProcessor->Set_RenderMgr(_renderMgr);
-
-    assert(m_materials[E_RENDER_MODE_WORLD_SPACE_COMMON]);
+       
     assert(m_splattingDiffuseMaterial != nullptr);
-    m_materials[E_RENDER_MODE_WORLD_SPACE_COMMON]->Set_Texture(m_heightmapProcessor->PreprocessSplattingDiffuseTexture(m_splattingDiffuseMaterial), E_TEXTURE_SLOT_01);
-    
+    assert(m_splattingNormalMaterial != nullptr);
+
+
+    m_heightmapProcessor->PreprocessSplattingDiffuseTexture(m_splattingDiffuseMaterial);
+    m_heightmapProcessor->PreprocessSplattingNormalTexture(m_splattingNormalMaterial);
+
+    for(ui32 i = 0; i < E_RENDER_MODE_WORLD_SPACE_MAX; ++i)
+    {
+        if(m_materials[i] != nullptr)
+        {
+            m_materials[i]->Set_Texture(m_heightmapProcessor->Get_DiffuseTexture(), E_TEXTURE_SLOT_01);
+            m_materials[i]->Set_Texture(m_heightmapProcessor->Get_NormalTexture(), E_TEXTURE_SLOT_02);
+        }
+    }
+
     for(ui32 i = 0; i < m_numChunkRows; ++i)
     {
         for(ui32 j = 0; j < m_numChunkCells; ++j)

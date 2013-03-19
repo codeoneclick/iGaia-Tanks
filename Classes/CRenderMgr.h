@@ -55,7 +55,7 @@ public:
         return m_screenSpaceOperations[_mode]->Get_OperatingTexture();
     }
 
-    CTexture* ProcessCustomScreenSpaceOperation(CMaterial* _material);
+    CTexture* ProcessCustomScreenSpaceOperation(CMaterial* _material, ui32 _textureWidth, ui32 _textureHeight);
 };
 
 #endif

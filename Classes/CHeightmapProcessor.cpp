@@ -9,6 +9,7 @@
 #include "CHeightmapProcessor.h"
 #include "CObject3dBasisProcessor.h"
 #include "CHeightmapHelper.h"
+#include "CCommon_iOS.h"
 
 CHeightmapProcessor::CHeightmapProcessor(void)
 {
@@ -40,13 +41,16 @@ void CHeightmapProcessor::Process(const std::string& _heightmapFilename, const g
 
     m_heightmapData = new f32[m_width * m_height];
 
+    // FIXME : remove stub
+    ui8* data = Get_ImageData("heightmap_data_01.jpg");
+
     m_maxAltitude = 0.0f;
     
     for(ui32 i = 0; i < m_width; ++i)
     {
         for(ui32 j = 0; j < m_height; ++j)
         {
-            m_heightmapData[i + j * m_height] = (sin(i * 0.33f) / 2.0f + cos(j * 0.33f) / 2.0f);
+            m_heightmapData[i + j * m_height] = (static_cast<f32>(data[(i + j * m_width) * 4 + 1] - 63.0f) / 255.0f) * 10.0f;
             if(fabsf(m_heightmapData[i +j * m_height]) > m_maxAltitude)
             {
                 m_maxAltitude = fabsf(m_heightmapData[i +j * m_height]);
@@ -61,6 +65,9 @@ void CHeightmapProcessor::Process(const std::string& _heightmapFilename, const g
     
     m_numChunkRows = m_width / m_chunkWidth;
     m_numChunkCells = m_height / m_chunkHeight;
+
+    m_chunkWidth++;
+    m_chunkHeight++;
     
     m_chunksContainer = new CMesh*[m_numChunkRows * m_numChunkCells];
     
@@ -97,7 +104,8 @@ CTexture* CHeightmapProcessor::PreprocessHeightmapTexture(void)
     {
         for(int j = 0; j < m_height; j++)
         {
-            f32 height = CHeightmapHelper::Get_HeightValue(m_heightmapData, m_width, m_height, glm::vec3(i , 0.0f, j)); 
+            f32 height = CHeightmapHelper::Get_HeightValue(m_heightmapData, m_width, m_height, glm::vec3(i , 0.0f, j));
+            height /= m_maxAltitude;
             if(height > 0.0f || height < -1.0f)
             {
                 data[i + j * m_height] = TO_RGB(0, static_cast<ui8>(255), 0);
@@ -137,11 +145,11 @@ CTexture* CHeightmapProcessor::PreprocessSplattingTexture(void)
 
             f32 height = CHeightmapHelper::Get_HeightValue(m_heightmapData, m_width, m_height, glm::vec3(i , 0.0f, j));
             
-            if(height > 1.0f)
+            if(height > 5.0f)
             {
                 data[i + j * m_width] = TO_RGB(0, 255, 0);
             }
-            if(height < 0.1f)
+            if(height < 0.5f)
             {
                 data[i + j * m_width] = TO_RGB(0, 0, 255);
             }
@@ -159,17 +167,18 @@ CTexture* CHeightmapProcessor::PreprocessSplattingTexture(void)
     return m_splattingTexture;
 }
 
-void CHeightmapProcessor::FillEdgesMaskTextureBlock(ui16* _data, ui32 _index, ui32 _edgesMaskWidth, ui32 _edgesMaskHeight, ui32 _textureBlockSize, glm::vec3 _point)
+void CHeightmapProcessor::FillEdgesMaskTextureBlock(ui16* _data, ui32 _index, ui32 _edgesMaskWidth, ui32 _edgesMaskHeight, ui32 _textureBlockSize, glm::vec3 _point, bool _reverse)
 {
     for(ui32 j = 0; j < _edgesMaskHeight / 4; ++j)
     {
-        _data[(_edgesMaskWidth - 1) - _index + j * _edgesMaskWidth + _textureBlockSize] = TO_RGB(0, 0, 0);
-        f32 currentEdgeHeight = (static_cast<f32>(j) - (static_cast<f32>((_edgesMaskHeight / 4)) / 2.0f)) / 32.0f;
+        f32 currentEdgeHeight = (static_cast<f32>(j) - (static_cast<f32>((_edgesMaskHeight / 4)) / 2.0f)) / 8.0f;
         f32 height = CHeightmapHelper::Get_HeightValue(m_heightmapData, m_width, m_height, _point);
-        
+
+        ui32 indexOffset = _reverse == true ? (_edgesMaskWidth - 1) - _index + j * _edgesMaskWidth + _textureBlockSize : _index + j * _edgesMaskWidth + _textureBlockSize;
+        _data[indexOffset] = TO_RGB(0, 0, 0);
         if(currentEdgeHeight < height)
         {
-            _data[(_edgesMaskWidth - 1) - _index + j * _edgesMaskWidth + _textureBlockSize] = TO_RGB(255, 255, 255);
+            _data[indexOffset] = TO_RGB(255, 255, 255);
         }
     }
 }
@@ -195,14 +204,16 @@ CTexture* CHeightmapProcessor::PreprocessEdgesMaskTexture(void)
                                   edgesMaskWidth,
                                   edgesMaskHeight,
                                   0,
-                                  glm::vec3(static_cast<f32>(i) / static_cast<f32>(edgesMaskWidth) * m_width, 0.0f, 0.0f));
+                                  glm::vec3(static_cast<f32>(i) / static_cast<f32>(edgesMaskWidth) * m_width, 0.0f, 0.0f),
+                                  true);
         
         FillEdgesMaskTextureBlock(data,
                                   i,
                                   edgesMaskWidth,
                                   edgesMaskHeight,
                                   edgesMaskWidth * (edgesMaskHeight / 4),
-                                  glm::vec3(static_cast<f32>(i) / static_cast<f32>(edgesMaskWidth) * m_width, 0.0f, (m_width - 1)));
+                                  glm::vec3(static_cast<f32>(i) / static_cast<f32>(edgesMaskWidth) * m_width, 0.0f, (m_width - 1)),
+                                  false);
 
         
         FillEdgesMaskTextureBlock(data,
@@ -210,14 +221,16 @@ CTexture* CHeightmapProcessor::PreprocessEdgesMaskTexture(void)
                                   edgesMaskWidth,
                                   edgesMaskHeight,
                                   edgesMaskWidth * (edgesMaskHeight / 4) * 2,
-                                  glm::vec3(0.0f, 0.0f, static_cast<float>(i) / static_cast<float>(edgesMaskWidth) * m_width));
+                                  glm::vec3(0.0f, 0.0f, static_cast<float>(i) / static_cast<float>(edgesMaskWidth) * m_width),
+                                  false);
         
         FillEdgesMaskTextureBlock(data,
                                   i,
                                   edgesMaskWidth,
                                   edgesMaskHeight,
                                   edgesMaskWidth * (edgesMaskHeight / 4) * 3,
-                                  glm::vec3((m_width - 1), 0.0f, static_cast<float>(i) / static_cast<float>(edgesMaskWidth) * m_width));
+                                  glm::vec3((m_width - 1), 0.0f, static_cast<float>(i) / static_cast<float>(edgesMaskWidth) * m_width),
+                                  true);
     }
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, edgesMaskWidth, edgesMaskHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, data);
     
@@ -233,7 +246,7 @@ CTexture* CHeightmapProcessor::PreprocessSplattingDiffuseTexture(CMaterial *_mat
     assert(m_diffuseTexture == nullptr);
     assert(m_splattingTexture != nullptr);
     _material->Set_Texture(m_splattingTexture, E_TEXTURE_SLOT_04);
-    m_diffuseTexture = m_renderMgr->ProcessCustomScreenSpaceOperation(_material);
+    m_diffuseTexture = m_renderMgr->ProcessCustomScreenSpaceOperation(_material, 2048, 2048);
     return m_diffuseTexture;
 }
 
@@ -243,7 +256,7 @@ CTexture* CHeightmapProcessor::PreprocessSplattingNormalTexture(CMaterial *_mate
     assert(m_normalTexture == nullptr);
     assert(m_splattingTexture != nullptr);
     _material->Set_Texture(m_splattingTexture, E_TEXTURE_SLOT_04);
-    m_normalTexture = m_renderMgr->ProcessCustomScreenSpaceOperation(_material);
+    m_normalTexture = m_renderMgr->ProcessCustomScreenSpaceOperation(_material, 2048, 2048);
     return m_normalTexture;
 }
 
@@ -294,10 +307,15 @@ CVertexBuffer* CHeightmapProcessor::CreateVertexBuffer(ui32 _widthOffset, ui32 _
         for(ui32 j = 0; j < m_chunkHeight;++j)
         {
             glm::vec2 position = glm::vec2(i + _widthOffset * m_chunkWidth - _widthOffset, j + _heightOffset * m_chunkHeight - _heightOffset);
-            
+
             vertexData[index].m_position.x = position.x;
-            vertexData[index].m_position.y = m_heightmapData[static_cast<ui32>(position.x) + static_cast<ui32>(position.y) * m_height];
             vertexData[index].m_position.z = position.y;
+
+            ui32 indexOffset_x = static_cast<ui32>(position.x) < m_width ? static_cast<ui32>(position.x) : static_cast<ui32>(m_width - 1);
+            ui32 indexOffset_z = static_cast<ui32>(position.y) < m_height ? static_cast<ui32>(position.y) : static_cast<ui32>(m_height - 1);
+            ui32 indexOffset = indexOffset_x + indexOffset_z * m_height;
+
+            vertexData[index].m_position.y = m_heightmapData[indexOffset];
             
             vertexData[index].m_texcoord.x = static_cast<ui32>(position.x) / static_cast<f32>(m_width);
             vertexData[index].m_texcoord.y = static_cast<ui32>(position.y) / static_cast<f32>(m_height);
