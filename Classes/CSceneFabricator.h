@@ -12,6 +12,7 @@
 #include "CCamera.h"
 #include "CLight.h"
 #include "CShape3d.h"
+#include "CParticleEmitter.h"
 #include "CLandscape.h"
 #include "COcean.h"
 #include "CSceneContainer.h"
@@ -39,6 +40,9 @@ public:
 
     CShape3d* CreateShape3d(const std::string& _filename);
     void DeleteShape3d(CShape3d* _shape3d);
+
+    CParticleEmitter* CreateParticleEmitter(const std::string& _filename);
+    void DeleteParticleEmitter(CParticleEmitter* _particleEmitter);
 
     CLandscape* CreateLandscape(const std::string& _filename);
     void DeleteLandscape(CLandscape* _landscape);

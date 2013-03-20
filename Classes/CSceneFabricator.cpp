@@ -53,6 +53,23 @@ void CSceneFabricator::DeleteShape3d(CShape3d *_shape3d)
     m_sceneContainer->RemoveGameObject3d(_shape3d);
 }
 
+CParticleEmitter* CSceneFabricator::CreateParticleEmitter(const std::string& _filename)
+{
+    assert(m_resourceMgrsFacade != nullptr);
+    assert(m_shaderComposite != nullptr);
+    assert(m_sceneContainer != nullptr);
+    CParticleEmitter* particleEmitter = new CParticleEmitter();
+    particleEmitter->Load(m_resourceMgrsFacade, m_shaderComposite, _filename);
+    m_sceneContainer->AddGameObject3d(particleEmitter);
+    return particleEmitter;
+}
+
+void CSceneFabricator::DeleteParticleEmitter(CParticleEmitter* _particleEmitter)
+{
+    assert(m_sceneContainer != nullptr);
+    m_sceneContainer->RemoveGameObject3d(_particleEmitter);
+}
+
 CLandscape* CSceneFabricator::CreateLandscape(const std::string& _filename)
 {
     assert(m_resourceMgrsFacade != nullptr);
@@ -86,6 +103,3 @@ void CSceneFabricator::DeleteOcean(COcean* _ocean)
     assert(m_sceneContainer != nullptr);
     m_sceneContainer->RemoveGameObject3d(_ocean);
 }
-
-
-

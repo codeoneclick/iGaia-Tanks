@@ -7,6 +7,6 @@ const char* ShaderLandscapeEdgesF = STRING_SHADER(
 void main(void)
 {
     lowp vec4 vMaskColor = texture2D(EXT_TEXTURE_02, OUT_TexCoord);
-    gl_FragColor = texture2D(EXT_TEXTURE_01, OUT_TexCoord * 32.0) * vMaskColor.r;
+    gl_FragColor = texture2D(EXT_TEXTURE_01, OUT_TexCoord * 16.0) * vMaskColor.r;
 }
 );

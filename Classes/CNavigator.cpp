@@ -27,9 +27,9 @@ CNavigator::CNavigator(f32 _moveForwardSpeed, f32 _moveBackwardSpeed, f32 _straf
 bool CNavigator::MoveForward(void)
 {
     glm::vec3 precomputePosition = glm::vec3(m_position.x + cosf(-m_rotation.y) * m_moveForwardSpeed, 0.0f, m_position.z + sinf(-m_rotation.y) * m_moveForwardSpeed);
-    if(floorf(precomputePosition.x) > m_heightmapWidth ||
+    if(floorf(precomputePosition.x) >= m_heightmapWidth ||
        floorf(precomputePosition.x) < 0 ||
-       floorf(precomputePosition.z) > m_heightmapHeight ||
+       floorf(precomputePosition.z) >= m_heightmapHeight ||
        floorf(precomputePosition.z) < 0
        )
     {
@@ -45,9 +45,9 @@ bool CNavigator::MoveForward(void)
 bool CNavigator::MoveBackward(void)
 {
     glm::vec3 precomputePosition = glm::vec3(m_position.x - cosf(-m_rotation.y) * m_moveBackwardSpeed, 0.0f, m_position.z - sinf(-m_rotation.y) * m_moveBackwardSpeed);
-    if(floorf(precomputePosition.x) > m_heightmapWidth ||
+    if(floorf(precomputePosition.x) >= m_heightmapWidth ||
        floorf(precomputePosition.x) < 0 ||
-       floorf(precomputePosition.z) > m_heightmapHeight ||
+       floorf(precomputePosition.z) >= m_heightmapHeight ||
        floorf(precomputePosition.z) < 0
        )
     {
@@ -63,9 +63,9 @@ bool CNavigator::MoveBackward(void)
 bool CNavigator::MoveLeft(void)
 {
     glm::vec3 precomputePosition = glm::vec3(m_position.x - sinf(m_rotation.y) * m_strafeSpeed, 0.0f, m_position.z - cosf(m_rotation.y) * m_strafeSpeed);
-    if(floorf(precomputePosition.x) > m_heightmapWidth ||
+    if(floorf(precomputePosition.x) >= m_heightmapWidth ||
        floorf(precomputePosition.x) < 0 ||
-       floorf(precomputePosition.z) > m_heightmapHeight ||
+       floorf(precomputePosition.z) >= m_heightmapHeight ||
        floorf(precomputePosition.z) < 0
        )
     {
@@ -81,9 +81,9 @@ bool CNavigator::MoveLeft(void)
 bool CNavigator::MoveRight(void)
 {
     glm::vec3 precomputePosition = glm::vec3(m_position.x + sinf(m_rotation.y) * m_strafeSpeed, 0.0f, m_position.z + cosf(m_rotation.y) * m_strafeSpeed);
-    if(floorf(precomputePosition.x) > m_heightmapWidth ||
+    if(floorf(precomputePosition.x) >= m_heightmapWidth ||
        floorf(precomputePosition.x) < 0 ||
-       floorf(precomputePosition.z) > m_heightmapHeight ||
+       floorf(precomputePosition.z) >= m_heightmapHeight ||
        floorf(precomputePosition.z) < 0
        )
     {

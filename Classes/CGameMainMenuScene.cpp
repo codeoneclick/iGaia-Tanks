@@ -14,6 +14,7 @@ CGameMainMenuScene::CGameMainMenuScene(void)
     m_camera = nullptr;
     m_light = nullptr;
     m_shape3d = nullptr;
+    m_particleEmitter = nullptr;
     m_landscape = nullptr;
     m_ocean = nullptr;
     m_characterController = nullptr;
@@ -30,8 +31,8 @@ void CGameMainMenuScene::Load(CRoot_iOS* _root)
     _root->Set_Camera(m_camera);
     m_camera->Set_Position(glm::vec3(0.0f, 0.0f, 0.0f));
     m_camera->Set_LookAt(glm::vec3(16.0f, 0.0f, 16.0f));
-    m_camera->Set_Distance(128.0f);
-    m_camera->Set_Height(128.0f);
+    m_camera->Set_Distance(16.0f);
+    m_camera->Set_Height(16.0f);
 
     m_light = _root->CreateLight();
     m_light->Set_Position(glm::vec3(32.0f, 128.0f, 32.0f));
@@ -39,7 +40,11 @@ void CGameMainMenuScene::Load(CRoot_iOS* _root)
 
     m_shape3d = _root->CreateShape3d("building_01.xml");
     _root->InsertShape3d(m_shape3d);
-    m_shape3d->Set_Position(glm::vec3(16.0f, 0.0f, 16.0f));
+    m_shape3d->Set_Position(glm::vec3(16.0f, 2.0f, 16.0f));
+
+    m_particleEmitter = _root->CreateParticleEmitter("particle_emitter_01.xml");
+    _root->InsertParticleEmitter(m_particleEmitter);
+    m_particleEmitter->Set_Position(glm::vec3(16.0f, 4.0f, 16.0f));
 
     m_landscape = _root->CreateLandscape("landscape_01.xml");
     _root->Set_Landscape(m_landscape);
@@ -53,6 +58,3 @@ void CGameMainMenuScene::Load(CRoot_iOS* _root)
     m_characterController->Get_Navigator()->Set_Heightmap(m_landscape->Get_HeightmapData(), m_landscape->Get_HeightmapWidth(), m_landscape->Get_HeightmapHeight());
     ConnectToMainLoop(m_characterController);
 }
-
-
-

@@ -323,6 +323,7 @@
 		A480207516F89A7F00BC9901 /* CRotateControllerView_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A480207416F89A7F00BC9901 /* CRotateControllerView_iOS.mm */; };
 		A480208016F89AE500BC9901 /* CRotateControllerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A480207E16F89AE200BC9901 /* CRotateControllerCallback.cpp */; };
 		A480208216F8BBE300BC9901 /* heightmap_data_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A480208116F8BBE300BC9901 /* heightmap_data_01.jpg */; };
+		A480208416F9CA2000BC9901 /* particle_emitter_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = A480208316F9CA2000BC9901 /* particle_emitter_01.xml */; };
 		A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
 		A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */; };
 		A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE919217145736FD0021A0DC /* CTexture.cpp */; };
@@ -1147,6 +1148,7 @@
 		A480207E16F89AE200BC9901 /* CRotateControllerCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRotateControllerCallback.cpp; sourceTree = "<group>"; };
 		A480207F16F89AE300BC9901 /* CRotateControllerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRotateControllerCallback.h; sourceTree = "<group>"; };
 		A480208116F8BBE300BC9901 /* heightmap_data_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = heightmap_data_01.jpg; path = Resources/heightmap_data_01.jpg; sourceTree = "<group>"; };
+		A480208316F9CA2000BC9901 /* particle_emitter_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = particle_emitter_01.xml; path = Resources/particle_emitter_01.xml; sourceTree = "<group>"; };
 		A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ILoadOperation.cpp; sourceTree = "<group>"; };
 		A4A9847316DCE410007F9CF6 /* ILoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILoadOperation.h; sourceTree = "<group>"; };
 		A4A9847C16DCF728007F9CF6 /* CVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBuffer.cpp; sourceTree = "<group>"; };
@@ -1426,6 +1428,7 @@
 			isa = PBXGroup;
 			children = (
 				A480208116F8BBE300BC9901 /* heightmap_data_01.jpg */,
+				A480208316F9CA2000BC9901 /* particle_emitter_01.xml */,
 				A480206F16F7427500BC9901 /* ocean_01.xml */,
 				A438FECA16EF7E860030085C /* landscape_01.xml */,
 				A438FEB916EF3EE80030085C /* building_01.xml */,
@@ -3031,6 +3034,7 @@
 				A438FECB16EF7E860030085C /* landscape_01.xml in Resources */,
 				A480207016F7427600BC9901 /* ocean_01.xml in Resources */,
 				A480208216F8BBE300BC9901 /* heightmap_data_01.jpg in Resources */,
+				A480208416F9CA2000BC9901 /* particle_emitter_01.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,7 @@ protected:
     CCamera* m_camera;
     CLight* m_light;
     CShape3d* m_shape3d;
+    CParticleEmitter* m_particleEmitter;
     CLandscape* m_landscape;
     COcean* m_ocean;
     CCharacterController* m_characterController;

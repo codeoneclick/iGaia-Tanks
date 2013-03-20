@@ -14,6 +14,7 @@
 #include "CShape3d.h"
 #include "CLandscape.h"
 #include "COcean.h"
+#include "CParticleEmitter.h"
 #include "CRenderMgr.h"
 #include "CSceneUpdateMgr.h"
 
@@ -28,6 +29,7 @@ private:
     COcean* m_ocean;
 
     std::set<CShape3d*> m_shapes3dContainer;
+    std::set<CParticleEmitter*> m_particleEmittersContainer;
 
 protected:
 
@@ -47,6 +49,9 @@ public:
 
     void InsertShape3d(CShape3d* _shape3d);
     void RemoveShape3d(CShape3d* _shape3d);
+
+    void InsertParticleEmitter(CParticleEmitter* _particleEmitter);
+    void RemoveParticleEmitter(CParticleEmitter* _particleEmitter);
 };
 
 

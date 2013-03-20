@@ -47,6 +47,7 @@ typedef unsigned short ui16;
 typedef signed int i32;
 typedef unsigned int ui32;
 typedef unsigned long long ui64;
+typedef long long i64;
 typedef float f32;
 
 #define TO_RGB(r,g,b) (unsigned short)(((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3))

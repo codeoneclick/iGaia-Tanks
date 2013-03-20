@@ -18,4 +18,8 @@ ui32 Get_ScreenHeight(void);
 
 ui8* Get_ImageData(const std::string& _filename);
 
+f32 Get_Random(f32 _minValue, f32 _maxValue);
+
+ui64 Get_TickCount(void);
+
 #endif

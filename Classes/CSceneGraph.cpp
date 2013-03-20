@@ -42,15 +42,27 @@ void CSceneGraph::Set_Camera(CCamera* _camera)
         CShape3d* shape3d = *iterator;
         shape3d->Set_Camera(m_camera);
     }
+
+    for(std::set<CParticleEmitter*>::iterator iterator = m_particleEmittersContainer.begin(); iterator != m_particleEmittersContainer.end(); ++iterator)
+    {
+        CParticleEmitter* particleEmitter = *iterator;
+        particleEmitter->Set_Camera(m_camera);
+    }
 }
 
 void CSceneGraph::Set_Light(CLight* _light)
 {
     m_light = _light;
+    
     for(std::set<CShape3d*>::iterator iterator = m_shapes3dContainer.begin(); iterator != m_shapes3dContainer.end(); ++iterator)
     {
         CShape3d* shape3d = *iterator;
         shape3d->Set_Light(m_light);
+    }
+    for(std::set<CParticleEmitter*>::iterator iterator = m_particleEmittersContainer.begin(); iterator != m_particleEmittersContainer.end(); ++iterator)
+    {
+        CParticleEmitter* particleEmitter = *iterator;
+        particleEmitter->Set_Light(m_light);
     }
 }
 
@@ -113,6 +125,13 @@ void CSceneGraph::Set_Ocean(COcean *_ocean)
         m_landscape->Set_Clipping(glm::vec4(0.0f, 1.0f, 0.0f, m_ocean->Get_Altitude()), E_RENDER_MODE_WORLD_SPACE_REFLECTION);
         m_landscape->Set_Clipping(glm::vec4(0.0f, -1.0f, 0.0f, m_ocean->Get_Altitude()), E_RENDER_MODE_WORLD_SPACE_REFRACTION);
     }
+
+    for(std::set<CShape3d*>::iterator iterator = m_shapes3dContainer.begin(); iterator != m_shapes3dContainer.end(); ++iterator)
+    {
+        CShape3d* shape3d = *iterator;
+        shape3d->Set_Clipping(glm::vec4(0.0f, 1.0f, 0.0f, m_ocean->Get_Altitude()), E_RENDER_MODE_WORLD_SPACE_REFLECTION);
+        shape3d->Set_Clipping(glm::vec4(0.0f, -1.0f, 0.0f, m_ocean->Get_Altitude()), E_RENDER_MODE_WORLD_SPACE_REFRACTION);
+    }
 }
 
 void CSceneGraph::InsertShape3d(CShape3d *_shape3d)
@@ -152,5 +171,38 @@ void CSceneGraph::RemoveShape3d(CShape3d *_shape3d)
     shape3d->ListenUpdateMgr(false);
     shape3d->ListenRenderMgr(false);
     m_shapes3dContainer.erase(shape3d);
+}
+
+void CSceneGraph::InsertParticleEmitter(CParticleEmitter* _particleEmitter)
+{
+    CParticleEmitter* particleEmitter = _particleEmitter;
+
+    if(m_camera != nullptr)
+    {
+        particleEmitter->Set_Camera(m_camera);
+    }
+
+    if(m_light != nullptr)
+    {
+        particleEmitter->Set_Light(m_light);
+    }
+
+    assert(m_updateMgr != nullptr);
+    assert(m_renderMgr != nullptr);
+
+    particleEmitter->Set_UpdateMgr(m_updateMgr);
+    particleEmitter->Set_RenderMgr(m_renderMgr);
+    particleEmitter->ListenUpdateMgr(true);
+    particleEmitter->ListenRenderMgr(true);
+
+    m_particleEmittersContainer.insert(particleEmitter);
+}
+
+void CSceneGraph::RemoveParticleEmitter(CParticleEmitter* _particleEmitter)
+{
+    CParticleEmitter* particleEmitter = _particleEmitter;
+    particleEmitter->ListenUpdateMgr(false);
+    particleEmitter->ListenRenderMgr(false);
+    m_particleEmittersContainer.erase(particleEmitter);
 }
 
