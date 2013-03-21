@@ -118,6 +118,11 @@ void CCharacterController::OnUpdate(f32 _deltatime)
     assert(m_camera != nullptr);
     m_camera->Set_LookAt(m_position);
     m_camera->Set_Rotation(m_rotation.y);
+
+    assert(m_character != nullptr);
+    m_character->Set_Position(m_position);
+    m_character->Set_Rotation(glm::degrees(m_rotation));
+    std::cout<<m_rotation.x<<","<<m_rotation.y<<","<<m_rotation.z<<std::endl;
 }
 
 

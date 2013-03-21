@@ -9,11 +9,10 @@
 #ifndef CRoot_iOS_h
 #define CRoot_iOS_h
 
-#include "CSceneFabricator.h"
-#include "CSceneGraph.h"
+#include "IRoot.h"
 #include "IGLContext.h"
 
-class CRoot_iOS : public virtual CSceneFabricator, public virtual CSceneGraph
+class CRoot_iOS : public IRoot
 {
 private:
     

@@ -70,5 +70,5 @@ glm::vec2 CHeightmapHelper::Get_RotationOnHeightmap(f32* _data, ui32 _width, ui3
     f32 angle_01 = Get_RotationForPlane(point_01, point_02, point_03);
     f32 angle_02 = Get_RotationForPlane(point_01, point_02, point_04);
 
-    return glm::vec2(-acosf(angle_02) + M_PI_2, -acosf(angle_01) + M_PI_2);
+    return glm::vec2(-(-acosf(angle_02) + M_PI_2), -acosf(angle_01) + M_PI_2);
 }

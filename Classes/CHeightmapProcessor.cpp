@@ -50,7 +50,7 @@ void CHeightmapProcessor::Process(const std::string& _heightmapFilename, const g
     {
         for(ui32 j = 0; j < m_height; ++j)
         {
-            m_heightmapData[i + j * m_height] = (static_cast<f32>(data[(i + j * m_width) * 4 + 1] - 63.0f) / 255.0f) * 10.0f;
+            m_heightmapData[i + j * m_height] = (static_cast<f32>(data[(i + j * m_width) * 4 + 1] - 96.0f) / 255.0f) * 10.0f;
             if(fabsf(m_heightmapData[i +j * m_height]) > m_maxAltitude)
             {
                 m_maxAltitude = fabsf(m_heightmapData[i +j * m_height]);

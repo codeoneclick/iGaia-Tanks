@@ -10,11 +10,8 @@
 
 ITankPart::ITankPart(void)
 {
-    m_vPosition = glm::vec3(0.0f, 0.0f, 0.0f);
-    m_vRotation = glm::vec3(0.0f, 0.0f, 0.0f);
-    
-    m_vCachedPosition = glm::vec3(0.0f, 0.0f, 0.0f);
-    m_vCachedRotation = glm::vec3(0.0f, 0.0f, 0.0f);
+    m_position = glm::vec3(0.0f, 0.0f, 0.0f);
+    m_rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 }
 
 ITankPart::~ITankPart(void)

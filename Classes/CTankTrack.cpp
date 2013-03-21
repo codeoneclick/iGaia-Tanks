@@ -6,8 +6,7 @@
 //
 //
 
-#include "ITankTrack.h"
-#include "CSceneMgr.h"
+#include "CTankTrack.h"
 
 ITankTrack::ITankTrack(void)
 {

@@ -324,6 +324,10 @@
 		A480208016F89AE500BC9901 /* CRotateControllerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A480207E16F89AE200BC9901 /* CRotateControllerCallback.cpp */; };
 		A480208216F8BBE300BC9901 /* heightmap_data_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A480208116F8BBE300BC9901 /* heightmap_data_01.jpg */; };
 		A480208416F9CA2000BC9901 /* particle_emitter_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = A480208316F9CA2000BC9901 /* particle_emitter_01.xml */; };
+		A4A22EDF16FB156000C02B8E /* CTankTower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8315A1D17200E39591 /* CTankTower.cpp */; };
+		A4A22EE016FB156000C02B8E /* CTankTrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8515A1D17200E39591 /* CTankTrack.cpp */; };
+		A4A22EE116FB156000C02B8E /* CTankBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8015A1D14B00E39591 /* CTankBody.cpp */; };
+		A4A22EE216FB156000C02B8E /* ITankPart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F5B15A1D0EF00E39591 /* ITankPart.cpp */; };
 		A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
 		A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */; };
 		A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE919217145736FD0021A0DC /* CTexture.cpp */; };
@@ -933,12 +937,12 @@
 		A1F39F7415A1D13900E39591 /* CTankMediumTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTankMediumTower.h; sourceTree = "<group>"; };
 		A1F39F7515A1D13900E39591 /* CTankMediumTrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTankMediumTrack.cpp; sourceTree = "<group>"; };
 		A1F39F7615A1D13900E39591 /* CTankMediumTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTankMediumTrack.h; sourceTree = "<group>"; };
-		A1F39F8015A1D14B00E39591 /* ITankBody.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ITankBody.cpp; sourceTree = "<group>"; };
-		A1F39F8115A1D14B00E39591 /* ITankBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITankBody.h; sourceTree = "<group>"; };
-		A1F39F8315A1D17200E39591 /* ITankTower.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ITankTower.cpp; sourceTree = "<group>"; };
-		A1F39F8415A1D17200E39591 /* ITankTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITankTower.h; sourceTree = "<group>"; };
-		A1F39F8515A1D17200E39591 /* ITankTrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ITankTrack.cpp; sourceTree = "<group>"; };
-		A1F39F8615A1D17200E39591 /* ITankTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITankTrack.h; sourceTree = "<group>"; };
+		A1F39F8015A1D14B00E39591 /* CTankBody.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTankBody.cpp; sourceTree = "<group>"; };
+		A1F39F8115A1D14B00E39591 /* CTankBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTankBody.h; sourceTree = "<group>"; };
+		A1F39F8315A1D17200E39591 /* CTankTower.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTankTower.cpp; sourceTree = "<group>"; };
+		A1F39F8415A1D17200E39591 /* CTankTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTankTower.h; sourceTree = "<group>"; };
+		A1F39F8515A1D17200E39591 /* CTankTrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTankTrack.cpp; sourceTree = "<group>"; };
+		A1F39F8615A1D17200E39591 /* CTankTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTankTrack.h; sourceTree = "<group>"; };
 		A1F68E5A157E399E0048A717 /* CSpriteMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSpriteMgr.cpp; sourceTree = "<group>"; };
 		A1F68E5B157E399E0048A717 /* CSpriteMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSpriteMgr.h; sourceTree = "<group>"; };
 		A1F68E5E157E39C00048A717 /* CSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSprite.cpp; sourceTree = "<group>"; };
@@ -1149,6 +1153,8 @@
 		A480207F16F89AE300BC9901 /* CRotateControllerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRotateControllerCallback.h; sourceTree = "<group>"; };
 		A480208116F8BBE300BC9901 /* heightmap_data_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = heightmap_data_01.jpg; path = Resources/heightmap_data_01.jpg; sourceTree = "<group>"; };
 		A480208316F9CA2000BC9901 /* particle_emitter_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = particle_emitter_01.xml; path = Resources/particle_emitter_01.xml; sourceTree = "<group>"; };
+		A4A22EEB16FB161300C02B8E /* HTankSettings_DTO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTankSettings_DTO.h; sourceTree = "<group>"; };
+		A4A22EEC16FB1B3200C02B8E /* IRoot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRoot.h; sourceTree = "<group>"; };
 		A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ILoadOperation.cpp; sourceTree = "<group>"; };
 		A4A9847316DCE410007F9CF6 /* ILoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILoadOperation.h; sourceTree = "<group>"; };
 		A4A9847C16DCF728007F9CF6 /* CVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBuffer.cpp; sourceTree = "<group>"; };
@@ -2148,14 +2154,15 @@
 				A1F39F8B15A1D61D00E39591 /* GameHeavyTank */,
 				A1F39F8A15A1D61000E39591 /* GameMediumTank */,
 				A1F39F8915A1D60200E39591 /* GameLightTank */,
-				A1F39F8415A1D17200E39591 /* ITankTower.h */,
-				A1F39F8315A1D17200E39591 /* ITankTower.cpp */,
-				A1F39F8615A1D17200E39591 /* ITankTrack.h */,
-				A1F39F8515A1D17200E39591 /* ITankTrack.cpp */,
-				A1F39F8115A1D14B00E39591 /* ITankBody.h */,
-				A1F39F8015A1D14B00E39591 /* ITankBody.cpp */,
+				A1F39F8415A1D17200E39591 /* CTankTower.h */,
+				A1F39F8315A1D17200E39591 /* CTankTower.cpp */,
+				A1F39F8615A1D17200E39591 /* CTankTrack.h */,
+				A1F39F8515A1D17200E39591 /* CTankTrack.cpp */,
+				A1F39F8115A1D14B00E39591 /* CTankBody.h */,
+				A1F39F8015A1D14B00E39591 /* CTankBody.cpp */,
 				A1F39F5C15A1D0EF00E39591 /* ITankPart.h */,
 				A1F39F5B15A1D0EF00E39591 /* ITankPart.cpp */,
+				A4A22EEB16FB161300C02B8E /* HTankSettings_DTO.h */,
 			);
 			name = GameTankParts;
 			sourceTree = "<group>";
@@ -2630,6 +2637,7 @@
 			children = (
 				A4DF956E16C3E8980004EB83 /* HCommon.h */,
 				A4DF956F16C3E8BD0004EB83 /* HEnum.h */,
+				A4A22EEC16FB1B3200C02B8E /* IRoot.h */,
 				93A26E07148D19E300D14A0B /* CCommon_iOS.h */,
 				93A26E0A148D1E3000D14A0B /* CCommon_iOS.mm */,
 			);
@@ -3074,6 +3082,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4A22EDF16FB156000C02B8E /* CTankTower.cpp in Sources */,
+				A4A22EE016FB156000C02B8E /* CTankTrack.cpp in Sources */,
+				A4A22EE116FB156000C02B8E /* CTankBody.cpp in Sources */,
+				A4A22EE216FB156000C02B8E /* ITankPart.cpp in Sources */,
 				A480207116F74DDD00BC9901 /* CLandscapeEdges.cpp in Sources */,
 				A480206E16F72C6900BC9901 /* COcean.cpp in Sources */,
 				A438FEC916EF6F9D0030085C /* CLandscape.cpp in Sources */,

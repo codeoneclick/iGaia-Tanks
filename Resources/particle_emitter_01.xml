@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings name="particle_emitter_01">
+    <num_particles value="54" />
+    <duration value="2000" />
+    <duration_randomness value="1" />
+    <velocity_sensitivity value="1" />
+    <min_horizontal_velocity value="0" />
+    <max_horizontal_velocity value="0.0001" />
+    <min_vertical_velocity value="0.0001" />
+    <max_vertical_velocity value="0.0003" />
+    <end_velocity value="1" />
+    <gravity x="0" y="0.001" z="0" />
+    <start_color r="0" g="0" b="255" a="255" />
+    <end_color r="255" g="0" b="0" a="0" />
+    <start_size width="0.1" height="0.1" />
+    <end_size width="2.0" height="2.0" />
+    <min_particle_emitt_interval value="66" />
+    <max_particle_emitt_interval value="133" />
+    <materials>
+		<material render_mode="0" is_cull_face="0" is_depth_test="0" is_depth_mask="1" is_blend="1" cull_face_mode="GL_FRONT" blend_function_source="GL_SRC_ALPHA" blend_function_destination="GL_ONE_MINUS_SRC_ALPHA">
+			<shader vs_name="particle_emitter.vs" fs_name="particle_emitter.fs" guid="8"/>
+			<textures>
+				<texture name="fire.pvr" slot="0" wrap="GL_REPEAT"/>
+			</textures>
+		</material>
+	</materials>
+</settings>

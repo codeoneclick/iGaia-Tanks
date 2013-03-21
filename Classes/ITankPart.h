@@ -6,34 +6,30 @@
 //
 //
 
-#ifndef __iGaia__ITankPart__
-#define __iGaia__ITankPart__
+#ifndef ITankPart_h
+#define ITankPart_h
 
-#include <iostream>
-#include "CModel.h"
-#include "CMathHelper.h"
-#include "CParticleEmitterFire.h"
+#include "IRoot.h"
+#include "HTankSettings_DTO.h"
 
 class ITankPart
 {
-protected:
-    glm::vec3 m_vBoundPositionHelper;
-    glm::vec4 m_vTransformHelper;
-    glm::mat4x4 m_mTransformHelper;
+private:
     
-    glm::vec3 m_vPosition;
-    glm::vec3 m_vRotation;
-    glm::vec3 m_vCachedPosition;
-    glm::vec3 m_vCachedRotation;
+protected:
+    
+    glm::vec3 m_position;
+    glm::vec3 m_rotation;
+    
 public:
+    
     ITankPart(void);
     virtual ~ITankPart(void);
 
-    virtual void Load(void) = 0;
-    virtual void Update(void) = 0;
+    virtual void Load(IRoot* _root, ITankSettings* _settings) = 0;
     
-    virtual void Set_Position(const glm::vec3& _vPosition) = 0;
-    virtual void Set_Rotation(const glm::vec3& _vRotation) = 0;
+    virtual void Set_Position(const glm::vec3& _position) = 0;
+    virtual void Set_Rotation(const glm::vec3& _rotation) = 0;
 };
 
-#endif /* defined(__iGaia__ITankPart__) */
+#endif 
