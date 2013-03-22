@@ -12,7 +12,7 @@
 #include "HCommon.h"
 #include "HGameEnum.h"
 #include "CCamera.h"
-#include "CShape3d.h"
+#include "ICharacter.h"
 #include "CNavigator.h"
 #include "CMoveControllerCallback.h"
 #include "CRotateControllerCallback.h"
@@ -25,16 +25,16 @@ class CCharacterController :
 {
 private:
 
+protected:
+
     CCamera* m_camera;
-    CShape3d* m_character;
+    ICharacter* m_character;
     CNavigator* m_navigator;
 
     E_MOVE_CONTROLLER_DIRECTION m_moveDirection;
     E_ROTATE_CONTROLLER_DIRECTION m_rotateDirection;
     glm::vec3 m_position;
     glm::vec3 m_rotation;
-
-protected:
 
     void OnMoveControllerUpdate(ui32 _direction);
     void OnRotateControllerUpdate(ui32 _direction);
@@ -50,7 +50,7 @@ public:
         m_camera = _camera;
     };
 
-    inline void Set_Character(CShape3d* _character)
+    inline void Set_Character(ICharacter* _character)
     {
         m_character = _character;
     };

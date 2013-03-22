@@ -12,10 +12,13 @@
 #include "HCommon.h"
 #include "CRoot_iOS.h"
 #include "CCharacterController.h"
+#include "CGameSettingsMgr.h"
 
 class CGameMainMenuScene
 {
 private:
+
+    CGameSettingsMgr* m_gameSettingsMgr;
 
 protected:
 

@@ -11,6 +11,7 @@
 CCharacterController::CCharacterController(void)
 {
     m_camera = nullptr;
+    m_character = nullptr;
     m_moveDirection = E_MOVE_CONTROLLER_DIRECTION_NONE;
     m_rotateDirection = E_ROTATE_CONTROLLER_DIRECTION_NONE;
     m_navigator = new CNavigator(0.75f, 0.75f, 0.75f, 0.066f);
@@ -121,8 +122,9 @@ void CCharacterController::OnUpdate(f32 _deltatime)
 
     assert(m_character != nullptr);
     m_character->Set_Position(m_position);
-    m_character->Set_Rotation(glm::degrees(m_rotation));
-    std::cout<<m_rotation.x<<","<<m_rotation.y<<","<<m_rotation.z<<std::endl;
+    glm::vec3 characterRotation = glm::degrees(m_rotation);
+    characterRotation.y += 90.0f;
+    m_character->Set_Rotation(characterRotation);
 }
 
 

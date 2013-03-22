@@ -324,10 +324,18 @@
 		A480208016F89AE500BC9901 /* CRotateControllerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A480207E16F89AE200BC9901 /* CRotateControllerCallback.cpp */; };
 		A480208216F8BBE300BC9901 /* heightmap_data_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A480208116F8BBE300BC9901 /* heightmap_data_01.jpg */; };
 		A480208416F9CA2000BC9901 /* particle_emitter_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = A480208316F9CA2000BC9901 /* particle_emitter_01.xml */; };
-		A4A22EDF16FB156000C02B8E /* CTankTower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8315A1D17200E39591 /* CTankTower.cpp */; };
-		A4A22EE016FB156000C02B8E /* CTankTrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8515A1D17200E39591 /* CTankTrack.cpp */; };
-		A4A22EE116FB156000C02B8E /* CTankBody.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8015A1D14B00E39591 /* CTankBody.cpp */; };
-		A4A22EE216FB156000C02B8E /* ITankPart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F5B15A1D0EF00E39591 /* ITankPart.cpp */; };
+		A4A22EDF16FB156000C02B8E /* CTurret.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8315A1D17200E39591 /* CTurret.cpp */; };
+		A4A22EE016FB156000C02B8E /* CChassis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8515A1D17200E39591 /* CChassis.cpp */; };
+		A4A22EE116FB156000C02B8E /* CCarcass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8015A1D14B00E39591 /* CCarcass.cpp */; };
+		A4A22EE216FB156000C02B8E /* ISpare.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F5B15A1D0EF00E39591 /* ISpare.cpp */; };
+		A4A22EF016FC51D200C02B8E /* ICharacter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A22EEE16FC51D000C02B8E /* ICharacter.cpp */; };
+		A4A22EFB16FC531100C02B8E /* CPanzer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A22EF916FC530F00C02B8E /* CPanzer.cpp */; };
+		A4A22EFE16FC588800C02B8E /* CGameSettingsMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A22EFC16FC588700C02B8E /* CGameSettingsMgr.cpp */; };
+		A4A22F0116FC623D00C02B8E /* CPanzerSettings_PARSER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A22EFF16FC623A00C02B8E /* CPanzerSettings_PARSER.cpp */; };
+		A4A22F0916FC6AD300C02B8E /* panzer_light_carcass_settings.xml in Resources */ = {isa = PBXBuildFile; fileRef = A4A22F0516FC6AD300C02B8E /* panzer_light_carcass_settings.xml */; };
+		A4A22F0A16FC6AD300C02B8E /* panzer_light_settings.xml in Resources */ = {isa = PBXBuildFile; fileRef = A4A22F0616FC6AD300C02B8E /* panzer_light_settings.xml */; };
+		A4A22F0B16FC6AD300C02B8E /* panzer_light_turret_settings.xml in Resources */ = {isa = PBXBuildFile; fileRef = A4A22F0716FC6AD300C02B8E /* panzer_light_turret_settings.xml */; };
+		A4A22F0C16FC6AD300C02B8E /* panzer_light_left_chassis_settings.xml in Resources */ = {isa = PBXBuildFile; fileRef = A4A22F0816FC6AD300C02B8E /* panzer_light_left_chassis_settings.xml */; };
 		A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
 		A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */; };
 		A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE919217145736FD0021A0DC /* CTexture.cpp */; };
@@ -335,6 +343,7 @@
 		A4A9848116DCF73F007F9CF6 /* CIndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A9847F16DCF73E007F9CF6 /* CIndexBuffer.cpp */; };
 		A4A9848316DCFA55007F9CF6 /* MainAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MainAppDelegate.mm */; };
 		A4A9848416DCFA72007F9CF6 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4D8FB3720F9EC1010055EDDB /* main.mm */; };
+		A4ED79DB16FC774600B48F6B /* panzer_light_right_chassis_settings.xml in Resources */ = {isa = PBXBuildFile; fileRef = A4ED79DA16FC774600B48F6B /* panzer_light_right_chassis_settings.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -917,8 +926,8 @@
 		A1F05DA4158732A300812D02 /* ShaderParticleND.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderParticleND.vert; path = Shaders/ShaderParticleND.vert; sourceTree = "<group>"; };
 		A1F05DA815877EF200812D02 /* CParticleEmitterFireTrail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CParticleEmitterFireTrail.cpp; sourceTree = "<group>"; };
 		A1F05DA915877EF200812D02 /* CParticleEmitterFireTrail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CParticleEmitterFireTrail.h; sourceTree = "<group>"; };
-		A1F39F5B15A1D0EF00E39591 /* ITankPart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ITankPart.cpp; sourceTree = "<group>"; };
-		A1F39F5C15A1D0EF00E39591 /* ITankPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITankPart.h; sourceTree = "<group>"; };
+		A1F39F5B15A1D0EF00E39591 /* ISpare.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISpare.cpp; sourceTree = "<group>"; };
+		A1F39F5C15A1D0EF00E39591 /* ISpare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISpare.h; sourceTree = "<group>"; };
 		A1F39F6515A1D13900E39591 /* CTankHeavyBody.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTankHeavyBody.cpp; sourceTree = "<group>"; };
 		A1F39F6615A1D13900E39591 /* CTankHeavyBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTankHeavyBody.h; sourceTree = "<group>"; };
 		A1F39F6715A1D13900E39591 /* CTankHeavyTower.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTankHeavyTower.cpp; sourceTree = "<group>"; };
@@ -937,12 +946,12 @@
 		A1F39F7415A1D13900E39591 /* CTankMediumTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTankMediumTower.h; sourceTree = "<group>"; };
 		A1F39F7515A1D13900E39591 /* CTankMediumTrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTankMediumTrack.cpp; sourceTree = "<group>"; };
 		A1F39F7615A1D13900E39591 /* CTankMediumTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTankMediumTrack.h; sourceTree = "<group>"; };
-		A1F39F8015A1D14B00E39591 /* CTankBody.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTankBody.cpp; sourceTree = "<group>"; };
-		A1F39F8115A1D14B00E39591 /* CTankBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTankBody.h; sourceTree = "<group>"; };
-		A1F39F8315A1D17200E39591 /* CTankTower.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTankTower.cpp; sourceTree = "<group>"; };
-		A1F39F8415A1D17200E39591 /* CTankTower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTankTower.h; sourceTree = "<group>"; };
-		A1F39F8515A1D17200E39591 /* CTankTrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTankTrack.cpp; sourceTree = "<group>"; };
-		A1F39F8615A1D17200E39591 /* CTankTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTankTrack.h; sourceTree = "<group>"; };
+		A1F39F8015A1D14B00E39591 /* CCarcass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCarcass.cpp; sourceTree = "<group>"; };
+		A1F39F8115A1D14B00E39591 /* CCarcass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCarcass.h; sourceTree = "<group>"; };
+		A1F39F8315A1D17200E39591 /* CTurret.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTurret.cpp; sourceTree = "<group>"; };
+		A1F39F8415A1D17200E39591 /* CTurret.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTurret.h; sourceTree = "<group>"; };
+		A1F39F8515A1D17200E39591 /* CChassis.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CChassis.cpp; sourceTree = "<group>"; };
+		A1F39F8615A1D17200E39591 /* CChassis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CChassis.h; sourceTree = "<group>"; };
 		A1F68E5A157E399E0048A717 /* CSpriteMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSpriteMgr.cpp; sourceTree = "<group>"; };
 		A1F68E5B157E399E0048A717 /* CSpriteMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSpriteMgr.h; sourceTree = "<group>"; };
 		A1F68E5E157E39C00048A717 /* CSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSprite.cpp; sourceTree = "<group>"; };
@@ -1153,8 +1162,20 @@
 		A480207F16F89AE300BC9901 /* CRotateControllerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRotateControllerCallback.h; sourceTree = "<group>"; };
 		A480208116F8BBE300BC9901 /* heightmap_data_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = heightmap_data_01.jpg; path = Resources/heightmap_data_01.jpg; sourceTree = "<group>"; };
 		A480208316F9CA2000BC9901 /* particle_emitter_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = particle_emitter_01.xml; path = Resources/particle_emitter_01.xml; sourceTree = "<group>"; };
-		A4A22EEB16FB161300C02B8E /* HTankSettings_DTO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTankSettings_DTO.h; sourceTree = "<group>"; };
+		A4A22EEB16FB161300C02B8E /* HGameSettings_DTO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGameSettings_DTO.h; sourceTree = "<group>"; };
 		A4A22EEC16FB1B3200C02B8E /* IRoot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRoot.h; sourceTree = "<group>"; };
+		A4A22EEE16FC51D000C02B8E /* ICharacter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ICharacter.cpp; sourceTree = "<group>"; };
+		A4A22EEF16FC51D100C02B8E /* ICharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICharacter.h; sourceTree = "<group>"; };
+		A4A22EF916FC530F00C02B8E /* CPanzer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPanzer.cpp; sourceTree = "<group>"; };
+		A4A22EFA16FC531000C02B8E /* CPanzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPanzer.h; sourceTree = "<group>"; };
+		A4A22EFC16FC588700C02B8E /* CGameSettingsMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameSettingsMgr.cpp; sourceTree = "<group>"; };
+		A4A22EFD16FC588700C02B8E /* CGameSettingsMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameSettingsMgr.h; sourceTree = "<group>"; };
+		A4A22EFF16FC623A00C02B8E /* CPanzerSettings_PARSER.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPanzerSettings_PARSER.cpp; sourceTree = "<group>"; };
+		A4A22F0016FC623B00C02B8E /* CPanzerSettings_PARSER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPanzerSettings_PARSER.h; sourceTree = "<group>"; };
+		A4A22F0516FC6AD300C02B8E /* panzer_light_carcass_settings.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = panzer_light_carcass_settings.xml; path = Resources/panzer_light_carcass_settings.xml; sourceTree = "<group>"; };
+		A4A22F0616FC6AD300C02B8E /* panzer_light_settings.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = panzer_light_settings.xml; path = Resources/panzer_light_settings.xml; sourceTree = "<group>"; };
+		A4A22F0716FC6AD300C02B8E /* panzer_light_turret_settings.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = panzer_light_turret_settings.xml; path = Resources/panzer_light_turret_settings.xml; sourceTree = "<group>"; };
+		A4A22F0816FC6AD300C02B8E /* panzer_light_left_chassis_settings.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = panzer_light_left_chassis_settings.xml; path = Resources/panzer_light_left_chassis_settings.xml; sourceTree = "<group>"; };
 		A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ILoadOperation.cpp; sourceTree = "<group>"; };
 		A4A9847316DCE410007F9CF6 /* ILoadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILoadOperation.h; sourceTree = "<group>"; };
 		A4A9847C16DCF728007F9CF6 /* CVertexBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CVertexBuffer.cpp; sourceTree = "<group>"; };
@@ -1165,6 +1186,7 @@
 		A4DF956F16C3E8BD0004EB83 /* HEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HEnum.h; sourceTree = "<group>"; };
 		A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CResourceLoadCallback.cpp; sourceTree = "<group>"; };
 		A4DF957116C3EC1C0004EB83 /* CResourceLoadCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CResourceLoadCallback.h; sourceTree = "<group>"; };
+		A4ED79DA16FC774600B48F6B /* panzer_light_right_chassis_settings.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = panzer_light_right_chassis_settings.xml; path = Resources/panzer_light_right_chassis_settings.xml; sourceTree = "<group>"; };
 		CE8DFA9114587AFD00AE7288 /* CGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGame.h; sourceTree = "<group>"; };
 		CE8DFA9214587B0C00AE7288 /* CGame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGame.cpp; sourceTree = "<group>"; };
 		CE914ED11455D7E900AA2000 /* CShaderComposite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CShaderComposite.h; sourceTree = "<group>"; };
@@ -1433,6 +1455,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A4A22F0216FC6A9A00C02B8E /* Settings */,
 				A480208116F8BBE300BC9901 /* heightmap_data_01.jpg */,
 				A480208316F9CA2000BC9901 /* particle_emitter_01.xml */,
 				A480206F16F7427500BC9901 /* ocean_01.xml */,
@@ -2154,15 +2177,6 @@
 				A1F39F8B15A1D61D00E39591 /* GameHeavyTank */,
 				A1F39F8A15A1D61000E39591 /* GameMediumTank */,
 				A1F39F8915A1D60200E39591 /* GameLightTank */,
-				A1F39F8415A1D17200E39591 /* CTankTower.h */,
-				A1F39F8315A1D17200E39591 /* CTankTower.cpp */,
-				A1F39F8615A1D17200E39591 /* CTankTrack.h */,
-				A1F39F8515A1D17200E39591 /* CTankTrack.cpp */,
-				A1F39F8115A1D14B00E39591 /* CTankBody.h */,
-				A1F39F8015A1D14B00E39591 /* CTankBody.cpp */,
-				A1F39F5C15A1D0EF00E39591 /* ITankPart.h */,
-				A1F39F5B15A1D0EF00E39591 /* ITankPart.cpp */,
-				A4A22EEB16FB161300C02B8E /* HTankSettings_DTO.h */,
 			);
 			name = GameTankParts;
 			sourceTree = "<group>";
@@ -2632,6 +2646,34 @@
 			name = iGaia_PROJECT;
 			sourceTree = "<group>";
 		};
+		A4A22F0216FC6A9A00C02B8E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A4A22F0316FC6AA500C02B8E /* GameObjects */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		A4A22F0316FC6AA500C02B8E /* GameObjects */ = {
+			isa = PBXGroup;
+			children = (
+				A4A22F0416FC6AB400C02B8E /* Panzers */,
+			);
+			name = GameObjects;
+			sourceTree = "<group>";
+		};
+		A4A22F0416FC6AB400C02B8E /* Panzers */ = {
+			isa = PBXGroup;
+			children = (
+				A4A22F0516FC6AD300C02B8E /* panzer_light_carcass_settings.xml */,
+				A4A22F0616FC6AD300C02B8E /* panzer_light_settings.xml */,
+				A4A22F0716FC6AD300C02B8E /* panzer_light_turret_settings.xml */,
+				A4A22F0816FC6AD300C02B8E /* panzer_light_left_chassis_settings.xml */,
+				A4ED79DA16FC774600B48F6B /* panzer_light_right_chassis_settings.xml */,
+			);
+			name = Panzers;
+			sourceTree = "<group>";
+		};
 		A4DF956D16C3E8620004EB83 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -2644,9 +2686,110 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
+		A4ED79DC16FC891600B48F6B /* Panzer */ = {
+			isa = PBXGroup;
+			children = (
+				A4ED79E716FC8A8300B48F6B /* Spares */,
+				A4A22EFA16FC531000C02B8E /* CPanzer.h */,
+				A4A22EF916FC530F00C02B8E /* CPanzer.cpp */,
+			);
+			name = Panzer;
+			sourceTree = "<group>";
+		};
+		A4ED79DD16FC892900B48F6B /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				A465C16916F0BD88009404ED /* HGameEnum.h */,
+				A4A22EEB16FB161300C02B8E /* HGameSettings_DTO.h */,
+				A4A22EEF16FC51D100C02B8E /* ICharacter.h */,
+				A4A22EEE16FC51D000C02B8E /* ICharacter.cpp */,
+				A465C17316F0CA4F009404ED /* CCharacterController.h */,
+				A465C17216F0CA4F009404ED /* CCharacterController.cpp */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		A4ED79DE16FC893700B48F6B /* Mgrs */ = {
+			isa = PBXGroup;
+			children = (
+				A4ED79E116FC89A400B48F6B /* Settings */,
+			);
+			name = Mgrs;
+			sourceTree = "<group>";
+		};
+		A4ED79DF16FC894400B48F6B /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				A4ED79E316FC89D300B48F6B /* Controller */,
+				A4ED79E016FC896100B48F6B /* Scene */,
+			);
+			name = MainMenu;
+			sourceTree = "<group>";
+		};
+		A4ED79E016FC896100B48F6B /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				21BFC90616EE685700FA9F50 /* CGameMainMenuScene.h */,
+				21BFC90516EE685600FA9F50 /* CGameMainMenuScene.cpp */,
+			);
+			name = Scene;
+			sourceTree = "<group>";
+		};
+		A4ED79E116FC89A400B48F6B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A4A22F0016FC623B00C02B8E /* CPanzerSettings_PARSER.h */,
+				A4A22EFF16FC623A00C02B8E /* CPanzerSettings_PARSER.cpp */,
+				A4A22EFD16FC588700C02B8E /* CGameSettingsMgr.h */,
+				A4A22EFC16FC588700C02B8E /* CGameSettingsMgr.cpp */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		A4ED79E316FC89D300B48F6B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				21BFC90B16EE68F600FA9F50 /* CGameMainMenuSceneViewController.h */,
+				21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.mm */,
+				21BFC90D16EE68F600FA9F50 /* CGameMainMenuSceneViewController.xib */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		A4ED79E616FC8A2700B48F6B /* Callbacks */ = {
+			isa = PBXGroup;
+			children = (
+				A465C16C16F0BFFC009404ED /* CMoveControllerCallback.h */,
+				A465C16B16F0BFFB009404ED /* CMoveControllerCallback.cpp */,
+				A480207F16F89AE300BC9901 /* CRotateControllerCallback.h */,
+				A480207E16F89AE200BC9901 /* CRotateControllerCallback.cpp */,
+			);
+			name = Callbacks;
+			sourceTree = "<group>";
+		};
+		A4ED79E716FC8A8300B48F6B /* Spares */ = {
+			isa = PBXGroup;
+			children = (
+				A1F39F8415A1D17200E39591 /* CTurret.h */,
+				A1F39F8315A1D17200E39591 /* CTurret.cpp */,
+				A1F39F8615A1D17200E39591 /* CChassis.h */,
+				A1F39F8515A1D17200E39591 /* CChassis.cpp */,
+				A1F39F8115A1D14B00E39591 /* CCarcass.h */,
+				A1F39F8015A1D14B00E39591 /* CCarcass.cpp */,
+				A1F39F5C15A1D0EF00E39591 /* ISpare.h */,
+				A1F39F5B15A1D0EF00E39591 /* ISpare.cpp */,
+			);
+			name = Spares;
+			sourceTree = "<group>";
+		};
 		CE8DFA8E14587A8200AE7288 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				A4ED79E616FC8A2700B48F6B /* Callbacks */,
+				A4ED79DF16FC894400B48F6B /* MainMenu */,
+				A4ED79DE16FC893700B48F6B /* Mgrs */,
+				A4ED79DD16FC892900B48F6B /* Support */,
+				A4ED79DC16FC891600B48F6B /* Panzer */,
 				A465C16E16F0C7F9009404ED /* Views */,
 				A123836415D12244007769E7 /* GameBuildings */,
 				A153D5BE153DA3A400FBFFD5 /* GameUI */,
@@ -2659,20 +2802,8 @@
 				CE8DFA9214587B0C00AE7288 /* CGame.cpp */,
 				93060C8B14EE8BA300306309 /* CGameState.h */,
 				93060C8C14EE8BB100306309 /* CGameState.cpp */,
-				21BFC90616EE685700FA9F50 /* CGameMainMenuScene.h */,
-				21BFC90516EE685600FA9F50 /* CGameMainMenuScene.cpp */,
 				21BFC90916EE68C100FA9F50 /* CGameAppDelegate.h */,
 				21BFC90816EE68C000FA9F50 /* CGameAppDelegate.mm */,
-				21BFC90B16EE68F600FA9F50 /* CGameMainMenuSceneViewController.h */,
-				21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.mm */,
-				21BFC90D16EE68F600FA9F50 /* CGameMainMenuSceneViewController.xib */,
-				A465C16916F0BD88009404ED /* HGameEnum.h */,
-				A465C16C16F0BFFC009404ED /* CMoveControllerCallback.h */,
-				A465C16B16F0BFFB009404ED /* CMoveControllerCallback.cpp */,
-				A480207F16F89AE300BC9901 /* CRotateControllerCallback.h */,
-				A480207E16F89AE200BC9901 /* CRotateControllerCallback.cpp */,
-				A465C17316F0CA4F009404ED /* CCharacterController.h */,
-				A465C17216F0CA4F009404ED /* CCharacterController.cpp */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -3043,6 +3174,11 @@
 				A480207016F7427600BC9901 /* ocean_01.xml in Resources */,
 				A480208216F8BBE300BC9901 /* heightmap_data_01.jpg in Resources */,
 				A480208416F9CA2000BC9901 /* particle_emitter_01.xml in Resources */,
+				A4A22F0916FC6AD300C02B8E /* panzer_light_carcass_settings.xml in Resources */,
+				A4A22F0A16FC6AD300C02B8E /* panzer_light_settings.xml in Resources */,
+				A4A22F0B16FC6AD300C02B8E /* panzer_light_turret_settings.xml in Resources */,
+				A4A22F0C16FC6AD300C02B8E /* panzer_light_left_chassis_settings.xml in Resources */,
+				A4ED79DB16FC774600B48F6B /* panzer_light_right_chassis_settings.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3082,10 +3218,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4A22EDF16FB156000C02B8E /* CTankTower.cpp in Sources */,
-				A4A22EE016FB156000C02B8E /* CTankTrack.cpp in Sources */,
-				A4A22EE116FB156000C02B8E /* CTankBody.cpp in Sources */,
-				A4A22EE216FB156000C02B8E /* ITankPart.cpp in Sources */,
+				A4A22EDF16FB156000C02B8E /* CTurret.cpp in Sources */,
+				A4A22EE016FB156000C02B8E /* CChassis.cpp in Sources */,
+				A4A22EE116FB156000C02B8E /* CCarcass.cpp in Sources */,
+				A4A22EE216FB156000C02B8E /* ISpare.cpp in Sources */,
 				A480207116F74DDD00BC9901 /* CLandscapeEdges.cpp in Sources */,
 				A480206E16F72C6900BC9901 /* COcean.cpp in Sources */,
 				A438FEC916EF6F9D0030085C /* CLandscape.cpp in Sources */,
@@ -3155,6 +3291,10 @@
 				A480206516F21C2700BC9901 /* CObject3dBasisProcessor.cpp in Sources */,
 				A480207516F89A7F00BC9901 /* CRotateControllerView_iOS.mm in Sources */,
 				A480208016F89AE500BC9901 /* CRotateControllerCallback.cpp in Sources */,
+				A4A22EF016FC51D200C02B8E /* ICharacter.cpp in Sources */,
+				A4A22EFB16FC531100C02B8E /* CPanzer.cpp in Sources */,
+				A4A22EFE16FC588800C02B8E /* CGameSettingsMgr.cpp in Sources */,
+				A4A22F0116FC623D00C02B8E /* CPanzerSettings_PARSER.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3245,7 +3385,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"\"${PROJECT_DIR}\"/**",
 					"\"$(SRCROOT)/Libs/gtest-1.6.0/include\"",
@@ -3277,7 +3417,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"\"${PROJECT_DIR}\"/**",
 					"\"$(SRCROOT)/Libs/gtest-1.6.0/include\"",
