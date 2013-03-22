@@ -13,6 +13,7 @@
 #include "CLight.h"
 #include "CShape3d.h"
 #include "CLandscape.h"
+#include "CLandscapeDecal.h"
 #include "COcean.h"
 #include "CParticleEmitter.h"
 #include "CRenderMgr.h"
@@ -30,6 +31,7 @@ private:
 
     std::set<CShape3d*> m_shapes3dContainer;
     std::set<CParticleEmitter*> m_particleEmittersContainer;
+    std::set<CLandscapeDecal*> m_landscapeDecalsContainer;
 
 protected:
 
@@ -52,6 +54,9 @@ public:
 
     void InsertParticleEmitter(CParticleEmitter* _particleEmitter);
     void RemoveParticleEmitter(CParticleEmitter* _particleEmitter);
+
+    void InsertLandscapeDecal(CLandscapeDecal* _landscapeDecal);
+    void RemoveLandscapeDecal(CLandscapeDecal* _landscapeDecal);
 };
 
 

@@ -7,9 +7,11 @@ const char* ShaderModelV = STRING_SHADER(
                                                     varying vec3   OUT_Light;
                                                     varying vec3   OUT_Normal;                                     
                                                     varying vec2   OUT_TexCoord;
+                                                    varying float  OUT_Clip;
                                                     
                                                     uniform vec3   EXT_Light;
                                                     uniform vec2   EXT_Texcoord_Offset;
+                                                    uniform vec4   EXT_Clip_Plane;
                                                     
                                                     uniform mat4   EXT_MATRIX_Projection;
                                                     uniform mat4   EXT_MATRIX_View;                                          
@@ -23,5 +25,6 @@ void main(void)
 
     OUT_Light = normalize(EXT_Light - vec3(vPosition));
     OUT_TexCoord = vec2(IN_SLOT_TexCoord.x + EXT_Texcoord_Offset.x, IN_SLOT_TexCoord.y + EXT_Texcoord_Offset.y);
+    OUT_Clip = dot(vPosition.xyz, EXT_Clip_Plane.xyz) + EXT_Clip_Plane.w;
 }
 );

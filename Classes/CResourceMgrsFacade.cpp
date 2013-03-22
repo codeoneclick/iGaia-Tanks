@@ -75,6 +75,14 @@ SLandscapeSettings* CResourceMgrsFacade::LoadLandscapeSettings(const std::string
     return settings;
 }
 
+SLandscapeDecalSettings* CResourceMgrsFacade::LoadLandscapeDecalSettings(const std::string &_filename)
+{
+    assert(m_settingsContainer != nullptr);
+    SLandscapeDecalSettings* settings = m_settingsContainer->LoadLandscapeDecalSettings(_filename);
+    assert(settings != nullptr);
+    return settings;
+}
+
 SOceanSettings* CResourceMgrsFacade::LoadOceanSettings(const std::string& _filename)
 {
     assert(m_settingsContainer != nullptr);

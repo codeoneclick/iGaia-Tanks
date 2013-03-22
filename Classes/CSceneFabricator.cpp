@@ -87,6 +87,23 @@ void CSceneFabricator::DeleteLandscape(CLandscape* _landscape)
     m_sceneContainer->RemoveGameObject3d(_landscape);
 }
 
+CLandscapeDecal* CSceneFabricator::CreateLandscapeDecal(const std::string& _filename)
+{
+    assert(m_resourceMgrsFacade != nullptr);
+    assert(m_shaderComposite != nullptr);
+    assert(m_sceneContainer != nullptr);
+    CLandscapeDecal* landscapeDecal = new CLandscapeDecal();
+    landscapeDecal->Load(m_resourceMgrsFacade, m_shaderComposite, _filename);
+    m_sceneContainer->AddGameObject3d(landscapeDecal);
+    return landscapeDecal;
+}
+
+void CSceneFabricator::DeleteLandscapeDecal(CLandscapeDecal* _landscapeDecal)
+{
+    assert(m_sceneContainer != nullptr);
+    m_sceneContainer->RemoveGameObject3d(_landscapeDecal);
+}
+
 COcean* CSceneFabricator::CreateOcean(const std::string& _filename)
 {
     assert(m_resourceMgrsFacade != nullptr);

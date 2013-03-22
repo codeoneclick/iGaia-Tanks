@@ -324,6 +324,9 @@
 		A480208016F89AE500BC9901 /* CRotateControllerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A480207E16F89AE200BC9901 /* CRotateControllerCallback.cpp */; };
 		A480208216F8BBE300BC9901 /* heightmap_data_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A480208116F8BBE300BC9901 /* heightmap_data_01.jpg */; };
 		A480208416F9CA2000BC9901 /* particle_emitter_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = A480208316F9CA2000BC9901 /* particle_emitter_01.xml */; };
+		A4828B4D16FCA28200EB7A7D /* CLandscapeDecal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A13F9EB71568D743009DCBB4 /* CLandscapeDecal.cpp */; };
+		A4828B5016FCA58F00EB7A7D /* CLandscapeDecalSettings_PARSER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4828B4E16FCA58F00EB7A7D /* CLandscapeDecalSettings_PARSER.cpp */; };
+		A4828B5216FCA69600EB7A7D /* landscape_decal_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = A4828B5116FCA69600EB7A7D /* landscape_decal_01.xml */; };
 		A4A22EDF16FB156000C02B8E /* CTurret.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8315A1D17200E39591 /* CTurret.cpp */; };
 		A4A22EE016FB156000C02B8E /* CChassis.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8515A1D17200E39591 /* CChassis.cpp */; };
 		A4A22EE116FB156000C02B8E /* CCarcass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1F39F8015A1D14B00E39591 /* CCarcass.cpp */; };
@@ -1162,6 +1165,9 @@
 		A480207F16F89AE300BC9901 /* CRotateControllerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRotateControllerCallback.h; sourceTree = "<group>"; };
 		A480208116F8BBE300BC9901 /* heightmap_data_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = heightmap_data_01.jpg; path = Resources/heightmap_data_01.jpg; sourceTree = "<group>"; };
 		A480208316F9CA2000BC9901 /* particle_emitter_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = particle_emitter_01.xml; path = Resources/particle_emitter_01.xml; sourceTree = "<group>"; };
+		A4828B4E16FCA58F00EB7A7D /* CLandscapeDecalSettings_PARSER.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLandscapeDecalSettings_PARSER.cpp; sourceTree = "<group>"; };
+		A4828B4F16FCA58F00EB7A7D /* CLandscapeDecalSettings_PARSER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLandscapeDecalSettings_PARSER.h; sourceTree = "<group>"; };
+		A4828B5116FCA69600EB7A7D /* landscape_decal_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = landscape_decal_01.xml; path = Resources/landscape_decal_01.xml; sourceTree = "<group>"; };
 		A4A22EEB16FB161300C02B8E /* HGameSettings_DTO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGameSettings_DTO.h; sourceTree = "<group>"; };
 		A4A22EEC16FB1B3200C02B8E /* IRoot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRoot.h; sourceTree = "<group>"; };
 		A4A22EEE16FC51D000C02B8E /* ICharacter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ICharacter.cpp; sourceTree = "<group>"; };
@@ -2596,6 +2602,8 @@
 				A425B3BD16E7522100E300F9 /* CSkyDomeSettings_PARSER.cpp */,
 				A425B3C116E7523900E300F9 /* CParticleEmitterSettings_PARSER.h */,
 				A425B3C016E7523900E300F9 /* CParticleEmitterSettings_PARSER.cpp */,
+				A4828B4F16FCA58F00EB7A7D /* CLandscapeDecalSettings_PARSER.h */,
+				A4828B4E16FCA58F00EB7A7D /* CLandscapeDecalSettings_PARSER.cpp */,
 			);
 			name = GameObjectSettings_PARSERS;
 			sourceTree = "<group>";
@@ -2649,6 +2657,7 @@
 		A4A22F0216FC6A9A00C02B8E /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				A4828B5116FCA69600EB7A7D /* landscape_decal_01.xml */,
 				A4A22F0316FC6AA500C02B8E /* GameObjects */,
 			);
 			name = Settings;
@@ -3179,6 +3188,7 @@
 				A4A22F0B16FC6AD300C02B8E /* panzer_light_turret_settings.xml in Resources */,
 				A4A22F0C16FC6AD300C02B8E /* panzer_light_left_chassis_settings.xml in Resources */,
 				A4ED79DB16FC774600B48F6B /* panzer_light_right_chassis_settings.xml in Resources */,
+				A4828B5216FCA69600EB7A7D /* landscape_decal_01.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3218,6 +3228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4828B4D16FCA28200EB7A7D /* CLandscapeDecal.cpp in Sources */,
 				A4A22EDF16FB156000C02B8E /* CTurret.cpp in Sources */,
 				A4A22EE016FB156000C02B8E /* CChassis.cpp in Sources */,
 				A4A22EE116FB156000C02B8E /* CCarcass.cpp in Sources */,
@@ -3295,6 +3306,7 @@
 				A4A22EFB16FC531100C02B8E /* CPanzer.cpp in Sources */,
 				A4A22EFE16FC588800C02B8E /* CGameSettingsMgr.cpp in Sources */,
 				A4A22F0116FC623D00C02B8E /* CPanzerSettings_PARSER.cpp in Sources */,
+				A4828B5016FCA58F00EB7A7D /* CLandscapeDecalSettings_PARSER.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

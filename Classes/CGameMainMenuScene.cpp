@@ -34,8 +34,8 @@ void CGameMainMenuScene::Load(CRoot_iOS* _root)
     _root->Set_Camera(m_camera);
     m_camera->Set_Position(glm::vec3(0.0f, 0.0f, 0.0f));
     m_camera->Set_LookAt(glm::vec3(16.0f, 0.0f, 16.0f));
-    m_camera->Set_Distance(16.0f);
-    m_camera->Set_Height(16.0f);
+    m_camera->Set_Distance(8.0f);
+    m_camera->Set_Height(8.0f);
 
     m_light = _root->CreateLight();
     m_light->Set_Position(glm::vec3(32.0f, 128.0f, 32.0f));
@@ -62,9 +62,13 @@ void CGameMainMenuScene::Load(CRoot_iOS* _root)
     CPanzer* mainPanzer = new CPanzer();
     mainPanzer->Load(_root, mainPanzerSettings);
 
+    CLandscapeDecal* mainPanzerShadow = _root->CreateLandscapeDecal("landscape_decal_01.xml");
+    _root->InsertLandscapeDecal(mainPanzerShadow);
+
     m_characterController = new CCharacterController();
     m_characterController->Set_Camera(m_camera);
     m_characterController->Set_Character(mainPanzer);
+    m_characterController->Set_Shadow(mainPanzerShadow);
     m_characterController->Get_Navigator()->Set_Heightmap(m_landscape->Get_HeightmapData(), m_landscape->Get_HeightmapWidth(), m_landscape->Get_HeightmapHeight());
     ConnectToMainLoop(m_characterController);
 }

@@ -93,6 +93,14 @@ void CSceneGraph::Set_Landscape(CLandscape* _landscape)
         m_landscape->Set_Clipping(glm::vec4(0.0f, 1.0f, 0.0f, m_ocean->Get_Altitude()), E_RENDER_MODE_WORLD_SPACE_REFLECTION);
         m_landscape->Set_Clipping(glm::vec4(0.0f, -1.0f, 0.0f, m_ocean->Get_Altitude()), E_RENDER_MODE_WORLD_SPACE_REFRACTION);
     }
+
+    for(std::set<CLandscapeDecal*>::iterator iterator = m_landscapeDecalsContainer.begin(); iterator != m_landscapeDecalsContainer.end(); ++iterator)
+    {
+        CLandscapeDecal* landscapeDecal = *iterator;
+        landscapeDecal->Set_HeightmapData(m_landscape->Get_HeightmapData());
+        landscapeDecal->Set_HeightmapWidth(m_landscape->Get_HeightmapWidth());
+        landscapeDecal->Set_HeightmapHeight(m_landscape->Get_HeightmapHeight());
+    }
 }
 
 void CSceneGraph::Set_Ocean(COcean *_ocean)
@@ -204,5 +212,45 @@ void CSceneGraph::RemoveParticleEmitter(CParticleEmitter* _particleEmitter)
     particleEmitter->ListenUpdateMgr(false);
     particleEmitter->ListenRenderMgr(false);
     m_particleEmittersContainer.erase(particleEmitter);
+}
+
+void CSceneGraph::InsertLandscapeDecal(CLandscapeDecal* _landscapeDecal)
+{
+    CLandscapeDecal* landscapeDecal = _landscapeDecal;
+
+    if(m_camera != nullptr)
+    {
+        landscapeDecal->Set_Camera(m_camera);
+    }
+
+    if(m_light != nullptr)
+    {
+        landscapeDecal->Set_Light(m_light);
+    }
+
+    if(m_landscape != nullptr)
+    {
+        landscapeDecal->Set_HeightmapData(m_landscape->Get_HeightmapData());
+        landscapeDecal->Set_HeightmapWidth(m_landscape->Get_HeightmapWidth());
+        landscapeDecal->Set_HeightmapHeight(m_landscape->Get_HeightmapHeight());
+    }
+
+    assert(m_updateMgr != nullptr);
+    assert(m_renderMgr != nullptr);
+
+    landscapeDecal->Set_UpdateMgr(m_updateMgr);
+    landscapeDecal->Set_RenderMgr(m_renderMgr);
+    landscapeDecal->ListenUpdateMgr(true);
+    landscapeDecal->ListenRenderMgr(true);
+
+    m_landscapeDecalsContainer.insert(landscapeDecal);
+}
+
+void CSceneGraph::RemoveLandscapeDecal(CLandscapeDecal* _landscapeDecal)
+{
+    CLandscapeDecal* landscapeDecal = _landscapeDecal;
+    landscapeDecal->ListenUpdateMgr(false);
+    landscapeDecal->ListenRenderMgr(false);
+    m_landscapeDecalsContainer.erase(landscapeDecal);
 }
 

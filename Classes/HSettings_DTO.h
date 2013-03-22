@@ -77,6 +77,14 @@ struct SLandscapeSettings : public SObject3dSettings
     std::string m_edgesTextureFileName;
 };
 
+struct SLandscapeDecalSettings : public SObject3dSettings
+{
+    ui32 m_width;
+    ui32 m_height;
+    ui32 m_widthOffset;
+    ui32 m_heightOffset;
+};
+
 struct SParticleEmitterSettings : public SObject3dSettings
 {
     ui32 m_numParticles;
