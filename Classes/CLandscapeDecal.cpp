@@ -134,15 +134,15 @@ void CLandscapeDecal::OnUpdate(f32 _deltatime)
         {
             if((roundedPositionX + i) < 0 || (roundedPositionZ + j) < 0 || (roundedPositionX + i) >= m_heightmapWidth || (roundedPositionZ +j) > m_heightmapHeight)
             {
-                vertexData[index].m_position.x = m_position.x;
+                vertexData[index].m_position.x = roundedPositionX;
                 vertexData[index].m_position.y = m_heightmapData[roundedPositionX + roundedPositionZ * m_heightmapWidth] + 0.2f;
-                vertexData[index].m_position.z = m_position.z;
+                vertexData[index].m_position.z = roundedPositionZ;
             }
             else
             {
-                vertexData[index].m_position.x = m_position.x + i;
+                vertexData[index].m_position.x = roundedPositionX + i;
                 vertexData[index].m_position.y = m_heightmapData[(roundedPositionX + i)  + (roundedPositionZ + j) * m_heightmapWidth] + 0.2f;
-                vertexData[index].m_position.z = m_position.z + j;
+                vertexData[index].m_position.z = roundedPositionZ + j;
             }
             index++;
         }
@@ -157,7 +157,7 @@ void CLandscapeDecal::OnUpdate(f32 _deltatime)
 
 ui32 CLandscapeDecal::OnDrawIndex(void)
 {
-    return 64;
+    return 256;
 }
 
 void CLandscapeDecal::OnBind(E_RENDER_MODE_WORLD_SPACE _mode)

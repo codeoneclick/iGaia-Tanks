@@ -14,7 +14,7 @@ CCharacterController::CCharacterController(void)
     m_character = nullptr;
     m_moveDirection = E_MOVE_CONTROLLER_DIRECTION_NONE;
     m_rotateDirection = E_ROTATE_CONTROLLER_DIRECTION_NONE;
-    m_navigator = new CNavigator(0.3f, 0.15f, 0.0f, 0.01f);
+    m_navigator = new CNavigator(0.3f, 0.15f, 0.0f, 0.025f);
 
     m_position = glm::vec3(0.0f, 0.0f, 0.0f);
     m_rotation = glm::vec3(0.0f, 0.0f, 0.0f);
