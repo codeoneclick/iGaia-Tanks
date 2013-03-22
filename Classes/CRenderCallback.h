@@ -30,7 +30,7 @@ private:
 
 protected:
 
-    CRenderCallback(void) = default;
+    CRenderCallback(void) {};
 
     void ConnectRenderDidDrawIndexCallback(const __RENDER_DID_DRAW_INDEX& _listener);
     void ConnectRendeDidBindListener(const __RENDER_DID_BIND& _listener);
@@ -39,7 +39,7 @@ protected:
 
 public:
 
-    ~CRenderCallback(void) = default;
+    ~CRenderCallback(void) {};
 
     ui32 DispatchRenderDidDrawIndex(void);
     void DispatchRenderDidBind(E_RENDER_MODE_WORLD_SPACE _mode);
@@ -65,7 +65,7 @@ protected:
 
 public:
 
-    virtual ~CRenderCallback_INTERFACE(void) = default;
+    virtual ~CRenderCallback_INTERFACE(void) {};
 
     inline CRenderCallback* Get_Commands(void)
     {

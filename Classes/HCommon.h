@@ -28,14 +28,15 @@
 #include <glm/gtc/type_precision.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+#ifdef TARGET_OS_IPHONE
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
-#include <QuartzCore/QuartzCore.h>
+#else
+#include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
+#endif
 
-#include <mach/mach.h>
-#include <mach/mach_time.h>
-
-#include "pugixml.hpp"
+#include <pugixml/pugixml.hpp>
 
 #include "PVRTTexture.h"
 #include "HEnum.h"
@@ -51,5 +52,8 @@ typedef long long i64;
 typedef float f32;
 
 #define TO_RGB(r,g,b) (unsigned short)(((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3))
+#define MAX(a,b)            (((a) > (b)) ? (a) : (b))
+#define M_PI 3.14f
+#define M_PI_2 1.57f
 
 #endif

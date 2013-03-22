@@ -23,8 +23,8 @@ protected:
 
 public:
 
-    CLandscapeSettings_PARSER(void) = default;
-    ~CLandscapeSettings_PARSER(void) = default;
+    CLandscapeSettings_PARSER(void) {};
+    ~CLandscapeSettings_PARSER(void) {};
 
     SLandscapeSettings* Deserialize(const std::string& _name);
 };

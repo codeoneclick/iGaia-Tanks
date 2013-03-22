@@ -98,7 +98,7 @@ void CLandscapeDecal::OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType,
         case IResource::E_RESOURCE_TYPE_TEXTURE:
             std::cout<<"[CModel::OnLoadDone] Resource Texture loaded : "<<_pResource->Get_Name()<<"\n";
             break;
-        default:
+        {}:
             break;
     }
 }
@@ -211,7 +211,7 @@ void CLandscapeDecal::Render(CShader::E_RENDER_MODE _eMode)
             
         }
             break;
-        default:
+        {}:
             break;
     }
     

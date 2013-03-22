@@ -22,8 +22,8 @@ protected:
     
 public:
     
-    CFrustumPlane(void) = default;
-    ~CFrustumPlane(void) = default;
+    CFrustumPlane(void) {};
+    ~CFrustumPlane(void) {};
     
     void OnUpdate(const glm::vec3& _point_01, const glm::vec3& _point_02, const glm::vec3& _point_03);
     

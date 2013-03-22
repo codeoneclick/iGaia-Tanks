@@ -25,8 +25,8 @@ CHeightmapProcessor::CHeightmapProcessor(void)
 
     m_renderMgr = nullptr;
 
-    m_maxHeight = -MAXFLOAT;
-    m_minHeight = MAXFLOAT;
+    m_maxHeight = -FLT_MAX;
+    m_minHeight = FLT_MAX;
 }
 
 CHeightmapProcessor::~CHeightmapProcessor(void)

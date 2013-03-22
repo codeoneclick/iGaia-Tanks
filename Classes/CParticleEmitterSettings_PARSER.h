@@ -23,8 +23,8 @@ protected:
 
 public:
 
-    CParticleEmitterSettings_PARSER(void) = default;
-    ~CParticleEmitterSettings_PARSER(void) = default;
+    CParticleEmitterSettings_PARSER(void) {};
+    ~CParticleEmitterSettings_PARSER(void) {};
 
     SParticleEmitterSettings* Deserialize(const std::string& _name);
 };

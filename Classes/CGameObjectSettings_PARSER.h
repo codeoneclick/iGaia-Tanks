@@ -23,7 +23,7 @@ protected:
 public:
 
     CGameObjectSettings_PARSER(void);
-    ~CGameObjectSettings_PARSER(void) = default;
+    ~CGameObjectSettings_PARSER(void) {};
 
     std::vector<const SMaterialSettings*> Deserialize(pugi::xml_node const& _settingsNode);
 };

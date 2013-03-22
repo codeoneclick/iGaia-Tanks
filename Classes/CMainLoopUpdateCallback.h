@@ -24,13 +24,13 @@ private:
     
 protected:
     
-    CMainLoopUpdateCallback(void) = default;
+    CMainLoopUpdateCallback(void) {};
     
     void ConnectMainLoopDidUpdateCallback(const __MAIN_LOOP_DID_UPDATE& _listener);
     
 public:
     
-    ~CMainLoopUpdateCallback(void) = default;
+    ~CMainLoopUpdateCallback(void) {};
     
     void DispatchMainLoopDidUpdate(f32 _deltatime);
 };
@@ -50,7 +50,7 @@ protected:
     
 public:
     
-    virtual ~CMainLoopUpdateCallback_INTERFACE(void) = default;
+    virtual ~CMainLoopUpdateCallback_INTERFACE(void) {};
     
     inline CMainLoopUpdateCallback* Get_Commands(void)
     {

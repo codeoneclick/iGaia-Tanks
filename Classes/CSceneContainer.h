@@ -26,7 +26,7 @@ protected:
 
 public:
     
-    CSceneContainer(void) = default;
+    CSceneContainer(void) {};
     ~CSceneContainer(void);
 
     void AddGameObject3d(CGameObject3d* _gameObject3d);

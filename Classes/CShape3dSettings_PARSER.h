@@ -23,8 +23,8 @@ protected:
 
 public:
 
-    CShape3dSettings_PARSER(void) = default;
-    ~CShape3dSettings_PARSER(void) = default;
+    CShape3dSettings_PARSER(void) {};
+    ~CShape3dSettings_PARSER(void) {};
 
     SShape3dSettings* Deserialize(const std::string& _name);
 };

@@ -23,8 +23,8 @@ protected:
 
 public:
 
-    CSkyDomeSettings_PARSER(void) = default;
-    ~CSkyDomeSettings_PARSER(void) = default;
+    CSkyDomeSettings_PARSER(void) {};
+    ~CSkyDomeSettings_PARSER(void) {};
 
     SSkyDomeSettings* Deserialize(const std::string& _name);
 };

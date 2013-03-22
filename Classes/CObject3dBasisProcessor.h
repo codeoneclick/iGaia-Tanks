@@ -24,8 +24,8 @@ protected:
 
 public:
     
-    CObject3dBasisProcessor(void) = default;
-    ~CObject3dBasisProcessor(void) = default;
+    CObject3dBasisProcessor(void) {};
+    ~CObject3dBasisProcessor(void) {};
 
     static void ProcessNormals(CVertexBuffer* _vertexBuffer, CIndexBuffer* _indexBuffer);
     static void ProcessTangentsAndBinormals(CVertexBuffer* _vertexBuffer, CIndexBuffer* _indexBuffer);

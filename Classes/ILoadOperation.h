@@ -27,8 +27,8 @@ protected:
 
 public:
     
-    ILoadOperation_INTERFACE(void) = default;
-    virtual ~ILoadOperation_INTERFACE(void) = default;
+    ILoadOperation_INTERFACE(void) {};
+    virtual ~ILoadOperation_INTERFACE(void) {};
 
     virtual void Load(const std::string& _filename) = 0;
     virtual IResource_INTERFACE* Build(void) = 0;

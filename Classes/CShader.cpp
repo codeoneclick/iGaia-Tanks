@@ -47,36 +47,36 @@ extern const struct SShaderTextureSlot
 
 const struct SShaderVertexSlot SShaderVertexSlot =
 {
-    .m_position = "IN_SLOT_Position",
-    .m_texcoord = "IN_SLOT_TexCoord",
-    .m_normal = "IN_SLOT_Normal",
-    .m_tangent = "IN_SLOT_Tangent",
-    .m_color = "IN_SLOT_Color"
+    /*.m_position = */"IN_SLOT_Position",
+    /*.m_texcoord = */"IN_SLOT_TexCoord",
+    /*.m_normal = */"IN_SLOT_Normal",
+    /*.m_tangent = */"IN_SLOT_Tangent",
+    /*.m_color = */"IN_SLOT_Color"
 };
 
 const struct SShaderAttributes SShaderAttributes =
 {
-    .m_worldMatrix = "EXT_MATRIX_World",
-    .m_viewMatrix = "EXT_MATRIX_View",
-    .m_projectionMatrix = "EXT_MATRIX_Projection",
-    .m_worldViewProjectionMatrix = "EXT_MATRIX_WVP",
-    .m_cameraPosition = "EXT_View",
-    .m_lightPosition = "EXT_Light",
-    .m_clipPlane = "EXT_Clip_Plane",
-    .m_texcoordOffset = "EXT_Texcoord_Offset",
-    .m_time = "EXT_Timer"
+    /*.m_worldMatrix = */"EXT_MATRIX_World",
+    /*.m_viewMatrix = */"EXT_MATRIX_View",
+    /*.m_projectionMatrix = */"EXT_MATRIX_Projection",
+    /*.m_worldViewProjectionMatrix = */"EXT_MATRIX_WVP",
+    /*.m_cameraPosition = */"EXT_View",
+    /*.m_lightPosition = */"EXT_Light",
+    /*.m_clipPlane = */"EXT_Clip_Plane",
+    /*.m_texcoordOffset = */"EXT_Texcoord_Offset",
+    /*.m_time = */"EXT_Timer"
 };
 
 const struct SShaderTextureSlot SShaderTextureSlot =
 {
-    .m_texture_01 = "EXT_TEXTURE_01",
-    .m_texture_02 = "EXT_TEXTURE_02",
-    .m_texture_03 = "EXT_TEXTURE_03",
-    .m_texture_04 = "EXT_TEXTURE_04",
-    .m_texture_05 = "EXT_TEXTURE_05",
-    .m_texture_06 = "EXT_TEXTURE_06",
-    .m_texture_07 = "EXT_TEXTURE_07",
-    .m_texture_08 = "EXT_TEXTURE_08"
+    /*.m_texture_01 = */"EXT_TEXTURE_01",
+    /*.m_texture_02 = */"EXT_TEXTURE_02",
+    /*.m_texture_03 = */"EXT_TEXTURE_03",
+    /*.m_texture_04 = */"EXT_TEXTURE_04",
+    /*.m_texture_05 = */"EXT_TEXTURE_05",
+    /*.m_texture_06 = */"EXT_TEXTURE_06",
+    /*.m_texture_07 = */"EXT_TEXTURE_07",
+    /*.m_texture_08 = */"EXT_TEXTURE_08"
 };
 
 CShader::CShader(ui32 _handle)

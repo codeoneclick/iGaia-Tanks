@@ -26,13 +26,13 @@ private:
 
 protected:
     
-    CResourceLoadCallback(void) = default;
+    CResourceLoadCallback(void) {};
 
     void ConnectResourceDidLoadListener(const __RESOURCE_DID_LOAD_LISTENER& _listener);
     
 public:
     
-    ~CResourceLoadCallback(void) = default;
+    ~CResourceLoadCallback(void) {};
 
     void DispatchResourceDidLoad(IResource_INTERFACE* _resource);
 };
@@ -52,7 +52,7 @@ protected:
     
 public:
 
-    virtual ~CResourceLoadCallback_INTERFACE(void) = default;
+    virtual ~CResourceLoadCallback_INTERFACE(void) {};
 
     inline CResourceLoadCallback* Get_Commands(void)
     {

@@ -32,7 +32,7 @@ protected:
 public:
 
     CNavigator(f32 _moveForwardSpeed, f32 _moveBackwardSpeed, f32 _strafeSpeed, f32 _steerSpeed);
-    ~CNavigator(void) = default;
+    ~CNavigator(void) {};
 
     inline void Set_Heightmap(f32* _heightmapData, ui32 _heightmapWidth, ui32 _heightmapHeight)
     {

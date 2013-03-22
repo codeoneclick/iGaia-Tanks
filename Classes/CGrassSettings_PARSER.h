@@ -23,8 +23,8 @@ protected:
 
 public:
 
-    CGrassSettings_PARSER(void) = default;
-    ~CGrassSettings_PARSER(void) = default;
+    CGrassSettings_PARSER(void) {};
+    ~CGrassSettings_PARSER(void) {};
 
     SGrassSettings* Deserialize(const std::string& _name);
 };

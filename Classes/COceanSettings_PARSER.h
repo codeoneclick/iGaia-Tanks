@@ -23,8 +23,8 @@ protected:
 
 public:
 
-    COceanSettings_PARSER(void) = default;
-    ~COceanSettings_PARSER(void) = default;
+    COceanSettings_PARSER(void) {};
+    ~COceanSettings_PARSER(void) {};
 
     SOceanSettings* Deserialize(const std::string& _name);
 };

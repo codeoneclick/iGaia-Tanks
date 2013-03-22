@@ -24,13 +24,13 @@ private:
 
 protected:
 
-    CSceneUpdateCallback(void) = default;
+    CSceneUpdateCallback(void) {};
 
     void ConnectSceneDidUpdateCallback(const __SCENE_DID_UPDATE& _listener);
 
 public:
 
-    ~CSceneUpdateCallback(void) = default;
+    ~CSceneUpdateCallback(void) {};
 
     void DispatchSceneDidUpdate(f32 _deltatime);
 };
@@ -50,7 +50,7 @@ protected:
 
 public:
 
-    virtual ~CSceneUpdateCallback_INTERFACE(void) = default;
+    virtual ~CSceneUpdateCallback_INTERFACE(void) {};
 
     inline CSceneUpdateCallback* Get_Commands(void)
     {
