@@ -1,0 +1,85 @@
+﻿Build started 3/24/2013 12:32:44 AM.
+     1>Project "D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers\iGaia-CartoonPanzers\iGaia-CartoonPanzers.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\pvrtextool\include" /I"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\windows\ogles2\include" /I"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\Classes\CGLWindow_Win32.cpp
+         CGLWindow_Win32.cpp
+     1>d:\develop\igaia-tanks\igaia-tanks\classes\cglwindow_win32.cpp(15): warning C4060: switch statement contains no 'case' or 'default' labels
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers\Debug\iGaia-CartoonPanzers.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\pvrtextool\windows_x86_32\Static" /LIBPATH:"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\windows\ogles2\windows_x86_32\lib" /LIBPATH:"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\windows\ogles2\windows_x86_64\lib" libEGL.lib libGLESv2.lib PVRTexLib.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers\Debug\iGaia-CartoonPanzers.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers\Debug\iGaia-CartoonPanzers.lib" /MACHINE:X86 Debug\CCamera.obj
+         Debug\CCarcass.obj
+         Debug\CCharacterController.obj
+         Debug\CChassis.obj
+         Debug\CCommon_Win32.obj
+         Debug\CFrustum.obj
+         Debug\CGameMainMenuScene.obj
+         Debug\CGameObject3d.obj
+         Debug\CGameObjectSettings_PARSER.obj
+         Debug\CGameSettingsMgr.obj
+         Debug\CGLWindow_Win32.obj
+         Debug\CGrassSettings_PARSER.obj
+         Debug\CHeightmapHelper.obj
+         Debug\CHeightmapProcessor.obj
+         Debug\CIndexBuffer.obj
+         Debug\CLandscape.obj
+         Debug\CLandscapeChunk.obj
+         Debug\CLandscapeDecal.obj
+         Debug\CLandscapeDecalSettings_PARSER.obj
+         Debug\CLandscapeEdges.obj
+         Debug\CLandscapeSettings_PARSER.obj
+         Debug\CLight.obj
+         Debug\CLoadOperation_MDL.obj
+         Debug\CLoadOperation_PVR.obj
+         Debug\CMainLoopUpdateCallback.obj
+         Debug\CMainLoop_Win32.obj
+         Debug\CMaterial.obj
+         Debug\CMesh.obj
+         Debug\CMeshMgr.obj
+         Debug\CMoveControllerCallback.obj
+         Debug\CNavigator.obj
+         Debug\CObject3dBasisProcessor.obj
+         Debug\COcean.obj
+         Debug\COceanSettings_PARSER.obj
+         Debug\CPanzer.obj
+         Debug\CPanzerSettings_PARSER.obj
+         Debug\CParser_GLSL.obj
+         Debug\CParticleEmitter.obj
+         Debug\CParticleEmitterSettings_PARSER.obj
+         Debug\CQuadTree.obj
+         Debug\CRenderCallback.obj
+         Debug\CRenderMgr.obj
+         Debug\CRenderOperationScreenOutput.obj
+         Debug\CRenderOperationScreenSpace.obj
+         Debug\CRenderOperationWorldSpace.obj
+         Debug\CResourceLoadCallback.obj
+         Debug\CResourceMgrsFacade.obj
+         Debug\CRotateControllerCallback.obj
+         Debug\CSceneContainer.obj
+         Debug\CSceneFabricator.obj
+         Debug\CSceneGraph.obj
+         Debug\CSceneUpdateCallback.obj
+         Debug\CSceneUpdateMgr.obj
+         Debug\CScreenSpaceRenderProcessor.obj
+         Debug\CSettingsContainer.obj
+         Debug\CShader.obj
+         Debug\CShaderComposite.obj
+         Debug\CShape3d.obj
+         Debug\CShape3dSettings_PARSER.obj
+         Debug\CSkyDomeSettings_PARSER.obj
+         Debug\CTexture.obj
+         Debug\CTextureMgr.obj
+         Debug\CTurret.obj
+         Debug\CVertexBuffer.obj
+         Debug\ICharacter.obj
+         Debug\IGLContext.obj
+         Debug\ILoadOperation.obj
+         Debug\IResource.obj
+         Debug\IResourceMgr.obj
+         Debug\ISpare.obj
+         Debug\pugixml.obj
+         "Debug\iGaia-CartoonPanzers.obj"
+         iGaia-CartoonPanzers.vcxproj -> D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers\Debug\iGaia-CartoonPanzers.exe
+     1>Done Building Project "D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers\iGaia-CartoonPanzers\iGaia-CartoonPanzers.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.62

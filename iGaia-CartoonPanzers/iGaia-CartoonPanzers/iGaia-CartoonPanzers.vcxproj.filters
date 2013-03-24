@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Classes\Game">
+      <UniqueIdentifier>{48943520-2891-42a8-aac7-5e5b9bfc4f71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core">
+      <UniqueIdentifier>{48c9b71c-54c6-4437-998c-378a1041590d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libs">
+      <UniqueIdentifier>{a3fda04d-5f2a-4d81-ac2f-c00aad64a297}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\ResourceMgr">
+      <UniqueIdentifier>{d1df8de7-2845-46fe-bc5e-766cf2500d14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\RenderMgr">
+      <UniqueIdentifier>{b1b5d767-2079-4fb4-bcbd-e65565448ee5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\SceneGraph">
+      <UniqueIdentifier>{002aa6da-8523-43a2-9555-b29f108c8a4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\Common">
+      <UniqueIdentifier>{394cd79f-1158-4193-998c-2bfe4b75d71c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\ResourceMgr\Resources">
+      <UniqueIdentifier>{4c15263d-753c-4ea7-999f-c646b972a7b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\ResourceMgr\Loaders">
+      <UniqueIdentifier>{4081a8d9-6979-4f8c-bb3a-033cfb352e1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\ResourceMgr\GameObjectSettings_PARSERS">
+      <UniqueIdentifier>{3933249b-bc3b-43c8-8ac8-a850a9a1077d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\RenderMgr\Materials">
+      <UniqueIdentifier>{e14ff466-2534-437c-814a-44260bb49bc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\RenderMgr\Shaders">
+      <UniqueIdentifier>{1cc9587d-7721-4043-863d-452d39bf9dea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\RenderMgr\Operations">
+      <UniqueIdentifier>{61dd975f-1934-4d24-b324-83b7faaf401f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\SceneGraph\Settings_DTO">
+      <UniqueIdentifier>{21c09ba3-3ed5-4e53-bf8e-4b3b14e0a63a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\SceneGraph\Support">
+      <UniqueIdentifier>{0196ae28-8b41-49ba-a003-e85f8f0c1e0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\SceneGraph\GameObjects">
+      <UniqueIdentifier>{fdf74276-13ca-40f1-bf84-e0faa86c4b41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\SceneGraph\GameObjects\Landscape">
+      <UniqueIdentifier>{f63a68d3-6096-413a-b7ba-896610fb7de7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libs\pugixml">
+      <UniqueIdentifier>{4a9872d3-503c-488c-be39-1c802d1b6b65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Callbacks">
+      <UniqueIdentifier>{127a7cd8-18e4-40f4-bdee-cf6451bea91c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\MainMenu">
+      <UniqueIdentifier>{7cd44c56-9e92-421f-b42b-3b179efdc520}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Mgrs">
+      <UniqueIdentifier>{7f0a1c17-cec9-4a57-b917-794a4ea22218}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Support">
+      <UniqueIdentifier>{18f15981-74d9-41af-9dbe-32ce2eec0914}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Views">
+      <UniqueIdentifier>{753e28a9-d574-4acc-82a7-8537950a4be9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Panzer">
+      <UniqueIdentifier>{162aff31-742e-4f30-ad5d-e4d34c39b124}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\MainMenu\Controller">
+      <UniqueIdentifier>{96604d60-028f-43dd-ba85-322198f15d25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\MainMenu\Scene">
+      <UniqueIdentifier>{ad00a87e-313f-4435-8077-2837ff9119b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Mgrs\Settings">
+      <UniqueIdentifier>{6753cc70-030b-42b3-9956-838d63e8a1c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\Panzer\Spares">
+      <UniqueIdentifier>{be4de2c5-a93b-4cf7-aee0-3d0d1503888f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\Common\Win32">
+      <UniqueIdentifier>{7dcf1f6e-c56f-4a14-9dbb-1b2e8998d494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\Common\iOS">
+      <UniqueIdentifier>{fab2c30a-2026-4fb2-b9c3-20f5bba19848}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="iGaia-CartoonPanzers.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\IResource.cpp">
+      <Filter>Classes\Core\ResourceMgr\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CIndexBuffer.cpp">
+      <Filter>Classes\Core\ResourceMgr\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CMesh.cpp">
+      <Filter>Classes\Core\ResourceMgr\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CShader.cpp">
+      <Filter>Classes\Core\ResourceMgr\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CTexture.cpp">
+      <Filter>Classes\Core\ResourceMgr\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CVertexBuffer.cpp">
+      <Filter>Classes\Core\ResourceMgr\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CMeshMgr.cpp">
+      <Filter>Classes\Core\ResourceMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CResourceLoadCallback.cpp">
+      <Filter>Classes\Core\ResourceMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CResourceMgrsFacade.cpp">
+      <Filter>Classes\Core\ResourceMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CSettingsContainer.cpp">
+      <Filter>Classes\Core\ResourceMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CTextureMgr.cpp">
+      <Filter>Classes\Core\ResourceMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\IResourceMgr.cpp">
+      <Filter>Classes\Core\ResourceMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CLoadOperation_MDL.cpp">
+      <Filter>Classes\Core\ResourceMgr\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CLoadOperation_PVR.cpp">
+      <Filter>Classes\Core\ResourceMgr\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\ILoadOperation.cpp">
+      <Filter>Classes\Core\ResourceMgr\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CGameObjectSettings_PARSER.cpp">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CLandscapeSettings_PARSER.cpp">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\COceanSettings_PARSER.cpp">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CParticleEmitterSettings_PARSER.cpp">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CShape3dSettings_PARSER.cpp">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CSkyDomeSettings_PARSER.cpp">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CGrassSettings_PARSER.cpp">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CRenderCallback.cpp">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CRenderMgr.cpp">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CScreenSpaceRenderProcessor.cpp">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CShaderComposite.cpp">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\IGLContext.cpp">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CParser_GLSL.cpp">
+      <Filter>Classes\Core\RenderMgr\Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CRenderOperationScreenOutput.cpp">
+      <Filter>Classes\Core\RenderMgr\Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CRenderOperationScreenSpace.cpp">
+      <Filter>Classes\Core\RenderMgr\Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CRenderOperationWorldSpace.cpp">
+      <Filter>Classes\Core\RenderMgr\Operations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CMaterial.cpp">
+      <Filter>Classes\Core\RenderMgr\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CMainLoopUpdateCallback.cpp">
+      <Filter>Classes\Core\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CSceneContainer.cpp">
+      <Filter>Classes\Core\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CSceneFabricator.cpp">
+      <Filter>Classes\Core\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CSceneGraph.cpp">
+      <Filter>Classes\Core\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CSceneUpdateCallback.cpp">
+      <Filter>Classes\Core\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CSceneUpdateMgr.cpp">
+      <Filter>Classes\Core\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CCamera.cpp">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CFrustum.cpp">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CHeightmapHelper.cpp">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CHeightmapProcessor.cpp">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CLight.cpp">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CNavigator.cpp">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CObject3dBasisProcessor.cpp">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CQuadTree.cpp">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CGameObject3d.cpp">
+      <Filter>Classes\Core\SceneGraph\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\COcean.cpp">
+      <Filter>Classes\Core\SceneGraph\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CParticleEmitter.cpp">
+      <Filter>Classes\Core\SceneGraph\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CShape3d.cpp">
+      <Filter>Classes\Core\SceneGraph\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CLandscape.cpp">
+      <Filter>Classes\Core\SceneGraph\GameObjects\Landscape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CLandscapeChunk.cpp">
+      <Filter>Classes\Core\SceneGraph\GameObjects\Landscape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CLandscapeDecal.cpp">
+      <Filter>Classes\Core\SceneGraph\GameObjects\Landscape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CLandscapeEdges.cpp">
+      <Filter>Classes\Core\SceneGraph\GameObjects\Landscape</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CLandscapeDecalSettings_PARSER.cpp">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Libs\pugixml\pugixml.cpp">
+      <Filter>Libs\pugixml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CMoveControllerCallback.cpp">
+      <Filter>Classes\Game\Callbacks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CRotateControllerCallback.cpp">
+      <Filter>Classes\Game\Callbacks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CGameMainMenuScene.cpp">
+      <Filter>Classes\Game\MainMenu\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CGameSettingsMgr.cpp">
+      <Filter>Classes\Game\Mgrs\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CPanzerSettings_PARSER.cpp">
+      <Filter>Classes\Game\Mgrs\Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CCharacterController.cpp">
+      <Filter>Classes\Game\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\ICharacter.cpp">
+      <Filter>Classes\Game\Support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CCarcass.cpp">
+      <Filter>Classes\Game\Panzer\Spares</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CChassis.cpp">
+      <Filter>Classes\Game\Panzer\Spares</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CTurret.cpp">
+      <Filter>Classes\Game\Panzer\Spares</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\ISpare.cpp">
+      <Filter>Classes\Game\Panzer\Spares</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CPanzer.cpp">
+      <Filter>Classes\Game\Panzer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CGLWindow_Win32.cpp">
+      <Filter>Classes\Core\Common\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CMainLoop_Win32.cpp">
+      <Filter>Classes\Core\Common\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CCommon_Win32.cpp">
+      <Filter>Classes\Core\Common\Win32</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Classes\HCommon.h">
+      <Filter>Classes\Core\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\HEnum.h">
+      <Filter>Classes\Core\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\IResource.h">
+      <Filter>Classes\Core\ResourceMgr\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CIndexBuffer.h">
+      <Filter>Classes\Core\ResourceMgr\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CMesh.h">
+      <Filter>Classes\Core\ResourceMgr\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CShader.h">
+      <Filter>Classes\Core\ResourceMgr\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CTexture.h">
+      <Filter>Classes\Core\ResourceMgr\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CVertexBuffer.h">
+      <Filter>Classes\Core\ResourceMgr\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CMeshMgr.h">
+      <Filter>Classes\Core\ResourceMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CResourceLoadCallback.h">
+      <Filter>Classes\Core\ResourceMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CResourceMgrsFacade.h">
+      <Filter>Classes\Core\ResourceMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CSettingsContainer.h">
+      <Filter>Classes\Core\ResourceMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CTextureMgr.h">
+      <Filter>Classes\Core\ResourceMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\IResourceMgr.h">
+      <Filter>Classes\Core\ResourceMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CLoadOperation_MDL.h">
+      <Filter>Classes\Core\ResourceMgr\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CLoadOperation_PVR.h">
+      <Filter>Classes\Core\ResourceMgr\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\ILoadOperation.h">
+      <Filter>Classes\Core\ResourceMgr\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CGameObjectSettings_PARSER.h">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CLandscapeSettings_PARSER.h">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\COceanSettings_PARSER.h">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CParticleEmitterSettings_PARSER.h">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CShape3dSettings_PARSER.h">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CSkyDomeSettings_PARSER.h">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CGrassSettings_PARSER.h">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CGLContext_iOS.h">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CRenderCallback.h">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CRenderMgr.h">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CScreenSpaceRenderProcessor.h">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CShaderComposite.h">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\IGLContext.h">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CParser_GLSL.h">
+      <Filter>Classes\Core\RenderMgr\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CRenderOperationScreenOutput.h">
+      <Filter>Classes\Core\RenderMgr\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CRenderOperationScreenSpace.h">
+      <Filter>Classes\Core\RenderMgr\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CRenderOperationWorldSpace.h">
+      <Filter>Classes\Core\RenderMgr\Operations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CMaterial.h">
+      <Filter>Classes\Core\RenderMgr\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CMainLoopUpdateCallback.h">
+      <Filter>Classes\Core\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CSceneContainer.h">
+      <Filter>Classes\Core\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CSceneFabricator.h">
+      <Filter>Classes\Core\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CSceneGraph.h">
+      <Filter>Classes\Core\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CSceneUpdateCallback.h">
+      <Filter>Classes\Core\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CSceneUpdateMgr.h">
+      <Filter>Classes\Core\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\HSettings_DTO.h">
+      <Filter>Classes\Core\SceneGraph\Settings_DTO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CCamera.h">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CFrustum.h">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CHeightmapHelper.h">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CHeightmapProcessor.h">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CLight.h">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CNavigator.h">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CObject3dBasisProcessor.h">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CQuadTree.h">
+      <Filter>Classes\Core\SceneGraph\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CGameObject3d.h">
+      <Filter>Classes\Core\SceneGraph\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\COcean.h">
+      <Filter>Classes\Core\SceneGraph\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CParticleEmitter.h">
+      <Filter>Classes\Core\SceneGraph\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CShape3d.h">
+      <Filter>Classes\Core\SceneGraph\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CLandscape.h">
+      <Filter>Classes\Core\SceneGraph\GameObjects\Landscape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CLandscapeChunk.h">
+      <Filter>Classes\Core\SceneGraph\GameObjects\Landscape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CLandscapeDecal.h">
+      <Filter>Classes\Core\SceneGraph\GameObjects\Landscape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CLandscapeEdges.h">
+      <Filter>Classes\Core\SceneGraph\GameObjects\Landscape</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CLandscapeDecalSettings_PARSER.h">
+      <Filter>Classes\Core\ResourceMgr\GameObjectSettings_PARSERS</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libs\pugixml\pugiconfig.hpp">
+      <Filter>Libs\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Libs\pugixml\pugixml.hpp">
+      <Filter>Libs\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CCommon.h">
+      <Filter>Classes\Core\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CMoveControllerCallback.h">
+      <Filter>Classes\Game\Callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CRotateControllerCallback.h">
+      <Filter>Classes\Game\Callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CGameMainMenuScene.h">
+      <Filter>Classes\Game\MainMenu\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CGameSettingsMgr.h">
+      <Filter>Classes\Game\Mgrs\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CPanzerSettings_PARSER.h">
+      <Filter>Classes\Game\Mgrs\Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CCharacterController.h">
+      <Filter>Classes\Game\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\HGameEnum.h">
+      <Filter>Classes\Game\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\HGameSettings_DTO.h">
+      <Filter>Classes\Game\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\ICharacter.h">
+      <Filter>Classes\Game\Support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CCarcass.h">
+      <Filter>Classes\Game\Panzer\Spares</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CChassis.h">
+      <Filter>Classes\Game\Panzer\Spares</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CTurret.h">
+      <Filter>Classes\Game\Panzer\Spares</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\ISpare.h">
+      <Filter>Classes\Game\Panzer\Spares</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CPanzer.h">
+      <Filter>Classes\Game\Panzer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\IRoot.h">
+      <Filter>Classes\Core\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CGLWindow_Win32.h">
+      <Filter>Classes\Core\Common\Win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CMainLoop.h">
+      <Filter>Classes\Core\Common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Classes\CGLContext_iOS.mm">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </None>
+    <None Include="..\..\Classes\CMainLoop_iOS.mm">
+      <Filter>Classes\Core\Common\iOS</Filter>
+    </None>
+    <None Include="..\..\Classes\CCommon_iOS.mm">
+      <Filter>Classes\Core\Common\iOS</Filter>
+    </None>
+  </ItemGroup>
+</Project>
