@@ -29,6 +29,7 @@ public:
 
     SShape3dSettings* LoadShape3dSettings(const std::string& _filename);
     SLandscapeSettings* LoadLandscapeSettings(const std::string& _filename);
+    SLandscapeDecalSettings* LoadLandscapeDecalSettings(const std::string& _filename);
     SOceanSettings* LoadOceanSettings(const std::string& _filename);
     SGrassSettings* LoadGrassSettings(const std::string& _filename);
     SSkyDomeSettings* LoadSkyDomeSettings(const std::string& _filename);

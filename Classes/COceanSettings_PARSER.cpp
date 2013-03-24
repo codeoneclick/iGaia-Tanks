@@ -7,7 +7,7 @@
 //
 
 #include "COceanSettings_PARSER.h"
-#include "CCommon_IOS.h"
+#include "CCommon.h"
 
 SOceanSettings* COceanSettings_PARSER::Deserialize(const std::string& _name)
 {

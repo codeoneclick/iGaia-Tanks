@@ -9,7 +9,7 @@
 #include "CHeightmapProcessor.h"
 #include "CObject3dBasisProcessor.h"
 #include "CHeightmapHelper.h"
-#include "CCommon_iOS.h"
+#include "CCommon.h"
 
 CHeightmapProcessor::CHeightmapProcessor(void)
 {

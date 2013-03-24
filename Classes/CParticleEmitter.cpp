@@ -7,7 +7,7 @@
 //
 
 #include "CParticleEmitter.h"
-#include "CCommon_iOS.h"
+#include "CCommon.h"
 
 CParticleEmitter::CParticleEmitter(void)
 {

@@ -24,13 +24,13 @@ private:
 
 protected:
 
-    CMoveControllerCallback(void) = default;
+    CMoveControllerCallback(void) {};
 
     void ConnectMoveControllerDidUpdateCallback(const __MOVE_CONTROLLER_DID_UPDATE& _listener);
 
 public:
 
-    ~CMoveControllerCallback(void) = default;
+    ~CMoveControllerCallback(void) {};
 
     void DispatchMoveControllerDidUpdate(ui32 _direction);
 };
@@ -50,7 +50,7 @@ protected:
 
 public:
 
-    virtual ~CMoveControllerCallback_INTERFACE(void) = default;
+    virtual ~CMoveControllerCallback_INTERFACE(void) {};
 
     inline CMoveControllerCallback* Get_Commands(void)
     {

@@ -6,7 +6,7 @@
 //
 //
 
-#include "CMainLoop_iOS.h"
+#include "CMainLoop.h"
 #include <Foundation/Foundation.h>
 #include <UIKit/UIKit.h>
 

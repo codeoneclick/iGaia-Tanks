@@ -6,36 +6,67 @@
 //
 //
 
-#ifndef __iGaia__CLandscapeDecal__
-#define __iGaia__CLandscapeDecal__
+#ifndef CLandscapeDecal_h
+#define CLandscapeDecal_h
 
-#include <iostream>
-#include "INode.h"
+#include "CGameObject3d.h"
 
-#define k_HEIGHTMAP_DECAL_SIZE 7
-#define k_HEIGHTMAP_DECAL_OFFSET 3
-
-class CLandscapeDecal : public INode
+class CLandscapeDecal : public CGameObject3d
 {
+private:
+    
+    static glm::mat3x3 m_matrixTextureTranslation;
+    static glm::mat3x3 m_matrixTextureScale;
+    glm::mat3x3 m_matrixTextureRotation;
+    glm::mat3x3 m_matrixTextureResult;
+    
 protected:
-    glm::vec4 m_vColor;
-    static glm::mat3x3 m_mTextureTranslation;
-    static glm::mat3x3 m_mTextureScale;
-    glm::mat3x3 m_mTextureRotation;
-    glm::mat3x3 m_mTexture;
+
+    ui32 m_width;
+    ui32 m_height;
+    i32 m_widthOffset;
+    i32 m_heightOffset;
+    
+    glm::vec4 m_color;
+    f32* m_heightmapData;
+    ui32 m_heightmapWidth;
+    ui32 m_heightmapHeight;
+
+    void OnResourceDidLoad(IResource_INTERFACE* _resource);
+
+    void OnUpdate(f32 _deltatime);
+
+    ui32 OnDrawIndex(void);
+    void OnBind(E_RENDER_MODE_WORLD_SPACE _mode);
+    void OnDraw(E_RENDER_MODE_WORLD_SPACE _mode);
+    void OnUnbind(E_RENDER_MODE_WORLD_SPACE _mode);
+    
 public:
+    
     CLandscapeDecal(void);
     ~CLandscapeDecal(void);
     
-    void Load(const std::string& _sName, IResource::E_THREAD _eThread);
-    void Update(void);
-    void Render(CShader::E_RENDER_MODE _eMode);
-    
-    void Set_Color(const glm::vec4& _vColor) { m_vColor = _vColor; }
-    glm::vec4 Get_Color(void) { return m_vColor; }
-    
-    void OnTouchEvent(ITouchDelegate* _pDelegateOwner);
-    void OnResourceLoadDoneEvent(IResource::E_RESOURCE_TYPE _eType, IResource* _pResource);
+    inline void Set_Color(const glm::vec4& _color)
+    {
+        m_color = _color;
+    };
+
+    inline void Set_HeightmapData(f32* _heightmapData)
+    {
+        m_heightmapData = _heightmapData;
+    };
+
+    inline void Set_HeightmapWidth(ui32 _heightmapWidth)
+    {
+        m_heightmapWidth = _heightmapWidth;
+    };
+
+    inline void Set_HeightmapHeight(ui32 _heightmapHeight)
+    {
+        m_heightmapHeight = _heightmapHeight;
+    };
+
+    void Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _shaderComposite, const std::string& _filename);
 };
 
-#endif /* defined(__iGaia__CLandscapeDecal__) */
+#endif 

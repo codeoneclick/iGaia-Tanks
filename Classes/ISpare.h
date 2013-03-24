@@ -6,13 +6,13 @@
 //
 //
 
-#ifndef ITankPart_h
-#define ITankPart_h
+#ifndef ISpare_h
+#define ISpare_h
 
 #include "IRoot.h"
-#include "HTankSettings_DTO.h"
+#include "HGameSettings_DTO.h"
 
-class ITankPart
+class ISpare
 {
 private:
     
@@ -23,10 +23,10 @@ protected:
     
 public:
     
-    ITankPart(void);
-    virtual ~ITankPart(void);
+    ISpare(void);
+    virtual ~ISpare(void);
 
-    virtual void Load(IRoot* _root, ITankSettings* _settings) = 0;
+    virtual void Load(IRoot* _root, IPanzerSpareSettings* _settings) = 0;
     
     virtual void Set_Position(const glm::vec3& _position) = 0;
     virtual void Set_Rotation(const glm::vec3& _rotation) = 0;

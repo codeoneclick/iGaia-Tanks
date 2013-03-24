@@ -24,13 +24,13 @@ private:
 
 protected:
 
-    CRotateControllerCallback(void) = default;
+    CRotateControllerCallback(void) {};
 
     void ConnectRotateControllerDidUpdateCallback(const __ROTATE_CONTROLLER_DID_UPDATE& _listener);
 
 public:
 
-    ~CRotateControllerCallback(void) = default;
+    ~CRotateControllerCallback(void) {};
 
     void DispatchRotateControllerDidUpdate(ui32 _direction);
 };
@@ -50,7 +50,7 @@ protected:
 
 public:
 
-    virtual ~CRotateControllerCallback_INTERFACE(void) = default;
+    virtual ~CRotateControllerCallback_INTERFACE(void) {};
 
     inline CRotateControllerCallback* Get_Commands(void)
     {

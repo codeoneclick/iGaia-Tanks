@@ -6,15 +6,15 @@
 //
 //
 
-#include "ITankPart.h"
+#include "ISpare.h"
 
-ITankPart::ITankPart(void)
+ISpare::ISpare(void)
 {
     m_position = glm::vec3(0.0f, 0.0f, 0.0f);
     m_rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 }
 
-ITankPart::~ITankPart(void)
+ISpare::~ISpare(void)
 {
     
 }

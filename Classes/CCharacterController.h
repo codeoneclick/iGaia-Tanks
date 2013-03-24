@@ -12,11 +12,12 @@
 #include "HCommon.h"
 #include "HGameEnum.h"
 #include "CCamera.h"
-#include "CShape3d.h"
+#include "ICharacter.h"
 #include "CNavigator.h"
 #include "CMoveControllerCallback.h"
 #include "CRotateControllerCallback.h"
 #include "CMainLoopUpdateCallback.h"
+#include "CLandscapeDecal.h"
 
 class CCharacterController :
     public virtual CMoveControllerCallback_INTERFACE,
@@ -25,8 +26,11 @@ class CCharacterController :
 {
 private:
 
+protected:
+
     CCamera* m_camera;
-    CShape3d* m_character;
+    ICharacter* m_character;
+    CLandscapeDecal* m_shadow;
     CNavigator* m_navigator;
 
     E_MOVE_CONTROLLER_DIRECTION m_moveDirection;
@@ -34,11 +38,11 @@ private:
     glm::vec3 m_position;
     glm::vec3 m_rotation;
 
-protected:
-
     void OnMoveControllerUpdate(ui32 _direction);
     void OnRotateControllerUpdate(ui32 _direction);
     void OnUpdate(f32 _deltatime);
+
+    glm::vec3 SmoothRotation(const glm::vec3& _oldRotation, const glm::vec3& _newRotation);
 
 public:
 
@@ -50,9 +54,14 @@ public:
         m_camera = _camera;
     };
 
-    inline void Set_Character(CShape3d* _character)
+    inline void Set_Character(ICharacter* _character)
     {
         m_character = _character;
+    };
+
+    inline void Set_Shadow(CLandscapeDecal* _shadow)
+    {
+        m_shadow = _shadow;
     };
 
     inline CNavigator* Get_Navigator(void)

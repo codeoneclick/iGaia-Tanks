@@ -1,0 +1,6 @@
+<settings name="panzer_light">
+	<carcass value="panzer_light_carcass_settings.xml"/>
+    <left_chassis value="panzer_light_left_chassis_settings.xml"/>
+    <right_chassis value="panzer_light_right_chassis_settings.xml"/>
+    <turret value="panzer_light_turret_settings.xml"/>
+</settings>

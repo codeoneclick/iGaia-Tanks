@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include "CCommon_IOS.h"
+#include "CCommon.h"
 #include <UIKit/UIKit.h>
 #include <Foundation/Foundation.h>
 

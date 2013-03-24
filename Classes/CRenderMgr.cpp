@@ -7,7 +7,7 @@
 //
 
 #include "CRenderMgr.h"
-#include "CCommon_IOS.h"
+#include "CCommon.h"
 
 CRenderMgr::CRenderMgr(const IGLContext_INTERFACE* _glContext)
 {

@@ -11,9 +11,10 @@
 CCharacterController::CCharacterController(void)
 {
     m_camera = nullptr;
+    m_character = nullptr;
     m_moveDirection = E_MOVE_CONTROLLER_DIRECTION_NONE;
     m_rotateDirection = E_ROTATE_CONTROLLER_DIRECTION_NONE;
-    m_navigator = new CNavigator(0.75f, 0.75f, 0.75f, 0.066f);
+    m_navigator = new CNavigator(0.3f, 0.15f, 0.0f, 0.025f);
 
     m_position = glm::vec3(0.0f, 0.0f, 0.0f);
     m_rotation = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -25,6 +26,11 @@ CCharacterController::CCharacterController(void)
 CCharacterController::~CCharacterController(void)
 {
 
+}
+
+glm::vec3 CCharacterController::SmoothRotation(const glm::vec3& _oldRotation, const glm::vec3& _newRotation)
+{
+    return glm::mix(_oldRotation, _newRotation, 0.5f);
 }
 
 void CCharacterController::OnMoveControllerUpdate(ui32 _direction)
@@ -59,36 +65,36 @@ void CCharacterController::OnUpdate(f32 _deltatime)
             break;
         case E_MOVE_CONTROLLER_DIRECTION_WEST:
         {
-            m_navigator->MoveRight();
+            m_navigator->SteerRight();
         }
             break;
         case E_MOVE_CONTROLLER_DIRECTION_EAST:
         {
-            m_navigator->MoveLeft();
+            m_navigator->SteerLeft();
         }
             break;
         case E_MOVE_CONTROLLER_DIRECTION_NORTH_WEST:
         {
             m_navigator->MoveBackward();
-            m_navigator->MoveRight();
+            m_navigator->SteerRight();
         }
             break;
         case E_MOVE_CONTROLLER_DIRECTION_NORTH_EAST:
         {
             m_navigator->MoveBackward();
-            m_navigator->MoveLeft();
+            m_navigator->SteerLeft();
         }
             break;
         case E_MOVE_CONTROLLER_DIRECTION_SOUTH_WEST:
         {
             m_navigator->MoveForward();
-            m_navigator->MoveRight();
+            m_navigator->SteerRight();
         }
             break;
         case E_MOVE_CONTROLLER_DIRECTION_SOUTH_EAST:
         {
             m_navigator->MoveForward();
-            m_navigator->MoveLeft();
+            m_navigator->SteerLeft();
         }
             break;
     }
@@ -119,10 +125,18 @@ void CCharacterController::OnUpdate(f32 _deltatime)
     m_camera->Set_LookAt(m_position);
     m_camera->Set_Rotation(m_rotation.y);
 
+    assert(m_shadow != nullptr);
+    m_shadow->Set_Position(m_position);
+    glm::vec3 shadowRotation = glm::degrees(m_rotation);
+    shadowRotation.y += 90.0f;
+    m_shadow->Set_Rotation(shadowRotation);
+
     assert(m_character != nullptr);
     m_character->Set_Position(m_position);
-    m_character->Set_Rotation(glm::degrees(m_rotation));
-    std::cout<<m_rotation.x<<","<<m_rotation.y<<","<<m_rotation.z<<std::endl;
+    glm::vec3 oldCharacterRotation = m_character->Get_Rotation();
+    glm::vec3 newCharacterRotation = glm::degrees(m_rotation);
+    newCharacterRotation.y += 90.0f;
+    m_character->Set_Rotation(SmoothRotation(oldCharacterRotation, newCharacterRotation));
 }
 
 

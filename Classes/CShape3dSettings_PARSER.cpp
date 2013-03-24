@@ -7,7 +7,7 @@
 //
 
 #include "CShape3dSettings_PARSER.h"
-#include "CCommon_IOS.h"
+#include "CCommon.h"
 
 SShape3dSettings* CShape3dSettings_PARSER::Deserialize(const std::string& _name)
 {

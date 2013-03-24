@@ -7,7 +7,7 @@
 //
 
 #include "CLoadOperation_PVR.h"
-#include "CCommon_IOS.h"
+#include "CCommon.h"
 #include "CTexture.h"
 
 CLoadOperation_PVR::CLoadOperation_PVR(void)

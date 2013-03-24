@@ -7,7 +7,7 @@
 //
 
 #include "CLoadOperation_MDL.h"
-#include "CCommon_IOS.h"
+#include "CCommon.h"
 #include "CMesh.h"
 
 CLoadOperation_MDL::CLoadOperation_MDL(void)

@@ -14,6 +14,7 @@
 #include "CShape3d.h"
 #include "CParticleEmitter.h"
 #include "CLandscape.h"
+#include "CLandscapeDecal.h"
 #include "COcean.h"
 #include "CSceneContainer.h"
 #include "CResourceMgrsFacade.h"
@@ -46,6 +47,9 @@ public:
 
     CLandscape* CreateLandscape(const std::string& _filename);
     void DeleteLandscape(CLandscape* _landscape);
+
+    CLandscapeDecal* CreateLandscapeDecal(const std::string& _filename);
+    void DeleteLandscapeDecal(CLandscapeDecal* _landscapeDecal);
 
     COcean* CreateOcean(const std::string& _filename);
     void DeleteOcean(COcean* _ocean);

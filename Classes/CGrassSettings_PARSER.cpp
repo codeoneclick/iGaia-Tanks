@@ -7,7 +7,7 @@
 //
 
 #include "CGrassSettings_PARSER.h"
-#include "CCommon_IOS.h"
+#include "CCommon.h"
 
 SGrassSettings* CGrassSettings_PARSER::Deserialize(const std::string& _name)
 {

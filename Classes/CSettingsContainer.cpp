@@ -13,6 +13,7 @@
 #include "CGrassSettings_PARSER.h"
 #include "CSkyDomeSettings_PARSER.h"
 #include "CParticleEmitterSettings_PARSER.h"
+#include "CLandscapeDecalSettings_PARSER.h"
 
 CSettingsContainer::CSettingsContainer(void)
 {
@@ -51,6 +52,18 @@ SLandscapeSettings* CSettingsContainer::LoadLandscapeSettings(const std::string&
     if(settings == nullptr)
     {
         CLandscapeSettings_PARSER parser;
+        settings = parser.Deserialize(_filename);
+        m_settingsContainer.insert(std::make_pair(_filename, settings));
+    }
+    return settings;
+}
+
+SLandscapeDecalSettings* CSettingsContainer::LoadLandscapeDecalSettings(const std::string &_filename)
+{
+    SLandscapeDecalSettings* settings = static_cast<SLandscapeDecalSettings*>(Get_CachedSettings(_filename));
+    if(settings == nullptr)
+    {
+        CLandscapeDecalSettings_PARSER parser;
         settings = parser.Deserialize(_filename);
         m_settingsContainer.insert(std::make_pair(_filename, settings));
     }
