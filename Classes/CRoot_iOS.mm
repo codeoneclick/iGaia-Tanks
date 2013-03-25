@@ -21,11 +21,13 @@ CRoot_iOS::CRoot_iOS(void* _glView)
     
     m_renderMgr = new CRenderMgr(m_glContext);
     m_updateMgr = new CSceneUpdateMgr();
+    m_collisionMgr = new CCollisionMgr();
     
     m_shaderComposite = m_renderMgr->Get_ShaderComposite();
     
     ConnectToMainLoop(m_renderMgr);
     ConnectToMainLoop(m_updateMgr);
+    ConnectToMainLoop(m_collisionMgr);
 }
 
 CRoot_iOS::~CRoot_iOS(void)

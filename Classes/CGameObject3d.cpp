@@ -75,7 +75,7 @@ void CGameObject3d::ListenRenderMgr(bool _value)
         {
             if(m_materials[i] != nullptr)
             {
-                m_renderMgr->AddEventListener(this, static_cast<E_RENDER_MODE_WORLD_SPACE>(i));
+                m_renderMgr->AddRenderEventListener(this, static_cast<E_RENDER_MODE_WORLD_SPACE>(i));
             }
         }
     }
@@ -85,7 +85,7 @@ void CGameObject3d::ListenRenderMgr(bool _value)
         {
             if(m_materials[i] != nullptr)
             {
-                m_renderMgr->RemoveEventListener(this, static_cast<E_RENDER_MODE_WORLD_SPACE>(i));
+                m_renderMgr->RemoveRenderEventListener(this, static_cast<E_RENDER_MODE_WORLD_SPACE>(i));
             }
         }
     }

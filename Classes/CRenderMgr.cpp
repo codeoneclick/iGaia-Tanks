@@ -34,12 +34,12 @@ CRenderMgr::~CRenderMgr(void)
     
 }
 
-void CRenderMgr::AddEventListener(CRenderCallback_INTERFACE *_listener, E_RENDER_MODE_WORLD_SPACE _mode)
+void CRenderMgr::AddRenderEventListener(CRenderCallback_INTERFACE *_listener, E_RENDER_MODE_WORLD_SPACE _mode)
 {
     m_worldSpaceOperations[_mode]->AddEventListener(_listener);
 }
 
-void CRenderMgr::RemoveEventListener(CRenderCallback_INTERFACE *_listener, E_RENDER_MODE_WORLD_SPACE _mode)
+void CRenderMgr::RemoveRenderEventListener(CRenderCallback_INTERFACE *_listener, E_RENDER_MODE_WORLD_SPACE _mode)
 {
     m_worldSpaceOperations[_mode]->RemoveEventListener(_listener);
 }

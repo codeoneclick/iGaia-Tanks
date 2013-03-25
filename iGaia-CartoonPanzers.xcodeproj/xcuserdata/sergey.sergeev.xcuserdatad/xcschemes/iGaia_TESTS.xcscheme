@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A46834E416EDF87500D34692"
-               BuildableName = "iGaia_TESTS.app"
-               BlueprintName = "iGaia_TESTS"
-               ReferencedContainer = "container:iGaia.xcodeproj">
+               BuildableName = "iGaia-CartoonPanzers_TESTS.app"
+               BlueprintName = "iGaia-CartoonPanzers_TESTS"
+               ReferencedContainer = "container:iGaia-CartoonPanzers.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A46834E416EDF87500D34692"
-            BuildableName = "iGaia_TESTS.app"
-            BlueprintName = "iGaia_TESTS"
-            ReferencedContainer = "container:iGaia.xcodeproj">
+            BuildableName = "iGaia-CartoonPanzers_TESTS.app"
+            BlueprintName = "iGaia-CartoonPanzers_TESTS"
+            ReferencedContainer = "container:iGaia-CartoonPanzers.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A46834E416EDF87500D34692"
-            BuildableName = "iGaia_TESTS.app"
-            BlueprintName = "iGaia_TESTS"
-            ReferencedContainer = "container:iGaia.xcodeproj">
+            BuildableName = "iGaia-CartoonPanzers_TESTS.app"
+            BlueprintName = "iGaia-CartoonPanzers_TESTS"
+            ReferencedContainer = "container:iGaia-CartoonPanzers.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A46834E416EDF87500D34692"
-            BuildableName = "iGaia_TESTS.app"
-            BlueprintName = "iGaia_TESTS"
-            ReferencedContainer = "container:iGaia.xcodeproj">
+            BuildableName = "iGaia-CartoonPanzers_TESTS.app"
+            BlueprintName = "iGaia-CartoonPanzers_TESTS"
+            ReferencedContainer = "container:iGaia-CartoonPanzers.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

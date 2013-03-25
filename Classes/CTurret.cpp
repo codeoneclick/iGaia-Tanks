@@ -23,9 +23,12 @@ void CTurret::Load(IRoot* _root, IPanzerSpareSettings* _settings)
     STurretSettings* settings  = static_cast<STurretSettings*>(_settings);
     assert(settings != nullptr);
     m_turretShape = _root->CreateShape3d(settings->m_turretSettingsFilename);
+    assert(m_turretShape != nullptr);
     _root->InsertShape3d(m_turretShape);
     m_turretShape->Set_Position(m_position);
     m_turretShape->Set_Rotation(m_rotation);
+    m_turretMaxBound = m_turretShape->Get_MaxBound();
+    m_turretMinBound = m_turretShape->Get_MinBound();
 }
 
 void CTurret::Set_Position(const glm::vec3& _position)

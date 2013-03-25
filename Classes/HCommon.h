@@ -45,6 +45,9 @@
 #include <pugixml/pugixml.hpp>
 
 #include "PVRTTexture.h"
+
+#include "box2d.h"
+
 #include "HEnum.h"
 
 typedef signed char i8;
@@ -58,7 +61,7 @@ typedef long long i64;
 typedef float f32;
 
 #define TO_RGB(r,g,b) (unsigned short)(((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3))
-#define MAX(a,b) (((a) > (b)) ? (a) : (b))
+#define MAX_VALUE(a,b) (((a) > (b)) ? (a) : (b))
 
 #ifndef __APPLE__
 

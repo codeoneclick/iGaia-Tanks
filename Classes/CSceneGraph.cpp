@@ -18,6 +18,7 @@ CSceneGraph::CSceneGraph(void)
 
     m_updateMgr = nullptr;
     m_renderMgr = nullptr;
+    m_collisionMgr = nullptr;
 }
 
 CSceneGraph::~CSceneGraph(void)
@@ -101,6 +102,9 @@ void CSceneGraph::Set_Landscape(CLandscape* _landscape)
         landscapeDecal->Set_HeightmapWidth(m_landscape->Get_HeightmapWidth());
         landscapeDecal->Set_HeightmapHeight(m_landscape->Get_HeightmapHeight());
     }
+
+    assert(m_collisionMgr != nullptr);
+    m_collisionMgr->Set_CollisionBounds(glm::vec2(m_landscape->Get_Position().x, m_landscape->Get_Position().z), glm::vec2(m_landscape->Get_HeightmapWidth(), m_landscape->Get_HeightmapHeight()));
 }
 
 void CSceneGraph::Set_Ocean(COcean *_ocean)
@@ -252,5 +256,17 @@ void CSceneGraph::RemoveLandscapeDecal(CLandscapeDecal* _landscapeDecal)
     landscapeDecal->ListenUpdateMgr(false);
     landscapeDecal->ListenRenderMgr(false);
     m_landscapeDecalsContainer.erase(landscapeDecal);
+}
+
+void CSceneGraph::InsertCollider(CCollisionCallback_INTERFACE* _collider, bool _isStatic)
+{
+    assert(m_collisionMgr != nullptr);
+    m_collisionMgr->AddCollisionEventListener(_collider, _isStatic);
+}
+
+void CSceneGraph::RemoveCollider(CCollisionCallback_INTERFACE* _collider)
+{
+    assert(m_collisionMgr != nullptr);
+    m_collisionMgr->RemoveCollisionEventListener(_collider);
 }
 
