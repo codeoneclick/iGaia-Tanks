@@ -18,11 +18,9 @@ int main(int argc, const char* argv[])
 		}
 		else
 		{
-			
+			glWindow->Process();
 		}
 	}
-
-
 
 	return 0;
 }

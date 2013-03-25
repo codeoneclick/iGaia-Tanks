@@ -1,9 +1,11 @@
-﻿Build started 3/24/2013 12:32:44 AM.
+﻿Build started 3/24/2013 12:12:41 PM.
      1>Project "D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers\iGaia-CartoonPanzers\iGaia-CartoonPanzers.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\pvrtextool\include" /I"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\windows\ogles2\include" /I"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\Classes\CGLWindow_Win32.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\pvrtextool\include" /I"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\windows\ogles2\include" /I"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\Classes\CGLWindow_Win32.cpp "iGaia-CartoonPanzers.cpp"
+         iGaia-CartoonPanzers.cpp
          CGLWindow_Win32.cpp
      1>d:\develop\igaia-tanks\igaia-tanks\classes\cglwindow_win32.cpp(15): warning C4060: switch statement contains no 'case' or 'default' labels
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers\Debug\iGaia-CartoonPanzers.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\pvrtextool\windows_x86_32\Static" /LIBPATH:"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\windows\ogles2\windows_x86_32\lib" /LIBPATH:"D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\windows\ogles2\windows_x86_64\lib" libEGL.lib libGLESv2.lib PVRTexLib.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers\Debug\iGaia-CartoonPanzers.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers\Debug\iGaia-CartoonPanzers.lib" /MACHINE:X86 Debug\CCamera.obj
          Debug\CCarcass.obj
@@ -82,4 +84,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.62
+Time Elapsed 00:00:04.44

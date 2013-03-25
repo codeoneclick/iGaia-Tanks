@@ -34,13 +34,28 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }
 
+bool TestEGLError(HWND hWnd, char* pszLocation)
+{
+
+	EGLint iErr = eglGetError();
+	if (iErr != EGL_SUCCESS)
+	{
+		//TCHAR pszStr[256];
+		//_stprintf(pszStr, L"%s failed (%d).\n", pszLocation, iErr);
+		MessageBox(hWnd, L"EGL error", L"iGaia-CartoonPanzers", MB_OK | MB_ICONEXCLAMATION);
+		return false;
+	}
+
+	return true;
+}
+
 CGLWindow_Win32::CGLWindow_Win32(void)
 {
-	EGLDisplay	eglDisplay	= 0;
-	EGLConfig	eglConfig	= 0;
-	EGLSurface	eglSurface	= 0;
-	EGLContext	eglContext	= 0;
-	EGLNativeWindowType	eglWindow	= 0;
+	m_eglDisplay = 0;
+	m_eglConfig = 0;
+	m_eglSurface = 0;
+	m_eglContext = 0;
+	m_eglWindow = 0;
 
 	HWND hWnd = 0;
 	HDC	hDC	= 0;
@@ -96,13 +111,15 @@ CGLWindow_Win32::CGLWindow_Win32(void)
 		return;                                                        
 	}
 
-	eglDisplay = eglGetDisplay(hDC);
+	m_eglWindow = hWnd;
 
-	if(eglDisplay == EGL_NO_DISPLAY)
-		eglDisplay = eglGetDisplay((EGLNativeDisplayType) EGL_DEFAULT_DISPLAY);
+	m_eglDisplay = eglGetDisplay(hDC);
+
+	if(m_eglDisplay == EGL_NO_DISPLAY)
+		m_eglDisplay = eglGetDisplay((EGLNativeDisplayType) EGL_DEFAULT_DISPLAY);
 
 	EGLint iMajorVersion, iMinorVersion;
-	if (!eglInitialize(eglDisplay, &iMajorVersion, &iMinorVersion))
+	if (!eglInitialize(m_eglDisplay, &iMajorVersion, &iMinorVersion))
 	{
 		MessageBox(0, L"eglInitialize() failed.", L"iGaia-CartoonPanzers", MB_OK | MB_ICONEXCLAMATION);
 		return;
@@ -121,26 +138,32 @@ CGLWindow_Win32::CGLWindow_Win32(void)
 	};
 
 	int iConfigs;
-	if (!eglChooseConfig(eglDisplay, pi32ConfigAttribs, &eglConfig, 1, &iConfigs) || (iConfigs != 1))
+	if (!eglChooseConfig(m_eglDisplay, pi32ConfigAttribs, &m_eglConfig, 1, &iConfigs) || (iConfigs != 1))
 	{
 		MessageBox(0, L"eglChooseConfig() failed.", L"iGaia-CartoonPanzers", MB_OK | MB_ICONEXCLAMATION);
 		return;
 	}
 
-	eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, eglWindow, NULL);
+	m_eglSurface = eglCreateWindowSurface(m_eglDisplay, m_eglConfig, m_eglWindow, NULL);
 
-	if(eglSurface == EGL_NO_SURFACE)
+	if(m_eglSurface == EGL_NO_SURFACE)
 	{
 		eglGetError();
-		eglSurface = eglCreateWindowSurface(eglDisplay, eglConfig, NULL, NULL);
+		m_eglSurface = eglCreateWindowSurface(m_eglDisplay, m_eglConfig, NULL, NULL);
 	}
 
 	EGLint ai32ContextAttribs[] = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
-	eglContext = eglCreateContext(eglDisplay, eglConfig, NULL, ai32ContextAttribs);
+	m_eglContext = eglCreateContext(m_eglDisplay, m_eglConfig, NULL, ai32ContextAttribs);
 
-	eglMakeCurrent(eglDisplay, eglSurface, eglSurface, eglContext);
-	eglSwapBuffers(eglDisplay, eglSurface);
+	eglMakeCurrent(m_eglDisplay, m_eglSurface, m_eglSurface, m_eglContext);
 	
 	ShowWindow(hWnd, SW_SHOW);  
 	UpdateWindow(hWnd);     
+}
+
+void CGLWindow_Win32::Process(void)
+{
+	glClearColor(1.0, 0.0, 0.0, 1.0);
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+	eglSwapBuffers(m_eglDisplay, m_eglSurface);
 }
