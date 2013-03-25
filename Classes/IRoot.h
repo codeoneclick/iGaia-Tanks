@@ -12,7 +12,9 @@
 #include "CSceneFabricator.h"
 #include "CSceneGraph.h"
 
-class IRoot : public virtual CSceneFabricator, public virtual CSceneGraph
+class IRoot :
+public virtual CSceneFabricator,
+public virtual CSceneGraph
 {
     
 };

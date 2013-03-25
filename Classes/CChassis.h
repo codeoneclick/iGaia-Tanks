@@ -21,11 +21,11 @@ protected:
     CShape3d* m_rightChassisShape;
     
     glm::vec3 m_leftChassisMaxBound;
-    glm::vec3 m_leftChassiskMinBound;
+    glm::vec3 m_leftChassisMinBound;
     glm::vec3 m_leftChassisCenter;
     
     glm::vec3 m_rightChassisMaxBound;
-    glm::vec3 m_rightChassiskMinBound;
+    glm::vec3 m_rightChassisMinBound;
     glm::vec3 m_rightChassisCenter;
     
 public:
@@ -45,7 +45,7 @@ public:
     
     inline glm::vec3 Get_LeftChassisMinBound(void)
     {
-        return m_leftChassiskMinBound;
+        return m_leftChassisMinBound;
     };
     
     inline glm::vec3 Get_LeftChassisCenterBound(void)
@@ -60,7 +60,7 @@ public:
     
     inline glm::vec3 Get_RightChassisMinBound(void)
     {
-        return m_rightChassiskMinBound;
+        return m_rightChassisMinBound;
     };
     
     inline glm::vec3 Get_RightChassisCenterBound(void)

@@ -10,7 +10,7 @@
 
 std::string Get_BundlePath(void)
 {
-    return "";
+    return "../../Resources/Bundle/";
 };
 
 ui32 Get_ScreenWidth(void)

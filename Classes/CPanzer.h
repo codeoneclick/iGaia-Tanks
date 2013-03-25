@@ -13,8 +13,10 @@
 #include "CCarcass.h"
 #include "CChassis.h"
 #include "CTurret.h"
+#include "CCollisionCallback.h"
 
-class CPanzer : public ICharacter
+class CPanzer :
+public ICharacter
 {
 private:
 
@@ -23,8 +25,7 @@ protected:
     CCarcass* m_carcass;
     CChassis* m_chassis;
     CTurret* m_turret;
-
-    glm::vec3 m_turretRotation;
+    f32 m_turretRotation;
 
 public:
 

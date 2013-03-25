@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9347E807-B08B-4761-8DF4-F55BD13BEF0C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>iGaiaCartoonPanzers</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <PrecompiledHeaderFile />
+      <AdditionalIncludeDirectories>D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\pvrtextool\include;D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\windows\ogles2\include;D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\pvrtextool\windows_x86_32\Static;D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\windows\ogles2\windows_x86_32\lib;D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\windows\ogles2\windows_x86_64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libEGL.lib;libGLESv2.lib;PVRTexLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Classes\CCamera.cpp" />
+    <ClCompile Include="..\..\Classes\CCarcass.cpp" />
+    <ClCompile Include="..\..\Classes\CCharacterController.cpp" />
+    <ClCompile Include="..\..\Classes\CChassis.cpp" />
+    <ClCompile Include="..\..\Classes\CCollisionCallback.cpp" />
+    <ClCompile Include="..\..\Classes\CCollisionMgr.cpp" />
+    <ClCompile Include="..\..\Classes\CCollisionNavigator.cpp" />
+    <ClCompile Include="..\..\Classes\CCommon_Win32.cpp" />
+    <ClCompile Include="..\..\Classes\CFrustum.cpp" />
+    <ClCompile Include="..\..\Classes\CGameMainMenuScene.cpp" />
+    <ClCompile Include="..\..\Classes\CGameMainMenuSceneViewController_Win32.cpp" />
+    <ClCompile Include="..\..\Classes\CGameObject3d.cpp" />
+    <ClCompile Include="..\..\Classes\CGameObjectSettings_PARSER.cpp" />
+    <ClCompile Include="..\..\Classes\CGameSettingsMgr.cpp" />
+    <ClCompile Include="..\..\Classes\CGLContext_Win32.cpp" />
+    <ClCompile Include="..\..\Classes\CGLWindow_Win32.cpp" />
+    <ClCompile Include="..\..\Classes\CGrassSettings_PARSER.cpp" />
+    <ClCompile Include="..\..\Classes\CHeightmapHelper.cpp" />
+    <ClCompile Include="..\..\Classes\CHeightmapProcessor.cpp" />
+    <ClCompile Include="..\..\Classes\CIndexBuffer.cpp" />
+    <ClCompile Include="..\..\Classes\CLandscape.cpp" />
+    <ClCompile Include="..\..\Classes\CLandscapeChunk.cpp" />
+    <ClCompile Include="..\..\Classes\CLandscapeDecal.cpp" />
+    <ClCompile Include="..\..\Classes\CLandscapeDecalSettings_PARSER.cpp" />
+    <ClCompile Include="..\..\Classes\CLandscapeEdges.cpp" />
+    <ClCompile Include="..\..\Classes\CLandscapeSettings_PARSER.cpp" />
+    <ClCompile Include="..\..\Classes\CLight.cpp" />
+    <ClCompile Include="..\..\Classes\CLoadOperation_MDL.cpp" />
+    <ClCompile Include="..\..\Classes\CLoadOperation_PVR.cpp" />
+    <ClCompile Include="..\..\Classes\CMainLoopUpdateCallback.cpp" />
+    <ClCompile Include="..\..\Classes\CMainLoop_Win32.cpp" />
+    <ClCompile Include="..\..\Classes\CMaterial.cpp" />
+    <ClCompile Include="..\..\Classes\CMesh.cpp" />
+    <ClCompile Include="..\..\Classes\CMeshMgr.cpp" />
+    <ClCompile Include="..\..\Classes\CMoveControllerCallback.cpp" />
+    <ClCompile Include="..\..\Classes\CNavigator.cpp" />
+    <ClCompile Include="..\..\Classes\CObject3dBasisProcessor.cpp" />
+    <ClCompile Include="..\..\Classes\COcean.cpp" />
+    <ClCompile Include="..\..\Classes\COceanSettings_PARSER.cpp" />
+    <ClCompile Include="..\..\Classes\CPanzer.cpp" />
+    <ClCompile Include="..\..\Classes\CPanzerSettings_PARSER.cpp" />
+    <ClCompile Include="..\..\Classes\CParser_GLSL.cpp" />
+    <ClCompile Include="..\..\Classes\CParticleEmitter.cpp" />
+    <ClCompile Include="..\..\Classes\CParticleEmitterSettings_PARSER.cpp" />
+    <ClCompile Include="..\..\Classes\CQuadTree.cpp" />
+    <ClCompile Include="..\..\Classes\CRenderCallback.cpp" />
+    <ClCompile Include="..\..\Classes\CRenderMgr.cpp" />
+    <ClCompile Include="..\..\Classes\CRenderOperationScreenOutput.cpp" />
+    <ClCompile Include="..\..\Classes\CRenderOperationScreenSpace.cpp" />
+    <ClCompile Include="..\..\Classes\CRenderOperationWorldSpace.cpp" />
+    <ClCompile Include="..\..\Classes\CResourceLoadCallback.cpp" />
+    <ClCompile Include="..\..\Classes\CResourceMgrsFacade.cpp" />
+    <ClCompile Include="..\..\Classes\CRoot_Win32.cpp" />
+    <ClCompile Include="..\..\Classes\CRotateControllerCallback.cpp" />
+    <ClCompile Include="..\..\Classes\CSceneContainer.cpp" />
+    <ClCompile Include="..\..\Classes\CSceneFabricator.cpp" />
+    <ClCompile Include="..\..\Classes\CSceneGraph.cpp" />
+    <ClCompile Include="..\..\Classes\CSceneUpdateCallback.cpp" />
+    <ClCompile Include="..\..\Classes\CSceneUpdateMgr.cpp" />
+    <ClCompile Include="..\..\Classes\CScreenSpaceRenderProcessor.cpp" />
+    <ClCompile Include="..\..\Classes\CSettingsContainer.cpp" />
+    <ClCompile Include="..\..\Classes\CShader.cpp" />
+    <ClCompile Include="..\..\Classes\CShaderComposite.cpp" />
+    <ClCompile Include="..\..\Classes\CShape3d.cpp" />
+    <ClCompile Include="..\..\Classes\CShape3dSettings_PARSER.cpp" />
+    <ClCompile Include="..\..\Classes\CSkyDomeSettings_PARSER.cpp" />
+    <ClCompile Include="..\..\Classes\CTexture.cpp" />
+    <ClCompile Include="..\..\Classes\CTextureMgr.cpp" />
+    <ClCompile Include="..\..\Classes\CTurret.cpp" />
+    <ClCompile Include="..\..\Classes\CVertexBuffer.cpp" />
+    <ClCompile Include="..\..\Classes\ICharacter.cpp" />
+    <ClCompile Include="..\..\Classes\IGLContext.cpp" />
+    <ClCompile Include="..\..\Classes\ILoadOperation.cpp" />
+    <ClCompile Include="..\..\Classes\IResource.cpp" />
+    <ClCompile Include="..\..\Classes\IResourceMgr.cpp" />
+    <ClCompile Include="..\..\Classes\ISpare.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Collision\b2BroadPhase.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Collision\b2CollideCircle.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Collision\b2CollideEdge.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Collision\b2CollidePolygon.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Collision\b2Collision.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Collision\b2Distance.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Collision\b2DynamicTree.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Collision\b2TimeOfImpact.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Collision\Shapes\b2ChainShape.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Collision\Shapes\b2CircleShape.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Collision\Shapes\b2EdgeShape.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Collision\Shapes\b2PolygonShape.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Common\b2BlockAllocator.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Common\b2Draw.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Common\b2Math.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Common\b2Settings.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Common\b2StackAllocator.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Common\b2Timer.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\b2Body.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\b2ContactManager.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\b2Fixture.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\b2Island.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\b2World.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\b2WorldCallbacks.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Contacts\b2ChainAndCircleContact.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Contacts\b2ChainAndPolygonContact.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Contacts\b2CircleContact.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Contacts\b2Contact.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Contacts\b2ContactSolver.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Contacts\b2EdgeAndCircleContact.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Contacts\b2EdgeAndPolygonContact.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Contacts\b2PolygonAndCircleContact.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Contacts\b2PolygonContact.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Joints\b2DistanceJoint.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Joints\b2FrictionJoint.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Joints\b2GearJoint.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Joints\b2Joint.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Joints\b2MouseJoint.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Joints\b2PrismaticJoint.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Joints\b2PulleyJoint.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Joints\b2RevoluteJoint.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Joints\b2RopeJoint.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Joints\b2WeldJoint.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Dynamics\Joints\b2WheelJoint.cpp" />
+    <ClCompile Include="..\..\Libs\box2d\Rope\b2Rope.cpp" />
+    <ClCompile Include="..\..\Libs\pugixml\pugixml.cpp" />
+    <ClCompile Include="iGaia-CartoonPanzers.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Classes\CCamera.h" />
+    <ClInclude Include="..\..\Classes\CCarcass.h" />
+    <ClInclude Include="..\..\Classes\CCharacterController.h" />
+    <ClInclude Include="..\..\Classes\CChassis.h" />
+    <ClInclude Include="..\..\Classes\CCollisionCallback.h" />
+    <ClInclude Include="..\..\Classes\CCollisionMgr.h" />
+    <ClInclude Include="..\..\Classes\CCollisionNavigator.h" />
+    <ClInclude Include="..\..\Classes\CCommon.h" />
+    <ClInclude Include="..\..\Classes\CFrustum.h" />
+    <ClInclude Include="..\..\Classes\CGameMainMenuScene.h" />
+    <ClInclude Include="..\..\Classes\CGameMainMenuSceneViewController_Win32.h" />
+    <ClInclude Include="..\..\Classes\CGameObject3d.h" />
+    <ClInclude Include="..\..\Classes\CGameObjectSettings_PARSER.h" />
+    <ClInclude Include="..\..\Classes\CGameSettingsMgr.h" />
+    <ClInclude Include="..\..\Classes\CGLContext_iOS.h" />
+    <ClInclude Include="..\..\Classes\CGLContext_Win32.h" />
+    <ClInclude Include="..\..\Classes\CGLWindow_Win32.h" />
+    <ClInclude Include="..\..\Classes\CGrassSettings_PARSER.h" />
+    <ClInclude Include="..\..\Classes\CHeightmapHelper.h" />
+    <ClInclude Include="..\..\Classes\CHeightmapProcessor.h" />
+    <ClInclude Include="..\..\Classes\CIndexBuffer.h" />
+    <ClInclude Include="..\..\Classes\CLandscape.h" />
+    <ClInclude Include="..\..\Classes\CLandscapeChunk.h" />
+    <ClInclude Include="..\..\Classes\CLandscapeDecal.h" />
+    <ClInclude Include="..\..\Classes\CLandscapeDecalSettings_PARSER.h" />
+    <ClInclude Include="..\..\Classes\CLandscapeEdges.h" />
+    <ClInclude Include="..\..\Classes\CLandscapeSettings_PARSER.h" />
+    <ClInclude Include="..\..\Classes\CLight.h" />
+    <ClInclude Include="..\..\Classes\CLoadOperation_MDL.h" />
+    <ClInclude Include="..\..\Classes\CLoadOperation_PVR.h" />
+    <ClInclude Include="..\..\Classes\CMainLoop.h" />
+    <ClInclude Include="..\..\Classes\CMainLoopUpdateCallback.h" />
+    <ClInclude Include="..\..\Classes\CMaterial.h" />
+    <ClInclude Include="..\..\Classes\CMesh.h" />
+    <ClInclude Include="..\..\Classes\CMeshMgr.h" />
+    <ClInclude Include="..\..\Classes\CMoveControllerCallback.h" />
+    <ClInclude Include="..\..\Classes\CNavigator.h" />
+    <ClInclude Include="..\..\Classes\CObject3dBasisProcessor.h" />
+    <ClInclude Include="..\..\Classes\COcean.h" />
+    <ClInclude Include="..\..\Classes\COceanSettings_PARSER.h" />
+    <ClInclude Include="..\..\Classes\CPanzer.h" />
+    <ClInclude Include="..\..\Classes\CPanzerSettings_PARSER.h" />
+    <ClInclude Include="..\..\Classes\CParser_GLSL.h" />
+    <ClInclude Include="..\..\Classes\CParticleEmitter.h" />
+    <ClInclude Include="..\..\Classes\CParticleEmitterSettings_PARSER.h" />
+    <ClInclude Include="..\..\Classes\CQuadTree.h" />
+    <ClInclude Include="..\..\Classes\CRenderCallback.h" />
+    <ClInclude Include="..\..\Classes\CRenderMgr.h" />
+    <ClInclude Include="..\..\Classes\CRenderOperationScreenOutput.h" />
+    <ClInclude Include="..\..\Classes\CRenderOperationScreenSpace.h" />
+    <ClInclude Include="..\..\Classes\CRenderOperationWorldSpace.h" />
+    <ClInclude Include="..\..\Classes\CResourceLoadCallback.h" />
+    <ClInclude Include="..\..\Classes\CResourceMgrsFacade.h" />
+    <ClInclude Include="..\..\Classes\CRoot.h" />
+    <ClInclude Include="..\..\Classes\CRotateControllerCallback.h" />
+    <ClInclude Include="..\..\Classes\CSceneContainer.h" />
+    <ClInclude Include="..\..\Classes\CSceneFabricator.h" />
+    <ClInclude Include="..\..\Classes\CSceneGraph.h" />
+    <ClInclude Include="..\..\Classes\CSceneUpdateCallback.h" />
+    <ClInclude Include="..\..\Classes\CSceneUpdateMgr.h" />
+    <ClInclude Include="..\..\Classes\CScreenSpaceRenderProcessor.h" />
+    <ClInclude Include="..\..\Classes\CSettingsContainer.h" />
+    <ClInclude Include="..\..\Classes\CShader.h" />
+    <ClInclude Include="..\..\Classes\CShaderComposite.h" />
+    <ClInclude Include="..\..\Classes\CShape3d.h" />
+    <ClInclude Include="..\..\Classes\CShape3dSettings_PARSER.h" />
+    <ClInclude Include="..\..\Classes\CSkyDomeSettings_PARSER.h" />
+    <ClInclude Include="..\..\Classes\CTexture.h" />
+    <ClInclude Include="..\..\Classes\CTextureMgr.h" />
+    <ClInclude Include="..\..\Classes\CTurret.h" />
+    <ClInclude Include="..\..\Classes\CVertexBuffer.h" />
+    <ClInclude Include="..\..\Classes\HCommon.h" />
+    <ClInclude Include="..\..\Classes\HEnum.h" />
+    <ClInclude Include="..\..\Classes\HGameEnum.h" />
+    <ClInclude Include="..\..\Classes\HGameSettings_DTO.h" />
+    <ClInclude Include="..\..\Classes\HSettings_DTO.h" />
+    <ClInclude Include="..\..\Classes\ICharacter.h" />
+    <ClInclude Include="..\..\Classes\IGLContext.h" />
+    <ClInclude Include="..\..\Classes\ILoadOperation.h" />
+    <ClInclude Include="..\..\Classes\IResource.h" />
+    <ClInclude Include="..\..\Classes\IResourceMgr.h" />
+    <ClInclude Include="..\..\Classes\IRoot.h" />
+    <ClInclude Include="..\..\Classes\ISpare.h" />
+    <ClInclude Include="..\..\Libs\box2d\Box2D.h" />
+    <ClInclude Include="..\..\Libs\box2d\Collision\b2BroadPhase.h" />
+    <ClInclude Include="..\..\Libs\box2d\Collision\b2Collision.h" />
+    <ClInclude Include="..\..\Libs\box2d\Collision\b2Distance.h" />
+    <ClInclude Include="..\..\Libs\box2d\Collision\b2DynamicTree.h" />
+    <ClInclude Include="..\..\Libs\box2d\Collision\b2TimeOfImpact.h" />
+    <ClInclude Include="..\..\Libs\box2d\Collision\Shapes\b2ChainShape.h" />
+    <ClInclude Include="..\..\Libs\box2d\Collision\Shapes\b2CircleShape.h" />
+    <ClInclude Include="..\..\Libs\box2d\Collision\Shapes\b2EdgeShape.h" />
+    <ClInclude Include="..\..\Libs\box2d\Collision\Shapes\b2PolygonShape.h" />
+    <ClInclude Include="..\..\Libs\box2d\Collision\Shapes\b2Shape.h" />
+    <ClInclude Include="..\..\Libs\box2d\Common\b2BlockAllocator.h" />
+    <ClInclude Include="..\..\Libs\box2d\Common\b2Draw.h" />
+    <ClInclude Include="..\..\Libs\box2d\Common\b2GrowableStack.h" />
+    <ClInclude Include="..\..\Libs\box2d\Common\b2Math.h" />
+    <ClInclude Include="..\..\Libs\box2d\Common\b2Settings.h" />
+    <ClInclude Include="..\..\Libs\box2d\Common\b2StackAllocator.h" />
+    <ClInclude Include="..\..\Libs\box2d\Common\b2Timer.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\b2Body.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\b2ContactManager.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\b2Fixture.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\b2Island.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\b2TimeStep.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\b2World.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\b2WorldCallbacks.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Contacts\b2ChainAndCircleContact.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Contacts\b2ChainAndPolygonContact.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Contacts\b2CircleContact.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Contacts\b2Contact.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Contacts\b2ContactSolver.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Contacts\b2EdgeAndCircleContact.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Contacts\b2EdgeAndPolygonContact.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Contacts\b2PolygonAndCircleContact.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Contacts\b2PolygonContact.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Joints\b2DistanceJoint.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Joints\b2FrictionJoint.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Joints\b2GearJoint.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Joints\b2Joint.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Joints\b2MouseJoint.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Joints\b2PrismaticJoint.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Joints\b2PulleyJoint.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Joints\b2RevoluteJoint.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Joints\b2RopeJoint.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Joints\b2WeldJoint.h" />
+    <ClInclude Include="..\..\Libs\box2d\Dynamics\Joints\b2WheelJoint.h" />
+    <ClInclude Include="..\..\Libs\box2d\Rope\b2Rope.h" />
+    <ClInclude Include="..\..\Libs\pugixml\pugiconfig.hpp" />
+    <ClInclude Include="..\..\Libs\pugixml\pugixml.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Classes\CCommon_iOS.mm" />
+    <None Include="..\..\Classes\CGLContext_iOS.mm" />
+    <None Include="..\..\Classes\CMainLoop_iOS.mm" />
+    <None Include="..\..\Classes\CRoot_iOS.mm" />
+    <None Include="..\..\Shaders\ShaderDecal.frag" />
+    <None Include="..\..\Shaders\ShaderDecal.vert" />
+    <None Include="..\..\Shaders\ShaderGrass.frag" />
+    <None Include="..\..\Shaders\ShaderGrass.vert" />
+    <None Include="..\..\Shaders\ShaderGrassND.frag" />
+    <None Include="..\..\Shaders\ShaderGrassND.vert" />
+    <None Include="..\..\Shaders\ShaderLandscape.frag" />
+    <None Include="..\..\Shaders\ShaderLandscape.vert" />
+    <None Include="..\..\Shaders\ShaderLandscapeEdges.frag" />
+    <None Include="..\..\Shaders\ShaderLandscapeEdges.vert" />
+    <None Include="..\..\Shaders\ShaderLandscapeND.frag" />
+    <None Include="..\..\Shaders\ShaderLandscapeND.vert" />
+    <None Include="..\..\Shaders\ShaderModel.frag" />
+    <None Include="..\..\Shaders\ShaderModel.vert" />
+    <None Include="..\..\Shaders\ShaderModelND.frag" />
+    <None Include="..\..\Shaders\ShaderModelND.vert" />
+    <None Include="..\..\Shaders\ShaderOcean.frag" />
+    <None Include="..\..\Shaders\ShaderOcean.vert" />
+    <None Include="..\..\Shaders\ShaderParticle.frag" />
+    <None Include="..\..\Shaders\ShaderParticle.vert" />
+    <None Include="..\..\Shaders\ShaderParticleND.frag" />
+    <None Include="..\..\Shaders\ShaderParticleND.vert" />
+    <None Include="..\..\Shaders\ShaderPostBloomCombine.frag" />
+    <None Include="..\..\Shaders\ShaderPostBloomCombine.vert" />
+    <None Include="..\..\Shaders\ShaderPostBloomExtract.frag" />
+    <None Include="..\..\Shaders\ShaderPostBloomExtract.vert" />
+    <None Include="..\..\Shaders\ShaderPostBlur.frag" />
+    <None Include="..\..\Shaders\ShaderPostBlur.vert" />
+    <None Include="..\..\Shaders\ShaderPostEdgeDetect.frag" />
+    <None Include="..\..\Shaders\ShaderPostEdgeDetect.vert" />
+    <None Include="..\..\Shaders\ShaderPostLandscapeDetail.frag" />
+    <None Include="..\..\Shaders\ShaderPostLandscapeDetail.vert" />
+    <None Include="..\..\Shaders\ShaderPostPlane.frag" />
+    <None Include="..\..\Shaders\ShaderPostPlane.vert" />
+    <None Include="..\..\Shaders\ShaderSkybox.frag" />
+    <None Include="..\..\Shaders\ShaderSkybox.vert" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

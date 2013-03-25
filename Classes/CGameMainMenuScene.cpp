@@ -28,7 +28,7 @@ CGameMainMenuScene::~CGameMainMenuScene(void)
 
 }
 
-void CGameMainMenuScene::Load(CRoot_iOS* _root)
+void CGameMainMenuScene::Load(IRoot* _root)
 {
     m_camera = _root->CreateCamera(45.0f, 0.1f, 1000.0f, glm::vec4(0.0f, 0.0f, 480.0f, 320.0f));
     _root->Set_Camera(m_camera);
@@ -69,6 +69,19 @@ void CGameMainMenuScene::Load(CRoot_iOS* _root)
     m_characterController->Set_Camera(m_camera);
     m_characterController->Set_Character(mainPanzer);
     m_characterController->Set_Shadow(mainPanzerShadow);
-    m_characterController->Get_Navigator()->Set_Heightmap(m_landscape->Get_HeightmapData(), m_landscape->Get_HeightmapWidth(), m_landscape->Get_HeightmapHeight());
+
+	CNavigator* navigator = new CNavigator(
+		0.3f, 
+		0.15f,
+		0.0f,
+		0.025f,
+		m_landscape->Get_HeightmapData(),
+		m_landscape->Get_HeightmapWidth(),
+		m_landscape->Get_HeightmapHeight());
+
+	navigator->Set_Position(glm::vec3(0.0f, 0.0f, 0.0f));
+    navigator->Set_Rotation(glm::vec3(0.0f, 0.0f, 0.0f));
+
+	m_characterController->Set_Navigator(navigator);
     ConnectToMainLoop(m_characterController);
 }

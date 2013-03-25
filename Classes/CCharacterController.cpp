@@ -14,13 +14,10 @@ CCharacterController::CCharacterController(void)
     m_character = nullptr;
     m_moveDirection = E_MOVE_CONTROLLER_DIRECTION_NONE;
     m_rotateDirection = E_ROTATE_CONTROLLER_DIRECTION_NONE;
-    m_navigator = new CNavigator(0.3f, 0.15f, 0.0f, 0.025f);
+	m_navigator = nullptr;
 
     m_position = glm::vec3(0.0f, 0.0f, 0.0f);
     m_rotation = glm::vec3(0.0f, 0.0f, 0.0f);
-
-    m_navigator->Set_Position(m_position);
-    m_navigator->Set_Rotation(m_rotation);
 }
 
 CCharacterController::~CCharacterController(void)
@@ -45,6 +42,8 @@ void CCharacterController::OnRotateControllerUpdate(ui32 _direction)
 
 void CCharacterController::OnUpdate(f32 _deltatime)
 {
+	assert(m_navigator != nullptr);
+
     switch(m_moveDirection)
     {
         case E_MOVE_CONTROLLER_DIRECTION_NONE:

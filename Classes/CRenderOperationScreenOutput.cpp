@@ -62,7 +62,7 @@ void CRenderOperationScreenOutput::Bind(void)
     glBindFramebuffer(GL_FRAMEBUFFER, m_frameBufferHandle);
     glBindRenderbuffer(GL_RENDERBUFFER, m_renderBufferHandle);
     glViewport(0, 0, m_frameWidth, m_frameHeight);
-    glClearColor(0.0, 0.0, 0.0, 1.0);
+    glClearColor(0.5, 0.5, 0.5, 1.0);
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     
     m_material->Bind();
@@ -77,5 +77,5 @@ void CRenderOperationScreenOutput::Unbind(void)
 
 void CRenderOperationScreenOutput::Draw(void)
 {
-    m_mesh->Draw();
+   m_mesh->Draw();
 }

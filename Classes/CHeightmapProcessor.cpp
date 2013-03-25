@@ -50,7 +50,11 @@ void CHeightmapProcessor::Process(const std::string& _heightmapFilename, const g
     {
         for(ui32 j = 0; j < m_height; ++j)
         {
+#ifdef __APPLE__
             m_heightmapData[i + j * m_height] = (static_cast<f32>(data[(i + j * m_width) * 4 + 1] - 96.0f) / 255.0f) * 10.0f;
+#else
+			m_heightmapData[i + j * m_height] = 0.0f;
+#endif
             if(fabsf(m_heightmapData[i +j * m_height]) > m_maxAltitude)
             {
                 m_maxAltitude = fabsf(m_heightmapData[i +j * m_height]);

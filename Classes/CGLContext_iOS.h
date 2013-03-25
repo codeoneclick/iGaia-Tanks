@@ -11,6 +11,8 @@
 
 #include "IGLContext.h"
 
+#ifdef __APPLE__
+
 class CGLContext_iOS : public IGLContext_INTERFACE
 {
 private:
@@ -27,5 +29,6 @@ public:
     void Present(void) const;
 };
 
+#endif
 
 #endif 

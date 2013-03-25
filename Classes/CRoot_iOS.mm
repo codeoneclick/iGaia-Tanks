@@ -8,11 +8,12 @@
 
 #include <Foundation/Foundation.h>
 #include <UIKit/UIKit.h>
-#include "CRoot_iOS.h"
-#include "CGLContext_iOS.h"
-#include "CMainLoop_iOS.h"
 
-CRoot_iOS::CRoot_iOS(void* _glView)
+#include "CRoot.h"
+#include "CGLContext_iOS.h"
+#include "CMainLoop.h"
+
+CRoot::CRoot(void* _glView)
 {
     UIView* glView = (__bridge UIView*)_glView;
     assert([[glView layer] isKindOfClass:[CAEAGLLayer class]]);
@@ -20,14 +21,16 @@ CRoot_iOS::CRoot_iOS(void* _glView)
     
     m_renderMgr = new CRenderMgr(m_glContext);
     m_updateMgr = new CSceneUpdateMgr();
+    m_collisionMgr = new CCollisionMgr();
     
     m_shaderComposite = m_renderMgr->Get_ShaderComposite();
     
     ConnectToMainLoop(m_renderMgr);
     ConnectToMainLoop(m_updateMgr);
+    ConnectToMainLoop(m_collisionMgr);
 }
 
-CRoot_iOS::~CRoot_iOS(void)
+CRoot::~CRoot(void)
 {
     
 }

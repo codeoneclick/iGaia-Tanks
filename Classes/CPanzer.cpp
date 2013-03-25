@@ -58,3 +58,35 @@ void CPanzer::Set_Rotation(const glm::vec3 &_rotation)
     m_rotation = _rotation;
 }
 
+/*
+void CPanzer::OnBox2dCollide(CCollisionCallback_INTERFACE* _collider)
+{
+
+}
+
+void CPanzer::OnBox2dPositionChanged(const glm::vec3& _position)
+{
+    Set_Position(_position);
+}
+
+void CPanzer::OnBox2dRotationChanged(f32 _angle)
+{
+    m_rotation.y = _angle;
+    Set_Rotation(m_rotation);
+}
+
+glm::vec3 CPanzer::Get_Box2dCenter(void)
+{
+    return m_position;
+}
+
+glm::vec3 CPanzer::Get_Box2dMaxBound(void)
+{
+    return m_carcass->Get_CarcassMaxBound();
+}
+
+glm::vec3 CPanzer::Get_Box2dMinBound(void)
+{
+    return m_carcass->Get_CarcassMinBound();
+}
+*/

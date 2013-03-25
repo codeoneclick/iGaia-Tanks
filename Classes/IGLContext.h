@@ -19,6 +19,7 @@ protected:
 
     ui32 m_frameBufferHandle;
     ui32 m_renderBufferHandle;
+	ui32 m_depthBufferHandle;
 
 public:
     

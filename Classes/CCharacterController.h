@@ -64,10 +64,10 @@ public:
         m_shadow = _shadow;
     };
 
-    inline CNavigator* Get_Navigator(void)
-    {
-        return m_navigator;
-    };
+	inline void Set_Navigator(CNavigator* _navigator)
+	{
+		m_navigator = _navigator;
+	};
 
     inline void Set_Position(const glm::vec3& _position)
     {

@@ -42,8 +42,8 @@ public:
         return m_shaderComposite;
     };
 
-    void AddEventListener(CRenderCallback_INTERFACE* _listener, E_RENDER_MODE_WORLD_SPACE _mode);
-    void RemoveEventListener(CRenderCallback_INTERFACE* _listener, E_RENDER_MODE_WORLD_SPACE _mode);
+    void AddRenderEventListener(CRenderCallback_INTERFACE* _listener, E_RENDER_MODE_WORLD_SPACE _mode);
+    void RemoveRenderEventListener(CRenderCallback_INTERFACE* _listener, E_RENDER_MODE_WORLD_SPACE _mode);
     
     inline CTexture* Get_TextureWorldSpaceRenderMode(E_RENDER_MODE_WORLD_SPACE _mode)
     {

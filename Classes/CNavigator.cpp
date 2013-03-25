@@ -9,7 +9,13 @@
 #include "CNavigator.h"
 #include "CHeightmapHelper.h"
 
-CNavigator::CNavigator(f32 _moveForwardSpeed, f32 _moveBackwardSpeed, f32 _strafeSpeed, f32 _steerSpeed)
+CNavigator::CNavigator(f32 _moveForwardSpeed,
+                       f32 _moveBackwardSpeed,
+                       f32 _strafeSpeed,
+                       f32 _steerSpeed,
+                       f32* _heightmapData,
+                       ui32 _heightmapWidth,
+                       ui32 _heightmapHeight)
 {
     m_moveForwardSpeed = _moveForwardSpeed;
     m_moveBackwardSpeed = _moveBackwardSpeed;
@@ -19,9 +25,12 @@ CNavigator::CNavigator(f32 _moveForwardSpeed, f32 _moveBackwardSpeed, f32 _straf
     m_position = glm::vec3(0.0f, 0.0f, 0.0f);
     m_rotation = glm::vec3(0.0f, 0.0f, 0.0f);
 
-    m_heightmapData = nullptr;
-    m_heightmapWidth = 0;
-    m_heightmapHeight = 0;
+    assert(_heightmapData != nullptr);
+    assert(_heightmapHeight != 0);
+    assert(_heightmapWidth != 0);
+    m_heightmapData = _heightmapData;
+    m_heightmapWidth = _heightmapWidth;
+    m_heightmapHeight = _heightmapHeight;
 }
 
 bool CNavigator::MoveForward(void)

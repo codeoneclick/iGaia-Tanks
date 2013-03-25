@@ -26,7 +26,13 @@ CRenderMgr::CRenderMgr(const IGLContext_INTERFACE* _glContext)
     }
     
     CMaterial* screenOutputMaterial = new CMaterial(m_shaderComposite->Get_Shader(E_SHADER_SCREEN_PLANE));
-    m_screenOutputOperation = new CRenderOperationScreenOutput(Get_ScreenWidth(), Get_ScreenHeight(), screenOutputMaterial, m_glContext->Get_FrameBufferHandle(), m_glContext->Get_RenderBufferHandle(), "render.mode.screenoutput");
+    m_screenOutputOperation = new CRenderOperationScreenOutput(
+		Get_ScreenWidth(), 
+		Get_ScreenHeight(), 
+		screenOutputMaterial,
+		m_glContext->Get_FrameBufferHandle(),
+		m_glContext->Get_RenderBufferHandle(),
+		"render.mode.screenoutput");
 }
 
 CRenderMgr::~CRenderMgr(void)
@@ -34,12 +40,12 @@ CRenderMgr::~CRenderMgr(void)
     
 }
 
-void CRenderMgr::AddEventListener(CRenderCallback_INTERFACE *_listener, E_RENDER_MODE_WORLD_SPACE _mode)
+void CRenderMgr::AddRenderEventListener(CRenderCallback_INTERFACE *_listener, E_RENDER_MODE_WORLD_SPACE _mode)
 {
     m_worldSpaceOperations[_mode]->AddEventListener(_listener);
 }
 
-void CRenderMgr::RemoveEventListener(CRenderCallback_INTERFACE *_listener, E_RENDER_MODE_WORLD_SPACE _mode)
+void CRenderMgr::RemoveRenderEventListener(CRenderCallback_INTERFACE *_listener, E_RENDER_MODE_WORLD_SPACE _mode)
 {
     m_worldSpaceOperations[_mode]->RemoveEventListener(_listener);
 }

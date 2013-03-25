@@ -15,4 +15,10 @@
 void ConnectToMainLoop(CMainLoopUpdateCallback_INTERFACE* _listener);
 void DisconnectFromMainLoop(CMainLoopUpdateCallback_INTERFACE* _listener);
 
+#ifndef __APPLE__
+
+void Run(void);
+
+#endif
+
 #endif 

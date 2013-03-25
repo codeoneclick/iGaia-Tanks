@@ -15,6 +15,8 @@ class CNavigator
 {
 private:
 
+protected:
+
     f32 m_moveForwardSpeed;
     f32 m_moveBackwardSpeed;
     f32 m_strafeSpeed;
@@ -27,37 +29,32 @@ private:
     ui32 m_heightmapWidth;
     ui32 m_heightmapHeight;
 
-protected:
-
 public:
 
-    CNavigator(f32 _moveForwardSpeed, f32 _moveBackwardSpeed, f32 _strafeSpeed, f32 _steerSpeed);
+    CNavigator(f32 _moveForwardSpeed,
+               f32 _moveBackwardSpeed,
+               f32 _strafeSpeed,
+               f32 _steerSpeed,
+               f32* _heightmapData,
+               ui32 _heightmapWidth,
+               ui32 _heightmapHeight);
+    
     ~CNavigator(void) {};
 
-    inline void Set_Heightmap(f32* _heightmapData, ui32 _heightmapWidth, ui32 _heightmapHeight)
-    {
-        assert(_heightmapData != nullptr);
-        assert(_heightmapHeight != 0);
-        assert(_heightmapWidth != 0);
-        m_heightmapData = _heightmapData;
-        m_heightmapWidth = _heightmapWidth;
-        m_heightmapHeight = _heightmapHeight;
-    };
+    virtual bool MoveForward(void);
+    virtual bool MoveBackward(void);
+    virtual bool MoveLeft(void);
+    virtual bool MoveRight(void);
 
-    bool MoveForward(void);
-    bool MoveBackward(void);
-    bool MoveLeft(void);
-    bool MoveRight(void);
-
-    void SteerLeft(void);
-    void SteerRight(void);
+    virtual void SteerLeft(void);
+    virtual void SteerRight(void);
 
     inline glm::vec3 Get_Position(void)
     {
         return m_position;
     };
     
-    inline void Set_Position(const glm::vec3& _position)
+    virtual inline void Set_Position(const glm::vec3& _position)
     {
         m_position = _position;
     };
@@ -67,7 +64,7 @@ public:
         return m_rotation;
     };
     
-    inline void Set_Rotation(const glm::vec3& _rotation)
+    virtual inline void Set_Rotation(const glm::vec3& _rotation)
     {
         m_rotation = _rotation;
     };

@@ -18,6 +18,7 @@
 #include "CParticleEmitter.h"
 #include "CRenderMgr.h"
 #include "CSceneUpdateMgr.h"
+#include "CCollisionMgr.h"
 
 class CSceneGraph
 {
@@ -37,6 +38,7 @@ protected:
 
     CRenderMgr* m_renderMgr;
     CSceneUpdateMgr* m_updateMgr;
+    CCollisionMgr* m_collisionMgr;
 
 public:
 
@@ -57,6 +59,9 @@ public:
 
     void InsertLandscapeDecal(CLandscapeDecal* _landscapeDecal);
     void RemoveLandscapeDecal(CLandscapeDecal* _landscapeDecal);
+
+    void InsertCollider(CCollisionCallback_INTERFACE* _collider, bool _isStatic);
+    void RemoveCollider(CCollisionCallback_INTERFACE* _collider);
 };
 
 

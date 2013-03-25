@@ -10,7 +10,7 @@
 #define CGameMainMenuScene_h
 
 #include "HCommon.h"
-#include "CRoot_iOS.h"
+#include "CRoot.h"
 #include "CCharacterController.h"
 #include "CGameSettingsMgr.h"
 
@@ -35,7 +35,7 @@ public:
     CGameMainMenuScene(void);
     ~CGameMainMenuScene(void);
 
-    void Load(CRoot_iOS* _root);
+	void Load(IRoot* _root);
 
     inline CCharacterController* Get_CharacterController(void)
     {
