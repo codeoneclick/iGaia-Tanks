@@ -6,9 +6,13 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include "CCommon.h"
-#include <UIKit/UIKit.h>
 #include <Foundation/Foundation.h>
+#include <UIKit/UIKit.h>
+
+#include "CCommon.h"
+
+#include <mach/mach.h>
+#include <mach/mach_time.h>
 
 std::string Get_BundlePath(void)
 {

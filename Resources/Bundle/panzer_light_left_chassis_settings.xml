@@ -1,0 +1,23 @@
+<settings name="panzer_light_left_chassis">
+	<mesh value="panzer_light_left_chassis.mdl"/>
+	<materials>
+		<material render_mode="0" is_cull_face="1" is_depth_test="1" is_depth_mask="1" is_blend="0" cull_face_mode="GL_FRONT" blend_function_source="GL_SRC_ALPHA" blend_function_destination="GL_ONE_MINUS_SRC_ALPHA">
+			<shader vs_name="shape3d.vs" fs_name="shape3d.fs" guid="2"/>
+			<textures>
+				<texture name="panzer_chassis.pvr" slot="0" wrap="GL_REPEAT"/>
+			</textures>
+		</material>
+        <material render_mode="1" is_cull_face="1" is_depth_test="1" is_depth_mask="1" is_blend="0" cull_face_mode="GL_FRONT" blend_function_source="GL_SRC_ALPHA" blend_function_destination="GL_ONE_MINUS_SRC_ALPHA">
+			<shader vs_name="shape3d.vs" fs_name="shape3d.fs" guid="2"/>
+			<textures>
+				<texture name="panzer_chassis.pvr" slot="0" wrap="GL_REPEAT"/>
+			</textures>
+		</material>
+        <material render_mode="2" is_cull_face="1" is_depth_test="1" is_depth_mask="1" is_blend="0" cull_face_mode="GL_FRONT" blend_function_source="GL_SRC_ALPHA" blend_function_destination="GL_ONE_MINUS_SRC_ALPHA">
+			<shader vs_name="shape3d.vs" fs_name="shape3d.fs" guid="2"/>
+			<textures>
+				<texture name="panzer_chassis.pvr" slot="0" wrap="GL_REPEAT"/>
+			</textures>
+		</material>
+	</materials>
+</settings>

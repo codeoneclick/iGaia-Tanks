@@ -28,13 +28,18 @@
 #include <glm/gtc/type_precision.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#ifdef TARGET_OS_IPHONE
+#ifdef __APPLE__
+
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
+#include <QuartzCore/QuartzCore.h>
+
 #else
+
 #include <EGL/egl.h>
 #include <GLES2/gl2.h>
 #include <GLES2/gl2ext.h>
+
 #endif
 
 #include <pugixml/pugixml.hpp>
@@ -53,8 +58,13 @@ typedef long long i64;
 typedef float f32;
 
 #define TO_RGB(r,g,b) (unsigned short)(((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3))
-#define MAX(a,b)            (((a) > (b)) ? (a) : (b))
+#define MAX(a,b) (((a) > (b)) ? (a) : (b))
+
+#ifndef __APPLE__
+
 #define M_PI 3.14f
 #define M_PI_2 1.57f
+
+#endif
 
 #endif

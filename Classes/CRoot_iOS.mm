@@ -8,9 +8,10 @@
 
 #include <Foundation/Foundation.h>
 #include <UIKit/UIKit.h>
+
 #include "CRoot_iOS.h"
 #include "CGLContext_iOS.h"
-#include "CMainLoop_iOS.h"
+#include "CMainLoop.h"
 
 CRoot_iOS::CRoot_iOS(void* _glView)
 {
