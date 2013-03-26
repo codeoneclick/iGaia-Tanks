@@ -196,9 +196,9 @@
 		A40609741701AD83006848E3 /* liblibGoogleUnitTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A40609671701AD5F006848E3 /* liblibGoogleUnitTest.a */; };
 		A4060A171701B25B006848E3 /* liblibRocketControlsiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A40609FE1701AF77006848E3 /* liblibRocketControlsiOS.a */; };
 		A4060A281701CBEA006848E3 /* liblibRocketCoreiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4060A021701AF77006848E3 /* liblibRocketCoreiOS.a */; };
-		A4060A391701D620006848E3 /* CGuiShellFilesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A311701D620006848E3 /* CGuiShellFilesystem.cpp */; };
-		A4060A3A1701D620006848E3 /* CGuiShellRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A341701D620006848E3 /* CGuiShellRender.cpp */; };
-		A4060A3B1701D620006848E3 /* CGuiShellSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A361701D620006848E3 /* CGuiShellSystem.cpp */; };
+		A4060A391701D620006848E3 /* CGuiShellFileMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A311701D620006848E3 /* CGuiShellFileMgr.cpp */; };
+		A4060A3A1701D620006848E3 /* CGuiShellRenderMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A341701D620006848E3 /* CGuiShellRenderMgr.cpp */; };
+		A4060A3B1701D620006848E3 /* CGuiShellCommonMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A361701D620006848E3 /* CGuiShellCommonMgr.cpp */; };
 		A4060A3F1701E37C006848E3 /* mainMenu.rml in Resources */ = {isa = PBXBuildFile; fileRef = A4060A3D1701E37C006848E3 /* mainMenu.rml */; };
 		A4060A401701E37C006848E3 /* mainMenu.rcss in Resources */ = {isa = PBXBuildFile; fileRef = A4060A3E1701E37C006848E3 /* mainMenu.rcss */; };
 		A4060A461701E823006848E3 /* Delicious-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4060A421701E823006848E3 /* Delicious-Bold.otf */; };
@@ -206,6 +206,8 @@
 		A4060A481701E823006848E3 /* Delicious-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4060A441701E823006848E3 /* Delicious-Italic.otf */; };
 		A4060A491701E823006848E3 /* Delicious-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4060A451701E823006848E3 /* Delicious-Roman.otf */; };
 		A4060A4A1701EB9C006848E3 /* liblibRocketDebuggeriOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4060A061701AF77006848E3 /* liblibRocketDebuggeriOS.a */; };
+		A4060A4F1701F998006848E3 /* CGuiMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A4D1701F996006848E3 /* CGuiMgr.cpp */; };
+		A4060A521701FB9D006848E3 /* CRenderPresentCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A501701FB9D006848E3 /* CRenderPresentCallback.cpp */; };
 		A41C870B16DDFF5E003DA026 /* CMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B6BB8B14841F0B00E34B78 /* CMesh.cpp */; };
 		A41C870E16DE08BA003DA026 /* ILoadOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */; };
 		A41C871116DE0A03003DA026 /* CLoadOperation_PVR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C870F16DE0A02003DA026 /* CLoadOperation_PVR.cpp */; };
@@ -1110,18 +1112,22 @@
 		A40600BB1700B641006848E3 /* CCollisionNavigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCollisionNavigator.cpp; sourceTree = "<group>"; };
 		A40600BC1700B642006848E3 /* CCollisionNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCollisionNavigator.h; sourceTree = "<group>"; };
 		A40609CB1701AF40006848E3 /* libRocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libRocket.xcodeproj; path = Libs/libRocket/Build/libRocket.xcodeproj; sourceTree = "<group>"; };
-		A4060A311701D620006848E3 /* CGuiShellFilesystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiShellFilesystem.cpp; sourceTree = "<group>"; };
-		A4060A321701D620006848E3 /* CGuiShellFilesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiShellFilesystem.h; sourceTree = "<group>"; };
-		A4060A341701D620006848E3 /* CGuiShellRender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiShellRender.cpp; sourceTree = "<group>"; };
-		A4060A351701D620006848E3 /* CGuiShellRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiShellRender.h; sourceTree = "<group>"; };
-		A4060A361701D620006848E3 /* CGuiShellSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiShellSystem.cpp; sourceTree = "<group>"; };
-		A4060A371701D620006848E3 /* CGuiShellSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiShellSystem.h; sourceTree = "<group>"; };
+		A4060A311701D620006848E3 /* CGuiShellFileMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiShellFileMgr.cpp; sourceTree = "<group>"; };
+		A4060A321701D620006848E3 /* CGuiShellFileMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiShellFileMgr.h; sourceTree = "<group>"; };
+		A4060A341701D620006848E3 /* CGuiShellRenderMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiShellRenderMgr.cpp; sourceTree = "<group>"; };
+		A4060A351701D620006848E3 /* CGuiShellRenderMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiShellRenderMgr.h; sourceTree = "<group>"; };
+		A4060A361701D620006848E3 /* CGuiShellCommonMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiShellCommonMgr.cpp; sourceTree = "<group>"; };
+		A4060A371701D620006848E3 /* CGuiShellCommonMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiShellCommonMgr.h; sourceTree = "<group>"; };
 		A4060A3D1701E37C006848E3 /* mainMenu.rml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mainMenu.rml; path = Resources/Bundle/mainMenu.rml; sourceTree = "<group>"; };
 		A4060A3E1701E37C006848E3 /* mainMenu.rcss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mainMenu.rcss; path = Resources/Bundle/mainMenu.rcss; sourceTree = "<group>"; };
 		A4060A421701E823006848E3 /* Delicious-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delicious-Bold.otf"; path = "Resources/Bundle/Delicious-Bold.otf"; sourceTree = "<group>"; };
 		A4060A431701E823006848E3 /* Delicious-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delicious-BoldItalic.otf"; path = "Resources/Bundle/Delicious-BoldItalic.otf"; sourceTree = "<group>"; };
 		A4060A441701E823006848E3 /* Delicious-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delicious-Italic.otf"; path = "Resources/Bundle/Delicious-Italic.otf"; sourceTree = "<group>"; };
 		A4060A451701E823006848E3 /* Delicious-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delicious-Roman.otf"; path = "Resources/Bundle/Delicious-Roman.otf"; sourceTree = "<group>"; };
+		A4060A4D1701F996006848E3 /* CGuiMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiMgr.cpp; sourceTree = "<group>"; };
+		A4060A4E1701F997006848E3 /* CGuiMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiMgr.h; sourceTree = "<group>"; };
+		A4060A501701FB9D006848E3 /* CRenderPresentCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRenderPresentCallback.cpp; sourceTree = "<group>"; };
+		A4060A511701FB9D006848E3 /* CRenderPresentCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRenderPresentCallback.h; sourceTree = "<group>"; };
 		A41C870F16DE0A02003DA026 /* CLoadOperation_PVR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLoadOperation_PVR.cpp; sourceTree = "<group>"; };
 		A41C871016DE0A03003DA026 /* CLoadOperation_PVR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLoadOperation_PVR.h; sourceTree = "<group>"; };
 		A41C871316DE11F9003DA026 /* CLoadOperation_MDL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLoadOperation_MDL.cpp; sourceTree = "<group>"; };
@@ -2544,12 +2550,14 @@
 		A4060A2A1701D10F006848E3 /* GuiMgr */ = {
 			isa = PBXGroup;
 			children = (
-				A4060A321701D620006848E3 /* CGuiShellFilesystem.h */,
-				A4060A311701D620006848E3 /* CGuiShellFilesystem.cpp */,
-				A4060A351701D620006848E3 /* CGuiShellRender.h */,
-				A4060A341701D620006848E3 /* CGuiShellRender.cpp */,
-				A4060A371701D620006848E3 /* CGuiShellSystem.h */,
-				A4060A361701D620006848E3 /* CGuiShellSystem.cpp */,
+				A4060A321701D620006848E3 /* CGuiShellFileMgr.h */,
+				A4060A311701D620006848E3 /* CGuiShellFileMgr.cpp */,
+				A4060A351701D620006848E3 /* CGuiShellRenderMgr.h */,
+				A4060A341701D620006848E3 /* CGuiShellRenderMgr.cpp */,
+				A4060A371701D620006848E3 /* CGuiShellCommonMgr.h */,
+				A4060A361701D620006848E3 /* CGuiShellCommonMgr.cpp */,
+				A4060A4E1701F997006848E3 /* CGuiMgr.h */,
+				A4060A4D1701F996006848E3 /* CGuiMgr.cpp */,
 			);
 			name = GuiMgr;
 			sourceTree = "<group>";
@@ -2592,6 +2600,8 @@
 				A41C872916DE5A83003DA026 /* CRenderCallback.cpp */,
 				21904E3816E2C65400A1689A /* CScreenSpaceRenderProcessor.h */,
 				21904E3716E2C65300A1689A /* CScreenSpaceRenderProcessor.cpp */,
+				A4060A511701FB9D006848E3 /* CRenderPresentCallback.h */,
+				A4060A501701FB9D006848E3 /* CRenderPresentCallback.cpp */,
 			);
 			name = RenderMgr;
 			sourceTree = "<group>";
@@ -3475,9 +3485,11 @@
 				A40600B91700AF58006848E3 /* b2WheelJoint.cpp in Sources */,
 				A40600BA1700AF58006848E3 /* b2Rope.cpp in Sources */,
 				A40600BD1700B642006848E3 /* CCollisionNavigator.cpp in Sources */,
-				A4060A391701D620006848E3 /* CGuiShellFilesystem.cpp in Sources */,
-				A4060A3A1701D620006848E3 /* CGuiShellRender.cpp in Sources */,
-				A4060A3B1701D620006848E3 /* CGuiShellSystem.cpp in Sources */,
+				A4060A391701D620006848E3 /* CGuiShellFileMgr.cpp in Sources */,
+				A4060A3A1701D620006848E3 /* CGuiShellRenderMgr.cpp in Sources */,
+				A4060A3B1701D620006848E3 /* CGuiShellCommonMgr.cpp in Sources */,
+				A4060A4F1701F998006848E3 /* CGuiMgr.cpp in Sources */,
+				A4060A521701FB9D006848E3 /* CRenderPresentCallback.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

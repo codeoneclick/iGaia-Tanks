@@ -13,36 +13,6 @@ CRenderMgr::CRenderMgr(const IGLContext_INTERFACE* _glContext)
 {
     m_glContext = _glContext;
 
-	Rocket::Core::SetRenderInterface(&m_openglRenderInterface);
-
-	CGuiShellSystem_INTERFACE systemInterface;
-	Rocket::Core::SetSystemInterface(&m_systemInterface);
-
-    Rocket::Core::Initialise();
-    m_guiContext = Rocket::Core::CreateContext("default", Rocket::Core::Vector2i(Get_ScreenWidth(), Get_ScreenHeight()));
-
-    Rocket::Debugger::Initialise(m_guiContext);
-
-    Rocket::Core::String fontNames[4];
-	fontNames[0] = "Delicious-Roman.otf";
-	fontNames[1] = "Delicious-Italic.otf";
-	fontNames[2] = "Delicious-Bold.otf";
-	fontNames[3] = "Delicious-BoldItalic.otf";
-
-	for (int i = 0; i < sizeof(fontNames) / sizeof(Rocket::Core::String); i++)
-	{
-		Rocket::Core::FontDatabase::LoadFontFace(Rocket::Core::String(Get_BundlePath().c_str()) + fontNames[i]);
-	}
-    
-    std::string mainMenuFilename = Get_BundlePath();
-    mainMenuFilename.append("mainMenu.rml");
-    m_guiDocument = m_guiContext->LoadDocument(mainMenuFilename.c_str());
-	if (m_guiDocument != nullptr)
-	{
-		m_guiDocument->Show();
-		m_guiDocument->RemoveReference();
-	}
-    
     m_shaderComposite = new CShaderComposite();
     
     for(ui32 i = 0; i < E_RENDER_MODE_WORLD_SPACE_MAX; ++i)
@@ -78,6 +48,16 @@ void CRenderMgr::AddRenderEventListener(CRenderCallback_INTERFACE *_listener, E_
 void CRenderMgr::RemoveRenderEventListener(CRenderCallback_INTERFACE *_listener, E_RENDER_MODE_WORLD_SPACE _mode)
 {
     m_worldSpaceOperations[_mode]->RemoveEventListener(_listener);
+}
+
+void CRenderMgr::AddRenderPresentEventListener(CRenderPresentCallback_INTERFACE* _listener)
+{
+    m_renderPresentListenersContainer.insert(_listener);
+}
+
+void CRenderMgr::RemoveRenderPresentEventListener(CRenderPresentCallback_INTERFACE* _listener)
+{
+    m_renderPresentListenersContainer.erase(_listener);
 }
 
 CTexture* CRenderMgr::ProcessCustomScreenSpaceOperation(CMaterial *_material, ui32 _textureWidth, ui32 _textureHeight)
@@ -122,9 +102,14 @@ void CRenderMgr::OnUpdate(f32 _deltatime)
     m_screenOutputOperation->Draw();
     m_screenOutputOperation->Unbind();
 
-    m_guiContext->Update();
-    m_guiContext->Render();
-    
+    for(std::set<CRenderPresentCallback_INTERFACE*>::iterator iterator = m_renderPresentListenersContainer.begin(); iterator !=  m_renderPresentListenersContainer.end(); ++iterator)
+    {
+        CRenderPresentCallback_INTERFACE* listener = (*iterator);
+        assert(listener != nullptr);
+        assert(listener->Get_Commands() != nullptr);
+        listener->Get_Commands()->DispatchRenderDidPresent();
+    }
+
     m_glContext->Present();
     
     GLenum error = glGetError();

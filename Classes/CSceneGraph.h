@@ -19,6 +19,7 @@
 #include "CRenderMgr.h"
 #include "CSceneUpdateMgr.h"
 #include "CCollisionMgr.h"
+#include "CGuiMgr.h"
 
 class CSceneGraph
 {
@@ -39,6 +40,7 @@ protected:
     CRenderMgr* m_renderMgr;
     CSceneUpdateMgr* m_updateMgr;
     CCollisionMgr* m_collisionMgr;
+    CGuiMgr* m_guiMgr;
 
 public:
 

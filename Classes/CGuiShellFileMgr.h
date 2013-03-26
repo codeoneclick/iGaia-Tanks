@@ -1,11 +1,11 @@
 
-#ifndef CGuiShellFilesystem_h
-#define CGuiShellFilesystem_h
+#ifndef CGuiShellFileMgr_h
+#define CGuiShellFileMgr_h
 
 #include <Rocket/Core/RocketString.h>
 #include <Rocket/Core/FileInterface.h>
 
-class CGuiShellFilesystem_INTERFACE : public Rocket::Core::FileInterface
+class CGuiShellFileMgr_INTERFACE : public Rocket::Core::FileInterface
 {
 private:
 
@@ -15,8 +15,8 @@ protected:
     
 public:
     
-	CGuiShellFilesystem_INTERFACE(const Rocket::Core::String& root);
-	~CGuiShellFilesystem_INTERFACE();
+	CGuiShellFileMgr_INTERFACE(const Rocket::Core::String& root);
+	~CGuiShellFileMgr_INTERFACE();
 	
 	Rocket::Core::FileHandle Open(const Rocket::Core::String& path);	
 	void Close(Rocket::Core::FileHandle file);	

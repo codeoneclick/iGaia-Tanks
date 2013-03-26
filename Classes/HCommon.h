@@ -28,6 +28,10 @@
 #include <glm/gtc/type_precision.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+#include <Rocket/Core.h>
+#include <Rocket/Controls.h>
+#include <Rocket/Debugger.h>
+
 #ifdef __APPLE__
 
 #include <OpenGLES/ES2/gl.h>

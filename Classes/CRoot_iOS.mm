@@ -20,10 +20,13 @@ CRoot::CRoot(void* _glView)
     m_glContext = new CGLContext_iOS(static_cast<CAEAGLLayer*>(glView.layer));
     
     m_renderMgr = new CRenderMgr(m_glContext);
+    m_shaderComposite = m_renderMgr->Get_ShaderComposite();
+
     m_updateMgr = new CSceneUpdateMgr();
     m_collisionMgr = new CCollisionMgr();
-    
-    m_shaderComposite = m_renderMgr->Get_ShaderComposite();
+    m_guiMgr = new CGuiMgr();
+    m_guiMgr->Set_ShaderComposite(m_shaderComposite);
+    m_renderMgr->AddRenderPresentEventListener(m_guiMgr);
     
     ConnectToMainLoop(m_renderMgr);
     ConnectToMainLoop(m_updateMgr);

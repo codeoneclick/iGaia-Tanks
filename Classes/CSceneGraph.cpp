@@ -19,6 +19,7 @@ CSceneGraph::CSceneGraph(void)
     m_updateMgr = nullptr;
     m_renderMgr = nullptr;
     m_collisionMgr = nullptr;
+    m_guiMgr = nullptr;
 }
 
 CSceneGraph::~CSceneGraph(void)

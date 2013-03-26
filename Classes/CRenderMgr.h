@@ -14,14 +14,7 @@
 #include "CRenderOperationWorldSpace.h"
 #include "CRenderOperationScreenSpace.h"
 #include "CRenderOperationScreenOutput.h"
-
-#include "CGuiShellFilesystem.h"
-#include "CGuiShellRender.h"
-#include "CGuiShellSystem.h"
-
-#include <Rocket/Core.h>
-#include <Rocket/Controls.h>
-#include <Rocket/Debugger.h>
+#include "CRenderPresentCallback.h"
 
 class CRenderMgr : public CMainLoopUpdateCallback_INTERFACE
 {
@@ -35,12 +28,7 @@ private:
     CShaderComposite* m_shaderComposite;
 
     std::queue<CRenderOperationScreenSpace*> m_customScreenSpaceOperationsQueue;
-
-    Rocket::Core::Context* m_guiContext;
-    Rocket::Core::ElementDocument* m_guiDocument;
-
-    CGuiShellRender_INTERFACE m_openglRenderInterface;
-	CGuiShellSystem_INTERFACE m_systemInterface;
+    std::set<CRenderPresentCallback_INTERFACE*> m_renderPresentListenersContainer;
 
 protected:
     
@@ -58,6 +46,9 @@ public:
 
     void AddRenderEventListener(CRenderCallback_INTERFACE* _listener, E_RENDER_MODE_WORLD_SPACE _mode);
     void RemoveRenderEventListener(CRenderCallback_INTERFACE* _listener, E_RENDER_MODE_WORLD_SPACE _mode);
+
+    void AddRenderPresentEventListener(CRenderPresentCallback_INTERFACE* _listener);
+    void RemoveRenderPresentEventListener(CRenderPresentCallback_INTERFACE* _listener);
     
     inline CTexture* Get_TextureWorldSpaceRenderMode(E_RENDER_MODE_WORLD_SPACE _mode)
     {
