@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "40C44ADC0E3798F4008FCC51"
-               BuildableName = "Version Info"
-               BlueprintName = "Version Info"
-               ReferencedContainer = "container:gtest.xcodeproj">
+               BlueprintIdentifier = "4089A0120FFACEFC000B29AE"
+               BuildableName = "sample1_unittest-framework"
+               BlueprintName = "sample1_unittest-framework"
+               ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,6 +29,15 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4089A0120FFACEFC000B29AE"
+            BuildableName = "sample1_unittest-framework"
+            BlueprintName = "sample1_unittest-framework"
+            ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -39,6 +48,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4089A0120FFACEFC000B29AE"
+            BuildableName = "sample1_unittest-framework"
+            BlueprintName = "sample1_unittest-framework"
+            ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -48,6 +66,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4089A0120FFACEFC000B29AE"
+            BuildableName = "sample1_unittest-framework"
+            BlueprintName = "sample1_unittest-framework"
+            ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

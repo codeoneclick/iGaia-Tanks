@@ -193,6 +193,19 @@
 		A40600B91700AF58006848E3 /* b2WheelJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40600891700AF58006848E3 /* b2WheelJoint.cpp */; };
 		A40600BA1700AF58006848E3 /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A406008C1700AF58006848E3 /* b2Rope.cpp */; };
 		A40600BD1700B642006848E3 /* CCollisionNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40600BB1700B641006848E3 /* CCollisionNavigator.cpp */; };
+		A40609741701AD83006848E3 /* liblibGoogleUnitTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A40609671701AD5F006848E3 /* liblibGoogleUnitTest.a */; };
+		A4060A171701B25B006848E3 /* liblibRocketControlsiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A40609FE1701AF77006848E3 /* liblibRocketControlsiOS.a */; };
+		A4060A281701CBEA006848E3 /* liblibRocketCoreiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4060A021701AF77006848E3 /* liblibRocketCoreiOS.a */; };
+		A4060A391701D620006848E3 /* CGuiShellFilesystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A311701D620006848E3 /* CGuiShellFilesystem.cpp */; };
+		A4060A3A1701D620006848E3 /* CGuiShellRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A341701D620006848E3 /* CGuiShellRender.cpp */; };
+		A4060A3B1701D620006848E3 /* CGuiShellSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A361701D620006848E3 /* CGuiShellSystem.cpp */; };
+		A4060A3F1701E37C006848E3 /* mainMenu.rml in Resources */ = {isa = PBXBuildFile; fileRef = A4060A3D1701E37C006848E3 /* mainMenu.rml */; };
+		A4060A401701E37C006848E3 /* mainMenu.rcss in Resources */ = {isa = PBXBuildFile; fileRef = A4060A3E1701E37C006848E3 /* mainMenu.rcss */; };
+		A4060A461701E823006848E3 /* Delicious-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4060A421701E823006848E3 /* Delicious-Bold.otf */; };
+		A4060A471701E823006848E3 /* Delicious-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4060A431701E823006848E3 /* Delicious-BoldItalic.otf */; };
+		A4060A481701E823006848E3 /* Delicious-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4060A441701E823006848E3 /* Delicious-Italic.otf */; };
+		A4060A491701E823006848E3 /* Delicious-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4060A451701E823006848E3 /* Delicious-Roman.otf */; };
+		A4060A4A1701EB9C006848E3 /* liblibRocketDebuggeriOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4060A061701AF77006848E3 /* liblibRocketDebuggeriOS.a */; };
 		A41C870B16DDFF5E003DA026 /* CMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B6BB8B14841F0B00E34B78 /* CMesh.cpp */; };
 		A41C870E16DE08BA003DA026 /* ILoadOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */; };
 		A41C871116DE0A03003DA026 /* CLoadOperation_PVR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C870F16DE0A02003DA026 /* CLoadOperation_PVR.cpp */; };
@@ -229,7 +242,6 @@
 		A46834E716EDF87600D34692 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		A46834E816EDF87600D34692 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		A46834F016EDF87600D34692 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = A46834EF16EDF87600D34692 /* main.mm */; };
-		A468350016EDF8F900D34692 /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A46834D016EDF52A00D34692 /* libgtest.a */; };
 		A468350316EDF96200D34692 /* CLoadOperation_PVR_TEST.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A468350216EDF96200D34692 /* CLoadOperation_PVR_TEST.cpp */; };
 		A468350416EDF9C600D34692 /* CCommon_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 93A26E0A148D1E3000D14A0B /* CCommon_iOS.mm */; };
 		A468350516EDFA5D00D34692 /* CCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21904E2116E2C30E00A1689A /* CCamera.cpp */; };
@@ -352,61 +364,117 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A46834CD16EDF52A00D34692 /* PBXContainerItemProxy */ = {
+		A40609641701AD5F006848E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A46834C116EDF52900D34692 /* gtest.xcodeproj */;
+			containerPortal = A46834C116EDF52900D34692 /* libGoogleUnitTest.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 4539C8FF0EC27F6400A70F4C;
-			remoteInfo = "gtest-framework";
+			remoteInfo = "libGoogleUnitTest-framework";
 		};
-		A46834CF16EDF52A00D34692 /* PBXContainerItemProxy */ = {
+		A40609661701AD5F006848E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A46834C116EDF52900D34692 /* gtest.xcodeproj */;
+			containerPortal = A46834C116EDF52900D34692 /* libGoogleUnitTest.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 40C848FA101A209C0083642A;
-			remoteInfo = "gtest-static";
+			remoteInfo = "libGoogleUnitTest-static";
 		};
-		A46834D116EDF52A00D34692 /* PBXContainerItemProxy */ = {
+		A40609681701AD5F006848E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A46834C116EDF52900D34692 /* gtest.xcodeproj */;
+			containerPortal = A46834C116EDF52900D34692 /* libGoogleUnitTest.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 40C8490B101A217E0083642A;
-			remoteInfo = "gtest_main-static";
+			remoteInfo = "libGoogleUnitTest_main-static";
 		};
-		A46834D316EDF52A00D34692 /* PBXContainerItemProxy */ = {
+		A406096A1701AD5F006848E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A46834C116EDF52900D34692 /* gtest.xcodeproj */;
+			containerPortal = A46834C116EDF52900D34692 /* libGoogleUnitTest.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 40899F430FFA7184000B29AE;
-			remoteInfo = "gtest_unittest-framework";
+			remoteInfo = "libGoogleUnitTest_unittest-framework";
 		};
-		A46834D516EDF52A00D34692 /* PBXContainerItemProxy */ = {
+		A406096C1701AD5F006848E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A46834C116EDF52900D34692 /* gtest.xcodeproj */;
+			containerPortal = A46834C116EDF52900D34692 /* libGoogleUnitTest.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 40C84987101A36850083642A;
-			remoteInfo = "gtest_unittest-static";
+			remoteInfo = "libGoogleUnitTest_unittest-static";
 		};
-		A46834D716EDF52A00D34692 /* PBXContainerItemProxy */ = {
+		A406096E1701AD5F006848E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A46834C116EDF52900D34692 /* gtest.xcodeproj */;
+			containerPortal = A46834C116EDF52900D34692 /* libGoogleUnitTest.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 4089A0130FFACEFC000B29AE;
 			remoteInfo = "sample1_unittest-framework";
 		};
-		A46834D916EDF52A00D34692 /* PBXContainerItemProxy */ = {
+		A40609701701AD5F006848E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A46834C116EDF52900D34692 /* gtest.xcodeproj */;
+			containerPortal = A46834C116EDF52900D34692 /* libGoogleUnitTest.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 40C84997101A36A60083642A;
 			remoteInfo = "sample1_unittest-static";
 		};
-		A46834FE16EDF8F300D34692 /* PBXContainerItemProxy */ = {
+		A40609721701AD79006848E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A46834C116EDF52900D34692 /* gtest.xcodeproj */;
+			containerPortal = A46834C116EDF52900D34692 /* libGoogleUnitTest.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 40C848F9101A209C0083642A;
-			remoteInfo = "gtest-static";
+			remoteInfo = "libGoogleUnitTest-static";
+		};
+		A40609FD1701AF77006848E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A40609CB1701AF40006848E3 /* libRocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6E8B1BF0123AAEE200C451C8;
+			remoteInfo = libRocketControlsiOS;
+		};
+		A40609FF1701AF77006848E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A40609CB1701AF40006848E3 /* libRocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6E8B1E6B123ABCEF00C451C8;
+			remoteInfo = libRocketControlsOSX;
+		};
+		A4060A011701AF77006848E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A40609CB1701AF40006848E3 /* libRocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6E8B1B0C123A0E2A00C451C8;
+			remoteInfo = libRocketCoreiOS;
+		};
+		A4060A031701AF77006848E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A40609CB1701AF40006848E3 /* libRocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6E8B1DDC123ABC7800C451C8;
+			remoteInfo = libRocketCoreOSX;
+		};
+		A4060A051701AF77006848E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A40609CB1701AF40006848E3 /* libRocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6E8B1EBC123AC7A200C451C8;
+			remoteInfo = libRocketDebuggeriOS;
+		};
+		A4060A071701AF77006848E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A40609CB1701AF40006848E3 /* libRocket.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6E8B1EC6123AC80700C451C8;
+			remoteInfo = libRocketDebuggerOSX;
+		};
+		A4060A151701B250006848E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A40609CB1701AF40006848E3 /* libRocket.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E8B1BEF123AAEE200C451C8;
+			remoteInfo = libRocketControlsiOS;
+		};
+		A4060A4B1701EBB3006848E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A40609CB1701AF40006848E3 /* libRocket.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E8B1EBB123AC7A200C451C8;
+			remoteInfo = libRocketDebuggeriOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -445,7 +513,7 @@
 		21904E3716E2C65300A1689A /* CScreenSpaceRenderProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CScreenSpaceRenderProcessor.cpp; sourceTree = "<group>"; };
 		21904E3816E2C65400A1689A /* CScreenSpaceRenderProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CScreenSpaceRenderProcessor.h; sourceTree = "<group>"; };
 		21BFC8FD16EE5BB700FA9F50 /* CRoot_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CRoot_iOS.mm; sourceTree = "<group>"; };
-		21BFC8FE16EE5BB800FA9F50 /* CRoot_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoot_iOS.h; sourceTree = "<group>"; };
+		21BFC8FE16EE5BB800FA9F50 /* CRoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoot.h; sourceTree = "<group>"; };
 		21BFC90216EE644B00FA9F50 /* CGLWindow_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CGLWindow_iOS.mm; sourceTree = "<group>"; };
 		21BFC90316EE644B00FA9F50 /* CGLWindow_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLWindow_iOS.h; sourceTree = "<group>"; };
 		21BFC90516EE685600FA9F50 /* CGameMainMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameMainMenuScene.cpp; sourceTree = "<group>"; };
@@ -1041,6 +1109,19 @@
 		A406008D1700AF58006848E3 /* b2Rope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = b2Rope.h; sourceTree = "<group>"; };
 		A40600BB1700B641006848E3 /* CCollisionNavigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCollisionNavigator.cpp; sourceTree = "<group>"; };
 		A40600BC1700B642006848E3 /* CCollisionNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCollisionNavigator.h; sourceTree = "<group>"; };
+		A40609CB1701AF40006848E3 /* libRocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libRocket.xcodeproj; path = Libs/libRocket/Build/libRocket.xcodeproj; sourceTree = "<group>"; };
+		A4060A311701D620006848E3 /* CGuiShellFilesystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiShellFilesystem.cpp; sourceTree = "<group>"; };
+		A4060A321701D620006848E3 /* CGuiShellFilesystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiShellFilesystem.h; sourceTree = "<group>"; };
+		A4060A341701D620006848E3 /* CGuiShellRender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiShellRender.cpp; sourceTree = "<group>"; };
+		A4060A351701D620006848E3 /* CGuiShellRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiShellRender.h; sourceTree = "<group>"; };
+		A4060A361701D620006848E3 /* CGuiShellSystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiShellSystem.cpp; sourceTree = "<group>"; };
+		A4060A371701D620006848E3 /* CGuiShellSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiShellSystem.h; sourceTree = "<group>"; };
+		A4060A3D1701E37C006848E3 /* mainMenu.rml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mainMenu.rml; path = Resources/Bundle/mainMenu.rml; sourceTree = "<group>"; };
+		A4060A3E1701E37C006848E3 /* mainMenu.rcss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mainMenu.rcss; path = Resources/Bundle/mainMenu.rcss; sourceTree = "<group>"; };
+		A4060A421701E823006848E3 /* Delicious-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delicious-Bold.otf"; path = "Resources/Bundle/Delicious-Bold.otf"; sourceTree = "<group>"; };
+		A4060A431701E823006848E3 /* Delicious-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delicious-BoldItalic.otf"; path = "Resources/Bundle/Delicious-BoldItalic.otf"; sourceTree = "<group>"; };
+		A4060A441701E823006848E3 /* Delicious-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delicious-Italic.otf"; path = "Resources/Bundle/Delicious-Italic.otf"; sourceTree = "<group>"; };
+		A4060A451701E823006848E3 /* Delicious-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delicious-Roman.otf"; path = "Resources/Bundle/Delicious-Roman.otf"; sourceTree = "<group>"; };
 		A41C870F16DE0A02003DA026 /* CLoadOperation_PVR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLoadOperation_PVR.cpp; sourceTree = "<group>"; };
 		A41C871016DE0A03003DA026 /* CLoadOperation_PVR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLoadOperation_PVR.h; sourceTree = "<group>"; };
 		A41C871316DE11F9003DA026 /* CLoadOperation_MDL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLoadOperation_MDL.cpp; sourceTree = "<group>"; };
@@ -1090,7 +1171,7 @@
 		A465C17316F0CA4F009404ED /* CCharacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCharacterController.h; sourceTree = "<group>"; };
 		A468349216E7836100D34692 /* CSceneUpdateMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneUpdateMgr.cpp; sourceTree = "<group>"; };
 		A468349316E7836100D34692 /* CSceneUpdateMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneUpdateMgr.h; sourceTree = "<group>"; };
-		A46834C116EDF52900D34692 /* gtest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gtest.xcodeproj; path = "Libs/gtest-1.6.0/xcode/gtest.xcodeproj"; sourceTree = "<group>"; };
+		A46834C116EDF52900D34692 /* libGoogleUnitTest.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libGoogleUnitTest.xcodeproj; path = "Libs/gtest-1.6.0/xcode/libGoogleUnitTest.xcodeproj"; sourceTree = "<group>"; };
 		A46834E516EDF87500D34692 /* iGaia-CartoonPanzers_TESTS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGaia-CartoonPanzers_TESTS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A46834EB16EDF87600D34692 /* iGaia_TESTS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iGaia_TESTS-Info.plist"; sourceTree = "<group>"; };
 		A46834EF16EDF87600D34692 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
@@ -1192,6 +1273,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4060A4A1701EB9C006848E3 /* liblibRocketDebuggeriOS.a in Frameworks */,
+				A4060A281701CBEA006848E3 /* liblibRocketCoreiOS.a in Frameworks */,
+				A4060A171701B25B006848E3 /* liblibRocketControlsiOS.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -1204,8 +1288,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A40609741701AD83006848E3 /* liblibGoogleUnitTest.a in Frameworks */,
 				A468353216EE03F500D34692 /* OpenGLES.framework in Frameworks */,
-				A468350016EDF8F900D34692 /* libgtest.a in Frameworks */,
 				A46834E616EDF87600D34692 /* UIKit.framework in Frameworks */,
 				A46834E716EDF87600D34692 /* Foundation.framework in Frameworks */,
 				A46834E816EDF87600D34692 /* CoreGraphics.framework in Frameworks */,
@@ -1407,7 +1491,7 @@
 			children = (
 				93A26E0A148D1E3000D14A0B /* CCommon_iOS.mm */,
 				A468355016EE418D00D34692 /* CMainLoop_iOS.mm */,
-				21BFC8FE16EE5BB800FA9F50 /* CRoot_iOS.h */,
+				21BFC8FE16EE5BB800FA9F50 /* CRoot.h */,
 				21BFC8FD16EE5BB700FA9F50 /* CRoot_iOS.mm */,
 				21BFC90316EE644B00FA9F50 /* CGLWindow_iOS.h */,
 				21BFC90216EE644B00FA9F50 /* CGLWindow_iOS.mm */,
@@ -1422,7 +1506,6 @@
 				9319B4A514E30980002152EC /* Default.png */,
 				9319B4A314E30923002152EC /* icon@2x.png */,
 				9319B4A014E30904002152EC /* icon.png */,
-				A46834C116EDF52900D34692 /* gtest.xcodeproj */,
 				A468354916EE052100D34692 /* iGaia-CartoonPanzers_PROJECT */,
 				4A89D5250FEF3FC100F039C8 /* Shaders */,
 				93FB580715174DA500E096A9 /* Libs */,
@@ -1430,6 +1513,8 @@
 				A46834E916EDF87600D34692 /* iGaia-CartoonPanzers_TESTS */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				A46834C116EDF52900D34692 /* libGoogleUnitTest.xcodeproj */,
+				A40609CB1701AF40006848E3 /* libRocket.xcodeproj */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -1445,6 +1530,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A4060A411701E814006848E3 /* Fonts */,
+				A4060A3C1701E371006848E3 /* UI */,
 				A4828B5617004B6D00EB7A7D /* Shapes */,
 				A4828B5517004B6200EB7A7D /* Textures */,
 				A4828B5417004B5C00EB7A7D /* Data */,
@@ -1652,6 +1739,7 @@
 		937367C5144ECDC20051ED8D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A4060A2A1701D10F006848E3 /* GuiMgr */,
 				A406001E17008E55006848E3 /* CollisionMgr */,
 				21BFC90016EE640600FA9F50 /* iOS */,
 				A4DF956D16C3E8620004EB83 /* Common */,
@@ -2426,6 +2514,66 @@
 			path = Rope;
 			sourceTree = "<group>";
 		};
+		A40609591701AD5F006848E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A40609651701AD5F006848E3 /* gtest.framework */,
+				A40609671701AD5F006848E3 /* liblibGoogleUnitTest.a */,
+				A40609691701AD5F006848E3 /* liblibGoogleUnitTest_main.a */,
+				A406096B1701AD5F006848E3 /* gtest_unittest-framework */,
+				A406096D1701AD5F006848E3 /* gtest_unittest */,
+				A406096F1701AD5F006848E3 /* sample1_unittest-framework */,
+				A40609711701AD5F006848E3 /* sample1_unittest-static */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A40609ED1701AF77006848E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A40609FE1701AF77006848E3 /* liblibRocketControlsiOS.a */,
+				A4060A001701AF77006848E3 /* libRocketControlsOSX.framework */,
+				A4060A021701AF77006848E3 /* liblibRocketCoreiOS.a */,
+				A4060A041701AF77006848E3 /* libRocketCoreOSX.framework */,
+				A4060A061701AF77006848E3 /* liblibRocketDebuggeriOS.a */,
+				A4060A081701AF77006848E3 /* libRocketDebuggerOSX.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A4060A2A1701D10F006848E3 /* GuiMgr */ = {
+			isa = PBXGroup;
+			children = (
+				A4060A321701D620006848E3 /* CGuiShellFilesystem.h */,
+				A4060A311701D620006848E3 /* CGuiShellFilesystem.cpp */,
+				A4060A351701D620006848E3 /* CGuiShellRender.h */,
+				A4060A341701D620006848E3 /* CGuiShellRender.cpp */,
+				A4060A371701D620006848E3 /* CGuiShellSystem.h */,
+				A4060A361701D620006848E3 /* CGuiShellSystem.cpp */,
+			);
+			name = GuiMgr;
+			sourceTree = "<group>";
+		};
+		A4060A3C1701E371006848E3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A4060A3D1701E37C006848E3 /* mainMenu.rml */,
+				A4060A3E1701E37C006848E3 /* mainMenu.rcss */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		A4060A411701E814006848E3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A4060A421701E823006848E3 /* Delicious-Bold.otf */,
+				A4060A431701E823006848E3 /* Delicious-BoldItalic.otf */,
+				A4060A441701E823006848E3 /* Delicious-Italic.otf */,
+				A4060A451701E823006848E3 /* Delicious-Roman.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		A41C870C16DE065A003DA026 /* RenderMgr */ = {
 			isa = PBXGroup;
 			children = (
@@ -2523,20 +2671,6 @@
 				A4828B4E16FCA58F00EB7A7D /* CLandscapeDecalSettings_PARSER.cpp */,
 			);
 			name = GameObjectSettings_PARSERS;
-			sourceTree = "<group>";
-		};
-		A46834C216EDF52900D34692 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A46834CE16EDF52A00D34692 /* gtest.framework */,
-				A46834D016EDF52A00D34692 /* libgtest.a */,
-				A46834D216EDF52A00D34692 /* libgtest_main.a */,
-				A46834D416EDF52A00D34692 /* gtest_unittest-framework */,
-				A46834D616EDF52A00D34692 /* gtest_unittest */,
-				A46834D816EDF52A00D34692 /* sample1_unittest-framework */,
-				A46834DA16EDF52A00D34692 /* sample1_unittest-static */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		A46834E916EDF87600D34692 /* iGaia-CartoonPanzers_TESTS */ = {
@@ -2873,6 +3007,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				A4060A4C1701EBB3006848E3 /* PBXTargetDependency */,
+				A4060A161701B250006848E3 /* PBXTargetDependency */,
 			);
 			name = "iGaia-CartoonPanzers";
 			productName = HelloArrow;
@@ -2890,7 +3026,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				A46834FF16EDF8F300D34692 /* PBXTargetDependency */,
+				A40609731701AD79006848E3 /* PBXTargetDependency */,
 			);
 			name = "iGaia-CartoonPanzers_TESTS";
 			productName = iGaia_TESTS;
@@ -2920,8 +3056,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = A46834C216EDF52900D34692 /* Products */;
-					ProjectRef = A46834C116EDF52900D34692 /* gtest.xcodeproj */;
+					ProductGroup = A40609591701AD5F006848E3 /* Products */;
+					ProjectRef = A46834C116EDF52900D34692 /* libGoogleUnitTest.xcodeproj */;
+				},
+				{
+					ProductGroup = A40609ED1701AF77006848E3 /* Products */;
+					ProjectRef = A40609CB1701AF40006848E3 /* libRocket.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -2933,53 +3073,95 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		A46834CE16EDF52A00D34692 /* gtest.framework */ = {
+		A40609651701AD5F006848E3 /* gtest.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = gtest.framework;
-			remoteRef = A46834CD16EDF52A00D34692 /* PBXContainerItemProxy */;
+			remoteRef = A40609641701AD5F006848E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A46834D016EDF52A00D34692 /* libgtest.a */ = {
+		A40609671701AD5F006848E3 /* liblibGoogleUnitTest.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libgtest.a;
-			remoteRef = A46834CF16EDF52A00D34692 /* PBXContainerItemProxy */;
+			path = liblibGoogleUnitTest.a;
+			remoteRef = A40609661701AD5F006848E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A46834D216EDF52A00D34692 /* libgtest_main.a */ = {
+		A40609691701AD5F006848E3 /* liblibGoogleUnitTest_main.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libgtest_main.a;
-			remoteRef = A46834D116EDF52A00D34692 /* PBXContainerItemProxy */;
+			path = liblibGoogleUnitTest_main.a;
+			remoteRef = A40609681701AD5F006848E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A46834D416EDF52A00D34692 /* gtest_unittest-framework */ = {
+		A406096B1701AD5F006848E3 /* gtest_unittest-framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = "gtest_unittest-framework";
-			remoteRef = A46834D316EDF52A00D34692 /* PBXContainerItemProxy */;
+			remoteRef = A406096A1701AD5F006848E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A46834D616EDF52A00D34692 /* gtest_unittest */ = {
+		A406096D1701AD5F006848E3 /* gtest_unittest */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = gtest_unittest;
-			remoteRef = A46834D516EDF52A00D34692 /* PBXContainerItemProxy */;
+			remoteRef = A406096C1701AD5F006848E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A46834D816EDF52A00D34692 /* sample1_unittest-framework */ = {
+		A406096F1701AD5F006848E3 /* sample1_unittest-framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = "sample1_unittest-framework";
-			remoteRef = A46834D716EDF52A00D34692 /* PBXContainerItemProxy */;
+			remoteRef = A406096E1701AD5F006848E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A46834DA16EDF52A00D34692 /* sample1_unittest-static */ = {
+		A40609711701AD5F006848E3 /* sample1_unittest-static */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			path = "sample1_unittest-static";
-			remoteRef = A46834D916EDF52A00D34692 /* PBXContainerItemProxy */;
+			remoteRef = A40609701701AD5F006848E3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A40609FE1701AF77006848E3 /* liblibRocketControlsiOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblibRocketControlsiOS.a;
+			remoteRef = A40609FD1701AF77006848E3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A4060A001701AF77006848E3 /* libRocketControlsOSX.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = libRocketControlsOSX.framework;
+			remoteRef = A40609FF1701AF77006848E3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A4060A021701AF77006848E3 /* liblibRocketCoreiOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblibRocketCoreiOS.a;
+			remoteRef = A4060A011701AF77006848E3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A4060A041701AF77006848E3 /* libRocketCoreOSX.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = libRocketCoreOSX.framework;
+			remoteRef = A4060A031701AF77006848E3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A4060A061701AF77006848E3 /* liblibRocketDebuggeriOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = liblibRocketDebuggeriOS.a;
+			remoteRef = A4060A051701AF77006848E3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A4060A081701AF77006848E3 /* libRocketDebuggerOSX.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = libRocketDebuggerOSX.framework;
+			remoteRef = A4060A071701AF77006848E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -3143,6 +3325,12 @@
 				A4828BB417004C9800EB7A7D /* ocean_01.xml in Resources */,
 				A4828BB517004C9800EB7A7D /* building_01.xml in Resources */,
 				A4828BB9170059DD00EB7A7D /* particle_emitter_01.xml in Resources */,
+				A4060A3F1701E37C006848E3 /* mainMenu.rml in Resources */,
+				A4060A401701E37C006848E3 /* mainMenu.rcss in Resources */,
+				A4060A461701E823006848E3 /* Delicious-Bold.otf in Resources */,
+				A4060A471701E823006848E3 /* Delicious-BoldItalic.otf in Resources */,
+				A4060A481701E823006848E3 /* Delicious-Italic.otf in Resources */,
+				A4060A491701E823006848E3 /* Delicious-Roman.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3287,6 +3475,9 @@
 				A40600B91700AF58006848E3 /* b2WheelJoint.cpp in Sources */,
 				A40600BA1700AF58006848E3 /* b2Rope.cpp in Sources */,
 				A40600BD1700B642006848E3 /* CCollisionNavigator.cpp in Sources */,
+				A4060A391701D620006848E3 /* CGuiShellFilesystem.cpp in Sources */,
+				A4060A3A1701D620006848E3 /* CGuiShellRender.cpp in Sources */,
+				A4060A3B1701D620006848E3 /* CGuiShellSystem.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3351,10 +3542,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A46834FF16EDF8F300D34692 /* PBXTargetDependency */ = {
+		A40609731701AD79006848E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "gtest-static";
-			targetProxy = A46834FE16EDF8F300D34692 /* PBXContainerItemProxy */;
+			name = "libGoogleUnitTest-static";
+			targetProxy = A40609721701AD79006848E3 /* PBXContainerItemProxy */;
+		};
+		A4060A161701B250006848E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libRocketControlsiOS;
+			targetProxy = A4060A151701B250006848E3 /* PBXContainerItemProxy */;
+		};
+		A4060A4C1701EBB3006848E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libRocketDebuggeriOS;
+			targetProxy = A4060A4B1701EBB3006848E3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3371,7 +3572,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -3382,6 +3583,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"${PROJECT_DIR}\"/**",
 					"\"$(SRCROOT)/Libs/gtest-1.6.0/include\"",
+					"\"$(SRCROOT)/Libs/libRocket/Include\"",
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -3406,7 +3608,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
@@ -3416,6 +3618,7 @@
 				HEADER_SEARCH_PATHS = (
 					"\"${PROJECT_DIR}\"/**",
 					"\"$(SRCROOT)/Libs/gtest-1.6.0/include\"",
+					"\"$(SRCROOT)/Libs/libRocket/Include\"",
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;

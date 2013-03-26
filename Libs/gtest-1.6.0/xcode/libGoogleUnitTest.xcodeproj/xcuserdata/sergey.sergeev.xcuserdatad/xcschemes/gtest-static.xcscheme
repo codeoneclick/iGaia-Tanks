@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "40C848F9101A209C0083642A"
-               BuildableName = "libgtest.a"
-               BlueprintName = "gtest-static"
-               ReferencedContainer = "container:gtest.xcodeproj">
+               BuildableName = "liblibGoogleUnitTest.a"
+               BlueprintName = "libGoogleUnitTest-static"
+               ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

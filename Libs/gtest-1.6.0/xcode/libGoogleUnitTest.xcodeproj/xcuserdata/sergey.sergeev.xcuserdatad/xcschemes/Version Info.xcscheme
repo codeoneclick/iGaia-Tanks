@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D07F2BC0486CC7A007CD1D0"
-               BuildableName = "gtest.framework"
-               BlueprintName = "gtest-framework"
-               ReferencedContainer = "container:gtest.xcodeproj">
+               BlueprintIdentifier = "40C44ADC0E3798F4008FCC51"
+               BuildableName = "Version Info"
+               BlueprintName = "Version Info"
+               ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

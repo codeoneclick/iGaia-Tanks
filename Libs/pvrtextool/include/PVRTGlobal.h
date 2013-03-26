@@ -61,14 +61,14 @@
 	#define _RPT4(a,b,c,d,e,f)((void)0)
 	#include <stdlib.h>
 	#include <string.h>
-	#define BYTE unsigned char
-	#define WORD unsigned short
-	#define DWORD unsigned int
+	#define PVR_BYTE unsigned char
+	#define PVR_WORD unsigned short
+	#define PVR_DWORD unsigned int
 	typedef struct tagRGBQUAD {
-	BYTE    rgbBlue;
-	BYTE    rgbGreen;
-	BYTE    rgbRed;
-	BYTE    rgbReserved;
+	PVR_BYTE    rgbBlue;
+	PVR_BYTE    rgbGreen;
+	PVR_BYTE    rgbRed;
+	PVR_BYTE    rgbReserved;
 	} RGBQUAD;
 	#define BOOL int
 #if !defined(TRUE)

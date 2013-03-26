@@ -15,6 +15,14 @@
 #include "CRenderOperationScreenSpace.h"
 #include "CRenderOperationScreenOutput.h"
 
+#include "CGuiShellFilesystem.h"
+#include "CGuiShellRender.h"
+#include "CGuiShellSystem.h"
+
+#include <Rocket/Core.h>
+#include <Rocket/Controls.h>
+#include <Rocket/Debugger.h>
+
 class CRenderMgr : public CMainLoopUpdateCallback_INTERFACE
 {
 private:
@@ -27,6 +35,12 @@ private:
     CShaderComposite* m_shaderComposite;
 
     std::queue<CRenderOperationScreenSpace*> m_customScreenSpaceOperationsQueue;
+
+    Rocket::Core::Context* m_guiContext;
+    Rocket::Core::ElementDocument* m_guiDocument;
+
+    CGuiShellRender_INTERFACE m_openglRenderInterface;
+	CGuiShellSystem_INTERFACE m_systemInterface;
 
 protected:
     

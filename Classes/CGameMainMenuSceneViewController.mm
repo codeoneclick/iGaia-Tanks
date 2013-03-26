@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
 
-    CRoot_iOS* root = new CRoot_iOS((__bridge void*)_m_glView);
+    CRoot* root = new CRoot((__bridge void*)_m_glView);
     self.m_scene = new CGameMainMenuScene();
     self.m_scene->Load(root);
     [self.m_moveController AddEventListener:self.m_scene->Get_CharacterController()];

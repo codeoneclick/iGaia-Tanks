@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "40C8497A101A36850083642A"
                BuildableName = "gtest_unittest"
-               BlueprintName = "gtest_unittest-static"
-               ReferencedContainer = "container:gtest.xcodeproj">
+               BlueprintName = "libGoogleUnitTest_unittest-static"
+               ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "40C8497A101A36850083642A"
             BuildableName = "gtest_unittest"
-            BlueprintName = "gtest_unittest-static"
-            ReferencedContainer = "container:gtest.xcodeproj">
+            BlueprintName = "libGoogleUnitTest_unittest-static"
+            ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -53,8 +53,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "40C8497A101A36850083642A"
             BuildableName = "gtest_unittest"
-            BlueprintName = "gtest_unittest-static"
-            ReferencedContainer = "container:gtest.xcodeproj">
+            BlueprintName = "libGoogleUnitTest_unittest-static"
+            ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -71,8 +71,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "40C8497A101A36850083642A"
             BuildableName = "gtest_unittest"
-            BlueprintName = "gtest_unittest-static"
-            ReferencedContainer = "container:gtest.xcodeproj">
+            BlueprintName = "libGoogleUnitTest_unittest-static"
+            ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

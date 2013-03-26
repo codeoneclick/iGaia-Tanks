@@ -12,6 +12,36 @@
 CRenderMgr::CRenderMgr(const IGLContext_INTERFACE* _glContext)
 {
     m_glContext = _glContext;
+
+	Rocket::Core::SetRenderInterface(&m_openglRenderInterface);
+
+	CGuiShellSystem_INTERFACE systemInterface;
+	Rocket::Core::SetSystemInterface(&m_systemInterface);
+
+    Rocket::Core::Initialise();
+    m_guiContext = Rocket::Core::CreateContext("default", Rocket::Core::Vector2i(Get_ScreenWidth(), Get_ScreenHeight()));
+
+    Rocket::Debugger::Initialise(m_guiContext);
+
+    Rocket::Core::String fontNames[4];
+	fontNames[0] = "Delicious-Roman.otf";
+	fontNames[1] = "Delicious-Italic.otf";
+	fontNames[2] = "Delicious-Bold.otf";
+	fontNames[3] = "Delicious-BoldItalic.otf";
+
+	for (int i = 0; i < sizeof(fontNames) / sizeof(Rocket::Core::String); i++)
+	{
+		Rocket::Core::FontDatabase::LoadFontFace(Rocket::Core::String(Get_BundlePath().c_str()) + fontNames[i]);
+	}
+    
+    std::string mainMenuFilename = Get_BundlePath();
+    mainMenuFilename.append("mainMenu.rml");
+    m_guiDocument = m_guiContext->LoadDocument(mainMenuFilename.c_str());
+	if (m_guiDocument != nullptr)
+	{
+		m_guiDocument->Show();
+		m_guiDocument->RemoveReference();
+	}
     
     m_shaderComposite = new CShaderComposite();
     
@@ -91,6 +121,9 @@ void CRenderMgr::OnUpdate(f32 _deltatime)
     m_screenOutputOperation->Bind();
     m_screenOutputOperation->Draw();
     m_screenOutputOperation->Unbind();
+
+    m_guiContext->Update();
+    m_guiContext->Render();
     
     m_glContext->Present();
     

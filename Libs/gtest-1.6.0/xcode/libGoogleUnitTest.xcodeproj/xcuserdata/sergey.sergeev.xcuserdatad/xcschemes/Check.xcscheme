@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "40899F420FFA7184000B29AE"
-               BuildableName = "gtest_unittest-framework"
-               BlueprintName = "gtest_unittest-framework"
-               ReferencedContainer = "container:gtest.xcodeproj">
+               BlueprintIdentifier = "3B238F5F0E828B5400846E11"
+               BuildableName = "Check"
+               BlueprintName = "Check"
+               ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "40899F420FFA7184000B29AE"
-            BuildableName = "gtest_unittest-framework"
-            BlueprintName = "gtest_unittest-framework"
-            ReferencedContainer = "container:gtest.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -48,15 +39,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "40899F420FFA7184000B29AE"
-            BuildableName = "gtest_unittest-framework"
-            BlueprintName = "gtest_unittest-framework"
-            ReferencedContainer = "container:gtest.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -66,15 +48,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "40899F420FFA7184000B29AE"
-            BuildableName = "gtest_unittest-framework"
-            BlueprintName = "gtest_unittest-framework"
-            ReferencedContainer = "container:gtest.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

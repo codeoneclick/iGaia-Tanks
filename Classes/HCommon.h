@@ -46,7 +46,7 @@
 
 #include "PVRTTexture.h"
 
-#include "box2d\Box2D.h"
+#include "Box2D.h"
 
 #include "HEnum.h"
 

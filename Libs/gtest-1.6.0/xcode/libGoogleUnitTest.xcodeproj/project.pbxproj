@@ -53,13 +53,13 @@
 		40899F500FFA7281000B29AE /* gtest-tuple.h in Copy Headers Internal */ = {isa = PBXBuildFile; fileRef = 40899F4D0FFA7271000B29AE /* gtest-tuple.h */; };
 		40C848FF101A21150083642A /* gtest-all.cc in Sources */ = {isa = PBXBuildFile; fileRef = 224A12A10E9EADA700BD17FD /* gtest-all.cc */; };
 		40C84915101A21DF0083642A /* gtest_main.cc in Sources */ = {isa = PBXBuildFile; fileRef = 4048840D0E2F799B00CF7658 /* gtest_main.cc */; };
-		40C84916101A235B0083642A /* libgtest_main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C8490B101A217E0083642A /* libgtest_main.a */; };
-		40C84921101A23AD0083642A /* libgtest_main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C8490B101A217E0083642A /* libgtest_main.a */; };
-		40C84978101A36540083642A /* libgtest_main.a in Resources */ = {isa = PBXBuildFile; fileRef = 40C8490B101A217E0083642A /* libgtest_main.a */; };
-		40C84982101A36850083642A /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C848FA101A209C0083642A /* libgtest.a */; };
-		40C84983101A36850083642A /* libgtest_main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C8490B101A217E0083642A /* libgtest_main.a */; };
-		40C84992101A36A60083642A /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C848FA101A209C0083642A /* libgtest.a */; };
-		40C84993101A36A60083642A /* libgtest_main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C8490B101A217E0083642A /* libgtest_main.a */; };
+		40C84916101A235B0083642A /* liblibGoogleUnitTest_main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C8490B101A217E0083642A /* liblibGoogleUnitTest_main.a */; };
+		40C84921101A23AD0083642A /* liblibGoogleUnitTest_main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C8490B101A217E0083642A /* liblibGoogleUnitTest_main.a */; };
+		40C84978101A36540083642A /* liblibGoogleUnitTest_main.a in Resources */ = {isa = PBXBuildFile; fileRef = 40C8490B101A217E0083642A /* liblibGoogleUnitTest_main.a */; };
+		40C84982101A36850083642A /* liblibGoogleUnitTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C848FA101A209C0083642A /* liblibGoogleUnitTest.a */; };
+		40C84983101A36850083642A /* liblibGoogleUnitTest_main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C8490B101A217E0083642A /* liblibGoogleUnitTest_main.a */; };
+		40C84992101A36A60083642A /* liblibGoogleUnitTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C848FA101A209C0083642A /* liblibGoogleUnitTest.a */; };
+		40C84993101A36A60083642A /* liblibGoogleUnitTest_main.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C8490B101A217E0083642A /* liblibGoogleUnitTest_main.a */; };
 		40C849A2101A37050083642A /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4539C8FF0EC27F6400A70F4C /* gtest.framework */; };
 		40C849A4101A37150083642A /* gtest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4539C8FF0EC27F6400A70F4C /* gtest.framework */; };
 		4539C9340EC280AE00A70F4C /* gtest-param-test.h in Headers */ = {isa = PBXBuildFile; fileRef = 4539C9330EC280AE00A70F4C /* gtest-param-test.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -204,8 +204,8 @@
 		40899F4D0FFA7271000B29AE /* gtest-tuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "gtest-tuple.h"; sourceTree = "<group>"; };
 		40899FB30FFA7567000B29AE /* StaticLibraryTarget.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = StaticLibraryTarget.xcconfig; sourceTree = "<group>"; };
 		4089A0130FFACEFC000B29AE /* sample1_unittest-framework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "sample1_unittest-framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		40C848FA101A209C0083642A /* libgtest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgtest.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		40C8490B101A217E0083642A /* libgtest_main.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgtest_main.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		40C848FA101A209C0083642A /* liblibGoogleUnitTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibGoogleUnitTest.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		40C8490B101A217E0083642A /* liblibGoogleUnitTest_main.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblibGoogleUnitTest_main.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		40C84987101A36850083642A /* gtest_unittest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gtest_unittest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40C84997101A36A60083642A /* sample1_unittest-static */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "sample1_unittest-static"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40D4CDF10E30E07400294801 /* DebugProject.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DebugProject.xcconfig; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40C849A4101A37150083642A /* gtest.framework in Frameworks */,
-				40C84916101A235B0083642A /* libgtest_main.a in Frameworks */,
+				40C84916101A235B0083642A /* liblibGoogleUnitTest_main.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40C849A2101A37050083642A /* gtest.framework in Frameworks */,
-				40C84921101A23AD0083642A /* libgtest_main.a in Frameworks */,
+				40C84921101A23AD0083642A /* liblibGoogleUnitTest_main.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,8 +244,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40C84982101A36850083642A /* libgtest.a in Frameworks */,
-				40C84983101A36850083642A /* libgtest_main.a in Frameworks */,
+				40C84982101A36850083642A /* liblibGoogleUnitTest.a in Frameworks */,
+				40C84983101A36850083642A /* liblibGoogleUnitTest_main.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,8 +253,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40C84992101A36A60083642A /* libgtest.a in Frameworks */,
-				40C84993101A36A60083642A /* libgtest_main.a in Frameworks */,
+				40C84992101A36A60083642A /* liblibGoogleUnitTest.a in Frameworks */,
+				40C84993101A36A60083642A /* liblibGoogleUnitTest_main.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,8 +265,8 @@
 			isa = PBXGroup;
 			children = (
 				4539C8FF0EC27F6400A70F4C /* gtest.framework */,
-				40C848FA101A209C0083642A /* libgtest.a */,
-				40C8490B101A217E0083642A /* libgtest_main.a */,
+				40C848FA101A209C0083642A /* liblibGoogleUnitTest.a */,
+				40C8490B101A217E0083642A /* liblibGoogleUnitTest_main.a */,
 				40899F430FFA7184000B29AE /* gtest_unittest-framework */,
 				40C84987101A36850083642A /* gtest_unittest */,
 				4089A0130FFACEFC000B29AE /* sample1_unittest-framework */,
@@ -389,9 +389,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		40899F420FFA7184000B29AE /* gtest_unittest-framework */ = {
+		40899F420FFA7184000B29AE /* libGoogleUnitTest_unittest-framework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 40899F4A0FFA71BC000B29AE /* Build configuration list for PBXNativeTarget "gtest_unittest-framework" */;
+			buildConfigurationList = 40899F4A0FFA71BC000B29AE /* Build configuration list for PBXNativeTarget "libGoogleUnitTest_unittest-framework" */;
 			buildPhases = (
 				40899F400FFA7184000B29AE /* Sources */,
 				40899F410FFA7184000B29AE /* Frameworks */,
@@ -401,7 +401,7 @@
 			dependencies = (
 				40C849A0101A36F10083642A /* PBXTargetDependency */,
 			);
-			name = "gtest_unittest-framework";
+			name = "libGoogleUnitTest_unittest-framework";
 			productName = gtest_unittest;
 			productReference = 40899F430FFA7184000B29AE /* gtest_unittest-framework */;
 			productType = "com.apple.product-type.tool";
@@ -423,9 +423,9 @@
 			productReference = 4089A0130FFACEFC000B29AE /* sample1_unittest-framework */;
 			productType = "com.apple.product-type.tool";
 		};
-		40C848F9101A209C0083642A /* gtest-static */ = {
+		40C848F9101A209C0083642A /* libGoogleUnitTest-static */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 40C84902101A212E0083642A /* Build configuration list for PBXNativeTarget "gtest-static" */;
+			buildConfigurationList = 40C84902101A212E0083642A /* Build configuration list for PBXNativeTarget "libGoogleUnitTest-static" */;
 			buildPhases = (
 				40C848F7101A209C0083642A /* Sources */,
 			);
@@ -433,14 +433,14 @@
 			);
 			dependencies = (
 			);
-			name = "gtest-static";
+			name = "libGoogleUnitTest-static";
 			productName = "gtest-static";
-			productReference = 40C848FA101A209C0083642A /* libgtest.a */;
+			productReference = 40C848FA101A209C0083642A /* liblibGoogleUnitTest.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		40C8490A101A217E0083642A /* gtest_main-static */ = {
+		40C8490A101A217E0083642A /* libGoogleUnitTest_main-static */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 40C84912101A21D20083642A /* Build configuration list for PBXNativeTarget "gtest_main-static" */;
+			buildConfigurationList = 40C84912101A21D20083642A /* Build configuration list for PBXNativeTarget "libGoogleUnitTest_main-static" */;
 			buildPhases = (
 				40C84908101A217E0083642A /* Sources */,
 			);
@@ -448,14 +448,14 @@
 			);
 			dependencies = (
 			);
-			name = "gtest_main-static";
+			name = "libGoogleUnitTest_main-static";
 			productName = "gtest_main-static";
-			productReference = 40C8490B101A217E0083642A /* libgtest_main.a */;
+			productReference = 40C8490B101A217E0083642A /* liblibGoogleUnitTest_main.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		40C8497A101A36850083642A /* gtest_unittest-static */ = {
+		40C8497A101A36850083642A /* libGoogleUnitTest_unittest-static */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 40C84984101A36850083642A /* Build configuration list for PBXNativeTarget "gtest_unittest-static" */;
+			buildConfigurationList = 40C84984101A36850083642A /* Build configuration list for PBXNativeTarget "libGoogleUnitTest_unittest-static" */;
 			buildPhases = (
 				40C8497F101A36850083642A /* Sources */,
 				40C84981101A36850083642A /* Frameworks */,
@@ -466,7 +466,7 @@
 				40C8497B101A36850083642A /* PBXTargetDependency */,
 				40C8497D101A36850083642A /* PBXTargetDependency */,
 			);
-			name = "gtest_unittest-static";
+			name = "libGoogleUnitTest_unittest-static";
 			productName = gtest_unittest;
 			productReference = 40C84987101A36850083642A /* gtest_unittest */;
 			productType = "com.apple.product-type.tool";
@@ -489,9 +489,9 @@
 			productReference = 40C84997101A36A60083642A /* sample1_unittest-static */;
 			productType = "com.apple.product-type.tool";
 		};
-		8D07F2BC0486CC7A007CD1D0 /* gtest-framework */ = {
+		8D07F2BC0486CC7A007CD1D0 /* libGoogleUnitTest-framework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FADC24208B4156D00ABE55E /* Build configuration list for PBXNativeTarget "gtest-framework" */;
+			buildConfigurationList = 4FADC24208B4156D00ABE55E /* Build configuration list for PBXNativeTarget "libGoogleUnitTest-framework" */;
 			buildPhases = (
 				8D07F2C10486CC7A007CD1D0 /* Sources */,
 				8D07F2BD0486CC7A007CD1D0 /* Headers */,
@@ -505,7 +505,7 @@
 				408BEC101046CFE900DEF522 /* PBXTargetDependency */,
 				40C8499C101A36DC0083642A /* PBXTargetDependency */,
 			);
-			name = "gtest-framework";
+			name = "libGoogleUnitTest-framework";
 			productInstallPath = "$(HOME)/Library/Frameworks";
 			productName = gtest;
 			productReference = 4539C8FF0EC27F6400A70F4C /* gtest.framework */;
@@ -516,7 +516,7 @@
 /* Begin PBXProject section */
 		0867D690FE84028FC02AAC07 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 4FADC24608B4156D00ABE55E /* Build configuration list for PBXProject "gtest" */;
+			buildConfigurationList = 4FADC24608B4156D00ABE55E /* Build configuration list for PBXProject "libGoogleUnitTest" */;
 			compatibilityVersion = "Xcode 2.4";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -532,11 +532,11 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D07F2BC0486CC7A007CD1D0 /* gtest-framework */,
-				40C848F9101A209C0083642A /* gtest-static */,
-				40C8490A101A217E0083642A /* gtest_main-static */,
-				40899F420FFA7184000B29AE /* gtest_unittest-framework */,
-				40C8497A101A36850083642A /* gtest_unittest-static */,
+				8D07F2BC0486CC7A007CD1D0 /* libGoogleUnitTest-framework */,
+				40C848F9101A209C0083642A /* libGoogleUnitTest-static */,
+				40C8490A101A217E0083642A /* libGoogleUnitTest_main-static */,
+				40899F420FFA7184000B29AE /* libGoogleUnitTest_unittest-framework */,
+				40C8497A101A36850083642A /* libGoogleUnitTest_unittest-static */,
 				4089A0120FFACEFC000B29AE /* sample1_unittest-framework */,
 				40C84989101A36A60083642A /* sample1_unittest-static */,
 				3B238F5F0E828B5400846E11 /* Check */,
@@ -550,7 +550,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40C84978101A36540083642A /* libgtest_main.a in Resources */,
+				40C84978101A36540083642A /* liblibGoogleUnitTest_main.a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,7 +647,7 @@
 /* Begin PBXTargetDependency section */
 		40899F9D0FFA740F000B29AE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 40899F420FFA7184000B29AE /* gtest_unittest-framework */;
+			target = 40899F420FFA7184000B29AE /* libGoogleUnitTest_unittest-framework */;
 			targetProxy = 40899F9C0FFA740F000B29AE /* PBXContainerItemProxy */;
 		};
 		4089A0980FFAD34A000B29AE /* PBXTargetDependency */ = {
@@ -657,7 +657,7 @@
 		};
 		408BEC101046CFE900DEF522 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 40C848F9101A209C0083642A /* gtest-static */;
+			target = 40C848F9101A209C0083642A /* libGoogleUnitTest-static */;
 			targetProxy = 408BEC0F1046CFE900DEF522 /* PBXContainerItemProxy */;
 		};
 		40C44AE60E379922008FCC51 /* PBXTargetDependency */ = {
@@ -667,42 +667,42 @@
 		};
 		40C8497B101A36850083642A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 40C848F9101A209C0083642A /* gtest-static */;
+			target = 40C848F9101A209C0083642A /* libGoogleUnitTest-static */;
 			targetProxy = 40C8497C101A36850083642A /* PBXContainerItemProxy */;
 		};
 		40C8497D101A36850083642A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 40C8490A101A217E0083642A /* gtest_main-static */;
+			target = 40C8490A101A217E0083642A /* libGoogleUnitTest_main-static */;
 			targetProxy = 40C8497E101A36850083642A /* PBXContainerItemProxy */;
 		};
 		40C8498A101A36A60083642A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 40C848F9101A209C0083642A /* gtest-static */;
+			target = 40C848F9101A209C0083642A /* libGoogleUnitTest-static */;
 			targetProxy = 40C8498B101A36A60083642A /* PBXContainerItemProxy */;
 		};
 		40C8498C101A36A60083642A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 40C8490A101A217E0083642A /* gtest_main-static */;
+			target = 40C8490A101A217E0083642A /* libGoogleUnitTest_main-static */;
 			targetProxy = 40C8498D101A36A60083642A /* PBXContainerItemProxy */;
 		};
 		40C8499C101A36DC0083642A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 40C8490A101A217E0083642A /* gtest_main-static */;
+			target = 40C8490A101A217E0083642A /* libGoogleUnitTest_main-static */;
 			targetProxy = 40C8499B101A36DC0083642A /* PBXContainerItemProxy */;
 		};
 		40C8499E101A36E50083642A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D07F2BC0486CC7A007CD1D0 /* gtest-framework */;
+			target = 8D07F2BC0486CC7A007CD1D0 /* libGoogleUnitTest-framework */;
 			targetProxy = 40C8499D101A36E50083642A /* PBXContainerItemProxy */;
 		};
 		40C849A0101A36F10083642A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D07F2BC0486CC7A007CD1D0 /* gtest-framework */;
+			target = 8D07F2BC0486CC7A007CD1D0 /* libGoogleUnitTest-framework */;
 			targetProxy = 40C8499F101A36F10083642A /* PBXContainerItemProxy */;
 		};
 		40C849F7101A43440083642A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 40C8497A101A36850083642A /* gtest_unittest-static */;
+			target = 40C8497A101A36850083642A /* libGoogleUnitTest_unittest-static */;
 			targetProxy = 40C849F6101A43440083642A /* PBXContainerItemProxy */;
 		};
 		40C849F9101A43490083642A /* PBXTargetDependency */ = {
@@ -738,7 +738,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = ../;
-				PRODUCT_NAME = "gtest_unittest-framework";
+				PRODUCT_NAME = "libGoogleUnitTest_unittest-framework";
 			};
 			name = Debug;
 		};
@@ -746,7 +746,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = ../;
-				PRODUCT_NAME = "gtest_unittest-framework";
+				PRODUCT_NAME = "libGoogleUnitTest_unittest-framework";
 			};
 			name = Release;
 		};
@@ -767,7 +767,7 @@
 		40C44ADF0E3798F4008FCC51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = gtest;
+				PRODUCT_NAME = libGoogleUnitTest;
 				TARGET_NAME = gtest;
 			};
 			name = Debug;
@@ -775,7 +775,7 @@
 		40C44AE00E3798F4008FCC51 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				PRODUCT_NAME = gtest;
+				PRODUCT_NAME = libGoogleUnitTest;
 				TARGET_NAME = gtest;
 			};
 			name = Release;
@@ -792,7 +792,7 @@
 					../,
 					../include/,
 				);
-				PRODUCT_NAME = gtest;
+				PRODUCT_NAME = libGoogleUnitTest;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -809,7 +809,7 @@
 					../,
 					../include/,
 				);
-				PRODUCT_NAME = gtest;
+				PRODUCT_NAME = libGoogleUnitTest;
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -822,7 +822,7 @@
 					../,
 					../include/,
 				);
-				PRODUCT_NAME = gtest_main;
+				PRODUCT_NAME = libGoogleUnitTest_main;
 			};
 			name = Debug;
 		};
@@ -834,7 +834,7 @@
 					../,
 					../include/,
 				);
-				PRODUCT_NAME = gtest_main;
+				PRODUCT_NAME = libGoogleUnitTest_main;
 			};
 			name = Release;
 		};
@@ -842,7 +842,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = ../;
-				PRODUCT_NAME = gtest_unittest;
+				PRODUCT_NAME = libGoogleUnitTest_unittest;
 			};
 			name = Debug;
 		};
@@ -850,7 +850,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = ../;
-				PRODUCT_NAME = gtest_unittest;
+				PRODUCT_NAME = libGoogleUnitTest_unittest;
 			};
 			name = Release;
 		};
@@ -881,7 +881,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "$(PROJECT_TEMP_DIR)/Version.h";
 				INFOPLIST_PREPROCESS = YES;
-				PRODUCT_NAME = gtest;
+				PRODUCT_NAME = libGoogleUnitTest;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -899,7 +899,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INFOPLIST_PREFIX_HEADER = "$(PROJECT_TEMP_DIR)/Version.h";
 				INFOPLIST_PREPROCESS = YES;
-				PRODUCT_NAME = gtest;
+				PRODUCT_NAME = libGoogleUnitTest;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -944,7 +944,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		40899F4A0FFA71BC000B29AE /* Build configuration list for PBXNativeTarget "gtest_unittest-framework" */ = {
+		40899F4A0FFA71BC000B29AE /* Build configuration list for PBXNativeTarget "libGoogleUnitTest_unittest-framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				40899F450FFA7185000B29AE /* Debug */,
@@ -971,7 +971,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		40C84902101A212E0083642A /* Build configuration list for PBXNativeTarget "gtest-static" */ = {
+		40C84902101A212E0083642A /* Build configuration list for PBXNativeTarget "libGoogleUnitTest-static" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				40C848FB101A209D0083642A /* Debug */,
@@ -980,7 +980,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		40C84912101A21D20083642A /* Build configuration list for PBXNativeTarget "gtest_main-static" */ = {
+		40C84912101A21D20083642A /* Build configuration list for PBXNativeTarget "libGoogleUnitTest_main-static" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				40C8490E101A217F0083642A /* Debug */,
@@ -989,7 +989,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		40C84984101A36850083642A /* Build configuration list for PBXNativeTarget "gtest_unittest-static" */ = {
+		40C84984101A36850083642A /* Build configuration list for PBXNativeTarget "libGoogleUnitTest_unittest-static" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				40C84985101A36850083642A /* Debug */,
@@ -1007,7 +1007,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FADC24208B4156D00ABE55E /* Build configuration list for PBXNativeTarget "gtest-framework" */ = {
+		4FADC24208B4156D00ABE55E /* Build configuration list for PBXNativeTarget "libGoogleUnitTest-framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FADC24308B4156D00ABE55E /* Debug */,
@@ -1016,7 +1016,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FADC24608B4156D00ABE55E /* Build configuration list for PBXProject "gtest" */ = {
+		4FADC24608B4156D00ABE55E /* Build configuration list for PBXProject "libGoogleUnitTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FADC24708B4156D00ABE55E /* Debug */,

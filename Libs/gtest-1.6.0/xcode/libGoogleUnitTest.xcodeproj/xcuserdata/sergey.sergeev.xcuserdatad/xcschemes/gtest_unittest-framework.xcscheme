@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "40C84989101A36A60083642A"
-               BuildableName = "sample1_unittest-static"
-               BlueprintName = "sample1_unittest-static"
-               ReferencedContainer = "container:gtest.xcodeproj">
+               BlueprintIdentifier = "40899F420FFA7184000B29AE"
+               BuildableName = "gtest_unittest-framework"
+               BlueprintName = "libGoogleUnitTest_unittest-framework"
+               ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "40C84989101A36A60083642A"
-            BuildableName = "sample1_unittest-static"
-            BlueprintName = "sample1_unittest-static"
-            ReferencedContainer = "container:gtest.xcodeproj">
+            BlueprintIdentifier = "40899F420FFA7184000B29AE"
+            BuildableName = "gtest_unittest-framework"
+            BlueprintName = "libGoogleUnitTest_unittest-framework"
+            ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,10 +51,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "40C84989101A36A60083642A"
-            BuildableName = "sample1_unittest-static"
-            BlueprintName = "sample1_unittest-static"
-            ReferencedContainer = "container:gtest.xcodeproj">
+            BlueprintIdentifier = "40899F420FFA7184000B29AE"
+            BuildableName = "gtest_unittest-framework"
+            BlueprintName = "libGoogleUnitTest_unittest-framework"
+            ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "40C84989101A36A60083642A"
-            BuildableName = "sample1_unittest-static"
-            BlueprintName = "sample1_unittest-static"
-            ReferencedContainer = "container:gtest.xcodeproj">
+            BlueprintIdentifier = "40899F420FFA7184000B29AE"
+            BuildableName = "gtest_unittest-framework"
+            BlueprintName = "libGoogleUnitTest_unittest-framework"
+            ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

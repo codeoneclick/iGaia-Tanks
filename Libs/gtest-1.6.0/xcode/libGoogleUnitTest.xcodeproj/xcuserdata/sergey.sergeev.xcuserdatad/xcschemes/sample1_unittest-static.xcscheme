@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B238F5F0E828B5400846E11"
-               BuildableName = "Check"
-               BlueprintName = "Check"
-               ReferencedContainer = "container:gtest.xcodeproj">
+               BlueprintIdentifier = "40C84989101A36A60083642A"
+               BuildableName = "sample1_unittest-static"
+               BlueprintName = "sample1_unittest-static"
+               ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,6 +29,15 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "40C84989101A36A60083642A"
+            BuildableName = "sample1_unittest-static"
+            BlueprintName = "sample1_unittest-static"
+            ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -39,6 +48,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "40C84989101A36A60083642A"
+            BuildableName = "sample1_unittest-static"
+            BlueprintName = "sample1_unittest-static"
+            ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -48,6 +66,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "40C84989101A36A60083642A"
+            BuildableName = "sample1_unittest-static"
+            BlueprintName = "sample1_unittest-static"
+            ReferencedContainer = "container:libGoogleUnitTest.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
