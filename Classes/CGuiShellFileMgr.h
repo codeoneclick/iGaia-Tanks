@@ -2,6 +2,7 @@
 #ifndef CGuiShellFileMgr_h
 #define CGuiShellFileMgr_h
 
+#include "HCommon.h"
 #include <Rocket/Core/RocketString.h>
 #include <Rocket/Core/FileInterface.h>
 

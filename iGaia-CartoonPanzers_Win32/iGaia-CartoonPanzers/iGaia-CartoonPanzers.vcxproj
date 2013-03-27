@@ -53,13 +53,13 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeaderFile />
-      <AdditionalIncludeDirectories>D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\pvrtextool\include;D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\windows\ogles2\include;D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Libs\box2d;..\..\Libs\pvrtextool\include;..\..\Libs\windows\ogles2\include;..\..\Libs;..\..\Libs\libRocket\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\pvrtextool\windows_x86_32\Static;D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\windows\ogles2\windows_x86_32\lib;D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\windows\ogles2\windows_x86_64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libEGL.lib;libGLESv2.lib;PVRTexLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\Libs\pvrtextool\windows_x86_32\Static;..\..\Libs\windows\ogles2\windows_x86_32\lib;..\..\Libs\windows\ogles2\windows_x86_64\lib;..\..\Libs\libRocket\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libEGL.lib;libGLESv2.lib;PVRTexLib.lib;RocketControls_d.lib;RocketDebugger_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -97,6 +97,10 @@
     <ClCompile Include="..\..\Classes\CGLContext_Win32.cpp" />
     <ClCompile Include="..\..\Classes\CGLWindow_Win32.cpp" />
     <ClCompile Include="..\..\Classes\CGrassSettings_PARSER.cpp" />
+    <ClCompile Include="..\..\Classes\CGuiMgr.cpp" />
+    <ClCompile Include="..\..\Classes\CGuiShellCommonMgr.cpp" />
+    <ClCompile Include="..\..\Classes\CGuiShellFileMgr.cpp" />
+    <ClCompile Include="..\..\Classes\CGuiShellRenderMgr.cpp" />
     <ClCompile Include="..\..\Classes\CHeightmapHelper.cpp" />
     <ClCompile Include="..\..\Classes\CHeightmapProcessor.cpp" />
     <ClCompile Include="..\..\Classes\CIndexBuffer.cpp" />
@@ -130,6 +134,7 @@
     <ClCompile Include="..\..\Classes\CRenderOperationScreenOutput.cpp" />
     <ClCompile Include="..\..\Classes\CRenderOperationScreenSpace.cpp" />
     <ClCompile Include="..\..\Classes\CRenderOperationWorldSpace.cpp" />
+    <ClCompile Include="..\..\Classes\CRenderPresentCallback.cpp" />
     <ClCompile Include="..\..\Classes\CResourceLoadCallback.cpp" />
     <ClCompile Include="..\..\Classes\CResourceMgrsFacade.cpp" />
     <ClCompile Include="..\..\Classes\CRoot_Win32.cpp" />
@@ -223,6 +228,10 @@
     <ClInclude Include="..\..\Classes\CGLContext_Win32.h" />
     <ClInclude Include="..\..\Classes\CGLWindow_Win32.h" />
     <ClInclude Include="..\..\Classes\CGrassSettings_PARSER.h" />
+    <ClInclude Include="..\..\Classes\CGuiMgr.h" />
+    <ClInclude Include="..\..\Classes\CGuiShellCommonMgr.h" />
+    <ClInclude Include="..\..\Classes\CGuiShellFileMgr.h" />
+    <ClInclude Include="..\..\Classes\CGuiShellRenderMgr.h" />
     <ClInclude Include="..\..\Classes\CHeightmapHelper.h" />
     <ClInclude Include="..\..\Classes\CHeightmapProcessor.h" />
     <ClInclude Include="..\..\Classes\CIndexBuffer.h" />
@@ -256,6 +265,7 @@
     <ClInclude Include="..\..\Classes\CRenderOperationScreenOutput.h" />
     <ClInclude Include="..\..\Classes\CRenderOperationScreenSpace.h" />
     <ClInclude Include="..\..\Classes\CRenderOperationWorldSpace.h" />
+    <ClInclude Include="..\..\Classes\CRenderPresentCallback.h" />
     <ClInclude Include="..\..\Classes\CResourceLoadCallback.h" />
     <ClInclude Include="..\..\Classes\CResourceMgrsFacade.h" />
     <ClInclude Include="..\..\Classes\CRoot.h" />
@@ -378,6 +388,24 @@
     <None Include="..\..\Shaders\ShaderPostPlane.vert" />
     <None Include="..\..\Shaders\ShaderSkybox.frag" />
     <None Include="..\..\Shaders\ShaderSkybox.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libs\libRocket\Build\vc2012\RocketControls.vcxproj">
+      <Project>{1aac0b29-aec9-4e3f-9edf-b56f8949c41b}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Libs\libRocket\Build\vc2012\RocketDebugger.vcxproj">
+      <Project>{1aac0b29-aec9-4e3f-9edf-b56f8949c41a}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

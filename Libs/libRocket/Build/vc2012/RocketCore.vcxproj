@@ -23,7 +23,7 @@
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
@@ -47,18 +47,25 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\..\Include;..\..\..\support\freetype-2.4.10\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Include;..\..\..\libFreetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>
       </PrecompiledHeader>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>freetype2410_D.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>..\..\bin\$(ProjectName)_d.dll</OutputFile>
-      <AdditionalLibraryDirectories>..\..\..\support\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freetype_D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>..\..\lib\$(ProjectName)_d.dll</OutputFile>
+      <AdditionalLibraryDirectories>..\..\..\libFreetype\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
     </Link>
+    <Lib>
+      <AdditionalDependencies>freetype_d.lib</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>..\..\..\libFreetype\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <OutputFile>..\..\lib\$(ProjectName)_d.lib</OutputFile>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -80,6 +87,8 @@
       </PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Core\RocketMath.cpp" />
+    <ClCompile Include="..\..\Source\Core\RocketString.cpp" />
     <ClCompile Include="..\..\Source\Core\Texture.cpp" />
     <ClCompile Include="..\..\Source\Core\TextureDatabase.cpp" />
     <ClCompile Include="..\..\Source\Core\TextureResource.cpp" />
@@ -92,7 +101,7 @@
     <ClCompile Include="..\..\Source\Core\ElementReference.cpp" />
     <ClCompile Include="..\..\Source\Core\ElementScroll.cpp" />
     <ClCompile Include="..\..\Source\Core\ElementStyle.cpp" />
-	<ClCompile Include="..\..\Source\Core\ElementStyleCache.cpp" />
+    <ClCompile Include="..\..\Source\Core\ElementStyleCache.cpp" />
     <ClCompile Include="..\..\Source\Core\ElementUtilities.cpp" />
     <ClCompile Include="..\..\Source\Core\LayoutBlockBox.cpp" />
     <ClCompile Include="..\..\Source\Core\LayoutBlockBoxSpace.cpp" />
@@ -188,13 +197,11 @@
     <ClCompile Include="..\..\Source\Core\Core.cpp" />
     <ClCompile Include="..\..\Source\Core\Factory.cpp" />
     <ClCompile Include="..\..\Source\Core\Log.cpp" />
-    <ClCompile Include="..\..\Source\Core\Math.cpp" />
     <ClCompile Include="..\..\Source\Core\RenderInterface.cpp" />
     <ClCompile Include="..\..\Source\Core\FileInterface.cpp" />
     <ClCompile Include="..\..\Source\Core\FileInterfaceDefault.cpp" />
     <ClCompile Include="..\..\Source\Core\StreamFile.cpp" />
     <ClCompile Include="..\..\Source\Core\SystemInterface.cpp" />
-    <ClCompile Include="..\..\Source\Core\String.cpp" />
     <ClCompile Include="..\..\Source\Core\Plugin.cpp" />
     <ClCompile Include="..\..\Source\Core\PluginRegistry.cpp" />
     <ClCompile Include="..\..\Source\Core\BaseXMLParser.cpp" />
@@ -215,6 +222,8 @@
     <ClCompile Include="..\..\Source\Core\StringCache.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Include\Rocket\Core\RocketMath.h" />
+    <ClInclude Include="..\..\Include\Rocket\Core\RocketString.h" />
     <ClInclude Include="..\..\Source\Core\precompiled.h" />
     <ClInclude Include="..\..\Include\Rocket\Core\Texture.h" />
     <ClInclude Include="..\..\Source\Core\TextureDatabase.h" />
@@ -228,7 +237,7 @@
     <ClInclude Include="..\..\Include\Rocket\Core\ElementReference.h" />
     <ClInclude Include="..\..\Include\Rocket\Core\ElementScroll.h" />
     <ClInclude Include="..\..\Source\Core\ElementStyle.h" />
-	<ClInclude Include="..\..\Source\Core\ElementStyleCache.h" />
+    <ClInclude Include="..\..\Source\Core\ElementStyleCache.h" />
     <ClInclude Include="..\..\Include\Rocket\Core\ElementUtilities.h" />
     <ClInclude Include="..\..\Source\Core\LayoutBlockBox.h" />
     <ClInclude Include="..\..\Source\Core\LayoutBlockBoxSpace.h" />
@@ -341,7 +350,6 @@
     <ClInclude Include="..\..\Source\Core\FileInterfaceDefault.h" />
     <ClInclude Include="..\..\Source\Core\StreamFile.h" />
     <ClInclude Include="..\..\Include\Rocket\Core\SystemInterface.h" />
-    <ClInclude Include="..\..\Include\Rocket\Core\String.h" />
     <ClInclude Include="..\..\Include\Rocket\Core\Plugin.h" />
     <ClInclude Include="..\..\Source\Core\PluginRegistry.h" />
     <ClInclude Include="..\..\Include\Rocket\Core\BaseXMLParser.h" />
@@ -371,6 +379,16 @@
     <None Include="..\..\Include\Rocket\Core\StringBase.inl" />
     <None Include="..\..\Include\Rocket\Core\Variant.inl" />
     <None Include="..\..\Include\Rocket\Core\Vector2.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libFreetype\builds\win32\vc2008\freetype.vcxproj">
+      <Project>{78b079bd-9fc7-4b9e-b4a6-96da0f00248b}</Project>
+      <Private>false</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

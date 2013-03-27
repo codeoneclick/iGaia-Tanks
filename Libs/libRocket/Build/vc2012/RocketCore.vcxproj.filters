@@ -462,9 +462,6 @@
     <ClCompile Include="..\..\Source\Core\Log.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Core\Math.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\Core\RenderInterface.cpp">
       <Filter>Core\Interfaces\Renderer</Filter>
     </ClCompile>
@@ -479,9 +476,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Core\SystemInterface.cpp">
       <Filter>Core\Interfaces\System</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Core\String.cpp">
-      <Filter>Core\String</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Core\Plugin.cpp">
       <Filter>Core\Plugin</Filter>
@@ -530,6 +524,13 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Core\StringCache.cpp">
       <Filter>String Cache</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Core\ElementStyleCache.cpp" />
+    <ClCompile Include="..\..\Source\Core\RocketString.cpp">
+      <Filter>Core\String</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Core\RocketMath.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -908,9 +909,6 @@
     <ClInclude Include="..\..\Include\Rocket\Core\SystemInterface.h">
       <Filter>Core\Interfaces\System</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Include\Rocket\Core\String.h">
-      <Filter>Core\String</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Include\Rocket\Core\Plugin.h">
       <Filter>Core\Plugin</Filter>
     </ClInclude>
@@ -969,6 +967,13 @@
       <Filter>String Cache</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Include\Rocket\Core.h" />
+    <ClInclude Include="..\..\Source\Core\ElementStyleCache.h" />
+    <ClInclude Include="..\..\Include\Rocket\Core\RocketString.h">
+      <Filter>Core\String</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Include\Rocket\Core\RocketMath.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Include\Rocket\Core\Element.inl">

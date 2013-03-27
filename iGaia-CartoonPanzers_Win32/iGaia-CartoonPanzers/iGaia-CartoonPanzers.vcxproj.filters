@@ -104,6 +104,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{a3e0d523-c388-4d5e-a81f-962267e8ddb3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Core\GuiMgr">
+      <UniqueIdentifier>{3a6dcc2d-8380-4611-b48c-4be86c7a9032}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="iGaia-CartoonPanzers.cpp">
@@ -474,6 +477,21 @@
     </ClCompile>
     <ClCompile Include="..\..\Classes\CRoot_Win32.cpp">
       <Filter>Classes\Core\Common\Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CRenderPresentCallback.cpp">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CGuiMgr.cpp">
+      <Filter>Classes\Core\GuiMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CGuiShellCommonMgr.cpp">
+      <Filter>Classes\Core\GuiMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CGuiShellFileMgr.cpp">
+      <Filter>Classes\Core\GuiMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CGuiShellRenderMgr.cpp">
+      <Filter>Classes\Core\GuiMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -869,6 +887,21 @@
     </ClInclude>
     <ClInclude Include="..\..\Classes\CRoot.h">
       <Filter>Classes\Core\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CRenderPresentCallback.h">
+      <Filter>Classes\Core\RenderMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CGuiMgr.h">
+      <Filter>Classes\Core\GuiMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CGuiShellCommonMgr.h">
+      <Filter>Classes\Core\GuiMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CGuiShellFileMgr.h">
+      <Filter>Classes\Core\GuiMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CGuiShellRenderMgr.h">
+      <Filter>Classes\Core\GuiMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

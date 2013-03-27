@@ -13,5 +13,8 @@
 	</style>
 </head>
 <body class="window">
+ <div id="content" style="font-size: 48; text-align: left;">
+         Hello there, I am typing out some text.
+ </div>
 </body>
 </rml>

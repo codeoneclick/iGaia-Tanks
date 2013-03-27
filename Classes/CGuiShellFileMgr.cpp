@@ -1,6 +1,6 @@
 
-#include <CGuiShellFileMgr.h>
-#include <stdio.h>
+
+#include "CGuiShellFileMgr.h"
 
 CGuiShellFileMgr_INTERFACE::CGuiShellFileMgr_INTERFACE(const Rocket::Core::String& root) : root(root)
 {

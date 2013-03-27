@@ -25,11 +25,11 @@ class CSceneFabricator
 private:
 
     CSceneContainer* m_sceneContainer;
-    CResourceMgrsFacade* m_resourceMgrsFacade;
     
 protected:
     
     CShaderComposite* m_shaderComposite;
+	CResourceMgrsFacade* m_resourceMgrsFacade;
     
 public:
 

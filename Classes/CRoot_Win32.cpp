@@ -15,6 +15,12 @@ CRoot::CRoot(void* _glView)
     m_collisionMgr = new CCollisionMgr();
     
     m_shaderComposite = m_renderMgr->Get_ShaderComposite();
+
+	m_guiMgr = new CGuiMgr();
+    m_guiMgr->Set_ShaderComposite(m_shaderComposite);
+	m_guiMgr->Set_ResourceMgrFacade(m_resourceMgrsFacade);
+	m_guiMgr->TEMP();
+    m_renderMgr->AddRenderPresentEventListener(m_guiMgr);
     
     ConnectToMainLoop(m_renderMgr);
     ConnectToMainLoop(m_updateMgr);

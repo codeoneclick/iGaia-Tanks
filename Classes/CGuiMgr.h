@@ -15,6 +15,7 @@
 #include "CGuiShellCommonMgr.h"
 #include "CRenderPresentCallback.h"
 #include "CShaderComposite.h"
+#include "CResourceMgrsFacade.h"
 
 class CGuiMgr : public CRenderPresentCallback_INTERFACE
 {
@@ -29,6 +30,7 @@ protected:
 	CGuiShellCommonMgr_INTERFACE m_commonInterface;
 
     CShaderComposite* m_shaderComposite;
+	CResourceMgrsFacade* m_resourceMgrsFacade;
 
     void OnPresent(void);
 
@@ -37,11 +39,20 @@ public:
     CGuiMgr(void);
     ~CGuiMgr(void);
 
+	void TEMP(void);
+
     inline void Set_ShaderComposite(CShaderComposite* _shaderComposite)
     {
         m_shaderComposite = _shaderComposite;
+		m_renderInterface.Set_ShaderComposite(m_shaderComposite);
     };
-    
+
+	inline void Set_ResourceMgrFacade(CResourceMgrsFacade* _resourceMgrsFacade)
+	{
+		m_resourceMgrsFacade = _resourceMgrsFacade;
+		m_renderInterface.Set_ResourceMgrFacade(m_resourceMgrsFacade);
+	};
+
 };
 
 #endif 

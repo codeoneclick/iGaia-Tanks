@@ -137,12 +137,15 @@ IResource_INTERFACE* CLoadOperation_PVR::Build(void)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    for (ui32 level = 0; m_width > 0 && m_height > 0; ++level)
+	ui32 width = m_width;
+	ui32 height = m_height;
+
+    for (ui32 level = 0; width > 0 && height > 0; ++level)
     {
-        GLsizei size = MAX_VALUE(32, static_cast<i32>(m_width) * static_cast<i32>(m_height) * m_bpp / 8);
-        glCompressedTexImage2D(GL_TEXTURE_2D, level, m_format, m_width, m_height, 0, size, data);
+        GLsizei size = MAX_VALUE(32, static_cast<i32>(width) * static_cast<i32>(height) * m_bpp / 8);
+        glCompressedTexImage2D(GL_TEXTURE_2D, level, m_format, width, height, 0, size, data);
         data += size;
-        m_width >>= 1; m_height >>= 1;
+        width >>= 1; height >>= 1;
     }
 
     CTexture* texture = new CTexture(handle, m_width, m_height);
