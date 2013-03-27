@@ -194,8 +194,8 @@
 		A40600BA1700AF58006848E3 /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A406008C1700AF58006848E3 /* b2Rope.cpp */; };
 		A40600BD1700B642006848E3 /* CCollisionNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A40600BB1700B641006848E3 /* CCollisionNavigator.cpp */; };
 		A40609741701AD83006848E3 /* liblibGoogleUnitTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A40609671701AD5F006848E3 /* liblibGoogleUnitTest.a */; };
-		A4060A171701B25B006848E3 /* liblibRocketControlsiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A40609FE1701AF77006848E3 /* liblibRocketControlsiOS.a */; };
-		A4060A281701CBEA006848E3 /* liblibRocketCoreiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4060A021701AF77006848E3 /* liblibRocketCoreiOS.a */; };
+		A4060A171701B25B006848E3 /* libRocketControlsiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A40609FE1701AF77006848E3 /* libRocketControlsiOS.a */; };
+		A4060A281701CBEA006848E3 /* libRocketCoreiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4060A021701AF77006848E3 /* libRocketCoreiOS.a */; };
 		A4060A391701D620006848E3 /* CGuiShellFileMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A311701D620006848E3 /* CGuiShellFileMgr.cpp */; };
 		A4060A3A1701D620006848E3 /* CGuiShellRenderMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A341701D620006848E3 /* CGuiShellRenderMgr.cpp */; };
 		A4060A3B1701D620006848E3 /* CGuiShellCommonMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A361701D620006848E3 /* CGuiShellCommonMgr.cpp */; };
@@ -205,9 +205,17 @@
 		A4060A471701E823006848E3 /* Delicious-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4060A431701E823006848E3 /* Delicious-BoldItalic.otf */; };
 		A4060A481701E823006848E3 /* Delicious-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4060A441701E823006848E3 /* Delicious-Italic.otf */; };
 		A4060A491701E823006848E3 /* Delicious-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4060A451701E823006848E3 /* Delicious-Roman.otf */; };
-		A4060A4A1701EB9C006848E3 /* liblibRocketDebuggeriOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4060A061701AF77006848E3 /* liblibRocketDebuggeriOS.a */; };
+		A4060A4A1701EB9C006848E3 /* libRocketDebuggeriOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4060A061701AF77006848E3 /* libRocketDebuggeriOS.a */; };
 		A4060A4F1701F998006848E3 /* CGuiMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A4D1701F996006848E3 /* CGuiMgr.cpp */; };
 		A4060A521701FB9D006848E3 /* CRenderPresentCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A501701FB9D006848E3 /* CRenderPresentCallback.cpp */; };
+		A4060A571702E436006848E3 /* mainMenu.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A4060A561702E436006848E3 /* mainMenu.pvr */; };
+		A4060A681702F40D006848E3 /* invader.rcss in Resources */ = {isa = PBXBuildFile; fileRef = A4060A641702F40B006848E3 /* invader.rcss */; };
+		A4060A691702F40D006848E3 /* main_menu.rml in Resources */ = {isa = PBXBuildFile; fileRef = A4060A651702F40C006848E3 /* main_menu.rml */; };
+		A4060A6A1702F40D006848E3 /* rkt.rcss in Resources */ = {isa = PBXBuildFile; fileRef = A4060A661702F40C006848E3 /* rkt.rcss */; };
+		A4060A6B1702F40D006848E3 /* window.rml in Resources */ = {isa = PBXBuildFile; fileRef = A4060A671702F40C006848E3 /* window.rml */; };
+		A4060A76170330DF006848E3 /* ShaderGuiPlane.vert in Sources */ = {isa = PBXBuildFile; fileRef = A4060A74170330DF006848E3 /* ShaderGuiPlane.vert */; };
+		A4060A77170330DF006848E3 /* ShaderGuiPlane.frag in Sources */ = {isa = PBXBuildFile; fileRef = A4060A75170330DF006848E3 /* ShaderGuiPlane.frag */; };
+		A4060A7C170343C2006848E3 /* CInputContext_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A4060A7A170343C2006848E3 /* CInputContext_iOS.mm */; };
 		A41C870B16DDFF5E003DA026 /* CMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B6BB8B14841F0B00E34B78 /* CMesh.cpp */; };
 		A41C870E16DE08BA003DA026 /* ILoadOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */; };
 		A41C871116DE0A03003DA026 /* CLoadOperation_PVR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C870F16DE0A02003DA026 /* CLoadOperation_PVR.cpp */; };
@@ -235,6 +243,7 @@
 		A425B3CA16E7553200E300F9 /* CSettingsContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3C816E7553100E300F9 /* CSettingsContainer.cpp */; };
 		A429344A16E4F8F8006A01D0 /* CSceneUpdateCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A429344816E4F8F8006A01D0 /* CSceneUpdateCallback.cpp */; };
 		A438FEC916EF6F9D0030085C /* CLandscape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93AE336514C4447C00F1A516 /* CLandscape.cpp */; };
+		A453D60017034D63008AB922 /* CInputTapRecognizerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A453D5FE17034D63008AB922 /* CInputTapRecognizerCallback.cpp */; };
 		A465C16016F0B8CB009404ED /* CHeightmapHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A465C15E16F0B8CB009404ED /* CHeightmapHelper.cpp */; };
 		A465C16D16F0BFFC009404ED /* CMoveControllerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A465C16B16F0BFFB009404ED /* CMoveControllerCallback.cpp */; };
 		A465C17116F0C821009404ED /* CMoveControllerView_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A465C17016F0C821009404ED /* CMoveControllerView_iOS.mm */; };
@@ -1128,6 +1137,15 @@
 		A4060A4E1701F997006848E3 /* CGuiMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiMgr.h; sourceTree = "<group>"; };
 		A4060A501701FB9D006848E3 /* CRenderPresentCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRenderPresentCallback.cpp; sourceTree = "<group>"; };
 		A4060A511701FB9D006848E3 /* CRenderPresentCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRenderPresentCallback.h; sourceTree = "<group>"; };
+		A4060A561702E436006848E3 /* mainMenu.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = mainMenu.pvr; path = Resources/Bundle/mainMenu.pvr; sourceTree = "<group>"; };
+		A4060A641702F40B006848E3 /* invader.rcss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = invader.rcss; path = Resources/Bundle/invader.rcss; sourceTree = "<group>"; };
+		A4060A651702F40C006848E3 /* main_menu.rml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main_menu.rml; path = Resources/Bundle/main_menu.rml; sourceTree = "<group>"; };
+		A4060A661702F40C006848E3 /* rkt.rcss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rkt.rcss; path = Resources/Bundle/rkt.rcss; sourceTree = "<group>"; };
+		A4060A671702F40C006848E3 /* window.rml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = window.rml; path = Resources/Bundle/window.rml; sourceTree = "<group>"; };
+		A4060A74170330DF006848E3 /* ShaderGuiPlane.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderGuiPlane.vert; path = Shaders/ShaderGuiPlane.vert; sourceTree = "<group>"; };
+		A4060A75170330DF006848E3 /* ShaderGuiPlane.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderGuiPlane.frag; path = Shaders/ShaderGuiPlane.frag; sourceTree = "<group>"; };
+		A4060A7A170343C2006848E3 /* CInputContext_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CInputContext_iOS.mm; sourceTree = "<group>"; };
+		A4060A7B170343C2006848E3 /* CInputContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CInputContext.h; sourceTree = "<group>"; };
 		A41C870F16DE0A02003DA026 /* CLoadOperation_PVR.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLoadOperation_PVR.cpp; sourceTree = "<group>"; };
 		A41C871016DE0A03003DA026 /* CLoadOperation_PVR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLoadOperation_PVR.h; sourceTree = "<group>"; };
 		A41C871316DE11F9003DA026 /* CLoadOperation_MDL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLoadOperation_MDL.cpp; sourceTree = "<group>"; };
@@ -1166,6 +1184,9 @@
 		A425B3CB16E7593400E300F9 /* HSettings_DTO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSettings_DTO.h; sourceTree = "<group>"; };
 		A429344816E4F8F8006A01D0 /* CSceneUpdateCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneUpdateCallback.cpp; sourceTree = "<group>"; };
 		A429344916E4F8F8006A01D0 /* CSceneUpdateCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneUpdateCallback.h; sourceTree = "<group>"; };
+		A453D5F117034CE7008AB922 /* IInputContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IInputContext.h; sourceTree = "<group>"; };
+		A453D5FE17034D63008AB922 /* CInputTapRecognizerCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CInputTapRecognizerCallback.cpp; sourceTree = "<group>"; };
+		A453D5FF17034D63008AB922 /* CInputTapRecognizerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CInputTapRecognizerCallback.h; sourceTree = "<group>"; };
 		A465C15E16F0B8CB009404ED /* CHeightmapHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CHeightmapHelper.cpp; sourceTree = "<group>"; };
 		A465C15F16F0B8CB009404ED /* CHeightmapHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHeightmapHelper.h; sourceTree = "<group>"; };
 		A465C16916F0BD88009404ED /* HGameEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGameEnum.h; sourceTree = "<group>"; };
@@ -1279,9 +1300,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4060A4A1701EB9C006848E3 /* liblibRocketDebuggeriOS.a in Frameworks */,
-				A4060A281701CBEA006848E3 /* liblibRocketCoreiOS.a in Frameworks */,
-				A4060A171701B25B006848E3 /* liblibRocketControlsiOS.a in Frameworks */,
+				A4060A4A1701EB9C006848E3 /* libRocketDebuggeriOS.a in Frameworks */,
+				A4060A281701CBEA006848E3 /* libRocketCoreiOS.a in Frameworks */,
+				A4060A171701B25B006848E3 /* libRocketControlsiOS.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -1695,6 +1716,8 @@
 		935D65031504ADED00FBE552 /* ScreenSpaceEffect */ = {
 			isa = PBXGroup;
 			children = (
+				A4060A74170330DF006848E3 /* ShaderGuiPlane.vert */,
+				A4060A75170330DF006848E3 /* ShaderGuiPlane.frag */,
 				1520865215A82C05001F0F8F /* ShaderPostLandscapeDetail.frag */,
 				1520865315A82C05001F0F8F /* ShaderPostLandscapeDetail.vert */,
 				4D508D32102600410065571B /* ShaderPostPlane.frag */,
@@ -1745,6 +1768,7 @@
 		937367C5144ECDC20051ED8D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A4060A7817034095006848E3 /* InputMgr */,
 				A4060A2A1701D10F006848E3 /* GuiMgr */,
 				A406001E17008E55006848E3 /* CollisionMgr */,
 				21BFC90016EE640600FA9F50 /* iOS */,
@@ -2537,11 +2561,11 @@
 		A40609ED1701AF77006848E3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A40609FE1701AF77006848E3 /* liblibRocketControlsiOS.a */,
+				A40609FE1701AF77006848E3 /* libRocketControlsiOS.a */,
 				A4060A001701AF77006848E3 /* libRocketControlsOSX.framework */,
-				A4060A021701AF77006848E3 /* liblibRocketCoreiOS.a */,
+				A4060A021701AF77006848E3 /* libRocketCoreiOS.a */,
 				A4060A041701AF77006848E3 /* libRocketCoreOSX.framework */,
-				A4060A061701AF77006848E3 /* liblibRocketDebuggeriOS.a */,
+				A4060A061701AF77006848E3 /* libRocketDebuggeriOS.a */,
 				A4060A081701AF77006848E3 /* libRocketDebuggerOSX.framework */,
 			);
 			name = Products;
@@ -2565,6 +2589,11 @@
 		A4060A3C1701E371006848E3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A4060A641702F40B006848E3 /* invader.rcss */,
+				A4060A651702F40C006848E3 /* main_menu.rml */,
+				A4060A661702F40C006848E3 /* rkt.rcss */,
+				A4060A671702F40C006848E3 /* window.rml */,
+				A4060A561702E436006848E3 /* mainMenu.pvr */,
 				A4060A3D1701E37C006848E3 /* mainMenu.rml */,
 				A4060A3E1701E37C006848E3 /* mainMenu.rcss */,
 			);
@@ -2580,6 +2609,18 @@
 				A4060A451701E823006848E3 /* Delicious-Roman.otf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		A4060A7817034095006848E3 /* InputMgr */ = {
+			isa = PBXGroup;
+			children = (
+				A453D5F117034CE7008AB922 /* IInputContext.h */,
+				A4060A7B170343C2006848E3 /* CInputContext.h */,
+				A4060A7A170343C2006848E3 /* CInputContext_iOS.mm */,
+				A453D5FF17034D63008AB922 /* CInputTapRecognizerCallback.h */,
+				A453D5FE17034D63008AB922 /* CInputTapRecognizerCallback.cpp */,
+			);
+			name = InputMgr;
 			sourceTree = "<group>";
 		};
 		A41C870C16DE065A003DA026 /* RenderMgr */ = {
@@ -3132,10 +3173,10 @@
 			remoteRef = A40609701701AD5F006848E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A40609FE1701AF77006848E3 /* liblibRocketControlsiOS.a */ = {
+		A40609FE1701AF77006848E3 /* libRocketControlsiOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibRocketControlsiOS.a;
+			path = libRocketControlsiOS.a;
 			remoteRef = A40609FD1701AF77006848E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -3146,10 +3187,10 @@
 			remoteRef = A40609FF1701AF77006848E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A4060A021701AF77006848E3 /* liblibRocketCoreiOS.a */ = {
+		A4060A021701AF77006848E3 /* libRocketCoreiOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibRocketCoreiOS.a;
+			path = libRocketCoreiOS.a;
 			remoteRef = A4060A011701AF77006848E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -3160,10 +3201,10 @@
 			remoteRef = A4060A031701AF77006848E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A4060A061701AF77006848E3 /* liblibRocketDebuggeriOS.a */ = {
+		A4060A061701AF77006848E3 /* libRocketDebuggeriOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = liblibRocketDebuggeriOS.a;
+			path = libRocketDebuggeriOS.a;
 			remoteRef = A4060A051701AF77006848E3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -3341,6 +3382,11 @@
 				A4060A471701E823006848E3 /* Delicious-BoldItalic.otf in Resources */,
 				A4060A481701E823006848E3 /* Delicious-Italic.otf in Resources */,
 				A4060A491701E823006848E3 /* Delicious-Roman.otf in Resources */,
+				A4060A571702E436006848E3 /* mainMenu.pvr in Resources */,
+				A4060A681702F40D006848E3 /* invader.rcss in Resources */,
+				A4060A691702F40D006848E3 /* main_menu.rml in Resources */,
+				A4060A6A1702F40D006848E3 /* rkt.rcss in Resources */,
+				A4060A6B1702F40D006848E3 /* window.rml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3490,6 +3536,10 @@
 				A4060A3B1701D620006848E3 /* CGuiShellCommonMgr.cpp in Sources */,
 				A4060A4F1701F998006848E3 /* CGuiMgr.cpp in Sources */,
 				A4060A521701FB9D006848E3 /* CRenderPresentCallback.cpp in Sources */,
+				A4060A76170330DF006848E3 /* ShaderGuiPlane.vert in Sources */,
+				A4060A77170330DF006848E3 /* ShaderGuiPlane.frag in Sources */,
+				A4060A7C170343C2006848E3 /* CInputContext_iOS.mm in Sources */,
+				A453D60017034D63008AB922 /* CInputTapRecognizerCallback.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

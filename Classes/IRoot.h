@@ -11,10 +11,12 @@
 
 #include "CSceneFabricator.h"
 #include "CSceneGraph.h"
+#include "IInputContext.h"
 
 class IRoot :
 public virtual CSceneFabricator,
-public virtual CSceneGraph
+public virtual CSceneGraph,
+public virtual IInputContext_INTERFACE
 {
     
 };

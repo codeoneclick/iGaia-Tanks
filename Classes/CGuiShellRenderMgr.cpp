@@ -13,7 +13,7 @@ CGuiShellRenderMgr_INTERFACE::CGuiShellRenderMgr_INTERFACE(void)
 
 void CGuiShellRenderMgr_INTERFACE::RenderGeometry(Rocket::Core::Vertex* vertices, int num_vertices, int* indices, int num_indices, const Rocket::Core::TextureHandle texture, const Rocket::Core::Vector2f& translation)
 {
-	
+    std::cout<<"CGuiShellRenderMgr_INTERFACE::RenderGeometry"<<std::endl;
 }
 
 CMaterial* CGuiShellRenderMgr_INTERFACE::Get_Material(void)
@@ -21,11 +21,11 @@ CMaterial* CGuiShellRenderMgr_INTERFACE::Get_Material(void)
 	if(m_guiMaterial == nullptr)
 	{
 		assert(m_shaderComposite != nullptr);
-		m_guiMaterial = new CMaterial(m_shaderComposite->Get_Shader(E_SHADER_SCREEN_PLANE));
+		m_guiMaterial = new CMaterial(m_shaderComposite->Get_Shader(E_SHADER_GUI_PLANE));
 		m_guiMaterial->Set_RenderState(E_RENDER_STATE_CULL_MODE, false);
 		m_guiMaterial->Set_RenderState(E_RENDER_STATE_DEPTH_MASK, true);
 		m_guiMaterial->Set_RenderState(E_RENDER_STATE_DEPTH_TEST, false);
-		m_guiMaterial->Set_RenderState(E_RENDER_STATE_BLEND_MODE, false);
+		m_guiMaterial->Set_RenderState(E_RENDER_STATE_BLEND_MODE, true);
 
 		m_guiMaterial->Set_CullFaceMode(GL_FRONT);
 		m_guiMaterial->Set_BlendFunctionSource(GL_SRC_ALPHA);
@@ -48,9 +48,9 @@ Rocket::Core::CompiledGeometryHandle CGuiShellRenderMgr_INTERFACE::CompileGeomet
     for(ui32 i = 0; i < _numVertexes; ++i)
     {
         vertexData[i].m_position = glm::vec3(_vertexData[i].position.x / (screenWidth * 0.5f) - 1.0f, _vertexData[i].position.y / (screenHeight * 0.5f) - 1.0f, 0.0f);
+        vertexData[i].m_position.y *= -1.0f;
         vertexData[i].m_texcoord = glm::vec2(_vertexData[i].tex_coord.x, _vertexData[i].tex_coord.y);
         vertexData[i].m_color = glm::u8vec4(_vertexData[i].colour.red, _vertexData[i].colour.green, _vertexData[i].colour.blue, _vertexData[i].colour.alpha);
-		std::cout<<"x : "<<_vertexData[i].position.x<<" y : "<<_vertexData[i].position.y<<std::endl;
     }
 
     vertexBuffer->Unlock();
@@ -81,14 +81,19 @@ void CGuiShellRenderMgr_INTERFACE::RenderCompiledGeometry(Rocket::Core::Compiled
 	assert(texture != nullptr);
 	CMaterial* material = Get_Material();
 	assert(material != nullptr);
+
+    f32 screenWidth = Get_ScreenWidth();
+	f32 screenHeight = Get_ScreenHeight();
+
 	material->Set_Texture(texture, E_TEXTURE_SLOT_01);
 	material->Bind();
+    material->Get_Shader()->Set_Vector2Custom(glm::vec2(_translation.x / (screenWidth * 0.5f), _translation.y / (screenHeight * -0.5f)), "EXT_VECTOR_Translation");
 	mesh->Bind(material->Get_Shader()->Get_VertexSlots());
 	mesh->Draw();
 	mesh->Unbind(material->Get_Shader()->Get_VertexSlots());
     material->Unbind();
 }
-	
+
 void CGuiShellRenderMgr_INTERFACE::ReleaseCompiledGeometry(Rocket::Core::CompiledGeometryHandle _geometry)
 {
     
@@ -96,19 +101,19 @@ void CGuiShellRenderMgr_INTERFACE::ReleaseCompiledGeometry(Rocket::Core::Compile
 	
 void CGuiShellRenderMgr_INTERFACE::EnableScissorRegion(bool enable)
 {
-	if (enable)
+	/*if (enable)
     {
 		glEnable(GL_SCISSOR_TEST);
     }
 	else
     {
 		glDisable(GL_SCISSOR_TEST);
-    }
+    }*/
 }
 
 void CGuiShellRenderMgr_INTERFACE::SetScissorRegion(int x, int y, int width, int height)
 {
-	glScissor(x, Get_ScreenHeight() - (y + height), width, height);
+	//glScissor(x, Get_ScreenHeight() - (y + height), width, height);
 }
 
 bool CGuiShellRenderMgr_INTERFACE::LoadTexture(Rocket::Core::TextureHandle& _texture, Rocket::Core::Vector2i& _textureDimensions, const Rocket::Core::String& _filename)

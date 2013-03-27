@@ -34,7 +34,7 @@ CGuiMgr::CGuiMgr(void)
 void CGuiMgr::TEMP(void)
 {
 	std::string mainMenuFilename = Get_BundlePath();
-    mainMenuFilename.append("mainMenu.rml");
+    mainMenuFilename.append("main_menu.rml");
     m_guiDocument = m_guiContext->LoadDocument(mainMenuFilename.c_str());
 	if (m_guiDocument != nullptr)
 	{
@@ -48,9 +48,31 @@ CGuiMgr::~CGuiMgr(void)
     
 }
 
+void CGuiMgr::OnInputTapRecognizerPressed(i32 _x, i32 _y)
+{
+    assert(m_guiContext != nullptr);
+    m_guiContext->ProcessMouseMove(_x, _y, 0);
+    m_guiContext->ProcessMouseButtonDown(0, 0);
+}
+
+void CGuiMgr::OnInputTapRecognizerMoved(i32 _x, i32 _y)
+{
+    assert(m_guiContext != nullptr);
+    m_guiContext->ProcessMouseMove(_x, _y, 0);
+}
+
+void CGuiMgr::OnInputTapRecognizerReleased(i32 _x, i32 _y)
+{
+    assert(m_guiContext != nullptr);
+    m_guiContext->ProcessMouseMove(_x, _y, 0);
+    m_guiContext->ProcessMouseButtonUp(0, 0);
+}
+
 void CGuiMgr::OnPresent(void)
 {
     assert(m_guiContext != nullptr);
     m_guiContext->Update();
     m_guiContext->Render();
 }
+
+

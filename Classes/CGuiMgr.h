@@ -14,10 +14,13 @@
 #include "CGuiShellRenderMgr.h"
 #include "CGuiShellCommonMgr.h"
 #include "CRenderPresentCallback.h"
+#include "CInputTapRecognizerCallback.h"
 #include "CShaderComposite.h"
 #include "CResourceMgrsFacade.h"
 
-class CGuiMgr : public CRenderPresentCallback_INTERFACE
+class CGuiMgr :
+public CRenderPresentCallback_INTERFACE,
+public CInputTapRecognizerCallback_INTERFACE
 {
 private:
 
@@ -31,6 +34,10 @@ protected:
 
     CShaderComposite* m_shaderComposite;
 	CResourceMgrsFacade* m_resourceMgrsFacade;
+
+    void OnInputTapRecognizerPressed(i32 _x, i32 _y);
+    void OnInputTapRecognizerMoved(i32 _x, i32 _y);
+    void OnInputTapRecognizerReleased(i32 _x, i32 _y);
 
     void OnPresent(void);
 

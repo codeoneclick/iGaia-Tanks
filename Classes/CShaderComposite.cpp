@@ -63,6 +63,9 @@
 #include "../Shaders/ShaderLandscapeEdges.frag"
 #include "../Shaders/ShaderLandscapeEdges.vert"
 
+#include "../Shaders/ShaderGuiPlane.frag"
+#include "../Shaders/ShaderGuiPlane.vert"
+
 #include "CParser_GLSL.h"
 
 CShaderComposite::CShaderComposite(void)
@@ -141,6 +144,10 @@ CShaderComposite::CShaderComposite(void)
     data = parser->Load(ShaderLandscapeEdgesV, ShaderLandscapeEdgesF);
     shader = new CShader(data.m_linkedShaderHandle);
     m_shadersContainer[E_SHADER_LANDSCAPE_EDGES] = shader;
+
+    data = parser->Load(ShaderGuiPlaneV, ShaderGuiPlaneF);
+    shader = new CShader(data.m_linkedShaderHandle);
+    m_shadersContainer[E_SHADER_GUI_PLANE] = shader;
 }
 
 CShaderComposite::~CShaderComposite(void)
