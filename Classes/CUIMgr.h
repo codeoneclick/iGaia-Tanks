@@ -19,6 +19,7 @@
 #include "CShaderComposite.h"
 #include "CResourceMgrsFacade.h"
 #include "IUIView.h"
+#include "CUIEventCallback.h"
 
 class CUIMgr :
 public CRenderPresentCallback_INTERFACE,
@@ -28,8 +29,9 @@ private:
 
 protected:
 
-    Rocket::Core::Context* m_guiContext;
-    Rocket::Core::ElementDocument* m_guiDocument;
+    Rocket::Core::Context* m_uiContext;
+
+    std::set<CUIEventCallback_INTERFACE*> m_uiEventListenersContainer;
 
     CUIShellRenderMgr_INTERFACE m_renderInterface;
 	CUIShellCommonMgr_INTERFACE m_commonInterface;
@@ -43,6 +45,7 @@ protected:
     void OnInputTapRecognizerReleased(i32 _x, i32 _y);
 
     void OnPresent(void);
+    void PerformEvent(const std::string& _command);
 
 public:
 
@@ -61,8 +64,11 @@ public:
 		m_renderInterface.Set_ResourceMgrFacade(m_resourceMgrsFacade);
 	};
 
-    void SetupUIView(IUIView_INTERFACE* _view);
+    void FillUIView(IUIView_INTERFACE* _view,const std::string& _filename);
 
+    
+    void AddUIEventListener(CUIEventCallback_INTERFACE* _listener);
+    void RemoveUIEventListener(CUIEventCallback_INTERFACE* _listener);
 };
 
 #endif 

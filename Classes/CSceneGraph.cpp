@@ -271,3 +271,9 @@ void CSceneGraph::RemoveCollider(CCollisionCallback_INTERFACE* _collider)
     m_collisionMgr->RemoveCollisionEventListener(_collider);
 }
 
+void CSceneGraph::FillUIView(IUIView_INTERFACE *_view, const std::string &_filename)
+{
+    assert(m_uiMgr != nullptr);
+    m_uiMgr->FillUIView(_view, _filename);
+}
+

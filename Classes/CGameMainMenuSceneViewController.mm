@@ -12,6 +12,7 @@
 #include "CGameMainMenuScene.h"
 #include "CMoveControllerView_iOS.h"
 #include "CRotateControllerView_iOS.h"
+#include "CMainMenuView.h"
 
 @interface CGameMainMenuSceneViewController ()
 
@@ -41,6 +42,10 @@
     CRoot* root = new CRoot((__bridge void*)_m_glView);
     self.m_scene = new CGameMainMenuScene();
     self.m_scene->Load(root);
+
+    CMainMenuView* mainMenu = new CMainMenuView();
+    root->FillUIView(mainMenu, "main_menu.rml");
+    
     [self.m_moveController AddEventListener:self.m_scene->Get_CharacterController()];
     [self.m_rotateController AddEventListener:self.m_scene->Get_CharacterController()];
 }

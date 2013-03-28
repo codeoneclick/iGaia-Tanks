@@ -64,6 +64,8 @@ public:
 
     void InsertCollider(CCollisionCallback_INTERFACE* _collider, bool _isStatic);
     void RemoveCollider(CCollisionCallback_INTERFACE* _collider);
+
+    void FillUIView(IUIView_INTERFACE* _view,const std::string& _filename);
 };
 
 

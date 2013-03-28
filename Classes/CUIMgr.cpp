@@ -1,5 +1,5 @@
 //
-//  CGuiMgr.cpp
+// 
 //  iGaia-CartoonPanzers
 //
 //  Created by Sergey Sergeev on 3/26/13.
@@ -16,7 +16,7 @@ CUIMgr::CUIMgr(void)
 	Rocket::Core::SetSystemInterface(&m_commonInterface);
 
     Rocket::Core::Initialise();
-    m_guiContext = Rocket::Core::CreateContext("main", Rocket::Core::Vector2i(Get_ScreenWidth(), Get_ScreenHeight()));
+    m_uiContext = Rocket::Core::CreateContext("main", Rocket::Core::Vector2i(Get_ScreenWidth(), Get_ScreenHeight()));
 
     m_eventListenerInterface = new CUIShellEventListenerInstancer_INTERFACE();
     Rocket::Core::Factory::RegisterEventListenerInstancer(m_eventListenerInterface);
@@ -35,19 +35,7 @@ CUIMgr::CUIMgr(void)
 
     m_shaderComposite = nullptr;
 }
-/*
-void CGuiMgr::TEMP(void)
-{
-	std::string mainMenuFilename = Get_BundlePath();
-    mainMenuFilename.append("main_menu.rml");
-    m_guiDocument = m_guiContext->LoadDocument(mainMenuFilename.c_str());
-	if (m_guiDocument != nullptr)
-	{
-		m_guiDocument->Show();
-		m_guiDocument->RemoveReference();
-	}
-}
-*/
+
 CUIMgr::~CUIMgr(void)
 {
     
@@ -55,29 +43,66 @@ CUIMgr::~CUIMgr(void)
 
 void CUIMgr::OnInputTapRecognizerPressed(i32 _x, i32 _y)
 {
-    assert(m_guiContext != nullptr);
-    m_guiContext->ProcessMouseMove(_x, _y, 0);
-    m_guiContext->ProcessMouseButtonDown(0, 0);
+    assert(m_uiContext != nullptr);
+    m_uiContext->ProcessMouseMove(_x, _y, 0);
+    m_uiContext->ProcessMouseButtonDown(0, 0);
 }
 
 void CUIMgr::OnInputTapRecognizerMoved(i32 _x, i32 _y)
 {
-    assert(m_guiContext != nullptr);
-    m_guiContext->ProcessMouseMove(_x, _y, 0);
+    assert(m_uiContext != nullptr);
+    m_uiContext->ProcessMouseMove(_x, _y, 0);
 }
 
 void CUIMgr::OnInputTapRecognizerReleased(i32 _x, i32 _y)
 {
-    assert(m_guiContext != nullptr);
-    m_guiContext->ProcessMouseMove(_x, _y, 0);
-    m_guiContext->ProcessMouseButtonUp(0, 0);
+    assert(m_uiContext != nullptr);
+    m_uiContext->ProcessMouseMove(_x, _y, 0);
+    m_uiContext->ProcessMouseButtonUp(0, 0);
 }
 
 void CUIMgr::OnPresent(void)
 {
-    assert(m_guiContext != nullptr);
-    m_guiContext->Update();
-    m_guiContext->Render();
+    assert(m_uiContext != nullptr);
+    m_uiContext->Update();
+    m_uiContext->Render();
 }
+
+void CUIMgr::FillUIView(IUIView_INTERFACE *_view, const std::string &_filename)
+{
+    assert(m_uiContext != nullptr);
+    std::string filename = Get_BundlePath();
+    filename.append(_filename);
+    Rocket::Core::ElementDocument* document = m_uiContext->LoadDocument(filename.c_str());
+    assert(document != nullptr);
+	if (document != nullptr)
+	{
+		document->Show();
+		document->RemoveReference();
+	}
+    assert(_view != nullptr);
+    _view->Set_Document(document);
+}
+
+void CUIMgr::PerformEvent(const std::string &_command)
+{
+    for(std::set<CUIEventCallback_INTERFACE*>::iterator iterator = m_uiEventListenersContainer.begin(); iterator != m_uiEventListenersContainer.end(); ++iterator)
+    {
+        CUIEventCallback_INTERFACE* listener = (*iterator);
+        listener->Get_Commands()->DispatchEventDidPerform(_command);
+    }
+}
+
+void CUIMgr::AddUIEventListener(CUIEventCallback_INTERFACE *_listener)
+{
+    m_uiEventListenersContainer.insert(_listener);
+}
+
+void CUIMgr::RemoveUIEventListener(CUIEventCallback_INTERFACE *_listener)
+{
+    m_uiEventListenersContainer.erase(_listener);
+}
+
+
 
 

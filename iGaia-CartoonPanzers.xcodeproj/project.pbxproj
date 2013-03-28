@@ -242,6 +242,7 @@
 		A425B3C716E753BF00E300F9 /* pugixml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3C516E753BF00E300F9 /* pugixml.cpp */; };
 		A425B3CA16E7553200E300F9 /* CSettingsContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A425B3C816E7553100E300F9 /* CSettingsContainer.cpp */; };
 		A429344A16E4F8F8006A01D0 /* CSceneUpdateCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A429344816E4F8F8006A01D0 /* CSceneUpdateCallback.cpp */; };
+		A438C84E1704AD9E00C3D756 /* CUIEventCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A438C84C1704AD9E00C3D756 /* CUIEventCallback.cpp */; };
 		A438FEC916EF6F9D0030085C /* CLandscape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93AE336514C4447C00F1A516 /* CLandscape.cpp */; };
 		A453D60017034D63008AB922 /* CInputTapRecognizerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A453D5FE17034D63008AB922 /* CInputTapRecognizerCallback.cpp */; };
 		A453D60317045A3B008AB922 /* CUIShellEventListenerInstancer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A453D60117045A3A008AB922 /* CUIShellEventListenerInstancer.cpp */; };
@@ -1188,6 +1189,8 @@
 		A425B3CB16E7593400E300F9 /* HSettings_DTO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSettings_DTO.h; sourceTree = "<group>"; };
 		A429344816E4F8F8006A01D0 /* CSceneUpdateCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneUpdateCallback.cpp; sourceTree = "<group>"; };
 		A429344916E4F8F8006A01D0 /* CSceneUpdateCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneUpdateCallback.h; sourceTree = "<group>"; };
+		A438C84C1704AD9E00C3D756 /* CUIEventCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CUIEventCallback.cpp; sourceTree = "<group>"; };
+		A438C84D1704AD9E00C3D756 /* CUIEventCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUIEventCallback.h; sourceTree = "<group>"; };
 		A453D5F117034CE7008AB922 /* IInputContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IInputContext.h; sourceTree = "<group>"; };
 		A453D5FE17034D63008AB922 /* CInputTapRecognizerCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CInputTapRecognizerCallback.cpp; sourceTree = "<group>"; };
 		A453D5FF17034D63008AB922 /* CInputTapRecognizerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CInputTapRecognizerCallback.h; sourceTree = "<group>"; };
@@ -2600,6 +2603,8 @@
 				A453D60E17048BE2008AB922 /* CUIShellEventHandler.cpp */,
 				A453D61217048DAA008AB922 /* IUIView.h */,
 				A453D61117048DAA008AB922 /* IUIView.cpp */,
+				A438C84D1704AD9E00C3D756 /* CUIEventCallback.h */,
+				A438C84C1704AD9E00C3D756 /* CUIEventCallback.cpp */,
 			);
 			name = GuiMgr;
 			sourceTree = "<group>";
@@ -3564,6 +3569,7 @@
 				A453D60617046055008AB922 /* CMainMenuView.cpp in Sources */,
 				A453D61017048BE3008AB922 /* CUIShellEventHandler.cpp in Sources */,
 				A453D61317048DAB008AB922 /* IUIView.cpp in Sources */,
+				A438C84E1704AD9E00C3D756 /* CUIEventCallback.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
