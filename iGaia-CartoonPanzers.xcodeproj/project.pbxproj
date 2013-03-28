@@ -196,9 +196,9 @@
 		A40609741701AD83006848E3 /* liblibGoogleUnitTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A40609671701AD5F006848E3 /* liblibGoogleUnitTest.a */; };
 		A4060A171701B25B006848E3 /* libRocketControlsiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A40609FE1701AF77006848E3 /* libRocketControlsiOS.a */; };
 		A4060A281701CBEA006848E3 /* libRocketCoreiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4060A021701AF77006848E3 /* libRocketCoreiOS.a */; };
-		A4060A391701D620006848E3 /* CGuiShellFileMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A311701D620006848E3 /* CGuiShellFileMgr.cpp */; };
-		A4060A3A1701D620006848E3 /* CGuiShellRenderMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A341701D620006848E3 /* CGuiShellRenderMgr.cpp */; };
-		A4060A3B1701D620006848E3 /* CGuiShellCommonMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A361701D620006848E3 /* CGuiShellCommonMgr.cpp */; };
+		A4060A391701D620006848E3 /* CUIShellFileMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A311701D620006848E3 /* CUIShellFileMgr.cpp */; };
+		A4060A3A1701D620006848E3 /* CUIShellRenderMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A341701D620006848E3 /* CUIShellRenderMgr.cpp */; };
+		A4060A3B1701D620006848E3 /* CUIShellCommonMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A361701D620006848E3 /* CUIShellCommonMgr.cpp */; };
 		A4060A3F1701E37C006848E3 /* mainMenu.rml in Resources */ = {isa = PBXBuildFile; fileRef = A4060A3D1701E37C006848E3 /* mainMenu.rml */; };
 		A4060A401701E37C006848E3 /* mainMenu.rcss in Resources */ = {isa = PBXBuildFile; fileRef = A4060A3E1701E37C006848E3 /* mainMenu.rcss */; };
 		A4060A461701E823006848E3 /* Delicious-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4060A421701E823006848E3 /* Delicious-Bold.otf */; };
@@ -206,7 +206,7 @@
 		A4060A481701E823006848E3 /* Delicious-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4060A441701E823006848E3 /* Delicious-Italic.otf */; };
 		A4060A491701E823006848E3 /* Delicious-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = A4060A451701E823006848E3 /* Delicious-Roman.otf */; };
 		A4060A4A1701EB9C006848E3 /* libRocketDebuggeriOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4060A061701AF77006848E3 /* libRocketDebuggeriOS.a */; };
-		A4060A4F1701F998006848E3 /* CGuiMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A4D1701F996006848E3 /* CGuiMgr.cpp */; };
+		A4060A4F1701F998006848E3 /* CUIMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A4D1701F996006848E3 /* CUIMgr.cpp */; };
 		A4060A521701FB9D006848E3 /* CRenderPresentCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4060A501701FB9D006848E3 /* CRenderPresentCallback.cpp */; };
 		A4060A571702E436006848E3 /* mainMenu.pvr in Resources */ = {isa = PBXBuildFile; fileRef = A4060A561702E436006848E3 /* mainMenu.pvr */; };
 		A4060A681702F40D006848E3 /* invader.rcss in Resources */ = {isa = PBXBuildFile; fileRef = A4060A641702F40B006848E3 /* invader.rcss */; };
@@ -244,6 +244,10 @@
 		A429344A16E4F8F8006A01D0 /* CSceneUpdateCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A429344816E4F8F8006A01D0 /* CSceneUpdateCallback.cpp */; };
 		A438FEC916EF6F9D0030085C /* CLandscape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93AE336514C4447C00F1A516 /* CLandscape.cpp */; };
 		A453D60017034D63008AB922 /* CInputTapRecognizerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A453D5FE17034D63008AB922 /* CInputTapRecognizerCallback.cpp */; };
+		A453D60317045A3B008AB922 /* CUIShellEventListenerInstancer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A453D60117045A3A008AB922 /* CUIShellEventListenerInstancer.cpp */; };
+		A453D60617046055008AB922 /* CMainMenuView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A453D60417046055008AB922 /* CMainMenuView.cpp */; };
+		A453D61017048BE3008AB922 /* CUIShellEventHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A453D60E17048BE2008AB922 /* CUIShellEventHandler.cpp */; };
+		A453D61317048DAB008AB922 /* IUIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A453D61117048DAA008AB922 /* IUIView.cpp */; };
 		A465C16016F0B8CB009404ED /* CHeightmapHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A465C15E16F0B8CB009404ED /* CHeightmapHelper.cpp */; };
 		A465C16D16F0BFFC009404ED /* CMoveControllerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A465C16B16F0BFFB009404ED /* CMoveControllerCallback.cpp */; };
 		A465C17116F0C821009404ED /* CMoveControllerView_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A465C17016F0C821009404ED /* CMoveControllerView_iOS.mm */; };
@@ -1121,20 +1125,20 @@
 		A40600BB1700B641006848E3 /* CCollisionNavigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCollisionNavigator.cpp; sourceTree = "<group>"; };
 		A40600BC1700B642006848E3 /* CCollisionNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCollisionNavigator.h; sourceTree = "<group>"; };
 		A40609CB1701AF40006848E3 /* libRocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libRocket.xcodeproj; path = Libs/libRocket/Build/libRocket.xcodeproj; sourceTree = "<group>"; };
-		A4060A311701D620006848E3 /* CGuiShellFileMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiShellFileMgr.cpp; sourceTree = "<group>"; };
-		A4060A321701D620006848E3 /* CGuiShellFileMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiShellFileMgr.h; sourceTree = "<group>"; };
-		A4060A341701D620006848E3 /* CGuiShellRenderMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiShellRenderMgr.cpp; sourceTree = "<group>"; };
-		A4060A351701D620006848E3 /* CGuiShellRenderMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiShellRenderMgr.h; sourceTree = "<group>"; };
-		A4060A361701D620006848E3 /* CGuiShellCommonMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiShellCommonMgr.cpp; sourceTree = "<group>"; };
-		A4060A371701D620006848E3 /* CGuiShellCommonMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiShellCommonMgr.h; sourceTree = "<group>"; };
+		A4060A311701D620006848E3 /* CUIShellFileMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CUIShellFileMgr.cpp; sourceTree = "<group>"; };
+		A4060A321701D620006848E3 /* CUIShellFileMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUIShellFileMgr.h; sourceTree = "<group>"; };
+		A4060A341701D620006848E3 /* CUIShellRenderMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CUIShellRenderMgr.cpp; sourceTree = "<group>"; };
+		A4060A351701D620006848E3 /* CUIShellRenderMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUIShellRenderMgr.h; sourceTree = "<group>"; };
+		A4060A361701D620006848E3 /* CUIShellCommonMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CUIShellCommonMgr.cpp; sourceTree = "<group>"; };
+		A4060A371701D620006848E3 /* CUIShellCommonMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUIShellCommonMgr.h; sourceTree = "<group>"; };
 		A4060A3D1701E37C006848E3 /* mainMenu.rml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mainMenu.rml; path = Resources/Bundle/mainMenu.rml; sourceTree = "<group>"; };
 		A4060A3E1701E37C006848E3 /* mainMenu.rcss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mainMenu.rcss; path = Resources/Bundle/mainMenu.rcss; sourceTree = "<group>"; };
 		A4060A421701E823006848E3 /* Delicious-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delicious-Bold.otf"; path = "Resources/Bundle/Delicious-Bold.otf"; sourceTree = "<group>"; };
 		A4060A431701E823006848E3 /* Delicious-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delicious-BoldItalic.otf"; path = "Resources/Bundle/Delicious-BoldItalic.otf"; sourceTree = "<group>"; };
 		A4060A441701E823006848E3 /* Delicious-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delicious-Italic.otf"; path = "Resources/Bundle/Delicious-Italic.otf"; sourceTree = "<group>"; };
 		A4060A451701E823006848E3 /* Delicious-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Delicious-Roman.otf"; path = "Resources/Bundle/Delicious-Roman.otf"; sourceTree = "<group>"; };
-		A4060A4D1701F996006848E3 /* CGuiMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGuiMgr.cpp; sourceTree = "<group>"; };
-		A4060A4E1701F997006848E3 /* CGuiMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGuiMgr.h; sourceTree = "<group>"; };
+		A4060A4D1701F996006848E3 /* CUIMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CUIMgr.cpp; sourceTree = "<group>"; };
+		A4060A4E1701F997006848E3 /* CUIMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUIMgr.h; sourceTree = "<group>"; };
 		A4060A501701FB9D006848E3 /* CRenderPresentCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRenderPresentCallback.cpp; sourceTree = "<group>"; };
 		A4060A511701FB9D006848E3 /* CRenderPresentCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRenderPresentCallback.h; sourceTree = "<group>"; };
 		A4060A561702E436006848E3 /* mainMenu.pvr */ = {isa = PBXFileReference; lastKnownFileType = file; name = mainMenu.pvr; path = Resources/Bundle/mainMenu.pvr; sourceTree = "<group>"; };
@@ -1187,6 +1191,14 @@
 		A453D5F117034CE7008AB922 /* IInputContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IInputContext.h; sourceTree = "<group>"; };
 		A453D5FE17034D63008AB922 /* CInputTapRecognizerCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CInputTapRecognizerCallback.cpp; sourceTree = "<group>"; };
 		A453D5FF17034D63008AB922 /* CInputTapRecognizerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CInputTapRecognizerCallback.h; sourceTree = "<group>"; };
+		A453D60117045A3A008AB922 /* CUIShellEventListenerInstancer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CUIShellEventListenerInstancer.cpp; sourceTree = "<group>"; };
+		A453D60217045A3A008AB922 /* CUIShellEventListenerInstancer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUIShellEventListenerInstancer.h; sourceTree = "<group>"; };
+		A453D60417046055008AB922 /* CMainMenuView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMainMenuView.cpp; sourceTree = "<group>"; };
+		A453D60517046055008AB922 /* CMainMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMainMenuView.h; sourceTree = "<group>"; };
+		A453D60E17048BE2008AB922 /* CUIShellEventHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CUIShellEventHandler.cpp; sourceTree = "<group>"; };
+		A453D60F17048BE3008AB922 /* CUIShellEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUIShellEventHandler.h; sourceTree = "<group>"; };
+		A453D61117048DAA008AB922 /* IUIView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IUIView.cpp; sourceTree = "<group>"; };
+		A453D61217048DAA008AB922 /* IUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUIView.h; sourceTree = "<group>"; };
 		A465C15E16F0B8CB009404ED /* CHeightmapHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CHeightmapHelper.cpp; sourceTree = "<group>"; };
 		A465C15F16F0B8CB009404ED /* CHeightmapHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHeightmapHelper.h; sourceTree = "<group>"; };
 		A465C16916F0BD88009404ED /* HGameEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGameEnum.h; sourceTree = "<group>"; };
@@ -2574,14 +2586,20 @@
 		A4060A2A1701D10F006848E3 /* GuiMgr */ = {
 			isa = PBXGroup;
 			children = (
-				A4060A321701D620006848E3 /* CGuiShellFileMgr.h */,
-				A4060A311701D620006848E3 /* CGuiShellFileMgr.cpp */,
-				A4060A351701D620006848E3 /* CGuiShellRenderMgr.h */,
-				A4060A341701D620006848E3 /* CGuiShellRenderMgr.cpp */,
-				A4060A371701D620006848E3 /* CGuiShellCommonMgr.h */,
-				A4060A361701D620006848E3 /* CGuiShellCommonMgr.cpp */,
-				A4060A4E1701F997006848E3 /* CGuiMgr.h */,
-				A4060A4D1701F996006848E3 /* CGuiMgr.cpp */,
+				A4060A321701D620006848E3 /* CUIShellFileMgr.h */,
+				A4060A311701D620006848E3 /* CUIShellFileMgr.cpp */,
+				A4060A351701D620006848E3 /* CUIShellRenderMgr.h */,
+				A4060A341701D620006848E3 /* CUIShellRenderMgr.cpp */,
+				A4060A371701D620006848E3 /* CUIShellCommonMgr.h */,
+				A4060A361701D620006848E3 /* CUIShellCommonMgr.cpp */,
+				A4060A4E1701F997006848E3 /* CUIMgr.h */,
+				A4060A4D1701F996006848E3 /* CUIMgr.cpp */,
+				A453D60217045A3A008AB922 /* CUIShellEventListenerInstancer.h */,
+				A453D60117045A3A008AB922 /* CUIShellEventListenerInstancer.cpp */,
+				A453D60F17048BE3008AB922 /* CUIShellEventHandler.h */,
+				A453D60E17048BE2008AB922 /* CUIShellEventHandler.cpp */,
+				A453D61217048DAA008AB922 /* IUIView.h */,
+				A453D61117048DAA008AB922 /* IUIView.cpp */,
 			);
 			name = GuiMgr;
 			sourceTree = "<group>";
@@ -2697,6 +2715,8 @@
 				A465C17016F0C821009404ED /* CMoveControllerView_iOS.mm */,
 				A480207316F89A7F00BC9901 /* CRotateControllerView_iOS.h */,
 				A480207416F89A7F00BC9901 /* CRotateControllerView_iOS.mm */,
+				A453D60517046055008AB922 /* CMainMenuView.h */,
+				A453D60417046055008AB922 /* CMainMenuView.cpp */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -3531,15 +3551,19 @@
 				A40600B91700AF58006848E3 /* b2WheelJoint.cpp in Sources */,
 				A40600BA1700AF58006848E3 /* b2Rope.cpp in Sources */,
 				A40600BD1700B642006848E3 /* CCollisionNavigator.cpp in Sources */,
-				A4060A391701D620006848E3 /* CGuiShellFileMgr.cpp in Sources */,
-				A4060A3A1701D620006848E3 /* CGuiShellRenderMgr.cpp in Sources */,
-				A4060A3B1701D620006848E3 /* CGuiShellCommonMgr.cpp in Sources */,
-				A4060A4F1701F998006848E3 /* CGuiMgr.cpp in Sources */,
+				A4060A391701D620006848E3 /* CUIShellFileMgr.cpp in Sources */,
+				A4060A3A1701D620006848E3 /* CUIShellRenderMgr.cpp in Sources */,
+				A4060A3B1701D620006848E3 /* CUIShellCommonMgr.cpp in Sources */,
+				A4060A4F1701F998006848E3 /* CUIMgr.cpp in Sources */,
 				A4060A521701FB9D006848E3 /* CRenderPresentCallback.cpp in Sources */,
 				A4060A76170330DF006848E3 /* ShaderGuiPlane.vert in Sources */,
 				A4060A77170330DF006848E3 /* ShaderGuiPlane.frag in Sources */,
 				A4060A7C170343C2006848E3 /* CInputContext_iOS.mm in Sources */,
 				A453D60017034D63008AB922 /* CInputTapRecognizerCallback.cpp in Sources */,
+				A453D60317045A3B008AB922 /* CUIShellEventListenerInstancer.cpp in Sources */,
+				A453D60617046055008AB922 /* CMainMenuView.cpp in Sources */,
+				A453D61017048BE3008AB922 /* CUIShellEventHandler.cpp in Sources */,
+				A453D61317048DAB008AB922 /* IUIView.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

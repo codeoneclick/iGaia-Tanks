@@ -6,16 +6,21 @@
 //
 //
 
-#include "CGuiMgr.h"
+#include "CUIMgr.h"
 #include "CCommon.h"
+#include "CMainMenuView.h"
 
-CGuiMgr::CGuiMgr(void)
+CUIMgr::CUIMgr(void)
 {
     Rocket::Core::SetRenderInterface(&m_renderInterface);
 	Rocket::Core::SetSystemInterface(&m_commonInterface);
 
     Rocket::Core::Initialise();
     m_guiContext = Rocket::Core::CreateContext("main", Rocket::Core::Vector2i(Get_ScreenWidth(), Get_ScreenHeight()));
+
+    m_eventListenerInterface = new CUIShellEventListenerInstancer_INTERFACE();
+    Rocket::Core::Factory::RegisterEventListenerInstancer(m_eventListenerInterface);
+	m_eventListenerInterface->RemoveReference();
 
     Rocket::Core::String fontNames[4];
 	fontNames[0] = "Delicious-Roman.otf";
@@ -30,7 +35,7 @@ CGuiMgr::CGuiMgr(void)
 
     m_shaderComposite = nullptr;
 }
-
+/*
 void CGuiMgr::TEMP(void)
 {
 	std::string mainMenuFilename = Get_BundlePath();
@@ -42,33 +47,33 @@ void CGuiMgr::TEMP(void)
 		m_guiDocument->RemoveReference();
 	}
 }
-
-CGuiMgr::~CGuiMgr(void)
+*/
+CUIMgr::~CUIMgr(void)
 {
     
 }
 
-void CGuiMgr::OnInputTapRecognizerPressed(i32 _x, i32 _y)
+void CUIMgr::OnInputTapRecognizerPressed(i32 _x, i32 _y)
 {
     assert(m_guiContext != nullptr);
     m_guiContext->ProcessMouseMove(_x, _y, 0);
     m_guiContext->ProcessMouseButtonDown(0, 0);
 }
 
-void CGuiMgr::OnInputTapRecognizerMoved(i32 _x, i32 _y)
+void CUIMgr::OnInputTapRecognizerMoved(i32 _x, i32 _y)
 {
     assert(m_guiContext != nullptr);
     m_guiContext->ProcessMouseMove(_x, _y, 0);
 }
 
-void CGuiMgr::OnInputTapRecognizerReleased(i32 _x, i32 _y)
+void CUIMgr::OnInputTapRecognizerReleased(i32 _x, i32 _y)
 {
     assert(m_guiContext != nullptr);
     m_guiContext->ProcessMouseMove(_x, _y, 0);
     m_guiContext->ProcessMouseButtonUp(0, 0);
 }
 
-void CGuiMgr::OnPresent(void)
+void CUIMgr::OnPresent(void)
 {
     assert(m_guiContext != nullptr);
     m_guiContext->Update();

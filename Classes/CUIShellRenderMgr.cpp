@@ -1,22 +1,22 @@
 
 
-#include "CGuiShellRenderMgr.h"
+#include "CUIShellRenderMgr.h"
 #include "CCommon.h"
 #include "CMesh.h"
 
-CGuiShellRenderMgr_INTERFACE::CGuiShellRenderMgr_INTERFACE(void)
+CUIShellRenderMgr_INTERFACE::CUIShellRenderMgr_INTERFACE(void)
 {
 	m_guiMaterial = nullptr;
 	m_shaderComposite = nullptr;
 	m_resourceMgrsFacade = nullptr;
 }
 
-void CGuiShellRenderMgr_INTERFACE::RenderGeometry(Rocket::Core::Vertex* vertices, int num_vertices, int* indices, int num_indices, const Rocket::Core::TextureHandle texture, const Rocket::Core::Vector2f& translation)
+void CUIShellRenderMgr_INTERFACE::RenderGeometry(Rocket::Core::Vertex* vertices, int num_vertices, int* indices, int num_indices, const Rocket::Core::TextureHandle texture, const Rocket::Core::Vector2f& translation)
 {
-    std::cout<<"CGuiShellRenderMgr_INTERFACE::RenderGeometry"<<std::endl;
+    assert(false);
 }
 
-CMaterial* CGuiShellRenderMgr_INTERFACE::Get_Material(void)
+CMaterial* CUIShellRenderMgr_INTERFACE::Get_Material(void)
 {
 	if(m_guiMaterial == nullptr)
 	{
@@ -34,7 +34,7 @@ CMaterial* CGuiShellRenderMgr_INTERFACE::Get_Material(void)
 	return m_guiMaterial;
 }
 
-Rocket::Core::CompiledGeometryHandle CGuiShellRenderMgr_INTERFACE::CompileGeometry(Rocket::Core::Vertex* _vertexData, i32 _numVertexes, i32* _indexData, i32 _numIndexes, const Rocket::Core::TextureHandle _texture)
+Rocket::Core::CompiledGeometryHandle CUIShellRenderMgr_INTERFACE::CompileGeometry(Rocket::Core::Vertex* _vertexData, i32 _numVertexes, i32* _indexData, i32 _numIndexes, const Rocket::Core::TextureHandle _texture)
 {
 	CTexture* texture = (CTexture*)_texture;
 	assert(texture != nullptr);
@@ -66,14 +66,14 @@ Rocket::Core::CompiledGeometryHandle CGuiShellRenderMgr_INTERFACE::CompileGeomet
     indexBuffer->Unlock();
     CMesh* mesh = new CMesh(vertexBuffer, indexBuffer);
 
-	SGuiElement* guiElement = new SGuiElement(mesh, texture);
+	SUIElement* guiElement = new SUIElement(mesh, texture);
 
 	return (Rocket::Core::CompiledGeometryHandle)guiElement;
 }
 	
-void CGuiShellRenderMgr_INTERFACE::RenderCompiledGeometry(Rocket::Core::CompiledGeometryHandle _guiElement, const Rocket::Core::Vector2f& _translation)
+void CUIShellRenderMgr_INTERFACE::RenderCompiledGeometry(Rocket::Core::CompiledGeometryHandle _guiElement, const Rocket::Core::Vector2f& _translation)
 {
-	SGuiElement* guiElement = (SGuiElement*)_guiElement;
+	SUIElement* guiElement = (SUIElement*)_guiElement;
 	assert(guiElement != nullptr);
 	CMesh* mesh = guiElement->m_mesh;
 	assert(mesh != nullptr);
@@ -94,29 +94,22 @@ void CGuiShellRenderMgr_INTERFACE::RenderCompiledGeometry(Rocket::Core::Compiled
     material->Unbind();
 }
 
-void CGuiShellRenderMgr_INTERFACE::ReleaseCompiledGeometry(Rocket::Core::CompiledGeometryHandle _geometry)
+void CUIShellRenderMgr_INTERFACE::ReleaseCompiledGeometry(Rocket::Core::CompiledGeometryHandle _geometry)
 {
     
 }
 	
-void CGuiShellRenderMgr_INTERFACE::EnableScissorRegion(bool enable)
+void CUIShellRenderMgr_INTERFACE::EnableScissorRegion(bool enable)
 {
-	/*if (enable)
-    {
-		glEnable(GL_SCISSOR_TEST);
-    }
-	else
-    {
-		glDisable(GL_SCISSOR_TEST);
-    }*/
+
 }
 
-void CGuiShellRenderMgr_INTERFACE::SetScissorRegion(int x, int y, int width, int height)
+void CUIShellRenderMgr_INTERFACE::SetScissorRegion(int x, int y, int width, int height)
 {
-	//glScissor(x, Get_ScreenHeight() - (y + height), width, height);
+
 }
 
-bool CGuiShellRenderMgr_INTERFACE::LoadTexture(Rocket::Core::TextureHandle& _texture, Rocket::Core::Vector2i& _textureDimensions, const Rocket::Core::String& _filename)
+bool CUIShellRenderMgr_INTERFACE::LoadTexture(Rocket::Core::TextureHandle& _texture, Rocket::Core::Vector2i& _textureDimensions, const Rocket::Core::String& _filename)
 {
 	std::string filename = _filename.CString();
 	filename = filename.substr(filename.find_last_of("\\/") + 1);
@@ -129,7 +122,7 @@ bool CGuiShellRenderMgr_INTERFACE::LoadTexture(Rocket::Core::TextureHandle& _tex
     return true;
 }
 
-bool CGuiShellRenderMgr_INTERFACE::GenerateTexture(Rocket::Core::TextureHandle& _texture, const Rocket::Core::byte* _data, const Rocket::Core::Vector2i& _textureDimensions)
+bool CUIShellRenderMgr_INTERFACE::GenerateTexture(Rocket::Core::TextureHandle& _texture, const Rocket::Core::byte* _data, const Rocket::Core::Vector2i& _textureDimensions)
 {
 	ui32 textureHandle;
 	glGenTextures(1, &textureHandle);
@@ -150,8 +143,8 @@ bool CGuiShellRenderMgr_INTERFACE::GenerateTexture(Rocket::Core::TextureHandle& 
     return true;
 }
 	
-void CGuiShellRenderMgr_INTERFACE::ReleaseTexture(Rocket::Core::TextureHandle _textureHandle)
+void CUIShellRenderMgr_INTERFACE::ReleaseTexture(Rocket::Core::TextureHandle _textureHandle)
 {
-	glDeleteTextures(1, (GLuint*)&_textureHandle);
+	
 }
 

@@ -28,13 +28,12 @@ CRoot::CRoot(void* _glWindow)
     m_updateMgr = new CSceneUpdateMgr();
     m_collisionMgr = new CCollisionMgr();
     
-    m_guiMgr = new CGuiMgr();
-    m_guiMgr->Set_ShaderComposite(m_shaderComposite);
-    m_guiMgr->Set_ResourceMgrFacade(m_resourceMgrsFacade);
-	m_guiMgr->TEMP();
-    m_inputContext->AddTapRecognizerListener(m_guiMgr);
+    m_uiMgr = new CUIMgr();
+    m_uiMgr->Set_ShaderComposite(m_shaderComposite);
+    m_uiMgr->Set_ResourceMgrFacade(m_resourceMgrsFacade);
+    m_inputContext->AddTapRecognizerListener(m_uiMgr);
     
-    m_renderMgr->AddRenderPresentEventListener(m_guiMgr);
+    m_renderMgr->AddRenderPresentEventListener(m_uiMgr);
     
     ConnectToMainLoop(m_renderMgr);
     ConnectToMainLoop(m_updateMgr);

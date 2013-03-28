@@ -6,19 +6,21 @@
 //
 //
 
-#ifndef CGuiMgr_h
-#define CGuiMgr_h
+#ifndef CUIMgr_h
+#define CUIMgr_h
 
 #include "HCommon.h"
-#include "CGuiShellFileMgr.h"
-#include "CGuiShellRenderMgr.h"
-#include "CGuiShellCommonMgr.h"
+#include "CUIShellFileMgr.h"
+#include "CUIShellRenderMgr.h"
+#include "CUIShellCommonMgr.h"
+#include "CUIShellEventListenerInstancer.h"
 #include "CRenderPresentCallback.h"
 #include "CInputTapRecognizerCallback.h"
 #include "CShaderComposite.h"
 #include "CResourceMgrsFacade.h"
+#include "IUIView.h"
 
-class CGuiMgr :
+class CUIMgr :
 public CRenderPresentCallback_INTERFACE,
 public CInputTapRecognizerCallback_INTERFACE
 {
@@ -29,8 +31,9 @@ protected:
     Rocket::Core::Context* m_guiContext;
     Rocket::Core::ElementDocument* m_guiDocument;
 
-    CGuiShellRenderMgr_INTERFACE m_renderInterface;
-	CGuiShellCommonMgr_INTERFACE m_commonInterface;
+    CUIShellRenderMgr_INTERFACE m_renderInterface;
+	CUIShellCommonMgr_INTERFACE m_commonInterface;
+    CUIShellEventListenerInstancer_INTERFACE* m_eventListenerInterface;
 
     CShaderComposite* m_shaderComposite;
 	CResourceMgrsFacade* m_resourceMgrsFacade;
@@ -43,10 +46,8 @@ protected:
 
 public:
 
-    CGuiMgr(void);
-    ~CGuiMgr(void);
-
-	void TEMP(void);
+    CUIMgr(void);
+    ~CUIMgr(void);
 
     inline void Set_ShaderComposite(CShaderComposite* _shaderComposite)
     {
@@ -59,6 +60,8 @@ public:
 		m_resourceMgrsFacade = _resourceMgrsFacade;
 		m_renderInterface.Set_ResourceMgrFacade(m_resourceMgrsFacade);
 	};
+
+    void SetupUIView(IUIView_INTERFACE* _view);
 
 };
 

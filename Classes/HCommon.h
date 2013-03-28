@@ -31,6 +31,13 @@
 #include <Rocket/Core.h>
 #include <Rocket/Controls.h>
 #include <Rocket/Debugger.h>
+#include <Rocket/Core/EventListener.h>
+#include <Rocket/Core/EventListenerInstancer.h>
+#include <Rocket/Core/RocketString.h>
+#include <Rocket/Core/FileInterface.h>
+#include <Rocket/Core/Platform.h>
+#include <Rocket/Core/RenderInterface.h>
+#include <Rocket/Core/SystemInterface.h>
 
 #ifdef __APPLE__
 

@@ -1,17 +1,15 @@
 
-#ifndef CGuiShellRenderMgr_h
-#define CGuiShellRenderMgr_h
+#ifndef CUIShellRenderMgr_h
+#define CUIShellRenderMgr_h
 
 #include "HCommon.h"
-#include <Rocket/Core/Platform.h>
-#include "Rocket/Core/RenderInterface.h"
 #include "CShaderComposite.h"
 #include "CResourceMgrsFacade.h"
 #include "CMaterial.h"
 
-struct SGuiElement
+struct SUIElement
 {
-	SGuiElement(CMesh* _mesh, CTexture* _texture) 
+	SUIElement(CMesh* _mesh, CTexture* _texture)
 	{
 		m_mesh = _mesh;
 		m_texture = _texture;
@@ -21,7 +19,7 @@ struct SGuiElement
 	CTexture* m_texture;
 };
 
-class CGuiShellRenderMgr_INTERFACE : public Rocket::Core::RenderInterface
+class CUIShellRenderMgr_INTERFACE : public Rocket::Core::RenderInterface
 {
 private:
 
@@ -45,8 +43,8 @@ protected:
     
 public:
     
-	CGuiShellRenderMgr_INTERFACE(void);
-    ~CGuiShellRenderMgr_INTERFACE(void) {};
+	CUIShellRenderMgr_INTERFACE(void);
+    ~CUIShellRenderMgr_INTERFACE(void) {};
 
 	inline void Set_ShaderComposite(CShaderComposite* _shaderComposite)
     {
