@@ -97,13 +97,11 @@
     <ClCompile Include="..\..\Classes\CGLContext_Win32.cpp" />
     <ClCompile Include="..\..\Classes\CGLWindow_Win32.cpp" />
     <ClCompile Include="..\..\Classes\CGrassSettings_PARSER.cpp" />
-    <ClCompile Include="..\..\Classes\CGuiMgr.cpp" />
-    <ClCompile Include="..\..\Classes\CGuiShellCommonMgr.cpp" />
-    <ClCompile Include="..\..\Classes\CGuiShellFileMgr.cpp" />
-    <ClCompile Include="..\..\Classes\CGuiShellRenderMgr.cpp" />
     <ClCompile Include="..\..\Classes\CHeightmapHelper.cpp" />
     <ClCompile Include="..\..\Classes\CHeightmapProcessor.cpp" />
     <ClCompile Include="..\..\Classes\CIndexBuffer.cpp" />
+    <ClCompile Include="..\..\Classes\CInputContext_Win32.cpp" />
+    <ClCompile Include="..\..\Classes\CInputTapRecognizerCallback.cpp" />
     <ClCompile Include="..\..\Classes\CLandscape.cpp" />
     <ClCompile Include="..\..\Classes\CLandscapeChunk.cpp" />
     <ClCompile Include="..\..\Classes\CLandscapeDecal.cpp" />
@@ -115,6 +113,7 @@
     <ClCompile Include="..\..\Classes\CLoadOperation_PVR.cpp" />
     <ClCompile Include="..\..\Classes\CMainLoopUpdateCallback.cpp" />
     <ClCompile Include="..\..\Classes\CMainLoop_Win32.cpp" />
+    <ClCompile Include="..\..\Classes\CMainMenuView.cpp" />
     <ClCompile Include="..\..\Classes\CMaterial.cpp" />
     <ClCompile Include="..\..\Classes\CMesh.cpp" />
     <ClCompile Include="..\..\Classes\CMeshMgr.cpp" />
@@ -137,7 +136,7 @@
     <ClCompile Include="..\..\Classes\CRenderPresentCallback.cpp" />
     <ClCompile Include="..\..\Classes\CResourceLoadCallback.cpp" />
     <ClCompile Include="..\..\Classes\CResourceMgrsFacade.cpp" />
-    <ClCompile Include="..\..\Classes\CRoot_Win32.cpp" />
+    <ClCompile Include="..\..\Classes\CRoot.cpp" />
     <ClCompile Include="..\..\Classes\CRotateControllerCallback.cpp" />
     <ClCompile Include="..\..\Classes\CSceneContainer.cpp" />
     <ClCompile Include="..\..\Classes\CSceneFabricator.cpp" />
@@ -154,6 +153,13 @@
     <ClCompile Include="..\..\Classes\CTexture.cpp" />
     <ClCompile Include="..\..\Classes\CTextureMgr.cpp" />
     <ClCompile Include="..\..\Classes\CTurret.cpp" />
+    <ClCompile Include="..\..\Classes\CUIEventCallback.cpp" />
+    <ClCompile Include="..\..\Classes\CUIMgr.cpp" />
+    <ClCompile Include="..\..\Classes\CUIShellCommonMgr.cpp" />
+    <ClCompile Include="..\..\Classes\CUIShellEventHandler.cpp" />
+    <ClCompile Include="..\..\Classes\CUIShellEventListenerInstancer.cpp" />
+    <ClCompile Include="..\..\Classes\CUIShellFileMgr.cpp" />
+    <ClCompile Include="..\..\Classes\CUIShellRenderMgr.cpp" />
     <ClCompile Include="..\..\Classes\CVertexBuffer.cpp" />
     <ClCompile Include="..\..\Classes\ICharacter.cpp" />
     <ClCompile Include="..\..\Classes\IGLContext.cpp" />
@@ -161,6 +167,7 @@
     <ClCompile Include="..\..\Classes\IResource.cpp" />
     <ClCompile Include="..\..\Classes\IResourceMgr.cpp" />
     <ClCompile Include="..\..\Classes\ISpare.cpp" />
+    <ClCompile Include="..\..\Classes\IUIView.cpp" />
     <ClCompile Include="..\..\Libs\box2d\Collision\b2BroadPhase.cpp" />
     <ClCompile Include="..\..\Libs\box2d\Collision\b2CollideCircle.cpp" />
     <ClCompile Include="..\..\Libs\box2d\Collision\b2CollideEdge.cpp" />
@@ -228,13 +235,11 @@
     <ClInclude Include="..\..\Classes\CGLContext_Win32.h" />
     <ClInclude Include="..\..\Classes\CGLWindow_Win32.h" />
     <ClInclude Include="..\..\Classes\CGrassSettings_PARSER.h" />
-    <ClInclude Include="..\..\Classes\CGuiMgr.h" />
-    <ClInclude Include="..\..\Classes\CGuiShellCommonMgr.h" />
-    <ClInclude Include="..\..\Classes\CGuiShellFileMgr.h" />
-    <ClInclude Include="..\..\Classes\CGuiShellRenderMgr.h" />
     <ClInclude Include="..\..\Classes\CHeightmapHelper.h" />
     <ClInclude Include="..\..\Classes\CHeightmapProcessor.h" />
     <ClInclude Include="..\..\Classes\CIndexBuffer.h" />
+    <ClInclude Include="..\..\Classes\CInputContext.h" />
+    <ClInclude Include="..\..\Classes\CInputTapRecognizerCallback.h" />
     <ClInclude Include="..\..\Classes\CLandscape.h" />
     <ClInclude Include="..\..\Classes\CLandscapeChunk.h" />
     <ClInclude Include="..\..\Classes\CLandscapeDecal.h" />
@@ -246,6 +251,7 @@
     <ClInclude Include="..\..\Classes\CLoadOperation_PVR.h" />
     <ClInclude Include="..\..\Classes\CMainLoop.h" />
     <ClInclude Include="..\..\Classes\CMainLoopUpdateCallback.h" />
+    <ClInclude Include="..\..\Classes\CMainMenuView.h" />
     <ClInclude Include="..\..\Classes\CMaterial.h" />
     <ClInclude Include="..\..\Classes\CMesh.h" />
     <ClInclude Include="..\..\Classes\CMeshMgr.h" />
@@ -285,6 +291,13 @@
     <ClInclude Include="..\..\Classes\CTexture.h" />
     <ClInclude Include="..\..\Classes\CTextureMgr.h" />
     <ClInclude Include="..\..\Classes\CTurret.h" />
+    <ClInclude Include="..\..\Classes\CUIEventCallback.h" />
+    <ClInclude Include="..\..\Classes\CUIMgr.h" />
+    <ClInclude Include="..\..\Classes\CUIShellCommonMgr.h" />
+    <ClInclude Include="..\..\Classes\CUIShellEventHandler.h" />
+    <ClInclude Include="..\..\Classes\CUIShellEventListenerInstancer.h" />
+    <ClInclude Include="..\..\Classes\CUIShellFileMgr.h" />
+    <ClInclude Include="..\..\Classes\CUIShellRenderMgr.h" />
     <ClInclude Include="..\..\Classes\CVertexBuffer.h" />
     <ClInclude Include="..\..\Classes\HCommon.h" />
     <ClInclude Include="..\..\Classes\HEnum.h" />
@@ -293,11 +306,13 @@
     <ClInclude Include="..\..\Classes\HSettings_DTO.h" />
     <ClInclude Include="..\..\Classes\ICharacter.h" />
     <ClInclude Include="..\..\Classes\IGLContext.h" />
+    <ClInclude Include="..\..\Classes\IInputContext.h" />
     <ClInclude Include="..\..\Classes\ILoadOperation.h" />
     <ClInclude Include="..\..\Classes\IResource.h" />
     <ClInclude Include="..\..\Classes\IResourceMgr.h" />
     <ClInclude Include="..\..\Classes\IRoot.h" />
     <ClInclude Include="..\..\Classes\ISpare.h" />
+    <ClInclude Include="..\..\Classes\IUIView.h" />
     <ClInclude Include="..\..\Libs\box2d\Box2D.h" />
     <ClInclude Include="..\..\Libs\box2d\Collision\b2BroadPhase.h" />
     <ClInclude Include="..\..\Libs\box2d\Collision\b2Collision.h" />
@@ -350,8 +365,8 @@
   <ItemGroup>
     <None Include="..\..\Classes\CCommon_iOS.mm" />
     <None Include="..\..\Classes\CGLContext_iOS.mm" />
+    <None Include="..\..\Classes\CInputContext_iOS.mm" />
     <None Include="..\..\Classes\CMainLoop_iOS.mm" />
-    <None Include="..\..\Classes\CRoot_iOS.mm" />
     <None Include="..\..\Shaders\ShaderDecal.frag" />
     <None Include="..\..\Shaders\ShaderDecal.vert" />
     <None Include="..\..\Shaders\ShaderGrass.frag" />

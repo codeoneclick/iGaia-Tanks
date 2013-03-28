@@ -1,53 +1,7 @@
 
 #include "CGLWindow_Win32.h"
 #include "CCommon.h"
-
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	switch (message)
-	{
-
-	case WM_SYSCOMMAND:
-		{
-			switch (wParam)
-			{
-
-			}
-			break;
-		}
-	case WM_KEYDOWN:
-
-		break;
-
-	case WM_KEYUP:
-
-		break;
-
-	case WM_CLOSE:
-		PostQuitMessage(0);
-		return 1;
-
-	default:
-		break;
-	}
-
-	return DefWindowProc(hWnd, message, wParam, lParam);
-}
-
-bool TestEGLError(HWND hWnd, char* pszLocation)
-{
-
-	EGLint iErr = eglGetError();
-	if (iErr != EGL_SUCCESS)
-	{
-		//TCHAR pszStr[256];
-		//_stprintf(pszStr, L"%s failed (%d).\n", pszLocation, iErr);
-		MessageBox(hWnd, L"EGL error", L"iGaia-CartoonPanzers", MB_OK | MB_ICONEXCLAMATION);
-		return false;
-	}
-
-	return true;
-}
+#include "CInputContext.h"
 
 CGLWindow_Win32::CGLWindow_Win32(void)
 {
@@ -64,7 +18,7 @@ CGLWindow_Win32::CGLWindow_Win32(void)
 	windowRectangle.bottom = Get_ScreenHeight();                      
 
 	windowClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;  
-	windowClass.lpfnWndProc = (WNDPROC)WndProc;          
+	windowClass.lpfnWndProc = (WNDPROC)CInputContext::InputProcess;          
 	windowClass.cbClsExtra = 0;                                                                    
 	windowClass.cbWndExtra = 0;                                                            
 	windowClass.hInstance = GetModuleHandle(NULL);                                            

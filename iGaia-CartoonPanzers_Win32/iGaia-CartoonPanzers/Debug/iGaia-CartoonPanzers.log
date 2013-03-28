@@ -1,12 +1,8 @@
-﻿Build started 3/27/2013 2:43:01 AM.
+﻿Build started 3/28/2013 11:26:39 PM.
      1>Project "D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers_Win32\iGaia-CartoonPanzers\iGaia-CartoonPanzers.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\Libs\box2d /I..\..\Libs\pvrtextool\include /I..\..\Libs\windows\ogles2\include /I..\..\Libs /I..\..\Libs\libRocket\Include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\Classes\CGuiShellRenderMgr.cpp
-         CGuiShellRenderMgr.cpp
-     1>d:\develop\igaia-tanks\igaia-tanks\classes\cguishellrendermgr.cpp(45): warning C4244: 'initializing' : conversion from 'ui32' to 'f32', possible loss of data
-     1>d:\develop\igaia-tanks\igaia-tanks\classes\cguishellrendermgr.cpp(46): warning C4244: 'initializing' : conversion from 'ui32' to 'f32', possible loss of data
-     1>d:\develop\igaia-tanks\igaia-tanks\classes\cguishellrendermgr.cpp(48): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\develop\igaia-tanks\igaia-tanks\classes\cguishellrendermgr.cpp(61): warning C4018: '<' : signed/unsigned mismatch
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\Libs\box2d /I..\..\Libs\pvrtextool\include /I..\..\Libs\windows\ogles2\include /I..\..\Libs /I..\..\Libs\libRocket\Include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\Classes\CGameMainMenuScene.cpp
+         CGameMainMenuScene.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers_Win32\Debug\iGaia-CartoonPanzers.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\..\Libs\pvrtextool\windows_x86_32\Static /LIBPATH:..\..\Libs\windows\ogles2\windows_x86_32\lib /LIBPATH:..\..\Libs\windows\ogles2\windows_x86_64\lib /LIBPATH:..\..\Libs\libRocket\lib libEGL.lib libGLESv2.lib PVRTexLib.lib RocketControls_d.lib RocketDebugger_d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers_Win32\Debug\iGaia-CartoonPanzers.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers_Win32\Debug\iGaia-CartoonPanzers.lib" /MACHINE:X86 Debug\CCamera.obj
          Debug\CCarcass.obj
@@ -25,13 +21,11 @@
          Debug\CGLContext_Win32.obj
          Debug\CGLWindow_Win32.obj
          Debug\CGrassSettings_PARSER.obj
-         Debug\CGuiMgr.obj
-         Debug\CGuiShellCommonMgr.obj
-         Debug\CGuiShellFileMgr.obj
-         Debug\CGuiShellRenderMgr.obj
          Debug\CHeightmapHelper.obj
          Debug\CHeightmapProcessor.obj
          Debug\CIndexBuffer.obj
+         Debug\CInputContext_Win32.obj
+         Debug\CInputTapRecognizerCallback.obj
          Debug\CLandscape.obj
          Debug\CLandscapeChunk.obj
          Debug\CLandscapeDecal.obj
@@ -43,6 +37,7 @@
          Debug\CLoadOperation_PVR.obj
          Debug\CMainLoopUpdateCallback.obj
          Debug\CMainLoop_Win32.obj
+         Debug\CMainMenuView.obj
          Debug\CMaterial.obj
          Debug\CMesh.obj
          Debug\CMeshMgr.obj
@@ -65,7 +60,7 @@
          Debug\CRenderPresentCallback.obj
          Debug\CResourceLoadCallback.obj
          Debug\CResourceMgrsFacade.obj
-         Debug\CRoot_Win32.obj
+         Debug\CRoot.obj
          Debug\CRotateControllerCallback.obj
          Debug\CSceneContainer.obj
          Debug\CSceneFabricator.obj
@@ -82,6 +77,13 @@
          Debug\CTexture.obj
          Debug\CTextureMgr.obj
          Debug\CTurret.obj
+         Debug\CUIEventCallback.obj
+         Debug\CUIMgr.obj
+         Debug\CUIShellCommonMgr.obj
+         Debug\CUIShellEventHandler.obj
+         Debug\CUIShellEventListenerInstancer.obj
+         Debug\CUIShellFileMgr.obj
+         Debug\CUIShellRenderMgr.obj
          Debug\CVertexBuffer.obj
          Debug\ICharacter.obj
          Debug\IGLContext.obj
@@ -89,6 +91,7 @@
          Debug\IResource.obj
          Debug\IResourceMgr.obj
          Debug\ISpare.obj
+         Debug\IUIView.obj
          Debug\b2BroadPhase.obj
          Debug\b2CollideCircle.obj
          Debug\b2CollideEdge.obj
@@ -145,4 +148,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.79
+Time Elapsed 00:00:06.16

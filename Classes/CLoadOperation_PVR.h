@@ -19,9 +19,10 @@ protected:
 
     GLenum m_format;
     i32 m_bpp;
+	ui32 m_mipCount;
     bool m_compressed;
 
-    i8* m_data;
+    ui8* m_data;
     
     ui32 m_width;
     ui32 m_height;

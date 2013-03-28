@@ -9,6 +9,7 @@
 #include "CGameMainMenuScene.h"
 #include "CMainLoop.h"
 #include "CPanzer.h"
+#include "CCommon.h"
 
 CGameMainMenuScene::CGameMainMenuScene(void)
 {
@@ -30,11 +31,11 @@ CGameMainMenuScene::~CGameMainMenuScene(void)
 
 void CGameMainMenuScene::Load(IRoot* _root)
 {
-    m_camera = _root->CreateCamera(45.0f, 0.1f, 1000.0f, glm::vec4(0.0f, 0.0f, 480.0f, 320.0f));
+	m_camera = _root->CreateCamera(45.0f, 0.1f, 1000.0f, glm::vec4(0.0f, 0.0f, Get_ScreenWidth(), Get_ScreenHeight()));
     _root->Set_Camera(m_camera);
     m_camera->Set_Position(glm::vec3(0.0f, 0.0f, 0.0f));
     m_camera->Set_LookAt(glm::vec3(16.0f, 0.0f, 16.0f));
-    m_camera->Set_Distance(8.0f);
+    m_camera->Set_Distance(16.0f);
     m_camera->Set_Height(8.0f);
 
     m_light = _root->CreateLight();

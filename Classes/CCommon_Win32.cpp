@@ -15,12 +15,12 @@ std::string Get_BundlePath(void)
 
 ui32 Get_ScreenWidth(void)
 {
-    return 480;
+    return 1024;
 }
 
 ui32 Get_ScreenHeight(void)
 {
-    return 320;
+    return 768;
 }
 
 ui8* Get_ImageData(const std::string& _filename)

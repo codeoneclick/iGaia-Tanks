@@ -104,8 +104,14 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{a3e0d523-c388-4d5e-a81f-962267e8ddb3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\Core\GuiMgr">
+    <Filter Include="Classes\Core\UIMgr">
       <UniqueIdentifier>{3a6dcc2d-8380-4611-b48c-4be86c7a9032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Core\InputContext">
+      <UniqueIdentifier>{f9fb19a2-acda-4cf6-b1de-bd8ccdc6e76a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Game\MainMenu\View">
+      <UniqueIdentifier>{8c4b6727-2cff-4f6a-82ae-e9a0fd0d0a15}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -475,23 +481,44 @@
     <ClCompile Include="..\..\Classes\CGLContext_Win32.cpp">
       <Filter>Classes\Core\Common\Win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Classes\CRoot_Win32.cpp">
-      <Filter>Classes\Core\Common\Win32</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Classes\CRenderPresentCallback.cpp">
       <Filter>Classes\Core\RenderMgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Classes\CGuiMgr.cpp">
-      <Filter>Classes\Core\GuiMgr</Filter>
+    <ClCompile Include="..\..\Classes\CUIEventCallback.cpp">
+      <Filter>Classes\Core\UIMgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Classes\CGuiShellCommonMgr.cpp">
-      <Filter>Classes\Core\GuiMgr</Filter>
+    <ClCompile Include="..\..\Classes\CUIMgr.cpp">
+      <Filter>Classes\Core\UIMgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Classes\CGuiShellFileMgr.cpp">
-      <Filter>Classes\Core\GuiMgr</Filter>
+    <ClCompile Include="..\..\Classes\CUIShellCommonMgr.cpp">
+      <Filter>Classes\Core\UIMgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Classes\CGuiShellRenderMgr.cpp">
-      <Filter>Classes\Core\GuiMgr</Filter>
+    <ClCompile Include="..\..\Classes\CUIShellEventHandler.cpp">
+      <Filter>Classes\Core\UIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CUIShellEventListenerInstancer.cpp">
+      <Filter>Classes\Core\UIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CUIShellFileMgr.cpp">
+      <Filter>Classes\Core\UIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CUIShellRenderMgr.cpp">
+      <Filter>Classes\Core\UIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CInputTapRecognizerCallback.cpp">
+      <Filter>Classes\Core\InputContext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CRoot.cpp">
+      <Filter>Classes\Core\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CInputContext_Win32.cpp">
+      <Filter>Classes\Core\InputContext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CMainMenuView.cpp">
+      <Filter>Classes\Game\MainMenu\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\IUIView.cpp">
+      <Filter>Classes\Core\UIMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -891,17 +918,41 @@
     <ClInclude Include="..\..\Classes\CRenderPresentCallback.h">
       <Filter>Classes\Core\RenderMgr</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Classes\CGuiMgr.h">
-      <Filter>Classes\Core\GuiMgr</Filter>
+    <ClInclude Include="..\..\Classes\CUIEventCallback.h">
+      <Filter>Classes\Core\UIMgr</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Classes\CGuiShellCommonMgr.h">
-      <Filter>Classes\Core\GuiMgr</Filter>
+    <ClInclude Include="..\..\Classes\CUIMgr.h">
+      <Filter>Classes\Core\UIMgr</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Classes\CGuiShellFileMgr.h">
-      <Filter>Classes\Core\GuiMgr</Filter>
+    <ClInclude Include="..\..\Classes\CUIShellCommonMgr.h">
+      <Filter>Classes\Core\UIMgr</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Classes\CGuiShellRenderMgr.h">
-      <Filter>Classes\Core\GuiMgr</Filter>
+    <ClInclude Include="..\..\Classes\CUIShellEventHandler.h">
+      <Filter>Classes\Core\UIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CUIShellEventListenerInstancer.h">
+      <Filter>Classes\Core\UIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CUIShellFileMgr.h">
+      <Filter>Classes\Core\UIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CUIShellRenderMgr.h">
+      <Filter>Classes\Core\UIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CInputContext.h">
+      <Filter>Classes\Core\InputContext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CInputTapRecognizerCallback.h">
+      <Filter>Classes\Core\InputContext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\IInputContext.h">
+      <Filter>Classes\Core\InputContext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CMainMenuView.h">
+      <Filter>Classes\Game\MainMenu\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\IUIView.h">
+      <Filter>Classes\Core\UIMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -912,9 +963,6 @@
       <Filter>Classes\Core\Common\iOS</Filter>
     </None>
     <None Include="..\..\Classes\CGLContext_iOS.mm">
-      <Filter>Classes\Core\Common\iOS</Filter>
-    </None>
-    <None Include="..\..\Classes\CRoot_iOS.mm">
       <Filter>Classes\Core\Common\iOS</Filter>
     </None>
     <None Include="..\..\Shaders\ShaderDecal.frag">
@@ -1024,6 +1072,9 @@
     </None>
     <None Include="..\..\Shaders\ShaderSkybox.vert">
       <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\..\Classes\CInputContext_iOS.mm">
+      <Filter>Classes\Core\InputContext</Filter>
     </None>
   </ItemGroup>
 </Project>
