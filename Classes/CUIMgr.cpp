@@ -80,7 +80,8 @@ void CUIMgr::FillUIView(IUIView_INTERFACE *_view, const std::string &_filename)
 		document->Show();
 		document->RemoveReference();
         Rocket::Core::Element* button = document->GetElementById("buttonExtId");
-        button->SetOffset(Rocket::Core::Vector2f(80.0f, 80.0f), document);
+        button->SetProperty("left", Rocket::Core::Property(80.0f, Rocket::Core::Property::PX));
+        button->SetClass("buttonExt2", true);
         assert(button != nullptr);
 	}
     assert(_view != nullptr);

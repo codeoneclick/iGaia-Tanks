@@ -9,17 +9,15 @@ body
 
 body.window
 {
-	padding-top: 43px;
-	padding-bottom: 20px;
+	padding-top: 0px;
+	padding-bottom: 0px;
 	
-	min-width: 250px;
-	max-width: 800px;
+	min-width: 480px;
+	max-width: 1024px;
 	
-	min-height: 135px;
-	max-height: 700px;
+	min-height: 220px;
+	max-height: 768px;
 }
-
-
 
 div#title_bar
 {
@@ -65,8 +63,6 @@ div#title_bar span
 	background-right-image: mainMenu.pvr 231px 0px 246px 85px;
 }
 
-
-
 div#window
 {
 	width: auto;
@@ -95,8 +91,6 @@ div#content
 	text-align: center;
 }
 
-
-
 p
 {
 	text-align: left;
@@ -117,8 +111,6 @@ h1
 	shadow-color: black;
 }
 
-
-
 input,
 select,
 dataselect
@@ -137,6 +129,32 @@ button.buttonExt
 
 	width: 32px;
 	height: 32px;
+    
+    position: absolute;
+	top: 0px;
+	left: 0px;
+
+	padding-top: 8px;
+	vertical-align: -18px;
+
+	font-size: 18;
+	text-align: center;
+	tab-index: auto;
+
+	background-decorator: image;
+	background-image: mainMenu.pvr 247px 0px 406px 45px;
+}
+
+button.buttonExt2
+{
+    display: inline-block;
+
+	width: 180px;
+	height: 32px;
+    
+    position: absolute;
+	top: 0px;
+	left: 0px;
 
 	padding-top: 8px;
 	vertical-align: -18px;
