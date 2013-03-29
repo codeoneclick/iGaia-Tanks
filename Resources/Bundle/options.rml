@@ -1,0 +1,15 @@
+<rml>
+	<head>
+		<link type="text/template" href="moveGamepad.rml" />
+		<style>
+			body
+			{
+				width: 96px;
+				height: 64px;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body template="moveGamepad">
+    </body>
+</rml>

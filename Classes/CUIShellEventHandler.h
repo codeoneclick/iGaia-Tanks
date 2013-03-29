@@ -11,17 +11,19 @@
 
 #include "HCommon.h"
 
+class CUIMgr;
 class CUIShellEventHandler : public Rocket::Core::EventListener
 {
 private:
 
-    Rocket::Core::String m_command;
-
 protected:
+
+    Rocket::Core::String m_command;
+    CUIMgr* m_uiMgr;
     
 public:
     
-	CUIShellEventHandler(const Rocket::Core::String& _command);
+	CUIShellEventHandler(CUIMgr* _uiMgr, const Rocket::Core::String& _command);
 	virtual ~CUIShellEventHandler(void);
 
 	void ProcessEvent(Rocket::Core::Event& event);

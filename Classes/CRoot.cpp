@@ -17,7 +17,7 @@
 #endif
 
 
-CRoot::CRoot(void* _glView)
+CRoot::CRoot(void* _glWindow)
 {
 #ifdef __APPLE__
 

@@ -45,6 +45,7 @@
 
     CMainMenuView* mainMenu = new CMainMenuView();
     root->FillUIView(mainMenu, "main_menu.rml");
+    root->AddUIEventListener(mainMenu);
     
     [self.m_moveController AddEventListener:self.m_scene->Get_CharacterController()];
     [self.m_rotateController AddEventListener:self.m_scene->Get_CharacterController()];

@@ -29,6 +29,8 @@ private:
 
 protected:
 
+    friend class CUIShellEventHandler;
+
     Rocket::Core::Context* m_uiContext;
 
     std::set<CUIEventCallback_INTERFACE*> m_uiEventListenersContainer;

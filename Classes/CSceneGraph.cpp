@@ -277,3 +277,14 @@ void CSceneGraph::FillUIView(IUIView_INTERFACE *_view, const std::string &_filen
     m_uiMgr->FillUIView(_view, _filename);
 }
 
+void CSceneGraph::AddUIEventListener(CUIEventCallback_INTERFACE* _listener)
+{
+    assert(m_uiMgr != nullptr);
+    m_uiMgr->AddUIEventListener(_listener);
+}
+
+void CSceneGraph::RemoveUIEventListener(CUIEventCallback_INTERFACE* _listener)
+{
+    assert(m_uiMgr != nullptr);
+    m_uiMgr->RemoveUIEventListener(_listener);
+}

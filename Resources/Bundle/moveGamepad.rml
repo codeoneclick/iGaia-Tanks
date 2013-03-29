@@ -1,0 +1,18 @@
+<template name="moveGamepad" content="content">
+<head>
+	<link type="text/rcss" href="rkt.rcss"/>
+	<link type="text/rcss" href="invader.rcss"/>
+    <link type="text/rcss" href="gamepad.rcss"/>
+</head>
+<body class="window">
+    
+    <handle move_target="buttonMain">
+        <div id="window">
+            <div id="content">
+            </div>
+        </div>
+    </handle>
+    <div id="buttonMain">
+    </div>
+</body>
+</template>

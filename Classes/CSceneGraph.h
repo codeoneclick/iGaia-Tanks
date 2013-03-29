@@ -66,6 +66,9 @@ public:
     void RemoveCollider(CCollisionCallback_INTERFACE* _collider);
 
     void FillUIView(IUIView_INTERFACE* _view,const std::string& _filename);
+
+    void AddUIEventListener(CUIEventCallback_INTERFACE* _listener);
+    void RemoveUIEventListener(CUIEventCallback_INTERFACE* _listener);
 };
 
 

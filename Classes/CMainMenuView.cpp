@@ -18,4 +18,7 @@ CMainMenuView::~CMainMenuView(void)
     
 }
 
-
+void CMainMenuView::OnPerform(const std::string &_command)
+{
+    std::cout<<_command<<std::endl;
+}

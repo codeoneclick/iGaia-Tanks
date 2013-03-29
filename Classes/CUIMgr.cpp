@@ -18,7 +18,7 @@ CUIMgr::CUIMgr(void)
     Rocket::Core::Initialise();
     m_uiContext = Rocket::Core::CreateContext("main", Rocket::Core::Vector2i(Get_ScreenWidth(), Get_ScreenHeight()));
 
-    m_eventListenerInterface = new CUIShellEventListenerInstancer_INTERFACE();
+    m_eventListenerInterface = new CUIShellEventListenerInstancer_INTERFACE(this);
     Rocket::Core::Factory::RegisterEventListenerInstancer(m_eventListenerInterface);
 	m_eventListenerInterface->RemoveReference();
 
@@ -79,6 +79,9 @@ void CUIMgr::FillUIView(IUIView_INTERFACE *_view, const std::string &_filename)
 	{
 		document->Show();
 		document->RemoveReference();
+        Rocket::Core::Element* button = document->GetElementById("buttonExtId");
+        button->SetOffset(Rocket::Core::Vector2f(80.0f, 80.0f), document);
+        assert(button != nullptr);
 	}
     assert(_view != nullptr);
     _view->Set_Document(document);

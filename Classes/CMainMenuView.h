@@ -11,12 +11,17 @@
 
 #include "HCommon.h"
 #include "IUIView.h"
+#include "CUIEventCallback.h"
 
-class CMainMenuView : public IUIView_INTERFACE
+class CMainMenuView :
+public IUIView_INTERFACE,
+public CUIEventCallback_INTERFACE
 {
 private:
 
 protected:
+
+    void OnPerform(const std::string& _command);
 
 public:
     

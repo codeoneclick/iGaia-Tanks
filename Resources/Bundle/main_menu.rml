@@ -2,6 +2,7 @@
 	<head>
 		<title>Main Menu</title>
 		<link type="text/template" href="window.rml" />
+        <link type="text/rcss" href="invader.rcss"/>
 		<style>
 			body
 			{
@@ -23,6 +24,6 @@
 		<button onclick="goto high_score; close logo">High Scores</button><br />
 		<button onclick="goto options; close logo">Options</button><br />
 		<button onclick="goto help; close logo">Help</button><br />
-		<button onclick="exit">Exit</button>
+        <button class="buttonExt" onclick="test test test" id="buttonExtId" type="button" name="" value="" >submit</button>
 	</body>
 </rml>
