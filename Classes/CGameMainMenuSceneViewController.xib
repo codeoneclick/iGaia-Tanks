@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12D78</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">2083</string>
@@ -38,13 +38,13 @@
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIView" id="748761044">
+							<object class="IBUIView" id="17780104">
 								<reference key="NSNextResponder" ref="354818878"/>
-								<int key="NSvFlags">-2147483374</int>
-								<string key="NSFrame">{{20, 204}, {96, 96}}</string>
+								<int key="NSvFlags">-2147483356</int>
+								<string key="NSFrame">{{364, 252}, {96, 48}}</string>
 								<reference key="NSSuperview" ref="354818878"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="17780104"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -55,25 +55,11 @@
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<object class="IBUIView" id="17780104">
-								<reference key="NSNextResponder" ref="354818878"/>
-								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{364, 252}, {96, 48}}</string>
-								<reference key="NSSuperview" ref="354818878"/>
-								<reference key="NSWindow"/>
-								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-									<reference key="NSCustomColorSpace" ref="693438674"/>
-								</object>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
 						</array>
 						<string key="NSFrameSize">{480, 320}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="748761044"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -135,14 +121,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">m_moveController</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="748761044"/>
-					</object>
-					<int key="connectionID">7</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">m_rotateController</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="17780104"/>
@@ -181,15 +159,9 @@
 						<int key="objectID">4</int>
 						<reference key="object" ref="354818878"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="748761044"/>
 							<reference ref="17780104"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="748761044"/>
-						<reference key="parent" ref="354818878"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
@@ -206,8 +178,6 @@
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.CustomClassName">CGLWindow_iOS</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="6.CustomClassName">CMoveControllerView_iOS</string>
-				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.CustomClassName">CRotateControllerView_iOS</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -230,17 +200,20 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">CGameMainMenuSceneViewController</string>
 					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">m_rotateController</string>
+						<string key="NS.object.0">CRotateControllerView_iOS</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">m_rotateController</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">m_rotateController</string>
+							<string key="candidateClassName">CRotateControllerView_iOS</string>
+						</object>
+					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/CGameMainMenuSceneViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">CMoveControllerView_iOS</string>
-					<string key="superclassName">UIView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/CMoveControllerView_iOS.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

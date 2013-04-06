@@ -1,0 +1,192 @@
+body
+{
+	font-family: Delicious;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 15;
+	color: white;
+}
+
+body.window
+{
+    min-width: 32px;
+	max-width: 1024px;
+	
+	min-height: 32px;
+	max-height: 768px;
+
+	background-decorator: tiled-box;
+	background-top-left-image: mainMenu.pvr 0px 0px 133px 140px;
+	background-top-right-image: mainMenu.pvr 136px 0px 146px 140px;
+	background-top-image: mainMenu.pvr stretch 134px 0px 135px 140px;
+	background-bottom-left-image: mainMenu.pvr 0px 140px 11px 151px;
+	background-bottom-right-image: mainMenu.pvr 136px 140px 146px 151px;
+	background-bottom-image: mainMenu.pvr stretch 11px 140px 12px 151px;
+	background-left-image: mainMenu.pvr stretch 0px 139px 10px 140px;
+	background-center-image: mainMenu.pvr stretch 11px 139px 12px 140px;
+}
+
+div
+{
+    display: block;
+}
+
+/* TOP_ARROW_BUTTON */
+
+button.arrowTop
+{
+	display: inline-block;
+    
+    width: 32px;
+    height: 32px;
+
+	position:absolute;
+    left: 48px;
+    top: 8px;
+
+	font-size: 18;
+	text-align: center;
+	tab-index: auto;
+
+	background-decorator: image;
+	background-image: mainMenu.pvr 247px 0px 406px 45px;
+}
+
+button.arrowTop:focus
+{
+    font-weight: bold;
+    
+    shadow-font-effect: shadow;
+    shadow-offset: 1px 1px;
+    shadow-color: black;
+}
+
+button.arrowTop:hover
+{
+	background-image-t: 45px 90px;
+}
+
+button.arrowTop:active
+{
+	background-image-t: 90px 135px;
+}
+
+/* BOTTOM_ARROW_BUTTON */
+
+button.arrowBottom
+{
+	display: inline-block;
+
+    width: 32px;
+    height: 32px;
+
+	position:absolute;
+    left: 48px;
+    top: 88px;
+
+	font-size: 18;
+	text-align: center;
+	tab-index: auto;
+
+	background-decorator: image;
+	background-image: mainMenu.pvr 247px 0px 406px 45px;
+}
+
+button.arrowBottom:focus
+{
+    font-weight: bold;
+    
+    shadow-font-effect: shadow;
+    shadow-offset: 1px 1px;
+    shadow-color: black;
+}
+
+button.arrowBottom:hover
+{
+	background-image-t: 45px 90px;
+}
+
+button.arrowBottom:active
+{
+	background-image-t: 90px 135px;
+}
+
+/* RIGHT_ARROW_BUTTON */
+
+button.arrowRight
+{
+	display: inline-block;
+
+	width: 32px;
+    height: 32px;
+
+	position:absolute;
+    left: 88px;
+    top: 48px;
+
+	font-size: 18;
+	text-align: center;
+	tab-index: auto;
+
+	background-decorator: image;
+	background-image: mainMenu.pvr 247px 0px 406px 45px;
+}
+
+button.arrowRight:focus
+{
+    font-weight: bold;
+    
+    shadow-font-effect: shadow;
+    shadow-offset: 1px 1px;
+    shadow-color: black;
+}
+
+button.arrowRight:hover
+{
+	background-image-t: 45px 90px;
+}
+
+button.arrowRight:active
+{
+	background-image-t: 90px 135px;
+}
+
+/* LEFT_ARROW_BUTTON */
+
+button.arrowLeft
+{
+	display: inline-block;
+
+	width: 32px;
+    height: 32px;
+
+	position:absolute;
+    left: 8px;
+    top: 48px;
+
+	font-size: 18;
+	text-align: center;
+	tab-index: auto;
+
+	background-decorator: image;
+	background-image: mainMenu.pvr 247px 0px 406px 45px;
+}
+
+button.arrowLeft:focus
+{
+    font-weight: bold;
+    
+    shadow-font-effect: shadow;
+    shadow-offset: 1px 1px;
+    shadow-color: black;
+}
+
+button.arrowLeft:hover
+{
+	background-image-t: 45px 90px;
+}
+
+button.arrowLeft:active
+{
+	background-image-t: 90px 135px;
+}

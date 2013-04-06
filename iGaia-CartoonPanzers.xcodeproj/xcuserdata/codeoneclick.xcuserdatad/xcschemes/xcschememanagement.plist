@@ -4,15 +4,15 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>iGaia.xcscheme</key>
+		<key>iGaia-CartoonPanzers.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>16</integer>
 		</dict>
-		<key>iGaia_TESTS.xcscheme</key>
+		<key>iGaia-CartoonPanzers_TESTS.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>17</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

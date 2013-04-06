@@ -1,18 +1,23 @@
-<template name="moveGamepad" content="content">
-<head>
-	<link type="text/rcss" href="rkt.rcss"/>
-	<link type="text/rcss" href="invader.rcss"/>
-    <link type="text/rcss" href="gamepad.rcss"/>
-</head>
-<body class="window">
-    
-    <handle move_target="buttonMain">
-        <div id="window">
-            <div id="content">
-            </div>
-        </div>
-    </handle>
-    <div id="buttonMain">
-    </div>
-</body>
-</template>
+<rml>
+	<head>
+		<title>Move Gamepad</title>
+        <link type="text/rcss" href="moveGamepad.rcss"/>
+		<style>
+			body
+			{
+				width: 128px;
+				height: 128px;
+				margin: auto;
+                position:absolute;
+                top: 176px;
+                left: 336px;
+			}
+		</style>
+	</head>
+    <body class="window">
+        <button class="arrowTop" onmousedown="arrow_top_touch_down" onmouseup="arrow_top_touch_up" id="arrowTopId" type="button" name="" value="" ></button>
+        <button class="arrowBottom" onmousedown="arrow_bottom_touch_down" onmouseup="arrow_bottom_touch_up" id="arrowBottomId" type="button" name="" value="" ></button>
+        <button class="arrowRight" onmousedown="arrow_right_touch_down" onmouseup="arrow_right_touch_up" id="arrowRightId" type="button" name="" value="" ></button>
+        <button class="arrowLeft" onmousedown="arrow_left_touch_down" onmouseup="arrow_left_touch_up" id="arrowLeftId" type="button" name="" value="" ></button>
+    </body>
+</rml>

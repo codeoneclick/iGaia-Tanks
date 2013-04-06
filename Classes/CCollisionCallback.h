@@ -70,11 +70,6 @@ protected:
     CCollisionCallback m_callbacks;
     void ConnectCallbacks(void);
     
-public:
-
-    CCollisionCallback_INTERFACE(void);
-    virtual ~CCollisionCallback_INTERFACE(void) {};
-
     virtual void OnBox2dCollide(CCollisionCallback_INTERFACE* _collider) = 0;
     virtual void OnBox2dPositionChanged(const glm::vec3& _position) = 0;
     virtual void OnBox2dRotationChanged(f32 _angle) = 0;
@@ -83,7 +78,10 @@ public:
     virtual glm::vec3 Get_Box2dMaxBound(void) = 0;
     virtual glm::vec3 Get_Box2dMinBound(void) = 0;
     
-    void Set_Box2dPosition(const glm::vec3& _position);
+public:
+
+    CCollisionCallback_INTERFACE(void);
+    virtual ~CCollisionCallback_INTERFACE(void) {};
 
     inline void Set_Box2dBody(b2Body* _box2dBody)
     {

@@ -18,7 +18,7 @@ glm::mat3x3 CLandscapeDecal::m_matrixTextureScale = glm::mat3x3(0.5f, 0.0f, 0.0f
 
 CLandscapeDecal::CLandscapeDecal(void)
 {
-    m_color = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+    m_color = glm::vec4(0.0f, 0.0f, 0.0f, 0.5f);
     m_heightmapData = nullptr;
 }
 

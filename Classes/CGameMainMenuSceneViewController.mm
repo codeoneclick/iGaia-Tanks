@@ -10,7 +10,7 @@
 #include "CGLContext_iOS.h"
 #include "CGLWindow_iOS.h"
 #include "CGameMainMenuScene.h"
-#include "CMoveControllerView_iOS.h"
+#include "CMoveGamepadView.h"
 #include "CRotateControllerView_iOS.h"
 #include "CMainMenuView.h"
 
@@ -18,7 +18,7 @@
 
 @property(weak, nonatomic) IBOutlet CGLWindow_iOS *m_glView;
 @property(unsafe_unretained, nonatomic) CGameMainMenuScene* m_scene;
-@property (strong, nonatomic) IBOutlet CMoveControllerView_iOS *m_moveController;
+@property(unsafe_unretained, nonatomic) CMoveGamepadView *m_moveGamepad;
 @property (strong, nonatomic) IBOutlet CRotateControllerView_iOS *m_rotateController;
 
 @end
@@ -43,11 +43,11 @@
     self.m_scene = new CGameMainMenuScene();
     self.m_scene->Load(root);
 
-    CMainMenuView* mainMenu = new CMainMenuView();
-    root->FillUIView(mainMenu, "main_menu.rml");
-    root->AddUIEventListener(mainMenu);
+    self.m_moveGamepad = new CMoveGamepadView();
+    root->FillUIView(self.m_moveGamepad, "moveGamepad.rml");
+    root->AddUIEventListener(self.m_moveGamepad);
     
-    [self.m_moveController AddEventListener:self.m_scene->Get_CharacterController()];
+    self.m_moveGamepad->AddEventListener(self.m_scene->Get_CharacterController());
     [self.m_rotateController AddEventListener:self.m_scene->Get_CharacterController()];
 }
 
@@ -59,7 +59,6 @@
 - (void)viewDidUnload
 {
     [self setM_glView:nil];
-    [self setM_moveController:nil];
     [self setM_rotateController:nil];
     [super viewDidUnload];
 }

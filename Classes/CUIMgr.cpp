@@ -44,21 +44,29 @@ CUIMgr::~CUIMgr(void)
 void CUIMgr::OnInputTapRecognizerPressed(i32 _x, i32 _y)
 {
     assert(m_uiContext != nullptr);
-    m_uiContext->ProcessMouseMove(_x, _y, 0);
+    Set_Touch(_x, _y);
     m_uiContext->ProcessMouseButtonDown(0, 0);
 }
 
 void CUIMgr::OnInputTapRecognizerMoved(i32 _x, i32 _y)
 {
     assert(m_uiContext != nullptr);
-    m_uiContext->ProcessMouseMove(_x, _y, 0);
+    Set_Touch(_x, _y);
 }
 
 void CUIMgr::OnInputTapRecognizerReleased(i32 _x, i32 _y)
 {
     assert(m_uiContext != nullptr);
-    m_uiContext->ProcessMouseMove(_x, _y, 0);
+    Set_Touch(_x, _y);
     m_uiContext->ProcessMouseButtonUp(0, 0);
+}
+
+void CUIMgr::Set_Touch(i32 _x, i32 _y)
+{
+    assert(m_uiContext != nullptr);
+    m_touchX = _x;
+    m_touchY = _y;
+    m_uiContext->ProcessMouseMove(m_touchX, m_touchY, 0);
 }
 
 void CUIMgr::OnPresent(void)
@@ -79,21 +87,17 @@ void CUIMgr::FillUIView(IUIView_INTERFACE *_view, const std::string &_filename)
 	{
 		document->Show();
 		document->RemoveReference();
-        Rocket::Core::Element* button = document->GetElementById("buttonExtId");
-        button->SetProperty("left", Rocket::Core::Property(80.0f, Rocket::Core::Property::PX));
-        button->SetClass("buttonExt2", true);
-        assert(button != nullptr);
 	}
     assert(_view != nullptr);
     _view->Set_Document(document);
 }
 
-void CUIMgr::PerformEvent(const std::string &_command)
+void CUIMgr::PerformUIEvent(const std::string &_command)
 {
     for(std::set<CUIEventCallback_INTERFACE*>::iterator iterator = m_uiEventListenersContainer.begin(); iterator != m_uiEventListenersContainer.end(); ++iterator)
     {
         CUIEventCallback_INTERFACE* listener = (*iterator);
-        listener->Get_Commands()->DispatchEventDidPerform(_command);
+        listener->Get_Commands()->DispatchUIEventDidPerform(_command, m_touchX, m_touchY);
     }
 }
 

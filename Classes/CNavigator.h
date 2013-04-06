@@ -28,6 +28,8 @@ protected:
     f32* m_heightmapData;
     ui32 m_heightmapWidth;
     ui32 m_heightmapHeight;
+    
+    CNavigator(void);
 
 public:
 
@@ -54,10 +56,7 @@ public:
         return m_position;
     };
     
-    virtual inline void Set_Position(const glm::vec3& _position)
-    {
-        m_position = _position;
-    };
+    virtual void Set_Position(const glm::vec3& _position);
 
     inline glm::vec3 Get_Rotation(void)
     {

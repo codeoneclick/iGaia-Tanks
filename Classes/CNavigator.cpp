@@ -9,6 +9,11 @@
 #include "CNavigator.h"
 #include "CHeightmapHelper.h"
 
+CNavigator::CNavigator(void)
+{
+    
+}
+
 CNavigator::CNavigator(f32 _moveForwardSpeed,
                        f32 _moveBackwardSpeed,
                        f32 _strafeSpeed,
@@ -31,6 +36,27 @@ CNavigator::CNavigator(f32 _moveForwardSpeed,
     m_heightmapData = _heightmapData;
     m_heightmapWidth = _heightmapWidth;
     m_heightmapHeight = _heightmapHeight;
+}
+
+void CNavigator::Set_Position(const glm::vec3 &_position)
+{
+    assert(m_heightmapData != nullptr);
+    assert(m_heightmapHeight != 0);
+    assert(m_heightmapWidth != 0);
+    
+    if(floorf(_position.x) >= m_heightmapWidth ||
+       floorf(_position.x) < 0 ||
+       floorf(_position.z) >= m_heightmapHeight ||
+       floorf(_position.z) < 0
+       )
+    {
+        assert(false);
+    }
+    
+    f32 height = CHeightmapHelper::Get_HeightValue(m_heightmapData, m_heightmapWidth, m_heightmapHeight, _position);
+    m_position = glm::vec3(_position.x, height, _position.z);
+    glm::vec2 rotationOnHeightmap = CHeightmapHelper::Get_RotationOnHeightmap(m_heightmapData, m_heightmapWidth, m_heightmapHeight, m_position);
+    m_rotation = glm::vec3(rotationOnHeightmap.x, m_rotation.y, rotationOnHeightmap.y);
 }
 
 bool CNavigator::MoveForward(void)

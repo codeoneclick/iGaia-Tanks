@@ -22,7 +22,7 @@ CUIShellEventHandler::~CUIShellEventHandler(void)
 void CUIShellEventHandler::ProcessEvent(Rocket::Core::Event& _event)
 {
     assert(m_uiMgr != nullptr);
-	m_uiMgr->PerformEvent(m_command.CString());
+	m_uiMgr->PerformUIEvent(m_command.CString());
 }
 
 void CUIShellEventHandler::OnDetach(Rocket::Core::Element* ROCKET_UNUSED(element))

@@ -33,6 +33,8 @@
 		21BFC90E16EE68F700FA9F50 /* CGameMainMenuSceneViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90C16EE68F600FA9F50 /* CGameMainMenuSceneViewController.mm */; };
 		21BFC90F16EE68F700FA9F50 /* CGameMainMenuSceneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21BFC90D16EE68F600FA9F50 /* CGameMainMenuSceneViewController.xib */; };
 		21BFC91416F137B300FA9F50 /* CLandscapeChunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC91216F137B300FA9F50 /* CLandscapeChunk.cpp */; };
+		21C737F4170EC40000E0BC0F /* moveGamepad.rcss in Resources */ = {isa = PBXBuildFile; fileRef = 21C737F2170EC40000E0BC0F /* moveGamepad.rcss */; };
+		21C737F5170EC40000E0BC0F /* moveGamepad.rml in Resources */ = {isa = PBXBuildFile; fileRef = 21C737F3170EC40000E0BC0F /* moveGamepad.rml */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		4D27E4840F9AD71900447247 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4830F9AD71900447247 /* OpenGLES.framework */; };
 		4D27E4B50F9AD7D600447247 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4B40F9AD7D600447247 /* QuartzCore.framework */; };
@@ -248,7 +250,7 @@
 		A453D61317048DAB008AB922 /* IUIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A453D61117048DAA008AB922 /* IUIView.cpp */; };
 		A465C16016F0B8CB009404ED /* CHeightmapHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A465C15E16F0B8CB009404ED /* CHeightmapHelper.cpp */; };
 		A465C16D16F0BFFC009404ED /* CMoveControllerCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A465C16B16F0BFFB009404ED /* CMoveControllerCallback.cpp */; };
-		A465C17116F0C821009404ED /* CMoveControllerView_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = A465C17016F0C821009404ED /* CMoveControllerView_iOS.mm */; };
+		A465C17116F0C821009404ED /* CMoveGamepadView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A465C17016F0C821009404ED /* CMoveGamepadView.cpp */; };
 		A465C17416F0CA50009404ED /* CCharacterController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A465C17216F0CA4F009404ED /* CCharacterController.cpp */; };
 		A468349416E7836100D34692 /* CSceneUpdateMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A468349216E7836100D34692 /* CSceneUpdateMgr.cpp */; };
 		A46834E616EDF87600D34692 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -537,6 +539,8 @@
 		21BFC90D16EE68F600FA9F50 /* CGameMainMenuSceneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CGameMainMenuSceneViewController.xib; sourceTree = "<group>"; };
 		21BFC91216F137B300FA9F50 /* CLandscapeChunk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLandscapeChunk.cpp; sourceTree = "<group>"; };
 		21BFC91316F137B300FA9F50 /* CLandscapeChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLandscapeChunk.h; sourceTree = "<group>"; };
+		21C737F2170EC40000E0BC0F /* moveGamepad.rcss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = moveGamepad.rcss; path = Resources/Bundle/moveGamepad.rcss; sourceTree = "<group>"; };
+		21C737F3170EC40000E0BC0F /* moveGamepad.rml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = moveGamepad.rml; path = Resources/Bundle/moveGamepad.rml; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4D27E4830F9AD71900447247 /* OpenGLES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4D27E4B40F9AD7D600447247 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1022,8 +1026,8 @@
 		A465C16916F0BD88009404ED /* HGameEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGameEnum.h; sourceTree = "<group>"; };
 		A465C16B16F0BFFB009404ED /* CMoveControllerCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMoveControllerCallback.cpp; sourceTree = "<group>"; };
 		A465C16C16F0BFFC009404ED /* CMoveControllerCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMoveControllerCallback.h; sourceTree = "<group>"; };
-		A465C16F16F0C821009404ED /* CMoveControllerView_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMoveControllerView_iOS.h; sourceTree = "<group>"; };
-		A465C17016F0C821009404ED /* CMoveControllerView_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CMoveControllerView_iOS.mm; sourceTree = "<group>"; };
+		A465C16F16F0C821009404ED /* CMoveGamepadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMoveGamepadView.h; sourceTree = "<group>"; };
+		A465C17016F0C821009404ED /* CMoveGamepadView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMoveGamepadView.cpp; sourceTree = "<group>"; };
 		A465C17216F0CA4F009404ED /* CCharacterController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCharacterController.cpp; sourceTree = "<group>"; };
 		A465C17316F0CA4F009404ED /* CCharacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCharacterController.h; sourceTree = "<group>"; };
 		A468349216E7836100D34692 /* CSceneUpdateMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneUpdateMgr.cpp; sourceTree = "<group>"; };
@@ -1458,19 +1462,11 @@
 				A406001E17008E55006848E3 /* CollisionMgr */,
 				21BFC90016EE640600FA9F50 /* iOS */,
 				A4DF956D16C3E8620004EB83 /* Common */,
-				93B6BB761484149300E34B78 /* Nodes */,
 				21904E1216E2B7DC00A1689A /* SceneGraph */,
 				A41C870C16DE065A003DA026 /* RenderMgr */,
 				931217E4146D0DA500DDC82D /* ResourceMgr */,
 			);
 			name = Core;
-			sourceTree = "<group>";
-		};
-		93B6BB761484149300E34B78 /* Nodes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Nodes;
 			sourceTree = "<group>";
 		};
 		93FB580715174DA500E096A9 /* Libs */ = {
@@ -1971,6 +1967,8 @@
 		A4060A3C1701E371006848E3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				21C737F2170EC40000E0BC0F /* moveGamepad.rcss */,
+				21C737F3170EC40000E0BC0F /* moveGamepad.rml */,
 				A4060A641702F40B006848E3 /* invader.rcss */,
 				A4060A651702F40C006848E3 /* main_menu.rml */,
 				A4060A661702F40C006848E3 /* rkt.rcss */,
@@ -2075,8 +2073,8 @@
 		A465C16E16F0C7F9009404ED /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A465C16F16F0C821009404ED /* CMoveControllerView_iOS.h */,
-				A465C17016F0C821009404ED /* CMoveControllerView_iOS.mm */,
+				A465C16F16F0C821009404ED /* CMoveGamepadView.h */,
+				A465C17016F0C821009404ED /* CMoveGamepadView.cpp */,
 				A480207316F89A7F00BC9901 /* CRotateControllerView_iOS.h */,
 				A480207416F89A7F00BC9901 /* CRotateControllerView_iOS.mm */,
 				A453D60517046055008AB922 /* CMainMenuView.h */,
@@ -2742,6 +2740,8 @@
 				A4060A691702F40D006848E3 /* main_menu.rml in Resources */,
 				A4060A6A1702F40D006848E3 /* rkt.rcss in Resources */,
 				A4060A6B1702F40D006848E3 /* window.rml in Resources */,
+				21C737F4170EC40000E0BC0F /* moveGamepad.rcss in Resources */,
+				21C737F5170EC40000E0BC0F /* moveGamepad.rml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2827,7 +2827,7 @@
 				21BFC90E16EE68F700FA9F50 /* CGameMainMenuSceneViewController.mm in Sources */,
 				A465C16016F0B8CB009404ED /* CHeightmapHelper.cpp in Sources */,
 				A465C16D16F0BFFC009404ED /* CMoveControllerCallback.cpp in Sources */,
-				A465C17116F0C821009404ED /* CMoveControllerView_iOS.mm in Sources */,
+				A465C17116F0C821009404ED /* CMoveGamepadView.cpp in Sources */,
 				A465C17416F0CA50009404ED /* CCharacterController.cpp in Sources */,
 				21BFC91416F137B300FA9F50 /* CLandscapeChunk.cpp in Sources */,
 				A480206516F21C2700BC9901 /* CObject3dBasisProcessor.cpp in Sources */,
@@ -3001,14 +3001,14 @@
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					"\"${PROJECT_DIR}\"/**",
 					"\"$(SRCROOT)/Libs/gtest-1.6.0/include\"",
 					"\"$(SRCROOT)/Libs/libRocket/Include\"",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "iGaia-CartoonPanzers";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -3036,14 +3036,14 @@
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					"\"${PROJECT_DIR}\"/**",
 					"\"$(SRCROOT)/Libs/gtest-1.6.0/include\"",
 					"\"$(SRCROOT)/Libs/libRocket/Include\"",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "iGaia-CartoonPanzers";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

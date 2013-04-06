@@ -37,12 +37,16 @@ protected:
     E_ROTATE_CONTROLLER_DIRECTION m_rotateDirection;
     glm::vec3 m_position;
     glm::vec3 m_rotation;
+    f32 m_lookAtHeight;
 
     void OnMoveControllerUpdate(ui32 _direction);
     void OnRotateControllerUpdate(ui32 _direction);
     void OnUpdate(f32 _deltatime);
 
     glm::vec3 SmoothRotation(const glm::vec3& _oldRotation, const glm::vec3& _newRotation);
+    
+    glm::vec3 Get_CameraLookAt(void);
+    glm::vec3 Get_CharacterRotation(void);
 
 public:
 
@@ -92,6 +96,11 @@ public:
     {
         return m_rotation;
     };
+    
+    inline void Set_LookAtHeight(f32 _lookAtHeight)
+    {
+        m_lookAtHeight = _lookAtHeight;
+    }
 };
 
 #endif 

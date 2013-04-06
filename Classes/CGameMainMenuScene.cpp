@@ -10,6 +10,7 @@
 #include "CMainLoop.h"
 #include "CPanzer.h"
 #include "CCommon.h"
+#include "CCollisionNavigator.h"
 
 CGameMainMenuScene::CGameMainMenuScene(void)
 {
@@ -31,12 +32,15 @@ CGameMainMenuScene::~CGameMainMenuScene(void)
 
 void CGameMainMenuScene::Load(IRoot* _root)
 {
-	m_camera = _root->CreateCamera(45.0f, 0.1f, 1000.0f, glm::vec4(0.0f, 0.0f, Get_ScreenWidth(), Get_ScreenHeight()));
+	m_camera = _root->CreateCamera(60.0f,
+                                   0.1f,
+                                   256.0f,
+                                   glm::vec4(0.0f, 0.0f, Get_ScreenWidth(), Get_ScreenHeight()));
     _root->Set_Camera(m_camera);
     m_camera->Set_Position(glm::vec3(0.0f, 0.0f, 0.0f));
     m_camera->Set_LookAt(glm::vec3(16.0f, 0.0f, 16.0f));
-    m_camera->Set_Distance(16.0f);
-    m_camera->Set_Height(8.0f);
+    m_camera->Set_Distance(4.0f);
+    m_camera->Set_Height(2.0f);
 
     m_light = _root->CreateLight();
     m_light->Set_Position(glm::vec3(32.0f, 128.0f, 32.0f));
@@ -70,18 +74,22 @@ void CGameMainMenuScene::Load(IRoot* _root)
     m_characterController->Set_Camera(m_camera);
     m_characterController->Set_Character(mainPanzer);
     m_characterController->Set_Shadow(mainPanzerShadow);
+    m_characterController->Set_LookAtHeight(1.4f);
 
-	CNavigator* navigator = new CNavigator(
-		0.3f, 
-		0.15f,
-		0.0f,
-		0.025f,
-		m_landscape->Get_HeightmapData(),
-		m_landscape->Get_HeightmapWidth(),
-		m_landscape->Get_HeightmapHeight());
+	CCollisionNavigator* navigator = new CCollisionNavigator(
+                                                             0.3f,
+                                                             0.15f,
+                                                             0.0f,
+                                                             0.025f,
+                                                             m_landscape->Get_HeightmapData(),
+                                                             m_landscape->Get_HeightmapWidth(),
+                                                             m_landscape->Get_HeightmapHeight(),
+                                                             glm::vec3(0.5f, 0.5f, 0.5f),
+                                                             glm::vec3(-0.5f, -0.5f, -0.5f));
 
-	navigator->Set_Position(glm::vec3(0.0f, 0.0f, 0.0f));
+	navigator->Set_Position(glm::vec3(4.0f, 0.0f, 4.0f));
     navigator->Set_Rotation(glm::vec3(0.0f, 0.0f, 0.0f));
+    _root->InsertCollider(navigator, false);
 
 	m_characterController->Set_Navigator(navigator);
     ConnectToMainLoop(m_characterController);

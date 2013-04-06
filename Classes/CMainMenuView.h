@@ -21,7 +21,7 @@ private:
 
 protected:
 
-    void OnPerform(const std::string& _command);
+    void OnUIEventPerform(const std::string& _command, i32 _x, i32 _y);
 
 public:
     

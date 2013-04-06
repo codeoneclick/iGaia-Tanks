@@ -11,7 +11,7 @@
 
 #include "HCommon.h"
 
-typedef std::function<void(const std::string& _command)> __EVENT_DID_PERFORM;
+typedef std::function<void(const std::string& _command, i32 _x, i32 _y)> __UI_EVENT_DID_PERFORM;
 
 class CUIEventCallback final
 {
@@ -19,33 +19,33 @@ class CUIEventCallback final
 private:
 
     friend class CUIEventCallback_INTERFACE;
-    __EVENT_DID_PERFORM m_eventDidPerformCallback;
+    __UI_EVENT_DID_PERFORM m_uiEventDidPerformCallback;
 
 protected:
 
     CUIEventCallback(void) {};
 
-    void ConnectEventDidPreformCallback(const __EVENT_DID_PERFORM& _listener);
+    void ConnectUIEventDidPreformCallback(const __UI_EVENT_DID_PERFORM& _listener);
 
 public:
 
     ~CUIEventCallback(void) {};
 
-    void DispatchEventDidPerform(const std::string& _command);
+    void DispatchUIEventDidPerform(const std::string& _command, i32 _x, i32 _y);
 };
 
 class CUIEventCallback_INTERFACE
 {
 private:
 
-    CUIEventCallback m_eventPerformCallback;
-    void ConnectCallbacks(void);
+    CUIEventCallback m_uiEventPerformCallback;
+    void ConnectUIEventCallbacks(void);
 
 protected:
 
     CUIEventCallback_INTERFACE(void);
 
-    virtual void OnPerform(const std::string& _command) = 0;
+    virtual void OnUIEventPerform(const std::string& _command, i32 _x, i32 _y) = 0;
 
 public:
 
@@ -53,7 +53,7 @@ public:
 
     inline CUIEventCallback* Get_Commands(void)
     {
-        return &m_eventPerformCallback;
+        return &m_uiEventPerformCallback;
     };
 };
 

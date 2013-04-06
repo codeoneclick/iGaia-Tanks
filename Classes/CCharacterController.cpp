@@ -18,6 +18,7 @@ CCharacterController::CCharacterController(void)
 
     m_position = glm::vec3(0.0f, 0.0f, 0.0f);
     m_rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+    m_lookAtHeight = 0.0f;
 }
 
 CCharacterController::~CCharacterController(void)
@@ -28,6 +29,20 @@ CCharacterController::~CCharacterController(void)
 glm::vec3 CCharacterController::SmoothRotation(const glm::vec3& _oldRotation, const glm::vec3& _newRotation)
 {
     return glm::mix(_oldRotation, _newRotation, 0.5f);
+}
+
+glm::vec3 CCharacterController::Get_CameraLookAt(void)
+{
+    glm::vec3 cameraLookAt = m_position;
+    cameraLookAt.y += m_lookAtHeight;
+    return cameraLookAt;
+}
+
+glm::vec3 CCharacterController::Get_CharacterRotation(void)
+{
+    glm::vec3 characterRotation = glm::degrees(m_rotation);
+    characterRotation.y += 90.0f;
+    return characterRotation;
 }
 
 void CCharacterController::OnMoveControllerUpdate(ui32 _direction)
@@ -121,21 +136,17 @@ void CCharacterController::OnUpdate(f32 _deltatime)
     m_rotation = m_navigator->Get_Rotation();
 
     assert(m_camera != nullptr);
-    m_camera->Set_LookAt(m_position);
+    m_camera->Set_LookAt(Get_CameraLookAt());
     m_camera->Set_Rotation(m_rotation.y);
 
     assert(m_shadow != nullptr);
     m_shadow->Set_Position(m_position);
-    glm::vec3 shadowRotation = glm::degrees(m_rotation);
-    shadowRotation.y += 90.0f;
-    m_shadow->Set_Rotation(shadowRotation);
+    m_shadow->Set_Rotation(Get_CharacterRotation());
 
     assert(m_character != nullptr);
     m_character->Set_Position(m_position);
     glm::vec3 oldCharacterRotation = m_character->Get_Rotation();
-    glm::vec3 newCharacterRotation = glm::degrees(m_rotation);
-    newCharacterRotation.y += 90.0f;
-    m_character->Set_Rotation(SmoothRotation(oldCharacterRotation, newCharacterRotation));
+    m_character->Set_Rotation(SmoothRotation(oldCharacterRotation, Get_CharacterRotation()));
 }
 
 

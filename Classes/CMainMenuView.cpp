@@ -18,7 +18,8 @@ CMainMenuView::~CMainMenuView(void)
     
 }
 
-void CMainMenuView::OnPerform(const std::string &_command)
+void CMainMenuView::OnUIEventPerform(const std::string &_command, i32 _x, i32 _y)
 {
     std::cout<<_command<<std::endl;
+    std::cout<<"x: "<<_x<<" y: "<<_y<<std::endl;
 }

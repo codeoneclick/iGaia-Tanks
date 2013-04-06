@@ -46,8 +46,13 @@ protected:
     void OnInputTapRecognizerMoved(i32 _x, i32 _y);
     void OnInputTapRecognizerReleased(i32 _x, i32 _y);
 
+    i32 m_touchX;
+    i32 m_touchY;
+    
+    void Set_Touch(i32 _x, i32 _y);
+    
     void OnPresent(void);
-    void PerformEvent(const std::string& _command);
+    void PerformUIEvent(const std::string& _command);
 
 public:
 

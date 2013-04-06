@@ -8,25 +8,25 @@
 
 #include "CUIEventCallback.h"
 
-void CUIEventCallback::ConnectEventDidPreformCallback(const __EVENT_DID_PERFORM &_listener)
+void CUIEventCallback::ConnectUIEventDidPreformCallback(const __UI_EVENT_DID_PERFORM &_listener)
 {
     assert(_listener != nullptr);
-    m_eventDidPerformCallback = _listener;
+    m_uiEventDidPerformCallback = _listener;
 }
 
 
-void CUIEventCallback::DispatchEventDidPerform(const std::string &_command)
+void CUIEventCallback::DispatchUIEventDidPerform(const std::string& _command, i32 _x, i32 _y)
 {
-    assert(m_eventDidPerformCallback != nullptr);
-    m_eventDidPerformCallback(_command);
+    assert(m_uiEventDidPerformCallback != nullptr);
+    m_uiEventDidPerformCallback(_command, _x, _y);
 }
 
 CUIEventCallback_INTERFACE::CUIEventCallback_INTERFACE(void)
 {
-    ConnectCallbacks();
+    ConnectUIEventCallbacks();
 }
 
-void CUIEventCallback_INTERFACE::ConnectCallbacks(void)
+void CUIEventCallback_INTERFACE::ConnectUIEventCallbacks(void)
 {
-    m_eventPerformCallback.ConnectEventDidPreformCallback(std::bind(&CUIEventCallback_INTERFACE::OnPerform, this, std::placeholders::_1));
+    m_uiEventPerformCallback.ConnectUIEventDidPreformCallback(std::bind(&CUIEventCallback_INTERFACE::OnUIEventPerform, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 }
