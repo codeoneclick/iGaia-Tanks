@@ -35,6 +35,9 @@
 		21BFC91416F137B300FA9F50 /* CLandscapeChunk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC91216F137B300FA9F50 /* CLandscapeChunk.cpp */; };
 		21C737F4170EC40000E0BC0F /* moveGamepad.rcss in Resources */ = {isa = PBXBuildFile; fileRef = 21C737F2170EC40000E0BC0F /* moveGamepad.rcss */; };
 		21C737F5170EC40000E0BC0F /* moveGamepad.rml in Resources */ = {isa = PBXBuildFile; fileRef = 21C737F3170EC40000E0BC0F /* moveGamepad.rml */; };
+		21C7381417106E6900E0BC0F /* CBuilding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C7381217106E6900E0BC0F /* CBuilding.cpp */; };
+		21C7381717106EBD00E0BC0F /* CBuildingSettings_PARSER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C7381517106EBD00E0BC0F /* CBuildingSettings_PARSER.cpp */; };
+		21C7381A1710740300E0BC0F /* building_quest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21C738191710740300E0BC0F /* building_quest.xml */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		4D27E4840F9AD71900447247 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4830F9AD71900447247 /* OpenGLES.framework */; };
 		4D27E4B50F9AD7D600447247 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4B40F9AD7D600447247 /* QuartzCore.framework */; };
@@ -541,6 +544,11 @@
 		21BFC91316F137B300FA9F50 /* CLandscapeChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLandscapeChunk.h; sourceTree = "<group>"; };
 		21C737F2170EC40000E0BC0F /* moveGamepad.rcss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = moveGamepad.rcss; path = Resources/Bundle/moveGamepad.rcss; sourceTree = "<group>"; };
 		21C737F3170EC40000E0BC0F /* moveGamepad.rml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = moveGamepad.rml; path = Resources/Bundle/moveGamepad.rml; sourceTree = "<group>"; };
+		21C7381217106E6900E0BC0F /* CBuilding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBuilding.cpp; sourceTree = "<group>"; };
+		21C7381317106E6900E0BC0F /* CBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBuilding.h; sourceTree = "<group>"; };
+		21C7381517106EBD00E0BC0F /* CBuildingSettings_PARSER.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBuildingSettings_PARSER.cpp; sourceTree = "<group>"; };
+		21C7381617106EBD00E0BC0F /* CBuildingSettings_PARSER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBuildingSettings_PARSER.h; sourceTree = "<group>"; };
+		21C738191710740300E0BC0F /* building_quest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = building_quest.xml; path = Resources/Bundle/building_quest.xml; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4D27E4830F9AD71900447247 /* OpenGLES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4D27E4B40F9AD7D600447247 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1286,6 +1294,26 @@
 				21BFC90216EE644B00FA9F50 /* CGLWindow_iOS.mm */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		21C7380517106E3800E0BC0F /* Buildings */ = {
+			isa = PBXGroup;
+			children = (
+				21C7381317106E6900E0BC0F /* CBuilding.h */,
+				21C7381217106E6900E0BC0F /* CBuilding.cpp */,
+			);
+			name = Buildings;
+			sourceTree = "<group>";
+		};
+		21C7381817106FA600E0BC0F /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				A4A22F0016FC623B00C02B8E /* CPanzerSettings_PARSER.h */,
+				A4A22EFF16FC623A00C02B8E /* CPanzerSettings_PARSER.cpp */,
+				21C7381617106EBD00E0BC0F /* CBuildingSettings_PARSER.h */,
+				21C7381517106EBD00E0BC0F /* CBuildingSettings_PARSER.cpp */,
+			);
+			name = Parsers;
 			sourceTree = "<group>";
 		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
@@ -2142,6 +2170,7 @@
 		A4828B5317004B5200EB7A7D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				21C738191710740300E0BC0F /* building_quest.xml */,
 				A4828BB8170059DC00EB7A7D /* particle_emitter_01.xml */,
 				A4828BA417004C9800EB7A7D /* landscape_decal_01.xml */,
 				A4828BA517004C9800EB7A7D /* panzer_light_settings.xml */,
@@ -2280,14 +2309,14 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
-		A4ED79DC16FC891600B48F6B /* Panzer */ = {
+		A4ED79DC16FC891600B48F6B /* Panzers */ = {
 			isa = PBXGroup;
 			children = (
 				A4ED79E716FC8A8300B48F6B /* Spares */,
 				A4A22EFA16FC531000C02B8E /* CPanzer.h */,
 				A4A22EF916FC530F00C02B8E /* CPanzer.cpp */,
 			);
-			name = Panzer;
+			name = Panzers;
 			sourceTree = "<group>";
 		};
 		A4ED79DD16FC892900B48F6B /* Support */ = {
@@ -2332,8 +2361,7 @@
 		A4ED79E116FC89A400B48F6B /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				A4A22F0016FC623B00C02B8E /* CPanzerSettings_PARSER.h */,
-				A4A22EFF16FC623A00C02B8E /* CPanzerSettings_PARSER.cpp */,
+				21C7381817106FA600E0BC0F /* Parsers */,
 				A4A22EFD16FC588700C02B8E /* CGameSettingsMgr.h */,
 				A4A22EFC16FC588700C02B8E /* CGameSettingsMgr.cpp */,
 			);
@@ -2379,11 +2407,12 @@
 		CE8DFA8E14587A8200AE7288 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				21C7380517106E3800E0BC0F /* Buildings */,
 				A4ED79E616FC8A2700B48F6B /* Callbacks */,
 				A4ED79DF16FC894400B48F6B /* MainMenu */,
 				A4ED79DE16FC893700B48F6B /* Mgrs */,
 				A4ED79DD16FC892900B48F6B /* Support */,
-				A4ED79DC16FC891600B48F6B /* Panzer */,
+				A4ED79DC16FC891600B48F6B /* Panzers */,
 				A465C16E16F0C7F9009404ED /* Views */,
 				21BFC90916EE68C100FA9F50 /* CGameAppDelegate.h */,
 				21BFC90816EE68C000FA9F50 /* CGameAppDelegate.mm */,
@@ -2742,6 +2771,7 @@
 				A4060A6B1702F40D006848E3 /* window.rml in Resources */,
 				21C737F4170EC40000E0BC0F /* moveGamepad.rcss in Resources */,
 				21C737F5170EC40000E0BC0F /* moveGamepad.rml in Resources */,
+				21C7381A1710740300E0BC0F /* building_quest.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2900,6 +2930,8 @@
 				A453D61317048DAB008AB922 /* IUIView.cpp in Sources */,
 				A438C84E1704AD9E00C3D756 /* CUIEventCallback.cpp in Sources */,
 				A438C85C170588E300C3D756 /* CRoot.cpp in Sources */,
+				21C7381417106E6900E0BC0F /* CBuilding.cpp in Sources */,
+				21C7381717106EBD00E0BC0F /* CBuildingSettings_PARSER.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

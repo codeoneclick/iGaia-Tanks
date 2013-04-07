@@ -13,6 +13,7 @@
 #include "CRoot.h"
 #include "CCharacterController.h"
 #include "CGameSettingsMgr.h"
+#include "CBuilding.h"
 
 class CGameMainMenuScene
 {
@@ -24,7 +25,7 @@ protected:
 
     CCamera* m_camera;
     CLight* m_light;
-    CShape3d* m_shape3d;
+    CBuilding* m_buildingQuest;
     CParticleEmitter* m_particleEmitter;
     CLandscape* m_landscape;
     COcean* m_ocean;

@@ -27,6 +27,7 @@ public:
     ~CGameSettingsMgr(void);
 
     SPanzerSettings* Get_PanzerSettings(const std::string& _filename);
+    SBuildingSettings* Get_BuildingSettigns(const std::string& _filename);
 };
 
 #endif 

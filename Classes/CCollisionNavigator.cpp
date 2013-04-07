@@ -42,6 +42,19 @@ CCollisionNavigator::~CCollisionNavigator(void)
     
 }
 
+void CCollisionNavigator::Set_Position(const glm::vec3 &_position)
+{
+    assert(m_heightmapHeight != 0);
+    assert(m_heightmapWidth != 0);
+    
+    if(!IsPrecomputedPositionValid(_position))
+    {
+        assert(false);
+    }
+    assert(m_box2dBody != nullptr);
+    m_box2dBody->SetTransform(b2Vec2(_position.x, _position.z), m_box2dBody->GetAngle());
+}
+
 void CCollisionNavigator::OnBox2dCollide(CCollisionCallback_INTERFACE* _collider)
 {
     
@@ -49,13 +62,12 @@ void CCollisionNavigator::OnBox2dCollide(CCollisionCallback_INTERFACE* _collider
 
 void CCollisionNavigator::OnBox2dPositionChanged(const glm::vec3& _position)
 {
-    Set_Position(_position);
+    CNavigator::Set_Position(_position);
 }
 
 void CCollisionNavigator::OnBox2dRotationChanged(f32 _angle)
 {
-    m_rotation.y = _angle;
-    Set_Rotation(m_rotation);
+    
 }
 
 glm::vec3 CCollisionNavigator::Get_Box2dCenter(void)
@@ -72,3 +84,48 @@ glm::vec3 CCollisionNavigator::Get_Box2dMinBound(void)
 {
     return m_minBound;
 }
+
+bool CCollisionNavigator::MoveForward(void)
+{
+    b2Vec2 velocity = b2Vec2(0.0f, 0.0f);
+    velocity.x += sinf(m_rotation.y) * m_moveForwardSpeed * 50.0f;
+    velocity.y += cosf(m_rotation.y) * m_moveForwardSpeed * 50.0f;
+    assert(m_box2dBody != nullptr);
+    m_box2dBody->SetAwake(true);
+    m_box2dBody->SetLinearVelocity(velocity);
+    return true;
+}
+
+bool CCollisionNavigator::MoveBackward(void)
+{
+    b2Vec2 velocity = b2Vec2(0.0f, 0.0f);
+    velocity.x -= sinf(m_rotation.y) * m_moveBackwardSpeed * 50.0f;
+    velocity.y -= cosf(m_rotation.y) * m_moveBackwardSpeed * 50.0f;
+    assert(m_box2dBody != nullptr);
+    m_box2dBody->SetAwake(true);
+    m_box2dBody->SetLinearVelocity(velocity);
+    return true;
+}
+
+bool CCollisionNavigator::MoveLeft(void)
+{
+    glm::vec3 precomputePosition = glm::vec3(m_position.x - sinf(m_rotation.y) * m_strafeSpeed, 0.0f, m_position.z - cosf(m_rotation.y) * m_strafeSpeed);
+    if(!IsPrecomputedPositionValid(precomputePosition))
+    {
+        return false;
+    }
+    Set_Position(precomputePosition);
+    return true;
+}
+
+bool CCollisionNavigator::MoveRight(void)
+{
+    glm::vec3 precomputePosition = glm::vec3(m_position.x + sinf(m_rotation.y) * m_strafeSpeed, 0.0f, m_position.z + cosf(m_rotation.y) * m_strafeSpeed);
+    if(!IsPrecomputedPositionValid(precomputePosition))
+    {
+        return false;
+    }
+    Set_Position(precomputePosition);
+    return true;
+}
+

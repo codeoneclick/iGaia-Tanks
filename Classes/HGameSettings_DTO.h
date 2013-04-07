@@ -44,4 +44,9 @@ struct SPanzerSettings : public IGameSettings
     SChassisSettings m_chassisSettings;
 };
 
+struct SBuildingSettings : public IGameSettings
+{
+    std::string m_shapeSettingsFilename;
+};
+
 #endif

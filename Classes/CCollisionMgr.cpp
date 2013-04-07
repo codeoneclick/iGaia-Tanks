@@ -54,8 +54,12 @@ void CCollisionMgr::AddCollisionEventListener(CCollisionCallback_INTERFACE *_lis
 	_listener->Get_Box2dBodyDefinition()->userData = _listener;
     _listener->Set_Box2dBody(m_box2dWorld->CreateBody(_listener->Get_Box2dBodyDefinition()));
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(( _listener->Get_Commands()->DispatchMaxboundDidRetrive().x - _listener->Get_Commands()->DispatchMinboundDidRetrive().x) / 2.0f,
-                        (_listener->Get_Commands()->DispatchMaxboundDidRetrive().z - _listener->Get_Commands()->DispatchMinboundDidRetrive().z) / 2.0f);
+    
+    glm::vec3 maxBound = _listener->Get_Commands()->DispatchMaxboundDidRetrive();
+    glm::vec3 minBound = _listener->Get_Commands()->DispatchMinboundDidRetrive();
+    
+	dynamicBox.SetAsBox((maxBound.x - minBound.x) / 2.0f,
+                        (maxBound.z - minBound.z) / 2.0f);
 	_listener->Get_Box2dBody()->CreateFixture(&dynamicBox, 1);
 }
 
@@ -72,6 +76,7 @@ void CCollisionMgr::OnUpdate(f32 _deltatime)
     {
         return;
     }
+    m_box2dWorld->Step(1.0f / 30.0f, 1, 1);
 
     for(std::set<CCollisionCallback_INTERFACE*>::iterator iterator = m_collidersContainer.begin(); iterator !=  m_collidersContainer.end(); ++iterator)
     {
@@ -93,14 +98,10 @@ void CCollisionMgr::BeginContact(b2Contact* contact)
     CCollisionCallback_INTERFACE* bodyUserData_01 = static_cast<CCollisionCallback_INTERFACE*>(contact->GetFixtureA()->GetBody()->GetUserData());
     CCollisionCallback_INTERFACE* bodyUserData_02 = static_cast<CCollisionCallback_INTERFACE*>(contact->GetFixtureB()->GetBody()->GetUserData());
        
-    if(bodyUserData_01 != nullptr)
-    {
-        bodyUserData_02->Get_Commands()->DispatchDidCollide(bodyUserData_01);
-    }
-    
-    if(bodyUserData_02 != nullptr)
+    if(bodyUserData_01 != nullptr && bodyUserData_02 != nullptr)
     {
         bodyUserData_01->Get_Commands()->DispatchDidCollide(bodyUserData_02);
+        bodyUserData_02->Get_Commands()->DispatchDidCollide(bodyUserData_01);
     }
 }
 

@@ -8,6 +8,7 @@
 
 #include "CGameSettingsMgr.h"
 #include "CPanzerSettings_PARSER.h"
+#include "CBuildingSettings_PARSER.h"
 
 CGameSettingsMgr::CGameSettingsMgr(void)
 {
@@ -35,6 +36,18 @@ SPanzerSettings* CGameSettingsMgr::Get_PanzerSettings(const std::string &_filena
     if(settings == nullptr)
     {
         CPanzerSettings_PARSER parser;
+        settings = parser.Deserialize(_filename);
+        m_settingsContainer.insert(std::make_pair(_filename, settings));
+    }
+    return settings;
+}
+
+SBuildingSettings* CGameSettingsMgr::Get_BuildingSettigns(const std::string &_filename)
+{
+    SBuildingSettings* settings = static_cast<SBuildingSettings*>(Get_CachedSettings(_filename));
+    if(settings == nullptr)
+    {
+        CBuildingSettings_PARSER parser;
         settings = parser.Deserialize(_filename);
         m_settingsContainer.insert(std::make_pair(_filename, settings));
     }

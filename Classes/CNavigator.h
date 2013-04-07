@@ -30,6 +30,8 @@ protected:
     ui32 m_heightmapHeight;
     
     CNavigator(void);
+    
+    bool IsPrecomputedPositionValid(const glm::vec3& _position);
 
 public:
 

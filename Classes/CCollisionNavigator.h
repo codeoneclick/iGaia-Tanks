@@ -45,6 +45,8 @@ public:
     
     ~CCollisionNavigator(void);
     
+    void Set_Position(const glm::vec3& _position);
+    
     inline void Set_MaxBound(const glm::vec3& _maxBound)
     {
         m_maxBound = _maxBound;
@@ -53,7 +55,12 @@ public:
     inline void Set_MinBound(const glm::vec3& _minBound)
     {
         m_minBound = _minBound;
-    }
+    };
+    
+    bool MoveForward(void);
+    bool MoveBackward(void);
+    bool MoveLeft(void);
+    bool MoveRight(void);
 };
 
 #endif 
