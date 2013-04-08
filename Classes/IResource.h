@@ -20,12 +20,12 @@ private:
 protected:
 
     std::string m_name;
-    ui32 m_referencesCount;
+    bool m_isLinked;
     E_RESOURCE_TYPE m_resourceType;
     
 public:
     
-    IResource_INTERFACE(void);
+    IResource_INTERFACE(E_RESOURCE_TYPE _resourceType);
     virtual ~IResource_INTERFACE(void);
 
     inline std::string Get_Name(void)
@@ -38,20 +38,10 @@ public:
     {
         return m_resourceType;
     };
-
-    inline void IncReferencesCount(void)
+    
+    inline bool isLinked(void)
     {
-        m_referencesCount++;
-    };
-
-    inline void DecReferencesCount(void)
-    {
-        m_referencesCount--;
-    };
-
-    inline ui32 Get_ReferencesCount(void)
-    {
-        return m_referencesCount;
+        return !m_isLinked;
     };
 };
 

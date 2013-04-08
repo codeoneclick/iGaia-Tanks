@@ -35,7 +35,7 @@ void COcean::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _s
     m_waveGeneratorTimer = 0.0f;
     m_waveGeneratorInterval = settings->m_waveGeneratorInterval;
 
-    CVertexBuffer* vertexBuffer = new CVertexBuffer(4, GL_STATIC_DRAW);
+    std::unique_ptr<CVertexBuffer> vertexBuffer = std::unique_ptr<CVertexBuffer>(new CVertexBuffer(4, GL_STATIC_DRAW));
     SVertex* vertexData = vertexBuffer->Lock();
 
     vertexData[0].m_position = glm::vec3(0.0f,  settings->m_altitude,  0.0f);
@@ -50,7 +50,7 @@ void COcean::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _s
 
     vertexBuffer->Unlock();
 
-    CIndexBuffer* indexBuffer = new CIndexBuffer(6, GL_STATIC_DRAW);
+    std::unique_ptr<CIndexBuffer> indexBuffer = std::unique_ptr<CIndexBuffer>(new CIndexBuffer(6, GL_STATIC_DRAW));
     ui16* indexData = indexBuffer->Lock();
 
     indexData[0] = 0;
@@ -62,7 +62,8 @@ void COcean::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _s
 
     indexBuffer->Unlock();
 
-    m_mesh = new CMesh(vertexBuffer, indexBuffer);
+    m_mesh = new CMesh();
+    m_mesh->Link(std::move(vertexBuffer), std::move(indexBuffer));
 
     std::vector<const SMaterialSettings*> m_materialsSettings = settings->m_materialsSettings;
     for(const SMaterialSettings* materialSettings : m_materialsSettings)
@@ -88,7 +89,7 @@ void COcean::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _s
         for(const STextureSettings* textureSettings : materialSettings->m_texturesSettings)
         {
             CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name);
-            texture->Set_WrapMode(textureSettings->m_wrap);
+            texture->Set_Wrap(textureSettings->m_wrap);
             assert(texture != nullptr);
             assert(textureSettings->m_slot >= 0 && textureSettings->m_slot < E_TEXTURE_SLOT_MAX);
             m_materials[materialSettings->m_renderMode]->Set_Texture(texture, static_cast<E_TEXTURE_SLOT>(textureSettings->m_slot));

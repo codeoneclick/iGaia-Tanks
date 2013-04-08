@@ -82,11 +82,14 @@ void CHeightmapProcessor::Process(const std::string& _heightmapFilename, const g
             glm::vec3 maxBound = glm::vec3( -4096.0f, -4096.0f, -4096.0f );
             glm::vec3 minBound = glm::vec3(  4096.0f,  4096.0f,  4096.0f );
             
-            CVertexBuffer* vertexBuffer = CreateVertexBuffer(i, j, m_chunkWidth * m_chunkHeight, GL_STATIC_DRAW, &maxBound, &minBound);
-            CIndexBuffer* indexBuffer = CreateIndexBuffer();
-            CObject3dBasisProcessor::ProcessNormals(vertexBuffer, indexBuffer);
-            CObject3dBasisProcessor::ProcessTangentsAndBinormals(vertexBuffer, indexBuffer);
-            m_chunksContainer[i + j * m_numChunkRows] = new CMesh(vertexBuffer, indexBuffer, maxBound, minBound);
+            std::unique_ptr<CVertexBuffer> vertexBuffer = std::unique_ptr<CVertexBuffer>(CreateVertexBuffer(i, j, m_chunkWidth * m_chunkHeight, GL_STATIC_DRAW, &maxBound, &minBound));
+            std::unique_ptr<CIndexBuffer> indexBuffer = std::unique_ptr<CIndexBuffer>(CreateIndexBuffer());
+            CObject3dBasisProcessor::ProcessNormals(vertexBuffer.get(), indexBuffer.get());
+            CObject3dBasisProcessor::ProcessTangentsAndBinormals(vertexBuffer.get(), indexBuffer.get());
+            CMesh* mesh = new CMesh();
+            mesh->Link(std::move(vertexBuffer), std::move(indexBuffer), maxBound, minBound);
+            m_chunksContainer[i + j * m_numChunkRows] = mesh;
+            
         }
     }
 }
@@ -122,8 +125,9 @@ CTexture* CHeightmapProcessor::PreprocessHeightmapTexture(void)
     }
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_width, m_height, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, data);
 
-    m_heightmapTexture = new CTexture(textureHandle, m_width, m_height);
-    m_heightmapTexture->Set_WrapMode(GL_CLAMP_TO_EDGE);
+    m_heightmapTexture = new CTexture();
+    m_heightmapTexture->Link(textureHandle, m_width, m_height);
+    m_heightmapTexture->Set_Wrap(GL_CLAMP_TO_EDGE);
     return m_heightmapTexture;
 }
 
@@ -166,8 +170,9 @@ CTexture* CHeightmapProcessor::PreprocessSplattingTexture(void)
     }
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_width, m_height, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, data);
 
-    m_splattingTexture = new CTexture(textureHandle, m_width, m_height);
-    m_splattingTexture->Set_WrapMode(GL_CLAMP_TO_EDGE);
+    m_splattingTexture = new CTexture();
+    m_splattingTexture->Link(textureHandle, m_width, m_height);
+    m_splattingTexture->Set_Wrap(GL_CLAMP_TO_EDGE);
     return m_splattingTexture;
 }
 
@@ -238,8 +243,9 @@ CTexture* CHeightmapProcessor::PreprocessEdgesMaskTexture(void)
     }
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, edgesMaskWidth, edgesMaskHeight, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, data);
     
-    m_edgesMaskTexture = new CTexture(textureHandle, edgesMaskWidth, edgesMaskHeight);
-    m_edgesMaskTexture->Set_WrapMode(GL_CLAMP_TO_EDGE);
+    m_edgesMaskTexture = new CTexture();
+    m_edgesMaskTexture->Link(textureHandle, edgesMaskWidth, edgesMaskHeight);
+    m_edgesMaskTexture->Set_Wrap(GL_CLAMP_TO_EDGE);
     return m_edgesMaskTexture;
 }
 

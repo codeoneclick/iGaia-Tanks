@@ -28,7 +28,7 @@ IResource_INTERFACE* CTextureMgr::StartLoadOperation(const std::string& _filenam
         if(m_resourceContainer.find(_filename) != m_resourceContainer.end())
         {
             texture = static_cast<CTexture*>(m_resourceContainer[_filename]);
-            texture->IncReferencesCount();
+
         }
         else
         {
@@ -38,7 +38,6 @@ IResource_INTERFACE* CTextureMgr::StartLoadOperation(const std::string& _filenam
             {
                 texture = static_cast<CTexture*>(operation->Build());
                 m_resourceContainer.insert(std::make_pair(_filename, texture));
-                texture->IncReferencesCount();
             }
             delete operation;
         }

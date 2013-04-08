@@ -21,7 +21,6 @@ IResourceMgr_INTERFACE::~IResourceMgr_INTERFACE(void)
 void IResourceMgr_INTERFACE::Dispatch(CResourceLoadCallback_INTERFACE* _listener, IResource_INTERFACE* _resource)
 {
     _listener->Get_Commands()->DispatchResourceDidLoad(_resource);
-    _resource->IncReferencesCount();
 }
 
 void IResourceMgr_INTERFACE::AddListener(CResourceLoadCallback_INTERFACE* _listener, ILoadOperation_INTERFACE* _operation)
@@ -79,12 +78,7 @@ void IResourceMgr_INTERFACE::UnloadResource(IResource_INTERFACE *_resource)
     std::map<std::string, IResource_INTERFACE*>::iterator iterator = m_resourceContainer.find(_resource->Get_Name());
     if(iterator != m_resourceContainer.end())
     {
-        _resource->DecReferencesCount();
-        if(_resource->Get_ReferencesCount() == 0)
-        {
-            m_resourceContainer.erase(iterator);
-            delete _resource;
-        }
+        
     }
     else
     {

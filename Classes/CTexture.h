@@ -14,18 +14,21 @@
 class CTexture : public IResource_INTERFACE
 {   
 private:
-
-protected:
-
+    
     ui32 m_width;
     ui32 m_height;
     ui32 m_handle;
-    ui32 m_wrapMode;
+    ui32 m_wrap;
+
+protected:
+
     
 public:
     
-    CTexture(ui32 _handle, ui32 _width, ui32 _height);
+    CTexture(void);
     ~CTexture(void);
+    
+    void Link(ui32 _handle, ui32 _width, ui32 _height);
     
     inline ui32 Get_Handle(void)
     {
@@ -42,7 +45,7 @@ public:
         return m_height;
     };
 
-    void Set_WrapMode(ui32 _mode);
+    void Set_Wrap(ui32 _wrap);
     
     void Bind(void);
     void Unbind(void);

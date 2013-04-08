@@ -28,7 +28,6 @@ IResource_INTERFACE* CMeshMgr::StartLoadOperation(const std::string& _filename, 
         if(m_resourceContainer.find(_filename) != m_resourceContainer.end())
         {
             mesh = static_cast<CMesh*>(m_resourceContainer[_filename]);
-            mesh->IncReferencesCount();
         }
         else
         {
@@ -38,7 +37,6 @@ IResource_INTERFACE* CMeshMgr::StartLoadOperation(const std::string& _filename, 
             {
                 mesh = static_cast<CMesh*>(operation->Build());
                 m_resourceContainer.insert(std::make_pair(_filename, mesh));
-                mesh->IncReferencesCount();
             }
             delete operation;
         }

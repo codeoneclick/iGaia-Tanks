@@ -39,7 +39,7 @@ Rocket::Core::CompiledGeometryHandle CUIShellRenderMgr_INTERFACE::CompileGeometr
 	CTexture* texture = (CTexture*)_texture;
 	assert(texture != nullptr);
 
-    CVertexBuffer* vertexBuffer = new CVertexBuffer(_numVertexes, GL_STATIC_DRAW);
+    std::unique_ptr<CVertexBuffer> vertexBuffer = std::unique_ptr<CVertexBuffer>(new CVertexBuffer(_numVertexes, GL_STATIC_DRAW));
     SVertex* vertexData = vertexBuffer->Lock();
 
 	f32 screenWidth = Get_ScreenWidth();
@@ -55,7 +55,7 @@ Rocket::Core::CompiledGeometryHandle CUIShellRenderMgr_INTERFACE::CompileGeometr
 
     vertexBuffer->Unlock();
 
-    CIndexBuffer* indexBuffer = new CIndexBuffer(_numIndexes, GL_STATIC_DRAW);
+    std::unique_ptr<CIndexBuffer> indexBuffer = std::unique_ptr<CIndexBuffer>(new CIndexBuffer(_numIndexes, GL_STATIC_DRAW));
     ui16* indexData = indexBuffer->Lock();
 
     for(ui32 i = 0; i < _numIndexes; ++i)
@@ -64,7 +64,8 @@ Rocket::Core::CompiledGeometryHandle CUIShellRenderMgr_INTERFACE::CompileGeometr
     }
 
     indexBuffer->Unlock();
-    CMesh* mesh = new CMesh(vertexBuffer, indexBuffer);
+    CMesh* mesh = new CMesh();
+    mesh->Link(std::move(vertexBuffer), std::move(indexBuffer));
 
 	SUIElement* guiElement = new SUIElement(mesh, texture);
 
@@ -137,7 +138,8 @@ bool CUIShellRenderMgr_INTERFACE::GenerateTexture(Rocket::Core::TextureHandle& _
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	CTexture* texture = new CTexture(textureHandle, _textureDimensions.x, _textureDimensions.y);
+	CTexture* texture = new CTexture();
+    texture->Link(textureHandle, _textureDimensions.x, _textureDimensions.y);
 	_texture = (Rocket::Core::TextureHandle)texture;
 
     return true;

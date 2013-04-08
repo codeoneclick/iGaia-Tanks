@@ -193,7 +193,8 @@ IResource_INTERFACE* CLoadOperation_PVR::Build(void)
 		}
 	}
 
-    CTexture* texture = new CTexture(handle, m_width, m_height);
+    CTexture* texture = new CTexture();
+    texture->Link(handle, m_width, m_height);
     Register(texture);
     return texture;
 }

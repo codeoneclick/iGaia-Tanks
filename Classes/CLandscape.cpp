@@ -58,7 +58,7 @@ void CLandscape::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite
         for(const STextureSettings* textureSettings : materialSettings->m_texturesSettings)
         {
             CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name);
-            texture->Set_WrapMode(textureSettings->m_wrap);
+            texture->Set_Wrap(textureSettings->m_wrap);
             assert(texture != nullptr);
             assert(textureSettings->m_slot < E_TEXTURE_SLOT_MAX);
             m_materials[materialSettings->m_renderMode]->Set_Texture(texture, static_cast<E_TEXTURE_SLOT>(textureSettings->m_slot));
@@ -115,7 +115,7 @@ void CLandscape::CreateLandscapeEdges(CResourceMgrsFacade* _resourceMgrsFacade, 
     CMaterial* landscapeEdgesMaterial = new CMaterial(shader);
 
     CTexture* texture = _resourceMgrsFacade->LoadTexture(_settings->m_edgesTextureFileName);
-    texture->Set_WrapMode(GL_REPEAT);
+    texture->Set_Wrap(GL_REPEAT);
     assert(texture != nullptr);
     landscapeEdgesMaterial->Set_Texture(texture, E_TEXTURE_SLOT_01);
     landscapeEdgesMaterial->Set_Texture(m_heightmapProcessor->PreprocessEdgesMaskTexture(), E_TEXTURE_SLOT_02);

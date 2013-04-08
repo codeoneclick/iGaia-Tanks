@@ -19,28 +19,30 @@ private:
 
 protected:
 
-    CVertexBuffer* m_vertexBuffer;
-    CIndexBuffer* m_indexBuffer;
+    std::unique_ptr<CVertexBuffer> m_vertexBuffer;
+    std::unique_ptr<CIndexBuffer> m_indexBuffer;
 
     glm::vec3 m_maxBound;
     glm::vec3 m_minBound;
 
 public:
 
-    CMesh(CVertexBuffer* _vertexBuffer, CIndexBuffer* _indexBuffer);
-    CMesh(CVertexBuffer* _vertexBuffer, CIndexBuffer* _indexBuffer, const glm::vec3& _maxBound, const glm::vec3& _minBound);
+    CMesh(void);
     ~CMesh(void);
+    
+    void Link(std::unique_ptr<CVertexBuffer> _vertexBuffer, std::unique_ptr<CIndexBuffer> _indexBuffer);
+    void Link(std::unique_ptr<CVertexBuffer> _vertexBuffer, std::unique_ptr<CIndexBuffer> _indexBuffer, const glm::vec3& _maxBound, const glm::vec3& _minBound);
 
     inline CVertexBuffer* Get_VertexBuffer(void)
     {
         assert(m_vertexBuffer != nullptr);
-        return m_vertexBuffer;
+        return m_vertexBuffer.get();
     };
     
     inline CIndexBuffer* Get_IndexBuffer(void)
     {
         assert(m_indexBuffer != nullptr);
-        return m_indexBuffer;
+        return m_indexBuffer.get();
     };
 
     inline ui32 Get_NumVertexes(void)

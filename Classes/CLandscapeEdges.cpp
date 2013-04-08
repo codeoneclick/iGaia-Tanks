@@ -24,7 +24,7 @@ void CLandscapeEdges::Load(CMaterial* _material, ui32 _width, ui32 _height, cons
     m_height = _height;
     m_materials[E_RENDER_MODE_WORLD_SPACE_COMMON] = _material;
     
-    CVertexBuffer* vertexBuffer = new CVertexBuffer(16, GL_STATIC_DRAW);
+    std::unique_ptr<CVertexBuffer> vertexBuffer = std::unique_ptr<CVertexBuffer>(new CVertexBuffer(16, GL_STATIC_DRAW));
     SVertex* vertexData = vertexBuffer->Lock();
 
     glm::vec3 boundMin = glm::vec3(0.0f, _heightBound.x, 0.0f);
@@ -72,7 +72,7 @@ void CLandscapeEdges::Load(CMaterial* _material, ui32 _width, ui32 _height, cons
 
     vertexBuffer->Unlock();
 
-    CIndexBuffer* indexBuffer = new CIndexBuffer(24, GL_STATIC_DRAW);
+    std::unique_ptr<CIndexBuffer> indexBuffer = std::unique_ptr<CIndexBuffer>(new CIndexBuffer(24, GL_STATIC_DRAW));
     ui16* indexData = indexBuffer->Lock();
 
     indexData[0] = 0;
@@ -105,7 +105,8 @@ void CLandscapeEdges::Load(CMaterial* _material, ui32 _width, ui32 _height, cons
 
     indexBuffer->Unlock();
 
-    m_mesh = new CMesh(vertexBuffer, indexBuffer);
+    m_mesh = new CMesh();
+    m_mesh->Link(std::move(vertexBuffer), std::move(indexBuffer));
 }
 
 void CLandscapeEdges::OnResourceDidLoad(IResource_INTERFACE* _resource)

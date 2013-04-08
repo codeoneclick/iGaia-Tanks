@@ -105,17 +105,18 @@ void CLoadOperation_MDL::Load(const std::string& _filename)
 
 IResource_INTERFACE* CLoadOperation_MDL::Build(void)
 {
-    CVertexBuffer* vertexBuffer = new CVertexBuffer(m_numVertexes, GL_STATIC_DRAW);
+    std::unique_ptr<CVertexBuffer> vertexBuffer = std::unique_ptr<CVertexBuffer>(new CVertexBuffer(m_numVertexes, GL_STATIC_DRAW));
     SVertex* vertexData = vertexBuffer->Lock();
     memcpy(vertexData, m_vertexData , sizeof(SVertex) * m_numVertexes);
     vertexBuffer->Unlock();
 
-    CIndexBuffer* indexBuffer = new CIndexBuffer(m_numIndexes, GL_STATIC_DRAW);
+    std::unique_ptr<CIndexBuffer> indexBuffer = std::unique_ptr<CIndexBuffer>(new CIndexBuffer(m_numIndexes, GL_STATIC_DRAW));
     ui16* indexData = indexBuffer->Lock();
     memcpy(indexData, m_indexData, sizeof(ui16) * m_numIndexes);
     indexBuffer->Unlock();
 
-    CMesh* mesh = new CMesh(vertexBuffer, indexBuffer, m_maxBound, m_minBound);
+    CMesh* mesh = new CMesh();
+    mesh->Link(std::move(vertexBuffer), std::move(indexBuffer), m_maxBound, m_minBound);
     Register(mesh);
     return mesh;
 }

@@ -30,7 +30,7 @@ void CParticleEmitter::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderCom
 
     m_particles = new SParticle[m_settings->m_numParticles];
 
-    CVertexBuffer* vertexBuffer = new CVertexBuffer(m_settings->m_numParticles * 4, GL_STREAM_DRAW);
+    std::unique_ptr<CVertexBuffer> vertexBuffer = std::unique_ptr<CVertexBuffer>(new CVertexBuffer(m_settings->m_numParticles * 4, GL_STREAM_DRAW));
     SVertex* vertexData = vertexBuffer->Lock();
 
     for(ui32 i = 0; i < m_settings->m_numParticles; ++i)
@@ -45,7 +45,7 @@ void CParticleEmitter::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderCom
     }
     vertexBuffer->Unlock();
 
-    CIndexBuffer* indexBuffer = new CIndexBuffer(m_settings->m_numParticles * 6, GL_STREAM_DRAW);
+    std::unique_ptr<CIndexBuffer> indexBuffer = std::unique_ptr<CIndexBuffer>(new CIndexBuffer(m_settings->m_numParticles * 6, GL_STREAM_DRAW));
     ui16* indexData = indexBuffer->Lock();
 
     for(ui32 i = 0; i < m_settings->m_numParticles; ++i)
@@ -61,7 +61,8 @@ void CParticleEmitter::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderCom
 
     indexBuffer->Unlock();
 
-    m_mesh = new CMesh(vertexBuffer, indexBuffer);
+    m_mesh = new CMesh();
+    m_mesh->Link(std::move(vertexBuffer), std::move(indexBuffer));
 
     std::vector<const SMaterialSettings*> m_materialsSettings = m_settings->m_materialsSettings;
     for(const SMaterialSettings* materialSettings : m_materialsSettings)
@@ -87,7 +88,7 @@ void CParticleEmitter::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderCom
         for(const STextureSettings* textureSettings : materialSettings->m_texturesSettings)
         {
             CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name);
-            texture->Set_WrapMode(textureSettings->m_wrap);
+            texture->Set_Wrap(textureSettings->m_wrap);
             assert(texture != nullptr);
             assert(textureSettings->m_slot >= 0 && textureSettings->m_slot < E_TEXTURE_SLOT_MAX);
             m_materials[materialSettings->m_renderMode]->Set_Texture(texture, static_cast<E_TEXTURE_SLOT>(textureSettings->m_slot));

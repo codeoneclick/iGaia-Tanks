@@ -31,7 +31,7 @@ protected:
     ui32 m_numVertexes;
     i32 m_currentHandleIndex;
     ui32 m_handles[K_NUM_REPLACEMENT_VERTEX_BUFFERS];
-    SVertex* m_data;
+    std::unique_ptr<SVertex> m_data;
     GLenum m_mode;
 
 public:
@@ -51,7 +51,7 @@ public:
     inline SVertex* Lock(void)
     {
         assert(m_data != nullptr);
-        return m_data;
+        return m_data.get();
     };
     
     void Unlock(void);

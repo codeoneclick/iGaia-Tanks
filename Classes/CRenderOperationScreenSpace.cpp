@@ -33,10 +33,11 @@ CRenderOperationScreenSpace::CRenderOperationScreenSpace(ui32 _frameWidth, ui32 
 
     assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
 
-    m_operatingTexture = new CTexture(textureHandle, m_frameWidth, m_frameHeight);
-    m_operatingTexture->Set_WrapMode(GL_CLAMP_TO_EDGE);
+    m_operatingTexture = new CTexture();
+    m_operatingTexture->Link(textureHandle, m_frameWidth, m_frameHeight);
+    m_operatingTexture->Set_Wrap(GL_CLAMP_TO_EDGE);
 
-    CVertexBuffer* vertexBuffer = new CVertexBuffer(4, GL_STATIC_DRAW);
+    std::unique_ptr<CVertexBuffer> vertexBuffer = std::unique_ptr<CVertexBuffer>(new CVertexBuffer(4, GL_STATIC_DRAW));
     SVertex* vertexData = vertexBuffer->Lock();
     vertexData[0].m_position = glm::vec3(-1.0f,-1.0f,0.0f);
     vertexData[0].m_texcoord = glm::vec2(0.0f,0.0f);
@@ -48,7 +49,7 @@ CRenderOperationScreenSpace::CRenderOperationScreenSpace(ui32 _frameWidth, ui32 
     vertexData[3].m_texcoord = glm::vec2(1.0f,1.0f);
     vertexBuffer->Unlock();
 
-    CIndexBuffer* indexBuffer = new CIndexBuffer(6, GL_STATIC_DRAW);
+    std::unique_ptr<CIndexBuffer> indexBuffer = std::unique_ptr<CIndexBuffer>(new CIndexBuffer(6, GL_STATIC_DRAW));
     ui16* indexData = indexBuffer->Lock();
     indexData[0] = 0;
     indexData[1] = 1;
@@ -67,7 +68,8 @@ CRenderOperationScreenSpace::CRenderOperationScreenSpace(ui32 _frameWidth, ui32 
     m_material->Set_BlendFunctionSource(GL_SRC_ALPHA);
     m_material->Set_BlendFunctionDest(GL_ONE_MINUS_SRC_ALPHA);
 
-    m_mesh = new CMesh(vertexBuffer, indexBuffer);
+    m_mesh = new CMesh();
+    m_mesh->Link(std::move(vertexBuffer), std::move(indexBuffer));
 }
 
 CRenderOperationScreenSpace::~CRenderOperationScreenSpace(void)

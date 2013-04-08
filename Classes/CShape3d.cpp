@@ -51,7 +51,7 @@ void CShape3d::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* 
         for(const STextureSettings* textureSettings : materialSettings->m_texturesSettings)
         {
             CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name);
-            texture->Set_WrapMode(textureSettings->m_wrap);
+            texture->Set_Wrap(textureSettings->m_wrap);
             assert(texture != nullptr);
             assert(textureSettings->m_slot >= 0 && textureSettings->m_slot < E_TEXTURE_SLOT_MAX);
             m_materials[materialSettings->m_renderMode]->Set_Texture(texture, static_cast<E_TEXTURE_SLOT>(textureSettings->m_slot));

@@ -62,14 +62,14 @@ void CLandscapeDecal::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComp
         for(const STextureSettings* textureSettings : materialSettings->m_texturesSettings)
         {
             CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name);
-            texture->Set_WrapMode(textureSettings->m_wrap);
+            texture->Set_Wrap(textureSettings->m_wrap);
             assert(texture != nullptr);
             assert(textureSettings->m_slot < E_TEXTURE_SLOT_MAX);
             m_materials[materialSettings->m_renderMode]->Set_Texture(texture, static_cast<E_TEXTURE_SLOT>(textureSettings->m_slot));
         }
     }
 
-    CVertexBuffer* vertexBuffer = new CVertexBuffer(m_width * m_height, GL_STREAM_DRAW);
+    std::unique_ptr<CVertexBuffer> vertexBuffer = std::unique_ptr<CVertexBuffer>(new CVertexBuffer(m_width * m_height, GL_STREAM_DRAW));
     SVertex* vertexData = vertexBuffer->Lock();
     
     ui32 index = 0;
@@ -84,7 +84,7 @@ void CLandscapeDecal::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComp
     }
     vertexBuffer->Unlock();
 
-    CIndexBuffer* indexBuffer = new CIndexBuffer((m_width - 1) * (m_height - 1) * 6, GL_STATIC_DRAW);
+    std::unique_ptr<CIndexBuffer> indexBuffer = std::unique_ptr<CIndexBuffer>(new CIndexBuffer((m_width - 1) * (m_height - 1) * 6, GL_STATIC_DRAW));
     ui16* indexData = indexBuffer->Lock();
     
     index = 0;
@@ -109,7 +109,8 @@ void CLandscapeDecal::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComp
     }
     indexBuffer->Unlock();
     
-    m_mesh = new CMesh(vertexBuffer, indexBuffer);
+    m_mesh = new CMesh();
+    m_mesh->Link(std::move(vertexBuffer), std::move(indexBuffer));
 }
 
 void CLandscapeDecal::OnResourceDidLoad(IResource_INTERFACE* _resource)

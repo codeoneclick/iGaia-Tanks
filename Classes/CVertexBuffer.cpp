@@ -13,14 +13,13 @@ CVertexBuffer::CVertexBuffer(ui32 _numVertexes, GLenum _mode)
     assert(_numVertexes != 0);
     m_numVertexes = _numVertexes;
     m_mode = _mode;
-    m_data = new SVertex[m_numVertexes];
+    m_data = std::unique_ptr<SVertex>(new SVertex[m_numVertexes]);
     m_currentHandleIndex = -1;
     glGenBuffers(K_NUM_REPLACEMENT_VERTEX_BUFFERS, m_handles);
 }
 
 CVertexBuffer::~CVertexBuffer(void)
 {
-    delete[] m_data;
     glDeleteBuffers(K_NUM_REPLACEMENT_VERTEX_BUFFERS, m_handles);
 }
 
@@ -48,7 +47,7 @@ void CVertexBuffer::Unlock(void)
 {
     m_currentHandleIndex = (m_currentHandleIndex >= (K_NUM_REPLACEMENT_VERTEX_BUFFERS - 1)) ? 0 : m_currentHandleIndex + 1;
     glBindBuffer(GL_ARRAY_BUFFER, m_handles[m_currentHandleIndex]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(SVertex) * m_numVertexes, m_data, m_mode);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(SVertex) * m_numVertexes, m_data.get(), m_mode);
 }
 
 void CVertexBuffer::Bind(const std::map<E_SHADER_VERTEX_SLOT, i32>& _slots)

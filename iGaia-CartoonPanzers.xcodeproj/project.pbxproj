@@ -25,7 +25,6 @@
 		21904E3016E2C43500A1689A /* CParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21904E2E16E2C43400A1689A /* CParticleEmitter.cpp */; };
 		21904E3316E2C4FF00A1689A /* CNavigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21904E3116E2C4FE00A1689A /* CNavigator.cpp */; };
 		21904E3616E2C5DE00A1689A /* CHeightmapProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21904E3416E2C5DC00A1689A /* CHeightmapProcessor.cpp */; };
-		21904E3916E2C65600A1689A /* CScreenSpaceRenderProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21904E3716E2C65300A1689A /* CScreenSpaceRenderProcessor.cpp */; };
 		21904E3B16E33D7D00A1689A /* CFrustum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A1FFAA89156CBAE500B01ECB /* CFrustum.cpp */; };
 		21BFC90416EE644B00FA9F50 /* CGLWindow_iOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90216EE644B00FA9F50 /* CGLWindow_iOS.mm */; };
 		21BFC90716EE685700FA9F50 /* CGameMainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21BFC90516EE685600FA9F50 /* CGameMainMenuScene.cpp */; };
@@ -377,7 +376,6 @@
 		A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE919217145736FD0021A0DC /* CTexture.cpp */; };
 		A4A9847E16DCF729007F9CF6 /* CVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A9847C16DCF728007F9CF6 /* CVertexBuffer.cpp */; };
 		A4A9848116DCF73F007F9CF6 /* CIndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A9847F16DCF73E007F9CF6 /* CIndexBuffer.cpp */; };
-		A4A9848316DCFA55007F9CF6 /* MainAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MainAppDelegate.mm */; };
 		A4A9848416DCFA72007F9CF6 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4D8FB3720F9EC1010055EDDB /* main.mm */; };
 /* End PBXBuildFile section */
 
@@ -502,8 +500,6 @@
 		1578F8A315CD80F60056B51E /* ShaderLandscapeEdges.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscapeEdges.frag; path = Shaders/ShaderLandscapeEdges.frag; sourceTree = "<group>"; };
 		1578F8A415CD80F60056B51E /* ShaderLandscapeEdges.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ShaderLandscapeEdges.vert; path = Shaders/ShaderLandscapeEdges.vert; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* MainAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* MainAppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MainAppDelegate.mm; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* iGaia-CartoonPanzers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iGaia-CartoonPanzers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		21904E1316E2B86F00A1689A /* CMainLoopUpdateCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMainLoopUpdateCallback.cpp; sourceTree = "<group>"; };
@@ -528,8 +524,6 @@
 		21904E3216E2C4FE00A1689A /* CNavigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNavigator.h; sourceTree = "<group>"; };
 		21904E3416E2C5DC00A1689A /* CHeightmapProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CHeightmapProcessor.cpp; sourceTree = "<group>"; };
 		21904E3516E2C5DD00A1689A /* CHeightmapProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHeightmapProcessor.h; sourceTree = "<group>"; };
-		21904E3716E2C65300A1689A /* CScreenSpaceRenderProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CScreenSpaceRenderProcessor.cpp; sourceTree = "<group>"; };
-		21904E3816E2C65400A1689A /* CScreenSpaceRenderProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CScreenSpaceRenderProcessor.h; sourceTree = "<group>"; };
 		21BFC8FE16EE5BB800FA9F50 /* CRoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRoot.h; sourceTree = "<group>"; };
 		21BFC90216EE644B00FA9F50 /* CGLWindow_iOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CGLWindow_iOS.mm; sourceTree = "<group>"; };
 		21BFC90316EE644B00FA9F50 /* CGLWindow_iOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGLWindow_iOS.h; sourceTree = "<group>"; };
@@ -1169,7 +1163,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CE8DFA9014587A9400AE7288 /* iPhone */,
 				CE8DFA8E14587A8200AE7288 /* Game */,
 				937367C5144ECDC20051ED8D /* Core */,
 			);
@@ -2047,8 +2040,6 @@
 				93AA2A651487A7CD0073F016 /* CRenderMgr.cpp */,
 				A41C872A16DE5A84003DA026 /* CRenderCallback.h */,
 				A41C872916DE5A83003DA026 /* CRenderCallback.cpp */,
-				21904E3816E2C65400A1689A /* CScreenSpaceRenderProcessor.h */,
-				21904E3716E2C65300A1689A /* CScreenSpaceRenderProcessor.cpp */,
 				A4060A511701FB9D006848E3 /* CRenderPresentCallback.h */,
 				A4060A501701FB9D006848E3 /* CRenderPresentCallback.cpp */,
 			);
@@ -2418,15 +2409,6 @@
 				21BFC90816EE68C000FA9F50 /* CGameAppDelegate.mm */,
 			);
 			name = Game;
-			sourceTree = "<group>";
-		};
-		CE8DFA9014587A9400AE7288 /* iPhone */ = {
-			isa = PBXGroup;
-			children = (
-				1D3623240D0F684500981E51 /* MainAppDelegate.h */,
-				1D3623250D0F684500981E51 /* MainAppDelegate.mm */,
-			);
-			name = iPhone;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2813,7 +2795,6 @@
 				A41C870E16DE08BA003DA026 /* ILoadOperation.cpp in Sources */,
 				A41C870B16DDFF5E003DA026 /* CMesh.cpp in Sources */,
 				A4A9848416DCFA72007F9CF6 /* main.mm in Sources */,
-				A4A9848316DCFA55007F9CF6 /* MainAppDelegate.mm in Sources */,
 				A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */,
 				A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */,
 				A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */,
@@ -2838,7 +2819,6 @@
 				21904E3016E2C43500A1689A /* CParticleEmitter.cpp in Sources */,
 				21904E3316E2C4FF00A1689A /* CNavigator.cpp in Sources */,
 				21904E3616E2C5DE00A1689A /* CHeightmapProcessor.cpp in Sources */,
-				21904E3916E2C65600A1689A /* CScreenSpaceRenderProcessor.cpp in Sources */,
 				A429344A16E4F8F8006A01D0 /* CSceneUpdateCallback.cpp in Sources */,
 				A425B3B016E7503400E300F9 /* CGameObjectSettings_PARSER.cpp in Sources */,
 				A425B3B316E7505000E300F9 /* CShape3dSettings_PARSER.cpp in Sources */,

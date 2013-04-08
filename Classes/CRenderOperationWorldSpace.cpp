@@ -32,8 +32,9 @@ CRenderOperationWorldSpace::CRenderOperationWorldSpace(ui32 _frameWidth, ui32 _f
 
     assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
 
-    m_operatingTexture = new CTexture(textureHandle, m_frameWidth, m_frameHeight);
-    m_operatingTexture->Set_WrapMode(GL_CLAMP_TO_EDGE);
+    m_operatingTexture = new CTexture();
+    m_operatingTexture->Link(textureHandle, m_frameWidth, m_frameHeight);
+    m_operatingTexture->Set_Wrap(GL_CLAMP_TO_EDGE);
 
     m_mode = _mode;
 }

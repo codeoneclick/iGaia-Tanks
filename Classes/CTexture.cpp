@@ -8,13 +8,14 @@
 
 #include "CTexture.h"
 
-CTexture::CTexture(ui32 _handle, ui32 _width, ui32 _height)
+CTexture::CTexture(void) :
+IResource_INTERFACE(E_RESOURCE_TYPE_TEXTURE),
+m_handle(0),
+m_width(0),
+m_height(0),
+m_wrap(GL_REPEAT)
 {
-    m_resourceType = E_RESOURCE_TYPE_TEXTURE;
 
-    m_handle = _handle;
-    m_width = _width;
-    m_height = _height;
 }
 
 CTexture::~CTexture(void)
@@ -22,16 +23,24 @@ CTexture::~CTexture(void)
     glDeleteTextures(1, &m_handle);
 }
 
-void CTexture::Set_WrapMode(ui32 _mode)
+void CTexture::Link(ui32 _handle, ui32 _width, ui32 _height)
 {
-    glBindTexture(GL_TEXTURE_2D, m_handle);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, _mode);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, _mode);
+    m_handle = _handle;
+    m_width = _width;
+    m_height = _height;
+    m_isLinked = true;
+}
+
+void CTexture::Set_Wrap(ui32 _wrap)
+{
+    m_wrap = _wrap;
 }
 
 void CTexture::Bind(void)
 {
     glBindTexture(GL_TEXTURE_2D, m_handle);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, m_wrap);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, m_wrap);
 }
 
 void CTexture::Unbind(void)
