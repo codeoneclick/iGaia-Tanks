@@ -61,7 +61,7 @@ void CLandscapeDecal::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComp
 
         for(const STextureSettings* textureSettings : materialSettings->m_texturesSettings)
         {
-            CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name);
+            CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name).get();
             texture->Set_Wrap(textureSettings->m_wrap);
             assert(texture != nullptr);
             assert(textureSettings->m_slot < E_TEXTURE_SLOT_MAX);
@@ -113,7 +113,7 @@ void CLandscapeDecal::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComp
     m_mesh->Link(std::move(vertexBuffer), std::move(indexBuffer));
 }
 
-void CLandscapeDecal::OnResourceDidLoad(IResource_INTERFACE* _resource)
+void CLandscapeDecal::OnResourceDidLoad(TSharedPtrResource _resource)
 {
     CGameObject3d::OnResourceDidLoad(_resource);
 }

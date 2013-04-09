@@ -1,10 +1,3 @@
-//
-//  CResourceMgr.h
-//  iGaia
-//
-//  Created by Snow Leopard User on 24/10/2011.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
 
 #ifndef CResourceMgr_h
 #define CResourceMgr_h
@@ -31,11 +24,11 @@ public:
     CResourceMgrsFacade(void);
     ~CResourceMgrsFacade(void);
 
-    void LoadTexture(const std::string& _filename, CResourceLoadCallback_INTERFACE* _listener);
-    CTexture* LoadTexture(const std::string& _filename);
+    void LoadTexture(const std::string& _filename, CResourceLoadingCommands* _observer);
+    TSharedPtrTexture LoadTexture(const std::string& _filename);
 
-    void LoadMesh(const std::string& _filename, CResourceLoadCallback_INTERFACE* _listener);
-    CMesh* LoadMesh(const std::string& _filename);
+    void LoadMesh(const std::string& _filename, CResourceLoadingCommands* _observer);
+    TSharedPtrMesh LoadMesh(const std::string& _filename);
 
     SShape3dSettings* LoadShape3dSettings(const std::string& _filename);
     SLandscapeSettings* LoadLandscapeSettings(const std::string& _filename);
@@ -45,9 +38,9 @@ public:
     SSkyDomeSettings* LoadSkyDomeSettings(const std::string& _filename);
     SParticleEmitterSettings* LoadParticleEmitterSettings(const std::string& _filename);
 
-    void CancelLoadResource(CResourceLoadCallback_INTERFACE* _listener);
+    void CancelLoadResource(CResourceLoadingCommands* _listener);
 
-    void UnloadResource(IResource_INTERFACE* _resource);
+    void UnloadResource(TSharedPtrResource _resource);
 
     void Update(void);
 };

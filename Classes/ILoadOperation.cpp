@@ -19,11 +19,11 @@ void ILoadOperation_INTERFACE::_Register(IResource_INTERFACE* _resource)
     _resource->m_name = m_name;
 }
 
-void ILoadOperation_INTERFACE::Execute_ResourceLoadCallbacks(TSharedPtrResource _resource)
+void ILoadOperation_INTERFACE::Notify_ResourceLoadingObservers(TSharedPtrResource _resource)
 {
-    for(CResourceLoadCallback* _listener : m_listeners)
+    for(CResourceLoadingCommands* _observer : m_observers)
     {
-		_listener->Execute_OnResourceDidLoadCallback(_resource);
+		_observer->Execute_OnResourceDidLoadCallback(_resource);
     }
-    m_listeners.clear();
+    m_observers.clear();
 }

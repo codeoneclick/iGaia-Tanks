@@ -1,10 +1,3 @@
-//
-//  CLoadOperation_PVR.cpp
-//  iGaia
-//
-//  Created by Sergey Sergeev on 2/27/13.
-//
-//
 
 #include "CLoadOperation_PVR.h"
 #include "CCommon.h"

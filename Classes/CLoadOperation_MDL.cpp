@@ -1,10 +1,3 @@
-//
-//  CLoadOperation_MDL.cpp
-//  iGaia
-//
-//  Created by Sergey Sergeev on 2/27/13.
-//
-//
 
 #include "CLoadOperation_MDL.h"
 #include "CCommon.h"

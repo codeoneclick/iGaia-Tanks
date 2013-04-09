@@ -24,7 +24,7 @@ void CShape3d::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* 
     SShape3dSettings* settings = _resourceMgrsFacade->LoadShape3dSettings(_filename);
     assert(settings != nullptr);
 
-    m_mesh = _resourceMgrsFacade->LoadMesh(settings->m_meshName);
+    m_mesh = _resourceMgrsFacade->LoadMesh(settings->m_meshName).get();
     assert(m_mesh != nullptr);
 
     std::vector<const SMaterialSettings*> m_materialsSettings = settings->m_materialsSettings;
@@ -50,7 +50,7 @@ void CShape3d::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* 
 
         for(const STextureSettings* textureSettings : materialSettings->m_texturesSettings)
         {
-            CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name);
+            CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name).get();
             texture->Set_Wrap(textureSettings->m_wrap);
             assert(texture != nullptr);
             assert(textureSettings->m_slot >= 0 && textureSettings->m_slot < E_TEXTURE_SLOT_MAX);
@@ -59,7 +59,7 @@ void CShape3d::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* 
     }
 }
 
-void CShape3d::OnResourceDidLoad(IResource_INTERFACE* _resource)
+void CShape3d::OnResourceDidLoad(TSharedPtrResource _resource)
 {
     CGameObject3d::OnResourceDidLoad(_resource);
 }

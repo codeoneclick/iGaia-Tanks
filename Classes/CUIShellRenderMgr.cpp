@@ -115,7 +115,7 @@ bool CUIShellRenderMgr_INTERFACE::LoadTexture(Rocket::Core::TextureHandle& _text
 	std::string filename = _filename.CString();
 	filename = filename.substr(filename.find_last_of("\\/") + 1);
 	assert(m_resourceMgrsFacade != nullptr);
-	CTexture* texture = m_resourceMgrsFacade->LoadTexture(filename);
+	CTexture* texture = m_resourceMgrsFacade->LoadTexture(filename).get();
 	assert(texture != nullptr);
 	_texture = (Rocket::Core::TextureHandle)texture;
 	_textureDimensions.x = texture->Get_Width();

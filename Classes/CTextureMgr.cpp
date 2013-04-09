@@ -1,10 +1,4 @@
-//
-//  CTextureController.cpp
-//  iGaia
-//
-//  Created by Snow Leopard User on 24/10/2011.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
+
 #include "CTextureMgr.h"
 #include "CTexture.h"
 #include "CLoadOperation_PVR.h"
@@ -19,15 +13,15 @@ CTextureMgr::~CTextureMgr(void)
     
 }
 
-IResource_INTERFACE* CTextureMgr::StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadCallback_INTERFACE* _listener)
+TSharedPtrResource CTextureMgr::StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadingCommands* _observer)
 {
-    CTexture* texture = nullptr;
+    TSharedPtrTexture texture = nullptr;
     
     if(_thread == E_RESOURCE_LOAD_THREAD_SYNC)
     {
         if(m_resourceContainer.find(_filename) != m_resourceContainer.end())
         {
-            texture = static_cast<CTexture*>(m_resourceContainer[_filename]);
+            texture = std::static_pointer_cast<CTexture>(m_resourceContainer[_filename]);
         }
         else
         {
@@ -35,7 +29,7 @@ IResource_INTERFACE* CTextureMgr::StartLoadOperation(const std::string& _filenam
             operation->Load(_filename);
             if(operation->Get_Status() == E_PARSER_STATUS_DONE)
             {
-				texture = static_cast<CTexture*>(operation->Link());
+				texture = TSharedPtrTexture(static_cast<CTexture*>(operation->Link()));
                 m_resourceContainer.insert(std::make_pair(_filename, texture));
             }
         }
@@ -44,8 +38,8 @@ IResource_INTERFACE* CTextureMgr::StartLoadOperation(const std::string& _filenam
     {
         if(m_resourceContainer.find(_filename) != m_resourceContainer.end())
         {
-            CTexture* texture = static_cast<CTexture*>(m_resourceContainer[_filename]);
-            Dispatch(_listener, texture);
+            texture = std::static_pointer_cast<CTexture>(m_resourceContainer[_filename]);
+            Notify_ResourceLoadingObserver(_observer, texture);
         }
         else
         {
@@ -54,9 +48,8 @@ IResource_INTERFACE* CTextureMgr::StartLoadOperation(const std::string& _filenam
                 TSharedPtrLoadOperation operation = TSharedPtrLoadOperation(new CLoadOperation_PVR());
                 m_operationsQueue.insert(std::make_pair(_filename, operation));
             }
-
-			CLoadOperation_PVR* operation = static_cast<CLoadOperation_PVR*>(m_operationsQueue.find(_filename)->second.get());
-            AddListener(_listener, operation);
+            TSharedPtrLoadOperation operation = m_operationsQueue.find(_filename)->second;
+            operation->Register_ResourceLoadingObserver(_observer);
         }
     }
     return texture;

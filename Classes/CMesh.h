@@ -13,6 +13,9 @@
 #include "CVertexBuffer.h"
 #include "CIndexBuffer.h"
 
+class CMesh;
+typedef std::shared_ptr<CMesh> TSharedPtrMesh;
+
 class CMesh : public IResource_INTERFACE
 {   
 private:

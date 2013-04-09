@@ -21,7 +21,7 @@ private:
 
 protected:
 
-    void OnResourceDidLoad(IResource_INTERFACE* _resource);
+    void OnResourceDidLoad(TSharedPtrResource _resource);
 
     void OnUpdate(f32 _deltatime);
 

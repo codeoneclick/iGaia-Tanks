@@ -20,7 +20,7 @@
 class CGameObject3d :
 public CSceneUpdateCallback_INTERFACE,
 public CRenderCallback_INTERFACE,
-public CResourceLoadCallback_INTERFACE
+public CResourceLoading_INTERFACE
 {
 private:
 
@@ -46,7 +46,7 @@ protected:
     CRenderMgr* m_renderMgr;
     CSceneUpdateMgr* m_updateMgr;
 
-    virtual void OnResourceDidLoad(IResource_INTERFACE* _resource);
+    virtual void OnResourceDidLoad(TSharedPtrResource _resource);
 
     virtual void OnUpdate(f32 _deltatime);
 

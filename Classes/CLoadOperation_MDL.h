@@ -1,10 +1,3 @@
-//
-//  CLoadOperation_MDL.h
-//  iGaia
-//
-//  Created by Sergey Sergeev on 2/27/13.
-//
-//
 
 #ifndef CLoadOperation_MDL_h
 #define CLoadOperation_MDL_h

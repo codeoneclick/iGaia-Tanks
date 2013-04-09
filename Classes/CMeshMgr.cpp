@@ -19,15 +19,15 @@ CMeshMgr::~CMeshMgr(void)
     
 }
 
-IResource_INTERFACE* CMeshMgr::StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadCallback_INTERFACE* _listener)
+TSharedPtrResource CMeshMgr::StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadingCommands* _observer)
 {
-    CMesh* mesh = nullptr;
+    TSharedPtrMesh mesh = nullptr;
     
     if(_thread == E_RESOURCE_LOAD_THREAD_SYNC)
     {
         if(m_resourceContainer.find(_filename) != m_resourceContainer.end())
         {
-            mesh = static_cast<CMesh*>(m_resourceContainer[_filename]);
+            mesh = std::static_pointer_cast<CMesh>(m_resourceContainer[_filename]);
         }
         else
         {
@@ -35,7 +35,7 @@ IResource_INTERFACE* CMeshMgr::StartLoadOperation(const std::string& _filename, 
             operation->Load(_filename);
             if(operation->Get_Status() == E_PARSER_STATUS_DONE)
             {
-				mesh = static_cast<CMesh*>(operation->Link());
+				mesh = TSharedPtrMesh(static_cast<CMesh*>(operation->Link()));
                 m_resourceContainer.insert(std::make_pair(_filename, mesh));
             }
         }
@@ -44,8 +44,8 @@ IResource_INTERFACE* CMeshMgr::StartLoadOperation(const std::string& _filename, 
     {
         if(m_resourceContainer.find(_filename) != m_resourceContainer.end())
         {
-            CMesh* mesh = static_cast<CMesh*>(m_resourceContainer[_filename]);
-            Dispatch(_listener, mesh);
+            mesh = std::static_pointer_cast<CMesh>(m_resourceContainer[_filename]);
+            Notify_ResourceLoadingObserver(_observer, mesh);
         }
         else
         {
@@ -54,9 +54,8 @@ IResource_INTERFACE* CMeshMgr::StartLoadOperation(const std::string& _filename, 
                 TSharedPtrLoadOperation operation = TSharedPtrLoadOperation(new CLoadOperation_MDL());
                 m_operationsQueue.insert(std::make_pair(_filename, operation));
             }
-
-            CLoadOperation_MDL* operation = static_cast<CLoadOperation_MDL*>(m_operationsQueue.find(_filename)->second.get());
-            AddListener(_listener, operation);
+            TSharedPtrLoadOperation operation = m_operationsQueue.find(_filename)->second;
+            operation->Register_ResourceLoadingObserver(_observer);
         }
     }
     return mesh;

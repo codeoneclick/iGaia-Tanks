@@ -1,17 +1,10 @@
-//
-//  ILoadOperation.h
-//  iGaia
-//
-//  Created by Sergey Sergeev on 2/26/13.
-//
-//
 
 #ifndef ILoadOperation_h
 #define ILoadOperation_h
 
 #include "HCommon.h"
 #include "IResource.h"
-#include "CResourceLoadCallback.h"
+#include "CResourceLoading_INTERFACE.h"
 
 class ILoadOperation_INTERFACE;
 typedef std::shared_ptr<ILoadOperation_INTERFACE> TSharedPtrLoadOperation;
@@ -24,7 +17,7 @@ protected:
 
     std::string m_name;
     E_PARSER_STATUS m_status;
-    std::set<CResourceLoadCallback*> m_listeners;
+    std::set<CResourceLoadingCommands*> m_observers;
 
     void _Register(IResource_INTERFACE* _resource);
 
@@ -41,17 +34,17 @@ public:
         return m_status;
     };
 
-    inline void Register_ResourceLoadCallback(CResourceLoadCallback* _listener)
+    inline void Register_ResourceLoadingObserver(CResourceLoadingCommands* _observer)
     {
-        m_listeners.insert(_listener);
+        m_observers.insert(_observer);
     };
 
-    inline void Unregister_ResourceLoadCallback(CResourceLoadCallback* _listener)
+    inline void Unregister_ResourceLoadingObserver(CResourceLoadingCommands* _observer)
     {
-        m_listeners.erase(_listener);
+        m_observers.erase(_observer);
     };
 
-	void Execute_ResourceLoadCallbacks(TSharedPtrResource _resource);
+	void Notify_ResourceLoadingObservers(TSharedPtrResource _resource);
 };
 
 #endif 

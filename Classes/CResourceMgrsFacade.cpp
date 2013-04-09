@@ -27,34 +27,34 @@ void CResourceMgrsFacade::Update(void)
     }
 }
 
-void CResourceMgrsFacade::LoadTexture(const std::string& _filename, CResourceLoadCallback_INTERFACE* _listener)
+void CResourceMgrsFacade::LoadTexture(const std::string& _filename, CResourceLoadingCommands* _observer)
 {
     IResourceMgr_INTERFACE* mgr = m_resourceMgrsContainer.find(E_RESOURCE_MGR_TEXTURE)->second;
     assert(mgr != nullptr);
-    mgr->StartLoadOperation(_filename, E_RESOURCE_LOAD_THREAD_ASYNC, _listener);
+    mgr->StartLoadOperation(_filename, E_RESOURCE_LOAD_THREAD_ASYNC, _observer);
 }
 
-CTexture* CResourceMgrsFacade::LoadTexture(const std::string& _filename)
+TSharedPtrTexture CResourceMgrsFacade::LoadTexture(const std::string& _filename)
 {
     IResourceMgr_INTERFACE* mgr = m_resourceMgrsContainer.find(E_RESOURCE_MGR_TEXTURE)->second;
     assert(mgr != nullptr);
-    CTexture* texture = static_cast<CTexture*>(mgr->StartLoadOperation(_filename, E_RESOURCE_LOAD_THREAD_SYNC, nullptr));
+    TSharedPtrTexture texture = std::static_pointer_cast<CTexture>(mgr->StartLoadOperation(_filename, E_RESOURCE_LOAD_THREAD_SYNC, nullptr));
     assert(texture != nullptr);
     return texture;
 }
 
-void CResourceMgrsFacade::LoadMesh(const std::string& _filename, CResourceLoadCallback_INTERFACE* _listener)
+void CResourceMgrsFacade::LoadMesh(const std::string& _filename, CResourceLoadingCommands* _listener)
 {
     IResourceMgr_INTERFACE* mgr = m_resourceMgrsContainer.find(E_RESOURCE_MGR_MESH)->second;
     assert(mgr != nullptr);
     mgr->StartLoadOperation(_filename, E_RESOURCE_LOAD_THREAD_ASYNC, _listener);
 }
 
-CMesh* CResourceMgrsFacade::LoadMesh(const std::string& _filename)
+TSharedPtrMesh CResourceMgrsFacade::LoadMesh(const std::string& _filename)
 {
     IResourceMgr_INTERFACE* mgr = m_resourceMgrsContainer.find(E_RESOURCE_MGR_MESH)->second;
     assert(mgr != nullptr);
-    CMesh* mesh = static_cast<CMesh*>(mgr->StartLoadOperation(_filename, E_RESOURCE_LOAD_THREAD_SYNC, nullptr));
+    TSharedPtrMesh mesh = std::static_pointer_cast<CMesh>(mgr->StartLoadOperation(_filename, E_RESOURCE_LOAD_THREAD_SYNC, nullptr));
     assert(mesh != nullptr);
     return mesh;
 }
@@ -115,18 +115,18 @@ SParticleEmitterSettings* CResourceMgrsFacade::LoadParticleEmitterSettings(const
     return settings;
 }
 
-void CResourceMgrsFacade::CancelLoadResource(CResourceLoadCallback_INTERFACE* _listener)
+void CResourceMgrsFacade::CancelLoadResource(CResourceLoadingCommands* _observer)
 {
     IResourceMgr_INTERFACE* textureMgr = m_resourceMgrsContainer.find(E_RESOURCE_MGR_TEXTURE)->second;
     assert(textureMgr != nullptr);
-    textureMgr->CancelLoadOperation(_listener);
+    textureMgr->CancelLoadOperation(_observer);
     
     IResourceMgr_INTERFACE* meshMgr = m_resourceMgrsContainer.find(E_RESOURCE_MGR_MESH)->second;
     assert(meshMgr != nullptr);
-    meshMgr->CancelLoadOperation(_listener);
+    meshMgr->CancelLoadOperation(_observer);
 }
 
-void CResourceMgrsFacade::UnloadResource(IResource_INTERFACE* _resource)
+void CResourceMgrsFacade::UnloadResource(TSharedPtrResource _resource)
 {
     if(_resource->Get_ResourceType() == E_RESOURCE_TYPE_TEXTURE)
     {

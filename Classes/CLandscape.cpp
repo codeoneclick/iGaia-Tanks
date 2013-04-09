@@ -57,7 +57,7 @@ void CLandscape::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite
 
         for(const STextureSettings* textureSettings : materialSettings->m_texturesSettings)
         {
-            CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name);
+            CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name).get();
             texture->Set_Wrap(textureSettings->m_wrap);
             assert(texture != nullptr);
             assert(textureSettings->m_slot < E_TEXTURE_SLOT_MAX);
@@ -114,7 +114,7 @@ void CLandscape::CreateLandscapeEdges(CResourceMgrsFacade* _resourceMgrsFacade, 
     CShader* shader = _shaderComposite->Get_Shader(E_SHADER_LANDSCAPE_EDGES);
     CMaterial* landscapeEdgesMaterial = new CMaterial(shader);
 
-    CTexture* texture = _resourceMgrsFacade->LoadTexture(_settings->m_edgesTextureFileName);
+    CTexture* texture = _resourceMgrsFacade->LoadTexture(_settings->m_edgesTextureFileName).get();
     texture->Set_Wrap(GL_REPEAT);
     assert(texture != nullptr);
     landscapeEdgesMaterial->Set_Texture(texture, E_TEXTURE_SLOT_01);
@@ -241,7 +241,7 @@ void CLandscape::ListenUpdateMgr(bool _value)
     m_landscapeEdges->ListenUpdateMgr(_value);
 }
 
-void CLandscape::OnResourceDidLoad(IResource_INTERFACE* _resource)
+void CLandscape::OnResourceDidLoad(TSharedPtrResource _resource)
 {
     for(ui32 i = 0; i < m_numChunkRows; ++i)
     {

@@ -1,10 +1,3 @@
-//
-//  IResourceMgr.h
-//  iGaia
-//
-//  Created by sergey.sergeev on 11/4/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
-//
 
 #ifndef IResourceMgr_h
 #define IResourceMgr_h
@@ -12,7 +5,7 @@
 #include "HCommon.h"
 #include "IResource.h"
 #include "ILoadOperation.h"
-#include "CResourceLoadCallback.h"
+#include "CResourceLoading_INTERFACE.h"
 
 class IResourceMgr_INTERFACE
 {
@@ -26,8 +19,7 @@ protected:
     std::mutex m_mutex;
     std::thread m_thread;
 
-    void Dispatch(CResourceLoadCallback_INTERFACE* _listener, IResource_INTERFACE* _resource);
-    void AddListener(CResourceLoadCallback_INTERFACE* _listener, ILoadOperation_INTERFACE* _operation);
+    void Notify_ResourceLoadingObserver(CResourceLoadingCommands* _observer, TSharedPtrResource _resource);
     
 public:
     
@@ -37,9 +29,8 @@ public:
     virtual void Update(void);
     virtual void Thread(void);
 
-    virtual IResource_INTERFACE* StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadCallback_INTERFACE* _listener) = 0;
-    void CancelLoadOperation(CResourceLoadCallback_INTERFACE* _listener);
-
+    virtual TSharedPtrResource StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadingCommands* _observer) = 0;
+    void CancelLoadOperation(CResourceLoadingCommands* _observer);
 	void UnloadResource(TSharedPtrResource resource);
 };
 

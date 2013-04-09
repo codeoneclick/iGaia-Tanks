@@ -300,7 +300,7 @@
 		A468352916EDFA5D00D34692 /* ILoadOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A9847216DCE410007F9CF6 /* ILoadOperation.cpp */; };
 		A468352A16EDFA5D00D34692 /* CLoadOperation_PVR.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C870F16DE0A02003DA026 /* CLoadOperation_PVR.cpp */; };
 		A468352B16EDFA5D00D34692 /* CLoadOperation_MDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C871316DE11F9003DA026 /* CLoadOperation_MDL.cpp */; };
-		A468352C16EDFA5D00D34692 /* CResourceLoadCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */; };
+		A468352C16EDFA5D00D34692 /* CResourceLoading_INTERFACE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoading_INTERFACE.cpp */; };
 		A468352D16EDFA5D00D34692 /* IResourceMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0981463FA2800720766 /* IResourceMgr.cpp */; };
 		A468352E16EDFA5D00D34692 /* CTextureMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE914ED61455DA5700AA2000 /* CTextureMgr.cpp */; };
 		A468352F16EDFA5D00D34692 /* CMeshMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93B6BB8E148420FE00E34B78 /* CMeshMgr.cpp */; };
@@ -372,7 +372,7 @@
 		A4A22EFE16FC588800C02B8E /* CGameSettingsMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A22EFC16FC588700C02B8E /* CGameSettingsMgr.cpp */; };
 		A4A22F0116FC623D00C02B8E /* CPanzerSettings_PARSER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A22EFF16FC623A00C02B8E /* CPanzerSettings_PARSER.cpp */; };
 		A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 93CFC0951463EC0700720766 /* IResource.cpp */; };
-		A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */; };
+		A4A9847916DCF2B5007F9CF6 /* CResourceLoading_INTERFACE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4DF957016C3EC1B0004EB83 /* CResourceLoading_INTERFACE.cpp */; };
 		A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE919217145736FD0021A0DC /* CTexture.cpp */; };
 		A4A9847E16DCF729007F9CF6 /* CVertexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A9847C16DCF728007F9CF6 /* CVertexBuffer.cpp */; };
 		A4A9848116DCF73F007F9CF6 /* CIndexBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4A9847F16DCF73E007F9CF6 /* CIndexBuffer.cpp */; };
@@ -1117,8 +1117,8 @@
 		A4A9848016DCF73E007F9CF6 /* CIndexBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CIndexBuffer.h; sourceTree = "<group>"; };
 		A4DF956E16C3E8980004EB83 /* HCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCommon.h; sourceTree = "<group>"; };
 		A4DF956F16C3E8BD0004EB83 /* HEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HEnum.h; sourceTree = "<group>"; };
-		A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CResourceLoadCallback.cpp; sourceTree = "<group>"; };
-		A4DF957116C3EC1C0004EB83 /* CResourceLoadCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CResourceLoadCallback.h; sourceTree = "<group>"; };
+		A4DF957016C3EC1B0004EB83 /* CResourceLoading_INTERFACE.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CResourceLoading_INTERFACE.cpp; sourceTree = "<group>"; };
+		A4DF957116C3EC1C0004EB83 /* CResourceLoading_INTERFACE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CResourceLoading_INTERFACE.h; sourceTree = "<group>"; };
 		CE914ED11455D7E900AA2000 /* CShaderComposite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CShaderComposite.h; sourceTree = "<group>"; };
 		CE914ED31455DA3200AA2000 /* CShaderComposite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CShaderComposite.cpp; sourceTree = "<group>"; };
 		CE914ED51455DA4400AA2000 /* CTextureMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTextureMgr.h; sourceTree = "<group>"; };
@@ -1377,8 +1377,8 @@
 				A468349716E8C30200D34692 /* GameObjectSettings_PARSERS */,
 				9315D5A7147BBC4500F42FE7 /* Resources */,
 				93205988145E8C6D00DEBCCB /* Loaders */,
-				A4DF957116C3EC1C0004EB83 /* CResourceLoadCallback.h */,
-				A4DF957016C3EC1B0004EB83 /* CResourceLoadCallback.cpp */,
+				A4DF957116C3EC1C0004EB83 /* CResourceLoading_INTERFACE.h */,
+				A4DF957016C3EC1B0004EB83 /* CResourceLoading_INTERFACE.cpp */,
 				931217EB146D110F00DDC82D /* IResourceMgr.h */,
 				93CFC0981463FA2800720766 /* IResourceMgr.cpp */,
 				CE914ED51455DA4400AA2000 /* CTextureMgr.h */,
@@ -2796,7 +2796,7 @@
 				A41C870B16DDFF5E003DA026 /* CMesh.cpp in Sources */,
 				A4A9848416DCFA72007F9CF6 /* main.mm in Sources */,
 				A4A9847B16DCF5C8007F9CF6 /* CTexture.cpp in Sources */,
-				A4A9847916DCF2B5007F9CF6 /* CResourceLoadCallback.cpp in Sources */,
+				A4A9847916DCF2B5007F9CF6 /* CResourceLoading_INTERFACE.cpp in Sources */,
 				A4A9847716DCF2AA007F9CF6 /* IResource.cpp in Sources */,
 				A4A9847E16DCF729007F9CF6 /* CVertexBuffer.cpp in Sources */,
 				A4A9848116DCF73F007F9CF6 /* CIndexBuffer.cpp in Sources */,
@@ -2958,7 +2958,7 @@
 				A468352916EDFA5D00D34692 /* ILoadOperation.cpp in Sources */,
 				A468352A16EDFA5D00D34692 /* CLoadOperation_PVR.cpp in Sources */,
 				A468352B16EDFA5D00D34692 /* CLoadOperation_MDL.cpp in Sources */,
-				A468352C16EDFA5D00D34692 /* CResourceLoadCallback.cpp in Sources */,
+				A468352C16EDFA5D00D34692 /* CResourceLoading_INTERFACE.cpp in Sources */,
 				A468352D16EDFA5D00D34692 /* IResourceMgr.cpp in Sources */,
 				A468352E16EDFA5D00D34692 /* CTextureMgr.cpp in Sources */,
 				A468352F16EDFA5D00D34692 /* CMeshMgr.cpp in Sources */,
