@@ -28,7 +28,7 @@ CRoot::CRoot(void* _glWindow)
 
 #else
 
-	CGLWindow_Win32* glView = (CGLWindow_Win32*)_glView;
+	CGLWindow_Win32* glView = (CGLWindow_Win32*)_glWindow;
 	m_glContext = new CGLContext_Win32(glView->Get_HWND(), glView->Get_HDC());
 	m_inputContext = CInputContext::SharedInstance();
 

@@ -11,6 +11,9 @@
 
 #include "HCommon.h"
 
+class IResource_INTERFACE;
+typedef std::shared_ptr<IResource_INTERFACE> TSharedPtrResource;
+
 class IResource_INTERFACE
 {
 private:

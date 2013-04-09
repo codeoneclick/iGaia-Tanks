@@ -8,16 +8,22 @@
 
 #include "ILoadOperation.h"
 
-void ILoadOperation_INTERFACE::Register(IResource_INTERFACE* _resource)
+ILoadOperation_INTERFACE::ILoadOperation_INTERFACE(void) :
+	m_status(E_PARSER_STATUS_UNKNOWN)
+{
+
+}
+
+void ILoadOperation_INTERFACE::_Register(IResource_INTERFACE* _resource)
 {
     _resource->m_name = m_name;
 }
 
-void ILoadOperation_INTERFACE::Dispatch(IResource_INTERFACE* _resource)
+void ILoadOperation_INTERFACE::Execute_ResourceLoadCallbacks(TSharedPtrResource _resource)
 {
     for(CResourceLoadCallback* _listener : m_listeners)
     {
-        _listener->DispatchResourceDidLoad(_resource);
+		_listener->Execute_OnResourceDidLoadCallback(_resource);
     }
     m_listeners.clear();
 }

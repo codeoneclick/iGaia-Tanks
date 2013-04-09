@@ -80,6 +80,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Classes\CBuilding.cpp" />
+    <ClCompile Include="..\..\Classes\CBuildingSettings_PARSER.cpp" />
     <ClCompile Include="..\..\Classes\CCamera.cpp" />
     <ClCompile Include="..\..\Classes\CCarcass.cpp" />
     <ClCompile Include="..\..\Classes\CCharacterController.cpp" />
@@ -143,7 +145,6 @@
     <ClCompile Include="..\..\Classes\CSceneGraph.cpp" />
     <ClCompile Include="..\..\Classes\CSceneUpdateCallback.cpp" />
     <ClCompile Include="..\..\Classes\CSceneUpdateMgr.cpp" />
-    <ClCompile Include="..\..\Classes\CScreenSpaceRenderProcessor.cpp" />
     <ClCompile Include="..\..\Classes\CSettingsContainer.cpp" />
     <ClCompile Include="..\..\Classes\CShader.cpp" />
     <ClCompile Include="..\..\Classes\CShaderComposite.cpp" />
@@ -217,6 +218,8 @@
     <ClCompile Include="iGaia-CartoonPanzers.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Classes\CBuilding.h" />
+    <ClInclude Include="..\..\Classes\CBuildingSettings_PARSER.h" />
     <ClInclude Include="..\..\Classes\CCamera.h" />
     <ClInclude Include="..\..\Classes\CCarcass.h" />
     <ClInclude Include="..\..\Classes\CCharacterController.h" />
@@ -281,7 +284,6 @@
     <ClInclude Include="..\..\Classes\CSceneGraph.h" />
     <ClInclude Include="..\..\Classes\CSceneUpdateCallback.h" />
     <ClInclude Include="..\..\Classes\CSceneUpdateMgr.h" />
-    <ClInclude Include="..\..\Classes\CScreenSpaceRenderProcessor.h" />
     <ClInclude Include="..\..\Classes\CSettingsContainer.h" />
     <ClInclude Include="..\..\Classes\CShader.h" />
     <ClInclude Include="..\..\Classes\CShaderComposite.h" />

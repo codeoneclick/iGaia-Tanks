@@ -12,43 +12,43 @@
 #include "HCommon.h"
 
 extern "C" class IResource_INTERFACE;
+typedef std::shared_ptr<IResource_INTERFACE> TSharedPtrResource;
 
-typedef std::function<void(IResource_INTERFACE* _resource)> __RESOURCE_DID_LOAD_LISTENER;
+typedef std::function<void(TSharedPtrResource _resource)> __ON_RESOURCE_DID_LOAD_CALLBACK;
 
 class CResourceLoadCallback final
 {
-    
 private:
 
     friend class CResourceLoadCallback_INTERFACE;
     
-    __RESOURCE_DID_LOAD_LISTENER m_resourceDidLoadListener;
+    __ON_RESOURCE_DID_LOAD_CALLBACK m_onResourceDidLoadCallback;
 
 protected:
     
     CResourceLoadCallback(void) {};
 
-    void ConnectResourceDidLoadListener(const __RESOURCE_DID_LOAD_LISTENER& _listener);
+    void Register_OnResourceLoadCallback(const __ON_RESOURCE_DID_LOAD_CALLBACK& _listener);
     
 public:
     
     ~CResourceLoadCallback(void) {};
 
-    void DispatchResourceDidLoad(IResource_INTERFACE* _resource);
+    void Execute_OnResourceDidLoadCallback(TSharedPtrResource _resource);
 };
 
 class CResourceLoadCallback_INTERFACE
 {
 private:
 
-    CResourceLoadCallback m_resourceLoadCallback;
-    void ConnectResourceLoadCallback(void);
+    CResourceLoadCallback m_commands;
+    void RegisterCommands(void);
     
 protected:
 
     CResourceLoadCallback_INTERFACE(void);
 
-    virtual void OnResourceDidLoad(IResource_INTERFACE* _resource) = 0;
+    virtual void OnResourceDidLoad(TSharedPtrResource _resource) = 0;
     
 public:
 
@@ -56,8 +56,8 @@ public:
 
     inline CResourceLoadCallback* Get_Commands(void)
     {
-        return &m_resourceLoadCallback;
-    }
+		return &m_commands;
+    };
 };
 
 #endif 

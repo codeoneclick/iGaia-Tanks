@@ -22,12 +22,11 @@ protected:
 	ui32 m_mipCount;
     bool m_compressed;
 
-    ui8* m_data;
-    
-    ui32 m_width;
+	ui32 m_width;
     ui32 m_height;
-    
-    ui32 m_headerOffset;
+
+	std::unique_ptr<ui8> m_filedata;
+	ui8* m_texturedata;
 
 public:
     
@@ -35,7 +34,7 @@ public:
     ~CLoadOperation_PVR(void);
 
     void Load(const std::string& _filename);
-    IResource_INTERFACE* Build(void);
+    IResource_INTERFACE* Link(void);
 };
 
 #endif 

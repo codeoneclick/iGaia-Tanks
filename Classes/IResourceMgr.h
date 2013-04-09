@@ -18,11 +18,10 @@ class IResourceMgr_INTERFACE
 {
 private:
     
-
 protected:
 
-    std::map<std::string, ILoadOperation_INTERFACE*> m_operationsQueue;
-    std::map<std::string, IResource_INTERFACE*> m_resourceContainer;
+	std::map<std::string, TSharedPtrLoadOperation> m_operationsQueue;
+    std::map<std::string, TSharedPtrResource> m_resourceContainer;
 
     std::mutex m_mutex;
     std::thread m_thread;
@@ -41,7 +40,7 @@ public:
     virtual IResource_INTERFACE* StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadCallback_INTERFACE* _listener) = 0;
     void CancelLoadOperation(CResourceLoadCallback_INTERFACE* _listener);
 
-    void UnloadResource(IResource_INTERFACE* resource);
+	void UnloadResource(TSharedPtrResource resource);
 };
 
 

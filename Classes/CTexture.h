@@ -11,6 +11,9 @@
 
 #include "IResource.h"
 
+class CTexture;
+typedef std::shared_ptr<CTexture> TSharedPtrTexture;
+
 class CTexture : public IResource_INTERFACE
 {   
 private:
@@ -22,7 +25,6 @@ private:
 
 protected:
 
-    
 public:
     
     CTexture(void);

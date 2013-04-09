@@ -8,11 +8,11 @@
 
 #include "CVertexBuffer.h"
 
-CVertexBuffer::CVertexBuffer(ui32 _numVertexes, GLenum _mode)
+CVertexBuffer::CVertexBuffer(ui32 _numVertexes, GLenum _mode) :
+	m_numVertexes(_numVertexes),
+	m_mode(_mode)
 {
-    assert(_numVertexes != 0);
-    m_numVertexes = _numVertexes;
-    m_mode = _mode;
+    assert(m_numVertexes != 0);
     m_data = std::unique_ptr<SVertex>(new SVertex[m_numVertexes]);
     m_currentHandleIndex = -1;
     glGenBuffers(K_NUM_REPLACEMENT_VERTEX_BUFFERS, m_handles);

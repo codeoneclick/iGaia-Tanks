@@ -113,6 +113,9 @@
     <Filter Include="Classes\Game\MainMenu\View">
       <UniqueIdentifier>{8c4b6727-2cff-4f6a-82ae-e9a0fd0d0a15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Game\Buildings">
+      <UniqueIdentifier>{b247a6db-3175-4274-8c84-3b855c060562}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="iGaia-CartoonPanzers.cpp">
@@ -188,9 +191,6 @@
       <Filter>Classes\Core\RenderMgr</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Classes\CRenderMgr.cpp">
-      <Filter>Classes\Core\RenderMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Classes\CScreenSpaceRenderProcessor.cpp">
       <Filter>Classes\Core\RenderMgr</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Classes\CShaderComposite.cpp">
@@ -520,6 +520,12 @@
     <ClCompile Include="..\..\Classes\IUIView.cpp">
       <Filter>Classes\Core\UIMgr</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Classes\CBuilding.cpp">
+      <Filter>Classes\Game\Buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Classes\CBuildingSettings_PARSER.cpp">
+      <Filter>Classes\Game\Mgrs\Settings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Classes\HCommon.h">
@@ -598,9 +604,6 @@
       <Filter>Classes\Core\RenderMgr</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Classes\CRenderMgr.h">
-      <Filter>Classes\Core\RenderMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Classes\CScreenSpaceRenderProcessor.h">
       <Filter>Classes\Core\RenderMgr</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Classes\CShaderComposite.h">
@@ -953,6 +956,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Classes\IUIView.h">
       <Filter>Classes\Core\UIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CBuilding.h">
+      <Filter>Classes\Game\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Classes\CBuildingSettings_PARSER.h">
+      <Filter>Classes\Game\Mgrs\Settings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

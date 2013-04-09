@@ -21,7 +21,7 @@ protected:
     
     ui32 m_handles[K_NUM_REPLACEMENT_INDEX_BUFFERS];
     i32 m_currentHandleIndex;
-    ui16* m_data;
+	std::unique_ptr<ui16> m_data;
     GLenum m_mode;
     ui32 m_maxNumIndexes;
     ui32 m_numIndexes;
@@ -44,7 +44,7 @@ public:
     inline ui16* Lock(void)
     {
         assert(m_data != nullptr);
-        return m_data;
+		return m_data.get();
     };
     
     void Unlock(void);

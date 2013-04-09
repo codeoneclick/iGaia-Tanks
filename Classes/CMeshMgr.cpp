@@ -31,14 +31,13 @@ IResource_INTERFACE* CMeshMgr::StartLoadOperation(const std::string& _filename, 
         }
         else
         {
-            CLoadOperation_MDL* operation = new CLoadOperation_MDL();
+            TSharedPtrLoadOperation operation = TSharedPtrLoadOperation(new CLoadOperation_MDL());
             operation->Load(_filename);
             if(operation->Get_Status() == E_PARSER_STATUS_DONE)
             {
-                mesh = static_cast<CMesh*>(operation->Build());
+				mesh = static_cast<CMesh*>(operation->Link());
                 m_resourceContainer.insert(std::make_pair(_filename, mesh));
             }
-            delete operation;
         }
     }
     else if(_thread == E_RESOURCE_LOAD_THREAD_ASYNC)
@@ -52,11 +51,11 @@ IResource_INTERFACE* CMeshMgr::StartLoadOperation(const std::string& _filename, 
         {
             if(m_operationsQueue.find(_filename) == m_operationsQueue.end())
             {
-                CLoadOperation_MDL* operation = new CLoadOperation_MDL();
+                TSharedPtrLoadOperation operation = TSharedPtrLoadOperation(new CLoadOperation_MDL());
                 m_operationsQueue.insert(std::make_pair(_filename, operation));
             }
 
-            CLoadOperation_MDL* operation = static_cast<CLoadOperation_MDL*>(m_operationsQueue.find(_filename)->second);
+            CLoadOperation_MDL* operation = static_cast<CLoadOperation_MDL*>(m_operationsQueue.find(_filename)->second.get());
             AddListener(_listener, operation);
         }
     }

@@ -19,8 +19,3 @@ IResource_INTERFACE::~IResource_INTERFACE(void)
 {
     
 }
-
-
-
-
-

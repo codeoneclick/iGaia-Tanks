@@ -19,8 +19,8 @@ private:
 
 protected:
 
-    SVertex* m_vertexData;
-    ui16* m_indexData;
+    std::unique_ptr<SVertex> m_vertexData;
+    std::unique_ptr<ui16> m_indexData;
     ui32 m_numVertexes;
     ui32 m_numIndexes;
 
@@ -33,7 +33,7 @@ public:
     ~CLoadOperation_MDL(void);
 
     void Load(const std::string& _filename);
-    IResource_INTERFACE* Build(void);
+    IResource_INTERFACE* Link(void);
 };
 
 #endif 

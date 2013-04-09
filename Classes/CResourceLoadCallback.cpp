@@ -8,25 +8,25 @@
 
 #include "CResourceLoadCallback.h"
 
-void CResourceLoadCallback::ConnectResourceDidLoadListener(const __RESOURCE_DID_LOAD_LISTENER &_listener)
+void CResourceLoadCallback::Register_OnResourceLoadCallback(const __ON_RESOURCE_DID_LOAD_CALLBACK& _callback)
 {
-    assert(_listener != nullptr);
-    m_resourceDidLoadListener = _listener;
+	assert(_callback != nullptr);
+	m_onResourceDidLoadCallback = _callback;
 }
 
-void CResourceLoadCallback::DispatchResourceDidLoad(IResource_INTERFACE *_resource)
+void CResourceLoadCallback::Execute_OnResourceDidLoadCallback(TSharedPtrResource _resource)
 {
-    assert(m_resourceDidLoadListener != nullptr);
-    m_resourceDidLoadListener(_resource);
+	assert(m_onResourceDidLoadCallback != nullptr);
+    m_onResourceDidLoadCallback(_resource);
 }
 
 
 CResourceLoadCallback_INTERFACE::CResourceLoadCallback_INTERFACE(void)
 {
-    ConnectResourceLoadCallback();
+	RegisterCommands();
 }
 
-void CResourceLoadCallback_INTERFACE::ConnectResourceLoadCallback(void)
+void CResourceLoadCallback_INTERFACE::RegisterCommands(void)
 {
-    m_resourceLoadCallback.ConnectResourceDidLoadListener(std::bind(&CResourceLoadCallback_INTERFACE::OnResourceDidLoad, this, std::placeholders::_1));
+	m_commands.Register_OnResourceLoadCallback(std::bind(&CResourceLoadCallback_INTERFACE::OnResourceDidLoad, this, std::placeholders::_1));
 }

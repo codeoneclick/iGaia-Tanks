@@ -42,8 +42,8 @@ Rocket::Core::CompiledGeometryHandle CUIShellRenderMgr_INTERFACE::CompileGeometr
     std::unique_ptr<CVertexBuffer> vertexBuffer = std::unique_ptr<CVertexBuffer>(new CVertexBuffer(_numVertexes, GL_STATIC_DRAW));
     SVertex* vertexData = vertexBuffer->Lock();
 
-	f32 screenWidth = Get_ScreenWidth();
-	f32 screenHeight = Get_ScreenHeight();
+	f32 screenWidth = static_cast<f32>(Get_ScreenWidth());
+	f32 screenHeight = static_cast<f32>(Get_ScreenHeight());
 
     for(ui32 i = 0; i < _numVertexes; ++i)
     {
@@ -83,8 +83,8 @@ void CUIShellRenderMgr_INTERFACE::RenderCompiledGeometry(Rocket::Core::CompiledG
 	CMaterial* material = Get_Material();
 	assert(material != nullptr);
 
-    f32 screenWidth = Get_ScreenWidth();
-	f32 screenHeight = Get_ScreenHeight();
+    f32 screenWidth = static_cast<f32>(Get_ScreenWidth());
+	f32 screenHeight = static_cast<f32>(Get_ScreenHeight());
 
 	material->Set_Texture(texture, E_TEXTURE_SLOT_01);
 	material->Bind();

@@ -1,151 +1,203 @@
-﻿Build started 3/28/2013 11:26:39 PM.
-     1>Project "D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers_Win32\iGaia-CartoonPanzers\iGaia-CartoonPanzers.vcxproj" on node 2 (Build target(s)).
+﻿Build started 09.04.2013 19:36:04.
+     1>Project "D:\Hobby\iGaia-Tanks\iGaia-CartoonPanzers_Win32\iGaia-CartoonPanzers\iGaia-CartoonPanzers.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\Libs\box2d /I..\..\Libs\pvrtextool\include /I..\..\Libs\windows\ogles2\include /I..\..\Libs /I..\..\Libs\libRocket\Include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\Classes\CGameMainMenuScene.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\Libs\box2d /I..\..\Libs\pvrtextool\include /I..\..\Libs\windows\ogles2\include /I..\..\Libs /I..\..\Libs\libRocket\Include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\Classes\CBuilding.cpp ..\..\Classes\CCarcass.cpp ..\..\Classes\CCharacterController.cpp ..\..\Classes\CChassis.cpp ..\..\Classes\CGameMainMenuScene.cpp ..\..\Classes\CGameMainMenuSceneViewController_Win32.cpp ..\..\Classes\CGameObject3d.cpp ..\..\Classes\CLandscape.cpp ..\..\Classes\CLandscapeChunk.cpp ..\..\Classes\CLandscapeDecal.cpp ..\..\Classes\CLandscapeEdges.cpp ..\..\Classes\CLoadOperation_MDL.cpp ..\..\Classes\CLoadOperation_PVR.cpp ..\..\Classes\CMeshMgr.cpp ..\..\Classes\COcean.cpp ..\..\Classes\CPanzer.cpp ..\..\Classes\CParticleEmitter.cpp ..\..\Classes\CResourceLoadCallback.cpp ..\..\Classes\CResourceMgrsFacade.cpp ..\..\Classes\CRoot.cpp ..\..\Classes\CSceneContainer.cpp ..\..\Classes\CSceneFabricator.cpp ..\..\Classes\CSceneGraph.cpp ..\..\Classes\CShape3d.cpp ..\..\Classes\CTextureMgr.cpp ..\..\Classes\CTurret.cpp ..\..\Classes\CUIMgr.cpp ..\..\Classes\CUIShellEventHandler.cpp ..\..\Classes\CUIShellEventListenerInstancer.cpp ..\..\Classes\CUIShellRenderMgr.cpp ..\..\Classes\ILoadOperation.cpp ..\..\Classes\IResourceMgr.cpp ..\..\Classes\ISpare.cpp "iGaia-CartoonPanzers.cpp"
+         ILoadOperation.cpp
+         CTextureMgr.cpp
+     1>d:\hobby\igaia-tanks\classes\ctexturemgr.cpp(30): error C2440: 'static_cast' : cannot convert from 'std::shared_ptr<_Ty>' to 'CTexture *'
+                 with
+                 [
+                     _Ty=IResource_INTERFACE
+                 ]
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>d:\hobby\igaia-tanks\classes\ctexturemgr.cpp(39): error C2664: 'std::pair<_Ty1,_Ty2> std::_Tree<_Traits>::insert(std::pair<const _Kty,_Ty> &&)' : cannot convert parameter 1 from 'std::pair<_Ty1,_Ty2>' to 'std::pair<_Ty1,_Ty2> &&'
+                 with
+                 [
+                     _Ty1=std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::string,TSharedPtrResource>>>>,
+                     _Ty2=bool,
+                     _Traits=std::_Tmap_traits<std::string,TSharedPtrResource,std::less<std::string>,std::allocator<std::pair<const std::string,TSharedPtrResource>>,false>,
+                     _Kty=std::string,
+                     _Ty=TSharedPtrResource
+                 ]
+                 and
+                 [
+                     _Ty1=std::basic_string<char,std::char_traits<char>,std::allocator<char>>,
+                     _Ty2=CTexture *
+                 ]
+                 and
+                 [
+                     _Ty1=const std::string,
+                     _Ty2=TSharedPtrResource
+                 ]
+                 Reason: cannot convert from 'std::pair<_Ty1,_Ty2>' to 'std::pair<_Ty1,_Ty2>'
+                 with
+                 [
+                     _Ty1=std::basic_string<char,std::char_traits<char>,std::allocator<char>>,
+                     _Ty2=CTexture *
+                 ]
+                 and
+                 [
+                     _Ty1=const std::string,
+                     _Ty2=TSharedPtrResource
+                 ]
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>d:\hobby\igaia-tanks\classes\ctexturemgr.cpp(47): error C2440: 'static_cast' : cannot convert from 'std::shared_ptr<_Ty>' to 'CTexture *'
+                 with
+                 [
+                     _Ty=IResource_INTERFACE
+                 ]
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+         CResourceMgrsFacade.cpp
+     1>d:\hobby\igaia-tanks\classes\cresourcemgrsfacade.cpp(135): error C2664: 'IResourceMgr_INTERFACE::UnloadResource' : cannot convert parameter 1 from 'IResource_INTERFACE *' to 'TSharedPtrResource'
+                 Constructor for class 'std::shared_ptr<_Ty>' is declared 'explicit'
+                 with
+                 [
+                     _Ty=IResource_INTERFACE
+                 ]
+     1>d:\hobby\igaia-tanks\classes\cresourcemgrsfacade.cpp(141): error C2664: 'IResourceMgr_INTERFACE::UnloadResource' : cannot convert parameter 1 from 'IResource_INTERFACE *' to 'TSharedPtrResource'
+                 Constructor for class 'std::shared_ptr<_Ty>' is declared 'explicit'
+                 with
+                 [
+                     _Ty=IResource_INTERFACE
+                 ]
+         CResourceLoadCallback.cpp
+         CMeshMgr.cpp
+     1>d:\hobby\igaia-tanks\classes\cmeshmgr.cpp(30): error C2440: 'static_cast' : cannot convert from 'std::shared_ptr<_Ty>' to 'CMesh *'
+                 with
+                 [
+                     _Ty=IResource_INTERFACE
+                 ]
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>d:\hobby\igaia-tanks\classes\cmeshmgr.cpp(39): error C2664: 'std::pair<_Ty1,_Ty2> std::_Tree<_Traits>::insert(std::pair<const _Kty,_Ty> &&)' : cannot convert parameter 1 from 'std::pair<_Ty1,_Ty2>' to 'std::pair<_Ty1,_Ty2> &&'
+                 with
+                 [
+                     _Ty1=std::_Tree_iterator<std::_Tree_val<std::_Tree_simple_types<std::pair<const std::string,TSharedPtrResource>>>>,
+                     _Ty2=bool,
+                     _Traits=std::_Tmap_traits<std::string,TSharedPtrResource,std::less<std::string>,std::allocator<std::pair<const std::string,TSharedPtrResource>>,false>,
+                     _Kty=std::string,
+                     _Ty=TSharedPtrResource
+                 ]
+                 and
+                 [
+                     _Ty1=std::basic_string<char,std::char_traits<char>,std::allocator<char>>,
+                     _Ty2=CMesh *
+                 ]
+                 and
+                 [
+                     _Ty1=const std::string,
+                     _Ty2=TSharedPtrResource
+                 ]
+                 Reason: cannot convert from 'std::pair<_Ty1,_Ty2>' to 'std::pair<_Ty1,_Ty2>'
+                 with
+                 [
+                     _Ty1=std::basic_string<char,std::char_traits<char>,std::allocator<char>>,
+                     _Ty2=CMesh *
+                 ]
+                 and
+                 [
+                     _Ty1=const std::string,
+                     _Ty2=TSharedPtrResource
+                 ]
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>d:\hobby\igaia-tanks\classes\cmeshmgr.cpp(47): error C2440: 'static_cast' : cannot convert from 'std::shared_ptr<_Ty>' to 'CMesh *'
+                 with
+                 [
+                     _Ty=IResource_INTERFACE
+                 ]
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+         Generating Code...
+         Compiling...
+         iGaia-CartoonPanzers.cpp
+         ISpare.cpp
+         IResourceMgr.cpp
+     1>d:\hobby\igaia-tanks\classes\iresourcemgr.cpp(23): error C2664: 'CResourceLoadCallback::Execute_OnResourceDidLoadCallback' : cannot convert parameter 1 from 'IResource_INTERFACE *' to 'TSharedPtrResource'
+                 Constructor for class 'std::shared_ptr<_Ty>' is declared 'explicit'
+                 with
+                 [
+                     _Ty=IResource_INTERFACE
+                 ]
+         CUIShellRenderMgr.cpp
+     1>d:\hobby\igaia-tanks\classes\cuishellrendermgr.cpp(48): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\hobby\igaia-tanks\classes\cuishellrendermgr.cpp(61): warning C4018: '<' : signed/unsigned mismatch
+         CUIShellEventListenerInstancer.cpp
+         CUIShellEventHandler.cpp
+         CUIMgr.cpp
+         CTurret.cpp
+         CShape3d.cpp
+         CSceneGraph.cpp
+         CSceneFabricator.cpp
+     1>d:\hobby\igaia-tanks\classes\cscenefabricator.cpp(44): error C2259: 'CShape3d' : cannot instantiate abstract class
+                 due to following members:
+                 'void CResourceLoadCallback_INTERFACE::OnResourceDidLoad(TSharedPtrResource)' : is abstract
+                 d:\hobby\igaia-tanks\classes\cresourceloadcallback.h(51) : see declaration of 'CResourceLoadCallback_INTERFACE::OnResourceDidLoad'
+     1>d:\hobby\igaia-tanks\classes\cscenefabricator.cpp(61): error C2259: 'CParticleEmitter' : cannot instantiate abstract class
+                 due to following members:
+                 'void CResourceLoadCallback_INTERFACE::OnResourceDidLoad(TSharedPtrResource)' : is abstract
+                 d:\hobby\igaia-tanks\classes\cresourceloadcallback.h(51) : see declaration of 'CResourceLoadCallback_INTERFACE::OnResourceDidLoad'
+     1>d:\hobby\igaia-tanks\classes\cscenefabricator.cpp(78): error C2259: 'CLandscape' : cannot instantiate abstract class
+                 due to following members:
+                 'void CResourceLoadCallback_INTERFACE::OnResourceDidLoad(TSharedPtrResource)' : is abstract
+                 d:\hobby\igaia-tanks\classes\cresourceloadcallback.h(51) : see declaration of 'CResourceLoadCallback_INTERFACE::OnResourceDidLoad'
+     1>d:\hobby\igaia-tanks\classes\cscenefabricator.cpp(95): error C2259: 'CLandscapeDecal' : cannot instantiate abstract class
+                 due to following members:
+                 'void CResourceLoadCallback_INTERFACE::OnResourceDidLoad(TSharedPtrResource)' : is abstract
+                 d:\hobby\igaia-tanks\classes\cresourceloadcallback.h(51) : see declaration of 'CResourceLoadCallback_INTERFACE::OnResourceDidLoad'
+     1>d:\hobby\igaia-tanks\classes\cscenefabricator.cpp(112): error C2259: 'COcean' : cannot instantiate abstract class
+                 due to following members:
+                 'void CResourceLoadCallback_INTERFACE::OnResourceDidLoad(TSharedPtrResource)' : is abstract
+                 d:\hobby\igaia-tanks\classes\cresourceloadcallback.h(51) : see declaration of 'CResourceLoadCallback_INTERFACE::OnResourceDidLoad'
+         CSceneContainer.cpp
+         CRoot.cpp
+         CParticleEmitter.cpp
+     1>d:\hobby\igaia-tanks\classes\cparticleemitter.cpp(107): warning C4244: '=' : conversion from 'ui64' to 'f32', possible loss of data
+     1>d:\hobby\igaia-tanks\classes\cparticleemitter.cpp(125): warning C4244: 'initializing' : conversion from 'ui64' to 'f32', possible loss of data
+         CPanzer.cpp
+         COcean.cpp
+     1>d:\hobby\igaia-tanks\classes\cocean.cpp(31): warning C4244: '=' : conversion from 'ui32' to 'f32', possible loss of data
+     1>d:\hobby\igaia-tanks\classes\cocean.cpp(32): warning C4244: '=' : conversion from 'ui32' to 'f32', possible loss of data
+         CLoadOperation_PVR.cpp
+     1>d:\hobby\igaia-tanks\classes\cloadoperation_pvr.cpp(43): warning C4244: 'initializing' : conversion from 'std::streamoff' to 'i32', possible loss of data
+         CLoadOperation_MDL.cpp
+         CLandscapeEdges.cpp
+         CLandscapeDecal.cpp
+     1>d:\hobby\igaia-tanks\classes\clandscapedecal.cpp(125): warning C4244: 'initializing' : conversion from 'float' to 'i32', possible loss of data
+     1>d:\hobby\igaia-tanks\classes\clandscapedecal.cpp(126): warning C4244: 'initializing' : conversion from 'float' to 'i32', possible loss of data
+     1>d:\hobby\igaia-tanks\classes\clandscapedecal.cpp(136): warning C4018: '>=' : signed/unsigned mismatch
+     1>d:\hobby\igaia-tanks\classes\clandscapedecal.cpp(136): warning C4018: '>' : signed/unsigned mismatch
+     1>d:\hobby\igaia-tanks\classes\clandscapedecal.cpp(138): warning C4244: '=' : conversion from 'i32' to 'float', possible loss of data
+     1>d:\hobby\igaia-tanks\classes\clandscapedecal.cpp(140): warning C4244: '=' : conversion from 'i32' to 'float', possible loss of data
+     1>d:\hobby\igaia-tanks\classes\clandscapedecal.cpp(144): warning C4244: '=' : conversion from 'i32' to 'float', possible loss of data
+     1>d:\hobby\igaia-tanks\classes\clandscapedecal.cpp(146): warning C4244: '=' : conversion from 'i32' to 'float', possible loss of data
+         Generating Code...
+         Compiling...
+         CLandscapeChunk.cpp
+         CLandscape.cpp
+     1>d:\hobby\igaia-tanks\classes\clandscape.cpp(95): error C2259: 'CLandscapeChunk' : cannot instantiate abstract class
+                 due to following members:
+                 'void CResourceLoadCallback_INTERFACE::OnResourceDidLoad(TSharedPtrResource)' : is abstract
+                 d:\hobby\igaia-tanks\classes\cresourceloadcallback.h(51) : see declaration of 'CResourceLoadCallback_INTERFACE::OnResourceDidLoad'
+     1>d:\hobby\igaia-tanks\classes\clandscape.cpp(112): error C2259: 'CLandscapeEdges' : cannot instantiate abstract class
+                 due to following members:
+                 'void CResourceLoadCallback_INTERFACE::OnResourceDidLoad(TSharedPtrResource)' : is abstract
+                 d:\hobby\igaia-tanks\classes\cresourceloadcallback.h(51) : see declaration of 'CResourceLoadCallback_INTERFACE::OnResourceDidLoad'
+         CGameObject3d.cpp
+         CGameMainMenuSceneViewController_Win32.cpp
+     1>d:\hobby\igaia-tanks\classes\ctexture.h(17): error C2236: unexpected token 'class'. Did you forget a ';'?
+     1>d:\hobby\igaia-tanks\classes\ctexture.h(54): warning C4091: 'typedef ' : ignored on left of 'CTexture' when no variable is declared
          CGameMainMenuScene.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers_Win32\Debug\iGaia-CartoonPanzers.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\..\Libs\pvrtextool\windows_x86_32\Static /LIBPATH:..\..\Libs\windows\ogles2\windows_x86_32\lib /LIBPATH:..\..\Libs\windows\ogles2\windows_x86_64\lib /LIBPATH:..\..\Libs\libRocket\lib libEGL.lib libGLESv2.lib PVRTexLib.lib RocketControls_d.lib RocketDebugger_d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers_Win32\Debug\iGaia-CartoonPanzers.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers_Win32\Debug\iGaia-CartoonPanzers.lib" /MACHINE:X86 Debug\CCamera.obj
-         Debug\CCarcass.obj
-         Debug\CCharacterController.obj
-         Debug\CChassis.obj
-         Debug\CCollisionCallback.obj
-         Debug\CCollisionMgr.obj
-         Debug\CCollisionNavigator.obj
-         Debug\CCommon_Win32.obj
-         Debug\CFrustum.obj
-         Debug\CGameMainMenuScene.obj
-         Debug\CGameMainMenuSceneViewController_Win32.obj
-         Debug\CGameObject3d.obj
-         Debug\CGameObjectSettings_PARSER.obj
-         Debug\CGameSettingsMgr.obj
-         Debug\CGLContext_Win32.obj
-         Debug\CGLWindow_Win32.obj
-         Debug\CGrassSettings_PARSER.obj
-         Debug\CHeightmapHelper.obj
-         Debug\CHeightmapProcessor.obj
-         Debug\CIndexBuffer.obj
-         Debug\CInputContext_Win32.obj
-         Debug\CInputTapRecognizerCallback.obj
-         Debug\CLandscape.obj
-         Debug\CLandscapeChunk.obj
-         Debug\CLandscapeDecal.obj
-         Debug\CLandscapeDecalSettings_PARSER.obj
-         Debug\CLandscapeEdges.obj
-         Debug\CLandscapeSettings_PARSER.obj
-         Debug\CLight.obj
-         Debug\CLoadOperation_MDL.obj
-         Debug\CLoadOperation_PVR.obj
-         Debug\CMainLoopUpdateCallback.obj
-         Debug\CMainLoop_Win32.obj
-         Debug\CMainMenuView.obj
-         Debug\CMaterial.obj
-         Debug\CMesh.obj
-         Debug\CMeshMgr.obj
-         Debug\CMoveControllerCallback.obj
-         Debug\CNavigator.obj
-         Debug\CObject3dBasisProcessor.obj
-         Debug\COcean.obj
-         Debug\COceanSettings_PARSER.obj
-         Debug\CPanzer.obj
-         Debug\CPanzerSettings_PARSER.obj
-         Debug\CParser_GLSL.obj
-         Debug\CParticleEmitter.obj
-         Debug\CParticleEmitterSettings_PARSER.obj
-         Debug\CQuadTree.obj
-         Debug\CRenderCallback.obj
-         Debug\CRenderMgr.obj
-         Debug\CRenderOperationScreenOutput.obj
-         Debug\CRenderOperationScreenSpace.obj
-         Debug\CRenderOperationWorldSpace.obj
-         Debug\CRenderPresentCallback.obj
-         Debug\CResourceLoadCallback.obj
-         Debug\CResourceMgrsFacade.obj
-         Debug\CRoot.obj
-         Debug\CRotateControllerCallback.obj
-         Debug\CSceneContainer.obj
-         Debug\CSceneFabricator.obj
-         Debug\CSceneGraph.obj
-         Debug\CSceneUpdateCallback.obj
-         Debug\CSceneUpdateMgr.obj
-         Debug\CScreenSpaceRenderProcessor.obj
-         Debug\CSettingsContainer.obj
-         Debug\CShader.obj
-         Debug\CShaderComposite.obj
-         Debug\CShape3d.obj
-         Debug\CShape3dSettings_PARSER.obj
-         Debug\CSkyDomeSettings_PARSER.obj
-         Debug\CTexture.obj
-         Debug\CTextureMgr.obj
-         Debug\CTurret.obj
-         Debug\CUIEventCallback.obj
-         Debug\CUIMgr.obj
-         Debug\CUIShellCommonMgr.obj
-         Debug\CUIShellEventHandler.obj
-         Debug\CUIShellEventListenerInstancer.obj
-         Debug\CUIShellFileMgr.obj
-         Debug\CUIShellRenderMgr.obj
-         Debug\CVertexBuffer.obj
-         Debug\ICharacter.obj
-         Debug\IGLContext.obj
-         Debug\ILoadOperation.obj
-         Debug\IResource.obj
-         Debug\IResourceMgr.obj
-         Debug\ISpare.obj
-         Debug\IUIView.obj
-         Debug\b2BroadPhase.obj
-         Debug\b2CollideCircle.obj
-         Debug\b2CollideEdge.obj
-         Debug\b2CollidePolygon.obj
-         Debug\b2Collision.obj
-         Debug\b2Distance.obj
-         Debug\b2DynamicTree.obj
-         Debug\b2TimeOfImpact.obj
-         Debug\b2ChainShape.obj
-         Debug\b2CircleShape.obj
-         Debug\b2EdgeShape.obj
-         Debug\b2PolygonShape.obj
-         Debug\b2BlockAllocator.obj
-         Debug\b2Draw.obj
-         Debug\b2Math.obj
-         Debug\b2Settings.obj
-         Debug\b2StackAllocator.obj
-         Debug\b2Timer.obj
-         Debug\b2Body.obj
-         Debug\b2ContactManager.obj
-         Debug\b2Fixture.obj
-         Debug\b2Island.obj
-         Debug\b2World.obj
-         Debug\b2WorldCallbacks.obj
-         Debug\b2ChainAndCircleContact.obj
-         Debug\b2ChainAndPolygonContact.obj
-         Debug\b2CircleContact.obj
-         Debug\b2Contact.obj
-         Debug\b2ContactSolver.obj
-         Debug\b2EdgeAndCircleContact.obj
-         Debug\b2EdgeAndPolygonContact.obj
-         Debug\b2PolygonAndCircleContact.obj
-         Debug\b2PolygonContact.obj
-         Debug\b2DistanceJoint.obj
-         Debug\b2FrictionJoint.obj
-         Debug\b2GearJoint.obj
-         Debug\b2Joint.obj
-         Debug\b2MouseJoint.obj
-         Debug\b2PrismaticJoint.obj
-         Debug\b2PulleyJoint.obj
-         Debug\b2RevoluteJoint.obj
-         Debug\b2RopeJoint.obj
-         Debug\b2WeldJoint.obj
-         Debug\b2WheelJoint.obj
-         Debug\b2Rope.obj
-         Debug\pugixml.obj
-         "Debug\iGaia-CartoonPanzers.obj"
-         "D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\libFreetype\lib\freetype_D.lib"
-         "D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\libRocket\lib\RocketCore_d.lib"
-         "D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\libRocket\lib\RocketControls_d.lib"
-         "D:\Develop\iGaia-Tanks\iGaia-Tanks\Libs\libRocket\lib\RocketDebugger_d.lib"
-         iGaia-CartoonPanzers.vcxproj -> D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers_Win32\Debug\iGaia-CartoonPanzers.exe
-     1>Done Building Project "D:\Develop\iGaia-Tanks\iGaia-Tanks\iGaia-CartoonPanzers_Win32\iGaia-CartoonPanzers\iGaia-CartoonPanzers.vcxproj" (Build target(s)).
+     1>d:\hobby\igaia-tanks\classes\ctexture.h(17): error C2236: unexpected token 'class'. Did you forget a ';'?
+     1>d:\hobby\igaia-tanks\classes\ctexture.h(54): warning C4091: 'typedef ' : ignored on left of 'CTexture' when no variable is declared
+         CChassis.cpp
+     1>d:\hobby\igaia-tanks\classes\ctexture.h(17): error C2236: unexpected token 'class'. Did you forget a ';'?
+     1>d:\hobby\igaia-tanks\classes\ctexture.h(54): warning C4091: 'typedef ' : ignored on left of 'CTexture' when no variable is declared
+         CCharacterController.cpp
+     1>d:\hobby\igaia-tanks\classes\ctexture.h(17): error C2236: unexpected token 'class'. Did you forget a ';'?
+     1>d:\hobby\igaia-tanks\classes\ctexture.h(54): warning C4091: 'typedef ' : ignored on left of 'CTexture' when no variable is declared
+         CCarcass.cpp
+         CBuilding.cpp
+         Generating Code...
+     1>Done Building Project "D:\Hobby\iGaia-Tanks\iGaia-CartoonPanzers_Win32\iGaia-CartoonPanzers\iGaia-CartoonPanzers.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:06.16
+Time Elapsed 00:01:48.74

@@ -10,9 +10,13 @@
 #include "CCommon.h"
 #include "CTexture.h"
 
-CLoadOperation_PVR::CLoadOperation_PVR(void)
+CLoadOperation_PVR::CLoadOperation_PVR(void) :
+	m_filedata(nullptr),
+	m_texturedata(nullptr),
+	m_width(0),
+	m_height(0)
 {
-    m_status = E_PARSER_STATUS_UNKNOWN;
+    
 }
 
 CLoadOperation_PVR::~CLoadOperation_PVR(void)
@@ -38,14 +42,14 @@ void CLoadOperation_PVR::Load(const std::string& _filename)
     stream.seekg(0, std::ios::end);
     i32 lenght = stream.tellg();
     stream.seekg(0, std::ios::beg);
-    m_data = new ui8[lenght];
-    stream.read((char*)m_data, lenght);
+	m_filedata = std::unique_ptr<ui8>(new ui8[lenght]);
+	stream.read((char*)m_filedata.get(), lenght);
     stream.close();
 
-    if(*(PVRTuint32*)m_data != PVRTEX3_IDENT)
+	if(*(PVRTuint32*)m_filedata.get() != PVRTEX3_IDENT)
 	{
         PVR_Texture_Header* header;
-        header = (PVR_Texture_Header*)m_data;
+		header = (PVR_Texture_Header*)m_filedata.get();
         switch (header->dwpfFlags & PVRTEX_PIXELTYPE)
         {
             case OGL_PVRTC2:
@@ -89,16 +93,16 @@ void CLoadOperation_PVR::Load(const std::string& _filename)
         }
         m_width = header->dwWidth;
         m_height = header->dwHeight;
-        m_headerOffset = header->dwHeaderSize;
+		m_texturedata = m_filedata.get() + header->dwHeaderSize;
 		m_mipCount = header->dwMipMapCount;
         m_status = E_PARSER_STATUS_DONE;
     }
     else
     {
-        PVRTextureHeaderV3* header = (PVRTextureHeaderV3*)m_data;
+        PVRTextureHeaderV3* header = (PVRTextureHeaderV3*)m_filedata.get();
         PVRTuint64 pixelFormat = header->u64PixelFormat;
 		PVRTuint64 pixelFormatPartHigh = pixelFormat & PVRTEX_PFHIGHMASK;
-		if (pixelFormatPartHigh==0)
+		if (pixelFormatPartHigh == 0)
 		{
 			switch (pixelFormat)
 			{
@@ -152,16 +156,14 @@ void CLoadOperation_PVR::Load(const std::string& _filename)
 		}
         m_width = header->u32Width;
         m_height = header->u32Height;
-        m_headerOffset = PVRTEX3_HEADERSIZE + header->u32MetaDataSize;
+		m_texturedata = m_filedata.get() + (PVRTEX3_HEADERSIZE + header->u32MetaDataSize);
 		m_mipCount = header->u32MIPMapCount;
         m_status = E_PARSER_STATUS_DONE;
     }
 }
 
-IResource_INTERFACE* CLoadOperation_PVR::Build(void)
+IResource_INTERFACE* CLoadOperation_PVR::Link(void)
 {
-    ui8* data = m_data + m_headerOffset;
-
     ui32 handle = 0;
     glGenTextures(1, &handle);
     glBindTexture(GL_TEXTURE_2D, handle);
@@ -172,29 +174,17 @@ IResource_INTERFACE* CLoadOperation_PVR::Build(void)
 	ui32 height = m_height;
 
 
-	if (m_compressed)
+	for (ui32 level = 0; level < m_mipCount && width > 0 && height > 0; ++level)
 	{
-		for (ui32 level = 0; level < m_mipCount && width > 0 && height > 0; ++level)
-		{
-			GLsizei size = MAX_VALUE(32, static_cast<i32>(width) * static_cast<i32>(height) * m_bpp / 8);
-			glCompressedTexImage2D(GL_TEXTURE_2D, level, m_format, width, height, 0, size, data);
-			data += size;
-			width >>= 1; height >>= 1;
-		}
-	}
-	else
-	{
-		for (ui32 level = 0; level < m_mipCount && width > 0 && height > 0; ++level)
-		{
-			GLsizei size = MAX_VALUE(32, static_cast<i32>(width) * static_cast<i32>(height) * m_bpp / 8);
-			glTexImage2D(GL_TEXTURE_2D, level, m_format, width, height, 0, m_format, GL_UNSIGNED_BYTE, data);
-			data += size;
-			width >>= 1; height >>= 1;
-		}
+		GLsizei size = MAX_VALUE(32, static_cast<i32>(width) * static_cast<i32>(height) * m_bpp / 8);
+		m_compressed ? glCompressedTexImage2D(GL_TEXTURE_2D, level, m_format, width, height, 0, size, m_texturedata) :
+					   glTexImage2D(GL_TEXTURE_2D, level, m_format, width, height, 0, m_format, GL_UNSIGNED_BYTE, m_texturedata);
+		m_texturedata += size;
+		width >>= 1; height >>= 1;
 	}
 
     CTexture* texture = new CTexture();
     texture->Link(handle, m_width, m_height);
-    Register(texture);
+    _Register(texture);
     return texture;
 }

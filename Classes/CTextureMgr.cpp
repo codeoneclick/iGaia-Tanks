@@ -28,18 +28,16 @@ IResource_INTERFACE* CTextureMgr::StartLoadOperation(const std::string& _filenam
         if(m_resourceContainer.find(_filename) != m_resourceContainer.end())
         {
             texture = static_cast<CTexture*>(m_resourceContainer[_filename]);
-
         }
         else
         {
-            CLoadOperation_PVR* operation = new CLoadOperation_PVR();
+            TSharedPtrLoadOperation operation = TSharedPtrLoadOperation(new CLoadOperation_PVR());
             operation->Load(_filename);
             if(operation->Get_Status() == E_PARSER_STATUS_DONE)
             {
-                texture = static_cast<CTexture*>(operation->Build());
+				texture = static_cast<CTexture*>(operation->Link());
                 m_resourceContainer.insert(std::make_pair(_filename, texture));
             }
-            delete operation;
         }
     }
     else if(_thread == E_RESOURCE_LOAD_THREAD_ASYNC)
@@ -53,11 +51,11 @@ IResource_INTERFACE* CTextureMgr::StartLoadOperation(const std::string& _filenam
         {
             if(m_operationsQueue.find(_filename) == m_operationsQueue.end())
             {
-                CLoadOperation_PVR* operation = new CLoadOperation_PVR();
+                TSharedPtrLoadOperation operation = TSharedPtrLoadOperation(new CLoadOperation_PVR());
                 m_operationsQueue.insert(std::make_pair(_filename, operation));
             }
 
-            CLoadOperation_PVR* operation = static_cast<CLoadOperation_PVR*>(m_operationsQueue.find(_filename)->second);
+			CLoadOperation_PVR* operation = static_cast<CLoadOperation_PVR*>(m_operationsQueue.find(_filename)->second.get());
             AddListener(_listener, operation);
         }
     }
