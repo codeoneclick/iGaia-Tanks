@@ -19,46 +19,42 @@ CMeshMgr::~CMeshMgr(void)
     
 }
 
-TSharedPtrResource CMeshMgr::StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadingCommands* _observer)
+TSharedPtrResource CMeshMgr::Execute_LoadingOperationSynchronous(const std::string& _filename)
 {
     TSharedPtrMesh mesh = nullptr;
-    
-    if(_thread == E_RESOURCE_LOAD_THREAD_SYNC)
+    if(m_resources.find(_filename) != m_resources.end())
     {
-        if(m_resourceContainer.find(_filename) != m_resourceContainer.end())
-        {
-            mesh = std::static_pointer_cast<CMesh>(m_resourceContainer[_filename]);
-        }
-        else
-        {
-            TSharedPtrLoadOperation operation = TSharedPtrLoadOperation(new CLoadOperation_MDL());
-            operation->Load(_filename);
-            if(operation->Get_Status() == E_PARSER_STATUS_DONE)
-            {
-				mesh = TSharedPtrMesh(static_cast<CMesh*>(operation->Link()));
-                m_resourceContainer.insert(std::make_pair(_filename, mesh));
-            }
-        }
+        mesh = std::static_pointer_cast<CMesh>(m_resources[_filename]);
     }
-    else if(_thread == E_RESOURCE_LOAD_THREAD_ASYNC)
+    else
     {
-        if(m_resourceContainer.find(_filename) != m_resourceContainer.end())
+        TSharedPtrLoadOperation operation = TSharedPtrLoadOperation(new CLoadOperation_MDL());
+        operation->Load(_filename);
+        if(operation->Get_Status() == E_PARSER_STATUS_DONE)
         {
-            mesh = std::static_pointer_cast<CMesh>(m_resourceContainer[_filename]);
-            Notify_ResourceLoadingObserver(_observer, mesh);
-        }
-        else
-        {
-            if(m_operationsQueue.find(_filename) == m_operationsQueue.end())
-            {
-                TSharedPtrLoadOperation operation = TSharedPtrLoadOperation(new CLoadOperation_MDL());
-                m_operationsQueue.insert(std::make_pair(_filename, operation));
-            }
-            TSharedPtrLoadOperation operation = m_operationsQueue.find(_filename)->second;
-            operation->Register_ResourceLoadingObserver(_observer);
+            mesh = TSharedPtrMesh(static_cast<CMesh*>(operation->Link()));
+            m_resources.insert(std::make_pair(_filename, mesh));
         }
     }
     return mesh;
 }
 
-
+void CMeshMgr::Execute_LoadingOperationAsynchronous(const std::string& _filename, const CResourceLoadingCommands* _commands)
+{
+    TSharedPtrMesh mesh = nullptr;
+    if(m_resources.find(_filename) != m_resources.end())
+    {
+        mesh = std::static_pointer_cast<CMesh>(m_resources[_filename]);
+        Execute_CallbackCommands(_commands, mesh);
+    }
+    else
+    {
+        if(m_operationsQueue.find(_filename) == m_operationsQueue.end())
+        {
+            TSharedPtrLoadOperation operation = TSharedPtrLoadOperation(new CLoadOperation_MDL());
+            m_operationsQueue.insert(std::make_pair(_filename, operation));
+        }
+        TSharedPtrLoadOperation operation = m_operationsQueue.find(_filename)->second;
+        operation->Register_ResourceLoadingCommands(_commands);
+    }
+}

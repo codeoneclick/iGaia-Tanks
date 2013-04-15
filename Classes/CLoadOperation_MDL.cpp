@@ -113,6 +113,6 @@ IResource_INTERFACE* CLoadOperation_MDL::Link(void)
 
     CMesh* mesh = new CMesh();
     mesh->Link(std::move(vertexBuffer), std::move(indexBuffer), m_maxBound, m_minBound);
-    _Register(mesh);
+    Register_Resource(mesh);
     return mesh;
 }

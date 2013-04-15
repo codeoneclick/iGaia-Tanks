@@ -46,7 +46,7 @@ protected:
     CRenderMgr* m_renderMgr;
     CSceneUpdateMgr* m_updateMgr;
 
-    virtual void OnResourceDidLoad(TSharedPtrResource _resource);
+    virtual void OnResourceLoaded(TSharedPtrResource _resource);
 
     virtual void OnUpdate(f32 _deltatime);
 

@@ -1,25 +1,25 @@
 
 #include "CResourceLoading_INTERFACE.h"
 
-void CResourceLoadingCommands::Register_OnResourceLoadCallback(const __ON_RESOURCE_DID_LOAD_CALLBACK& _callback)
+void CResourceLoadingCommands::Register_OnResourceLoadedCallback(const __ON_RESOURCE_LOADED_CALLBACK& _callback)
 {
 	assert(_callback != nullptr);
-	m_onResourceDidLoadCallback = _callback;
+	m_onResourceLoadedCallback = _callback;
 }
 
-void CResourceLoadingCommands::Execute_OnResourceDidLoadCallback(TSharedPtrResource _resource)
+void CResourceLoadingCommands::Execute_OnResourceLoadedCallback(TSharedPtrResource _resource) const
 {
-	assert(m_onResourceDidLoadCallback != nullptr);
-    m_onResourceDidLoadCallback(_resource);
+	assert(m_onResourceLoadedCallback != nullptr);
+    m_onResourceLoadedCallback(_resource);
 }
 
 
 CResourceLoading_INTERFACE::CResourceLoading_INTERFACE(void)
 {
-	RegisterCommands();
+	RegisterResourceLoadingCommands();
 }
 
-void CResourceLoading_INTERFACE::RegisterCommands(void)
+void CResourceLoading_INTERFACE::RegisterResourceLoadingCommands(void)
 {
-	m_commands.Register_OnResourceLoadCallback(std::bind(&CResourceLoading_INTERFACE::OnResourceDidLoad, this, std::placeholders::_1));
+	m_resourceLoadingCommands.Register_OnResourceLoadedCallback(std::bind(&CResourceLoading_INTERFACE::OnResourceLoaded, this, std::placeholders::_1));
 }

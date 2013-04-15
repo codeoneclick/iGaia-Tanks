@@ -1,54 +1,59 @@
 
 #include "IResourceMgr.h"
 
-IResourceMgr_INTERFACE::IResourceMgr_INTERFACE(void)
+IResourceMgr_INTERFACE::IResourceMgr_INTERFACE(void) :
+m_isThreadRunning(TRUE)
 {
     m_thread = std::thread(&IResourceMgr_INTERFACE::Thread, this);
 }
 
 IResourceMgr_INTERFACE::~IResourceMgr_INTERFACE(void)
 {
-    
+    m_isThreadRunning = FALSE;
+    usleep(1);
 }
 
-void IResourceMgr_INTERFACE::Notify_ResourceLoadingObserver(CResourceLoadingCommands* _observer, TSharedPtrResource _resource)
+void IResourceMgr_INTERFACE::Execute_CallbackCommands(const CResourceLoadingCommands *_commands, TSharedPtrResource _resource)
 {
-	_observer->Execute_OnResourceDidLoadCallback(_resource);
+	_commands->Execute_OnResourceLoadedCallback(_resource);
 }
 
 void IResourceMgr_INTERFACE::Thread(void)
 {
-    for(std::map<std::string, TSharedPtrLoadOperation>::iterator iterator = m_operationsQueue.begin(); iterator != m_operationsQueue.end(); ++iterator)
+    while (m_isThreadRunning)
     {
-        TSharedPtrLoadOperation operation = iterator->second;
-        if(operation->Get_Status() == E_PARSER_STATUS_UNKNOWN)
+        for(TOperationIterator iterator = m_operationsQueue.begin(); iterator != m_operationsQueue.end(); ++iterator)
         {
-            operation->Load(iterator->first);
+            TSharedPtrLoadOperation operation = iterator->second;
+            if(operation->Get_Status() == E_PARSER_STATUS_UNKNOWN)
+            {
+                operation->Load(iterator->first);
+            }
         }
     }
 }
 
-void IResourceMgr_INTERFACE::CancelLoadOperation(CResourceLoadingCommands *_observer)
+void IResourceMgr_INTERFACE::Cancel_LoadingOperation(const CResourceLoadingCommands *_commands)
 {
-    for(std::map<std::string, TSharedPtrLoadOperation>::iterator iterator = m_operationsQueue.begin(); iterator != m_operationsQueue.end(); ++iterator)
+    for(TOperationIterator iterator = m_operationsQueue.begin(); iterator != m_operationsQueue.end(); ++iterator)
     {
         TSharedPtrLoadOperation operation = iterator->second;
-		operation->Unregister_ResourceLoadingObserver(_observer);
+		operation->Unregister_ResourceLoadingCommands(_commands);
         m_operationsQueue.erase(iterator);
     }
 }
 
 void IResourceMgr_INTERFACE::Update(void)
 {
-    for(std::map<std::string, TSharedPtrLoadOperation>::iterator iterator = m_operationsQueue.begin(); iterator != m_operationsQueue.end(); ++iterator)
+    for(TOperationIterator iterator = m_operationsQueue.begin(); iterator != m_operationsQueue.end(); ++iterator)
     {
         TSharedPtrLoadOperation operation = iterator->second;
         if(operation->Get_Status() == E_PARSER_STATUS_DONE)
         {
 			TSharedPtrResource resource = TSharedPtrResource(operation->Link());
             assert(resource != nullptr);
-			operation->Notify_ResourceLoadingObservers(resource);
-            m_resourceContainer.insert(std::make_pair(iterator->first, resource));
+			operation->Execute_CallbackCommands(resource);
+            m_resources.insert(std::make_pair(iterator->first, resource));
             std::lock_guard<std::mutex>lock(m_mutex);
             m_operationsQueue.erase(iterator);
         }
@@ -60,9 +65,9 @@ void IResourceMgr_INTERFACE::Update(void)
     }
 }
 
-void IResourceMgr_INTERFACE::UnloadResource(TSharedPtrResource _resource)
+void IResourceMgr_INTERFACE::Unload_Resource(TSharedPtrResource _resource)
 {
-    std::map<std::string, TSharedPtrResource>::iterator iterator = m_resourceContainer.find(_resource->Get_Name());
-	assert(iterator != m_resourceContainer.end());
-	m_resourceContainer.erase(iterator);
+    TResourceIterator iterator = m_resources.find(_resource->Get_Name());
+	assert(iterator != m_resources.end());
+	m_resources.erase(iterator);
 }

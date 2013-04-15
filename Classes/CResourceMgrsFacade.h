@@ -23,12 +23,12 @@ public:
     
     CResourceMgrsFacade(void);
     ~CResourceMgrsFacade(void);
-
-    void LoadTexture(const std::string& _filename, CResourceLoadingCommands* _observer);
-    TSharedPtrTexture LoadTexture(const std::string& _filename);
-
-    void LoadMesh(const std::string& _filename, CResourceLoadingCommands* _observer);
-    TSharedPtrMesh LoadMesh(const std::string& _filename);
+    
+    TSharedPtrTexture Get_TextureSynchronous(const std::string& _filename);
+    void Get_TextureAsynchronous(const std::string& _filename, const CResourceLoadingCommands* _commands);
+    
+    TSharedPtrMesh Get_MeshSynchronous(const std::string& _filename);
+    void Get_MeshAsynchronous(const std::string& _filename, const CResourceLoadingCommands* _commands);
 
     SShape3dSettings* LoadShape3dSettings(const std::string& _filename);
     SLandscapeSettings* LoadLandscapeSettings(const std::string& _filename);
@@ -38,9 +38,9 @@ public:
     SSkyDomeSettings* LoadSkyDomeSettings(const std::string& _filename);
     SParticleEmitterSettings* LoadParticleEmitterSettings(const std::string& _filename);
 
-    void CancelLoadResource(CResourceLoadingCommands* _listener);
+    void Cancel_LoadingOperation(const CResourceLoadingCommands* _commands);
 
-    void UnloadResource(TSharedPtrResource _resource);
+    void Unload_Resource(TSharedPtrResource _resource);
 
     void Update(void);
 };

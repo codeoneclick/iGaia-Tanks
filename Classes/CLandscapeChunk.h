@@ -21,7 +21,7 @@ private:
     
 protected:
     
-    void OnResourceDidLoad(TSharedPtrResource _resource);
+    void OnResourceLoaded(TSharedPtrResource _resource);
     
     void OnUpdate(f32 _deltatime);
     

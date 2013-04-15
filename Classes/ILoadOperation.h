@@ -17,9 +17,9 @@ protected:
 
     std::string m_name;
     E_PARSER_STATUS m_status;
-    std::set<CResourceLoadingCommands*> m_observers;
-
-    void _Register(IResource_INTERFACE* _resource);
+    std::set<const CResourceLoadingCommands*> m_commands;
+    
+    void Register_Resource(IResource_INTERFACE* _resource);
 
 public:
     
@@ -34,17 +34,17 @@ public:
         return m_status;
     };
 
-    inline void Register_ResourceLoadingObserver(CResourceLoadingCommands* _observer)
+    inline void Register_ResourceLoadingCommands(const CResourceLoadingCommands* _commands)
     {
-        m_observers.insert(_observer);
+        m_commands.insert(_commands);
     };
 
-    inline void Unregister_ResourceLoadingObserver(CResourceLoadingCommands* _observer)
+    inline void Unregister_ResourceLoadingCommands(const CResourceLoadingCommands* _commands)
     {
-        m_observers.erase(_observer);
+        m_commands.erase(_commands);
     };
 
-	void Notify_ResourceLoadingObservers(TSharedPtrResource _resource);
+	void Execute_CallbackCommands(TSharedPtrResource _resource);
 };
 
 #endif 

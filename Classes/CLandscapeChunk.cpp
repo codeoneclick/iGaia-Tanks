@@ -34,9 +34,9 @@ void CLandscapeChunk::Load(CMesh *_mesh, CMaterial **_materials, ui32 _width, ui
     m_quadTree->BuildRoot(m_mesh->Get_VertexBuffer(), m_mesh->Get_IndexBuffer(), m_mesh->Get_MaxBound(), m_mesh->Get_MinBound(), 4, _width);
 }
 
-void CLandscapeChunk::OnResourceDidLoad(TSharedPtrResource _resource)
+void CLandscapeChunk::OnResourceLoaded(TSharedPtrResource _resource)
 {
-    CGameObject3d::OnResourceDidLoad(_resource);
+    CGameObject3d::OnResourceLoaded(_resource);
 }
 
 void CLandscapeChunk::OnUpdate(f32 _deltatime)

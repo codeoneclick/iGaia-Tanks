@@ -88,7 +88,7 @@ void COcean::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _s
 
         for(const STextureSettings* textureSettings : materialSettings->m_texturesSettings)
         {
-            CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name).get();
+            CTexture* texture = _resourceMgrsFacade->Get_TextureSynchronous(textureSettings->m_name).get();
             texture->Set_Wrap(textureSettings->m_wrap);
             assert(texture != nullptr);
             assert(textureSettings->m_slot >= 0 && textureSettings->m_slot < E_TEXTURE_SLOT_MAX);
@@ -98,9 +98,9 @@ void COcean::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderComposite* _s
 }
 
 
-void COcean::OnResourceDidLoad(TSharedPtrResource _resource)
+void COcean::OnResourceLoaded(TSharedPtrResource _resource)
 {
-    CGameObject3d::OnResourceDidLoad(_resource);
+    CGameObject3d::OnResourceLoaded(_resource);
 }
 
 void COcean::OnUpdate(f32 _deltatime)

@@ -12,14 +12,18 @@ class IResourceMgr_INTERFACE
 private:
     
 protected:
-
-	std::map<std::string, TSharedPtrLoadOperation> m_operationsQueue;
-    std::map<std::string, TSharedPtrResource> m_resourceContainer;
+    
+    std::unordered_map<std::string, TSharedPtrResource> m_resources;
+    std::unordered_map<std::string, TSharedPtrLoadOperation> m_operationsQueue;
+    
+    typedef std::unordered_map<std::string, TSharedPtrResource>::iterator TResourceIterator;
+    typedef std::unordered_map<std::string, TSharedPtrLoadOperation>::iterator TOperationIterator;
 
     std::mutex m_mutex;
     std::thread m_thread;
+    bool m_isThreadRunning;
 
-    void Notify_ResourceLoadingObserver(CResourceLoadingCommands* _observer, TSharedPtrResource _resource);
+    void Execute_CallbackCommands(const CResourceLoadingCommands* _commands, TSharedPtrResource _resource);
     
 public:
     
@@ -28,10 +32,11 @@ public:
     
     virtual void Update(void);
     virtual void Thread(void);
-
-    virtual TSharedPtrResource StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadingCommands* _observer) = 0;
-    void CancelLoadOperation(CResourceLoadingCommands* _observer);
-	void UnloadResource(TSharedPtrResource resource);
+    
+    virtual TSharedPtrResource Execute_LoadingOperationSynchronous(const std::string& _filename) = 0;
+    virtual void Execute_LoadingOperationAsynchronous(const std::string& _filename, const CResourceLoadingCommands* _commands) = 0;
+    void Cancel_LoadingOperation(const CResourceLoadingCommands* _commands);
+	void Unload_Resource(TSharedPtrResource _resource);
 };
 
 

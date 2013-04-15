@@ -15,7 +15,8 @@ public:
     CTextureMgr(void);
     ~CTextureMgr(void);
     
-    TSharedPtrResource StartLoadOperation(const std::string& _filename, E_RESOURCE_LOAD_THREAD _thread, CResourceLoadingCommands* _observer);
+    TSharedPtrResource Execute_LoadingOperationSynchronous(const std::string& _filename);
+    void Execute_LoadingOperationAsynchronous(const std::string& _filename, const CResourceLoadingCommands* _commands);
 };
 
 

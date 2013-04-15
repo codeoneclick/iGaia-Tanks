@@ -87,7 +87,7 @@ void CParticleEmitter::Load(CResourceMgrsFacade* _resourceMgrsFacade, CShaderCom
 
         for(const STextureSettings* textureSettings : materialSettings->m_texturesSettings)
         {
-            CTexture* texture = _resourceMgrsFacade->LoadTexture(textureSettings->m_name).get();
+            CTexture* texture = _resourceMgrsFacade->Get_TextureSynchronous(textureSettings->m_name).get();
             texture->Set_Wrap(textureSettings->m_wrap);
             assert(texture != nullptr);
             assert(textureSettings->m_slot >= 0 && textureSettings->m_slot < E_TEXTURE_SLOT_MAX);
@@ -184,9 +184,9 @@ void CParticleEmitter::OnUpdate(f32 _deltatime)
     m_mesh->Get_VertexBuffer()->Unlock();
 }
 
-void CParticleEmitter::OnResourceDidLoad(TSharedPtrResource _resource)
+void CParticleEmitter::OnResourceLoaded(TSharedPtrResource _resource)
 {
-    CGameObject3d::OnResourceDidLoad(_resource);
+    CGameObject3d::OnResourceLoaded(_resource);
 }
 
 ui32 CParticleEmitter::OnDrawIndex(void)

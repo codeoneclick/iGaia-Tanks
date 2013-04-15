@@ -166,7 +166,6 @@ IResource_INTERFACE* CLoadOperation_PVR::Link(void)
 	ui32 width = m_width;
 	ui32 height = m_height;
 
-
 	for (ui32 level = 0; level < m_mipCount && width > 0 && height > 0; ++level)
 	{
 		GLsizei size = MAX_VALUE(32, static_cast<i32>(width) * static_cast<i32>(height) * m_bpp / 8);
@@ -178,6 +177,6 @@ IResource_INTERFACE* CLoadOperation_PVR::Link(void)
 
     CTexture* texture = new CTexture();
     texture->Link(handle, m_width, m_height);
-    _Register(texture);
+    Register_Resource(texture);
     return texture;
 }

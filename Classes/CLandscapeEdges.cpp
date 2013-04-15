@@ -109,9 +109,9 @@ void CLandscapeEdges::Load(CMaterial* _material, ui32 _width, ui32 _height, cons
     m_mesh->Link(std::move(vertexBuffer), std::move(indexBuffer));
 }
 
-void CLandscapeEdges::OnResourceDidLoad(TSharedPtrResource _resource)
+void CLandscapeEdges::OnResourceLoaded(TSharedPtrResource _resource)
 {
-    CGameObject3d::OnResourceDidLoad(_resource);
+    CGameObject3d::OnResourceLoaded(_resource);
 }
 
 void CLandscapeEdges::OnUpdate(f32 _deltatime)

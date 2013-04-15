@@ -14,16 +14,18 @@ ILoadOperation_INTERFACE::ILoadOperation_INTERFACE(void) :
 
 }
 
-void ILoadOperation_INTERFACE::_Register(IResource_INTERFACE* _resource)
+void ILoadOperation_INTERFACE::Register_Resource(IResource_INTERFACE *_resource)
 {
+    assert(m_name.length() != 0);
+    assert(_resource != nullptr);
     _resource->m_name = m_name;
 }
 
-void ILoadOperation_INTERFACE::Notify_ResourceLoadingObservers(TSharedPtrResource _resource)
+void ILoadOperation_INTERFACE::Execute_CallbackCommands(TSharedPtrResource _resource)
 {
-    for(CResourceLoadingCommands* _observer : m_observers)
+    for(const CResourceLoadingCommands* commands : m_commands)
     {
-		_observer->Execute_OnResourceDidLoadCallback(_resource);
+		commands->Execute_OnResourceLoadedCallback(_resource);
     }
-    m_observers.clear();
+    m_commands.clear();
 }

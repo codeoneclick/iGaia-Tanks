@@ -104,7 +104,7 @@ void CGameObject3d::ListenUpdateMgr(bool _value)
     }
 }
 
-void CGameObject3d::OnResourceDidLoad(TSharedPtrResource _resource)
+void CGameObject3d::OnResourceLoaded(TSharedPtrResource _resource)
 {
     
 }

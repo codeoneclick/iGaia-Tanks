@@ -37,6 +37,12 @@
 		21C7381417106E6900E0BC0F /* CBuilding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C7381217106E6900E0BC0F /* CBuilding.cpp */; };
 		21C7381717106EBD00E0BC0F /* CBuildingSettings_PARSER.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C7381517106EBD00E0BC0F /* CBuildingSettings_PARSER.cpp */; };
 		21C7381A1710740300E0BC0F /* building_quest.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21C738191710740300E0BC0F /* building_quest.xml */; };
+		21C73899171C964F00E0BC0F /* CSNSOperationsPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C73897171C964F00E0BC0F /* CSNSOperationsPool.cpp */; };
+		21C7389C171C989E00E0BC0F /* CSNSOperationsFabricator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C7389A171C989D00E0BC0F /* CSNSOperationsFabricator.cpp */; };
+		21C7389F171C98B800E0BC0F /* ISNSOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C7389D171C98B800E0BC0F /* ISNSOperation.cpp */; };
+		21C738A2171C98EE00E0BC0F /* CSNSOperation_Login.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C738A0171C98ED00E0BC0F /* CSNSOperation_Login.cpp */; };
+		21C738A7171C9AA300E0BC0F /* CSNSOperation_ImportSocialFriends.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C738A5171C9AA300E0BC0F /* CSNSOperation_ImportSocialFriends.cpp */; };
+		21C738AA171C9C0900E0BC0F /* CSNSOperation_ImportOsirisFriends.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C738A8171C9C0900E0BC0F /* CSNSOperation_ImportOsirisFriends.cpp */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		4D27E4840F9AD71900447247 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4830F9AD71900447247 /* OpenGLES.framework */; };
 		4D27E4B50F9AD7D600447247 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D27E4B40F9AD7D600447247 /* QuartzCore.framework */; };
@@ -543,6 +549,20 @@
 		21C7381517106EBD00E0BC0F /* CBuildingSettings_PARSER.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBuildingSettings_PARSER.cpp; sourceTree = "<group>"; };
 		21C7381617106EBD00E0BC0F /* CBuildingSettings_PARSER.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBuildingSettings_PARSER.h; sourceTree = "<group>"; };
 		21C738191710740300E0BC0F /* building_quest.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = building_quest.xml; path = Resources/Bundle/building_quest.xml; sourceTree = "<group>"; };
+		21C73897171C964F00E0BC0F /* CSNSOperationsPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSNSOperationsPool.cpp; sourceTree = "<group>"; };
+		21C73898171C964F00E0BC0F /* CSNSOperationsPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNSOperationsPool.h; sourceTree = "<group>"; };
+		21C7389A171C989D00E0BC0F /* CSNSOperationsFabricator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSNSOperationsFabricator.cpp; sourceTree = "<group>"; };
+		21C7389B171C989E00E0BC0F /* CSNSOperationsFabricator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNSOperationsFabricator.h; sourceTree = "<group>"; };
+		21C7389D171C98B800E0BC0F /* ISNSOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ISNSOperation.cpp; sourceTree = "<group>"; };
+		21C7389E171C98B800E0BC0F /* ISNSOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISNSOperation.h; sourceTree = "<group>"; };
+		21C738A0171C98ED00E0BC0F /* CSNSOperation_Login.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSNSOperation_Login.cpp; sourceTree = "<group>"; };
+		21C738A1171C98ED00E0BC0F /* CSNSOperation_Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNSOperation_Login.h; sourceTree = "<group>"; };
+		21C738A5171C9AA300E0BC0F /* CSNSOperation_ImportSocialFriends.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSNSOperation_ImportSocialFriends.cpp; sourceTree = "<group>"; };
+		21C738A6171C9AA300E0BC0F /* CSNSOperation_ImportSocialFriends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNSOperation_ImportSocialFriends.h; sourceTree = "<group>"; };
+		21C738A8171C9C0900E0BC0F /* CSNSOperation_ImportOsirisFriends.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSNSOperation_ImportOsirisFriends.cpp; sourceTree = "<group>"; };
+		21C738A9171C9C0900E0BC0F /* CSNSOperation_ImportOsirisFriends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNSOperation_ImportOsirisFriends.h; sourceTree = "<group>"; };
+		21C738AC171C9C5700E0BC0F /* HSNSEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSNSEnums.h; sourceTree = "<group>"; };
+		21C738AE171C9C7F00E0BC0F /* HSNSCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSNSCommon.h; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4D27E4830F9AD71900447247 /* OpenGLES.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		4D27E4B40F9AD7D600447247 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -1309,6 +1329,43 @@
 			name = Parsers;
 			sourceTree = "<group>";
 		};
+		21C73896171C93DE00E0BC0F /* SNSOperations */ = {
+			isa = PBXGroup;
+			children = (
+				21C738A4171C991F00E0BC0F /* Custom */,
+				21C738A3171C98FF00E0BC0F /* Common */,
+			);
+			name = SNSOperations;
+			sourceTree = "<group>";
+		};
+		21C738A3171C98FF00E0BC0F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				21C738AC171C9C5700E0BC0F /* HSNSEnums.h */,
+				21C738AE171C9C7F00E0BC0F /* HSNSCommon.h */,
+				21C7389E171C98B800E0BC0F /* ISNSOperation.h */,
+				21C7389D171C98B800E0BC0F /* ISNSOperation.cpp */,
+				21C73898171C964F00E0BC0F /* CSNSOperationsPool.h */,
+				21C73897171C964F00E0BC0F /* CSNSOperationsPool.cpp */,
+				21C7389B171C989E00E0BC0F /* CSNSOperationsFabricator.h */,
+				21C7389A171C989D00E0BC0F /* CSNSOperationsFabricator.cpp */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		21C738A4171C991F00E0BC0F /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				21C738A1171C98ED00E0BC0F /* CSNSOperation_Login.h */,
+				21C738A0171C98ED00E0BC0F /* CSNSOperation_Login.cpp */,
+				21C738A6171C9AA300E0BC0F /* CSNSOperation_ImportSocialFriends.h */,
+				21C738A5171C9AA300E0BC0F /* CSNSOperation_ImportSocialFriends.cpp */,
+				21C738A9171C9C0900E0BC0F /* CSNSOperation_ImportOsirisFriends.h */,
+				21C738A8171C9C0900E0BC0F /* CSNSOperation_ImportOsirisFriends.cpp */,
+			);
+			name = Custom;
+			sourceTree = "<group>";
+		};
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1478,6 +1535,7 @@
 		937367C5144ECDC20051ED8D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				21C73896171C93DE00E0BC0F /* SNSOperations */,
 				A4060A7817034095006848E3 /* InputMgr */,
 				A4060A2A1701D10F006848E3 /* GuiMgr */,
 				A406001E17008E55006848E3 /* CollisionMgr */,
@@ -2912,6 +2970,12 @@
 				A438C85C170588E300C3D756 /* CRoot.cpp in Sources */,
 				21C7381417106E6900E0BC0F /* CBuilding.cpp in Sources */,
 				21C7381717106EBD00E0BC0F /* CBuildingSettings_PARSER.cpp in Sources */,
+				21C73899171C964F00E0BC0F /* CSNSOperationsPool.cpp in Sources */,
+				21C7389C171C989E00E0BC0F /* CSNSOperationsFabricator.cpp in Sources */,
+				21C7389F171C98B800E0BC0F /* ISNSOperation.cpp in Sources */,
+				21C738A2171C98EE00E0BC0F /* CSNSOperation_Login.cpp in Sources */,
+				21C738A7171C9AA300E0BC0F /* CSNSOperation_ImportSocialFriends.cpp in Sources */,
+				21C738AA171C9C0900E0BC0F /* CSNSOperation_ImportOsirisFriends.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
