@@ -30,9 +30,9 @@ void main(void)
     mat3 mTangentSpace = mat3(vTangent.x, vBinormal.x, vNormal.x,
     vTangent.y, vBinormal.y, vNormal.y,
     vTangent.z, vBinormal.z, vNormal.z);
-
+    
     vec3 vLightDirection = vec3(vPosition) - EXT_Light;
-    OUT_Light = normalize(vLightDirection);
+    OUT_Light = normalize(mTangentSpace * vLightDirection);
 
     OUT_TexCoord = IN_SLOT_TexCoord;
     OUT_Clip = dot(vPosition.xyz, EXT_Clip_Plane.xyz) + EXT_Clip_Plane.w;

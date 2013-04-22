@@ -25,11 +25,11 @@ void main(void)
     
     vNormalColor = normalize(vNormalColor * 2.0 - 1.0);
     
-    lowp float fSelfShadow = clamp( 3.0 * OUT_Light.z, 0.0, 1.0);
- 
+    lowp float fSelfShadow = clamp( 4.0 * OUT_Light.z, 0.0, 1.0);
+    
     lowp float fDiffuseFactor = max(dot(vNormalColor, OUT_Light), 0.0);
     vDiffuseColor = vDiffuseColor * fDiffuseFactor;
-
+    
     lowp vec4 vColor = vDiffuseColor * fSelfShadow + vAmbientColor;
     gl_FragColor = vColor;
 }

@@ -43,7 +43,7 @@ void CGameMainMenuScene::Load(IRoot* _root)
     m_camera->Set_Height(2.0f);
 
     m_light = _root->CreateLight();
-    m_light->Set_Position(glm::vec3(32.0f, 128.0f, 32.0f));
+    m_light->Set_Position(glm::vec3(0.0f, 16.0f, 0.0f));
     _root->Set_Light(m_light);
 
     m_particleEmitter = _root->CreateParticleEmitter("particle_emitter_01.xml");
